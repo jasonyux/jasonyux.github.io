@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Git-Summary | From a Beginner to a Disaster</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Git Intro Version Control Version control is a system that records and manages changes for a file or a set of file, so that you could later revert those changes if needed   Why Version Control Many de">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Git-Summary">
+<meta property="og:url" content="http://yoursite.com/2020/05/19/Git-Summary/index.html">
+<meta property="og:site_name" content="From a Beginner to a Disaster">
+<meta property="og:description" content="Git Intro Version Control Version control is a system that records and manages changes for a file or a set of file, so that you could later revert those changes if needed   Why Version Control Many de">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-05-19T12:33:09.203Z">
+<meta property="article:modified_time" content="2020-05-19T09:53:15.889Z">
+<meta property="article:author" content="Xiao Yu">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="From a Beginner to a Disaster" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">From a Beginner to a Disaster</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">Xiao.Y</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Git-Summary" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/05/19/Git-Summary/" class="article-date">
+  <time datetime="2020-05-19T12:33:09.203Z" itemprop="datePublished">2020-05-19</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Git-Summary
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Git-Intro"><a href="#Git-Intro" class="headerlink" title="Git Intro"></a>Git Intro</h2><ul>
+<li>Version Control<ul>
+<li>Version control is a <strong>system</strong> that records and manages changes for a file or a set of file, so that you could later revert those changes if needed</li>
+</ul>
+</li>
+<li>Why Version Control<ul>
+<li>Many default version-control method of choice is to simply copy files into another directory, and renaming them somehow to keep track of the changes</li>
+<li>however, this could be inconvenient and error prone</li>
+</ul>
+</li>
+<li>Solutions<ul>
+<li>One of the most popular VCS tools was a system called RCS, which is still distributed with many computers today. RCS works by keeping patch sets (that is, the differences between files) in a special format on disk; it can then re-create what any file looked like at any point in time by adding up all the patches.<ul>
+<li><em>Problem</em><ul>
+<li>The next major issue that people encounter is that they need to collaborate with developers on other systems.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Centralized Version Control Systems (CVCSs) were developed as a solution to the problem above. These systems (such as CVS, Subversion, and Perforce) have a single server that contains all the versioned files, and a number of clients that check out files from that central place. For many years, this has been the standard for version control.<ul>
+<li><em>Advantages</em><ul>
+<li>everyone knows to a certain degree what everyone else on the project is doing. Administrators have fine-grained control over who can do what, and it’s far easier to administer a CVCS than it is to deal with local databases on every client.</li>
+</ul>
+</li>
+<li><em>Problems</em><ul>
+<li>If that server goes down for an hour, then during that hour nobody can collaborate at all or save versioned changes to anything they’re working on. If the hard disk the central database is on becomes corrupted, and proper backups haven’t been kept, you lose absolutely everything — the entire history of the project except whatever single snapshots people happen to have on their local machines.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Here Distributed Version Control Systems (DVCSs) step in. In a DVCS (such as Git, Mercurial, Bazaar or Darcs), clients don’t just check out the latest snapshot of the files; rather, they fully mirror the repository, including its full history. Thus, if any server dies, and these systems were collaborating via that server, any of the client repositories can be copied back up to the server to restore it. Every clone is really a full backup of all the data.<ul>
+<li><em>Advantages</em><ul>
+<li>you can collaborate with different groups of people in different ways simultaneously within the same project. This allows you to set up several types of workflows that aren’t possible in centralized systems, such as hierarchical models.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><a name="Setup"></a></p>
+<h2 id="Git-Setup"><a href="#Git-Setup" class="headerlink" title="Git Setup"></a>Git Setup</h2><ul>
+<li>Git comes with a tool called <code>git config</code> that lets you get and set configuration variables that control all aspects of how Git looks and operates<ol>
+<li><code>git config --system</code> <ul>
+<li>applied to every user on the system and all their repositories. If you pass the option, it reads and writes from this file specifically. </li>
+</ul>
+</li>
+<li><code>git config --global</code><ul>
+<li>Personal to you, the user. This affects all of the repositories you work with on your system.</li>
+</ul>
+</li>
+<li><code>git config --local</code><ul>
+<li>whatever repository you’re currently using: Specific to that single repository. This is in fact the default.</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li><em>Notice</em><ul>
+<li>Each level overrides values in the previous level, so values in <code>.git/config</code> trump those in <code>/etc/gitconfig</code>.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ol>
+<li>The first thing you should do when you install Git is to set your <strong>user name</strong> and <strong>email address</strong>. This is important because every Git commit uses this information, and it’s immutably <strong>*baked into the commits you start creating</strong><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git config --global user.name &quot;John Doe&quot;</span><br><span class="line">$ git config --global user.email johndoe@example.com</span><br></pre></td></tr></table></figure>
+<ul>
+<li><em>Notice</em><ul>
+<li><code>--global</code> is used here so that it is saved for anything you do on this system. This needs to be done only once.</li>
+<li>If you want to override this with a different name or email address for specific projects, you can run the command without the –global option when you’re in that project.  </li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="Getting-Help"><a href="#Getting-Help" class="headerlink" title="Getting Help"></a>Getting Help</h2><p>To get more information about a command in Git, use any of the three below:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git help &lt;verb&gt;</span><br><span class="line">$ git &lt;verb&gt; --help</span><br><span class="line">$ man git-&lt;verb&gt;</span><br></pre></td></tr></table></figure>
+<p>It is recommended to use <code>git &lt;verb&gt; --help</code> because it sticks to the pattern of command line code. For example, for a quick refresher on the available options for a Git command, you do <code>git &lt;verb&gt; -h</code></p>
+<ul>
+<li><em>Notice</em><ul>
+<li>Those commands are accessible even offline</li>
+</ul>
+</li>
+</ul>
+<h2 id="Git-Basics"><a href="#Git-Basics" class="headerlink" title="Git Basics"></a>Git Basics</h2><ul>
+<li><p><strong>Getting a Git Repository</strong><br>This can be done in two ways</p>
+<ol>
+<li>take a local directory that is currently <strong>not under version control</strong> and turn it into a Git repository</li>
+<li><code>clone</code> an existing Git repository from elsewhere</li>
+</ol>
+<p>Then you will end up with a Git repo on your local machine</p>
+</li>
+</ul>
+<ol>
+<li><p>To do achieve the <strong>first option</strong>, you need to first go to the project directory (for Windows):</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ cd your_path</span><br></pre></td></tr></table></figure>
+<p>Then type:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git init</span><br></pre></td></tr></table></figure>
+<p>This creates a new subdirectory named <strong>.git</strong> that contains all of your necessary repository files — a Git repository skeleton. At this point, <strong>nothing in your project is tracked yet</strong>.</p>
+<p>To start version-controlling, you need to <code>git add</code> your file that you need to control, and then <code>git commit</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git add yourFile1</span><br><span class="line">$ git add yourFile2</span><br><span class="line">$ git commit -m &#39;Initial project version&#39;</span><br></pre></td></tr></table></figure></li>
+<li><p>To achieve the <strong>second option</strong>, for example, a project you’d like to contribute to — the command you need is <code>git clone</code>, so that Git receives <strong>a full copy of nearly all data that the server has</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone &lt;url&gt;</span><br></pre></td></tr></table></figure>
+<p>For example:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git clone https:&#x2F;&#x2F;github.com&#x2F;libgit2&#x2F;libgit2 mylibgit</span><br></pre></td></tr></table></figure></li>
+</ol>
+<ul>
+<li><p><em>Notice</em></p>
+<ul>
+<li>you can <code>clone</code> a <strong>Git linkable library</strong> only</li>
+<li>The above command will <strong>create a directory named libgit2</strong> under the <strong>current directory</strong>, initializes a .git directory inside it, pulls down all the data for that repository, and checks out a working copy of the latest version. </li>
+<li>Git has a number of <strong>different transfer protocols you can use</strong>. The previous example uses the <code>https://</code> protocol, but you may also see <code>git://</code> or <code>user@server:path/to/repo.git</code>, which uses the SSH transfer protocol.</li>
+</ul>
+<p>If you want to <strong>clone the repository into a directory named something other than libgit2</strong>, you can specify the new directory name as an additional argument:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git clone https:&#x2F;&#x2F;github.com&#x2F;libgit2&#x2F;libgit2 customizedName</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="Recording-Changes"><a href="#Recording-Changes" class="headerlink" title="Recording Changes"></a>Recording Changes</h2><p>Typically, you’ll want to <strong>start making changes</strong> and <strong>committing snapshots of those changes</strong> into your repository each time the project reaches a state you want to record.</p>
+<p>As you edit files, Git sees them as <strong>modified</strong>, because you’ve changed them since your last commit. As you work, you selectively <strong>stage these modified files</strong> and then <strong>commit all those staged changes</strong>, and the cycle repeats.</p>
+<ul>
+<li><em>Note</em><ul>
+<li>Not all files under the directory will be <strong>tracked</strong>, and only <strong>tracked</strong> files will Git know about</li>
+<li>once you <code>git add</code> to start your file to start tracking. Then it will be <strong>snapedshotted</strong> if you then call <code>git commit</code></li>
+</ul>
+</li>
+</ul>
+<h2 id="Checking-File-Status"><a href="#Checking-File-Status" class="headerlink" title="Checking File Status"></a>Checking File Status</h2><p>The main tool you use to <strong>determine which files are in which state</strong> is the <code>git status</code> command. </p>
+<p>For example, if you see:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ git status</span><br><span class="line">On branch master</span><br><span class="line">Your branch is up-to-date with &#39;origin&#x2F;master&#39;.</span><br><span class="line">nothing to commit, working directory clean</span><br></pre></td></tr></table></figure>
+<p>A <strong>clean working directory</strong> means <strong>none of your tracked files are modified</strong>.</p>
+<ul>
+<li><em>Note</em><ul>
+<li>this command can also show <strong>untracked</strong> files under the <strong>current directory</strong></li>
+<li>if you want to <strong>start tracking</strong> those, you can call <code>git add fileNeedsToBeTracked</code></li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/05/19/Git-Summary/" data-id="ckadweptf0000e4t68krx5v77" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/05/19/MarkDown-Summary/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          MarkDown-Summary
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/05/19/MarkDown-Summary/">MarkDown-Summary</a>
+          </li>
+        
+          <li>
+            <a href="/2020/05/19/Git-Summary/">Git-Summary</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 Xiao Yu<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
