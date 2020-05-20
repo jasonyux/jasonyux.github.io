@@ -15,7 +15,7 @@
 <meta property="og:description" content="Git Intro Version Control Version control is a system that records and manages changes for a file or a set of file, so that you could later revert those changes if needed   Why Version Control Many de">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-05-19T12:33:09.203Z">
-<meta property="article:modified_time" content="2020-05-20T03:35:13.697Z">
+<meta property="article:modified_time" content="2020-05-20T06:31:55.806Z">
 <meta property="article:author" content="Xiao Yu">
 <meta name="twitter:card" content="summary">
   
@@ -103,14 +103,14 @@
 </ul>
 </li>
 <li>Solutions<ul>
-<li>One of the most popular VCS tools was a system called RCS, which is still distributed with many computers today. RCS works by keeping patch sets (that is, the differences between files) in a special format on disk; it can then re-create what any file looked like at any point in time by adding up all the patches.<ul>
+<li>One of the most popular <strong>VCS</strong> tools was a system called <strong>RCS</strong>, which is still distributed with many computers today. <strong>RCS</strong> works by <strong>keeping patch sets</strong> (that is, the differences between files) <strong>in a special format on disk</strong>; it can then re-create what any file looked like at any point in time by adding up all the patches.<ul>
 <li><em>Problem</em><ul>
 <li>The next major issue that people encounter is that they need to collaborate with developers on other systems.</li>
 </ul>
 </li>
 </ul>
 </li>
-<li>Centralized Version Control Systems (CVCSs) were developed as a solution to the problem above. These systems (such as CVS, Subversion, and Perforce) have a single server that contains all the versioned files, and a number of clients that check out files from that central place. For many years, this has been the standard for version control.<ul>
+<li>Centralized Version Control Systems (<strong>CVCSs</strong>) were developed as a solution to the problem above. These systems (such as CVS, Subversion, and Perforce) have <strong>a single server that contains all the versioned files</strong>, and <strong>a number of clients that check out files from that central place</strong>. For many years, this has been the standard for version control.<ul>
 <li><em>Advantages</em><ul>
 <li>everyone knows to a certain degree what everyone else on the project is doing. Administrators have fine-grained control over who can do what, and it’s far easier to administer a CVCS than it is to deal with local databases on every client.</li>
 </ul>
@@ -121,7 +121,7 @@
 </li>
 </ul>
 </li>
-<li>Here Distributed Version Control Systems (DVCSs) step in. In a DVCS (such as Git, Mercurial, Bazaar or Darcs), clients don’t just check out the latest snapshot of the files; rather, they fully mirror the repository, including its full history. Thus, if any server dies, and these systems were collaborating via that server, any of the client repositories can be copied back up to the server to restore it. Every clone is really a full backup of all the data.<ul>
+<li>Here Distributed Version Control Systems (<strong>DVCSs</strong>) step in. In a DVCS (such as Git, Mercurial, Bazaar or Darcs), clients don’t just check out the latest snapshot of the files; rather, they <strong>fully mirror the repository, including its full history</strong>. Thus, if any server dies, and these systems were collaborating via that server, <strong>any of the client repositories can be copied back up to the server to restore it</strong>. Every clone is really a full backup of all the data.<ul>
 <li><em>Advantages</em><ul>
 <li>you can collaborate with different groups of people in different ways simultaneously within the same project. This allows you to set up several types of workflows that aren’t possible in centralized systems, such as hierarchical models.</li>
 </ul>
@@ -132,7 +132,7 @@
 </li>
 </ul>
 <p><a name="Setup"></a></p>
-<h2 id="Git-Setup"><a href="#Git-Setup" class="headerlink" title="Git Setup"></a>Git Setup</h2><h2 id="Getting-Help"><a href="#Getting-Help" class="headerlink" title="Getting Help"></a>Getting Help</h2><p>To get more information about a command in Git, use any of the three below:</p>
+<h2 id="Git-Setup"><a href="#Git-Setup" class="headerlink" title="Git Setup"></a>Git Setup</h2><h2 id="Getting-Help-in-Git"><a href="#Getting-Help-in-Git" class="headerlink" title="Getting Help in Git"></a>Getting Help in Git</h2><p>To get more information about a command in Git, use any of the three below:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git help &lt;verb&gt;</span><br><span class="line">$ git &lt;verb&gt; --help</span><br><span class="line">$ man git-&lt;verb&gt;</span><br></pre></td></tr></table></figure>
 <p>It is recommended to use <code>git &lt;verb&gt; --help</code> because it sticks to the pattern of command line code. For example, for a quick refresher on the available options for a Git command, you do <code>git &lt;verb&gt; -h</code></p>
 <ul>
@@ -335,6 +335,141 @@
 </ul>
 </li>
 </ul>
+<h2 id="Changing-your-Commit-Stage"><a href="#Changing-your-Commit-Stage" class="headerlink" title="Changing your Commit/Stage"></a>Changing your Commit/Stage</h2><ol>
+<li><p>If you forget to do some small changes, but you have just committed, you can easily “re-commit” by</p>
+<ul>
+<li>first make those additional changes you forgot</li>
+<li>then <strong>stage them</strong></li>
+<li>then <strong>committ again</strong> using <code>git commit --amend</code> to automatically include the new changes <strong>into the previous commit</strong></li>
+</ul>
+</li>
+<li><p>If you want to “re-stage” a file for making additional changes, you use <code>git restore --staged &lt;file&gt;</code>. In fact, this adviced by the command <code>git status</code> as well:</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ git status</span><br><span class="line">On branch master</span><br><span class="line">Changes to be committed:</span><br><span class="line">  (use &quot;git restore --staged &lt;file&gt;...&quot; to unstage)</span><br><span class="line">        modified:   README.md</span><br></pre></td></tr></table></figure>
+<p>Now, the file [README.md] is unstaged and you can add changes to it and restage.</p>
+</li>
+<li><p>If you want to <strong>revert the file to its previous committed state</strong> (you cannot revert to those added state), you execute <code>git restore &lt;file&gt;</code>. In fact, this is also adviced by the command <code>git status</code> <strong>if the file is in the unstaged area</strong></p>
+<blockquote>
+<p>Note:</p>
+<ul>
+<li><input disabled="" type="checkbox"> If you use the <code>restore</code> command, <strong>any local changes you made to that file are gon</strong>e — Git just <strong>replaced that file with the most recently-committed version</strong>. Don’t ever use this command unless you absolutely know that you don’t want those unsaved local changes.</li>
+</ul>
+</blockquote>
+<p> If you would like to <strong>keep the changes</strong> you’ve made to that file but <strong>still need to get it out of the way for now</strong>, we’ll go over stashing and branching in <a href="#gitbranching">Git Branching</a>; these are generally better ways to go.</p>
+</li>
+</ol>
+<h2 id="Working-with-Remotes"><a href="#Working-with-Remotes" class="headerlink" title="Working with Remotes"></a>Working with Remotes</h2><p>To be able to collaborate on any Git project, you need to know how to <strong>manage your remote repositories</strong>. Remote repositories are <strong>versions of your project that are hosted on the Internet or network somewhere</strong>. Managing these remote repositories involves <strong>pushing and pulling data to and from them</strong> when you need to share work.</p>
+<ul>
+<li>To show the remote server for repo in the current  directory, you can execute <code>git remote</code>, or <code>git remote -v</code> to see the URLs stored as well.</li>
+<li>To add a remote server, you can execute <code>git remote add &lt;shortname&gt; &lt;url&gt;</code>, which will configure the <strong>shortname/nickname</strong> for that repo. Then you can <strong>use that shortname to access that repo</strong>.<blockquote>
+<p>Note:</p>
+<ul>
+<li><input disabled="" type="checkbox"> You can only add remote repo in an existing repo</li>
+<li><input disabled="" type="checkbox"> Executing <code>git clone &lt;url&gt;</code> will give you a default shortname of <code>origin</code></li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<h2 id="Difference-between-git-clone-and-git-remote-add"><a href="#Difference-between-git-clone-and-git-remote-add" class="headerlink" title="Difference between git clone and git remote add"></a>Difference between <code>git clone</code> and <code>git remote add</code></h2><ul>
+<li><p><code>git remote add</code> just creates an entry in your git config that specifies a name for a particular URL. You must have an existing git repo to use this. You will not see a folder or any file from that repo. To get them, you need to use <code>git pull &lt;shortname&gt; &lt;branch&gt;</code></p>
+</li>
+<li><p><code>git clone</code> creates a new git repository by copying an existing one located at the URL you specify. This will be physical.</p>
+</li>
+</ul>
+<h2 id="Fetching-and-Pulling-from-Remote-Repos"><a href="#Fetching-and-Pulling-from-Remote-Repos" class="headerlink" title="Fetching and Pulling from Remote Repos"></a>Fetching and Pulling from Remote Repos</h2><ol>
+<li><code>git fetch &lt;remote&gt;</code> This command goes out to that remote project and <strong>pulls down all the data from that remote project that you don’t have yet</strong>. After you do this, you should have references to all the branches from that remote, which you can merge in or inspect at any time (merge operations will be discussed in <a href="#gitbranching">Git Branching</a>).</li>
+<li>If you <strong>cloned a repository</strong>, the command  <code>git fetch origin</code> fetches <strong>any new work that has been pushed to that server</strong> since you cloned (or last fetched from) it<blockquote>
+<p>Note:</p>
+<ul>
+<li><input disabled="" type="checkbox"> <code>git fetch</code> command only <strong>downloads the data to your local repository</strong> — it <strong>doesn’t automatically merge it</strong> with any of your work <strong>or modify what you’re currently working on</strong>. You have to merge it manually into your work when you’re ready</li>
+<li><input disabled="" type="checkbox"> <code>get pull</code> will <strong>fetch and merge the remote branches into your current branch</strong>. More covered in <a href="#gitbranching">Git Branching</a></li>
+</ul>
+</blockquote>
+</li>
+</ol>
+<h2 id="Pushing-Sharing-to-Your-Remote"><a href="#Pushing-Sharing-to-Your-Remote" class="headerlink" title="Pushing/Sharing to Your Remote"></a>Pushing/Sharing to Your Remote</h2><p>When you have your project at a point that you want to share, you have to push it upstream. The command for this is simple: <code>git push &lt;remote&gt; &lt;branch&gt;</code>. If you want to <strong>push your master branch to your origin server</strong> (again, cloning generally sets up both of those names for you automatically), then you can run this to <strong>push any commits you’ve done</strong> back up to the server:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git push origin master</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Note:</p>
+<ul>
+<li><input disabled="" type="checkbox"> This command works only <strong>if you cloned from a server</strong> to which you <strong>have write access</strong> and <strong>if nobody has pushed in the meantime</strong>. If someone else if pushing, your push will be rejected and you will have to <strong>fetch their work first and incorporate it into yours</strong> before you’ll be allowed to push. </li>
+</ul>
+</blockquote>
+<h2 id="Renaming-or-Removing-Remote-Repo"><a href="#Renaming-or-Removing-Remote-Repo" class="headerlink" title="Renaming or Removing Remote Repo"></a>Renaming or Removing Remote Repo</h2><ol>
+<li>If you want to rename a shorthand for a remote repo, you can execute <code>git remote rename &lt;originalName&gt; &lt;newName&gt;</code> to change a remote’s shortname.</li>
+<li>If you want to <strong>remove a remote for some reason</strong> — you’ve moved the server or are no longer using a particular mirror, or perhaps a contributor isn’t contributing anymore, you can use <code>git remote remove &lt;shortname&gt;</code></li>
+</ol>
+<h2 id="Inspecting-a-Remote-for-Pushing-and-Pulling-Information"><a href="#Inspecting-a-Remote-for-Pushing-and-Pulling-Information" class="headerlink" title="Inspecting a Remote for Pushing and Pulling Information"></a>Inspecting a Remote for Pushing and Pulling Information</h2><p>If you want to see more information about a particular remote, you can use the <code>git remote show &lt;remote&gt;</code> command</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$ git remote show pb</span><br><span class="line">* remote pb</span><br><span class="line">  Fetch URL: https:&#x2F;&#x2F;github.com&#x2F;paulboone&#x2F;ticgit</span><br><span class="line">  Push  URL: https:&#x2F;&#x2F;github.com&#x2F;paulboone&#x2F;ticgit</span><br><span class="line">  HEAD branch: master</span><br><span class="line">  Remote branches:</span><br><span class="line">    master tracked</span><br><span class="line">    ticgit tracked</span><br><span class="line">  Local ref configured for &#39;git push&#39;:</span><br><span class="line">    master pushes to master (local out of date)</span><br></pre></td></tr></table></figure>
+<p>It lists the URL for the remote repository as well as the tracking branch information. The command helpfully tells you that if you’re on the master branch and you run git pull, it will automatically merge in the master branch on the remote after it fetches all the remote references. It also lists all the remote references it has pulled down.</p>
+<p>In general, it will show you:</p>
+<ul>
+<li>which <strong>branch is automatically pushed to when you run <code>git push</code> while on certain branches</strong></li>
+<li>which <strong>remote branches on the server you don’t yet have</strong></li>
+<li>which <strong>remote branches you have but have been removed from the server</strong></li>
+<li>multiple <strong>local branches that are able to merge</strong> automatically with their remote-tracking branch when you run <code>git pull</code></li>
+</ul>
+<h2 id="Tagging"><a href="#Tagging" class="headerlink" title="Tagging"></a>Tagging</h2><p>Git has the ability to <strong>tag specific points in a repository’s history as being important</strong>. Typically, people use this functionality to mark release points (<code>v1.0</code>, <code>v2.0</code> and so on).</p>
+<h2 id="Listing-the-Tags-of-a-Repo"><a href="#Listing-the-Tags-of-a-Repo" class="headerlink" title="Listing the Tags of a Repo"></a>Listing the Tags of a Repo</h2><p>You can list <strong>all the tags</strong> by calling:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git tag</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Note:</p>
+<ul>
+<li><input disabled="" type="checkbox"> this command lists the tags in <strong>alphabetical order</strong>; the order in which they are displayed <strong>has no real importance</strong>.</li>
+</ul>
+</blockquote>
+<p>You can also filter the tags by using the optional <code>-l</code> or <code>--list</code>, for example</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git tag -l &quot;v1.8.5*&quot;</span><br></pre></td></tr></table></figure>
+<p>This will list all the tags that *<em>starts with *</em><code>v1.8.5</code></p>
+<h2 id="Creating-Tags"><a href="#Creating-Tags" class="headerlink" title="Creating Tags"></a>Creating Tags</h2><p>You can have two types of tags:</p>
+<ol>
+<li><p>a <strong>lightweight tag</strong></p>
+<ul>
+<li><p>it’s just a pointer to a specific commit. It <strong>does not have much information</strong> attached to it. (It does have a <strong>Checksum</strong>, and includes the <strong>author information</strong>) It is often used as a <strong>temporary tag</strong>.</p>
+<p>This</p>
+</li>
+</ul>
+</li>
+<li><p>an <strong>annotated tag</strong></p>
+<ul>
+<li>stored as full objects in the Git database. They’re <strong>checksummed</strong>; contain the <strong>tagger name, email, and date; have a tagging message; and can be signed and verified with GNU Privacy Guard (GPG)</strong>. It’s generally recommended that you create annotated tags so you can have all this information</li>
+</ul>
+</li>
+</ol>
+<blockquote>
+<p>Note:</p>
+<ul>
+<li><input disabled="" type="checkbox"> Those tags will be attached to the <strong>lastest committed version</strong> of your repo</li>
+</ul>
+</blockquote>
+<h2 id="Creating-a-Lightweight-Tag"><a href="#Creating-a-Lightweight-Tag" class="headerlink" title="Creating a Lightweight Tag"></a>Creating a Lightweight Tag</h2><p> This is basically the commit checksum stored in a file — no other information is kept. To create a lightweight tag, <strong>don’t supply</strong> any of the <code>-a</code>, <code>-s</code>, or <code>-m</code> options, just provide a tag name.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git tag &lt;tag-id&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Creating-an-Annotated-Tag"><a href="#Creating-an-Annotated-Tag" class="headerlink" title="Creating an Annotated Tag"></a>Creating an Annotated Tag</h2><p>This is created by </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ git tag -a &lt;tag-id&gt; -m &quot;yourMessage&quot;</span><br><span class="line">&#96;&#96;&#96; </span><br><span class="line">- &#96;-a&#96;, &#96;-s&#96;, or &#96;-u&#96; &#96;&lt;keyid&gt;&#96; is passed, the command **creates a tag object**, and **requires a tag message**. Unless &#96;-m &lt;msg&gt;&#96; or &#96;-F &lt;file&gt;&#96; is given, **an editor is started for the user to type in the tag message**.</span><br><span class="line"></span><br><span class="line">Then to see the message in that tag, use</span><br></pre></td></tr></table></figure>
+<p>$ git show <tag-id></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt; Note:</span><br><span class="line">&gt; - [ ] Don&#39;t be mistaken to execute &#96;git tag show &lt;tag-id&gt;&#96;!</span><br><span class="line"></span><br><span class="line">## Tagging Previous Commits</span><br><span class="line">To **tag any specific commit**, you specify the **commit checksum (or part of it)** at the end of the command:</span><br></pre></td></tr></table></figure>
+<p>$ git tag -a <tag-id> -m “yourMessage” <commit-checksum></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">## Sharing Tags</span><br><span class="line">By default, the &#96;git push&#96; command **doesn’t transfer tags to remote servers**. You will have to explicitly push tags to a shared server after you have created them. This process is just like sharing remote branches — you can run</span><br></pre></td></tr></table></figure>
+<p>$ git push <repo-shortname> <tagname></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">To push **all the tags**, you run</span><br></pre></td></tr></table></figure>
+<p>$ git push <repo-shortname> –tags</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">## Deleting Tags</span><br><span class="line">You can use</span><br></pre></td></tr></table></figure>
+<p>$ git tag -d <tag-id></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">to delete a specific tag. However, this does not remove the tag from the remote servers.</span><br><span class="line"></span><br><span class="line">To delete the tag from the server, you could either use:</span><br></pre></td></tr></table></figure>
+<p>$ git push origin –delete <tag-id></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">or, the slightly less intuitive command</span><br></pre></td></tr></table></figure>
+<p>$ git push origin :refs/tags/v1.4-lw</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">which means the **null value before the colon** is being pushed to the **remote tag name**, effectively deleting it.</span><br><span class="line"></span><br><span class="line">## Viewing Files at a Different State using Tag</span><br><span class="line">You can view the different versions of files by using its tag. This is done by a &#96;git checkout&#96; of that tag, although this puts your repository in “detached HEAD” state, (which has some ill side effects)</span><br><span class="line">-  in a detached-head state, if you **make changes and then create a commit**, the tag will stay the same, but your **new commit won’t belong to any branch and will be unreachable**, except by the exact commit hash. Thus, if you need to make changes — say you’re fixing a bug on an older version, for instance — you will **generally want to create a branch** (covered more in [Git Branching](#gitbranching))</span><br><span class="line"></span><br><span class="line">***Q: What does &#96;git checkout&#96; mean?***</span><br><span class="line"></span><br><span class="line">If you call &#96;git log&#96;, you will see something called &#96;HEAD&#96;. &#96;HEAD&#96; is a label noting where you are in the **commit tree**. It moves with you when you **move from one commit to another**. &#96;git checkout &lt;commit&gt;&#96; is the basic mechanism for **moving around in the commit tree, moving your focus (HEAD) to the specified commit**.</span><br><span class="line"></span><br><span class="line">The commit can be specified by any of a number of ways, **commit hash**, **branch name**, **tag name**, the relative syntax (HEAD^, HEAD~1, etc.) and so on. (It is often useful to consider a checkout to be changing branches)</span><br><span class="line"></span><br><span class="line">## Git Alias</span><br><span class="line">Alias can be understood as shortcuts to execute commands. They can be setup by using the &#96;git config&#96; command.</span><br><span class="line"></span><br><span class="line">For example:</span><br></pre></td></tr></table></figure>
+<p>$ git config –global alias.co checkout<br>$ git config –global alias.br branch<br>$ git config –global alias.ci commit<br>$ git config –global alias.st status</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">This means that </span><br><span class="line">- &#96;git checkout&#96; becomes &#96;git co&#96;</span><br><span class="line">- &#96;git branch&#96; becomes &#96;git br&#96;</span><br><span class="line">- &#96;git commit&#96; becomes &#96;git ci&#96;</span><br><span class="line">- &#96;git status&#96; becomes &#96;git st&#96;</span><br><span class="line"></span><br><span class="line">&gt; Note:</span><br><span class="line">&gt; - [ ] &#96;global&#96; means access for **one user** (yourself) in **all the repos**. In comparison, &#96;local&#96; means for **one user** in this **specific repo**. &#96;system&#96; means for **all users** in **all repos**.</span><br><span class="line"></span><br><span class="line">Some useful **alias** include:</span><br></pre></td></tr></table></figure>
+<p>$ git config –global alias.last ‘log -1 HEAD’</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">So you can see the last commit easily:</span><br></pre></td></tr></table></figure>
+<p>$ git last<br>commit e946cadfbd3b378582b0be5e5385a7702d1d10da (HEAD -&gt; master, tag: v1.0)<br>Author: Xiao Yu <a href="mailto:&#106;&#97;&#x73;&#x6f;&#x6e;&#121;&#x75;&#x78;&#x31;&#x37;&#64;&#x67;&#109;&#x61;&#105;&#x6c;&#46;&#99;&#111;&#x6d;">&#106;&#97;&#x73;&#x6f;&#x6e;&#121;&#x75;&#x78;&#x31;&#x37;&#64;&#x67;&#109;&#x61;&#105;&#x6c;&#46;&#99;&#111;&#x6d;</a><br>Date:   Wed May 20 10:59:55 2020 +0800</p>
+<pre><code>amended: edited AND deleted file removal and untracking</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">## Resetting the Alias</span><br><span class="line">If you find certain alias used before as a bad idea, you can do</span><br></pre></td></tr></table></figure>
+<p>$ git config –global –unset alias.<yourAlias></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">You can also directly edit in the config file to change the alias by:</span><br></pre></td></tr></table></figure>
+<p>$ git config –global –edit</p>
+<p>```<br>which will open the default text editor and then you can edit your alias directly (delete it if not needed).</p>
 
       
     </div>
