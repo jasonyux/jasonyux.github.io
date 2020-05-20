@@ -15,7 +15,7 @@
 <meta property="og:description" content="Git Intro Version Control Version control is a system that records and manages changes for a file or a set of file, so that you could later revert those changes if needed   Why Version Control Many de">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-05-19T12:33:09.203Z">
-<meta property="article:modified_time" content="2020-05-19T14:58:20.923Z">
+<meta property="article:modified_time" content="2020-05-20T03:35:13.697Z">
 <meta property="article:author" content="Xiao Yu">
 <meta name="twitter:card" content="summary">
   
@@ -132,41 +132,7 @@
 </li>
 </ul>
 <p><a name="Setup"></a></p>
-<h2 id="Git-Setup"><a href="#Git-Setup" class="headerlink" title="Git Setup"></a>Git Setup</h2><ul>
-<li>Git comes with a tool called <code>git config</code> that lets you get and set configuration variables that control all aspects of how Git looks and operates<ol>
-<li><code>git config --system</code> <ul>
-<li>applied to every user on the system and all their repositories. If you pass the option, it reads and writes from this file specifically. </li>
-</ul>
-</li>
-<li><code>git config --global</code><ul>
-<li>Personal to you, the user. This affects all of the repositories you work with on your system.</li>
-</ul>
-</li>
-<li><code>git config --local</code><ul>
-<li>whatever repository you’re currently using: Specific to that single repository. This is in fact the default.</li>
-</ul>
-</li>
-</ol>
-<ul>
-<li><em>Notice</em><ul>
-<li>Each level overrides values in the previous level, so values in <code>.git/config</code> trump those in <code>/etc/gitconfig</code>.</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<ol>
-<li>The first thing you should do when you install Git is to set your <strong>user name</strong> and <strong>email address</strong>. This is important because every Git commit uses this information, and it’s immutably <strong>*baked into the commits you start creating</strong><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git config --global user.name &quot;John Doe&quot;</span><br><span class="line">$ git config --global user.email johndoe@example.com</span><br></pre></td></tr></table></figure>
-<ul>
-<li><em>Notice</em><ul>
-<li><code>--global</code> is used here so that it is saved for anything you do on this system. This needs to be done only once.</li>
-<li>If you want to override this with a different name or email address for specific projects, you can run the command without the –global option when you’re in that project.  </li>
-</ul>
-</li>
-</ul>
-</li>
-</ol>
-<h2 id="Getting-Help"><a href="#Getting-Help" class="headerlink" title="Getting Help"></a>Getting Help</h2><p>To get more information about a command in Git, use any of the three below:</p>
+<h2 id="Git-Setup"><a href="#Git-Setup" class="headerlink" title="Git Setup"></a>Git Setup</h2><h2 id="Getting-Help"><a href="#Getting-Help" class="headerlink" title="Getting Help"></a>Getting Help</h2><p>To get more information about a command in Git, use any of the three below:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git help &lt;verb&gt;</span><br><span class="line">$ git &lt;verb&gt; --help</span><br><span class="line">$ man git-&lt;verb&gt;</span><br></pre></td></tr></table></figure>
 <p>It is recommended to use <code>git &lt;verb&gt; --help</code> because it sticks to the pattern of command line code. For example, for a quick refresher on the available options for a Git command, you do <code>git &lt;verb&gt; -h</code></p>
 <ul>
@@ -249,6 +215,126 @@
 </ul>
 <p>The <code>git add</code> command adds a <strong>change in the working directory to the staging area</strong>. It tells Git that you want to include updates to a particular file in the next commit. However, <code>git add</code> doesn’t really affect the repository in any significant way—changes are not actually recorded until you run git commit.</p>
 <p>The command <code>git commit</code> takes <strong>all changes in the Staging Area</strong>, wraps them together and** puts them in your Local Repository<strong>. A commit is simply a checkpoint telling git to track all changes that have occurred up to this point using our last commit as a comparison. **After committing, your Staging Area will be empty</strong>.</p>
+<h2 id="Abbreviated-version-for-git-status"><a href="#Abbreviated-version-for-git-status" class="headerlink" title="Abbreviated version for git status"></a>Abbreviated version for <code>git status</code></h2><p>To quickly view which file is at which status, you can execute <code>git status -s</code> to see <strong>each file under the current directory with their status</strong></p>
+<p>For example, you could see</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">MM LICENSE.txt</span><br><span class="line">AM README.md</span><br><span class="line">M  firstFile.txt</span><br><span class="line">A  justTracked.txt</span><br><span class="line">?? unTracked.txt</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>A</code> stands for files just added after <strong>.git</strong> existed or <code>git init</code> was called</li>
+<li><code>M</code> stands for files being modified<ul>
+<li>a green <code>M</code> (at position 0) means it is <strong>modified and staged</strong></li>
+<li>a red <code>M</code> (at position 1, if there is) means it is <strong>modified but unstaged</strong></li>
+</ul>
+</li>
+<li><code>??</code> stands for files <strong>not being tracked</strong> by Git</li>
+</ul>
+<ul>
+<li>[x]<em>Note</em><ul>
+<li>Although it is not shown above, but the first letter will be green, and if there is a second letter, it will be red.</li>
+</ul>
+</li>
+</ul>
+<h2 id="Ignoring-Files"><a href="#Ignoring-Files" class="headerlink" title="Ignoring Files"></a>Ignoring Files</h2><p>A <strong>gitignore file</strong> specifies intentionally <strong>untracked files</strong> that Git should ignore. Files already tracked by Git are not affected.</p>
+<p><strong>Each line in a gitignore file</strong> specifies a pattern. When deciding whether to ignore a path, Git normally checks gitignore patterns from multiple sources, with the following order of precedence, from highest to lowest.</p>
+<ol>
+<li>First, you need to have/create a <strong>.gitignore</strong> file under the repository. This can be simply done by <code>touch .gitignore</code></li>
+<li>Then, you need to add texts to that file to specify rules for ignoring files. This can be done by <code>cat &gt;&gt; .gitgnore</code>, where <code>&gt;&gt;</code> means append. Then you press enter and start typing texts/rules, and when you finish, enter <code>Ctrl-D</code> to save.<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ cat &gt;&gt; .gitignore</span><br><span class="line">unTracked.txt</span><br><span class="line">*.[oa]</span><br><span class="line">*~</span><br></pre></td></tr></table></figure>
+(alternatively, you could use <code>&gt;</code> instead of <code>&gt;&gt;</code>, which will override the content)<br>Now, since <strong>unTracked.txt</strong> was not tracked, it will be ignored and <strong>will not appear</strong> if you execute <code>git status</code></li>
+</ol>
+<ul>
+<li><em>Note</em><ul>
+<li><code>*</code> matches anything except a slash</li>
+<li><code>?</code> matches any one character except “/“</li>
+<li><code>[a-zA-Z]</code>is the range notation, which can be used to match <strong>one of the characters</strong> in a range.</li>
+<li><code>!</code> negates a pattern. Put a backslash <code>\</code> in front of the first <code>!</code> for patterns that begin with a literal <code>!</code>, for example, <code>\!important.txt</code></li>
+<li><code>**/someDirectory</code> means match in all directories named [someDirectory]. For example, <code>**/foo</code> matches file or directory “foo” anywhere</li>
+<li><code>someDirectory/**</code> matches everything <strong>inside [someDirectory]</strong>. For example, <code>abc/**</code> matches all files inside directory [abc], relative to the location of the [.gitignore] file</li>
+<li><code>someDirectory/**/otherDirectory</code> matches neted directories between [someDirectory] and [otherDirectory]</li>
+</ul>
+</li>
+</ul>
+<h2 id="Knowing-the-Modifications"><a href="#Knowing-the-Modifications" class="headerlink" title="Knowing the Modifications"></a>Knowing the Modifications</h2><ol>
+<li><p>By just executing <code>git diff</code> will compare what is in your <strong>working directory</strong> with what is in your <strong>staging area</strong>. The result tells you the <strong>changes you’ve made that you haven’t yet staged</strong>.</p>
+<p>For example:  </p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">$ git diff</span><br><span class="line">warning: LF will be replaced by CRLF in firstFile.txt.</span><br><span class="line">The file will have its original line endings in your working directory</span><br><span class="line">diff --git a&#x2F;firstFile.txt b&#x2F;firstFile.txt</span><br><span class="line">index 640bb73..caada99 100644</span><br><span class="line">--- a&#x2F;firstFile.txt</span><br><span class="line">+++ b&#x2F;firstFile.txt</span><br><span class="line">@@ -1,3 +1,5 @@</span><br><span class="line"> hello</span><br><span class="line"> hello</span><br><span class="line"> hello</span><br><span class="line">+</span><br><span class="line">+aa</span><br></pre></td></tr></table></figure>
+<p>The <code>+</code> and <code>+aa</code> lines in the end means those are the lines added to the file, but <strong>not being staged yet.</strong></p>
+</li>
+<li><p>By executing <code>git diff --staged</code> will compare changes of the files between the <strong>staged</strong> state and the <strong>last committed</strong> state.</p>
+<p>For example:</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ git diff --staged</span><br><span class="line">diff --git a&#x2F;firstFile.txt b&#x2F;firstFile.txt</span><br><span class="line">index e69de29..640bb73 100644</span><br><span class="line">--- a&#x2F;firstFile.txt</span><br><span class="line">+++ b&#x2F;firstFile.txt</span><br><span class="line">@@ -0,0 +1,3 @@</span><br><span class="line">+hello</span><br><span class="line">+hello</span><br><span class="line">+hello</span><br></pre></td></tr></table></figure>
+<p>Notice that the last two lines <code>+</code> and <code>+aa</code> are not present.</p>
+</li>
+</ol>
+<h2 id="Committing-Changes"><a href="#Committing-Changes" class="headerlink" title="Committing Changes"></a>Committing Changes</h2><p>Now if you want to commit to those changes, you can execute <code>git commit</code>. However, this will <strong>only commit changes that are staged</strong>, so <strong>modified yet unstaged</strong> changes will not be recorded.</p>
+<p>After executing <code>git commit</code>, it will bring up your editor of choice, which can be chosen when you setup your Git.</p>
+<p>For example</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ git commit</span><br><span class="line">[master 2031fb7] first commit made</span><br><span class="line"> 4 files changed, 11 insertions(+)</span><br><span class="line"> create mode 100644 LICENSE.txt</span><br><span class="line"> create mode 100644 README.md</span><br><span class="line"> create mode 100644 justTracked.txt</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><em>Note</em><ul>
+<li>the <strong>first line will be intentionally made blank</strong>, which is for you to write/describe what has been changed.</li>
+<li>you can use the command <code>git commit -v</code> to also have the <strong>difference shown in the editor</strong> as well, so you know exactly what you have done</li>
+<li>for a quick commit, you can do <code>git commit -m &quot;yourMessageHere&quot;</code>, which finishes the commit without even opening the editor</li>
+<li>you also see which <strong>branch you committed to</strong> (<code>master</code>), what <strong>SHA-1 checksum</strong> the commit has (<code>2031fb7</code>)</li>
+</ul>
+</li>
+</ul>
+<p>After you have made a commmit, <strong>all the tracked file will not appear</strong> if you execute <code>git status -s</code></p>
+<h2 id="Committing-and-Skipping-the-Staging"><a href="#Committing-and-Skipping-the-Staging" class="headerlink" title="Committing and Skipping the Staging"></a>Committing and Skipping the Staging</h2><p> If you want to skip the staging area, Git provides a simple shortcut. Adding the <code>-a</code> option to the <code>git commit</code> command makes Git automatically <strong>stage every file that is already tracked</strong> before doing the commit, letting you skip the <code>git add</code> part.</p>
+<p>Though this is convenient, but be careful; sometimes this flag will cause you to include unwanted changes.</p>
+<h2 id="Removing-Tracked-File-Untracking-File"><a href="#Removing-Tracked-File-Untracking-File" class="headerlink" title="Removing Tracked File/ Untracking File"></a>Removing Tracked File/ Untracking File</h2><ul>
+<li><p>If you want to <strong>remove a tracked file</strong>, meaning you want to delete the file, you need to execute <code>git rm yourFile</code>. This will:</p>
+<ol>
+<li>remove the file from the <strong>current working directory</strong></li>
+<li>remove the file from the <strong>staging area</strong></li>
+</ol>
+<p>Now, the <strong>next time you commit</strong>, it will be <strong>no longer tracked</strong> by Git since it will be completely removed.</p>
+</li>
+<li><p>If you want to <strong>untrack a tracked file</strong>, you execute <code>git rm --cached yourFile</code>. This will keep the file in your directory, but removed from the Git.</p>
+<p>Now, same as before, you will still need to execute <code>git commit</code> to complete the removal from the Git</p>
+</li>
+</ul>
+<h2 id="Renaming-a-File"><a href="#Renaming-a-File" class="headerlink" title="Renaming a File"></a>Renaming a File</h2><p>If you rename a file, and wants it still being tracked by Git properly, you should do<br><code>git mv myFile myNewFile</code></p>
+<p>Now, if you call <code>git status</code>, you will see:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ git mv README.md README</span><br><span class="line">$ git status</span><br><span class="line">On branch master</span><br><span class="line">Your branch is up-to-date with &#39;origin&#x2F;master&#39;.</span><br><span class="line">Changes to be committed:</span><br><span class="line">  (use &quot;git reset HEAD &lt;file&gt;...&quot; to unstage)</span><br><span class="line"></span><br><span class="line">    renamed:    README.md -&gt; README</span><br></pre></td></tr></table></figure>
+
+<p>This is also equivalent of doing seperately three lines:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ mv README.md README</span><br><span class="line">$ git rm README.md</span><br><span class="line">$ git add README</span><br></pre></td></tr></table></figure>
+
+<h2 id="Viewing-Commits"><a href="#Viewing-Commits" class="headerlink" title="Viewing Commits"></a>Viewing Commits</h2><p>You can see all commits in a repo by:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git log</span><br></pre></td></tr></table></figure>
+<p>By default, with no arguments, <code>git log</code> lists the commits made in that repository in <strong>reverse chronological order</strong></p>
+<ul>
+<li><p>Useful options for <code>git log</code></p>
+<ul>
+<li><p><code>git log -p -2</code> will display <strong>2 most recent commits</strong>, and also showing the <strong>patches/changes made</strong></p>
+</li>
+<li><p><code>git log --stat</code> helps you quickly browse what happened during a series of commits that a collaborator has added. It will show additional information such as: <strong>a list of modified files</strong>, <strong>how many files were changed</strong>, and <strong>how many lines in those files were added and removed</strong>. It also puts a <strong>summary of the information at the end</strong>.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">$ git log --stat</span><br><span class="line">commit cae63d011d113c1d45818de4bec434216e10e9ef (HEAD -&gt; master)</span><br><span class="line">Author: Xiao Yu &lt;jasonyux17@gmail.com&gt;</span><br><span class="line">Date:   Wed May 20 10:59:55 2020 +0800</span><br><span class="line"></span><br><span class="line">    tested git file removal and untracking</span><br><span class="line"></span><br><span class="line"> firstFile.txt   | 6 ------</span><br><span class="line"> justTracked.txt | 0</span><br><span class="line"> 2 files changed, 6 deletions(-)</span><br><span class="line"></span><br><span class="line">commit 0e6428a6389d7748a0da2f0798be94999ce8c248</span><br><span class="line">Author: Xiao Yu &lt;jasonyux17@gmail.com&gt;</span><br><span class="line">Date:   Wed May 20 10:34:31 2020 +0800</span><br><span class="line"></span><br><span class="line">    second commit made</span><br><span class="line"></span><br><span class="line"> firstFile.txt | 1 +</span><br><span class="line"> 1 file changed, 1 insertion(+)</span><br><span class="line"></span><br><span class="line">commit 2031fb7fd0a90cf62d1c13d7cfb972e1ce10ad30</span><br><span class="line">Author: Xiao Yu &lt;jasonyux17@gmail.com&gt;</span><br><span class="line">Date:   Wed May 20 10:28:14 2020 +0800</span><br><span class="line"></span><br><span class="line">    first commit made</span><br><span class="line"></span><br><span class="line"> LICENSE.txt     | 5 +++++</span><br></pre></td></tr></table></figure></li>
+<li><p><code>git log --pretty=oneline</code> This option <strong>changes the log output to formats</strong> other than the default. A few prebuilt options are available for you to use. The <code>oneline</code> option <strong>prints each commit on a single line</strong>, which is useful if you’re looking at a lot of commits.</p>
+</li>
+<li><p><code>git log --pretty=format:&quot;%h - %an, %ar : %s&quot;</code> This is customizing the format of the commit output. For example,</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ git log --pretty&#x3D;format:&quot;%h - %an - %ar, commit: %s&quot;</span><br><span class="line">cae63d0 - Xiao Yu - 23 minutes ago, commit: tested git file removal and untracking</span><br><span class="line">0e6428a - Xiao Yu - 49 minutes ago, commit: second commit made</span><br><span class="line">2031fb7 - Xiao Yu - 55 minutes ago, commit: first commit made</span><br><span class="line">75d2c61 - Xiao Yu - 18 hours ago, commit: Initial project version</span><br></pre></td></tr></table></figure>
+<p>So we can have options such as:</p>
+<ul>
+<li><code>%h</code> Abbreviated commit hash</li>
+<li><code>%an</code> author name</li>
+<li><code>%ar</code> author date, relative to now</li>
+<li><code>%s</code> subject/commit message</li>
+</ul>
+</li>
+<li><p><code>git log --since=&quot;2008-10-01&quot;</code> Limit the commits to those made after the specified date. You can also put “2.weeks” or “2 years 1 day 3 minutes ago”</p>
+</li>
+<li><p><code>git log --before=&quot;2008-10-01&quot;</code> Limit the commits to those made before the specified date.</p>
+</li>
+<li><p><code>git log --author=&quot;Xiao Yu&quot;</code> Only show commits in which the author entry matches the specified string.</p>
+</li>
+<li><p><code>git log --committer=&quot;Xiao Yu&quot;</code> Only show commits in which the committer entry matches the specified string.</p>
+</li>
+<li><p><code>git log --no-merges</code> to prevent the display of merge commits cluttering up your log history, which usually are not informative</p>
+</li>
+</ul>
+</li>
+</ul>
 
       
     </div>
