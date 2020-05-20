@@ -15,7 +15,7 @@
 <meta property="og:description" content="Git Intro Version Control Version control is a system that records and manages changes for a file or a set of file, so that you could later revert those changes if needed   Why Version Control Many de">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-05-19T12:33:09.203Z">
-<meta property="article:modified_time" content="2020-05-19T09:53:15.889Z">
+<meta property="article:modified_time" content="2020-05-19T14:58:20.923Z">
 <meta property="article:author" content="Xiao Yu">
 <meta name="twitter:card" content="summary">
   
@@ -209,8 +209,8 @@
 
 </li>
 </ul>
-<h2 id="Recording-Changes"><a href="#Recording-Changes" class="headerlink" title="Recording Changes"></a>Recording Changes</h2><p>Typically, you’ll want to <strong>start making changes</strong> and <strong>committing snapshots of those changes</strong> into your repository each time the project reaches a state you want to record.</p>
-<p>As you edit files, Git sees them as <strong>modified</strong>, because you’ve changed them since your last commit. As you work, you selectively <strong>stage these modified files</strong> and then <strong>commit all those staged changes</strong>, and the cycle repeats.</p>
+<h2 id="Recording-Changes"><a href="#Recording-Changes" class="headerlink" title="Recording Changes"></a>Recording Changes</h2><p>Typically, you’ll want to <strong>start making changes</strong> and <strong>committing snapshots of those changes</strong> (i.e. recording/saving those changes) into your repository each time the project reaches a state you want to record.</p>
+<p>As you edit files, Git sees them as <strong>modified</strong>, because you’ve changed them since your last commit. As you work, you selectively <strong>stage these modified files</strong> and then <strong>commit/save all those staged changes</strong>, and the cycle repeats.</p>
 <ul>
 <li><em>Note</em><ul>
 <li>Not all files under the directory will be <strong>tracked</strong>, and only <strong>tracked</strong> files will Git know about</li>
@@ -229,6 +229,26 @@
 </ul>
 </li>
 </ul>
+<h2 id="Modifying-a-Tracked-File"><a href="#Modifying-a-Tracked-File" class="headerlink" title="Modifying a Tracked File"></a>Modifying a Tracked File</h2><p>There are three status that a tracked file can be at <strong>after being modified</strong>:</p>
+<ol>
+<li><strong>Unstaged and uncomitted</strong><ul>
+<li>This happens <strong>right after</strong> you have <strong>modified a tracked file</strong>. At this point, if you did not call <code>git add thatFile</code> again, Git will only know about the previous checkpoint.<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Changes not staged for commit:</span><br><span class="line">  (use &quot;git add &lt;file&gt;...&quot; to update what will be committed)</span><br><span class="line">  (use &quot;git restore &lt;file&gt;...&quot; to discard changes in working directory)</span><br><span class="line">        modified:   firstFile.txt</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><strong>Staged but uncommitted</strong><ul>
+<li>This happens when you have modified a tracked file and called <code>git add thatFile</code>. Now, <strong>Git knows about it and it is thrown into the staging area</strong><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Changes to be committed:</span><br><span class="line">  (use &quot;git restore --staged &lt;file&gt;...&quot; to unstage)</span><br><span class="line">        new file:   LICENSE</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><strong>Staged and committed</strong><ul>
+<li>This happens when you call <code>git commit yourFile</code>, so that the <strong>changes move from the stanging area to be saved in your local repository</strong></li>
+</ul>
+</li>
+</ol>
+<h2 id="Difference-between-git-add-and-git-commit"><a href="#Difference-between-git-add-and-git-commit" class="headerlink" title="Difference between git add and git commit"></a>Difference between <code>git add</code> and <code>git commit</code></h2><ul>
+<li><strong><em>Q: why add and commit as two functions? They seem to be two repeated checkpoint procedures.</em></strong></li>
+</ul>
+<p>The <code>git add</code> command adds a <strong>change in the working directory to the staging area</strong>. It tells Git that you want to include updates to a particular file in the next commit. However, <code>git add</code> doesn’t really affect the repository in any significant way—changes are not actually recorded until you run git commit.</p>
+<p>The command <code>git commit</code> takes <strong>all changes in the Staging Area</strong>, wraps them together and** puts them in your Local Repository<strong>. A commit is simply a checkpoint telling git to track all changes that have occurred up to this point using our last commit as a comparison. **After committing, your Staging Area will be empty</strong>.</p>
 
       
     </div>
