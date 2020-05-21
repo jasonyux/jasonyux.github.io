@@ -22,7 +22,7 @@
 <meta property="og:image" content="http://yoursite.com/2020/05/20/Git-Summary/Git-Summary/complicatedRebase.png">
 <meta property="og:image" content="http://yoursite.com/2020/05/20/Git-Summary/Git-Summary/rebase2.png">
 <meta property="article:published_time" content="2020-05-20T12:46:25.000Z">
-<meta property="article:modified_time" content="2020-05-20T13:24:59.479Z">
+<meta property="article:modified_time" content="2020-05-21T05:23:47.360Z">
 <meta property="article:author" content="Xiao Yu">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://yoursite.com/2020/05/20/Git-Summary/Git-Summary/mergingCase1.png">
@@ -383,12 +383,12 @@
 </li>
 </ul>
 <h2 id="Fetching-and-Pulling-from-Remote-Repos"><a href="#Fetching-and-Pulling-from-Remote-Repos" class="headerlink" title="Fetching and Pulling from Remote Repos"></a>Fetching and Pulling from Remote Repos</h2><ol>
-<li><code>git fetch &lt;remote&gt;</code> This command goes out to that remote project and <strong>pulls down all the data from that remote project that you don’t have yet</strong>. After you do this, you should have references to all the branches from that remote, which you can merge in or inspect at any time (merge operations will be discussed in <a href="#git-branching">Git Branching</a>).</li>
+<li><code>git fetch &lt;remote&gt;</code> This command goes out to that remote project and <strong>pulls down all the data from that remote project that you don’t have yet</strong>. After you do this, you should have references to all the branches from that remote, which you can merge in or inspect at any time (merge operations will be discussed in <a href="#Git-Branching">Git Branching</a>.</li>
 <li>If you <strong>cloned a repository</strong>, the command  <code>git fetch origin</code> fetches <strong>any new work that has been pushed to that server</strong> since you cloned (or last fetched from) it<blockquote>
 <p>Note:</p>
 <ul>
 <li><input disabled="" type="checkbox"> <code>git fetch</code> command only <strong>downloads the data to your local repository</strong> — it <strong>doesn’t automatically merge it</strong> with any of your work <strong>or modify what you’re currently working on</strong>. You have to merge it manually into your work when you’re ready</li>
-<li><input disabled="" type="checkbox"> <code>get pull</code> will <strong>fetch and merge the remote branches into your current branch</strong>. More covered in <a href="#git-branching">Git Branching</a></li>
+<li><input disabled="" type="checkbox"> <code>get pull</code> will <strong>fetch and merge the remote branches into your current branch</strong>. More covered in <a href="#Git-Branching">Git Branching</a></li>
 </ul>
 </blockquote>
 </li>
@@ -482,7 +482,7 @@
 <p>which means the <strong>null value before the colon</strong> is being pushed to the <strong>remote tag name</strong>, effectively deleting it.</p>
 <h2 id="Viewing-Files-at-a-Different-State-using-Tag"><a href="#Viewing-Files-at-a-Different-State-using-Tag" class="headerlink" title="Viewing Files at a Different State using Tag"></a>Viewing Files at a Different State using Tag</h2><p>You can view the different versions of files by using its tag. This is done by a <code>git checkout</code> of that tag, although this puts your repository in “detached HEAD” state, (which has some ill side effects)</p>
 <ul>
-<li>in a detached-head state, if you <strong>make changes and then create a commit</strong>, the tag will stay the same, but your <strong>new commit won’t belong to any branch and will be unreachable</strong>, except by the exact commit hash. Thus, if you need to make changes — say you’re fixing a bug on an older version, for instance — you will <strong>generally want to create a branch</strong> (covered more in <a href="#git-branching">Git Branching</a>)</li>
+<li>in a detached-head state, if you <strong>make changes and then create a commit</strong>, the tag will stay the same, but your <strong>new commit won’t belong to any branch and will be unreachable</strong>, except by the exact commit hash. Thus, if you need to make changes — say you’re fixing a bug on an older version, for instance — you will <strong>generally want to create a branch</strong> (covered more in <a href="#Git-Branching">Git Branching</a>)</li>
 </ul>
 <p><strong><em>Q: What does <code>git checkout</code> mean?</em></strong></p>
 <p>If you call <code>git log</code>, you will see something called <code>HEAD</code>. <code>HEAD</code> is a label noting where you are in the <strong>commit tree</strong>. It moves with you when you <strong>move from one commit to another</strong>. <code>git checkout &lt;commit&gt;</code> is the basic mechanism for <strong>moving around in the commit tree, moving your focus (HEAD) to the specified commit</strong>.</p>
@@ -729,6 +729,91 @@ Now, the master head will point to the inital commit. If your friend is also wor
 <li><input disabled="" type="checkbox"> If you are using <code>git pull</code> and want to make <code>--rebase</code> the <strong>default</strong>, you can set the <code>pull.rebase config</code> value with something like <code>git config --global pull.rebase true</code>.</li>
 </ul>
 </blockquote>
+<h2 id="Running-Git-On-Server"><a href="#Running-Git-On-Server" class="headerlink" title="Running Git On Server"></a>Running Git On Server</h2><p>Running a Git server is fairly straightforward. First, you <strong>choose which protocols you want your server to support</strong>. </p>
+<p>A <strong>remote repository is generally a bare repository</strong> — a Git repository that has no working directory. Because the repository is only used as a collaboration point, there is no reason to have a snapshot checked out on disk; it’s just the Git data. In the simplest terms, a bare repository is the contents of your project’s <strong>.git directory</strong> and nothing else.</p>
+<p>Basically, a <strong>bare repository does not directly contain the actual files and code that you want to edit</strong> on your local machine. However, when you do <code>git clone</code> from it, you will get the progress <strong>and the code</strong> translated from the bare repo on the server to your local machine where you cloned it. Everytime you push changes to the <strong>remote bare repo</strong>, only the <strong>progress information</strong> will be pushed, but there will <strong>still be no actual code files in the remote bare repo</strong></p>
+<h2 id="The-Protocals-for-Git-Data-Transfer"><a href="#The-Protocals-for-Git-Data-Transfer" class="headerlink" title="The Protocals for Git Data Transfer"></a>The Protocals for Git Data Transfer</h2><p>Git can use four distinct protocols to transfer data: <strong>Local</strong>, <strong>HTTP</strong>, <strong>Secure Shell</strong> (SSH) and <strong>Git</strong>.</p>
+<ol>
+<li><p><strong>Local</strong> Protocal</p>
+<ul>
+<li><p>The most basic is the Local protocol, in which the <strong>remote repository is in another directory on the same host</strong>. This is often used if everyone on your team has access to a shared filesystem such as an NFS mount, or in the less likely case that everyone logs in to the same computer.</p>
+</li>
+<li><p>Then to clone a local bare repository, you run </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git clone &#x2F;your&#x2F;gitrepo&#x2F;directory.git</span><br></pre></td></tr></table></figure>
+<p>Or you can run</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git clone file:&#x2F;&#x2F;&#x2F;your&#x2F;gitrepo&#x2F;directory.git</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>Note:</p>
+<ul>
+<li><input disabled="" type="checkbox"> Doing it in the first way is a faster transfer process, but it will let Git use <strong>hardlinks</strong> or <strong>directly copy the files it needs</strong>.</li>
+<li><input disabled="" type="checkbox"> Doing it the second way will fire up the processes that Git normally uses to <strong>transfer data over a network</strong>, which is generally much <strong>less efficient</strong>. The main reason to specify the <code>file://</code> prefix is if you want a <strong>clean copy of the repository with extraneous references or objects left out</strong></li>
+</ul>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p><strong>HTTP</strong> Protocols</p>
+<ul>
+<li>Smart HTTP<ul>
+<li>Smart HTTP operates very similarly to the SSH or Git protocols but runs over standard HTTPS ports and can use various HTTP authentication mechanisms, meaning it’s often easier on the user than something like SSH, since <strong>you can use things like username/password authentication rather than having to set up SSH keys</strong>.</li>
+<li>This has become the most popilar way to use Git now, and in fact, for services like GitHub, <strong>the URL you use to view the repository online</strong> (for example, <a href="https://github.com/schacon/simplegit" target="_blank" rel="noopener">https://github.com/schacon/simplegit</a>) <strong>is the same URL you can use to clone and, if you have access, push over</strong>.</li>
+</ul>
+</li>
+<li>Dumb HTTP<ul>
+<li>If the server does not respond with a Git HTTP smart service, the Git client will try to fall back to the simpler Dumb HTTP protocol. The <strong>Dumb protocol expects the bare Git repository to be served like normal files from the web server</strong>. The beauty of Dumb HTTP is the <strong>simplicity of setting it up</strong>. Basically, all you have to do is <strong>put a bare Git repository under your HTTP document root and set up a specific post-update hook, and you’re done</strong> (See Git Hooks). </li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>SSH</strong> Protocal</p>
+<ul>
+<li><p>A common transport protocol for Git when self-hosting is over SSH. This is because SSH access to servers is already set up in most places — and if it isn’t, it’s easy to do. SSH is also an authenticated network protocol and, because it’s ubiquitous, it’s generally easy to set up and use.</p>
+</li>
+<li><p>To clone a Git repository over SSH, you can specify an <code>ssh:// URL</code> like this:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git clone ssh:&#x2F;&#x2F;[user@]server&#x2F;project.git</span><br></pre></td></tr></table></figure>
+<p>Or you can use the shorter scp-like syntax for the SSH protocol:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git clone [user@]server:project.git</span><br></pre></td></tr></table></figure>
+
+<p>In both cases above, if you don’t specify the optional <code>&lt;username&gt;</code>, Git assumes the user you’re currently logged in as ?.</p>
+<blockquote>
+<p>Note</p>
+<ul>
+<li><input disabled="" type="checkbox"> A negative aspect of SSH is that it <strong>doesn’t support anonymous access to your Git repository</strong>. If you’re using SSH, people <strong>must have SSH access to your machine</strong>, even in a read-only capacity, which doesn’t make SSH conducive to open source projects for which people might simply want to clone your repository to examine it.</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p><strong>Git Protocal</strong></p>
+<ul>
+<li><p>Finally, we have the Git protocol. This is a special daemon that comes packaged with Git; it listens on a dedicated port (9418) that provides a service similar to the SSH protocol, but with <strong>absolutely no authentication</strong>. In order for a repository to be served over the Git protocol, you <strong>must create a <code>git-daemon-export-ok</code> file</strong> — the daemon won’t serve a repository without that file in it — but, other than that, there is <strong>no security</strong>. Either the Git repository is available for everyone to <code>clone</code>, or it isn’t. This is means that <strong>it will be read-only for either everyone or no-one.</strong> </p>
+</li>
+<li><p>However, you can also setup <strong>push access</strong>, but, this means that, given the lack of authentication, it will be <strong>pushable for everyone or no-one on the internet</strong>.</p>
+<blockquote>
+<p>Note:</p>
+<ul>
+<li><input disabled="" type="checkbox"> It is the fastest network transfer protocal available currently. It uses the same data-transfer mechanism as the SSH protocol <strong>but without the encryption and authentication overhead</strong>. </li>
+<li><input disabled="" type="checkbox"> It’s generally undesirable for the Git protocol to be the only access to your project. <strong>Generally, you’ll pair it with SSH or HTTPS access for the few developers who have push (write) access and have everyone else use <code>git://</code> for read-only access</strong>. It’s also probably the most difficult protocol to set up. It must run its own daemon, which requires xinetd or systemd configuration or the like, which isn’t always a walk in the park. </li>
+</ul>
+</blockquote>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="Setting-up-Git-on-a-Server"><a href="#Setting-up-Git-on-a-Server" class="headerlink" title="Setting up Git on a Server"></a>Setting up Git on a Server</h2><h2 id="Setting-up-an-Existing-Git-Repo-on-Github"><a href="#Setting-up-an-Existing-Git-Repo-on-Github" class="headerlink" title="Setting up an Existing Git Repo on Github"></a>Setting up an Existing Git Repo on Github</h2><ol>
+<li><p>First you need to decide which protocal to use. Github provides two protocals: HTTP and SSH, which you can get when you see the <code>Quick Setup</code> tab or when you are inside the repo with the <code>Clone or Download</code>.</p>
+</li>
+<li><p>Then, you navigate to your existing repo in your Git Bash, and add the remote repo by:</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git remote add &lt;remoteShortName&gt; &lt;remoteURLYouJustCopied&gt;</span><br></pre></td></tr></table></figure></li>
+<li><p>Then you can push any of your branch in your local repo to the remote repo by:</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git push &lt;remoteShortName&gt; &lt;localBranchName:remoteBranchName&gt;</span><br></pre></td></tr></table></figure>
+<p> If the <remoteBranchName> is the same as your <localBranchName>, then you can just</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git push &lt;remoteShortName&gt; &lt;localBranchName&gt;</span><br></pre></td></tr></table></figure>
+
+
+</li>
+</ol>
 
       
     </div>
