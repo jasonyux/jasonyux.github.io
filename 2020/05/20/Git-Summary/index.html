@@ -24,7 +24,7 @@
 <meta property="og:image" content="http://yoursite.com/2020/05/20/Git-Summary/Git-Summary/centralized_workflow.png">
 <meta property="og:image" content="http://yoursite.com/2020/05/20/Git-Summary/Git-Summary/integration-manager.png">
 <meta property="article:published_time" content="2020-05-20T12:46:25.000Z">
-<meta property="article:modified_time" content="2020-05-21T12:11:29.487Z">
+<meta property="article:modified_time" content="2020-05-21T12:30:08.823Z">
 <meta property="article:author" content="Xiao Yu">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://yoursite.com/2020/05/20/Git-Summary/Git-Summary/mergingCase1.png">
@@ -344,7 +344,7 @@
 </ul>
 </li>
 </ul>
-<h2 id="Changing-your-Commit-Stage"><a href="#Changing-your-Commit-Stage" class="headerlink" title="Changing your Commit/Stage"></a>Changing your Commit/Stage</h2><ol>
+<h2 id="Changing-your-Staging"><a href="#Changing-your-Staging" class="headerlink" title="Changing your Staging"></a>Changing your Staging</h2><ol>
 <li><p>If you forget to do some small changes, but you have just committed, you can easily “re-commit” by</p>
 <ul>
 <li>first make those additional changes you forgot</li>
@@ -356,7 +356,16 @@
  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ git status</span><br><span class="line">On branch master</span><br><span class="line">Changes to be committed:</span><br><span class="line">  (use &quot;git restore --staged &lt;file&gt;...&quot; to unstage)</span><br><span class="line">        modified:   README.md</span><br></pre></td></tr></table></figure>
 <p>Now, the file [README.md] is unstaged and you can add changes to it and restage.</p>
 </li>
-<li><p>If you want to <strong>revert the file to its previous committed state</strong> (you cannot revert to those added state), you execute <code>git restore &lt;file&gt;</code>. In fact, this is also adviced by the command <code>git status</code> <strong>if the file is in the unstaged area</strong></p>
+</ol>
+<h2 id="Changing-Undoing-your-Commit"><a href="#Changing-Undoing-your-Commit" class="headerlink" title="Changing/Undoing your Commit"></a>Changing/Undoing your Commit</h2><p>If you want to <strong>revert the file to its previous committed state</strong> (you cannot revert to those added state),  you have several options to do. You could:</p>
+<ol>
+<li><p>Run <code>git restore &lt;file&gt;</code>. In fact, this is also adviced by the command <code>git status</code> <strong>if the file is in the unstaged area</strong>. It is usually used for <strong>restoring files in the working tree from either the index or another commit</strong>. This command <strong>does not update your branch</strong>.</p>
+</li>
+<li><p>Run <code>git reset &lt;commit-id&gt;</code> is about <strong>updating your branch, moving the tip</strong> in order to add or remove commits from the branch</p>
+</li>
+<li><p>Run <code>git revert</code> which <strong>creates a new commit that undoes the changes from a previous commit</strong>. This command <strong>adds new history to the project</strong> (it doesn’t modify existing history).</p>
+</li>
+<li><p>Run <code>git checkout &lt;commit-id&gt;</code>. This is the most conservative and prefered by myself. It <strong>first move the HEAD to that commit</strong>, so that you can view changes at that point. However, this will make the <strong>HEAD DETACHED</strong>, because it <strong>does not follow any branch</strong> (in fact, Git will create a temporary branch for you, which will disappear once you switch to other branches), which means that if you do some changes here, they <strong>will not be visible once <code>checkout</code> to other branches</strong>. Therefore, now you will need to run <code>git branch -b &lt;yourBranchName&gt;</code> to create a branch <strong>and attach this <code>DETACHED HEAD</code> to that branch</strong>. Now, everything will be saved if you move around and switch bewteen branches.</p>
 <blockquote>
 <p>Note:</p>
 <ul>
@@ -923,7 +932,7 @@ Now, the master head will point to the inital commit. If your friend is also wor
 <h2 id="Using-git-apply"><a href="#Using-git-apply" class="headerlink" title="Using git apply"></a>Using <code>git apply</code></h2><p>If you received the patch from someone who <strong>generated it with <code>git diff</code> or some variation of the Unix diff command</strong> (which is not recommended; see the next section), you can <strong>apply it with the git apply command</strong>. Assuming you saved the patch at <code>/tmp/patch-ruby-client.patch</code>, you can apply the patch like this:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git apply &#x2F;tmp&#x2F;patch-ruby-client.patch</span><br></pre></td></tr></table></figure>
 <p> This will also <strong>handle file adds, deletes, and renames</strong> if they’re <strong>described in the <code>git diff</code></strong> format, which <strong>patch won’t</strong> do. Finally, <code>git apply</code> is an <strong>“apply all or abort all”</strong> model where either everything is applied or nothing is, whereas <code>git am</code> for <code>patch</code> can <strong>partially apply</strong> patchfiles, leaving your working directory in a weird state. <code>git apply</code> is overall much more conservative than patch. </p>
-<p>However, you can use <code>git apply --check</code>, for example</p>
+<p>However, you can use <code>git apply --check</code>, for example:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git apply --check 0001-see-if-this-helps-the-gem.patch</span><br></pre></td></tr></table></figure>
 
 <p>To <strong>check</strong> if a <code>patch</code> applies cleanly to <strong>your working directory</strong>. If there is no output, then the patch should apply cleanly. </p>
