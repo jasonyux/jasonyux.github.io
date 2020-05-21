@@ -938,7 +938,97 @@ Now, the master head will point to the inital commit. If your friend is also wor
 <p>This command puts conflict <strong>markers in any files it has issues with</strong>, much like a conflicted merge or rebase operation. You solve this issue much the same way — <strong>edit the file to resolve the conflict</strong>, stage the new file, and then run <code>git am --resolved</code> to <strong>continue to the next patch in the series of patches that you haven’t  yet completed</strong>:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ (fix the file)</span><br><span class="line">$ git add ticgit.gemspec</span><br><span class="line">$ git am --resolved</span><br><span class="line">Applying: See if this helps the gem</span><br></pre></td></tr></table></figure>
 
-<h2 id="Managing-Using-the-Remote-Branches"><a href="#Managing-Using-the-Remote-Branches" class="headerlink" title="Managing Using the Remote Branches"></a>Managing Using the Remote Branches</h2>
+<h2 id="Managing-Using-the-Remote-Branches"><a href="#Managing-Using-the-Remote-Branches" class="headerlink" title="Managing Using the Remote Branches"></a>Managing Using the Remote Branches</h2><p>If your contribution came from a Git user who set up their own repository, pushed a number of changes into it, and then <strong>sent you the URL to the repository and the name of the remote branch the changes are in</strong>, you can <strong>add them as a remote and do merges locally</strong>.</p>
+<p>For example, if a developer named Jessica sends you an email saying that she has a great <strong>new feature</strong> in the <strong><code>ruby-client</code> branch</strong> of <strong>her repository</strong>, you can test it by adding the remote and <strong>checking out that branch locall</strong>y:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git remote add jessica git:&#x2F;&#x2F;github.com&#x2F;jessica&#x2F;myproject.git</span><br><span class="line">$ git fetch jessica</span><br><span class="line">$ git checkout -b rubyclient jessica&#x2F;ruby-client</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Note:</p>
+<ul>
+<li><input disabled type="checkbox"> You do a <code>fetch</code> here <strong>instead of a direct <code>pull</code></strong> because you might not want to automatically merge her work into any of your branch. You might want to see if her work functions properly before you run <code>merge</code>.</li>
+</ul>
+</blockquote>
+<p>However, if you aren’t working with a person consistently but do something like a one-time pull, you can use the URL of their remote repository to the <code>git pull</code> command. This does a one-time pull and <strong>doesn’t save the URL as a remote reference</strong>:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ git pull https:&#x2F;&#x2F;github.com&#x2F;onetimeguy&#x2F;project</span><br><span class="line">From https:&#x2F;&#x2F;github.com&#x2F;onetimeguy&#x2F;project</span><br><span class="line"> * branch            HEAD       -&gt; FETCH_HEAD</span><br><span class="line">Merge made by the &#39;recursive&#39; strategy.</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>Note:</p>
+<ul>
+<li><input disabled type="checkbox"> Here the command <code>git pull https://github.com/onetimeguy/project</code> <strong>pulls in all the progress to your current branch</strong>. If you just want to <strong>pull a specific branch</strong>, remember to add the option of the <branchname> like this <code>git pull https://github.com/onetimeguy/project &lt;remoteBranchName&gt;</code></branchname></li>
+</ul>
+</blockquote>
+<h2 id="Determining-What-is-Changed"><a href="#Determining-What-is-Changed" class="headerlink" title="Determining What is Changed"></a>Determining What is Changed</h2><p>Now you have a <strong><code>topic</code> branch that contains contributed work</strong>. At this point, you can determine what you’d like to do with it. This section revisits a couple of commands so you can see <strong>exactly what you’ll be introducing if you merge this</strong> into your main branch.</p>
+<ol>
+<li><p>to see <strong>only commits that are different</strong> between the <code>topic</code> branch and your <code>master</code> branch (for example), you could run </p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git log &lt;branch1&gt; --not &lt;branch2&gt;</span><br></pre></td></tr></table></figure>
+
+<p> In this example:</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">$ git log topic --not master</span><br><span class="line">commit 5b6235bd297351589efc4d73316f0a68d484f118</span><br><span class="line">Author: Scott Chacon &lt;schacon@gmail.com&gt;</span><br><span class="line">Date:   Fri Oct 24 09:53:59 2008 -0700</span><br><span class="line"></span><br><span class="line">    See if this helps the gem</span><br><span class="line"></span><br><span class="line">commit 7482e0d16d04bea79d0dba8988cc78df655f16a0</span><br><span class="line">Author: Scott Chacon &lt;schacon@gmail.com&gt;</span><br><span class="line">Date:   Mon Oct 22 19:38:36 2008 -0700</span><br><span class="line"></span><br><span class="line">    Update gemspec to hopefully work better</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>Note</p>
+<ul>
+<li><input disabled type="checkbox"> To see what <strong>changes each commit introduces</strong>, remember that you can pass the <code>-p</code> option to <code>git log</code> and it will <strong>append the <code>diff</code> introduced to each commit</strong>.</li>
+</ul>
+</blockquote>
+</li>
+<li><p>The more useful case might be seeing a full <code>diff</code> of <strong>what would happen if you merge the <code>topic</code> branch</strong>. So you might want to run:</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git diff &lt;branch1&gt;...&lt;branch2&gt;</span><br></pre></td></tr></table></figure>
+
+<p> In this example:</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git diff master...topic</span><br></pre></td></tr></table></figure>
+<p> This command shows you only the work your current <code>topic</code> branch has introduced <strong>since its common ancestor</strong> with <code>master</code>.</p>
+<p> This triple dot technically is a shorthand command created by Git to achieve the following:</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git merge-base contrib master</span><br><span class="line">36c7dba2c95e6bbb78dfa822519ecfec6e1ca649</span><br><span class="line">$ git diff 36c7db</span><br></pre></td></tr></table></figure>
+
+<p> or, more concisely:</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git diff $(git merge-base contrib master)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>Note:</p>
+<ul>
+<li><input disabled type="checkbox"> You might think there is an easier way by doing <code>git diff master</code>. This might work, but not always. This is because this command gives you a <code>diff</code> by <strong>comparing the last commit of the topic branch you’re on and the last commit on the master branch</strong>. This means that if your <code>master</code> branch <strong>has moved forward since you created the <code>topic</code> branch from it</strong>, then you’ll get seemingly strange results. For example, if you’ve <strong>added a line in a file on the <code>master</code> branch</strong>, <strong>a direct comparison of the snapshots will look like the <code>topic</code> branch is going to remove that line</strong>.</li>
+</ul>
+</blockquote>
+</li>
+</ol>
+<h2 id="Determining-your-Merging-Workflow"><a href="#Determining-your-Merging-Workflow" class="headerlink" title="Determining your Merging Workflow"></a>Determining your Merging Workflow</h2><p>Basically, you need to decide how to manage all your <code>merge</code> and <code>rebase</code> actions, so that you could easily track changes and make it easier to understand. There are several <strong>example styles that you could use for managing your project merges:</strong></p>
+<ol>
+<li><a href="#merging-flow-small">Merging Workflow for small projects</a></li>
+<li><a href="#merging-flow-large">Merging Workflow for large projects</a></li>
+<li><a href="#rebase-and-cherry">Rebasing and Cherry-Picking Workflows</a></li>
+</ol>
+<p><a name="merging-flow-small"></a></p>
+<h2 id="Small-Merging-Workflow"><a href="#Small-Merging-Workflow" class="headerlink" title="Small Merging Workflow"></a>Small Merging Workflow</h2><p>The simplest way is to do <code>git merge</code> all the time to your <code>master</code> branch. However, this might cause unpleasant history line to review. However, this is often manageable for small projects, and typically you will have <strong>a main track with two branches</strong>: <code>master</code> and <code>develop</code>, in which you determine that <strong><code>master</code> is updated only when a very stable release is cut</strong> and <strong>all new code is integrated into the <code>develop</code> branch</strong>.</p>
+<p>Then, since you typically first <code>merge</code> into your <code>develop</code> before deciding whether or not it is to be released in the <code>master</code> branch:</p>
+<p><img src="/.com//merging-workflows-1.png" alt="Picture from https://git-scm.com/book/en/v2/Distributed-Git-Maintaining-a-Project, Figure 76"><br>And then if you do decide to <code>merge</code> in to the <code>master</code> branch:<br><img src="/.com//merging-workflows-2.png" alt="Picture from https://git-scm.com/book/en/v2/Distributed-Git-Maintaining-a-Project, Figure 77"></p>
+<p><a name="merging-flow-large"></a></p>
+<h2 id="Large-Merging-Workflow"><a href="#Large-Merging-Workflow" class="headerlink" title="Large Merging Workflow"></a>Large Merging Workflow</h2><p>This workflow will have four <code>branch</code>es on the main track: <code>master</code>,<code>next</code>,<code>pu</code>,and <code>maint</code>.</p>
+<ul>
+<li><code>master</code> branch will still be the one with the <strong>most stable version of the system</strong></li>
+<li><code>next</code> branch will be controlling/merging the <code>topics</code>/<code>features</code> branches that you <strong>got from your colaborators repo</strong> and you tested are <strong>functioning properly</strong>, considering whether to include or not.</li>
+<li><code>pu</code> branch means <strong>proposed updates</strong>, these could be branches with work that are interesting but <strong>need more work</strong></li>
+<li><code>maint</code> branch usually stores the project <strong>at the state of the last release</strong>, so that it <strong>can be forked off to provide backported patches in case a maintenance release is required</strong>. </li>
+</ul>
+<p>For example, you might have your <code>topic</code> branches from your colaborators’ repos like this:<br><img src="/.com//large-merges-1.png" alt="Picture from https://git-scm.com/book/en/v2/Distributed-Git-Maintaining-a-Project, Figure 76"><br>And you organizes/maintains your main <code>branch</code>es (<code>maint</code> not shown here) like this:<br><img src="/.com//large-merges-2.png" alt="Picture from https://git-scm.com/book/en/v2/Distributed-Git-Maintaining-a-Project, Figure 76"></p>
+<p><a name="rebase-and-cherry"></a></p>
+<h2 id="Rebasing-and-Cherry-Picking-Workflow"><a href="#Rebasing-and-Cherry-Picking-Workflow" class="headerlink" title="Rebasing and Cherry-Picking Workflow"></a>Rebasing and Cherry-Picking Workflow</h2><p>Other maintainers prefer to <code>rebase</code> or <code>cherry-pick</code> contributed work on top of their master branch, rather than merging it in, to <strong>keep a mostly linear history</strong>. When you have work in a <code>topic</code> branch and have determined that you want to integrate it, you move to that branch and run the <code>rebase</code> command to <strong>rebuild the changes on top of your current <code>master</code></strong> (or <code>develop</code>, and so on) branch. <strong>If that works well</strong>, you can fast-forward your master branch, and you’ll end up with a linear project history.</p>
+<p>Or you could do a cherry-pick, which <strong>does not remove the original branch</strong> but <strong>“rebases” on top of the current branch</strong>, and you can <strong>choose which commit/commits you would like to incorporate</strong> (which means you might want to incorporate only several commits in that branch, but not all).</p>
+<p>For example, if you are given this:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">      A---B---C topic</span><br><span class="line">     &#x2F;</span><br><span class="line">D---E---F---G master</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>Then a <code>rebase</code> command:</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git rebase master topic</span><br></pre></td></tr></table></figure>
+
+<p>  You get:</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">              A&#39;--B&#39;--C&#39; topic</span><br><span class="line">             &#x2F;</span><br><span class="line">D---E---F---G master</span><br></pre></td></tr></table></figure></li>
+<li><p>The run <code>cherry-pick &lt;from-commit-id&gt;^..&lt;to-commit-id&gt;</code>:</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git checkout master -b topic_new</span><br><span class="line">$ git cherry-pick A^..C</span><br></pre></td></tr></table></figure>
+
+<p>  You get:</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">      A---B---C topic</span><br><span class="line">     &#x2F;</span><br><span class="line">D---E---F---G master</span><br><span class="line">             \</span><br><span class="line">              A&#39;--B&#39;--C&#39; topic_new</span><br></pre></td></tr></table></figure></li>
+</ul>
+
       
     </div>
     <footer class="article-footer">
