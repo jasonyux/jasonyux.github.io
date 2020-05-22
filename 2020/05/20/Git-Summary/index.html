@@ -28,7 +28,7 @@
 <meta property="og:image" content="http://yoursite.com/.com//large-merges-1.png">
 <meta property="og:image" content="http://yoursite.com/.com//large-merges-2.png">
 <meta property="article:published_time" content="2020-05-20T12:46:25.000Z">
-<meta property="article:modified_time" content="2020-05-21T14:58:58.768Z">
+<meta property="article:modified_time" content="2020-05-22T03:05:53.942Z">
 <meta property="article:author" content="Xiao Yu">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://yoursite.com/.com//mergingCase1.png">
@@ -1042,8 +1042,183 @@ Now, the master head will point to the inital commit. If your friend is also wor
   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git checkout master -b topic_new</span><br><span class="line">$ git cherry-pick A^..C</span><br></pre></td></tr></table></figure>
 
 <p>  You get:</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">      A---B---C topic</span><br><span class="line">     &#x2F;</span><br><span class="line">D---E---F---G master</span><br><span class="line">             \</span><br><span class="line">              A&#39;--B&#39;--C&#39; topic_new</span><br></pre></td></tr></table></figure></li>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">      A---B---C topic</span><br><span class="line">     &#x2F;</span><br><span class="line">D---E---F---G master</span><br><span class="line">             \</span><br><span class="line">              A&#39;--B&#39;--C&#39; topic_new</span><br></pre></td></tr></table></figure>
+
+</li>
 </ul>
+<h2 id="Rerere-in-Git"><a href="#Rerere-in-Git" class="headerlink" title="Rerere in Git"></a>Rerere in Git</h2><p>Rerere stands for “reuse recorded resolution” — it’s a way of shortcutting manual conflict resolution. When rerere is enabled, Git will keep a set of pre- and post-images from successful merges, and if it notices that there’s a conflict that looks exactly like one you’ve already fixed, it’ll just use the fix from last time, without bothering you with it.</p>
+<p>This feature comes in <strong>two parts</strong>: <strong>a configuration setting</strong> and <strong>a command</strong>. The configuration setting is <code>rerere.enabled</code>, and it’s handy enough to put in your <code>global config</code>:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git config --global rerere.enabled true</span><br></pre></td></tr></table></figure>
+
+<p>Now, whenever you <strong>do a <code>merge</code> that resolves conflicts</strong>, the <strong>resolution will be recorded</strong> in the cache in case you need it in the future.</p>
+<p>If you need to, you can interact with the rerere cache using the <code>git rerere</code> command. When it’s invoked alone, Git <strong>checks its database of resolutions and tries to find a match with any current merge conflicts</strong> and <strong>resolve</strong> them (although this is <strong>done automatically if <code>rerere.enabled</code> is set to true</strong>).</p>
+<h2 id="Generating-a-Build-Number"><a href="#Generating-a-Build-Number" class="headerlink" title="Generating a Build Number"></a>Generating a Build Number</h2><p>If you run <code>git describe</code>, Git generates a string consisting of the <strong>name of the most recent tag</strong> earlier than that commit, followed by the <strong>number of commits</strong> since that tag, followed finally by a <strong>partial SHA-1 value of the commit being described</strong> (prefixed with the letter “g” meaning Git):</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git describe</span><br><span class="line">v1.0-3-gca2e64e</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>Note</p>
+<ul>
+<li><input disabled type="checkbox"> By default, the <code>git describe</code> command <strong>requires annotated tags</strong> (tags created with the -a or -s flag); if you want to take advantage of <strong>lightweight (non-annotated) tags</strong> as well, add the <code>--tags</code> option to the command. </li>
+</ul>
+</blockquote>
+<h2 id="Preparing-a-Release-Using-a-Zip-Gzip"><a href="#Preparing-a-Release-Using-a-Zip-Gzip" class="headerlink" title="Preparing a Release Using a Zip/Gzip"></a>Preparing a Release Using a Zip/Gzip</h2><p>Now you want to release a build. One of the things you’ll want to do is <strong>create an archive of the latest snapshot of your code</strong> for those poor souls who don’t use Git. The command to do this is <code>git archive</code>:</p>
+<ul>
+<li><p>To create a <strong>GZip</strong> file with the <strong>name being the build number generated</strong> from the previous section, you do:</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ git archive master --prefix&#x3D;&#39;projectArchive&#x2F;&#39; | gzip &gt; &#96;git describe master&#96;.tar.gz</span><br><span class="line"></span><br><span class="line">$ ls *.tar.gz</span><br><span class="line">v1.0-3-gca2e64e.tar.gz</span><br></pre></td></tr></table></figure>
+<p>  where the <code>--prefix=&#39;projectArchive&#39;</code> means that if you open that Gzip file, you will find a directory called <code>projectArchive</code> in which all your files are saved.</p>
+</li>
+<li><p>You can also create a <strong>zip</strong> archive in much the same way, but by passing the <code>--format=zip</code> option to <code>git archive</code>:</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git archive master --format&#x3D;zip &gt; &#96;git describe master&#96;.zip</span><br></pre></td></tr></table></figure>
+<p>  Here you will have <strong>all the files directly in that Zip</strong>, without opening any more directory</p>
+</li>
+</ul>
+<h2 id="Shortlog"><a href="#Shortlog" class="headerlink" title="Shortlog"></a>Shortlog</h2><p>If you use the <code>git shortlog</code> command. It summarizes <strong>all the commits in the range you give it</strong>; for example, the following gives you a summary of all the commits <strong>since your last release, if your last release was named v0.1</strong>:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ git shortlog --no-merges master --not v0.1</span><br><span class="line">Xiao Yu (4):</span><br><span class="line">      second commit made</span><br><span class="line">      amended: edited AND deleted file removal and untracking</span><br><span class="line">      first commit made now more with the new testing branch</span><br><span class="line">      testing rebase, added a new file independent for the branch master</span><br></pre></td></tr></table></figure>
+
+<h2 id="Git-Commit-Selection-Tools"><a href="#Git-Commit-Selection-Tools" class="headerlink" title="Git Commit Selection Tools"></a>Git Commit Selection Tools</h2><p>Now you’ll explore a number of very powerful things that Git can do that you may not necessarily use on a day-to-day basis but that you <strong>may need at some point</strong>.</p>
+<table>
+<thead>
+<tr>
+<th>Revision Selection Type</th>
+<th>Command</th>
+<th>Outcome/Example</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Showing a <strong>single commit</strong> using Short SHA-1</td>
+<td><code>git show &lt;commit-sha-1&gt;</code></td>
+<td><code>git show ae1934jf</code></td>
+<td>-</td>
+</tr>
+<tr>
+<td>Showing a <strong>single commit</strong> at the top of a branch</td>
+<td><code>git show &lt;branchName&gt;</code></td>
+<td><code>git show topic1</code> gives to top commit at branch <code>topic1</code></td>
+<td>You can use <code>git rev-parse &lt;branchName&gt;</code> to get a SHA-1 code of the top commit from a branch</td>
+</tr>
+<tr>
+<td>Showing a <strong>single commit</strong> using a reflog</td>
+<td><code>git show &lt;reflog-data-of-HEAD&gt;</code></td>
+<td><code>git show HEAD@{5}</code></td>
+<td>The reflog is data that keeps track of your HEAD position, which you can get from running <code>git reflog</code></td>
+</tr>
+<tr>
+<td>Showing a <strong>single commit</strong> using ancestry reference using <code>^</code> (means the parent of something)</td>
+<td><code>git show &lt;commit-id&gt;^</code></td>
+<td><code>git show HEAD^</code> shows the parent of the HEAD</td>
+<td>You can also specify a number for going back multiple times, <code>d921970^2</code> means “the second parent of <code>d921970</code>.”</td>
+</tr>
+<tr>
+<td>Showing <strong>multiple commits</strong> using the difference of two branches</td>
+<td><code>git log &lt;branch1&gt;..&lt;branch2&gt;</code> — that means “all commits <strong>on <code>&lt;branch2&gt;</code></strong> that are not reachable from <code>&lt;branch1&gt;</code></td>
+<td><code>git log master..topic1</code></td>
+<td>The sequence of the <code>&lt;branch&gt;</code> matters in this command.</td>
+</tr>
+<tr>
+<td>Showing <strong>multiple commits</strong> using the difference of two branches</td>
+<td><code>git log &lt;branch1&gt;...&lt;branch2&gt;</code> which specifies all the commits that are reachable by either of two references <strong>but not by both of them</strong>/all the <strong>divergent commits</strong></td>
+<td><code>git log master...topic1</code></td>
+<td>A common switch to use with the log command in this case is <code>--left-right</code>, which shows you <strong>which branch (side) of the range each commit is in</strong>. This helps make the output more useful: <code>$ git log --left-right master...experiment</code></td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>Note:</p>
+<ul>
+<li><input disabled type="checkbox"> Whenver you want to <strong>see multiple commits</strong>, <strong>use <code>git log</code></strong> would be better than <code>git show</code>, because you can use <code>git log --oneline</code> to simplify the output while it is not available for <strong><code>git show</code></strong>, which is more for <strong>looking at a specific commit</strong>.</li>
+</ul>
+</blockquote>
+<h2 id="Git-Tools-for-Interactive-Staging"><a href="#Git-Tools-for-Interactive-Staging" class="headerlink" title="Git Tools for Interactive Staging"></a>Git Tools for Interactive Staging</h2><p>These can help you <strong>craft your commits to include only certain combinations</strong> and parts of files. These tools are helpful if you modify a number of files extensively, then <strong>decide that you want those changes to be partitioned into several focused commits</strong> rather than one big messy commit. </p>
+<p>Basically, <strong>interactive staging is initiated if you call <code>git add -i</code></strong>:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$ git add -i</span><br><span class="line">           staged     unstaged path</span><br><span class="line">  1:    unchanged        +0&#x2F;-1 TODO</span><br><span class="line">  2:    unchanged        +1&#x2F;-1 index.html</span><br><span class="line">  3:    unchanged        +5&#x2F;-1 lib&#x2F;simplegit.rb</span><br><span class="line"></span><br><span class="line">*** Commands ***</span><br><span class="line">  1: [s]tatus     2: [u]pdate      3: [r]evert     4: [a]dd untracked</span><br><span class="line">  5: [p]atch      6: [d]iff        7: [q]uit       8: [h]elp</span><br><span class="line">What now&gt;</span><br></pre></td></tr></table></figure>
+
+<p>Here, you will see <strong>changes that are staged</strong>, <strong>changes that are unstaged</strong>, and the <strong>file/path</strong></p>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Function</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>1</code> or <code>s</code></td>
+<td>Shows the same content as you see above, with the updated status</td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>2</code> or <code>u</code></td>
+<td>First allows you to <strong>select file(s) of interest</strong>, and then <strong>add them to be staged</strong></td>
+<td>When you typed <code>2</code> or <code>u</code>, you will see <code>Update&gt;&gt;</code>, and you can type in <code>1,2</code> to select the first and second file, and press enter so you will see the files with <code>*</code> mark as selected. Then press <code>Enter</code> again to do the changes.</td>
+</tr>
+<tr>
+<td><code>3</code> or <code>r</code></td>
+<td>First allows you to <strong>select file(s) of interest</strong>, and then *<em>undo the staging *</em></td>
+<td>Similar as above</td>
+</tr>
+<tr>
+<td><code>5</code> or <code>p</code></td>
+<td>First allows you to <strong>select file(s) of interest</strong>, and then <strong>goes through each of the changes in that file</strong> and <strong>and let you decide whether if to incorporate the changes</strong></td>
+<td>Similar as above, but when you need to select which change to add, you will be prompted with <code>Stage this hunk [y,n,a,d,/,j,J,g,e,?]</code>, with typing <code>?</code> allowing to see what each letter means</td>
+</tr>
+<tr>
+<td><code>6</code> or <code>d</code></td>
+<td>First allows you to <strong>select file(s) of interest that are staged</strong>, then you can see the <strong>staged diff</strong></td>
+<td>Similar as above</td>
+</tr>
+</tbody></table>
+<h2 id="Git-Tools-for-Stashing"><a href="#Git-Tools-for-Stashing" class="headerlink" title="Git Tools for Stashing"></a>Git Tools for Stashing</h2><p>When things are in a messy state and <strong>you want to switch branches for a bit to work on something else</strong>, but you <strong>don’t want to do a commit of half-done work</strong> just so you can get back to this point later, you can use <code>git stash</code> or <code>git stash push</code></p>
+<p>For example, you have some modifications done but need to switch urgently to something else:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$ git status</span><br><span class="line">Changes to be committed:</span><br><span class="line">  (use &quot;git reset HEAD &lt;file&gt;...&quot; to unstage)</span><br><span class="line"></span><br><span class="line">	modified:   index.html</span><br><span class="line"></span><br><span class="line">Changes not staged for commit:</span><br><span class="line">  (use &quot;git add &lt;file&gt;...&quot; to update what will be committed)</span><br><span class="line">  (use &quot;git checkout -- &lt;file&gt;...&quot; to discard changes in working directory)</span><br><span class="line"></span><br><span class="line">	modified:   lib&#x2F;simplegit.rb</span><br></pre></td></tr></table></figure>
+<p>Then you do:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ git stash push</span><br><span class="line">Saved working directory and index state \</span><br><span class="line">  &quot;WIP on master: 049d078 Create index file&quot;</span><br><span class="line">HEAD is now at 049d078 Create index file</span><br><span class="line">(To restore them type &quot;git stash apply&quot;)</span><br><span class="line"></span><br><span class="line">$ git status</span><br><span class="line"># On branch master</span><br><span class="line">nothing to commit, working directory clean</span><br></pre></td></tr></table></figure>
+
+<p>At this point, you can switch branches and do work elsewhere; <strong>your changes are stored on your stack</strong>. To see which stashes you’ve stored, you can use git stash list:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ git stash list</span><br><span class="line">stash@&#123;0&#125;: WIP on master: 049d078 Create index file</span><br><span class="line">stash@&#123;1&#125;: WIP on master: c264051 Revert &quot;Add file_size&quot;</span><br><span class="line">stash@&#123;2&#125;: WIP on master: 21d80a5 Add number to log</span><br></pre></td></tr></table></figure>
+
+<p>Then, when you finished your urgent work, you can reapply by <code>git stash apply stash@{&lt;number&gt;}</code>, which will <strong>reapply changes on the branch you run this command</strong>, much like a <code>rebase</code></p>
+<p>For example:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git stash apply stash@&#123;2&#125; --index</span><br></pre></td></tr></table></figure>
+<p>The <code>--index</code> is often added because, when changes to your files were reapplied, by default the file you <strong>staged before will not be restaged</strong>, since it only reapplies the changes. To also <strong>re-stage what you have staged</strong>, you must run the <code>git stash apply</code> command with a <code>--index</code> option to tell the command to try to reapply the staged changes.</p>
+<blockquote>
+<p>Note:</p>
+<ul>
+<li><input disabled type="checkbox"> Similar to <code>rebase</code> or <code>merge</code>, there could be <strong>conflicts as changes might not re-apply cleanly</strong>, if the files you edited in your stash were edited again. To resolve the conflicts, the same mechanism for <code>merge</code> conflicts will pop up for you to deal with.</li>
+<li><input disabled type="checkbox"> After you have applied a stash, remember to <code>drop</code> it (i.e. delete it), because by default <code>git stash apply</code> will <strong>only apply the changes</strong>, and you have to <strong>delete that resolved stash manually</strong> by <code>git stash drop stash@{&lt;number&gt;}</code></li>
+<li><input disabled type="checkbox"> By default, <code>git stash</code> will stash <strong>only modified and staged tracked files</strong>. If you specify <code>--include-untracked</code> or <code>-u</code>, you can <strong>stash untracked files that are not ignored</strong>. To even include the ignored files, use <code>--all</code> or <code>-a</code> instead.</li>
+</ul>
+</blockquote>
+<p>You can also use the <strong>interactive stash</strong> by running <code>git stash --patch</code> (not <code>-i</code>. This will prompt you interactively which of the <strong>changes you would like to stash</strong> and which you would like to <strong>keep/commit in your working directory</strong>.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">$ git stash --patch</span><br><span class="line">diff --git a&#x2F;lib&#x2F;simplegit.rb b&#x2F;lib&#x2F;simplegit.rb</span><br><span class="line">index 66d332e..8bb5674 100644</span><br><span class="line">--- a&#x2F;lib&#x2F;simplegit.rb</span><br><span class="line">+++ b&#x2F;lib&#x2F;simplegit.rb</span><br><span class="line">@@ -16,6 +16,10 @@ class SimpleGit</span><br><span class="line">         return &#96;#&#123;git_cmd&#125; 2&gt;&amp;1&#96;.chomp</span><br><span class="line">       end</span><br><span class="line">     end</span><br><span class="line">+</span><br><span class="line">+    def show(treeish &#x3D; &#39;master&#39;)</span><br><span class="line">+      command(&quot;git show #&#123;treeish&#125;&quot;)</span><br><span class="line">+    end</span><br><span class="line"></span><br><span class="line"> end</span><br><span class="line"> test</span><br><span class="line">Stash this hunk [y,n,q,a,d,&#x2F;,e,?]? y</span><br><span class="line"></span><br><span class="line">Saved working directory and index state WIP on master: 1b65b17 added the index file</span><br></pre></td></tr></table></figure>
+
+<p>A last option is to <strong>create a new branch</strong> for recovering your stashed work. This is done by <code>git stash branch &lt;newBranchname&gt;</code>, for you with your selected branch name, <strong>checks out the commit you were on when you stashed your work</strong>, <strong>reapplies your work there</strong>, and then <strong>drops the stash if it applies</strong> successfully:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">$ git stash branch testchanges</span><br><span class="line">M	index.html</span><br><span class="line">M	lib&#x2F;simplegit.rb</span><br><span class="line">Switched to a new branch &#39;testchanges&#39;</span><br><span class="line">On branch testchanges</span><br><span class="line">Changes to be committed:</span><br><span class="line">  (use &quot;git reset HEAD &lt;file&gt;...&quot; to unstage)</span><br><span class="line"></span><br><span class="line">	modified:   index.html</span><br><span class="line"></span><br><span class="line">Changes not staged for commit:</span><br><span class="line">  (use &quot;git add &lt;file&gt;...&quot; to update what will be committed)</span><br><span class="line">  (use &quot;git checkout -- &lt;file&gt;...&quot; to discard changes in working directory)</span><br><span class="line"></span><br><span class="line">	modified:   lib&#x2F;simplegit.rb</span><br><span class="line"></span><br><span class="line">Dropped refs&#x2F;stash@&#123;0&#125; (29d385a81d163dfd45a452a2ce816487a6b8b014)</span><br></pre></td></tr></table></figure>
+
+<h2 id="Git-Tools-for-Cleanig-Up-Your-Workspace"><a href="#Git-Tools-for-Cleanig-Up-Your-Workspace" class="headerlink" title="Git Tools for Cleanig Up Your Workspace"></a>Git Tools for Cleanig Up Your Workspace</h2><p>You can use <code>git clean</code> for deleting files that are <strong>not tracked</strong>. However, you’ll want to be pretty careful with this command, since, If you change your mind, there is often <strong>no retrieving the content of those files</strong>.</p>
+<p>Therefore, often you might want to run <code>git clean --dry-run</code> or <code>git clean -n</code> to see what will happen before you run <code>git clean</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git clean --dry-run</span><br><span class="line">Would remove v1.0-3-gca2e64e.tar.gz</span><br><span class="line">Would remove v1.0-3-gca2e64e.zip</span><br></pre></td></tr></table></figure>
+<p>However, these do <strong>not include ignored files</strong>. To include those files for removal, you need to add the option <code>-x</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ git clean --dry-run -x</span><br><span class="line">Would remove .gitignore</span><br><span class="line">Would remove unTracked.txt</span><br><span class="line">Would remove v1.0-3-gca2e64e.tar.gz</span><br><span class="line">Would remove v1.0-3-gca2e64e.zip</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>Note </p>
+<ul>
+<li><input disabled type="checkbox"> Sometimes you might need to add the flag <code>-f</code> to do a <code>git clean</code>, because it is required if the Git <strong>configuration variable <code>clean.requireForce</code> is not explicitly set to <code>false</code></strong>. Therefore, you will need to force it by <code>-f</code>.</li>
+</ul>
+</blockquote>
+<h2 id="Git-Tools-for-Signing-a-Commit"><a href="#Git-Tools-for-Signing-a-Commit" class="headerlink" title="Git Tools for Signing a Commit"></a>Git Tools for Signing a Commit</h2><p>In more recent versions of Git (v1.7.9 and above), you can now also <strong>sign individual commits</strong>. If you’re interested in signing commits directly instead of just the tags, all you need to do is add a <code>-S</code> to your <code>git commit</code> command.</p>
+<p>However, first you need to get your <strong>GPG configured and your personal key installed</strong>.</p>
+<p>If you don’t have a key installed, you can generate one with <code>gpg --gen-key</code>.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ gpg --gen-key</span><br></pre></td></tr></table></figure>
+
+<p>Then you can check it with:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ gpg --list-keys</span><br><span class="line">&#x2F;Users&#x2F;schacon&#x2F;.gnupg&#x2F;pubring.gpg</span><br><span class="line">---------------------------------</span><br><span class="line">pub   2048R&#x2F;0A46826A 2014-06-04</span><br><span class="line">uid                  Scott Chacon (Git signing key) &lt;schacon@gmail.com&gt;</span><br><span class="line">sub   2048R&#x2F;874529A9 2014-06-04</span><br></pre></td></tr></table></figure>
+
+<p>Once you have a private key to sign with, you can configure Git to use it for signing things by setting the <code>user.signingkey</code> config setting.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git config --global user.signingkey 0A46826A</span><br><span class="line">Now Git will use your key by default to sign tags and commits if you want.</span><br></pre></td></tr></table></figure>
+
+<p>Now, you can sign your commit properly with <code>-S</code>, which will pop up a window for putting in the <strong>password you created when you create the key</strong>.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$ git commit -a -S -m &#39;Signed commit&#39;</span><br><span class="line"></span><br><span class="line">You need a passphrase to unlock the secret key for</span><br><span class="line">user: &quot;Scott Chacon (Git signing key) &lt;schacon@gmail.com&gt;&quot;</span><br><span class="line">2048-bit RSA key, ID 0A46826A, created 2014-06-04</span><br><span class="line"></span><br><span class="line">[master 5c3386c] Signed commit</span><br><span class="line"> 4 files changed, 4 insertions(+), 24 deletions(-)</span><br><span class="line"> rewrite Rakefile (100%)</span><br><span class="line"> create mode 100644 lib&#x2F;git.rb</span><br></pre></td></tr></table></figure>
 
       
     </div>
