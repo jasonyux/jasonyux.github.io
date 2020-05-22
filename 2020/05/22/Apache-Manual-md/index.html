@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Apache Maven Manual.md | From a Beginner to a Disaster</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Apache Maven Introduction *Q: What is Apache Maven used for? *  In a nutshell Maven is an attempt to apply patterns to a project’s build infrastructure in order to promote comprehension and productivi">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Apache Maven Manual.md">
+<meta property="og:url" content="http://yoursite.com/2020/05/22/Apache-Manual-md/index.html">
+<meta property="og:site_name" content="From a Beginner to a Disaster">
+<meta property="og:description" content="Apache Maven Introduction *Q: What is Apache Maven used for? *  In a nutshell Maven is an attempt to apply patterns to a project’s build infrastructure in order to promote comprehension and productivi">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-05-22T05:40:13.000Z">
+<meta property="article:modified_time" content="2020-05-22T10:25:08.017Z">
+<meta property="article:author" content="Xiao Yu">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="From a Beginner to a Disaster" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">From a Beginner to a Disaster</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">Xiao.Y</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Apache-Manual-md" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/05/22/Apache-Manual-md/" class="article-date">
+  <time datetime="2020-05-22T05:40:13.000Z" itemprop="datePublished">2020-05-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Apache Maven Manual.md
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Apache-Maven-Introduction"><a href="#Apache-Maven-Introduction" class="headerlink" title="Apache Maven Introduction"></a>Apache Maven Introduction</h2><ul>
+<li><strong>*Q: What is Apache Maven used for? *</strong></li>
+</ul>
+<p>In a nutshell Maven is an attempt to <strong>apply patterns to a project’s build infrastructure in order to promote comprehension and productivity</strong> by providing a clear path in the use of best practices. Maven is essentially a <strong>project management and comprehension tool</strong> and as such provides a way to help with managing:</p>
+<ul>
+<li>Builds</li>
+<li>Documentation</li>
+<li>Reporting</li>
+<li>Dependencies</li>
+<li>SCMs</li>
+<li>Releases</li>
+<li>Distribution</li>
+</ul>
+<p>Maven can provide benefits for your build process by <strong>employing standard conventions and practices</strong> to accelerate your development cycle while at the same time helping you achieve a higher rate of success.</p>
+<h2 id="Installing-Maven"><a href="#Installing-Maven" class="headerlink" title="Installing Maven"></a>Installing Maven</h2><p>Please follow <a href="https://maven.apache.org/guides/getting-started/maven-in-five-minutes.html" target="_blank" rel="noopener">Apache Maven Guide</a></p>
+<h2 id="Creating-a-Project-QuickStart"><a href="#Creating-a-Project-QuickStart" class="headerlink" title="Creating a Project (QuickStart)"></a>Creating a Project (QuickStart)</h2><p>First you might want to create a workspace folder where all your Maven project resides. Then, you could <strong>navigate to that folder’s directory</strong> and run:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn archetype:generate -DgroupId&#x3D;com.mycompany.app -DartifactId&#x3D;my-app -DarchetypeArtifactId&#x3D;maven-archetype-quickstart -DarchetypeVersion&#x3D;1.4 -DinteractiveMode&#x3D;false</span><br></pre></td></tr></table></figure>
+<p>where the <code>-DartifactId=my-app</code> would be the new <strong>folder with name <code>my-app</code></strong> under that directory you created.</p>
+<blockquote>
+<p>Note:</p>
+<ul>
+<li><input disabled type="checkbox"> If you have just installed Maven, it may take a while on the first run.</li>
+</ul>
+</blockquote>
+<p>After it completes the setup, you can switch to that folder <code>my-app</code> and look at what’s created by Maven:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd my-app</span><br></pre></td></tr></table></figure>
+
+<p>Under this directory you will notice the following <a href="https://maven.apache.org/guides/introduction/introduction-to-the-standard-directory-layout.html" target="_blank" rel="noopener">standard project structure</a>.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">my-app</span><br><span class="line">|-- pom.xml</span><br><span class="line">&#96;-- src</span><br><span class="line">    |-- main</span><br><span class="line">    |   &#96;-- java</span><br><span class="line">    |       &#96;-- com</span><br><span class="line">    |           &#96;-- mycompany</span><br><span class="line">    |               &#96;-- app</span><br><span class="line">    |                   &#96;-- App.java</span><br><span class="line">    &#96;-- test</span><br><span class="line">        &#96;-- java</span><br><span class="line">            &#96;-- com</span><br><span class="line">                &#96;-- mycompany</span><br><span class="line">                    &#96;-- app</span><br><span class="line">                        &#96;-- AppTest.java</span><br></pre></td></tr></table></figure>
+
+<p>where:</p>
+<ul>
+<li><code>src/main/java</code> directory contains the <strong>project source code</strong></li>
+<li><code>src/test/java</code> directory contains the <strong>test source code</strong></li>
+<li><code>pom.xml</code> file is the project’s <strong>Project Object Model</strong>, or POM.</li>
+</ul>
+<p><a name="Configure-Java-9"></a></p>
+<h2 id="Configuring-for-Java-9-or-Later"><a href="#Configuring-for-Java-9-or-Later" class="headerlink" title="Configuring for Java 9 or Later"></a>Configuring for Java 9 or Later</h2><p><strong>By default</strong> your version of Maven might use an old version of the <code>maven-compiler-plugin</code> that is not compatible with Java 9 or later versions. To <strong>target Java 9 or later</strong>, you should at least use version <code>3.6.0</code> of the <code>maven-compiler-plugin</code> and set the <code>maven.compiler.release</code> property to the Java release you are targetting (e.g. 9, 10, 11, 12, etc.).</p>
+<p>In the following example, we have configured our Maven project to use version <code>3.8.1</code> of maven-compiler-plugin and target Java 11. You should be able to <strong>edit it in the <code>pom.xml</code> file</strong>.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;properties&gt;</span><br><span class="line">    &lt;maven.compiler.release&gt;11&lt;&#x2F;maven.compiler.release&gt;</span><br><span class="line">&lt;&#x2F;properties&gt;</span><br><span class="line"></span><br><span class="line">&lt;build&gt;</span><br><span class="line">    &lt;pluginManagement&gt;</span><br><span class="line">        &lt;plugins&gt;</span><br><span class="line">            &lt;plugin&gt;</span><br><span class="line">                &lt;groupId&gt;org.apache.maven.plugins&lt;&#x2F;groupId&gt;</span><br><span class="line">                &lt;artifactId&gt;maven-compiler-plugin&lt;&#x2F;artifactId&gt;</span><br><span class="line">                &lt;version&gt;3.8.1&lt;&#x2F;version&gt;</span><br><span class="line">            &lt;&#x2F;plugin&gt;</span><br><span class="line">        &lt;&#x2F;plugins&gt;</span><br><span class="line">    &lt;&#x2F;pluginManagement&gt;</span><br><span class="line">&lt;&#x2F;build&gt;</span><br></pre></td></tr></table></figure>
+
+<p><a name="Build-the-Project"></a></p>
+<h2 id="Build-the-Project"><a href="#Build-the-Project" class="headerlink" title="Build the Project"></a>Build the Project</h2><p>Maven is based around the central concept of a <strong>build lifecycle</strong>, which consists of a number of <strong>phases</strong>. (Each of these build lifecycles is defined by a different list of build phases, wherein a build phase represents a stage in the lifecycle.)</p>
+<p>For example, the <strong>default lifecycle comprises of the following phases</strong> (for a complete list of the lifecycle phases, refer to the Lifecycle Reference):</p>
+<ul>
+<li><code>validate</code> - validate the project is correct and all necessary information is available</li>
+<li><code>compile</code> - compile the source code of the project</li>
+<li><code>test</code> - test the compiled source code using a suitable unit testing framework. These tests should not require the code be packaged or deployed</li>
+<li><code>package</code> - take the compiled code and package it in its distributable format, such as a <code>JAR</code>.</li>
+<li><code>integration-test</code>: process and deploy the package if necessary into an environment where integration tests can be run</li>
+<li><code>verify</code> - run any checks on results of integration tests to ensure quality criteria are met</li>
+<li><code>install</code> - install the package into the local repository, for use as a dependency in other projects locally</li>
+<li><code>deploy</code> - done in the build environment, copies the final package to the remote repository for sharing with other developers and projects.</li>
+</ul>
+<p>At this point, since you haven’t added anthing in the folder, you could directly do</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn package</span><br></pre></td></tr></table></figure>
+<p>which, for Maven, when a phase is given, it will <strong>execute every phase in the sequence up to and including the one defined</strong>. For example, if we execute the <code>compile</code> phase, the phases that actually get executed are:</p>
+<ul>
+<li><code>validate</code><ul>
+<li>generate-sources</li>
+<li>process-sources</li>
+<li>generate-resources</li>
+<li>process-resources</li>
+</ul>
+</li>
+<li><code>compile</code></li>
+</ul>
+<p>In the case where we executed <code>mvn package</code>, the command line will print out various actions, and <strong>end with the following</strong>:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"> ...</span><br><span class="line">[INFO] ------------------------------------------------------------------------</span><br><span class="line">[INFO] BUILD SUCCESS</span><br><span class="line">[INFO] ------------------------------------------------------------------------</span><br><span class="line">[INFO] Total time:  2.953 s</span><br><span class="line">[INFO] Finished at: 2019-11-24T13:05:10+01:00</span><br><span class="line">[INFO] ------------------------------------------------------------------------</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>Note:</p>
+<ul>
+<li><input disabled type="checkbox"> Unlike the first command executed (<code>archetype:generate</code>) you may notice the second is simply a single word - <code>package</code>. The difference is that the <strong>first one is a goal</strong> (i.e. the prefix <code>archetype</code> is the <strong>plugin</strong> that provides the goal <code>archetype:generate</code>. Maven is - at its heart - a plugin execution framework; all work is done by plugins), where as the <strong>second one is a phase</strong>.</li>
+<li><input disabled type="checkbox"> After you run the <code>mvn package</code>, you will see that it created a <strong>new folder <code>target</code></strong>, in which there will be a <strong>packaged <code>JAR</code> file that is the snap-shot of the project</strong> (in this case, MAVEN starts with a <code>Hello World</code> java file)</li>
+</ul>
+</blockquote>
+<p>Now, since you see that in the standard lifecycle, <code>package</code> already included <code>compile</code> phase, it means we could test the newly compiled and packaged <code>JAR</code>:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -cp target&#x2F;my-app-1.0-SNAPSHOT.jar com.mycompany.app.App</span><br></pre></td></tr></table></figure>
+
+<p>where</p>
+<ul>
+<li><code>-cp</code>, or <strong>CLASSPATH</strong> (where the JVM will look for the <strong>.class</strong> file. In this case, the file is packaged in the <strong>my-app-1.0-SNAPSHOT.jar</strong>), is used as an option to the Java command that specifies the <strong>location of classes and packages which are defined by the user</strong>, for example, a list of directories, <strong>JAR archives and ZIP archives</strong> to search for class files.</li>
+<li><code>com.mycompany.app.App</code> is the java file that is created by MAVEN and packaged into <code>target/my-app-1.0-SNAPSHOT.jar</code></li>
+</ul>
+<h2 id="Running-Maven-Tools"><a href="#Running-Maven-Tools" class="headerlink" title="Running Maven Tools"></a>Running Maven Tools</h2><p>Although hardly a comprehensive list, these are the <strong>most common default lifecycle phases</strong> executed, also shown in the section <a href="#Build-the-Project">Build the Project</a></p>
+<ul>
+<li><code>validate</code></li>
+<li><code>compile</code></li>
+<li><code>test</code></li>
+<li><code>package</code></li>
+<li><code>integration-test</code></li>
+<li><code>verify</code></li>
+<li><code>install</code></li>
+<li><code>deploy</code></li>
+</ul>
+<p>There are <strong>two other Maven lifecycles of note beyond the default list</strong> above. They are:</p>
+<ul>
+<li><code>clean</code>: cleans up artifacts created by prior builds</li>
+<li><code>site</code>: generates site documentation for this project</li>
+</ul>
+<p><strong>Phases are actually mapped to underlying goals</strong> (A build <strong>phase is made up of a set of goals</strong>. Maven <strong>goals represent a specific task that contributes to the building and managing of a project</strong>). The specific goals executed per phase is dependent upon the packaging type of the project. For example, package executes <code>jar:jar</code> if the project type is a JAR, and <code>war:war</code> if the project type is - you guessed it - a WAR.</p>
+<p>An interesting thing to note is that <strong>phases and goals may be executed in sequence</strong>.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn clean dependency:copy-dependencies package</span><br></pre></td></tr></table></figure>
+
+<p>This command will clean the project, copy dependencies, and package the project (<strong>executing all phases up to <code>package</code>, of course</strong>).</p>
+<h2 id="Generating-a-Site"><a href="#Generating-a-Site" class="headerlink" title="Generating a Site"></a>Generating a Site</h2><p>This site will contain information about your project, organized by MAVEN:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn site</span><br></pre></td></tr></table></figure>
+<p>This phase <strong>generates a site based upon information on the project’s <code>pom</code></strong>. You can look at the documentation generated under <code>target/site</code>.</p>
+<h2 id="Creating-a-Project"><a href="#Creating-a-Project" class="headerlink" title="Creating a Project"></a>Creating a Project</h2><p>Different from the <code>quickstart</code> you could use, you could also create a standard project by:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mvn -B archetype:generate \</span><br><span class="line">  -DarchetypeGroupId&#x3D;org.apache.maven.archetypes \</span><br><span class="line">  -DgroupId&#x3D;com.mycompany.app \</span><br><span class="line">  -DartifactId&#x3D;&lt;yourProjectName&gt;</span><br></pre></td></tr></table></figure>
+<p>Then, in the directory you created, you could look at the <code>POM</code> file:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&lt;project xmlns&#x3D;&quot;http:&#x2F;&#x2F;maven.apache.org&#x2F;POM&#x2F;4.0.0&quot;</span><br><span class="line">  xmlns:xsi&#x3D;&quot;http:&#x2F;&#x2F;www.w3.org&#x2F;2001&#x2F;XMLSchema-instance&quot;</span><br><span class="line">  xsi:schemaLocation&#x3D;&quot;http:&#x2F;&#x2F;maven.apache.org&#x2F;POM&#x2F;4.0.0</span><br><span class="line">                      http:&#x2F;&#x2F;maven.apache.org&#x2F;xsd&#x2F;maven-4.0.0.xsd&quot;&gt;</span><br><span class="line">  &lt;modelVersion&gt;4.0.0&lt;&#x2F;modelVersion&gt;</span><br><span class="line">  &lt;groupId&gt;com.mycompany.app&lt;&#x2F;groupId&gt;</span><br><span class="line">  &lt;artifactId&gt;my-app&lt;&#x2F;artifactId&gt;</span><br><span class="line">  &lt;packaging&gt;jar&lt;&#x2F;packaging&gt;</span><br><span class="line">  &lt;version&gt;1.0-SNAPSHOT&lt;&#x2F;version&gt;</span><br><span class="line">  &lt;name&gt;Maven Quick Start Archetype&lt;&#x2F;name&gt;</span><br><span class="line">  &lt;url&gt;http:&#x2F;&#x2F;maven.apache.org&lt;&#x2F;url&gt;</span><br><span class="line">  &lt;dependencies&gt;</span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">      &lt;groupId&gt;junit&lt;&#x2F;groupId&gt;</span><br><span class="line">      &lt;artifactId&gt;junit&lt;&#x2F;artifactId&gt;</span><br><span class="line">      &lt;version&gt;4.11&lt;&#x2F;version&gt;</span><br><span class="line">      &lt;scope&gt;test&lt;&#x2F;scope&gt;</span><br><span class="line">    &lt;&#x2F;dependency&gt;</span><br><span class="line">  &lt;&#x2F;dependencies&gt;</span><br><span class="line">&lt;&#x2F;project&gt;</span><br></pre></td></tr></table></figure>
+<p>The <code>POM</code> is the basic unit of work in Maven. This is important to remember because Maven is inherently <strong>project-centric</strong> in that everything revolves around the notion of a project. In short, the <strong><code>POM</code> contains every important piece of information about your project and is essentially one-stop-shopping for finding anything related to your project</strong>. </p>
+<p>This is a very simple POM but still displays the key elements every POM contains, so let’s walk through each of them to familiarize you with the <strong>POM essentials</strong>:</p>
+<ul>
+<li><strong>project</strong> This is the top-level element in all Maven <code>pom.xml</code> files.</li>
+<li><strong>modelVersion</strong> This element indicates what <strong>version of the object model this POM is using</strong>. The version of the model itself changes very infrequently but it is mandatory in order to ensure stability of use if and when the Maven developers deem it necessary to change the model.</li>
+<li><strong>groupId</strong> This element indicates the unique <strong>identifier of the organization or group that created the project</strong>. The groupId is one of the key identifiers of a project and is typically based on the <strong>fully qualified domain name of your organization</strong>. For example <code>org.apache.maven.plugins</code> is the designated groupId for all Maven plugins.</li>
+<li><strong>artifactId</strong> This element indicates the unique base name of the primary artifact being generated by this project. <strong>The primary artifact for a project is typically a JAR file</strong>. Secondary artifacts like source bundles also use the artifactId as part of their final name. A typical artifact produced by Maven would have the form <code>&lt;artifactId&gt;-&lt;version&gt;.&lt;extension&gt;</code> (<strong>for example, <code>my-app-1.0.jar</code></strong>).</li>
+<li><strong>packaging</strong> This element indicates the <strong>package type to be used by this artifact</strong> (e.g. <code>JAR</code>, <code>WAR</code>, <code>EAR</code>, etc.). This not only means if the artifact produced is JAR, WAR, or EAR but can also <strong>indicate a specific lifecycle to use as part of the build process</strong>. (The lifecycle is a topic we will deal with further on in the guide. For now, just keep in mind that the indicated packaging of a project can play a part in customizing the build lifecycle.) The <strong>default value for the packaging element is <code>JAR</code></strong> so you do not have to specify this for most projects.</li>
+<li><strong>version</strong> This element indicates the <strong>version of the artifact (your end product) generated by the project</strong>. Maven goes a long way to help you with version management and you will often see the SNAPSHOT designator in a version, which indicates that a project is in a state of development. We will discuss the use of snapshots and how they work further on in this guide.</li>
+<li><strong>name</strong> This element indicates the <strong>display name used for the project (by default it will be the same name as artifactId)</strong>. This is often used in Maven’s generated documentation.</li>
+<li><strong>url</strong> This element indicates where the <strong>project’s site can be found</strong>. This is often used in Maven’s generated documentation.</li>
+<li><strong>description</strong> This element provides a <strong>basic description of your project</strong>. This is often used in Maven’s generated documentation.</li>
+</ul>
+<blockquote>
+<p>Note:</p>
+<ul>
+<li><input disabled type="checkbox"> The value of the <code>version</code> tag in the pom.xml file shown below has the suffix: <code>-SNAPSHOT</code>. The SNAPSHOT value refers to the <strong>‘latest’ code along a <code>development</code> branch</strong>, and provides <strong>no guarantee the code is stable or unchanging</strong>. Conversely, the code in a <code>&#39;release&#39;</code> version (any version value without the suffix SNAPSHOT) is unchanging. In other words, a SNAPSHOT version is the ‘development’ version before the final ‘release’ version. The SNAPSHOT is “older” than its release.</li>
+</ul>
+</blockquote>
+<p>For more complete understanding of a <strong>POM</strong> visit <a href="https://maven.apache.org/guides/introduction/introduction-to-the-pom.html" target="_blank" rel="noopener">Apache Maven POM Guide</a></p>
+<p>After the archetype generation of your first project you will also notice the <strong>same source tree structure you had above in the quickstart project created</strong>:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">my-app</span><br><span class="line">|-- pom.xml</span><br><span class="line">&#96;-- src</span><br><span class="line">    |-- main</span><br><span class="line">    |   &#96;-- java</span><br><span class="line">    |       &#96;-- com</span><br><span class="line">    |           &#96;-- mycompany</span><br><span class="line">    |               &#96;-- app</span><br><span class="line">    |                   &#96;-- App.java</span><br><span class="line">    &#96;-- test</span><br><span class="line">        &#96;-- java</span><br><span class="line">            &#96;-- com</span><br><span class="line">                &#96;-- mycompany</span><br><span class="line">                    &#96;-- app</span><br><span class="line">                        &#96;-- AppTest.java</span><br></pre></td></tr></table></figure>
+
+<h2 id="Compiling-Project-Source-Code"><a href="#Compiling-Project-Source-Code" class="headerlink" title="Compiling Project Source Code"></a>Compiling Project Source Code</h2><p>Change to the directory where <code>pom.xml</code> is created by <code>archetype:generate</code> (this will be the default directory we are using for MAVEN commands) and execute the following command to compile your application sources:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn compile</span><br></pre></td></tr></table></figure>
+
+<p>Upon executing this command you should see output like the following:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">[INFO] ----------------------------------------------------------------------------</span><br><span class="line">[INFO] Building Maven Quick Start Archetype</span><br><span class="line">[INFO]    task-segment: [compile]</span><br><span class="line">[INFO] ----------------------------------------------------------------------------</span><br><span class="line">[INFO] artifact org.apache.maven.plugins:maven-resources-plugin: \</span><br><span class="line">  checking for updates from central</span><br><span class="line">...</span><br><span class="line">[INFO] artifact org.apache.maven.plugins:maven-compiler-plugin: \</span><br><span class="line">  checking for updates from central</span><br><span class="line">...</span><br><span class="line">[INFO] [resources:resources]</span><br><span class="line">...</span><br><span class="line">[INFO] [compiler:compile]</span><br><span class="line">Compiling 1 source file to &lt;dir&gt;&#x2F;my-app&#x2F;target&#x2F;classes</span><br><span class="line">[INFO] ----------------------------------------------------------------------------</span><br><span class="line">[INFO] BUILD SUCCESSFUL</span><br><span class="line">[INFO] ----------------------------------------------------------------------------</span><br><span class="line">[INFO] Total time: 3 minutes 54 seconds</span><br><span class="line">[INFO] Finished at: Fri Sep 23 15:48:34 GMT-05:00 2005</span><br><span class="line">[INFO] Final Memory: 2M&#x2F;6M</span><br><span class="line">[INFO] ----------------------------------------------------------------------------</span><br></pre></td></tr></table></figure>
+
+<p>The <strong>first time you execute</strong> this (or any other) command, Maven will need to download all the plugins and related dependencies it needs to fulfill the command. This can take quite a while. If you execute the command again, Maven will now have what it needs, so it won’t need to download anything new and will be able to execute the command much more quickly.</p>
+<blockquote>
+<p>Note:</p>
+<ul>
+<li><input disabled type="checkbox"> If you ran into error running this command, it might be cause because the code is not for the default compiler used by MAVEN. You can specify it similarly in the section [Configuing for Java 9 or Later](#<br>re-Java-9), by adding those before the root element ends:<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependencies&gt; </span><br><span class="line">... </span><br><span class="line">&lt;&#x2F;dependencies&gt; </span><br><span class="line">&lt;build&gt; </span><br><span class="line">&lt;plugins&gt; </span><br><span class="line">	&lt;plugin&gt;</span><br><span class="line">		&lt;groupId&gt;org.apache.maven.plugins&lt;&#x2F;groupId&gt; </span><br><span class="line">		&lt;artifactId&gt;maven-compiler-plugin&lt;&#x2F;artifactId&gt; </span><br><span class="line">		&lt;version&gt;3.8.1&lt;&#x2F;version&gt; </span><br><span class="line">		&lt;configuration&gt; </span><br><span class="line">			&lt;source&gt;13&lt;&#x2F;source&gt; </span><br><span class="line">			&lt;target&gt;13&lt;&#x2F;target&gt; </span><br><span class="line">		&lt;&#x2F;configuration&gt; </span><br><span class="line">	&lt;&#x2F;plugin&gt; </span><br><span class="line">&lt;&#x2F;plugins&gt; </span><br><span class="line">&lt;&#x2F;build&gt; </span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</blockquote>
+<p>As you can see from the output, the <strong>compiled classes were placed in <code>${basedir}/target/classes</code></strong>, which is another standard convention employed by Maven. </p>
+<h2 id="Testing-Project-Source-Code"><a href="#Testing-Project-Source-Code" class="headerlink" title="Testing Project Source Code"></a>Testing Project Source Code</h2><p>Now you’re successfully compiling your application’s sources and now you’ve got some unit tests that you want to <strong>compile and execute</strong> (because every programmer always writes and executes their unit tests <em>nudge nudge wink wink</em>).</p>
+<p>Execute the following command:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn test</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>Note:</p>
+<ul>
+<li><input disabled type="checkbox"> Maven downloads more dependencies this time. These are the dependencies and plugins <strong>necessary for executing the tests</strong> (it already has the dependencies it needs for compiling and won’t download them again).</li>
+<li><input disabled type="checkbox"> <strong>Before compiling and executing the tests</strong> Maven <strong>compiles the main code</strong> (in case there are some changes. In this case all these classes are up to date because we haven’t changed anything since we compiled last).</li>
+</ul>
+</blockquote>
+<p>If you simply want to compile your test sources (but not execute the tests), you can execute the following:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn test-compile</span><br></pre></td></tr></table></figure>
+
+<h2 id="Packaging-into-a-Jar-File"><a href="#Packaging-into-a-Jar-File" class="headerlink" title="Packaging into a Jar File"></a>Packaging into a Jar File</h2><p>Making a JAR file is straight forward enough and can be accomplished by executing the following command:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn package</span><br></pre></td></tr></table></figure>
+
+<p>If you take a look at the <code>POM</code> for your project you will notice the packaging element is set to <code>jar</code>. This is <strong>how Maven knows to produce a <code>JAR</code> file from the above command</strong>.</p>
+<p>The generated file will be in <code>${basedir}/target directory</code> and you will see the generated <code>JAR</code> file there as well.</p>
+<p><a name="Installing-into-Local"></a></p>
+<h2 id="Installing-into-Local-Repository"><a href="#Installing-into-Local-Repository" class="headerlink" title="Installing into Local Repository"></a>Installing into Local Repository</h2><p>If you want to install the artifact you’ve generated (the JAR file) in your local repository (<code>${user.home}/.m2/repository</code>; for Windows,<code>C:\Users\&lt;Username&gt;\.m2\repository</code> is the default location). For more information on repositories you can refer to <a href="#https://maven.apache.org/guides/introduction/introduction-to-repositories.html">Apache Maven Introduction to Repositories</a> but let’s move on to installing our artifact! To do so execute the following command:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn install</span><br></pre></td></tr></table></figure>
+
+<p>Upon executing this command you should see the following output:</p>
+<p>Upon executing this command you should see the following output:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">[INFO] ----------------------------------------------------------------------------</span><br><span class="line">[INFO] Building Maven Quick Start Archetype</span><br><span class="line">[INFO]    task-segment: [install]</span><br><span class="line">[INFO] ----------------------------------------------------------------------------</span><br><span class="line">[INFO] [resources:resources]</span><br><span class="line">[INFO] [compiler:compile]</span><br><span class="line">Compiling 1 source file to &lt;dir&gt;&#x2F;my-app&#x2F;target&#x2F;classes</span><br><span class="line">[INFO] [resources:testResources]</span><br><span class="line">[INFO] [compiler:testCompile]</span><br><span class="line">Compiling 1 source file to &lt;dir&gt;&#x2F;my-app&#x2F;target&#x2F;test-classes</span><br><span class="line">[INFO] [surefire:test]</span><br><span class="line">[INFO] Setting reports dir: &lt;dir&gt;&#x2F;my-app&#x2F;target&#x2F;surefire-reports</span><br><span class="line"> </span><br><span class="line">-------------------------------------------------------</span><br><span class="line"> T E S T S</span><br><span class="line">-------------------------------------------------------</span><br><span class="line">[surefire] Running com.mycompany.app.AppTest</span><br><span class="line">[surefire] Tests run: 1, Failures: 0, Errors: 0, Time elapsed: 0.001 sec</span><br><span class="line"> </span><br><span class="line">Results :</span><br><span class="line">[surefire] Tests run: 1, Failures: 0, Errors: 0</span><br><span class="line"> </span><br><span class="line">[INFO] [jar:jar]</span><br><span class="line">[INFO] Building jar: &lt;dir&gt;&#x2F;my-app&#x2F;target&#x2F;my-app-1.0-SNAPSHOT.jar</span><br><span class="line">[INFO] [install:install]</span><br><span class="line">[INFO] Installing &lt;dir&gt;&#x2F;my-app&#x2F;target&#x2F;my-app-1.0-SNAPSHOT.jar to \</span><br><span class="line">   &lt;local-repository&gt;&#x2F;com&#x2F;mycompany&#x2F;app&#x2F;my-app&#x2F;1.0-SNAPSHOT&#x2F;my-app-1.0-SNAPSHOT.jar</span><br><span class="line">[INFO] ----------------------------------------------------------------------------</span><br><span class="line">[INFO] BUILD SUCCESSFUL</span><br><span class="line">[INFO] ----------------------------------------------------------------------------</span><br><span class="line">[INFO] Total time: 5 seconds</span><br><span class="line">[INFO] Finished at: Tue Oct 04 13:20:32 GMT-05:00 2005</span><br><span class="line">[INFO] Final Memory: 3M&#x2F;8M</span><br><span class="line">[INFO] ----------------------------------------------------------------------------</span><br></pre></td></tr></table></figure>
+
+<p>Note that the <code>surefire</code> plugin (which executes the test) <strong>looks for tests contained in files with a particular naming convention</strong>. By default the tests included are:</p>
+<ul>
+<li><code>**/*Test.java</code></li>
+<li><code>**/Test*.java</code></li>
+<li><code>**/*TestCase.java</code></li>
+</ul>
+<p>And in the end you can find your files in <code>C:\Users\&lt;Username&gt;\.m2\repository\com\mycompany\app\</code> (for Windows)</p>
+<h2 id="Other-Useful-Phases-in-Maven"><a href="#Other-Useful-Phases-in-Maven" class="headerlink" title="Other Useful Phases in Maven"></a>Other Useful Phases in Maven</h2><p>One of the highly prized features of Maven is: without any work on your part this POM has enough information to <strong>generate a web site for your project</strong>! You will most likely want to customize your Maven site but if you’re pressed for time all you need to do to provide basic information about your project is execute the following command:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn site</span><br></pre></td></tr></table></figure>
+
+<p>There are plenty of other standalone goals that can be executed as well (again only with this <code>POM</code> file), for example:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn clean</span><br></pre></td></tr></table></figure>
+
+<p>This will <strong>remove the target directory with all the build data before starting so that it is fresh</strong>.</p>
+<h2 id="Using-Plugins-in-Maven"><a href="#Using-Plugins-in-Maven" class="headerlink" title="Using Plugins in Maven"></a>Using Plugins in Maven</h2><p>Whenever you want to <strong>customise the build</strong> for a Maven project, this is <strong>done by adding or reconfiguring plugins</strong>.</p>
+<p>For this example, we will <strong>configure the Java compiler</strong> to allow JDK 5.0 sources (we have in fact done this already when we configure for Java 9.0 or later). This is as simple as <strong>adding this to your <code>POM</code></strong>:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">&lt;build&gt;</span><br><span class="line">  &lt;plugins&gt;</span><br><span class="line">    &lt;plugin&gt;</span><br><span class="line">      &lt;groupId&gt;org.apache.maven.plugins&lt;&#x2F;groupId&gt;</span><br><span class="line">      &lt;artifactId&gt;maven-compiler-plugin&lt;&#x2F;artifactId&gt;</span><br><span class="line">      &lt;version&gt;3.3&lt;&#x2F;version&gt;</span><br><span class="line">      &lt;configuration&gt;</span><br><span class="line">        &lt;source&gt;1.5&lt;&#x2F;source&gt;</span><br><span class="line">        &lt;target&gt;1.5&lt;&#x2F;target&gt;</span><br><span class="line">      &lt;&#x2F;configuration&gt;</span><br><span class="line">    &lt;&#x2F;plugin&gt;</span><br><span class="line">  &lt;&#x2F;plugins&gt;</span><br><span class="line">&lt;&#x2F;build&gt;</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<p>You’ll notice that all plugins in Maven look much like a dependency - and in some ways they are. This <strong>plugin will be automatically downloaded and used - including a specific version if you request it</strong> (the default is to use the latest available).</p>
+<p>To find out <strong>what configuration is available</strong> for a plugin, you can see the <a href="https://maven.apache.org/plugins/" target="_blank" rel="noopener">Apache Maven Plugins List</a> and navigate to the plugin and goal you are using. For general information about how to configure the available parameters of a plugin, have a look at the <a href="https://maven.apache.org/guides/mini/guide-configuring-plugins.html" target="_blank" rel="noopener">Apache Maven Guide to Configuring Plugins</a>.</p>
+<h2 id="Adding-Files-Resources-to-My-Jar"><a href="#Adding-Files-Resources-to-My-Jar" class="headerlink" title="Adding Files/Resources to My Jar"></a>Adding Files/Resources to My Jar</h2><p>Another common use case that can be satisfied which requires <strong>no changes to the POM</strong> that we have above is packaging resources in the JAR file. For this common task, Maven again relies on the <strong>Standard Directory Layout</strong>.</p>
+<p>You see below in our example we have <strong>added the directory <code>${basedir}/src/main/resources</code></strong> into which we place <strong>any resources/files we wish to package in our JAR</strong>. The simple rule employed by Maven is this: <strong>any directories or files placed within the <code>${basedir}/src/main/resources</code> directory are packaged in your JAR with the exact same structure starting at the base of the JAR</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">my-app</span><br><span class="line">|-- pom.xml</span><br><span class="line">&#96;-- src</span><br><span class="line">    |-- main</span><br><span class="line">    |   |-- java</span><br><span class="line">    |   |   &#96;-- com</span><br><span class="line">    |   |       &#96;-- mycompany</span><br><span class="line">    |   |           &#96;-- app</span><br><span class="line">    |   |               &#96;-- App.java</span><br><span class="line">    |   &#96;-- resources</span><br><span class="line">    |       &#96;-- META-INF</span><br><span class="line">    |           &#96;-- application.properties</span><br><span class="line">    &#96;-- test</span><br><span class="line">        &#96;-- java</span><br><span class="line">            &#96;-- com</span><br><span class="line">                &#96;-- mycompany</span><br><span class="line">                    &#96;-- app</span><br><span class="line">                        &#96;-- AppTest.java</span><br></pre></td></tr></table></figure>
+<p>Generates:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">|-- META-INF</span><br><span class="line">|   |-- MANIFEST.MF</span><br><span class="line">|   |-- application.properties</span><br><span class="line">|   &#96;-- maven</span><br><span class="line">|       &#96;-- com.mycompany.app</span><br><span class="line">|           &#96;-- my-app</span><br><span class="line">|               |-- pom.properties</span><br><span class="line">|               &#96;-- pom.xml</span><br><span class="line">&#96;-- com</span><br><span class="line">    &#96;-- mycompany</span><br><span class="line">        &#96;-- app</span><br><span class="line">            &#96;-- App.class</span><br></pre></td></tr></table></figure>
+<p>But if you had a customized:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">my-app</span><br><span class="line">|-- pom.xml</span><br><span class="line">&#96;-- src</span><br><span class="line">    |-- main</span><br><span class="line">    |   |-- java</span><br><span class="line">    |   |   &#96;-- com</span><br><span class="line">    |   |       &#96;-- mycompany</span><br><span class="line">    |   |           &#96;-- app</span><br><span class="line">    |   |               &#96;-- App.java</span><br><span class="line">    |   &#96;-- resources</span><br><span class="line">    |       &#96;-- testFolder</span><br><span class="line">    |           &#96;-- test.java</span><br><span class="line">    &#96;-- test</span><br><span class="line">        &#96;-- java</span><br><span class="line">            &#96;-- com</span><br><span class="line">                &#96;-- mycompany</span><br><span class="line">                    &#96;-- app</span><br><span class="line">                        &#96;-- AppTest.java</span><br></pre></td></tr></table></figure>
+<p>Generates:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">|-- META-INF</span><br><span class="line">|   |-- MANIFEST.MF</span><br><span class="line">|   &#96;-- maven</span><br><span class="line">|       &#96;-- com.mycompany.app</span><br><span class="line">|           &#96;-- my-app</span><br><span class="line">|               |-- pom.properties</span><br><span class="line">|               &#96;-- pom.xml</span><br><span class="line">|-- testFolder</span><br><span class="line">|   &#96;-- test.class</span><br><span class="line">|</span><br><span class="line">&#96;-- com</span><br><span class="line">    &#96;-- mycompany</span><br><span class="line">        &#96;-- app</span><br><span class="line">            &#96;-- App.class</span><br></pre></td></tr></table></figure>
+
+<p>You see other files there like <code>META-INF/MANIFEST.MF</code> as well as a <code>pom.xml</code> and <code>pom.properties</code> file generated as well. These <strong>come standard with generation of a <code>JAR</code> in Maven</strong>. You can create your own manifest if you choose, but Maven will generate one by default if you don’t. The <code>pom.xml</code> and <code>pom.properties</code> files are packaged up in the JAR <strong>so that each artifact produced by Maven is self-describing and also allows you to utilize the metadata in your own application if the need arises</strong>. One simple use might be to retrieve the version of your application.</p>
+<blockquote>
+<p>Note:</p>
+<ul>
+<li><input disabled type="checkbox"> To add resources to the <code>classpath</code> <strong>for your unit tests</strong>, you follow the <strong>same pattern as you do for adding resources to the JAR except the directory you place resources in is <code>${basedir}/src/test/resources</code></strong>.</li>
+</ul>
+</blockquote>
+<h2 id="Resource-Filtering-in-Maven"><a href="#Resource-Filtering-in-Maven" class="headerlink" title="Resource Filtering in Maven"></a>Resource Filtering in Maven</h2><p>This is useful if sometimes a resource file will need to contain a value that can only be <strong>supplied at build time</strong>. Then, you can use Maven to perform <strong>variable replacement</strong> on project resources. When <strong>resource filtering is activated</strong>, Maven will scan <code>resources</code> for <strong>property references surrounded by <code>${&lt;property name&gt;}</code></strong>. When it finds these references it will <strong>replace them with the appropriate value</strong>.</p>
+<p>To enable resource filtering, you need to <strong>set <code>filtering</code> to <code>true</code> in your <code>pom.xml</code></strong>, and <strong>add the directory <code>src/main/resources</code> which is the default location MAVEN will look into when it compiles</strong> (since we overwrote the value to <code>true</code>, this has to be re-written again):</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">&lt;project xmlns&#x3D;&quot;http:&#x2F;&#x2F;maven.apache.org&#x2F;POM&#x2F;4.0.0&quot;</span><br><span class="line">  xmlns:xsi&#x3D;&quot;http:&#x2F;&#x2F;www.w3.org&#x2F;2001&#x2F;XMLSchema-instance&quot;</span><br><span class="line">  xsi:schemaLocation&#x3D;&quot;http:&#x2F;&#x2F;maven.apache.org&#x2F;POM&#x2F;4.0.0</span><br><span class="line">                      http:&#x2F;&#x2F;maven.apache.org&#x2F;xsd&#x2F;maven-4.0.0.xsd&quot;&gt;</span><br><span class="line">  &lt;modelVersion&gt;4.0.0&lt;&#x2F;modelVersion&gt;</span><br><span class="line"> </span><br><span class="line">  &lt;groupId&gt;com.mycompany.app&lt;&#x2F;groupId&gt;</span><br><span class="line">  &lt;artifactId&gt;my-app&lt;&#x2F;artifactId&gt;</span><br><span class="line">  &lt;version&gt;1.0-SNAPSHOT&lt;&#x2F;version&gt;</span><br><span class="line">  &lt;packaging&gt;jar&lt;&#x2F;packaging&gt;</span><br><span class="line"> </span><br><span class="line">  &lt;name&gt;Maven Quick Start Archetype&lt;&#x2F;name&gt;</span><br><span class="line">  &lt;url&gt;http:&#x2F;&#x2F;maven.apache.org&lt;&#x2F;url&gt;</span><br><span class="line"> </span><br><span class="line">  &lt;dependencies&gt;</span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">      &lt;groupId&gt;junit&lt;&#x2F;groupId&gt;</span><br><span class="line">      &lt;artifactId&gt;junit&lt;&#x2F;artifactId&gt;</span><br><span class="line">      &lt;version&gt;4.11&lt;&#x2F;version&gt;</span><br><span class="line">      &lt;scope&gt;test&lt;&#x2F;scope&gt;</span><br><span class="line">    &lt;&#x2F;dependency&gt;</span><br><span class="line">  &lt;&#x2F;dependencies&gt;</span><br><span class="line"> </span><br><span class="line">  &lt;build&gt;</span><br><span class="line">    &lt;resources&gt;</span><br><span class="line">      &lt;resource&gt;</span><br><span class="line">        &lt;directory&gt;src&#x2F;main&#x2F;resources&lt;&#x2F;directory&gt;</span><br><span class="line">        &lt;filtering&gt;true&lt;&#x2F;filtering&gt;</span><br><span class="line">      &lt;&#x2F;resource&gt;</span><br><span class="line">    &lt;&#x2F;resources&gt;</span><br><span class="line">  &lt;&#x2F;build&gt;</span><br><span class="line">&lt;&#x2F;project&gt;</span><br></pre></td></tr></table></figure>
+
+<p>Now, to <strong>reference a property defined in your pom.xml</strong>, the property name uses the names of the XML elements that define the value, with “pom” being allowed as an alias for the project (root) element. So <code>${project.name}</code> refers to the name of the project, <code>${project.version}</code> refers to the version of the project, <code>${project.build.finalName}</code> refers to the final name of the file created when the built project is packaged, etc. </p>
+<p>Similarly, values in the user’s <code>settings.xml</code> can be referenced using property names beginning with “settings” (for example, <code>{settings.localRepository}</code> refers to the path of the user’s local repository).</p>
+<p>For example, let’s add a couple of properties to the <code>application.properties</code> file (which we put in the <code>src/main/resources</code> directory) whose <strong>values will be supplied when the resource is filtered</strong>:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># application.properties</span><br><span class="line">application.name&#x3D;$&#123;project.name&#125;</span><br><span class="line">application.version&#x3D;$&#123;project.version&#125;</span><br></pre></td></tr></table></figure>
+
+<p>With that in place, you can execute the following command (process-resources is the build lifecycle phase where the resources are copied and filtered):</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn process-resources</span><br></pre></td></tr></table></figure>
+
+<p>and the <code>application.properties</code> file under <code>target/classes</code> (and will eventually go into the jar) looks like this:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># application.properties</span><br><span class="line">application.name&#x3D;Maven Quick Start Archetype</span><br><span class="line">application.version&#x3D;1.0-SNAPSHOT</span><br></pre></td></tr></table></figure>
+
+<p>With that in place, you can execute the following command (process-resources is the build lifecycle <strong>phase where the resources are copied and filtered</strong>):</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn process-resources</span><br></pre></td></tr></table></figure>
+
+<p>and the <code>application.properties</code> file under <code>target/classes/META-INF</code> (and will eventually go into the jar) looks like this:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># application.properties</span><br><span class="line">application.name&#x3D;my-app</span><br><span class="line">application.version&#x3D;1.0-SNAPSHOT</span><br></pre></td></tr></table></figure>
+
+<h2 id="Filtering-External-Files"><a href="#Filtering-External-Files" class="headerlink" title="Filtering External Files"></a>Filtering External Files</h2><p>To reference a property defined in an external file, all you need to do is <strong>add a reference to this external file in your <code>pom.xml</code></strong>.</p>
+<p>First, let’s create our external properties file and call it <code>src/main/filters/filter.properties</code>:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># filter.properties</span><br><span class="line">my.filter.value&#x3D;hello!</span><br></pre></td></tr></table></figure>
+
+<p>Next, we’ll <strong>add a reference to this new file in the <code>pom.xml</code></strong>:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">&lt;project xmlns&#x3D;&quot;http:&#x2F;&#x2F;maven.apache.org&#x2F;POM&#x2F;4.0.0&quot;</span><br><span class="line">  xmlns:xsi&#x3D;&quot;http:&#x2F;&#x2F;www.w3.org&#x2F;2001&#x2F;XMLSchema-instance&quot;</span><br><span class="line">  xsi:schemaLocation&#x3D;&quot;http:&#x2F;&#x2F;maven.apache.org&#x2F;POM&#x2F;4.0.0</span><br><span class="line">                      http:&#x2F;&#x2F;maven.apache.org&#x2F;xsd&#x2F;maven-4.0.0.xsd&quot;&gt;</span><br><span class="line">  &lt;modelVersion&gt;4.0.0&lt;&#x2F;modelVersion&gt;</span><br><span class="line"> </span><br><span class="line">  &lt;groupId&gt;com.mycompany.app&lt;&#x2F;groupId&gt;</span><br><span class="line">  &lt;artifactId&gt;my-app&lt;&#x2F;artifactId&gt;</span><br><span class="line">  &lt;version&gt;1.0-SNAPSHOT&lt;&#x2F;version&gt;</span><br><span class="line">  &lt;packaging&gt;jar&lt;&#x2F;packaging&gt;</span><br><span class="line"> </span><br><span class="line">  &lt;name&gt;Maven Quick Start Archetype&lt;&#x2F;name&gt;</span><br><span class="line">  &lt;url&gt;http:&#x2F;&#x2F;maven.apache.org&lt;&#x2F;url&gt;</span><br><span class="line"> </span><br><span class="line">  &lt;dependencies&gt;</span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">      &lt;groupId&gt;junit&lt;&#x2F;groupId&gt;</span><br><span class="line">      &lt;artifactId&gt;junit&lt;&#x2F;artifactId&gt;</span><br><span class="line">      &lt;version&gt;4.11&lt;&#x2F;version&gt;</span><br><span class="line">      &lt;scope&gt;test&lt;&#x2F;scope&gt;</span><br><span class="line">    &lt;&#x2F;dependency&gt;</span><br><span class="line">  &lt;&#x2F;dependencies&gt;</span><br><span class="line"> </span><br><span class="line">  &lt;build&gt;</span><br><span class="line">    &lt;filters&gt;</span><br><span class="line">      &lt;filter&gt;src&#x2F;main&#x2F;filters&#x2F;filter.properties&lt;&#x2F;filter&gt;</span><br><span class="line">    &lt;&#x2F;filters&gt;</span><br><span class="line">    &lt;resources&gt;</span><br><span class="line">      &lt;resource&gt;</span><br><span class="line">        &lt;directory&gt;src&#x2F;main&#x2F;resources&lt;&#x2F;directory&gt;</span><br><span class="line">        &lt;filtering&gt;true&lt;&#x2F;filtering&gt;</span><br><span class="line">      &lt;&#x2F;resource&gt;</span><br><span class="line">    &lt;&#x2F;resources&gt;</span><br><span class="line">  &lt;&#x2F;build&gt;</span><br><span class="line">&lt;&#x2F;project&gt;</span><br></pre></td></tr></table></figure>
+
+<p>Then, if we add a reference to this property in the <code>application.properties</code> file:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># application.properties</span><br><span class="line">application.name&#x3D;$&#123;project.name&#125;</span><br><span class="line">application.version&#x3D;$&#123;project.version&#125;</span><br><span class="line">message&#x3D;$&#123;my.filter.value&#125;</span><br></pre></td></tr></table></figure>
+
+<p>the next execution of the <code>mvn process-resources</code> command will put our new property value into <code>application.properties</code>.</p>
+<blockquote>
+<p>Note:</p>
+<ul>
+<li><input disabled type="checkbox"> The file <code>filter.property</code> created in the <code>src/main/filters</code> will <strong>not get outputted by MAVEN to the <code>target</code> folder</strong>. This is because, it is <strong>not in the default location tree that MAVEN knows</strong>, so MAVEN will <strong>not compile</strong> it and include in your project.</li>
+</ul>
+</blockquote>
+<h2 id="Using-External-Dependency"><a href="#Using-External-Dependency" class="headerlink" title="Using External Dependency"></a>Using External Dependency</h2><p>You have, in fact, been using an external dependency all this time, but here we’ll talk about how this works in a bit more detail. For a more thorough introduction, please refer to our Introduction to <a href="https://maven.apache.org/guides/introduction/introduction-to-dependency-mechanism.html" target="_blank" rel="noopener">Apache Maven Dependency Mechanism</a>.</p>
+<p>The dependencies section of the <code>pom.xml</code> lists <strong>all of the external dependencies that our project needs in order to build (whether it needs that dependency at compile time, test time, run time, or whatever)</strong>. Right now, our project is depending on <code>JUnit</code> only (I took out all of the resource filtering stuff for clarity):</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&lt;project xmlns&#x3D;&quot;http:&#x2F;&#x2F;maven.apache.org&#x2F;POM&#x2F;4.0.0&quot;</span><br><span class="line">  xmlns:xsi&#x3D;&quot;http:&#x2F;&#x2F;www.w3.org&#x2F;2001&#x2F;XMLSchema-instance&quot;</span><br><span class="line">  xsi:schemaLocation&#x3D;&quot;http:&#x2F;&#x2F;maven.apache.org&#x2F;POM&#x2F;4.0.0</span><br><span class="line">                      http:&#x2F;&#x2F;maven.apache.org&#x2F;xsd&#x2F;maven-4.0.0.xsd&quot;&gt;</span><br><span class="line">  &lt;modelVersion&gt;4.0.0&lt;&#x2F;modelVersion&gt;</span><br><span class="line"> </span><br><span class="line">  &lt;groupId&gt;com.mycompany.app&lt;&#x2F;groupId&gt;</span><br><span class="line">  &lt;artifactId&gt;my-app&lt;&#x2F;artifactId&gt;</span><br><span class="line">  &lt;version&gt;1.0-SNAPSHOT&lt;&#x2F;version&gt;</span><br><span class="line">  &lt;packaging&gt;jar&lt;&#x2F;packaging&gt;</span><br><span class="line"> </span><br><span class="line">  &lt;name&gt;Maven Quick Start Archetype&lt;&#x2F;name&gt;</span><br><span class="line">  &lt;url&gt;http:&#x2F;&#x2F;maven.apache.org&lt;&#x2F;url&gt;</span><br><span class="line"> </span><br><span class="line">  &lt;dependencies&gt;</span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">      &lt;groupId&gt;junit&lt;&#x2F;groupId&gt;</span><br><span class="line">      &lt;artifactId&gt;junit&lt;&#x2F;artifactId&gt;</span><br><span class="line">      &lt;version&gt;4.11&lt;&#x2F;version&gt;</span><br><span class="line">      &lt;scope&gt;test&lt;&#x2F;scope&gt;</span><br><span class="line">    &lt;&#x2F;dependency&gt;</span><br><span class="line">  &lt;&#x2F;dependencies&gt;</span><br><span class="line"></span><br><span class="line">  ...</span><br><span class="line"></span><br><span class="line">&lt;&#x2F;project&gt;</span><br></pre></td></tr></table></figure>
+
+<p>For each external dependency, you’ll need to <strong>define at least 4 things: <code>groupId</code>, <code>artifactId</code>, <code>version</code>, and <code>scope</code></strong>. </p>
+<ul>
+<li>The <code>groupId</code>, <code>artifactId</code>, and <code>versio</code>n are the same as those given in the <strong><code>pom.xml</code> of the project that built that dependency</strong>. </li>
+<li>The <code>scope</code> element indicates <strong>how your project uses that dependency</strong>, and can be values like <code>compile</code>, <code>test</code>, and <code>runtime</code>.</li>
+</ul>
+<blockquote>
+<p>Note:</p>
+<ul>
+<li><input disabled type="checkbox"> Where does Maven reference the dependency from? Maven <strong>looks in your local repository</strong> (<code>${user.home}/.m2/repository</code> is the <strong>default location) to find all dependencies</strong>.</li>
+</ul>
+</blockquote>
+<p>This means that we could use code/projects made by others!</p>
+<p>For example:</p>
+<p>In a <a href="#Installing-into-Local">previous section</a>, we installed the artifact from our project (<code>my-app-1.0-SNAPSHOT.jar</code>) into the local repository. Once it’s installed there, another project can reference that jar as a dependency simply by <strong>adding the dependency information to its <code>pom.xml</code></strong>:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;project xmlns&#x3D;&quot;http:&#x2F;&#x2F;maven.apache.org&#x2F;POM&#x2F;4.0.0&quot;</span><br><span class="line">  xmlns:xsi&#x3D;&quot;http:&#x2F;&#x2F;www.w3.org&#x2F;2001&#x2F;XMLSchema-instance&quot;</span><br><span class="line">  xsi:schemaLocation&#x3D;&quot;http:&#x2F;&#x2F;maven.apache.org&#x2F;POM&#x2F;4.0.0</span><br><span class="line">                      http:&#x2F;&#x2F;maven.apache.org&#x2F;xsd&#x2F;maven-4.0.0.xsd&quot;&gt;</span><br><span class="line">  &lt;groupId&gt;com.mycompany.app&lt;&#x2F;groupId&gt;</span><br><span class="line">  &lt;artifactId&gt;my-other-app&lt;&#x2F;artifactId&gt;</span><br><span class="line">  ...</span><br><span class="line">  &lt;dependencies&gt;</span><br><span class="line">    ...</span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">      &lt;groupId&gt;com.mycompany.app&lt;&#x2F;groupId&gt;</span><br><span class="line">      &lt;artifactId&gt;my-app&lt;&#x2F;artifactId&gt;</span><br><span class="line">      &lt;version&gt;1.0-SNAPSHOT&lt;&#x2F;version&gt;</span><br><span class="line">      &lt;scope&gt;compile&lt;&#x2F;scope&gt;</span><br><span class="line">    &lt;&#x2F;dependency&gt;</span><br><span class="line">  &lt;&#x2F;dependencies&gt;</span><br><span class="line">&lt;&#x2F;project&gt;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>Note:</p>
+<ul>
+<li><input disabled type="checkbox"> If a <strong>remote repo is needed</strong>, you could use the mirror in MAVEN to setup the dependency correctly. By default, the remote repository Maven uses can be found (and browsed) at <a href="https://repo.maven.apache.org/maven2/" target="_blank" rel="noopener">https://repo.maven.apache.org/maven2/</a>. You can also set up your own remote repository (maybe a central repository for your company) to use instead of or in addition to the default remote repository. For more information on repositories you can refer to the <a href="https://maven.apache.org/guides/introduction/introduction-to-repositories.html" target="_blank" rel="noopener">Apache Maven Introduction to Repositories</a>. </li>
+</ul>
+</blockquote>
+<p>Now, when we compile the project (<code>mvn compile</code>), we’ll see Maven download the <code>my-app</code> dependency for us.</p>
+<h2 id="Deploying-Jar-into-a-Remote-Repository"><a href="#Deploying-Jar-into-a-Remote-Repository" class="headerlink" title="Deploying Jar into a Remote Repository"></a>Deploying Jar into a Remote Repository</h2><p>For deploying jars to an external repository, you have to <strong>configure the repository <code>url</code> in the <code>pom.xml</code></strong> and the <strong>authentication information for connectiong to the repository in the <code>settings.xml</code></strong>.</p>
+<p>There are <strong>two locations where a <code>settings.xml</code> file may live</strong>:</p>
+<ul>
+<li>The Maven install: <code>${maven.home}/conf/settings.xml</code></li>
+<li>A user’s install: <code>${user.home}/.m2/settings.xml</code></li>
+</ul>
+<p>The <strong>former</strong> <code>settings.xml</code> are also called <strong>global settings</strong>, the <strong>latter</strong> <code>settings.xml</code> are referred to as <strong>user settings</strong>. <strong>If both files exists, their contents gets merged, with the user-specific settings.xml being dominant</strong>.</p>
+<blockquote>
+<p>Note:</p>
+<ul>
+<li><input disabled type="checkbox"> <code>settings.xml</code> is a configuration file that <strong>should not be bundled to any specific project</strong> whereas the <strong><code>pom.xml</code> can be distributed</strong>.</li>
+</ul>
+</blockquote>
+<p>Now, going back to the exmple, we can use scp and username/password authentication:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"># pom.xml</span><br><span class="line">&lt;project xmlns&#x3D;&quot;http:&#x2F;&#x2F;maven.apache.org&#x2F;POM&#x2F;4.0.0&quot;</span><br><span class="line">  xmlns:xsi&#x3D;&quot;http:&#x2F;&#x2F;www.w3.org&#x2F;2001&#x2F;XMLSchema-instance&quot;</span><br><span class="line">  xsi:schemaLocation&#x3D;&quot;http:&#x2F;&#x2F;maven.apache.org&#x2F;POM&#x2F;4.0.0</span><br><span class="line">                      http:&#x2F;&#x2F;maven.apache.org&#x2F;xsd&#x2F;maven-4.0.0.xsd&quot;&gt;</span><br><span class="line">  &lt;modelVersion&gt;4.0.0&lt;&#x2F;modelVersion&gt;</span><br><span class="line"> </span><br><span class="line">  &lt;groupId&gt;com.mycompany.app&lt;&#x2F;groupId&gt;</span><br><span class="line">  &lt;artifactId&gt;my-app&lt;&#x2F;artifactId&gt;</span><br><span class="line">  &lt;version&gt;1.0-SNAPSHOT&lt;&#x2F;version&gt;</span><br><span class="line">  &lt;packaging&gt;jar&lt;&#x2F;packaging&gt;</span><br><span class="line"> </span><br><span class="line">  &lt;name&gt;Maven Quick Start Archetype&lt;&#x2F;name&gt;</span><br><span class="line">  &lt;url&gt;http:&#x2F;&#x2F;maven.apache.org&lt;&#x2F;url&gt;</span><br><span class="line"> </span><br><span class="line">  &lt;dependencies&gt;</span><br><span class="line">    ...</span><br><span class="line">  &lt;&#x2F;dependencies&gt;</span><br><span class="line"></span><br><span class="line">  &lt;!--</span><br><span class="line">   |</span><br><span class="line">   |</span><br><span class="line">   |</span><br><span class="line">   --&gt;</span><br><span class="line">  &lt;distributionManagement&gt;</span><br><span class="line">    &lt;repository&gt;</span><br><span class="line">      &lt;id&gt;mycompany-repository&lt;&#x2F;id&gt;</span><br><span class="line">      &lt;name&gt;MyCompany Repository&lt;&#x2F;name&gt;</span><br><span class="line">      &lt;url&gt;scp:&#x2F;&#x2F;repository.mycompany.com&#x2F;repository&#x2F;maven2&lt;&#x2F;url&gt;</span><br><span class="line">    &lt;&#x2F;repository&gt;</span><br><span class="line">  &lt;&#x2F;distributionManagement&gt;</span><br><span class="line">&lt;&#x2F;project&gt;</span><br></pre></td></tr></table></figure>
+
+<p>and then in <code>settings.xml</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"># settings.xml</span><br><span class="line">&lt;settings xmlns&#x3D;&quot;http:&#x2F;&#x2F;maven.apache.org&#x2F;SETTINGS&#x2F;1.0.0&quot;</span><br><span class="line">  xmlns:xsi&#x3D;&quot;http:&#x2F;&#x2F;www.w3.org&#x2F;2001&#x2F;XMLSchema-instance&quot;</span><br><span class="line">  xsi:schemaLocation&#x3D;&quot;http:&#x2F;&#x2F;maven.apache.org&#x2F;SETTINGS&#x2F;1.0.0</span><br><span class="line">                      http:&#x2F;&#x2F;maven.apache.org&#x2F;xsd&#x2F;settings-1.0.0.xsd&quot;&gt;</span><br><span class="line">  ...</span><br><span class="line">  &lt;servers&gt;</span><br><span class="line">    &lt;server&gt;</span><br><span class="line">      &lt;id&gt;mycompany-repository&lt;&#x2F;id&gt;</span><br><span class="line">      &lt;username&gt;jvanzyl&lt;&#x2F;username&gt;</span><br><span class="line">      &lt;!-- Default value is ~&#x2F;.ssh&#x2F;id_dsa --&gt;</span><br><span class="line">      &lt;privateKey&gt;&#x2F;path&#x2F;to&#x2F;identity&lt;&#x2F;privateKey&gt; (default is ~&#x2F;.ssh&#x2F;id_dsa)</span><br><span class="line">      &lt;passphrase&gt;my_key_passphrase&lt;&#x2F;passphrase&gt;</span><br><span class="line">    &lt;&#x2F;server&gt;</span><br><span class="line">  &lt;&#x2F;servers&gt;</span><br><span class="line">  ...</span><br><span class="line">&lt;&#x2F;settings&gt;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>Note:</p>
+<ul>
+<li><input disabled type="checkbox"> If you are connecting to an openssh ssh server which has the parameter <code>&quot;PasswordAuthentication&quot;</code> set to <code>&quot;no&quot;</code> in the <code>sshd_confing</code>, you will have to type your password each time for username/password authentication (although you can log in using another ssh client by typing in the username and password). You might want to switch to public key authentication in this case.</li>
+</ul>
+</blockquote>
+<h2 id="Creating-Documentation-with-a-Site"><a href="#Creating-Documentation-with-a-Site" class="headerlink" title="Creating Documentation with a Site"></a>Creating Documentation with a Site</h2><p>To get you jump started with Maven’s documentation system you can use the <code>archetype</code> mechanism to generate a site for your existing project using the following command:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mvn archetype:generate \</span><br><span class="line">  -DarchetypeGroupId&#x3D;org.apache.maven.archetypes \</span><br><span class="line">  -DarchetypeArtifactId&#x3D;maven-archetype-site \</span><br><span class="line">  -DgroupId&#x3D;com.mycompany.app \</span><br><span class="line">  -DartifactId&#x3D;my-app-site</span><br></pre></td></tr></table></figure>
+<p>here we used the additional line: <code>-Darchetype ArtifactIds=maven-archetype-site</code>, which is an archetype to generate a sample Maven site.</p>
+<p>Now head on over to the <a href="https://maven.apache.org/guides/mini/guide-site.html" target="_blank" rel="noopener">Apache Maven Guide to creating a site</a> to learn how to create the documentation for your project.</p>
+<h2 id="Creating-Projects-of-Other-Types"><a href="#Creating-Projects-of-Other-Types" class="headerlink" title="Creating Projects of Other Types"></a>Creating Projects of Other Types</h2><p>For example, back in the base directory we can create a simple <code>web application</code>:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mvn archetype:generate \</span><br><span class="line">    -DarchetypeGroupId&#x3D;org.apache.maven.archetypes \</span><br><span class="line">    -DarchetypeArtifactId&#x3D;maven-archetype-webapp \</span><br><span class="line">    -DgroupId&#x3D;com.mycompany.app \</span><br><span class="line">    -DartifactId&#x3D;my-webapp</span><br></pre></td></tr></table></figure>
+<p>Here we used <code>-DarchetypeArtifactId=maven-archetype-webapp</code> to use an archetype to generate a sample Maven Webapp project. (For the available archetypes, see <a href="https://maven.apache.org/guides/introduction/introduction-to-archetypes.html" target="_blank" rel="noopener">https://maven.apache.org/guides/introduction/introduction-to-archetypes.html</a>)</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/05/22/Apache-Manual-md/" data-id="ckai5yba00000ssorfsxh613e" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2020/05/20/Git-Summary/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Git Manual</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/05/22/Apache-Manual-md/">Apache Maven Manual.md</a>
+          </li>
+        
+          <li>
+            <a href="/2020/05/20/Git-Summary/">Git Manual</a>
+          </li>
+        
+          <li>
+            <a href="/2020/05/19/MarkDown-Summary/">MarkDown Manual</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 Xiao Yu<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
