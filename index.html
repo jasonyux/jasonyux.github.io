@@ -673,7 +673,370 @@
 </ul>
 <p><a name="own-variable"></a></p>
 <ul>
-<li>You can also use your <strong>own variable</strong> if you define it in the <code>&lt;properties&gt;</code> section:  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;project&gt;</span><br><span class="line">  ...</span><br><span class="line">  &lt;properties&gt;</span><br><span class="line">    &lt;mavenVersion&gt;3.0&lt;&#x2F;mavenVersion&gt;</span><br><span class="line">  &lt;&#x2F;properties&gt;</span><br><span class="line">  &lt;dependencies&gt;</span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">      &lt;groupId&gt;org.apache.maven&lt;&#x2F;groupId&gt;</span><br><span class="line">      &lt;artifactId&gt;maven-artifact&lt;&#x2F;artifactId&gt;</span><br><span class="line">      &lt;version&gt;$&#123;mavenVersion&#125;&lt;&#x2F;version&gt;</span><br><span class="line">    &lt;&#x2F;dependency&gt;</span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">      &lt;groupId&gt;org.apache.maven&lt;&#x2F;groupId&gt;</span><br><span class="line">      &lt;artifactId&gt;maven-core&lt;&#x2F;artifactId&gt;</span><br><span class="line">      &lt;version&gt;$&#123;mavenVersion&#125;&lt;&#x2F;version&gt;</span><br><span class="line">    &lt;&#x2F;dependency&gt;</span><br><span class="line">  &lt;&#x2F;dependencies&gt;</span><br><span class="line">  ...</span><br><span class="line">&lt;&#x2F;project&gt;</span><br></pre></td></tr></table></figure></li>
+<li>You can also use your <strong>own variable</strong> if you define it in the <code>&lt;properties&gt;</code> section:  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;project&gt;</span><br><span class="line">  ...</span><br><span class="line">  &lt;properties&gt;</span><br><span class="line">    &lt;mavenVersion&gt;3.0&lt;&#x2F;mavenVersion&gt;</span><br><span class="line">  &lt;&#x2F;properties&gt;</span><br><span class="line">  &lt;dependencies&gt;</span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">      &lt;groupId&gt;org.apache.maven&lt;&#x2F;groupId&gt;</span><br><span class="line">      &lt;artifactId&gt;maven-artifact&lt;&#x2F;artifactId&gt;</span><br><span class="line">      &lt;version&gt;$&#123;mavenVersion&#125;&lt;&#x2F;version&gt;</span><br><span class="line">    &lt;&#x2F;dependency&gt;</span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">      &lt;groupId&gt;org.apache.maven&lt;&#x2F;groupId&gt;</span><br><span class="line">      &lt;artifactId&gt;maven-core&lt;&#x2F;artifactId&gt;</span><br><span class="line">      &lt;version&gt;$&#123;mavenVersion&#125;&lt;&#x2F;version&gt;</span><br><span class="line">    &lt;&#x2F;dependency&gt;</span><br><span class="line">  &lt;&#x2F;dependencies&gt;</span><br><span class="line">  ...</span><br><span class="line">&lt;&#x2F;project&gt;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="Profiles"><a href="#Profiles" class="headerlink" title="Profiles"></a>Profiles</h2><p>In short, Maven profiles can be used to create <strong>customized build configurations</strong>.</p>
+<p>Profiles are specified using the element <code>&lt;profile&gt;</code> in the <code>POM</code>itself (in the extra section <code>&lt;profiles&gt;</code>), and can be <strong>triggered in many different ways</strong>. They modify the POM at build time, and are meant to be used in complementary sets to give equivalent-but-different parameters for a set of target environments (providing, for example, the path of the appserver root in the development, testing, and production environments). As such, profiles can easily lead to differing build results from different members of your team. </p>
+<p>Profiles (<code>&lt;profiles&gt;</code>) can be <strong>specified in any of the four file locations</strong>:</p>
+<ul>
+<li><p>Per Project</p>
+<ul>
+<li>Defined in the POM itself (<code>pom.xml</code>).</li>
+</ul>
+</li>
+<li><p>Per User</p>
+<ul>
+<li>Defined in the Maven-settings (<code>%USER_HOME%/.m2/settings.xml</code>).</li>
+</ul>
+</li>
+<li><p>Global</p>
+<ul>
+<li>Defined in the global Maven-settings (<code>${maven.home}/conf/settings.xml</code>).</li>
+</ul>
+</li>
+<li><p>Profile descriptor (<strong>unsupported in Maven 3.0 and above</strong>)</p>
+<ul>
+<li>a descriptor located in project basedir (profiles.xml) </li>
+</ul>
+</li>
+</ul>
+<h2 id="Viewing-Active-Profiles"><a href="#Viewing-Active-Profiles" class="headerlink" title="Viewing Active Profiles"></a>Viewing Active Profiles</h2><p>To see which profiles are already active, you can use the <code>help</code> plugin from MAVEN:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn help:active-profiles</span><br></pre></td></tr></table></figure>
+
+<p>and by default, nothing is actived so you will see nothing:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Active Profiles for Project &#39;com.mycompany.app:my-app:pom:1.0-SNAPSHOT&#39;:</span><br><span class="line"></span><br><span class="line">The following profiles are active:</span><br></pre></td></tr></table></figure>
+<p>If we want to <strong>automatically show the active profiles</strong> when we are doing, for example, the <code>compile</code> phase, we can use the similar approach shown in the section [Customizing your Build Lifecycle by Plugins](#Customizing-your-Build Lifecycle-by-Plugins) by <strong>adding the <code>help</code> plugin and the <code>goal</code></strong> in our phase <code>compile</code>:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;build&gt;</span><br><span class="line">    &lt;plugins&gt;</span><br><span class="line">        &lt;plugin&gt;</span><br><span class="line">            &lt;groupId&gt;org.apache.maven.plugins&lt;&#x2F;groupId&gt;</span><br><span class="line">            &lt;artifactId&gt;maven-help-plugin&lt;&#x2F;artifactId&gt;</span><br><span class="line">            &lt;version&gt;3.2.0&lt;&#x2F;version&gt;</span><br><span class="line">            &lt;executions&gt;</span><br><span class="line">                &lt;execution&gt;</span><br><span class="line">                    &lt;id&gt;show-profiles&lt;&#x2F;id&gt;</span><br><span class="line">                    &lt;phase&gt;compile&lt;&#x2F;phase&gt;</span><br><span class="line">                    &lt;goals&gt;</span><br><span class="line">                        &lt;goal&gt;active-profiles&lt;&#x2F;goal&gt;</span><br><span class="line">                    &lt;&#x2F;goals&gt;</span><br><span class="line">                &lt;&#x2F;execution&gt;</span><br><span class="line">            &lt;&#x2F;executions&gt;</span><br><span class="line">        &lt;&#x2F;plugin&gt;</span><br><span class="line">    &lt;&#x2F;plugins&gt;</span><br><span class="line">&lt;&#x2F;build&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Making-a-Profile"><a href="#Making-a-Profile" class="headerlink" title="Making a Profile"></a>Making a Profile</h2><p>Within each <code>&lt;profile&gt;</code> element, we can <strong>configure many elements such as <code>dependencies</code>, <code>plugins</code>, <code>resources</code>, <code>finalName</code></strong>.</p>
+<p>For example (configured a <code>plugin</code>):</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">&lt;profiles&gt;</span><br><span class="line">	&lt;profile&gt;</span><br><span class="line">	  &lt;id&gt;test&lt;&#x2F;id&gt;</span><br><span class="line"></span><br><span class="line">	  &lt;build&gt;</span><br><span class="line">	     &lt;plugins&gt;</span><br><span class="line">	        &lt;plugin&gt;</span><br><span class="line">	           &lt;groupId&gt;org.apache.maven.plugins&lt;&#x2F;groupId&gt;</span><br><span class="line">	           &lt;artifactId&gt;maven-antrun-plugin&lt;&#x2F;artifactId&gt;</span><br><span class="line">	           &lt;version&gt;1.1&lt;&#x2F;version&gt;</span><br><span class="line">	           &lt;executions&gt;</span><br><span class="line">	              &lt;execution&gt;</span><br><span class="line">	                 &lt;phase&gt;test&lt;&#x2F;phase&gt;</span><br><span class="line">	                 &lt;goals&gt;</span><br><span class="line">	                    &lt;goal&gt;run&lt;&#x2F;goal&gt;</span><br><span class="line">	                 &lt;&#x2F;goals&gt;</span><br><span class="line">	                 &lt;configuration&gt;</span><br><span class="line">	                 &lt;tasks&gt;</span><br><span class="line">	                    &lt;echo&gt;Using app.test.properties&lt;&#x2F;echo&gt;</span><br><span class="line">	                    &lt;copy file&#x3D;&quot;src&#x2F;main&#x2F;resources&#x2F;app.test.properties&quot; </span><br><span class="line">	                    	tofile&#x3D;&quot;$&#123;project.build.outputDirectory&#125;&#x2F;env.properties&quot;&#x2F;&gt;</span><br><span class="line">	                 &lt;&#x2F;tasks&gt;</span><br><span class="line">	                 &lt;&#x2F;configuration&gt;</span><br><span class="line">	              &lt;&#x2F;execution&gt;</span><br><span class="line">	           &lt;&#x2F;executions&gt;</span><br><span class="line">	        &lt;&#x2F;plugin&gt;</span><br><span class="line">	     &lt;&#x2F;plugins&gt;</span><br><span class="line">	  &lt;&#x2F;build&gt;</span><br><span class="line"></span><br><span class="line">	&lt;&#x2F;profile&gt;</span><br><span class="line">&lt;&#x2F;profiles&gt;</span><br></pre></td></tr></table></figure>
+<p>Another simpler example could be:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;profiles&gt;</span><br><span class="line">  &lt;profile&gt;</span><br><span class="line">    &lt;id&gt;no-tests&lt;&#x2F;id&gt;</span><br><span class="line">    &lt;properties&gt;</span><br><span class="line">        &lt;maven.test.skip&gt;true&lt;&#x2F;maven.test.skip&gt;</span><br><span class="line">    &lt;&#x2F;properties&gt;</span><br><span class="line">  &lt;&#x2F;profile&gt;</span><br><span class="line">&lt;&#x2F;profiles&gt;</span><br></pre></td></tr></table></figure>
+<p>(This will skip the <code>test</code> phase in the artifact if you activate it.)</p>
+<p>In general, it is <strong>recommended</strong> to specify a profile in the <strong><code>POM</code> of the project</strong>. This is because it will be <strong>portable</strong> since the <code>POM</code> file will be included in the final product. In contrast, profiles specified in <strong>external files</strong> (i.e <strong>in <code>settings.xml</code></strong> or <code>profiles.xml</code>) are <strong>not portable</strong> in the strictest sense. Also, you can <strong>specify much more modifications in the profile in the <code>POM</code> than in the <code>settings.xml</code></strong>. For more details, see the section <a href="#Profiles-in-POM-and-in-Settings">Profiles in <code>POM</code>s and in <code>Settings</code></a>.</p>
+<blockquote>
+<p>Note:</p>
+<ul>
+<li><input disabled type="checkbox"> In the above examples, there is an <code>&lt;id&gt;</code> element for that <code>profile</code>. <strong>This will be used later to activate the profile</strong>, so it is important to give it a sensible name,</li>
+<li><input disabled type="checkbox"> We can also <strong>configure as many profiles</strong> as we want by <strong>giving them unique <code>id</code>s</strong>.</li>
+</ul>
+</blockquote>
+<h2 id="Activate-a-Profile"><a href="#Activate-a-Profile" class="headerlink" title="Activate a Profile"></a>Activate a Profile</h2><p>You can activate a profile in a number of ways:</p>
+<ul>
+<li>For a <strong>single run</strong><ul>
+<li>explicitly add the <code>-P &lt;profile-id&gt;</code> at the end of a command</li>
+</ul>
+</li>
+<li><strong>Automatically for a project</strong> (per project)<ul>
+<li>through the <code>POM</code> file</li>
+</ul>
+</li>
+<li><strong>Automatically for all projects of a user</strong> (per user)<ul>
+<li>Through Maven settings</li>
+</ul>
+</li>
+<li><strong>Triggered</strong><ul>
+<li>Based on environment variables</li>
+<li>OS settings</li>
+<li>Present or missing files</li>
+</ul>
+</li>
+</ul>
+<h2 id="Activate-Profile-for-a-Single-Run"><a href="#Activate-Profile-for-a-Single-Run" class="headerlink" title="Activate Profile for a Single Run"></a>Activate Profile for a Single Run</h2><p>This can be done by adding the option <code>-P &lt;profile-id&gt;</code> so that the profile will be <strong>activated for that specific run</strong>.</p>
+<p>For example, to use the <code>no-test</code> profile (assuming that profile is added to the <code>pom</code> file of this project), we could use:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn package -P no-test</span><br></pre></td></tr></table></figure>
+<p>This will execute all phases up to and until <code>package</code>, except <strong>skipping the <code>test</code> phase</strong>, as <strong>specified by our <code>no-test</code> profile</strong>.</p>
+<p>You could also activate multiple profiles by using comma as a delimiter:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn package -P no-test,profile2,profile3</span><br></pre></td></tr></table></figure>
+
+<h2 id="Activate-Profile-Automatically-for-a-Project"><a href="#Activate-Profile-Automatically-for-a-Project" class="headerlink" title="Activate Profile Automatically for a Project"></a>Activate Profile Automatically for a Project</h2><p>This can be done by adding another section <code>&lt;activation&gt;</code> in the same section where you specified the <code>&lt;profile&gt;</code>. </p>
+<p>For example, if we want to automatically activate the profile <code>no-test</code> for a project (again, assuming that profile is added to the <code>pom</code> file of this project), then we would have in the <code>pom</code> file:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;profiles&gt;</span><br><span class="line">  &lt;profile&gt;</span><br><span class="line">    &lt;id&gt;no-test&lt;&#x2F;id&gt;</span><br><span class="line">    &lt;activation&gt;</span><br><span class="line">	  &lt;activateByDefault&gt;true&lt;&#x2F;activateByDefault&gt;</span><br><span class="line">    &lt;&#x2F;activation&gt;</span><br><span class="line"></span><br><span class="line">	&lt;properties&gt;</span><br><span class="line">	  &lt;maven.test.skip&gt;true&lt;&#x2F;maven.test.skip&gt;</span><br><span class="line">	&lt;&#x2F;properties&gt;</span><br><span class="line">  &lt;&#x2F;profile&gt;</span><br><span class="line">&lt;profiles&gt;</span><br></pre></td></tr></table></figure>
+<p>This will activate the profile <code>no-test</code> everytime when the project is run.</p>
+<h2 id="Deactivating-a-Profile"><a href="#Deactivating-a-Profile" class="headerlink" title="Deactivating a Profile"></a>Deactivating a Profile</h2><p>Deactivating a profile is done by adding the option <code>-P !&lt;profile-id&gt;</code> or <code>-P -&lt;profile-id&gt;</code></p>
+<p>However, one important thing to note is that, if you have several profiles that are <strong>activated by default</strong>, running the <code>-P !&lt;profile-id&gt;</code> or <code>-P -&lt;profile-id&gt;</code> would <strong>override the configuration such that all those profiles that are activated by default would be ignored/deactivated</strong>.</p>
+<h2 id="Activate-Profile-Automatically-for-all-Projects-per-user"><a href="#Activate-Profile-Automatically-for-all-Projects-per-user" class="headerlink" title="Activate Profile Automatically for all Projects (per user)"></a>Activate Profile Automatically for all Projects (per user)</h2><p>Profiles can be activated in the <strong>Maven settings file</strong> (per user, <code>%USER_HOME%/.m2/settings.xml</code>; globally/all users, <code>${maven.home}/conf/settings.xml</code>), via the <code>&lt;activeProfiles&gt;</code> section. This section takes a list of <code>&lt;activeProfile&gt;</code> elements, each containing a <code>&lt;profile-id&gt;</code> inside.</p>
+<p>For example, to activate the <code>no-test</code> profile for all projects of a user, add the following to the <code>%USER_HOME%/.m2/settings.xml</code>: </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;settings&gt;</span><br><span class="line">  ...</span><br><span class="line">  &lt;activeProfiles&gt;</span><br><span class="line">    &lt;activeProfile&gt;no-test&lt;&#x2F;activeProfile&gt;</span><br><span class="line">  &lt;&#x2F;activeProfiles&gt;</span><br><span class="line">  ...</span><br><span class="line">&lt;&#x2F;settings&gt;</span><br></pre></td></tr></table></figure>
+<p>So that profiles listed in the <code>&lt;activeProfiles&gt;</code> tag would be <strong>activated by default every time that user runs a project</strong>.</p>
+<h2 id="Activate-Profiles-by-Triggers"><a href="#Activate-Profiles-by-Triggers" class="headerlink" title="Activate Profiles by Triggers"></a>Activate Profiles by Triggers</h2><p>Profiles can be automatically triggered based on the detected state of the build environment. <strong>These triggers are specified via an <code>&lt;activation&gt;</code> section in the profile itself</strong>.</p>
+<ul>
+<li><p>Triggered by a specific JDK version:</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;profiles&gt;</span><br><span class="line">  &lt;profile&gt;</span><br><span class="line">    &lt;activation&gt;</span><br><span class="line">      &lt;jdk&gt;1.4&lt;&#x2F;jdk&gt;</span><br><span class="line">    &lt;&#x2F;activation&gt;</span><br><span class="line">    ...</span><br><span class="line">  &lt;&#x2F;profile&gt;</span><br><span class="line">&lt;&#x2F;profiles&gt;</span><br></pre></td></tr></table></figure>
+
+<p>  The above will trigger the profile when the JDK’s version <strong>starts with “1.4”</strong> (eg. “1.4.0_08”, “1.4.2_07”, “1.4”)</p>
+</li>
+<li><p>Triggered by a specific OS setting:</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;profiles&gt;</span><br><span class="line">  &lt;profile&gt;</span><br><span class="line">    &lt;activation&gt;</span><br><span class="line">      &lt;os&gt;</span><br><span class="line">        &lt;name&gt;Windows XP&lt;&#x2F;name&gt;</span><br><span class="line">        &lt;family&gt;Windows&lt;&#x2F;family&gt;</span><br><span class="line">        &lt;arch&gt;x86&lt;&#x2F;arch&gt;</span><br><span class="line">        &lt;version&gt;5.1.2600&lt;&#x2F;version&gt;</span><br><span class="line">      &lt;&#x2F;os&gt;</span><br><span class="line">    &lt;&#x2F;activation&gt;</span><br><span class="line">    ...</span><br><span class="line">  &lt;&#x2F;profile&gt;</span><br><span class="line">&lt;&#x2F;profiles&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Triggered by a specific property</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;profiles&gt;</span><br><span class="line">  &lt;profile&gt;</span><br><span class="line">    &lt;activation&gt;</span><br><span class="line">      &lt;property&gt;</span><br><span class="line">        &lt;name&gt;debug&lt;&#x2F;name&gt;</span><br><span class="line">      &lt;&#x2F;property&gt;</span><br><span class="line">    &lt;&#x2F;activation&gt;</span><br><span class="line">    ...</span><br><span class="line">  &lt;&#x2F;profile&gt;</span><br><span class="line">&lt;&#x2F;profiles&gt;</span><br></pre></td></tr></table></figure>
+
+<p>  The profile above will be activated when the system property “debug” is specified with <strong>any value</strong>.</p>
+<p>  Or, you can specify it to be activated when the system property “debug” is <strong>not defined</strong>, or is defined with <strong>a value which is not “true”</strong>.</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;profiles&gt;</span><br><span class="line">  &lt;profile&gt;</span><br><span class="line">    &lt;activation&gt;</span><br><span class="line">      &lt;property&gt;</span><br><span class="line">        &lt;name&gt;debug&lt;&#x2F;name&gt;</span><br><span class="line">        &lt;value&gt;!true&lt;&#x2F;value&gt;</span><br><span class="line">      &lt;&#x2F;property&gt;</span><br><span class="line">    &lt;&#x2F;activation&gt;</span><br><span class="line">    ...</span><br><span class="line">  &lt;&#x2F;profile&gt;</span><br><span class="line">&lt;&#x2F;profiles&gt;</span><br></pre></td></tr></table></figure>
+
+<p>  The above can be activated by typing one of those on the command line:</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mvn groupId:artifactId:goal</span><br><span class="line">mvn groupId:artifactId:goal -Ddebug&#x3D;false</span><br></pre></td></tr></table></figure></li>
+<li><p>Triggered by a missing/present file</p>
+<p>  This example will trigger the profile when the generated file <code>target/generated-sources/axistools/wsdl2java/org/apache/maven</code> is <strong>missing</strong>.</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;profiles&gt;</span><br><span class="line">  &lt;profile&gt;</span><br><span class="line">    &lt;activation&gt;</span><br><span class="line">      &lt;file&gt;</span><br><span class="line">        &lt;missing&gt;target&#x2F;generated-sources&#x2F;axistools&#x2F;wsdl2java&#x2F;org&#x2F;apache&#x2F;maven&lt;&#x2F;missing&gt;</span><br><span class="line">      &lt;&#x2F;file&gt;</span><br><span class="line">    &lt;&#x2F;activation&gt;</span><br><span class="line">    ...</span><br><span class="line">  &lt;&#x2F;profile&gt;</span><br><span class="line">&lt;&#x2F;profiles&gt;</span><br></pre></td></tr></table></figure>
+
+<p>  Or you could <strong>switch the <code>&lt;missing&gt;</code> to <code>&lt;exists&gt;</code></strong> if you want to trigger the profile <strong>when that file is present</strong>.</p>
+<blockquote>
+<p>Note:</p>
+<ul>
+<li><input disabled type="checkbox"> As of Maven 2.0.9, the tags <code>&lt;exists&gt;</code> and <code>&lt;missing&gt;</code> could be <strong>interpolated</strong>. <strong>Supported variables</strong> are system properties like <code>${user.home}</code> and environment variables like <code>${env.HOME}</code>. Please note that <strong>properties and values defined in the POM</strong> itself are <strong>not available</strong> for interpolation here</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<p><a name="Profiles-in-POM-and-in-Settings"></a></p>
+<h2 id="Profiles-in-POMs-and-in-Settings"><a href="#Profiles-in-POMs-and-in-Settings" class="headerlink" title="Profiles in POMs and in Settings"></a>Profiles in <code>POM</code>s and in <code>Settings</code></h2><ul>
+<li><p>Profiles in external files (<code>settings.xml</code>)</p>
+<p>  Profiles specified in external files (i.e in <code>settings.xml</code> or <code>profiles.xml</code>) are not portable in the strictest sense. Things like repository lists could simply be a proprietary repository of approved artifacts, and won’t change the outcome of the build. Therefore, you will <strong>only be able to modify</strong> </p>
+<ul>
+<li><code>&lt;repositories&gt;</code></li>
+<li><code>&lt;pluginRepositories&gt;</code></li>
+<li><code>&lt;properties&gt;</code></li>
+</ul>
+</li>
+<li><p>Profiles in <code>POM</code>s</p>
+<p>If your profiles can be reasonably specified inside the <code>POM</code>, you will have a better portability <strong>since these profiles are specified inline</strong>. Therefore, you have many more options as well. The <strong>trade-off</strong>, of course, is that you can <strong>only modify that project and it’s sub-modules</strong>.</p>
+<p>  Profiles specified in the <code>POM</code> can modify the following <code>POM</code> elements:</p>
+<ul>
+<li><code>&lt;repositories&gt;</code></li>
+<li><code>&lt;pluginRepositories&gt;</code></li>
+<li><code>&lt;dependencies&gt;</code></li>
+<li><code>&lt;plugins&gt;</code></li>
+<li><code>&lt;properties&gt;</code> (not actually available in the main POM, but used behind the scenes)</li>
+<li><code>&lt;modules&gt;</code></li>
+<li><code>&lt;reporting&gt;</code></li>
+<li><code>&lt;dependencyManagement&gt;</code></li>
+<li><code>&lt;distributionManagement&gt;</code></li>
+<li>a subset of the <code>&lt;build&gt;</code> element, which consists of:<ul>
+<li><code>&lt;defaultGoal&gt;</code></li>
+<li><code>&lt;resources&gt;</code></li>
+<li><code>&lt;testResources&gt;</code></li>
+<li><code>&lt;finalName&gt;</code></li>
+<li><code>&lt;plugin&gt;</code>???</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>Note:</p>
+<ul>
+<li><input disabled type="checkbox"> If you have conflicting profiles in both the <code>pom</code> file and the <code>settings.xml</code> file, take note that <strong>profiles in the <code>settings.xml</code> takes higher priority</strong> than profiles in the <code>POM</code>.</li>
+</ul>
+</blockquote>
+<h2 id="Standard-Directory-Output"><a href="#Standard-Directory-Output" class="headerlink" title="Standard Directory Output"></a>Standard Directory Output</h2><p>Having a common directory layout would allow for users familiar with one Maven project to immediately feel at home in another Maven project. The following table documents the <strong>directory layout expected by Maven</strong> and the directory layout created by Maven. Please try to conform to this structure as much as possible; however, if you can’t these settings <strong>can be overridden via the project descriptor</strong>.</p>
+<table>
+<thead>
+<tr>
+<th>Directory</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>src/main/java</code></td>
+<td>Application/Library sources</td>
+</tr>
+<tr>
+<td><code>src/main/resources</code></td>
+<td>Application/Library resources</td>
+</tr>
+<tr>
+<td><code>src/main/filters</code></td>
+<td>Resource filter files</td>
+</tr>
+<tr>
+<td><code>src/main/webapp</code></td>
+<td>Web application sources</td>
+</tr>
+<tr>
+<td><code>src/test/java</code></td>
+<td>Test sources</td>
+</tr>
+<tr>
+<td><code>src/test/resources</code></td>
+<td>Test resources</td>
+</tr>
+<tr>
+<td><code>src/test/filters</code></td>
+<td>Test resource filter files</td>
+</tr>
+<tr>
+<td><code>src/it</code></td>
+<td>Integration Tests (primarily for plugins)</td>
+</tr>
+<tr>
+<td><code>src/assembly</code></td>
+<td>Assembly descriptors</td>
+</tr>
+<tr>
+<td><code>src/site</code></td>
+<td>Site</td>
+</tr>
+<tr>
+<td><code>LICENSE.txt</code></td>
+<td>Project’s license</td>
+</tr>
+<tr>
+<td><code>NOTICE.txt</code></td>
+<td>Notices and attributions required by libraries that the project depends on</td>
+</tr>
+<tr>
+<td><code>README.txt</code></td>
+<td>Project’s readme</td>
+</tr>
+</tbody></table>
+<p>This means that <strong>at the top level</strong>, we will have <strong>files descriptive of the project</strong>: a <code>pom.xml</code> file, and textual documents meant for the user to be able to read immediately on receiving the source: <code>README.txt</code>, <code>LICENSE.txt</code>, etc.</p>
+<p>So there are just <strong>two subdirectories of this structure</strong>: <code>src</code> and <code>target</code>. The <strong>only other directories that would be expected</strong> here are metadata like <code>CVS</code>, <strong><code>.git</code></strong> or <code>.svn</code>, and any subprojects in a multiproject build (each of which would be laid out as above).</p>
+<ul>
+<li>The <code>src</code> directory contains <strong>all of the source material for building the project</strong>, its site and so on. It contains a subdirectory for each type: main for the main build artifact, test for the unit test code and resources, site and so on.</li>
+<li>The <code>target</code> directory is used to house <strong>all output of the build</strong>.</li>
+</ul>
+<p>Also, it is important to see that, within artifact producing source directories (ie. main and test), <strong>there is one directory for the language java</strong> (under which the normal package hierarchy exists), and one for resources (the structure which is copied to the target classpath given the default resource definition). But <strong>if there are other contributing sources to the artifact build, they would be under other subdirectories</strong>: for example <code>src/main/antlr</code> would contain Antlr grammar definition files.</p>
+<h2 id="Transitive-Dependency"><a href="#Transitive-Dependency" class="headerlink" title="Transitive Dependency"></a>Transitive Dependency</h2><p>Maven avoids the need to <strong>specify the libraries that your own dependencies require</strong> by including <strong>transitive dependencies</strong> automatically.</p>
+<p>This feature is facilitated by <strong>reading the project files of your dependencies from the remote repositories specified</strong>. In general, <strong>all dependencies of those projects are used in your project</strong>, as are any that the project inherits from its parents, or from its dependencies, and so on.  A problem arises only if a cyclic dependency is discovered.</p>
+<p>However, with transitive dependency, the graph of included libraries will grow quite large. Therefore, there are <strong>additional features that can be used to limit which dependencies are included</strong>:</p>
+<ul>
+<li>Dependency Mediation</li>
+<li>Dependency Management</li>
+<li>Dependency Scope</li>
+<li>Dependency Exclusion</li>
+<li>Optional Dependency</li>
+</ul>
+<h2 id="Dependency-Mediation"><a href="#Dependency-Mediation" class="headerlink" title="Dependency Mediation"></a>Dependency Mediation</h2><p>This determines <strong>what version of an artifact/dependency will be chosen</strong> when multiple versions are encountered as dependencies. By default, Maven picks the “nearest definition”. That is, it uses the version of the closest dependency to your project in the tree of dependencies. </p>
+<p>However, you can always guarantee a version by declaring it <strong>explicitly in your project’s <code>POM</code></strong> (see section <a href="#Using-External-Dependency">Using External Dependency</a>). You basically need to add the following to your <code>POM</code>:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">      &lt;groupId&gt;com.mycompany.app&lt;&#x2F;groupId&gt;</span><br><span class="line">      &lt;artifactId&gt;myDependency&lt;&#x2F;artifactId&gt;</span><br><span class="line">      &lt;version&gt;aSpecificVersion&lt;&#x2F;version&gt;</span><br><span class="line">      &lt;scope&gt;compile&lt;&#x2F;scope&gt;</span><br><span class="line">&lt;&#x2F;dependency&gt;</span><br></pre></td></tr></table></figure>
+<p>Or, you could use the <a href="#Dependency-Management">Dependency Management</a> in the section below.</p>
+<p><a name="Dependency-Management"></a></p>
+<h2 id="Dependency-Management"><a href="#Dependency-Management" class="headerlink" title="Dependency Management"></a>Dependency Management</h2><p>The dependency management section is a mechanism for <strong>centralizing dependency information</strong>. When you have a set of projects that inherit from a common parent, it’s possible to put all information about the dependency in the common POM and have simpler references to the artifacts in the child POMs.</p>
+<ol>
+<li>For example, you could use it to control the <strong>versions of the artifacts in a set of dependencies</strong>:</li>
+</ol>
+<p>If you have a parent Project A and child Project B:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"># Project A</span><br><span class="line">&lt;project&gt;</span><br><span class="line"> &lt;modelVersion&gt;4.0.0&lt;&#x2F;modelVersion&gt;</span><br><span class="line"> &lt;groupId&gt;maven&lt;&#x2F;groupId&gt;</span><br><span class="line"> &lt;artifactId&gt;A&lt;&#x2F;artifactId&gt;</span><br><span class="line"> &lt;packaging&gt;pom&lt;&#x2F;packaging&gt;</span><br><span class="line"> &lt;name&gt;A&lt;&#x2F;name&gt;</span><br><span class="line"> &lt;version&gt;1.0&lt;&#x2F;version&gt;</span><br><span class="line"></span><br><span class="line"> &lt;dependencyManagement&gt;</span><br><span class="line">   &lt;dependencies&gt;</span><br><span class="line">     &lt;dependency&gt;</span><br><span class="line">       &lt;groupId&gt;test&lt;&#x2F;groupId&gt;</span><br><span class="line">       &lt;artifactId&gt;a&lt;&#x2F;artifactId&gt;</span><br><span class="line">       &lt;version&gt;1.2&lt;&#x2F;version&gt;</span><br><span class="line">     &lt;&#x2F;dependency&gt;</span><br><span class="line">     &lt;dependency&gt;</span><br><span class="line">       &lt;groupId&gt;test&lt;&#x2F;groupId&gt;</span><br><span class="line">       &lt;artifactId&gt;b&lt;&#x2F;artifactId&gt;</span><br><span class="line">       &lt;version&gt;1.0&lt;&#x2F;version&gt;</span><br><span class="line">       &lt;scope&gt;compile&lt;&#x2F;scope&gt;</span><br><span class="line">     &lt;&#x2F;dependency&gt;</span><br><span class="line">     &lt;dependency&gt;</span><br><span class="line">       &lt;groupId&gt;test&lt;&#x2F;groupId&gt;</span><br><span class="line">       &lt;artifactId&gt;c&lt;&#x2F;artifactId&gt;</span><br><span class="line">       &lt;version&gt;1.0&lt;&#x2F;version&gt;</span><br><span class="line">       &lt;scope&gt;compile&lt;&#x2F;scope&gt;</span><br><span class="line">     &lt;&#x2F;dependency&gt;</span><br><span class="line">     &lt;dependency&gt;</span><br><span class="line">       &lt;groupId&gt;test&lt;&#x2F;groupId&gt;</span><br><span class="line">       &lt;artifactId&gt;d&lt;&#x2F;artifactId&gt;</span><br><span class="line">       &lt;version&gt;1.2&lt;&#x2F;version&gt;</span><br><span class="line">     &lt;&#x2F;dependency&gt;</span><br><span class="line">   &lt;&#x2F;dependencies&gt;</span><br><span class="line"> &lt;&#x2F;dependencyManagement&gt;</span><br><span class="line">&lt;&#x2F;project&gt;</span><br></pre></td></tr></table></figure>
+<p>at this point, if you have the following Project B configuration:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"># Project B</span><br><span class="line">&lt;project&gt;</span><br><span class="line">  &lt;parent&gt;</span><br><span class="line">    &lt;artifactId&gt;A&lt;&#x2F;artifactId&gt;</span><br><span class="line">    &lt;groupId&gt;maven&lt;&#x2F;groupId&gt;</span><br><span class="line">    &lt;version&gt;1.0&lt;&#x2F;version&gt;</span><br><span class="line">  &lt;&#x2F;parent&gt;</span><br><span class="line">  &lt;modelVersion&gt;4.0.0&lt;&#x2F;modelVersion&gt;</span><br><span class="line">  &lt;groupId&gt;maven&lt;&#x2F;groupId&gt;</span><br><span class="line">  &lt;artifactId&gt;B&lt;&#x2F;artifactId&gt;</span><br><span class="line">  &lt;packaging&gt;pom&lt;&#x2F;packaging&gt;</span><br><span class="line">  &lt;name&gt;B&lt;&#x2F;name&gt;</span><br><span class="line">  &lt;version&gt;1.0&lt;&#x2F;version&gt;</span><br><span class="line"> </span><br><span class="line">  &lt;dependencies&gt;</span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">      &lt;groupId&gt;test&lt;&#x2F;groupId&gt;</span><br><span class="line">      &lt;artifactId&gt;a&lt;&#x2F;artifactId&gt;</span><br><span class="line">    &lt;&#x2F;dependency&gt;</span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">      &lt;groupId&gt;test&lt;&#x2F;groupId&gt;</span><br><span class="line">      &lt;artifactId&gt;c&lt;&#x2F;artifactId&gt;</span><br><span class="line">    &lt;&#x2F;dependency&gt;</span><br><span class="line">  &lt;&#x2F;dependencies&gt;</span><br><span class="line">&lt;&#x2F;project&gt;</span><br></pre></td></tr></table></figure>
+<p>Then version of artifact <code>a</code> and <code>c</code> would be <code>1.2</code> and <code>1.0</code>, respectively. </p>
+<p>However, if you have the following configuration:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"># Project B</span><br><span class="line">&lt;project&gt;</span><br><span class="line">  &lt;parent&gt;</span><br><span class="line">    &lt;artifactId&gt;A&lt;&#x2F;artifactId&gt;</span><br><span class="line">    &lt;groupId&gt;maven&lt;&#x2F;groupId&gt;</span><br><span class="line">    &lt;version&gt;1.0&lt;&#x2F;version&gt;</span><br><span class="line">  &lt;&#x2F;parent&gt;</span><br><span class="line">  &lt;modelVersion&gt;4.0.0&lt;&#x2F;modelVersion&gt;</span><br><span class="line">  &lt;groupId&gt;maven&lt;&#x2F;groupId&gt;</span><br><span class="line">  &lt;artifactId&gt;B&lt;&#x2F;artifactId&gt;</span><br><span class="line">  &lt;packaging&gt;pom&lt;&#x2F;packaging&gt;</span><br><span class="line">  &lt;name&gt;B&lt;&#x2F;name&gt;</span><br><span class="line">  &lt;version&gt;1.0&lt;&#x2F;version&gt;</span><br><span class="line"> </span><br><span class="line">  &lt;dependencies&gt;</span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">      &lt;groupId&gt;test&lt;&#x2F;groupId&gt;</span><br><span class="line">      &lt;artifactId&gt;a&lt;&#x2F;artifactId&gt;</span><br><span class="line">      &lt;version&gt;1.0&lt;&#x2F;version&gt;</span><br><span class="line">      &lt;scope&gt;runtime&lt;&#x2F;scope&gt;</span><br><span class="line">    &lt;&#x2F;dependency&gt;</span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">      &lt;groupId&gt;test&lt;&#x2F;groupId&gt;</span><br><span class="line">      &lt;artifactId&gt;c&lt;&#x2F;artifactId&gt;</span><br><span class="line">    &lt;&#x2F;dependency&gt;</span><br><span class="line">  &lt;&#x2F;dependencies&gt;</span><br><span class="line">&lt;&#x2F;project&gt;</span><br></pre></td></tr></table></figure>
+<p>Then you would have version of <code>1.0</code> for both <code>a</code> and <code>c</code>. Also, the <code>scope</code> of <code>a</code> would become <code>runtime</code></p>
+<ol start="2">
+<li>Now, consider reverse case where we have two children <code>POM</code>s, Project A and Project B, with the following configurations:</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"># Project A:</span><br><span class="line"></span><br><span class="line">&lt;project&gt;</span><br><span class="line">  ...</span><br><span class="line">  &lt;dependencies&gt;</span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">      &lt;groupId&gt;group-a&lt;&#x2F;groupId&gt;</span><br><span class="line">      &lt;artifactId&gt;artifact-a&lt;&#x2F;artifactId&gt;</span><br><span class="line">      &lt;version&gt;1.0&lt;&#x2F;version&gt;</span><br><span class="line">      &lt;exclusions&gt;</span><br><span class="line">        &lt;exclusion&gt;</span><br><span class="line">          &lt;groupId&gt;group-c&lt;&#x2F;groupId&gt;</span><br><span class="line">          &lt;artifactId&gt;excluded-artifact&lt;&#x2F;artifactId&gt;</span><br><span class="line">        &lt;&#x2F;exclusion&gt;</span><br><span class="line">      &lt;&#x2F;exclusions&gt;</span><br><span class="line">    &lt;&#x2F;dependency&gt;</span><br><span class="line"></span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">      &lt;groupId&gt;group-a&lt;&#x2F;groupId&gt;</span><br><span class="line">      &lt;artifactId&gt;artifact-b&lt;&#x2F;artifactId&gt;</span><br><span class="line">      &lt;version&gt;1.0&lt;&#x2F;version&gt;</span><br><span class="line">      &lt;type&gt;bar&lt;&#x2F;type&gt;</span><br><span class="line">      &lt;scope&gt;runtime&lt;&#x2F;scope&gt;</span><br><span class="line">    &lt;&#x2F;dependency&gt;</span><br><span class="line">  &lt;&#x2F;dependencies&gt;</span><br><span class="line">&lt;&#x2F;project&gt;</span><br></pre></td></tr></table></figure>
+<p>and </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;project&gt;</span><br><span class="line">  ...</span><br><span class="line">  &lt;dependencies&gt;</span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">      &lt;groupId&gt;group-c&lt;&#x2F;groupId&gt;</span><br><span class="line">      &lt;artifactId&gt;artifact-b&lt;&#x2F;artifactId&gt;</span><br><span class="line">      &lt;version&gt;1.0&lt;&#x2F;version&gt;</span><br><span class="line">      &lt;type&gt;war&lt;&#x2F;type&gt;</span><br><span class="line">      &lt;scope&gt;runtime&lt;&#x2F;scope&gt;</span><br><span class="line">    &lt;&#x2F;dependency&gt;</span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">      &lt;groupId&gt;group-a&lt;&#x2F;groupId&gt;</span><br><span class="line">      &lt;artifactId&gt;artifact-b&lt;&#x2F;artifactId&gt;</span><br><span class="line">      &lt;version&gt;1.0&lt;&#x2F;version&gt;</span><br><span class="line">      &lt;type&gt;bar&lt;&#x2F;type&gt;</span><br><span class="line">      &lt;scope&gt;runtime&lt;&#x2F;scope&gt;</span><br><span class="line">    &lt;&#x2F;dependency&gt;</span><br><span class="line">  &lt;&#x2F;dependencies&gt;</span><br><span class="line">&lt;&#x2F;project&gt;</span><br></pre></td></tr></table></figure>
+<p>We see that these two example <code>POM</code>s <strong>share a common dependency (<code>group-a</code> artifact <code>artifact-b</code>)</strong> and each has one non-trivial dependency. This <strong>information can be put in the parent <code>POM</code></strong> like this:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"># created a parent POM</span><br><span class="line">&lt;project&gt;</span><br><span class="line">  ...</span><br><span class="line">  &lt;dependencyManagement&gt;</span><br><span class="line">    &lt;dependencies&gt;</span><br><span class="line">      &lt;dependency&gt;</span><br><span class="line">        &lt;groupId&gt;group-a&lt;&#x2F;groupId&gt;</span><br><span class="line">        &lt;artifactId&gt;artifact-a&lt;&#x2F;artifactId&gt;</span><br><span class="line">        &lt;version&gt;1.0&lt;&#x2F;version&gt;</span><br><span class="line"> </span><br><span class="line">        &lt;exclusions&gt;</span><br><span class="line">          &lt;exclusion&gt;</span><br><span class="line">            &lt;groupId&gt;group-c&lt;&#x2F;groupId&gt;</span><br><span class="line">            &lt;artifactId&gt;excluded-artifact&lt;&#x2F;artifactId&gt;</span><br><span class="line">          &lt;&#x2F;exclusion&gt;</span><br><span class="line">        &lt;&#x2F;exclusions&gt;</span><br><span class="line"> </span><br><span class="line">      &lt;&#x2F;dependency&gt;</span><br><span class="line"> </span><br><span class="line">      &lt;dependency&gt;</span><br><span class="line">        &lt;groupId&gt;group-c&lt;&#x2F;groupId&gt;</span><br><span class="line">        &lt;artifactId&gt;artifact-b&lt;&#x2F;artifactId&gt;</span><br><span class="line">        &lt;version&gt;1.0&lt;&#x2F;version&gt;</span><br><span class="line">        &lt;type&gt;war&lt;&#x2F;type&gt;</span><br><span class="line">        &lt;scope&gt;runtime&lt;&#x2F;scope&gt;</span><br><span class="line">      &lt;&#x2F;dependency&gt;</span><br><span class="line"> </span><br><span class="line">      &lt;dependency&gt;</span><br><span class="line">        &lt;groupId&gt;group-a&lt;&#x2F;groupId&gt;</span><br><span class="line">        &lt;artifactId&gt;artifact-b&lt;&#x2F;artifactId&gt;</span><br><span class="line">        &lt;version&gt;1.0&lt;&#x2F;version&gt;</span><br><span class="line">        &lt;type&gt;bar&lt;&#x2F;type&gt;</span><br><span class="line">        &lt;scope&gt;runtime&lt;&#x2F;scope&gt;</span><br><span class="line">      &lt;&#x2F;dependency&gt;</span><br><span class="line">    &lt;&#x2F;dependencies&gt;</span><br><span class="line">  &lt;&#x2F;dependencyManagement&gt;</span><br><span class="line">&lt;&#x2F;project&gt;</span><br></pre></td></tr></table></figure>
+<p>Now, if the two children inherits the parent, we could simplify the children <code>POM</code>s:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"># Project A</span><br><span class="line">&lt;project&gt;</span><br><span class="line">  ...</span><br><span class="line">  &lt;dependencies&gt;</span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">      &lt;groupId&gt;group-a&lt;&#x2F;groupId&gt;</span><br><span class="line">      &lt;artifactId&gt;artifact-a&lt;&#x2F;artifactId&gt;</span><br><span class="line">    &lt;&#x2F;dependency&gt;</span><br><span class="line"> </span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">      &lt;groupId&gt;group-a&lt;&#x2F;groupId&gt;</span><br><span class="line">      &lt;artifactId&gt;artifact-b&lt;&#x2F;artifactId&gt;</span><br><span class="line">      &lt;!-- This is not a jar dependency, so we must specify type. --&gt;</span><br><span class="line">      &lt;type&gt;bar&lt;&#x2F;type&gt;</span><br><span class="line">    &lt;&#x2F;dependency&gt;</span><br><span class="line">  &lt;&#x2F;dependencies&gt;</span><br><span class="line">&lt;&#x2F;project&gt;</span><br></pre></td></tr></table></figure>
+<p>and </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"># Project B</span><br><span class="line">&lt;project&gt;</span><br><span class="line">  ...</span><br><span class="line">  &lt;dependencies&gt;</span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">      &lt;groupId&gt;group-c&lt;&#x2F;groupId&gt;</span><br><span class="line">      &lt;artifactId&gt;artifact-b&lt;&#x2F;artifactId&gt;</span><br><span class="line">      &lt;!-- This is not a jar dependency, so we must specify type. --&gt;</span><br><span class="line">      &lt;type&gt;war&lt;&#x2F;type&gt;</span><br><span class="line">    &lt;&#x2F;dependency&gt;</span><br><span class="line"> </span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">      &lt;groupId&gt;group-a&lt;&#x2F;groupId&gt;</span><br><span class="line">      &lt;artifactId&gt;artifact-b&lt;&#x2F;artifactId&gt;</span><br><span class="line">      &lt;!-- This is not a jar dependency, so we must specify type. --&gt;</span><br><span class="line">      &lt;type&gt;bar&lt;&#x2F;type&gt;</span><br><span class="line">    &lt;&#x2F;dependency&gt;</span><br><span class="line">  &lt;&#x2F;dependencies&gt;</span><br><span class="line">&lt;&#x2F;project&gt;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>Note:</p>
+<ul>
+<li><input disabled type="checkbox"> In two of these dependency references, we had to specify the <code>&lt;type&gt;</code> element. This is because the <strong>minimal set of information for matching a dependency reference against a <code>&lt;dependencyManagement&gt;</code> section is actually <code>{groupId, artifactId, type, classifier}</code></strong>. In many cases, these dependencies will refer to <strong><code>jar</code> artifacts with no classifier</strong>. <strong>This allows us to shorthand the identity set to <code>{groupId, artifactId}</code></strong>. However, in other cases, we would need to include the <code>&lt;type&gt;</code> element.</li>
+</ul>
+</blockquote>
+<h2 id="Difference-between-using-lt-dependency-gt-and-lt-dependencyManagement-gt"><a href="#Difference-between-using-lt-dependency-gt-and-lt-dependencyManagement-gt" class="headerlink" title="Difference between using &lt;dependency&gt; and &lt;dependencyManagement&gt;"></a>Difference between using <code>&lt;dependency&gt;</code> and <code>&lt;dependencyManagement&gt;</code></h2><ul>
+<li>if you use <code>&lt;dependencies&gt;</code> in the parent <code>pom</code> and specify all the dependencies your chlidren will need, this will<ul>
+<li>create a shorter child poms, as technically you don’t need to specify them again, unless you want to override something, like the <code>version</code>.</li>
+<li>it means that <strong>those dependencies will ALWAYS be defined for ALL the child modules</strong>. </li>
+</ul>
+</li>
+<li>if you use <code>&lt;dependencyManagement&gt;</code> in the parent <code>POM</code>, this will<ul>
+<li>allow you to chose <strong>which child modules will have a dependency specified in th parent</strong>. If nothing/no dependency is specified in the children <code>POM</code>, then no dependency will be ensued.</li>
+</ul>
+</li>
+</ul>
+<h2 id="Dependency-Scope"><a href="#Dependency-Scope" class="headerlink" title="Dependency Scope"></a>Dependency Scope</h2><p>Dependency scope is used to limit the transitivity of a dependency, and also to affect the classpath used for various build tasks.</p>
+<p>There are <strong>6 scopes available</strong>:</p>
+<ul>
+<li><code>compile</code> <ul>
+<li>This is the default scope, used if none is specified. <strong>Compile dependencies are available in all classpaths of a project</strong>. Furthermore, those dependencies are <strong>propagated to dependent projects</strong>.</li>
+</ul>
+</li>
+<li><code>provided</code><ul>
+<li>This is much like compile, but indicates you <strong>expect the JDK or a container to provide the dependency at runtime</strong>. For example, when building a web application for the Java Enterprise Edition, you would <strong>set the dependency on the Servlet API and related Java EE APIs to scope <code>provided</code></strong> because the <strong>web container provides those classes</strong>. This scope is only available on the compilation and test classpath, and is <strong>not transitive</strong>.</li>
+</ul>
+</li>
+<li><code>runtime</code><ul>
+<li>This scope indicates that the dependency is <strong>not required for compilation</strong>, but is <strong>for execution</strong>. It is in the runtime and test classpaths, but not the compile classpath.</li>
+</ul>
+</li>
+<li><code>test</code><ul>
+<li>This scope indicates that the dependency is not required for normal use of the application, and is <strong>only available for the test compilation and execution phases</strong>. This scope is <strong>not transitive</strong>.</li>
+</ul>
+</li>
+<li><code>system</code><ul>
+<li>This scope is <strong>similar to <code>provided</code> except that you have to provide the JAR which contains it explicitly</strong>. The artifact is <strong>always available and is not looked up in a repository</strong>.</li>
+</ul>
+</li>
+<li><code>import</code><ul>
+<li>This scope is only supported on a dependency of type <code>pom</code> in the <code>&lt;dependencyManagement&gt;</code> section (see <a href="#Dependency-Management">Depedency Management</a>). It indicates the <strong>dependency to be replaced with the effective list of dependencies in the specified POM’s <code>&lt;dependencyManagement&gt;</code> section</strong>. Since they are replaced, dependencies with a scope of import do not actually participate in limiting the transitivity of a dependency.</li>
+</ul>
+</li>
+</ul>
+<p>However, each of the scopes (except for <code>import</code>) <strong>affects transitive dependencies in different ways</strong>, as is demonstrated in the table below. </p>
+<p>If a <strong>parent dependency</strong> is set to the scope in the <strong>left column</strong>, <strong>transitive dependencies of the child dependency</strong> with the <strong>scope across the top row</strong> <strong>will result in a dependency in the main project with the scope listed at the intersection</strong>. If no scope is listed, it means the dependency will be omitted.</p>
+<table>
+<thead>
+<tr>
+<th>-</th>
+<th>compile</th>
+<th>provided</th>
+<th>runtime</th>
+<th>test</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>compile</strong></td>
+<td>compile(*)</td>
+<td>-</td>
+<td>runtime</td>
+<td>-</td>
+</tr>
+<tr>
+<td><strong>provided</strong></td>
+<td>provided</td>
+<td>-</td>
+<td>provided</td>
+<td>-</td>
+</tr>
+<tr>
+<td><strong>runtime</strong></td>
+<td>runtime</td>
+<td>-</td>
+<td>runtime</td>
+<td>-</td>
+</tr>
+<tr>
+<td><strong>test</strong></td>
+<td>test</td>
+<td>-</td>
+<td>test</td>
+<td>-</td>
+</tr>
+</tbody></table>
+<h2 id="Importing-Dependencies"><a href="#Importing-Dependencies" class="headerlink" title="Importing Dependencies"></a>Importing Dependencies</h2><p>The examples in the previous section describe how to specify managed dependencies through inheritance. However, in larger projects it may be impossible to accomplish this <strong>since a project can only inherit from a single parent</strong>. To accommodate this, projects can <strong>import managed dependencies from other projects</strong>. This is accomplished by declaring a <code>pom</code> artifact as a dependency with a scope of <code>import</code>.</p>
+<p>Consider the case of a <code>POM</code> file:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"># Project X</span><br><span class="line">&lt;project&gt;</span><br><span class="line"> &lt;modelVersion&gt;4.0.0&lt;&#x2F;modelVersion&gt;</span><br><span class="line"> &lt;groupId&gt;maven&lt;&#x2F;groupId&gt;</span><br><span class="line"> &lt;artifactId&gt;X&lt;&#x2F;artifactId&gt;</span><br><span class="line"> &lt;packaging&gt;pom&lt;&#x2F;packaging&gt;</span><br><span class="line"> &lt;name&gt;X&lt;&#x2F;name&gt;</span><br><span class="line"> &lt;version&gt;1.0&lt;&#x2F;version&gt;</span><br><span class="line"> </span><br><span class="line"> &lt;dependencyManagement&gt;</span><br><span class="line">   &lt;dependencies&gt;</span><br><span class="line">     &lt;dependency&gt;</span><br><span class="line">       &lt;groupId&gt;test&lt;&#x2F;groupId&gt;</span><br><span class="line">       &lt;artifactId&gt;a&lt;&#x2F;artifactId&gt;</span><br><span class="line">       &lt;version&gt;1.1&lt;&#x2F;version&gt;</span><br><span class="line">     &lt;&#x2F;dependency&gt;</span><br><span class="line"></span><br><span class="line">     &lt;dependency&gt;</span><br><span class="line">       &lt;groupId&gt;test&lt;&#x2F;groupId&gt;</span><br><span class="line">       &lt;artifactId&gt;b&lt;&#x2F;artifactId&gt;</span><br><span class="line">       &lt;version&gt;1.0&lt;&#x2F;version&gt;</span><br><span class="line">       &lt;scope&gt;compile&lt;&#x2F;scope&gt;</span><br><span class="line">     &lt;&#x2F;dependency&gt;</span><br><span class="line">   &lt;&#x2F;dependencies&gt;</span><br><span class="line"> &lt;&#x2F;dependencyManagement&gt;</span><br><span class="line">&lt;&#x2F;project&gt;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>Then if you would like another project that is not its child to have the <strong><code>&lt;dependencyManagement&gt;</code> configured the same way</strong>, then you would do this:</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&lt;project&gt;</span><br><span class="line">    &lt;modelVersion&gt;4.0.0&lt;&#x2F;modelVersion&gt;</span><br><span class="line">    &lt;groupId&gt;com.sample&lt;&#x2F;groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;project1&lt;&#x2F;artifactId&gt;</span><br><span class="line">    &lt;version&gt;1.0-SNAPSHOT&lt;&#x2F;version&gt;</span><br><span class="line">    &lt;packaging&gt;jar&lt;&#x2F;packaging&gt;</span><br><span class="line"></span><br><span class="line">	&lt;dependencyManagement&gt;</span><br><span class="line">	        &lt;dependencies&gt;</span><br><span class="line">	            &lt;!-- Imports the bill-of-materials POM. --&gt;</span><br><span class="line">	            &lt;dependency&gt;</span><br><span class="line">	                &lt;groupId&gt;maven&lt;&#x2F;groupId&gt;</span><br><span class="line">	                &lt;artifactId&gt;X&lt;&#x2F;artifactId&gt;</span><br><span class="line">	                &lt;version&gt;1.0&lt;&#x2F;version&gt;</span><br><span class="line">	                &lt;type&gt;pom&lt;&#x2F;type&gt;</span><br><span class="line">	                &lt;scope&gt;import&lt;&#x2F;scope&gt;</span><br><span class="line">	            &lt;&#x2F;dependency&gt;</span><br><span class="line">	        &lt;&#x2F;dependencies&gt;</span><br><span class="line">	&lt;&#x2F;dependencyManagement&gt;</span><br><span class="line">&lt;&#x2F;project&gt;</span><br></pre></td></tr></table></figure></li>
+<li><p>If you would like that project to <strong>use the <code>&lt;dependencies&gt;</code> directly</strong> that is specified in the configurations of Project X, then you would do this:</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">&lt;project&gt;</span><br><span class="line">    &lt;modelVersion&gt;4.0.0&lt;&#x2F;modelVersion&gt;</span><br><span class="line">    &lt;groupId&gt;com.sample&lt;&#x2F;groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;project1&lt;&#x2F;artifactId&gt;</span><br><span class="line">    &lt;version&gt;1.0-SNAPSHOT&lt;&#x2F;version&gt;</span><br><span class="line">    &lt;packaging&gt;jar&lt;&#x2F;packaging&gt;</span><br><span class="line"></span><br><span class="line">	&lt;dependencyManagement&gt;</span><br><span class="line">	        &lt;dependencies&gt;</span><br><span class="line">	            &lt;!-- Imports the bill-of-materials POM. --&gt;</span><br><span class="line">	            &lt;dependency&gt;</span><br><span class="line">	                &lt;groupId&gt;maven&lt;&#x2F;groupId&gt;</span><br><span class="line">	                &lt;artifactId&gt;X&lt;&#x2F;artifactId&gt;</span><br><span class="line">	                &lt;version&gt;1.0&lt;&#x2F;version&gt;</span><br><span class="line">	                &lt;type&gt;pom&lt;&#x2F;type&gt;</span><br><span class="line">	                &lt;scope&gt;import&lt;&#x2F;scope&gt;</span><br><span class="line">	            &lt;&#x2F;dependency&gt;</span><br><span class="line">	        &lt;&#x2F;dependencies&gt;</span><br><span class="line">	&lt;&#x2F;dependencyManagement&gt;</span><br><span class="line"></span><br><span class="line">    &lt;dependencies&gt;</span><br><span class="line">        &lt;!-- Add a dependency from the BOM POM.</span><br><span class="line">        Note: no version or scope is required, it&#39;s inherited from the BOM POM! --&gt;</span><br><span class="line">        &lt;dependency&gt;</span><br><span class="line">            &lt;groupId&gt;test&lt;&#x2F;groupId&gt;</span><br><span class="line">            &lt;artifactId&gt;a&lt;&#x2F;artifactId&gt;</span><br><span class="line">        &lt;&#x2F;dependency&gt;</span><br><span class="line">    &lt;&#x2F;dependencies&gt;</span><br><span class="line">&lt;&#x2F;project&gt;</span><br></pre></td></tr></table></figure></li>
 </ul>
 
       
