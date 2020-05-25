@@ -68,6 +68,179 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Docker-Manual" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/05/25/Docker-Manual/" class="article-date">
+  <time datetime="2020-05-25T07:18:39.000Z" itemprop="datePublished">2020-05-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/05/25/Docker-Manual/">Docker Manual</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <hr>
+<p><strong>IMPORTANT</strong>:<br>Much of the content here is a personal summary/abbrieviation of contents on the <a href="https://docs.docker.com/get-started/" target="_blank" rel="noopener">Offical Docker Guide Guide</a>. For more complete information, please refer to the offical site.</p>
+<hr>
+<h2 id="Docker-Intro"><a href="#Docker-Intro" class="headerlink" title="Docker Intro"></a>Docker Intro</h2><p>Docker provides the ability to package and run an application in a loosely isolated environment called a <strong><code>container</code></strong>, which <strong>separate your applications from your infrastructure</strong>. The <strong>isolation and security</strong> allow you to run many containers simultaneously on a given host.</p>
+<p>The use of <code>container</code>s to deploy applications is called containerization. Containers are not new, but their use for easily deploying applications is.</p>
+<p>Docker provides tooling and a platform to manage the lifecycle of your <code>container</code>s:</p>
+<ul>
+<li>Develop your application and its supporting components using <code>container</code>s.</li>
+<li>The <code>container</code> becomes the unit for distributing and testing your application.</li>
+<li>When you’re ready, deploy your application into your production environment, as a <code>container</code> or an orchestrated service. This works the same whether your production environment is a local data center, a cloud provider, or a hybrid of the two.</li>
+</ul>
+<h2 id="Docker-Basics"><a href="#Docker-Basics" class="headerlink" title="Docker Basics"></a>Docker Basics</h2><p><strong>Docker is mainly composed of the following elements</strong> (the first three is referred as Docker Engine by the official site): </p>
+<ul>
+<li><strong>A server</strong> (<code>docker daemon</code>) which is a type of long-running program called a daemon process (the <code>dockerd</code>command).</li>
+<li><strong>A command line interface (CLI)</strong> client that is used by most users (the <code>docker</code>command).</li>
+<li><strong>A REST API</strong> which specifies interfaces that <strong>CLI</strong> programs can use to <strong>talk to the daemon</strong> and <strong>instruct it what to do</strong>.</li>
+<li><strong>A Docker registry</strong>, which stores Docker images. Docker Hub is a public registry that anyone can use, and Docker is configured to look for images on Docker Hub by default.</li>
+</ul>
+<p>So we see that Docker uses a client-server architecture. The <strong><code>docker client</code> talks to the <code>docker daemon</code></strong>, which does the heavy lifting of building, running, and distributing your Docker containers. The Docker <code>client</code> and <code>daemon</code> can run on the same system, or you can connect a Docker client to a remote Docker daemon.</p>
+<h2 id="Docker-Architecture"><a href="#Docker-Architecture" class="headerlink" title="Docker Architecture"></a>Docker Architecture</h2><ul>
+<li><p>The <strong>Docker <code>daemon</code></strong></p>
+<ul>
+<li>The Docker <code>daemon</code> (<code>dockerd</code>) listens for Docker API requests and manages Docker objects such as <code>images</code>, <code>container</code>s, networks, and volumes. A daemon can also communicate with other daemons to manage Docker services.</li>
+</ul>
+</li>
+<li><p><strong>The Docker <code>client</code></strong></p>
+<ul>
+<li>The Docker <code>client</code> (<code>docker</code>) is the primary way that many Docker users interact with Docker. When you use commands such as <code>docker run</code>, the client sends these commands to <code>dockerd</code>, which carries them out. The docker command uses the Docker API. The Docker client can communicate with more than one daemon.</li>
+</ul>
+</li>
+<li><p><strong>Docker registries</strong></p>
+<ul>
+<li>A Docker registry stores Docker <code>image</code>s. Docker Hub is a public registry that anyone can use, and Docker is configured to look for images on Docker Hub by default. You can even run your own private registry. If you use Docker Datacenter (DDC), it includes Docker Trusted Registry (DTR).</li>
+</ul>
+</li>
+<li><p><strong>Docker objects</strong></p>
+<ul>
+<li>When you use Docker, you are creating and using <code>images</code>, <code>container</code>s, networks, volumes, plugins, and other objects. The section below is a brief overview of some of those objects.</li>
+</ul>
+</li>
+</ul>
+<h2 id="Docker-Objects"><a href="#Docker-Objects" class="headerlink" title="Docker Objects"></a>Docker Objects</h2><ul>
+<li><p><code>IMAGE</code></p>
+<ul>
+<li>An <code>image</code> is a <strong>read-only template</strong> with <strong>instructions for creating a Docker <code>container</code></strong>. Often, an <code>image</code> is based on another <code>image</code>, with some additional customization. For example, you may build an image which is based on the ubuntu image, but installs the Apache web server and your application, as well as the configuration details needed to make your application run.</li>
+</ul>
+</li>
+<li><p><code>CONTAINER</code></p>
+<ul>
+<li><p>A container is a <strong>runnable instance of an <code>image</code></strong>. You can create, start, stop, move, or delete a <code>container</code> using the Docker API or CLI. You can connect a <code>container</code> to one or more networks, attach storage to it, or even create a new image based on its current state.</p>
+<p>Fundementally, a <strong><code>container</code> is nothing but a running process, with some added encapsulation features applied to it in order to keep it isolated from the host and from other containers</strong>. One of the most important aspects of container isolation is that each container interacts with its <strong>own private filesystem</strong>.</p>
+<p>By default, a container is relatively well isolated from other <code>container</code>s and its host machine. You can control how isolated a container’s network, storage, or other underlying subsystems are from other containers or from the host machine.</p>
+<p>A <code>container</code> is <strong>defined by its image as well as any configuration options you provide to it when you create or start it</strong>. When a container is <strong>removed</strong>, any changes to its state that are <strong>not stored in persistent storage</strong> disappear.</p>
+</li>
+</ul>
+</li>
+<li><p><code>SERVICE</code></p>
+<ul>
+<li><p>Services allow you to <strong>scale <code>container</code>s across multiple Docker <code>daemons</code></strong>, which all work together as a swarm with multiple managers and workers. Each member of a swarm is a Docker <code>daemon</code>, and all the daemons communicate using the Docker API. A <code>service</code> allows you to <strong>define states</strong>, such as the <strong>number of replicas of the service</strong> that must be available at any given time. </p>
+<p>By default, the service is <strong>load-balanced across all worker nodes</strong>. To the consumer, the Docker service appears to be a single application. Docker Engine supports swarm mode in Docker 1.12 and higher.</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="Installing-Docker"><a href="#Installing-Docker" class="headerlink" title="Installing Docker"></a>Installing Docker</h2><p>Please follow the <a href="#https://docs.docker.com/get-started/">Official Guide</a>.</p>
+<h2 id="Basic-Workflow"><a href="#Basic-Workflow" class="headerlink" title="Basic Workflow"></a>Basic Workflow</h2><p>In general, the development workflow for containerized applications looks like this:</p>
+<ol>
+<li><strong>Create</strong> each component of your application by first creating Docker images???</li>
+<li><strong>Test</strong> those components???</li>
+<li><strong>Assemble</strong> your containers and supporting infrastructure into a complete application???</li>
+<li>Test, share, and deploy your complete containerized application.</li>
+</ol>
+<h2 id="Quickstart-for-Building-an-Image-and-a-Container"><a href="#Quickstart-for-Building-an-Image-and-a-Container" class="headerlink" title="Quickstart for Building an Image and a Container"></a>Quickstart for Building an Image and a Container</h2><p>First, we could use an existing project to demonstrate some concepts mentioned above.</p>
+<ol>
+<li><p>Run:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git clone https:&#x2F;&#x2F;github.com&#x2F;dockersamples&#x2F;node-bulletin-board</span><br><span class="line">cd node-bulletin-board&#x2F;bulletin-board-app</span><br></pre></td></tr></table></figure>
+
+<p> Then you will see that there is a file called <strong><code>Dockerfile</code></strong>. <strong><code>Dockerfile</code></strong>s describe <strong>how to build an <code>image</code> and assemble a <code>container</code></strong> with a private filesystem, and can also contain some metadata describing <strong>how to run a <code>container</code></strong> based on this image. </p>
+<p> The bulletin board app <strong><code>Dockerfile</code></strong> looks like this:</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"># Use the official image as a parent image.</span><br><span class="line">FROM node:current-slim</span><br><span class="line"></span><br><span class="line"># Set the working directory.</span><br><span class="line">WORKDIR &#x2F;usr&#x2F;src&#x2F;app</span><br><span class="line"></span><br><span class="line"># Copy the file from your host to your current location.</span><br><span class="line">COPY package.json .</span><br><span class="line"></span><br><span class="line"># Run the command inside your image filesystem.</span><br><span class="line">RUN npm install</span><br><span class="line"></span><br><span class="line"># Inform Docker that the container is listening on the specified port at runtime.</span><br><span class="line">EXPOSE 8080</span><br><span class="line"></span><br><span class="line"># Run the specified command within the container.</span><br><span class="line">CMD [ &quot;npm&quot;, &quot;start&quot; ]</span><br><span class="line"></span><br><span class="line"># Copy the rest of your app&#39;s source code from your host to your image filesystem.</span><br><span class="line">COPY . .</span><br></pre></td></tr></table></figure>
+<p> You can think of these <strong><code>Dockerfile</code></strong> commands as a step-by-step recipe on how to build up your <code>image</code>. </p>
+</li>
+<li><p>Make sure you’re in the directory <code>node-bulletin-board/bulletin-board-app</code> in a terminal or PowerShell using the cd command. Let’s build your bulletin board <code>image</code>:</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker build --tag bulletinboard:1.0 .</span><br></pre></td></tr></table></figure>
+
+<p> You’ll see <strong>Docker step through each instruction in your <code>Dockerfile</code></strong>, building up your <code>image</code> as it goes: </p>
+<ul>
+<li><p>Start <strong>FROM</strong> the pre-existing <code>node:current-slim</code> image. This is an official image, built by the node.js vendors and validated by Docker to be a high-quality image containing the Node.js Long Term Support (LTS) interpreter and basic dependencies.</p>
+</li>
+<li><p>Use <strong>WORKDIR</strong> to specify that all subsequent actions should be taken from the directory /usr/src/app in your image filesystem (never the host’s filesystem).</p>
+</li>
+<li><p><strong>COPY</strong> the file <code>package.json</code> from your host to the present location (<code>.</code>) in your image (so in this case, to /usr/src/app/package.json)</p>
+</li>
+<li><p><strong>RUN</strong> the command <code>npm install</code> inside your image filesystem (which will read <code>package.json</code> to determine your app’s node dependencies, and install them)</p>
+</li>
+<li><p><strong>COPY</strong> in the rest of your app’s source code from your host to your image filesystem.</p>
+<p>If successful, the build process should end with a message <code>Successfully tagged bulletinboard:1.0</code>.</p>
+<p>The steps above built up the filesystem of our image, but there are other lines in your <code>Dockerfile</code>.</p>
+</li>
+<li><p>The <strong>CMD</strong> directive is the first example of specifying some metadata in your <code>image</code> that <strong>describes how to run a container based on this image</strong>. In this case, it’s saying that the containerized process that this <code>image</code> is meant to support is <code>npm start</code>.</p>
+</li>
+<li><p>The <strong>EXPOSE</strong> <code>8080</code> informs Docker that the container is listening on port <code>8080</code> at runtime.</p>
+</li>
+</ul>
+</li>
+<li><p>Now you have an <code>image</code> and you can start a <code>container</code> based on the <code>image</code>:</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run --publish 8000:8080 --detach --name  bb bulletinboard:1.0</span><br></pre></td></tr></table></figure>
+
+<p> This has a couple of common flags:</p>
+<ul>
+<li><code>--publish</code> asks Docker to <strong>forward traffic incoming on the host’s port 8000</strong>, <strong>to the container’s port 8080</strong>. Containers have their own private set of ports, so if you want to reach one from the network, you have to forward traffic to it in this way. Otherwise, firewall rules will prevent all network traffic from reaching your container, as a default security posture.</li>
+<li><code>--detach</code> asks Docker to <strong>run this container in the background</strong>.</li>
+<li><code>--name</code> specifies a <strong>name with which you can refer to your container in subsequent commands</strong>, in this case <code>bb</code>.</li>
+</ul>
+</li>
+<li><p>Now, you can visit the application in a browser at <code>localhost:8000</code>. <strong>At this step</strong>, it would be the time to <strong>run unit tests</strong>, for example. You would normally do everything you could to ensure your container works the way you expected.</p>
+<p> Once you’re satisfied that your bulletin board container works correctly, you can delete it:</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker rm --force bb</span><br></pre></td></tr></table></figure>
+
+<p> The <code>--force</code> option stops a running container, so it can be removed. If you stop the container running with <code>docker stop bb</code> first, then you do not need to use <code>--force</code> to remove it.</p>
+</li>
+</ol>
+<p>At this point, you’ve successfully <strong>built an <code>image</code></strong>, <strong>performed a simple containerization of an application using that <code>image</code></strong>, and confirmed that your app runs successfully in its container.</p>
+<h2 id="Quickstart-for-Sharing-Images-on-Docker-Hub"><a href="#Quickstart-for-Sharing-Images-on-Docker-Hub" class="headerlink" title="Quickstart for Sharing Images on Docker Hub"></a>Quickstart for Sharing Images on Docker Hub</h2><p>At this point, <strong>you’ve built a containerized application</strong>. The final step is to <strong>share your images on a <code>registry</code> like Docker Hub</strong>, so they can be easily downloaded and run on any destination machine. (first you need to have a Docker Hub account, if needed help, follow <a href="#https://docs.docker.com/get-started/part3/#set-up-your-docker-hub-account">this guide</a>)</p>
+<ol>
+<li><p>Once you have an account, you need to create a repository. At this point, you can only <strong>specify a repository name</strong>, for example, <code>bulletin</code>, and click create.</p>
+</li>
+<li><p>Now you are ready to share your <code>image</code> on Docker Hub, but there’s <strong>one thing you must do first</strong>: images must be <strong>namespaced correctly to share on Docker Hub</strong>. Specifically, you must name images like <code>&lt;Docker ID&gt;/&lt;Repository Name&gt;:&lt;tag&gt;</code>.</p>
+<p> For example, if your username is <code>abc</code> and the name of your created repository is <code>bulletin</code>, then you <strong>need to tag your image to be: <code>abc/bulletin:&lt;whateverVersionHere&gt;</code></strong>. This is because, when you push in the next step, Docker will look up specifically at location <code>abc/bulletin</code> in Docker Hub. If you spelled something wrongly, it will not go to the correct location.</p>
+</li>
+<li><p>Finally, push your <code>image</code> to Docker Hub. For example, like this:</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker push abc&#x2F;bulletin:1.0</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<p>Now that your image is available on Docker Hub, you’ll be able to run it anywhere. By moving images around in this way, you <strong>no longer need to install any dependencies except Docker on the machines</strong> you want to run your software on. The dependencies of containerized applications are completely encapsulated and isolated within your images, which you can share using Docker Hub as described above.</p>
+<p>However, there is one thing to keep in mind: at the moment, you’ve only <strong>pushed your <code>image</code></strong> to Docker Hub; <strong>what about your <code>Dockerfile</code></strong>? A crucial best practice is to <strong>keep these in version control (e.g.  using <code>git</code>), perhaps alongside your source code for your application</strong>. You can add a link or note in your Docker Hub repository description indicating where these files can be found, preserving the record not only of how your image was built, but how it’s meant to be run as a full application.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/05/25/Docker-Manual/" data-id="ckamcbohu000060orfr6dh1u8" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-Apache-Manual-md" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/05/22/Apache-Manual-md/" class="article-date">
@@ -2330,6 +2503,10 @@ Now, the master head will point to the inital commit. If your friend is also wor
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2020/05/25/Docker-Manual/">Docker Manual</a>
+          </li>
         
           <li>
             <a href="/2020/05/22/Apache-Manual-md/">Apache Maven Manual</a>
