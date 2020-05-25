@@ -91,7 +91,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <hr>
-<p><strong>IMPORTANT</strong>:<br>Much of the content here is a personal summary/abbrieviation of contents on the <a href="https://docs.docker.com/get-started/" target="_blank" rel="noopener">Offical Docker Guide Guide</a>. For more complete information, please refer to the offical site.</p>
+<p><strong>IMPORTANT</strong>:<br>Much of the content here is a personal summary/abbrieviation of contents on the <a href="https://docs.docker.com/get-started/" target="_blank" rel="noopener">Offical Docker Guide</a>. For more complete information, please refer to the offical site.</p>
 <hr>
 <h2 id="Docker-Intro"><a href="#Docker-Intro" class="headerlink" title="Docker Intro"></a>Docker Intro</h2><p>Docker provides the ability to package and run an application in a loosely isolated environment called a <strong><code>container</code></strong>, which <strong>separate your applications from your infrastructure</strong>. The <strong>isolation and security</strong> allow you to run many containers simultaneously on a given host.</p>
 <p>The use of <code>container</code>s to deploy applications is called containerization. Containers are not new, but their use for easily deploying applications is.</p>
@@ -227,6 +227,120 @@
 </ol>
 <p>Now that your image is available on Docker Hub, you’ll be able to run it anywhere. By moving images around in this way, you <strong>no longer need to install any dependencies except Docker on the machines</strong> you want to run your software on. The dependencies of containerized applications are completely encapsulated and isolated within your images, which you can share using Docker Hub as described above.</p>
 <p>However, there is one thing to keep in mind: at the moment, you’ve only <strong>pushed your <code>image</code></strong> to Docker Hub; <strong>what about your <code>Dockerfile</code></strong>? A crucial best practice is to <strong>keep these in version control (e.g.  using <code>git</code>), perhaps alongside your source code for your application</strong>. You can add a link or note in your Docker Hub repository description indicating where these files can be found, preserving the record not only of how your image was built, but how it’s meant to be run as a full application.</p>
+<h2 id="Starting-and-Stopping-Containers"><a href="#Starting-and-Stopping-Containers" class="headerlink" title="Starting and Stopping Containers"></a>Starting and Stopping Containers</h2><ul>
+<li><p>To create a new <code>container</code> from an <code>image</code> and start it, use <code>docker run</code>:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run [options] &lt;image&gt; [command] [argument]</span><br></pre></td></tr></table></figure>
+
+<p>  Usually, you would want to specify a name for your container, which means you add the <code>--name</code> option. For example:</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run ––name&#x3D;Ubuntu-Test ubuntu:14.04</span><br></pre></td></tr></table></figure>
+<p>  where <code>ubuntu:14.04</code> would be the <code>ubuntu</code> image with version/tag <code>14.04</code>. However, if you do not define a name for your newly created container, the <code>deamon</code> will <strong>generate a random string name</strong>, which you can later check with the <code>docker ps</code> command (see the section <a href="#Viewing-and-Removing-Containers">Viewing and Removing Containers</a>)</p>
+<p>  However, this would only start a <code>container</code>. If you would like to interact with it, you need to add the <code>–i</code> and <code>–t</code> options to enter the interative mode. For example, to enter the Ubuntu bash in the ubuntu container created in the above example, you could run:</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run –it ––name&#x3D;Ubuntu_Test ubuntu:14.04</span><br></pre></td></tr></table></figure>
+<p>  Instead of using <code>-i</code> or <code>-t</code> options, use the <code>attach</code> command to connect to a running container as well:</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker attach container_id</span><br></pre></td></tr></table></figure>
+<p>  (To <strong>exit the container</strong>, you can type <code>EXIT</code>)</p>
+</li>
+<li><p>To stop a <code>container</code>, you could use the <code>docker stop</code> command:</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker stop [option] &lt;container_id&gt;</span><br></pre></td></tr></table></figure>
+
+<p>  By default, you get a 10 second grace period if you run <code>docker stop</code>. This means that the <code>stop</code> command instructs the <code>container</code> to <strong>stop services after that 10 seconds period</strong>. You can also use the <code>--time</code> option to define a different grace period expressed in seconds, for example:</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker stop --time&#x3D;20 &lt;container_id&gt;</span><br></pre></td></tr></table></figure>
+
+<p>  If you want to immediately kill a docker <code>container</code> without waiting for the grace period to end, use:</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker kill [option] &lt;container_id&gt;</span><br></pre></td></tr></table></figure>
+
+<p>  Additionally, a useful command is to <strong>stop (or kill) all running containers</strong>:</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker stop $(docker ps –a –q)</span><br></pre></td></tr></table></figure>
+<p>  If you want to <code>kill</code> those <code>container</code>s, just replace the <code>stop</code> with <code>kill</code>.</p>
+</li>
+</ul>
+<h2 id="Viewing-and-Removing-Unwanted-Images"><a href="#Viewing-and-Removing-Unwanted-Images" class="headerlink" title="Viewing and Removing Unwanted Images"></a>Viewing and Removing Unwanted Images</h2><ul>
+<li><p>To view the <code>image</code>s, you could use the command:</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker images</span><br></pre></td></tr></table></figure>
+<p>  to provide you with a list of images that you have created. For example, they might look like this:</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">REPOSITORY                      TAG                 IMAGE ID            CREATED             SIZE</span><br><span class="line">bulletinboard                   1.0                 2cd431e8ee37        3 hours ago         182MB</span><br><span class="line">mysql                           8.0                 30f937e841c8        4 days ago          541MB</span><br><span class="line">node                            current-slim        8ec3841e41bb        4 days ago          165MB</span><br><span class="line">ubuntu                          latest              1d622ef86b13        4 weeks ago         73.9MB</span><br></pre></td></tr></table></figure></li>
+<li><p>To remove an <code>image</code>, you need to specify <strong>both the name and the version</strong> (<code>tag</code>) in the format <code>&lt;name&gt;:&lt;version&gt;</code>. For example, to remove the <code>bulletinboard</code> image, you could do:</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker image rm -f bulletinboard:1.0</span><br></pre></td></tr></table></figure>
+
+<p>  However, if it is at the <code>latest</code> version/tag, then you can just specify the name:</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker image rm -f ubuntu</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Note:</p>
+<ul>
+<li><input disabled type="checkbox"> The <code>-f</code> or <code>--force</code> option is <strong>only necessay when you have the <code>container</code> running</strong>. If it is not running, it can be removed just by specifying <code>docker image rm</code></li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<p><a name="Viewing-and-Removing-Containers"></a></p>
+<h2 id="Viewing-and-Removing-Containers"><a href="#Viewing-and-Removing-Containers" class="headerlink" title="Viewing and Removing Containers"></a>Viewing and Removing Containers</h2><ul>
+<li><p>To list all <strong>running containers</strong>, you can use the command:</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker ps</span><br></pre></td></tr></table></figure>
+<p>  which, for example, could gives you:</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">CONTAINER ID        IMAGE                       COMMAND                  CREATED             STATUS                             PORTS                 NAMES</span><br><span class="line">a22b3d54d5f4        mysql&#x2F;mysql-server:latest   &quot;&#x2F;entrypoint.sh mysq…&quot;   18 seconds ago      Up 17 seconds (health: starting)   3306&#x2F;tcp, 33060&#x2F;tcp   test-sql-server</span><br></pre></td></tr></table></figure>
+
+<p>  However, if you would like to see also stopped <code>container</code>s, you could use the <code>-a</code> or <code>--all</code> flag:</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker ps -a</span><br></pre></td></tr></table></figure>
+
+<p>  Some of the other <strong>useful options</strong> include:</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>--filter</code> , <code>-f</code></td>
+<td>-</td>
+<td>Filter output based on conditions provided</td>
+</tr>
+<tr>
+<td><code>--format</code></td>
+<td>-</td>
+<td>Pretty-print containers using a Go template</td>
+</tr>
+<tr>
+<td><code>--last</code>, <code>-n</code></td>
+<td>-1</td>
+<td>Show n last created containers (includes all states)</td>
+</tr>
+<tr>
+<td><code>--latest</code> , <code>-l</code></td>
+<td>-</td>
+<td>Show the latest created container (includes all states)</td>
+</tr>
+<tr>
+<td><code>--no-trunc</code></td>
+<td>-</td>
+<td>Don’t truncate output</td>
+</tr>
+<tr>
+<td><code>--quiet</code> , <code>-q</code></td>
+<td>-</td>
+<td>Only display numeric IDs</td>
+</tr>
+</tbody></table>
+<p>  The <code>--filter</code> could be quite useful to select <code>container</code>s you want to see, for example, if you only want to see <code>container</code>s with name having the substring <code>test</code>, you could run:</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker ps --filter &quot;name&#x3D;test&quot;</span><br></pre></td></tr></table></figure>
+
+<p>  For a full list of examples using <code>--format</code>, please refer to the <a href="#https://docs.docker.com/engine/reference/commandline/ps/#filtering">Docker Doc here</a></p>
+</li>
+<li><p>On the other hand, to remove unwanted <code>container</code>s, you could use the command:</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker container rm &lt;container-id&gt;</span><br></pre></td></tr></table></figure>
+
+<p>  where the <code>&lt;container-id&gt;</code> could be seen if you run the <code>docker ps</code> command shown above. If the container is running, you could also force remove it with the <code>--force</code> or <code>-f</code> option.</p>
+<p>  For other commands/options related to <code>docker container -rm</code> please refer to the <a href="#https://docs.docker.com/engine/reference/commandline/container_rm/">Docker Doc here</a></p>
+</li>
+</ul>
+<h2 id="Using-MySQL-Server-in-Docker"><a href="#Using-MySQL-Server-in-Docker" class="headerlink" title="Using MySQL Server in Docker"></a>Using MySQL Server in Docker</h2><ol>
+<li><p>You need to download the server image (which is not strictly necessary); however, performing this step before you create your Docker container ensures your local image is up to date. To download the MySQL Community Edition image, run this command:</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull mysql&#x2F;mysql-server:tag</span><br></pre></td></tr></table></figure>
+
+<p> The <code>tag</code> is the label for the image version you want to pull (for example, <code>5.5</code>, <code>5.6</code>, <code>5.7</code>, <code>8.0</code>, or <code>latest</code>). If <code>:tag</code> is omitted, the <code>latest</code> label is used</p>
+</li>
+</ol>
 
       
     </div>
