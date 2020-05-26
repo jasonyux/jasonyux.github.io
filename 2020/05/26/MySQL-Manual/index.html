@@ -14,10 +14,12 @@
 <meta property="og:site_name" content="From a Beginner to a Disaster">
 <meta property="og:description" content="IMPORTANT:Much of the content here is a personal summary&#x2F;abbrieviation of contents on the Offical MySQL Guide. For more complete information, please refer to the offical site.  MySQL IntroThe MySQL cl">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://yoursite.com/.com//05/26/MySQL-Manual/pet-data.png">
 <meta property="article:published_time" content="2020-05-26T02:34:48.000Z">
-<meta property="article:modified_time" content="2020-05-26T02:46:33.160Z">
+<meta property="article:modified_time" content="2020-05-26T10:23:45.097Z">
 <meta property="article:author" content="Xiao Yu">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/.com//05/26/MySQL-Manual/pet-data.png">
   
     <link rel="alternate" href="/atom.xml" title="From a Beginner to a Disaster" type="application/atom+xml">
   
@@ -98,6 +100,362 @@
 <p>The MySQL server package will install the <strong>MySQL database server</strong> which you can <strong>interact with using a MySQL client</strong>. You can use the MySQL client to send commands to any MySQL server; on a remote computer or your own.</p>
 <p>The <strong>MySQL server is used to persist the data and provide a query interface for it (SQL)</strong>. The MySQL clients purpose is to allow you to use that query interface.</p>
 <p>On how to setup your MySQL Server, please refer to <a href="https://jasonyux.github.io/2020/05/25/Docker-Manual/#MySQL-in-Docker" target="_blank" rel="noopener">here</a></p>
+<h2 id="Connecting-to-a-MySQL-Server"><a href="#Connecting-to-a-MySQL-Server" class="headerlink" title="Connecting to a MySQL Server"></a>Connecting to a MySQL Server</h2><ul>
+<li><p>If you have installed the MySQL server on Docker using the guide <a href="https://jasonyux.github.io/2020/05/25/Docker-Manual/#MySQL-in-Docker" target="_blank" rel="noopener">here</a>, then you should be already connected to your local SQL server. If not, try to run (assuming you have the container running):</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker exec -it &lt;yourSQLServerName&gt; mysql -u root -p</span><br></pre></td></tr></table></figure>
+<p>  This will prompt to enter the password.</p>
+<p>  If you entered successfully, you will see:</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt;</span><br></pre></td></tr></table></figure></li>
+<li><p>If you want to connect to a remote SQL server, then you need to specify a <code>host</code> name. Contact your administrator to find out what connection parameters you should use to connect (that is, what <code>host</code>, <code>user</code> name, and <code>password</code> to use). Then, you would run:</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">shell&gt; mysql -h &lt;hostName&gt; -u &lt;userName&gt; -p</span><br><span class="line">Enter password: &lt;yourPasswordHere&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>To disconnect from that SQL server, simply run:</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">QUIT</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="Basic-Queries-in-MySQL-Client"><a href="#Basic-Queries-in-MySQL-Client" class="headerlink" title="Basic Queries in MySQL Client"></a>Basic Queries in MySQL Client</h2><p>Make sure that you are <strong>connected to the server</strong>, as discussed in the previous section. Doing so <strong>does not in itself select any database to work with</strong>, but that is okay. There are still several queries you can do to have a basic sense of how MySQL works:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT VERSION(), CURRENT_DATE;</span><br><span class="line">+-----------+--------------+</span><br><span class="line">| VERSION() | CURRENT_DATE |</span><br><span class="line">+-----------+--------------+</span><br><span class="line">| 8.0.20    | 2020-05-26   |</span><br><span class="line">+-----------+--------------+</span><br><span class="line">1 row in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Note:</p>
+<ul>
+<li><input disabled type="checkbox"> You <strong>need to have the semi-colon “<code>;</code>“ for ending your query</strong>, before pressing <code>enter</code>. If not, you will automatically goes to the next line to continue input. However, there are <strong>some exceptions where a semicolon may be omitted</strong>. <code>QUIT</code>, mentioned earlier, is one of them. We’ll get to others later.)</li>
+<li><input disabled type="checkbox"> The query may be entered in any lettered case. The following queries are equivalent: <code>mysql&gt; SELECT VERSION(), CURRENT_DATE;</code> <code>mysql&gt; select version(), current_date;</code> <code>mysql&gt; SeLeCt vErSiOn(), current_DATE;</code> </li>
+</ul>
+</blockquote>
+<p>From the simple command, you can see several things about a query:</p>
+<ul>
+<li><p>When you issue a query, MySQL <strong>sends it to the server</strong> for execution and displays the results, then prints another <code>mysql&gt;</code> prompt to indicate that it is ready for another query.</p>
+</li>
+<li><p>MySQL <strong>displays query output in tabular form (rows and columns)</strong>. The <strong>first row contains labels/titles</strong> for the columns. The <strong>rows following are the query results</strong>. Normally, column labels are the names of the columns you fetch from database tables. If you’re retrieving the value of <strong>an expression rather than an actual label/title</strong>, mysql labels the column <strong>using the expression itself</strong>.</p>
+</li>
+<li><p>MySQL shows, in the end, <strong>how many rows were returned and how long the query took to execute</strong>, which gives you a rough idea of <strong>server performance</strong>. These values are imprecise because they represent wall clock time (not CPU or machine time), and because they are affected by factors such as server load and network latency.</p>
+</li>
+</ul>
+<p>Other examples of a query include:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">select cos(pi()&#x2F;2), (4+1)*2;</span><br><span class="line">+-----------------------+---------+</span><br><span class="line">| cos(pi()&#x2F;2)           | (4+1)*2 |</span><br><span class="line">+-----------------------+---------+</span><br><span class="line">| 6.123233995736766e-17 |      10 |</span><br><span class="line">+-----------------------+---------+</span><br><span class="line">1 row in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<p>and you can make <strong>two or more queries simultaneouly by using the delimiter “<code>;</code>“</strong>, for example to seperate the above query into two:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select cos(pi()&#x2F;2);select (4+1)*2;</span><br><span class="line">+-----------------------+</span><br><span class="line">| cos(pi()&#x2F;2)           |</span><br><span class="line">+-----------------------+</span><br><span class="line">| 6.123233995736766e-17 |</span><br><span class="line">+-----------------------+</span><br><span class="line">1 row in set (0.00 sec)</span><br><span class="line"></span><br><span class="line">+---------+</span><br><span class="line">| (4+1)*2 |</span><br><span class="line">+---------+</span><br><span class="line">|      10 |</span><br><span class="line">+---------+</span><br><span class="line">1 row in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<p>finally, you can also use a multiline query as well, given that you had the correct punctuations in place :</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select</span><br><span class="line">    -&gt; cos(pi()&#x2F;2)</span><br><span class="line">    -&gt; , (4+1)*2</span><br><span class="line">    -&gt; ;</span><br><span class="line">+-----------------------+---------+</span><br><span class="line">| cos(pi()&#x2F;2)           | (4+1)*2 |</span><br><span class="line">+-----------------------+---------+</span><br><span class="line">| 6.123233995736766e-17 |      10 |</span><br><span class="line">+-----------------------+---------+</span><br><span class="line">1 row in set (0.01 sec)</span><br></pre></td></tr></table></figure>
+<p>or</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select cos(pi()&#x2F;2); select</span><br><span class="line">+-----------------------+</span><br><span class="line">| cos(pi()&#x2F;2)           |</span><br><span class="line">+-----------------------+</span><br><span class="line">| 6.123233995736766e-17 |</span><br><span class="line">+-----------------------+</span><br><span class="line">1 row in set (0.00 sec)</span><br><span class="line"></span><br><span class="line">    -&gt; (4+1)*2;</span><br><span class="line">+---------+</span><br><span class="line">| (4+1)*2 |</span><br><span class="line">+---------+</span><br><span class="line">|      10 |</span><br><span class="line">+---------+</span><br><span class="line">1 row in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Note </p>
+<ul>
+<li><input disabled type="checkbox"> <strong>If your line ended with a “<code>;</code>“</strong>, you cannot enter further input but to start another new command. In the above examples, notice how the prompt changes from <code>mysql&gt;</code> to <code>-&gt;</code>, which indicates you are at a line of a <strong>multiple-line query</strong>.</li>
+</ul>
+</blockquote>
+<ul>
+<li>To cancel the multiline query, you could use <code>\c</code>:</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select user()</span><br><span class="line">    -&gt; \c</span><br><span class="line">\c</span><br><span class="line">^C</span><br><span class="line">mysql&gt;</span><br></pre></td></tr></table></figure>
+
+<p>Here is a table summarizing the prompts you will see in MySQL:</p>
+<table>
+<thead>
+<tr>
+<th>Prompt</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>mysql&gt;</code></td>
+<td>Ready for new query</td>
+</tr>
+<tr>
+<td><code>-&gt;</code></td>
+<td>Waiting for next line of multiple-line query</td>
+</tr>
+<tr>
+<td><code>&#39;&gt;</code></td>
+<td>Waiting for next line, waiting for completion of a string that began with a single quote (<code>&#39;</code>)</td>
+</tr>
+<tr>
+<td><code>&quot;&gt;</code></td>
+<td>Waiting for next line, waiting for completion of a string that began with a double quote (<code>&quot;</code>)</td>
+</tr>
+<tr>
+<td>``&gt;    `</td>
+<td>Waiting for next line, waiting for completion of an identifier that began with a backtick (<code>`</code>)</td>
+</tr>
+<tr>
+<td><code>/*&gt;</code></td>
+<td>Waiting for next line, waiting for completion of a comment that began with <code>/*</code></td>
+</tr>
+</tbody></table>
+<p>For example, if you have missed a <code>&#39;</code> at the end of the line:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT * FROM my_table WHERE name &#x3D; &#39;Smith AND age &lt; 30;</span><br><span class="line">    &#39;&gt;</span><br></pre></td></tr></table></figure>
+<p>This means that <code>mysql</code> is <strong>expecting another <code>&#39;</code> at the end</strong>, which you have missed in this case.</p>
+<p>The solution, sadly, is to <strong>cancel the input</strong> and do it corretcly the <strong>next time</strong>:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT * FROM my_table WHERE name &#x3D; &#39;Smith AND age &lt; 30;</span><br><span class="line">    &#39;&gt; \c</span><br><span class="line">mysql&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Viewing-and-Creating-a-Database"><a href="#Viewing-and-Creating-a-Database" class="headerlink" title="Viewing and Creating a Database"></a>Viewing and Creating a Database</h2><ul>
+<li><p>To first <strong>see what databases you have access to</strong>, you can use the command:</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; show databases;</span><br><span class="line">+--------------------+</span><br><span class="line">| Database           |</span><br><span class="line">+--------------------+</span><br><span class="line">| information_schema |</span><br><span class="line">| mysql              |</span><br><span class="line">| performance_schema |</span><br><span class="line">| sys                |</span><br><span class="line">+--------------------+</span><br></pre></td></tr></table></figure>
+<p>  These databases are the ones that <strong>you have access to</strong>. If you don’t have access to a database, you will not see it here.</p>
+<p>  Then, to switch to use a database (for example, <code>sys</code>), you can run the command:</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; use sys</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>Note:</p>
+<ul>
+<li><input disabled type="checkbox"> The <code>use</code> command is another command (exception) that does not require a semi-colon to end. However, it does no harm to put one in the end anyway.</li>
+<li><input disabled type="checkbox"> Having access to a database means a lot. It means that you could insert or delete anything in that database. So usually to have an access to a database you would need to ask your administrator.</li>
+</ul>
+</blockquote>
+</li>
+<li><p>Now, to <strong>create a database</strong>, say you call it <code>test</code>, you could run:</p>
+  <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; create database test;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>Note:</p>
+<ul>
+<li><input disabled type="checkbox"> Under Unix, <strong>database names are case-sensitive</strong> (<strong>unlike SQL keywords</strong>), so you must always refer to your database as test, not as Test, TEST, or some other variant. </li>
+</ul>
+</blockquote>
+<p>  However, at this point you have only created a database, and you are still in the database <code>sys</code> (follows from the previous example). To switch to the database <code>test</code> you created, you need to explicitly call again:</p>
+  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; use test;</span><br><span class="line">Database changed</span><br></pre></td></tr></table></figure>
+
+<p>  Now, the next time you want to connect to the database <code>test</code>, you could directly run:</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">shell&gt; mysql -u root -p test</span><br><span class="line">Enter password: ********</span><br></pre></td></tr></table></figure>
+
+<p>  and in general, to connect to a database <code>databaseName</code> from start up, you could do:</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">shell&gt; mysql -h &lt;hostName&gt; -u &lt;userName&gt; -p &lt;databaseName&gt;</span><br><span class="line">Enter password: ********</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>Note:</p>
+<ul>
+<li><input disabled type="checkbox"> <code>&lt;databaseName&gt;</code> in the command just shown is <strong>not your password</strong>. If you want to supply your password on the <strong>command line after the <code>-p</code> option</strong>, you must <strong>do so with no intervening space (for example, as -p<password>, not as -p <password>)</password></password></strong>. However, putting your password on the command line is <strong>not recommended</strong>, because doing so exposes it to snooping by other users logged in on your machine.</li>
+</ul>
+</blockquote>
+</li>
+<li><p>To see <strong>which database you are currently in</strong>, you could use the query:</p>
+  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select database();</span><br><span class="line">+<span class="comment">------------+</span></span><br><span class="line">| database() |</span><br><span class="line">+<span class="comment">------------+</span></span><br><span class="line">| test       |</span><br><span class="line">+<span class="comment">------------+</span></span><br><span class="line">1 row in <span class="keyword">set</span> (<span class="number">0.00</span> sec)</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="Viewing-and-Creating-a-Table"><a href="#Viewing-and-Creating-a-Table" class="headerlink" title="Viewing and Creating a Table"></a>Viewing and Creating a Table</h2><ul>
+<li><p>To see what tables you have in a database you are currently in, you can use:</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; show tables;</span><br><span class="line">Empty set (0.00 sec)</span><br></pre></td></tr></table></figure>
+
+<p>  In this case, we are in the <code>test</code> database that we just created so there is nothing.</p>
+</li>
+<li><p>Now, consider the example on the <a href="#https://dev.mysql.com/doc/refman/8.0/en/creating-tables.html">MySQL site</a>, where you would like to record information for <strong>each of your pets</strong> (if you don’t have many, imagine you do). Then this can be called the <code>pet</code> <strong>table</strong>, and it should contain, as a bare minimum, <strong>each animal’s name</strong> (as an entry). Then, you could <strong>add other information</strong> about each of your pet in the table. For example, if more than one person in your family keeps pets, you might want to list each animal’s owner. You might also want to record some basic descriptive information such as species and sex.</p>
+<p>  How about age? That might be of interest, but it is not a good thing to store in a database. <strong>Age changes as time passes</strong>, which means you’d have to update your records often. Instead, it is <strong>better</strong> to <strong>store a fixed value such as date of birth</strong>. Then, whenever you need age, you can calculate it as the difference between the current date and the birth date. MySQL provides functions for doing date arithmetic (as you saw before), so this is not difficult.</p>
+<p>  You can probably think of other types of information that would be useful in the pet table, but the ones identified so far are sufficient and will be used in this example: <code>name</code>, <code>owner</code>, <code>species</code>, <code>sex</code>, <code>birth</code>, and <code>death</code>:</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; create table pet (name varchar(20), owner varchar(20), species varchar(20), sex char(1), birth date, death date);</span><br><span class="line">Query OK, 0 rows affected (0.03 sec)</span><br></pre></td></tr></table></figure>
+
+<p>  Notice that we use <code>char()</code> and <code>varchar()</code>:</p>
+<ul>
+<li><p>The length of a <code>CHAR</code>/<code>char</code> column is <strong>fixed to the length that you declare when you create the table</strong>. For example, <strong><code>char(1)</code></strong> means it can <strong>hold up to 1 character</strong>. The length can be any value from 0 to 255. When <strong>CHAR values are stored</strong>, they are <strong>right-padded with spaces</strong> to the specified length. When CHAR values are <strong>retrieved</strong>, 8<em>trailing spaces are removed*</em> unless the <code>PAD_CHAR_TO_FULL_LENGTH</code> SQL mode is enabled.</p>
+</li>
+<li><p>Values in <code>VARCHAR</code> columns are <strong>variable-length strings</strong>.??? The length can be specified as a value from 0 to 65,535. The effective maximum length of a VARCHAR is subject to the maximum row size (65,535 bytes, which is shared among all columns) and the character set used. In contrast to <code>CHAR</code>, <code>VARCHAR</code> values are stored as a <strong>1-byte or 2-byte length prefix</strong> plus data. The <strong>length prefix indicates the number of bytes in the value</strong>. A column uses <strong>one length byte if values require no more than 255 bytes</strong>, <strong>two length bytes if values may require more than 255 bytes</strong>.</p>
+<p>To make sure you have your table <code>pet</code> created as the way you wanted, you can run:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; describe pet;</span><br><span class="line">+---------+-------------+------+-----+---------+-------+</span><br><span class="line">| Field   | Type        | Null | Key | Default | Extra |</span><br><span class="line">+---------+-------------+------+-----+---------+-------+</span><br><span class="line">| name    | varchar(20) | YES  |     | NULL    |       |</span><br><span class="line">| owner   | varchar(20) | YES  |     | NULL    |       |</span><br><span class="line">| species | varchar(20) | YES  |     | NULL    |       |</span><br><span class="line">| sex     | char(1)     | YES  |     | NULL    |       |</span><br><span class="line">| birth   | date        | YES  |     | NULL    |       |</span><br><span class="line">| death   | date        | YES  |     | NULL    |       |</span><br><span class="line">+---------+-------------+------+-----+---------+-------+</span><br><span class="line">6 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<p>If you have made a mistake somewhere, and you want to change the <code>type</code> or the <code>field</code> name, you could use:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; ALTER TABLE pet CHANGE &lt;fromFieldName&gt; &lt;toFieldName&gt; &lt;Type&gt;</span><br></pre></td></tr></table></figure>
+
+<p>or if you only want to change the <code>type</code>, you can use:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; ALTER TABLE pet MODIFY &lt;fieldName&gt; &lt;newType&gt;</span><br></pre></td></tr></table></figure>
+<p>(you <strong>cannot only modify the <code>field</code> name</strong>) More examples on modifying the table please refer to <a href="#https://dev.mysql.com/doc/refman/8.0/en/alter-table-examples.html">here</a>.</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="Loading-and-Inserting-Data-into-a-Table"><a href="#Loading-and-Inserting-Data-into-a-Table" class="headerlink" title="Loading and Inserting Data into a Table"></a>Loading and Inserting Data into a Table</h2><p>After creating a table, you need to populate it. The <code>LOAD DATA</code> and <code>INSERT</code> statements are useful for this.</p>
+<p>Suppose you have the following data as shown below (notice that MySQL expects <strong>dates in <code>YYYY-MM-DD</code> format</strong>):</p>
+<p><img src="/.com//05/26/MySQL-Manual/pet-data.png" alt="https://dev.mysql.com/doc/refman/8.0/en/loading-tables.html" title="Table from https://dev.mysql.com/doc/refman/8.0/en/loading-tables.html"></p>
+<p>Because you are beginning with an empty table, an easy way to populate it is to create a <strong>text file containing a row for each of your animals</strong>, then <code>load</code> the contents of the file into the table.</p>
+<p>For exapmle, create a text file <code>pet.txt</code> containing <strong>one record per line</strong>, with values <strong>separated by tabs</strong>, (for <code>csv</code> files, refer to <a href="https://dev.mysql.com/doc/refman/8.0/en/load-data.html" target="_blank" rel="noopener">this</a>) and given <strong>in the order in which the columns were listed</strong> in the table. For <strong>missing values</strong> (such as unknown sexes or death dates for animals that are still living), you can <strong>use <code>\N</code></strong>, which represent null values:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Whistler        Gwen    bird    \N      1997-12-09      \N</span><br></pre></td></tr></table></figure>
+
+<p>Then, you can import by:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; LOAD DATA LOCAL INFILE &#39;&#x2F;path&#x2F;pet.txt&#39; INTO TABLE pet;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>Note:</p>
+<ul>
+<li><input disabled type="checkbox"> If you run into problems with importing a file, then probably you need to <strong>configure your SQL server</strong> for permission with file import. By default, this is <strong>disabled due to safety concerns</strong>. To configure this, please follow the guide <a href="#https://dev.mysql.com/doc/mysql-secure-deployment-guide/5.7/en/secure-deployment-post-install.html">here</a></li>
+</ul>
+</blockquote>
+<p>When you want to <strong>add new records one at a time</strong>, the <code>INSERT</code> statement is useful. In its simplest form, you <strong>supply values for each column</strong>, <strong>in the order in which the columns were listed</strong> in the CREATE TABLE statement. </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; INSERT INTO pet VALUES (&#39;Fluffy&#39;,&#39;Harold&#39;,&#39;cat&#39;,&#39;f&#39;,&#39;1993-02-04&#39;,NULL);</span><br><span class="line">Query OK, 1 row affected (0.02 sec)</span><br></pre></td></tr></table></figure>
+<p>Notice that <strong>String and date values are specified as quoted strings</strong> here. Also, with <code>INSERT</code>, you can <strong>insert <code>NULL</code> directly to represent a missing value</strong>. You <strong>do not use <code>\N</code></strong> like you do with <code>LOAD DATA</code>.</p>
+<blockquote>
+<p>Note:</p>
+<ul>
+<li><input disabled type="checkbox"> The values in the table <strong>does not have to be distinct</strong>. This means that you can <code>INSERT</code> two same rows into the table without any trouble. However, to delete the non-distinct rows, you might need to do some <a href="https://www.sqlservertutorial.net/sql-server-basics/delete-duplicates-sql-server/" target="_blank" rel="noopener">work</a>.</li>
+</ul>
+</blockquote>
+<h2 id="Retrieving-Selecting-All-Information-from-a-Table"><a href="#Retrieving-Selecting-All-Information-from-a-Table" class="headerlink" title="Retrieving/Selecting All Information from a Table"></a>Retrieving/Selecting All Information from a Table</h2><p>The <code>SELECT</code> statement is used to pull information from a table. The <strong>general form of the statement</strong> is:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SELECT &lt;what_to_select&gt;</span><br><span class="line">FROM &lt;which_table&gt;</span><br><span class="line">WHERE &lt;conditions_to_satisfy&gt;;</span><br></pre></td></tr></table></figure>
+<p>where</p>
+<ul>
+<li><code>&lt;what_to_select&gt;</code> indicates <strong>what you want to see</strong>. This can be a <strong>list of columns</strong>, or * to indicate “all columns.” </li>
+<li><code>&lt;which_table&gt;</code> indicates the <strong>table from which you want to retrieve data</strong>. The WHERE clause is optional. </li>
+<li><code>&lt;conditions_to_satisfy&gt;</code> specifies one or more <strong>conditions that rows must satisfy</strong> to qualify for retrieval, <strong>if it is present</strong>.</li>
+</ul>
+<p>This means you can select all data by simply running:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT * FROM pet;</span><br><span class="line">+----------+--------+---------+------+------------+------------+</span><br><span class="line">| name     | owner  | species | sex  | birth      | death      |</span><br><span class="line">+----------+--------+---------+------+------------+------------+</span><br><span class="line">| Fluffy   | Harold | cat     | f    | 1993-02-04 | NULL       |</span><br><span class="line">| Claws    | Gwen   | cat     | m    | 1994-03-17 | NULL       |</span><br><span class="line">| Buffy    | Harold | dog     | f    | 1989-05-13 | NULL       |</span><br><span class="line">| Fang     | Benny  | dog     | m    | 1990-08-27 | NULL       |</span><br><span class="line">| Bowser   | Diane  | dog     | m    | 1979-08-31 | 1995-07-29 |</span><br><span class="line">| Chirpy   | Gwen   | bird    | f    | 1998-09-11 | NULL       |</span><br><span class="line">| Whistler | Gwen   | bird    | NULL | 1997-12-09 | NULL       |</span><br><span class="line">| Slim     | Benny  | snake   | m    | 1996-04-29 | NULL       |</span><br><span class="line">| Puffball | Diane  | hamster | f    | 1999-03-30 | NULL       |</span><br><span class="line">+----------+--------+---------+------+------------+------------+</span><br></pre></td></tr></table></figure>
+<p>However, if at this point, you have found that some values are wrong in a specific row, perhaps you miss-typed in your <code>txt</code> file, then you could either <strong>delete the entire table and re-insert the correct <code>txt</code></strong>, or <strong>updating that specific value</strong>:</p>
+<ol>
+<li><p>You can first fix your <code>txt</code> file and then run this:</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; DELETE FROM pet;</span><br><span class="line">mysql&gt; LOAD DATA LOCAL INFILE &#39;pet.txt&#39; INTO TABLE pet;</span><br></pre></td></tr></table></figure></li>
+<li><p>You could also only fix the wrong one (<code>Bowser</code>‘s <code>birth</code>, for example) by:</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">	mysql&gt; UPDATE pet SET birth &#x3D; &#39;1989-08-31&#39; WHERE name &#x3D; &#39;Bowser&#39;;</span><br><span class="line">	&#96;&#96;&#96; </span><br><span class="line"></span><br><span class="line">## Selecting a Particular Row</span><br><span class="line">You can select only particular rows from your table, by **specifying the &#96;WHERE&#96; option**. For example, if you want to verify the change that you made to Bowser&#39;s birth date, select Bowser&#39;s record like this:</span><br></pre></td></tr></table></figure>
+<p>mysql&gt; SELECT * FROM pet WHERE name = ‘Bowser’;</p>
+</li>
+</ol>
+<p>+——–+——-+———+——+————+————+<br>| name   | owner | species | sex  | birth      | death      |<br>+——–+——-+———+——+————+————+<br>| Bowser | Diane | dog     | m    | 1989-08-31 | 1995-07-29 |<br>+——–+——-+———+——+————+————+</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">or</span><br></pre></td></tr></table></figure>
+<p>mysql&gt; SELECT birth FROM pet WHERE name = ‘Bowser’;<br>+————+<br>| birth      |<br>+————+<br>| 1989-08-31 |<br>+————+</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">In general, you can specify **any expression for the &#96;WHERE&#96; option as long as it can be evaluted to either &#96;true&#96; or &#96;false&#96;**. This means, for example, you can **specify inequality**:</span><br></pre></td></tr></table></figure>
+<p>mysql&gt; SELECT * FROM pet WHERE birth &gt;= ‘1998-1-1’;<br>+———-+——-+———+——+————+——-+<br>| name     | owner | species | sex  | birth      | death |<br>+———-+——-+———+——+————+——-+<br>| Chirpy   | Gwen  | bird    | f    | 1998-09-11 | NULL  |<br>| Puffball | Diane | hamster | f    | 1999-03-30 | NULL  |<br>+———-+——-+———+——+————+——-+</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">and you can use **logical operators** such as **AND** and **OR**:</span><br></pre></td></tr></table></figure>
+<p>mysql&gt; SELECT * FROM pet WHERE species = ‘dog’ AND sex = ‘f’;<br>+——-+——–+———+——+————+——-+<br>| name  | owner  | species | sex  | birth      | death |<br>+——-+——–+———+——+————+——-+<br>| Buffy | Harold | dog     | f    | 1989-05-13 | NULL  |<br>+——-+——–+———+——+————+——-+</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">You can even combine the operators like this:</span><br></pre></td></tr></table></figure>
+<p>mysql&gt; SELECT * FROM pet WHERE (species = ‘cat’ AND sex = ‘m’)<br>       OR (species = ‘dog’ AND sex = ‘f’);<br>+——-+——–+———+——+————+——-+<br>| name  | owner  | species | sex  | birth      | death |<br>+——-+——–+———+——+————+——-+<br>| Claws | Gwen   | cat     | m    | 1994-03-17 | NULL  |<br>| Buffy | Harold | dog     | f    | 1989-05-13 | NULL  |<br>+——-+——–+———+——+————+——-+</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt; Note:</span><br><span class="line">&gt; - [ ] &#96;AND&#96; and &#96;OR&#96; may be intermixed, although **&#96;AND&#96; has higher precedence than &#96;OR&#96;**. If you use both operators, it is a good idea to **use parentheses to indicate explicitly how conditions should be grouped.**</span><br><span class="line">&gt; - [ ] If you want querey for pets that are &#96;not dead&#96;, then you should use &#96;death IS NOT NULL&#96; rather than &#96;death&lt;&gt;NULL&#96; (yes, &#96;&lt;&gt;&#96; means not equal to) **because NULL is a special value that cannot be compared** using the usual comparison operators. This is discussed later. </span><br><span class="line"></span><br><span class="line">## Selecting Particular Columns</span><br><span class="line">You can select a particular column by:</span><br></pre></td></tr></table></figure>
+<p>mysql&gt; SELECT owner FROM pet;<br>+——–+<br>| owner  |<br>+——–+<br>| Harold |<br>| Gwen   |<br>| Harold |<br>| Benny  |<br>| Diane  |<br>| Gwen   |<br>| Gwen   |<br>| Benny  |<br>| Diane  |<br>+——–+</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">If you want to see more than one column, use thet &quot;&#96;,&#96;&quot; as the delimiter:</span><br></pre></td></tr></table></figure>
+<p>mysql&gt; SELECT name, birth FROM pet;<br>+———-+————+<br>| name     | birth      |<br>+———-+————+<br>| Fluffy   | 1993-02-04 |<br>| Claws    | 1994-03-17 |<br>| Buffy    | 1989-05-13 |<br>| Fang     | 1990-08-27 |<br>| Bowser   | 1989-08-31 |<br>| Chirpy   | 1998-09-11 |<br>| Whistler | 1997-12-09 |<br>| Slim     | 1996-04-29 |<br>| Puffball | 1999-03-30 |<br>+———-+————+</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">You can combine **&#96;WHERE&#96; clause (row selection)** with **column selection**. For example, to get &#96;birth&#96; dates for dogs and cats only, use this query:</span><br></pre></td></tr></table></figure>
+<p>mysql&gt; SELECT name, species, birth FROM pet<br>       WHERE species = ‘dog’ OR species = ‘cat’;<br>+——–+———+————+<br>| name   | species | birth      |<br>+——–+———+————+<br>| Fluffy | cat     | 1993-02-04 |<br>| Claws  | cat     | 1994-03-17 |<br>| Buffy  | dog     | 1989-05-13 |<br>| Fang   | dog     | 1990-08-27 |<br>| Bowser | dog     | 1989-08-31 |<br>+——–+———+————+</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">## Sorting the Table by Rows</span><br><span class="line">- To sort a table (which is only **meaningful w.r.t a particular row**), use an &#96;ORDER BY&#96; clause, which by default sorts a **comparable entry in a ascending order**.</span><br><span class="line">	</span><br><span class="line">	For example, we could sort the animals by their &#96;birth&#96; date:</span><br></pre></td></tr></table></figure>
+<pre><code>mysql&gt; SELECT name, birth FROM pet ORDER BY birth;
++----------+------------+
+| name     | birth      |
++----------+------------+
+| Buffy    | 1989-05-13 |
+| Bowser   | 1989-08-31 |
+| Fang     | 1990-08-27 |
+| Fluffy   | 1993-02-04 |
+| Claws    | 1994-03-17 |
+| Slim     | 1996-04-29 |
+| Whistler | 1997-12-09 |
+| Chirpy   | 1998-09-11 |
+| Puffball | 1999-03-30 |
++----------+------------+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">	</span><br><span class="line">	You can also sort by &#96;name&#96;, which would mean invoking **comparison on character type** entries. In this case, sorting — like all other comparison operations — **is normally performed in a case-insensitive** fashion. However, you can **force a case-sensitive sort** for a column by using &#96;BINARY&#96; like so: &#96;ORDER BY BINARY &lt;col_name&gt;&#96;.</span><br><span class="line"></span><br><span class="line">- To sort in a **descending order**, you need to add the option **&#96;DESC&#96; to the &#96;&lt;col_name&gt;&#96;** you are sorting:</span><br></pre></td></tr></table></figure>
+mysql&gt; SELECT name, birth FROM pet ORDER BY birth DESC;
++----------+------------+
+| name     | birth      |
++----------+------------+
+| Puffball | 1999-03-30 |
+| Chirpy   | 1998-09-11 |
+| Whistler | 1997-12-09 |
+| Slim     | 1996-04-29 |
+| Claws    | 1994-03-17 |
+| Fluffy   | 1993-02-04 |
+| Fang     | 1990-08-27 |
+| Bowser   | 1989-08-31 |
+| Buffy    | 1989-05-13 |
++----------+------------+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- You can also perform **multiple sortings**. This works by **first sorting by the first criteria** you specified. Then, **within rows of the same first criteria, sort by the second criteria**. This can propagate depending on your data.</span><br><span class="line"></span><br><span class="line">	For example, to sort **first by &#96;type&#96; of animal in ascending order**, **then by &#96;birth&#96; date within the same animal type in descending order** (youngest animals first):</span><br></pre></td></tr></table></figure>
+mysql&gt; SELECT name, species, birth FROM pet
+       ORDER BY species, birth DESC;
++----------+---------+------------+
+| name     | species | birth      |
++----------+---------+------------+
+| Chirpy   | bird    | 1998-09-11 |
+| Whistler | bird    | 1997-12-09 |
+| Claws    | cat     | 1994-03-17 |
+| Fluffy   | cat     | 1993-02-04 |
+| Fang     | dog     | 1990-08-27 |
+| Bowser   | dog     | 1989-08-31 |
+| Buffy    | dog     | 1989-05-13 |
+| Puffball | hamster | 1999-03-30 |
+| Slim     | snake   | 1996-04-29 |
++----------+---------+------------+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">	</span><br><span class="line">	However, **if all data are distinct**, for example, then **sorting by two criterias would be meaningless**, as the result would be the **same if you only sorted it by the first criteria** you specified (you can try this yourself).</span><br><span class="line"></span><br><span class="line">- Lastly, you could combine **row selections** as well. However, here you need to specify &#96;WHERE&#96; before you specify &#96;ORDER BY&#96;, which makes sense because this can save computation time.</span><br><span class="line"></span><br><span class="line">	For example, in the above sorting, I would only want to see &#96;cat&#96; and &#96;dog&#96;s, I could do:</span><br></pre></td></tr></table></figure>
+mysql&gt; SELECT name, species, birth FROM pet
+       WHERE species=&apos;cat&apos; OR species=&apos;DOG&apos; ORDER BY species, birth DESC;
++----------+---------+------------+
+| name     | species | birth      |
++----------+---------+------------+
+| Claws    | cat     | 1994-03-17 |
+| Fluffy   | cat     | 1993-02-04 |
+| Fang     | dog     | 1990-08-27 |
+| Bowser   | dog     | 1989-08-31 |
+| Buffy    | dog     | 1989-05-13 |
++----------+---------+------------+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">## Data Calculations </span><br><span class="line">**MySQL provides several functions** that you can use to perform calculations. In this case, if we want to do calculations on dates, for example, to calculate ages or extract parts of dates, we could use &#96;TIMESTAMPDIFF(unit,datetime_expr1,datetime_expr2)&#96; function:</span><br><span class="line">- &#96;Argument&#96;</span><br><span class="line">	- &#96;unit&#96;, which will be the format of the result, has the following legal values: &#96;MICROSECOND &#96;(microseconds), &#96;SECOND&#96;, &#96;MINUTE&#96;, &#96;HOUR&#96;, &#96;DAY&#96;, &#96;WEEK&#96;, &#96;MONTH&#96;, &#96;QUARTER&#96;, or &#96;YEAR&#96;.</span><br><span class="line">	- &#96;datetime_expr1&#96; and &#96;datetime_expr2&#96; are date or datetime expressions.</span><br><span class="line">- &#96;Returns&#96;</span><br><span class="line">	-  &#96;datetime_expr2 − datetime_expr1&#96; in the unit specified by &#96;unit&#96;. However, one expression may be a date and the other a datetime; in that case, a date value is treated as a datetime having the time part &#96;&#39;00:00:00&#39;&#96; where necessary. The unit for the result (an integer) is given by the unit argument. </span><br><span class="line"></span><br><span class="line">Also, an alias (&#96;AS age&#96;) is used to make the final output column label more meaningful:</span><br></pre></td></tr></table></figure>
+mysql&gt; SELECT name, birth, CURDATE(),
+       TIMESTAMPDIFF(YEAR,birth,CURDATE()) AS age
+       FROM pet;
++----------+------------+------------+------+
+| name     | birth      | CURDATE()  | age  |
++----------+------------+------------+------+
+| Fluffy   | 1993-02-04 | 2003-08-19 |   10 |
+| Claws    | 1994-03-17 | 2003-08-19 |    9 |
+| Buffy    | 1989-05-13 | 2003-08-19 |   14 |
+| Fang     | 1990-08-27 | 2003-08-19 |   12 |
+| Bowser   | 1989-08-31 | 2003-08-19 |   13 |
+| Chirpy   | 1998-09-11 | 2003-08-19 |    4 |
+| Whistler | 1997-12-09 | 2003-08-19 |    5 |
+| Slim     | 1996-04-29 | 2003-08-19 |    7 |
+| Puffball | 1999-03-30 | 2003-08-19 |    4 |
++----------+------------+------------+------+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">You can then order it by &#96;age&#96;:</span><br></pre></td></tr></table></figure></code></pre><p>mysql&gt; SELECT name, birth, CURDATE(),<br>       TIMESTAMPDIFF(YEAR,birth,CURDATE()) AS age<br>       FROM pet ORDER BY age;<br>+———-+————+————+——+<br>| name     | birth      | CURDATE()  | age  |<br>+———-+————+————+——+<br>| Chirpy   | 1998-09-11 | 2003-08-19 |    4 |<br>| Puffball | 1999-03-30 | 2003-08-19 |    4 |<br>| Whistler | 1997-12-09 | 2003-08-19 |    5 |<br>| Slim     | 1996-04-29 | 2003-08-19 |    7 |<br>| Claws    | 1994-03-17 | 2003-08-19 |    9 |<br>| Fluffy   | 1993-02-04 | 2003-08-19 |   10 |<br>| Fang     | 1990-08-27 | 2003-08-19 |   12 |<br>| Bowser   | 1989-08-31 | 2003-08-19 |   13 |<br>| Buffy    | 1989-05-13 | 2003-08-19 |   14 |<br>+———-+————+————+——+</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">But what if you want to know which animals have **birthdays next mont**h? For this type of calculation, year and day are irrelevant; you simply want to **extract the month part of the &#96;birth&#96;** column. MySQL provides several functions for extracting parts of dates, such as &#96;YEAR()&#96;, &#96;MONTH()&#96;, and &#96;DAYOFMONTH()&#96;. &#96;MONTH()&#96; is the appropriate function here. To see how it works, run a simple query that displays the value of both birth and &#96;MONTH(date)&#96;:</span><br><span class="line">- &#96;Argument&#96;</span><br><span class="line">	- &#96;date&#96;, for example &#96;&#39;2008-02-03&#39;&#96;</span><br><span class="line">- &#96;Returns&#96; </span><br><span class="line">	- the month for &#96;date&#96;, **in the range 1 to 12 for January to December**, or **0 for dates such as &#39;0000-00-00&#39; or &#39;2008-00-00&#39; that have a zero month part**.</span><br></pre></td></tr></table></figure>
+<p>mysql&gt; SELECT name, birth, MONTH(birth) FROM pet;<br>+———-+————+————–+<br>| name     | birth      | MONTH(birth) |<br>+———-+————+————–+<br>| Fluffy   | 1993-02-04 |            2 |<br>| Claws    | 1994-03-17 |            3 |<br>| Buffy    | 1989-05-13 |            5 |<br>| Fang     | 1990-08-27 |            8 |<br>| Bowser   | 1989-08-31 |            8 |<br>| Chirpy   | 1998-09-11 |            9 |<br>| Whistler | 1997-12-09 |           12 |<br>| Slim     | 1996-04-29 |            4 |<br>| Puffball | 1999-03-30 |            3 |<br>+———-+————+————–+</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">and if you want to see pets that have birthday the **current month** (**suppose it is May now**), then you can do:</span><br></pre></td></tr></table></figure>
+<p>mysql&gt; SELECT name, birth FROM pet WHERE MONTH(birth) = 5;<br>+——-+————+<br>| name  | birth      |<br>+——-+————+<br>| Buffy | 1989-05-13 |<br>+——-+————+</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&gt; Note:</span><br><span class="line">&gt; - [ ] You might think that you could write &#96;SELECT name, birth, MONTH(birth) as month FROM pet WHERE month&#x3D; 5;&#96; would be another option, as it works for sorting. Unfortunately, **this would not work** because standard SQL **disallows references to column aliases** in a **&#96;WHERE&#96; clause**.</span><br><span class="line"></span><br><span class="line">To see pets that have birthday the **next month**, you can use either the &#96;DATE_ADD()&#96; function or the &#96;MOD()&#96; function. For saving space, details for their arguments and return values are not explained here.</span><br><span class="line"></span><br><span class="line">1. To use the &#96;DATE_ADD()&#96; function to add a month to the current date:</span><br></pre></td></tr></table></figure>
+<pre><code>mysql&gt; SELECT name, birth FROM pet
+       WHERE MONTH(birth) = MONTH(DATE_ADD(CURDATE(),INTERVAL 1 MONTH));
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">2. To use the &#96;MOD()&#96; function to calculate the value of the next month:</span><br></pre></td></tr></table></figure>
+mysql&gt; SELECT name, birth FROM pet
+       WHERE MONTH(birth) = MOD(MONTH(CURDATE())+1, 12);
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">If a calculation **fails**, it will produce &#96;warning&#96;s:</span><br></pre></td></tr></table></figure></code></pre><p>mysql&gt; SELECT ‘2018-10-32’ + INTERVAL 1 DAY;<br>+——————————-+<br>| ‘2018-10-32’ + INTERVAL 1 DAY |<br>+——————————-+<br>| NULL                          |<br>+——————————-+<br>1 row in set, 1 warning (0.00 sec)</p>
+<p>mysql&gt; SHOW WARNINGS;<br>+———+——+—————————————-+<br>| Level   | Code | Message                                |<br>+———+——+—————————————-+<br>| Warning | 1292 | Incorrect datetime value: ‘2018-10-32’ |<br>+———+——+—————————————-+</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">## Working with &#96;NULL&#96; Values</span><br><span class="line">The NULL value can be surprising until you get used to it. Conceptually, NULL means “a missing unknown value” and it is treated somewhat differently from other values.</span><br><span class="line"></span><br><span class="line">To test for NULL, use the &#96;IS NULL&#96; and &#96;IS NOT NULL&#96; operators, as shown here:</span><br></pre></td></tr></table></figure>
+<p>mysql&gt; SELECT 1 IS NULL, 1 IS NOT NULL;<br>+———–+—————+<br>| 1 IS NULL | 1 IS NOT NULL |<br>+———–+—————+<br>|         0 |             1 |<br>+———–+—————+</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">where you can think of &#96;0&#96; meaning &#96;false&#96; and &#96;1&#96; meaning &#96;true&#96;.</span><br><span class="line"></span><br><span class="line">If you use arithmetic comparison operators such as &#96;&#x3D;&#96;, &#96;&lt;&#96;, or &#96;&lt;&gt;&#96; to test for &#96;NULL&#96;, you will get the following result:</span><br></pre></td></tr></table></figure>
+<p>mysql&gt; SELECT 1 = NULL, 1 &lt;&gt; NULL, 1 &lt; NULL, 1 &gt; NULL;<br>+———-+———–+———-+———-+<br>| 1 = NULL | 1 &lt;&gt; NULL | 1 &lt; NULL | 1 &gt; NULL |<br>+———-+———–+———-+———-+<br>|     NULL |      NULL |     NULL |     NULL |<br>+———-+———–+———-+———-+</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">This is because the result of **any arithmetic comparison with &#96;NULL&#96; is also &#96;NULL&#96;**, so you cannot obtain any meaningful results from such comparisons.</span><br><span class="line"></span><br><span class="line">&gt; Note:</span><br><span class="line">&gt; - [ ] In **MySQL**, &#96;0&#96; or &#96;NULL&#96; means &#96;false&#96; and anything else means &#96;true&#96;. The **default &#96;true&#96; value** from a boolean operation is &#96;1&#96;.</span><br><span class="line">&gt; - [ ] Also, when doing an &#96;ORDER BY&#96;, **&#96;NULL&#96; values are presented first if you do &#96;ORDER BY ... ASC&#96;** and last if you do &#96;ORDER BY ... DESC&#96;.</span><br><span class="line"></span><br><span class="line">## Pattern Matching</span><br><span class="line"></span><br><span class="line">MySQL provides standard SQL pattern matching as well as a form of pattern matching based on **extended regular expressions** similar to those used by Unix utilities such as **vi**, **grep**, and **sed**.</span><br><span class="line"></span><br><span class="line">- &#96;_&#96; can be used to match&#x2F;replace any single character </span><br><span class="line">- &#96;%&#96; to match&#x2F;replace an arbitrary number of characters (including zero characters). </span><br><span class="line"></span><br><span class="line">&gt; Note:</span><br><span class="line">&gt; - [ ] In MySQL, SQL patterns are **case-insensitive by default**. </span><br><span class="line"></span><br><span class="line">Some examples are shown here. **Do not use &#96;&#x3D;&#96; or &#96;&lt;&gt;&#96; when you use SQL patterns**. Use the **&#96;LIKE&#96; or &#96;NOT LIKE&#96; comparison operators** instead.</span><br><span class="line"></span><br><span class="line">- To find names beginning with &#96;b&#96; or &#96;B&#96; (because it is case-insensitive):</span><br></pre></td></tr></table></figure>
+<pre><code>mysql&gt; SELECT * FROM pet WHERE name LIKE &apos;b%&apos;;
++--------+--------+---------+------+------------+------------+
+| name   | owner  | species | sex  | birth      | death      |
++--------+--------+---------+------+------------+------------+
+| Buffy  | Harold | dog     | f    | 1989-05-13 | NULL       |
+| Bowser | Diane  | dog     | m    | 1989-08-31 | 1995-07-29 |
++--------+--------+---------+------+------------+------------+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- To find names ending with &#96;fy&#96;:</span><br></pre></td></tr></table></figure>
+mysql&gt; SELECT * FROM pet WHERE name LIKE &apos;%fy&apos;;
++--------+--------+---------+------+------------+-------+
+| name   | owner  | species | sex  | birth      | death |
++--------+--------+---------+------+------------+-------+
+| Fluffy | Harold | cat     | f    | 1993-02-04 | NULL  |
+| Buffy  | Harold | dog     | f    | 1989-05-13 | NULL  |
++--------+--------+---------+------+------------+-------+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- To find names containing a &#96;w&#96;:</span><br></pre></td></tr></table></figure>
+mysql&gt; SELECT * FROM pet WHERE name LIKE &apos;%w%&apos;;
++----------+-------+---------+------+------------+------------+
+| name     | owner | species | sex  | birth      | death      |
++----------+-------+---------+------+------------+------------+
+| Claws    | Gwen  | cat     | m    | 1994-03-17 | NULL       |
+| Bowser   | Diane | dog     | m    | 1989-08-31 | 1995-07-29 |
+| Whistler | Gwen  | bird    | NULL | 1997-12-09 | NULL       |
++----------+-------+---------+------+------------+------------+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- To find names containing exactly five characters, use five instances of the &#96;_&#96; pattern character:</span><br></pre></td></tr></table></figure>
+mysql&gt; SELECT * FROM pet WHERE name LIKE &apos;_____&apos;;
++-------+--------+---------+------+------------+-------+
+| name  | owner  | species | sex  | birth      | death |
++-------+--------+---------+------+------------+-------+
+| Claws | Gwen   | cat     | m    | 1994-03-17 | NULL  |
+| Buffy | Harold | dog     | f    | 1989-05-13 | NULL  |
++-------+--------+---------+------+------------+-------+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">The other type of pattern matching provided by MySQL uses **extended regular expressions**. Those will be much more extensive and enables you to do much more. When you test for a match for this type of pattern, **use the &#96;REGEXP_LIKE(expr, pat[, match_type])&#96;** function (or the &#96;REGEXP&#96; or &#96;RLIKE&#96; operators, which are synonyms for &#96;REGEXP_LIKE()&#96;).</span><br><span class="line">- &#96;Arguement&#96;</span><br><span class="line">	- &#96;expr&#96; a string of input</span><br><span class="line">	- &#96;pat&#96; a **regular expression** for matching the input. Examples of common **regular expressions** include:</span><br><span class="line">		- &#96;.&#96; matches any single character.</span><br><span class="line">		- A character class &#96;[...]&#96; matches **any character for once within the brackets**. For example, [abc] matches a, b, or c. To name a **range of characters**, use a dash. [a-z] matches any letter, whereas [0-9] matches any digit. Use &#96;+&#96; to match a character more than once. For example, &#96;[a-z]+&#96; would match any word.</span><br><span class="line">		- &#96;*&#96; matches **zero or more instances of the thing preceding it**. For example, &#96;x*&#96; matches any number of x characters, **[0-9]* matches any number of digits**, and &#96;.*&#96; matches **any number of anything**.</span><br><span class="line">		- Use &#96;^&#96; at the beginning or &#96;$&#96; at the end of the pattern to **anchor a pattern so that it must match the beginning or end of the value being tested, respectively.**</span><br><span class="line">		- A regular expression pattern match succeeds **if the pattern matches anywhere in the value being tested**. (This differs from a **&#96;LIKE&#96; pattern match, which succeeds only if the pattern matches the entire value.**)</span><br><span class="line">		- for a complete reference, visit [Regexp Syntax by MySQL](https:&#x2F;&#x2F;dev.mysql.com&#x2F;doc&#x2F;refman&#x2F;8.0&#x2F;en&#x2F;regexp.html#regexp-syntax)</span><br><span class="line">	- optional &#96;match_type&#96; is a string that may contain any or all the following characters specifying how to perform matching:</span><br><span class="line">		- &#96;c&#96;: **Case sensitive matching**.</span><br><span class="line">		- &#96;i&#96;: Case-insensitive matching.</span><br><span class="line">		- &#96;m&#96;: Multiple-line mode. Recognize line terminators within the string. The default behavior is to match line terminators only at the start and end of the string expression.</span><br><span class="line">		- &#96;n&#96;: The . character matches line terminators. The default is for . matching to stop at the end of a line.</span><br><span class="line">		- &#96;u&#96;: Unix-only line endings. Only the newline character is recognized as a line ending by the ., ^, and $ match operators.</span><br><span class="line">- &#96;Returns&#96;</span><br><span class="line">	- Returns **&#96;1&#96; if the string expr matches the regular expression** specified by the pattern pat, &#96;0&#96; otherwise. If expr or pat is &#96;NULL&#96;, the return value is &#96;NULL&#96;.</span><br><span class="line"></span><br><span class="line">For example, to find names beginning with b, use &#96;^&#96; to match the beginning of the name:</span><br></pre></td></tr></table></figure></code></pre><p>mysql&gt; SELECT * FROM pet WHERE REGEXP_LIKE(name, ‘^b’);<br>+——–+——–+———+——+————+————+<br>| name   | owner  | species | sex  | birth      | death      |<br>+——–+——–+———+——+————+————+<br>| Buffy  | Harold | dog     | f    | 1989-05-13 | NULL       |<br>| Bowser | Diane  | dog     | m    | 1979-08-31 | 1995-07-29 |<br>+——–+——–+———+——+————+————+</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">To find names ending with &#96;fy&#96;, use &#96;$&#96; to match the end of the name:</span><br></pre></td></tr></table></figure>
+<p>mysql&gt; SELECT * FROM pet WHERE REGEXP_LIKE(name, ‘fy$’);<br>+——–+——–+———+——+————+——-+<br>| name   | owner  | species | sex  | birth      | death |<br>+——–+——–+———+——+————+——-+<br>| Fluffy | Harold | cat     | f    | 1993-02-04 | NULL  |<br>| Buffy  | Harold | dog     | f    | 1989-05-13 | NULL  |<br>+——–+——–+———+——+————+——-+</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">To force a regular expression comparison to be **case sensitive**, use a case-sensitive collation, or use the BINARY keyword to make one of the strings a binary string, or specify the &#96;c&#96; match-control character (as mentioend above). Each of these queries matches only lowercase b at the beginning of a name:</span><br></pre></td></tr></table></figure>
+<p>SELECT * FROM pet WHERE REGEXP_LIKE(name, ‘^b’ COLLATE utf8mb4_0900_as_cs);<br>SELECT * FROM pet WHERE REGEXP_LIKE(name, BINARY ‘^b’);<br>SELECT * FROM pet WHERE REGEXP_LIKE(name, ‘^b’, ‘c’);</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">To find names containing a &#96;w&#96;, use this query:</span><br></pre></td></tr></table></figure>
+<p>mysql&gt; SELECT * FROM pet WHERE REGEXP_LIKE(name, ‘w’);<br>+———-+——-+———+——+————+————+<br>| name     | owner | species | sex  | birth      | death      |<br>+———-+——-+———+——+————+————+<br>| Claws    | Gwen  | cat     | m    | 1994-03-17 | NULL       |<br>| Bowser   | Diane | dog     | m    | 1989-08-31 | 1995-07-29 |<br>| Whistler | Gwen  | bird    | NULL | 1997-12-09 | NULL       |<br>+———-+——-+———+——+————+————+</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Because a regular expression pattern **matches if it occurs anywhere in the value**, it is **not necessary in the previous query to put a wildcard on either side of the pattern** to get it to match the entire value as would be true with an SQL pattern.</span><br><span class="line"></span><br><span class="line">To find names containing **exactly five characters**, use &#96;^&#96; and &#96;$&#96; to match the beginning and end of the name, and five instances of &#96;.&#96; in between (simply &#96;.....&#96; would not work due to the fact that **REGEXP() matches if it occurs anywhere in the value**):</span><br></pre></td></tr></table></figure>
+<p>mysql&gt; SELECT * FROM pet WHERE REGEXP_LIKE(name, ‘^…..$’);<br>+——-+——–+———+——+————+——-+<br>| name  | owner  | species | sex  | birth      | death |<br>+——-+——–+———+——+————+——-+<br>| Claws | Gwen   | cat     | m    | 1994-03-17 | NULL  |<br>| Buffy | Harold | dog     | f    | 1989-05-13 | NULL  |<br>+——-+——–+———+——+————+——-+<br>```</p>
 
       
     </div>
