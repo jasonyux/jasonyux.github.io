@@ -483,6 +483,200 @@
 <p>Because a regular expression pattern <strong>matches if it occurs anywhere in the value</strong>, it is <strong>not necessary in the previous query to put a wildcard on either side of the pattern</strong> to get it to match the entire value as would be true with an SQL pattern.</p>
 <p>To find names containing <strong>exactly five characters</strong>, use <code>^</code> and <code>$</code> to match the beginning and end of the name, and five instances of <code>.</code> in between (simply <code>.....</code> would not work due to the fact that <strong>REGEXP() matches if it occurs anywhere in the value</strong>):</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT * FROM pet WHERE REGEXP_LIKE(name, &#39;^.....$&#39;);</span><br><span class="line">+-------+--------+---------+------+------------+-------+</span><br><span class="line">| name  | owner  | species | sex  | birth      | death |</span><br><span class="line">+-------+--------+---------+------+------------+-------+</span><br><span class="line">| Claws | Gwen   | cat     | m    | 1994-03-17 | NULL  |</span><br><span class="line">| Buffy | Harold | dog     | f    | 1989-05-13 | NULL  |</span><br><span class="line">+-------+--------+---------+------+------------+-------+</span><br></pre></td></tr></table></figure>
+
+<h2 id="Counting-Rows-and-Grouping-Frequencies"><a href="#Counting-Rows-and-Grouping-Frequencies" class="headerlink" title="Counting Rows and Grouping Frequencies"></a>Counting Rows and Grouping Frequencies</h2><p>Databases are often used to answer the question, “<strong>How often does a certain type of data occur</strong> in a table?” For example, you might want to know how many pets you have, or how many pets each owner has, or you might want to perform various kinds of census operations on your animals.</p>
+<ul>
+<li><p>Counting the <strong>total number of animals you have</strong> is the same question as “How many rows are in the pet table?” because there is one record per pet. <code>COUNT(*)</code> counts the number of rows, so the query to count your animals looks like this:</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT COUNT(*) FROM pet;</span><br><span class="line">+----------+</span><br><span class="line">| COUNT(*) |</span><br><span class="line">+----------+</span><br><span class="line">|        9 |</span><br><span class="line">+----------+</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>The more useful case come when you use <code>COUNT()</code> in conjunction with <code>GROUP BY</code> for characterizing your data under various groupings. </p>
+<ul>
+<li><p>For example, if you want to find out how many pets each owner has:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT owner, COUNT(*) FROM pet GROUP BY owner;</span><br><span class="line">+--------+----------+</span><br><span class="line">| owner  | COUNT(*) |</span><br><span class="line">+--------+----------+</span><br><span class="line">| Benny  |        2 |</span><br><span class="line">| Diane  |        2 |</span><br><span class="line">| Gwen   |        3 |</span><br><span class="line">| Harold |        2 |</span><br><span class="line">+--------+----------+</span><br></pre></td></tr></table></figure>
+
+<p>This works because <code>COUNT()</code> is a <strong>window function</strong>, whose result rows are determined from the <code>FROM</code> clause, <strong>after <code>WHERE</code>, <code>GROUP BY</code>, and <code>HAVING</code> processing</strong>, and windowing execution occurs before <code>ORDER BY</code>, <code>LIMIT</code>, and <code>SELECT DISTINCT</code>.</p>
+<p>This means that it <strong>first <code>GROUP BY owner</code></strong>, and then shows <code>owner</code> and <code>COUNT(*)</code>. For a complete guide of how to use a <code>COUNT()</code>, please follow <a href="https://dev.mysql.com/doc/refman/8.0/en/group-by-functions.html#function_count" target="_blank" rel="noopener">this link</a>. For now, you just need to know that <code>COUNT()</code>:</p>
+<ul>
+<li><code>Return</code><ul>
+<li>Returns a count of the number of non-NULL <strong>values of <code>expr</code> in the rows retrieved by a <code>SELECT</code></strong> statement</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Similarly, you can also <code>GROUP BY species</code>:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT species, COUNT(*) FROM pet GROUP BY species;</span><br><span class="line">+---------+----------+</span><br><span class="line">| species | COUNT(*) |</span><br><span class="line">+---------+----------+</span><br><span class="line">| bird    |        2 |</span><br><span class="line">| cat     |        2 |</span><br><span class="line">| dog     |        3 |</span><br><span class="line">| hamster |        1 |</span><br><span class="line">| snake   |        1 |</span><br><span class="line">+---------+----------+</span><br></pre></td></tr></table></figure></li>
+<li><p>And number of animals per sex:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT sex, COUNT(*) FROM pet GROUP BY sex;</span><br><span class="line">+------+----------+</span><br><span class="line">| sex  | COUNT(*) |</span><br><span class="line">+------+----------+</span><br><span class="line">| NULL |        1 |</span><br><span class="line">| f    |        4 |</span><br><span class="line">| m    |        4 |</span><br><span class="line">+------+----------+</span><br></pre></td></tr></table></figure>
+<p>where <code>NULL</code> means the sex is unknown.</p>
+</li>
+<li><p>You could also <strong>group by one than one categories</strong>. For example, you can group by <code>species</code> first and then <code>sex</code>:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT species, sex, COUNT(*) FROM pet GROUP BY species, sex;</span><br><span class="line">+---------+------+----------+</span><br><span class="line">| species | sex  | COUNT(*) |</span><br><span class="line">+---------+------+----------+</span><br><span class="line">| bird    | NULL |        1 |</span><br><span class="line">| bird    | f    |        1 |</span><br><span class="line">| cat     | f    |        1 |</span><br><span class="line">| cat     | m    |        1 |</span><br><span class="line">| dog     | f    |        1 |</span><br><span class="line">| dog     | m    |        2 |</span><br><span class="line">| hamster | f    |        1 |</span><br><span class="line">| snake   | m    |        1 |</span><br><span class="line">+---------+------+----------+</span><br></pre></td></tr></table></figure></li>
+<li><p>and finally, you can also use the <code>WHERE</code> clause to select only a proportion of data you want (<code>WHERE</code> executes before <code>GROUP BY</code>). For example, if you only want to see <code>cat</code> and <code>dog</code> data:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT species, sex, COUNT(*) FROM pet</span><br><span class="line">       WHERE species &#x3D; &#39;dog&#39; OR species &#x3D; &#39;cat&#39;</span><br><span class="line">       GROUP BY species, sex;</span><br><span class="line">+---------+------+----------+</span><br><span class="line">| species | sex  | COUNT(*) |</span><br><span class="line">+---------+------+----------+</span><br><span class="line">| cat     | f    |        1 |</span><br><span class="line">| cat     | m    |        1 |</span><br><span class="line">| dog     | f    |        1 |</span><br><span class="line">| dog     | m    |        2 |</span><br><span class="line">+---------+------+----------+</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="Using-Multiple-Tables"><a href="#Using-Multiple-Tables" class="headerlink" title="Using Multiple Tables"></a>Using Multiple Tables</h2><p>Suppose you have another table. Then a problem arise when you need to deal with data on both tables, namely, how do you <strong>combine and operate on data from multiple tables</strong>?</p>
+<p>Now suppose you created another table to <strong>record other information about them</strong>, such as events in their lives like visits to the vet or when litters are born, and you put the following information in a <code>event</code> table:</p>
+<p><img src="/.com//05/26/MySQL-Manual/pet-events.png" alt="Table from https://dev.mysql.com/doc/refman/8.0/en/multiple-tables.html" title="Table from https://dev.mysql.com/doc/refman/8.0/en/multiple-tables.html"></p>
+<p>Suppose that you want to find out the <strong>ages at which each pet had its litters</strong>. We saw earlier how to calculate ages from two dates. The <code>litter</code> date of the mother is in the <code>event</code> table, but to calculate her age on that date you need her <code>birth</code> date, <strong>which is stored in the <code>pet</code> table</strong>. This means the query requires both tables:</p>
+<ul>
+<li><p>First, you need to know that <strong>tables are distinct in a database</strong>. This means that <strong>any column in a specific table in a database</strong> can be referred as: <code>&lt;tableName&gt;.&lt;colName&gt;</code>.</p>
+</li>
+<li><p>Now, to combine data from multiple tables, you can use <code>INNER JOIN</code> (for more details on <code>JOIN</code> clause, see <a href="https://dev.mysql.com/doc/refman/8.0/en/join.html" target="_blank" rel="noopener">here</a>), which can be used to <strong>combine the tables by permitsting rows from either table to appear</strong> in the result <strong>if and only if both tables meet the conditions specified in the <code>ON</code> clause</strong>. For example:</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT pet.name,</span><br><span class="line">       TIMESTAMPDIFF(YEAR,birth,date) AS age,</span><br><span class="line">       remark</span><br><span class="line">       FROM pet INNER JOIN event</span><br><span class="line">         ON pet.name &#x3D; event.name</span><br><span class="line">       WHERE event.type &#x3D; &#39;litter&#39;;</span><br><span class="line">+--------+------+-----------------------------+</span><br><span class="line">| name   | age  | remark                      |</span><br><span class="line">+--------+------+-----------------------------+</span><br><span class="line">| Fluffy |    2 | 4 kittens, 3 female, 1 male |</span><br><span class="line">| Buffy  |    4 | 5 puppies, 2 female, 3 male |</span><br><span class="line">| Buffy  |    5 | 3 puppies, 3 female         |</span><br><span class="line">+--------+------+-----------------------------+</span><br></pre></td></tr></table></figure>
+<p>where you see in this example:</p>
+<ul>
+<li>When combining (joining) information from multiple tables, you need to specify how records in one table can be matched to records in the other (e.g. using the <code>ON</code> clause). This is easy because they both have a <code>name</code> column. The query uses an <code>ON pet.name=event.name</code> to match up records in the two tables <strong>if they have the same name value</strong>.</li>
+</ul>
+<p>However, you <strong>do not need to have two different tables</strong> to use the <code>INNER JOIN ... ON</code> functionality. You can <strong>use alias `AS</strong><code>. For example, to find possible **breeding pairs among your pets**, you can join the</code>pet` table with itself to produce candidate pairs of live <strong>males and females of like species</strong>:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT p1.name, p1.sex, p2.name, p2.sex, p1.species</span><br><span class="line">       FROM pet AS p1 INNER JOIN pet AS p2</span><br><span class="line">         ON p1.species &#x3D; p2.species</span><br><span class="line">         AND p1.sex &#x3D; &#39;f&#39; AND p1.death IS NULL</span><br><span class="line">         AND p2.sex &#x3D; &#39;m&#39; AND p2.death IS NULL;</span><br><span class="line">+--------+------+-------+------+---------+</span><br><span class="line">| name   | sex  | name  | sex  | species |</span><br><span class="line">+--------+------+-------+------+---------+</span><br><span class="line">| Fluffy | f    | Claws | m    | cat     |</span><br><span class="line">| Buffy  | f    | Fang  | m    | dog     |</span><br><span class="line">+--------+------+-------+------+---------+</span><br></pre></td></tr></table></figure>
+
+<h2 id="Using-MySQL-in-Batch-Mode"><a href="#Using-MySQL-in-Batch-Mode" class="headerlink" title="Using MySQL in Batch Mode"></a>Using MySQL in Batch Mode</h2><p>Sometimes, if you have a <code>batch file</code> that you would like MySQL to execute, you can run <code>mysql</code> in <strong>batch mode</strong>. To do this, put the statements you want to run in a batch file (<strong>with <code>.sql</code> ending</strong>), then <strong>tell <code>mysql</code> to read its input from the file</strong>.</p>
+<ul>
+<li><p><strong>Outside of <code>mysql</code></strong>:</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">shell&gt; mysql &lt; &lt;your-batch-file&gt;</span><br></pre></td></tr></table></figure>
+
+<p>  If you are running <code>mysql</code> under Windows and have some special characters in the file that cause problems, you can do this:</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\&gt; mysql -e &quot;source &lt;your-batch-file&gt;&quot;</span><br></pre></td></tr></table></figure>
+
+<p>  If you need to specify connection parameters on the command line, the command might look like this:</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">shell&gt; mysql -h host -u user -p &lt; &lt;your-batch-file&gt;</span><br><span class="line">Enter password: ********</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>You can also use scripts from <strong>inside the <code>mysql</code> prompt</strong> by using the <code>source</code> command or <code>\.</code> command:</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; source filename;</span><br><span class="line">mysql&gt; \. filename</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<blockquote>
+<p>Note:</p>
+<ul>
+<li><input disabled type="checkbox"> If you want the script to continue <strong>even if some of the statements in it produce errors</strong>, you should use the <code>--force</code> command-line option.  </li>
+</ul>
+</blockquote>
+<p>In general, you would use scriptings in a batch mode if you need to:</p>
+<ul>
+<li>run a query <strong>repeatedly</strong> (say, every day or every week), making it a script enables you to avoid retyping it each time you execute it.</li>
+<li>generate new queries from existing ones that are similar by copying and editing script files.</li>
+<li><strong>distribute</strong> your script to other people so that they can also run the statements</li>
+</ul>
+<p>You have several <strong>options</strong> when using the batch mode as well. For example:</p>
+<ul>
+<li><p>if you have a query that <strong>produces a lot of output</strong>, you can run the output through a <strong>pager rather than watching it scroll off the top of your screen</strong>:</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">shell&gt; mysql &lt; batch-file | more</span><br></pre></td></tr></table></figure></li>
+<li><p>You can catch the output in a file for further processing:</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">shell&gt; mysql &lt; batch-file &gt; mysql.out</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<blockquote>
+<p>Note:</p>
+<ul>
+<li><input disabled type="checkbox"> The output of <code>mysql</code> in batch mode is more concise than the output in a normal interative <code>mysql</code> prompt. For example, output of <code>SELECT DISTINCT species FROM pet</code> looks like this when <code>mysql</code> is run <code>interactively</code>:</li>
+</ul>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">+---------+</span><br><span class="line">| species |</span><br><span class="line">+---------+</span><br><span class="line">| bird    |</span><br><span class="line">| cat     |</span><br><span class="line">| dog     |</span><br><span class="line">| hamster |</span><br><span class="line">| snake   |</span><br><span class="line">+---------+</span><br></pre></td></tr></table></figure>
+<p>In batch mode, the output looks like this instead:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">species</span><br><span class="line">bird</span><br><span class="line">cat</span><br><span class="line">dog</span><br><span class="line">hamster</span><br><span class="line">snake</span><br></pre></td></tr></table></figure>
+
+<h2 id="Examples-of-Common-Query"><a href="#Examples-of-Common-Query" class="headerlink" title="Examples of Common Query"></a>Examples of Common Query</h2><p>Here, I only list some that I think are relatively less-straightforward than thought. For more examples, please refer to <a href="https://dev.mysql.com/doc/refman/8.0/en/examples.html" target="_blank" rel="noopener">the MySQL documentation</a>.</p>
+<p>All examples are based on this table:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; CREATE TABLE shop (</span><br><span class="line">    article INT UNSIGNED  DEFAULT &#39;0000&#39; NOT NULL,</span><br><span class="line">    dealer  CHAR(20)      DEFAULT &#39;&#39;     NOT NULL,</span><br><span class="line">    price   DECIMAL(16,2) DEFAULT &#39;0.00&#39; NOT NULL,</span><br><span class="line">    PRIMARY KEY(article, dealer));</span><br><span class="line">mysql&gt; INSERT INTO shop VALUES</span><br><span class="line">    (1,&#39;A&#39;,3.45),(1,&#39;B&#39;,3.99),(2,&#39;A&#39;,10.99),(3,&#39;B&#39;,1.45),</span><br><span class="line">    (3,&#39;C&#39;,1.69),(3,&#39;D&#39;,1.25),(4,&#39;D&#39;,19.95);</span><br></pre></td></tr></table></figure>
+
+<p>After issuing the statements, the table should have the following contents:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM shop ORDER BY article;</span><br><span class="line"></span><br><span class="line">+---------+--------+-------+</span><br><span class="line">| article | dealer | price |</span><br><span class="line">+---------+--------+-------+</span><br><span class="line">|       1 | A      |  3.45 |</span><br><span class="line">|       1 | B      |  3.99 |</span><br><span class="line">|       2 | A      | 10.99 |</span><br><span class="line">|       3 | B      |  1.45 |</span><br><span class="line">|       3 | C      |  1.69 |</span><br><span class="line">|       3 | D      |  1.25 |</span><br><span class="line">|       4 | D      | 19.95 |</span><br><span class="line">+---------+--------+-------+</span><br></pre></td></tr></table></figure>
+
+<p>Notice: for each example, there are more than one solution. Here I only picked the ones that <strong>I think are easier to understand and remember</strong>:</p>
+<ul>
+<li><p>For each article, find the dealer or dealers with the most expensive price.</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">SELECT s1.article, dealer, s1.price</span><br><span class="line">FROM shop s1</span><br><span class="line">JOIN (</span><br><span class="line">  SELECT article, MAX(price) AS price</span><br><span class="line">  FROM shop</span><br><span class="line">  GROUP BY article) AS s2</span><br><span class="line">  ON s1.article &#x3D; s2.article AND s1.price &#x3D; s2.price</span><br><span class="line">ORDER BY article;</span><br></pre></td></tr></table></figure>
+<p>  This basically works by <strong>first finding the simple <code>MAX(price)</code></strong> for each article in one table, and then <code>JOIN</code> it with the <strong>other table</strong> (the same table but aliased differently) to display other data such as <code>dealer</code>.</p>
+</li>
+<li><p>Storing Data in a <strong>User-Defined Variable</strong></p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT @min_price:&#x3D;MIN(price),@max_price:&#x3D;MAX(price) FROM shop;</span><br><span class="line">mysql&gt; SELECT * FROM shop WHERE price&#x3D;@min_price OR price&#x3D;@max_price;</span><br><span class="line">+---------+--------+-------+</span><br><span class="line">| article | dealer | price |</span><br><span class="line">+---------+--------+-------+</span><br><span class="line">|    0003 | D      |  1.25 |</span><br><span class="line">|    0004 | D      | 19.95 |</span><br><span class="line">+---------+--------+-------+</span><br></pre></td></tr></table></figure>
+
+<p>  <strong>Properly</strong>, the variables would be written in the below format:</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SET @&lt;var_name&gt; &#x3D; &lt;expr [, @var_name &#x3D; expr] ...&gt;</span><br></pre></td></tr></table></figure>
+
+<p>  For example, you would properly write:</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SET @min_price&#x3D;(SELECT MIN(price) FROM shop), @max_price&#x3D;(SELECT MAX(price) FROM shop);</span><br></pre></td></tr></table></figure>
+<p>  But as seen in the above example, there is also a shortcut of writting it as:</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT @min_price:&#x3D;MIN(price),@max_price:&#x3D;MAX(price) FROM shop;</span><br></pre></td></tr></table></figure>
+<p>  (for more details on user-defined variables, refer to <a href="https://dev.mysql.com/doc/refman/8.0/en/user-variables.html" target="_blank" rel="noopener">here</a>.)</p>
+</li>
+<li><p>Searching Two Keys in a table</p>
+<p>  This mostly happens when you use the keyword <code>OR</code>. And you might use the following to search for two keys:</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SELECT field1_index, field2_index FROM test_table</span><br><span class="line">WHERE field1_index &#x3D; &#39;1&#39; OR  field2_index &#x3D; &#39;1&#39;</span><br></pre></td></tr></table></figure>
+
+<p>  However, it is clearer and efficient by using a <code>UNION</code> that <strong>combines the output of two separate <code>SELECT</code> statements</strong>. See Section <a href="https://dev.mysql.com/doc/refman/8.0/en/union.html" target="_blank" rel="noopener">MySQL <code>UNION</code> Clause</a> for more details.</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">SELECT field1_index, field2_index</span><br><span class="line">    FROM test_table WHERE field1_index &#x3D; &#39;1&#39;</span><br><span class="line">UNION</span><br><span class="line">SELECT field1_index, field2_index</span><br><span class="line">FROM test_table WHERE field2_index &#x3D; &#39;1&#39;;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Counting Frequencies of a Distinct Number in a Table</p>
+<p>  This can be done beautifully using the <code>BIT-WISE</code> operators (in this example, using the keyword <code>DISTINCT</code> would not work.)</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">SELECT year,month,BIT_COUNT(BIT_OR(1&lt;&lt;day)) AS days FROM t1</span><br><span class="line">       GROUP BY year,month;</span><br><span class="line">+------+-------+------+</span><br><span class="line">| year | month | days |</span><br><span class="line">+------+-------+------+</span><br><span class="line">| 2000 |     1 |    3 |</span><br><span class="line">| 2000 |     2 |    2 |</span><br><span class="line">+------+-------+------+</span><br><span class="line">2 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+
+<p>  This would:</p>
+<ul>
+<li><p>First left shift the binary <code>1</code> for <code>number of day</code> times (<code>1&lt;&lt;day</code>). For example, <code>1&lt;&lt;3</code> means you get <code>1000</code>. This means that <strong>each day would have <code>1</code> at a distinct position</strong>. </p>
+</li>
+<li><p>Then, it does a <code>BIT_OR()</code>, which returns a binary number where each position would be <code>1</code> <strong>if one of the number had a <code>1</code> at that position</strong>,<code>0</code> otherwise. For instance, <code>1000</code> and <code>1</code> would give <code>1001</code>.</p>
+</li>
+<li><p>Lastly, it counts how many <code>1</code> there are in the number with the <code>BIT_COUNT()</code> function. At this point, this would only return the number of <strong>distinct days</strong>.</p>
+<p>As a result, the query calculates how many different days appear in the table for each year/month combination, with automatic removal of duplicate entries.</p>
+</li>
+</ul>
+</li>
+<li><p>Auto-Increment</p>
+<p>  The <code>AUTO_INCREMENT</code> attribute can be used to generate a unique identity for new rows:</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; CREATE TABLE animals (</span><br><span class="line">     id MEDIUMINT NOT NULL AUTO_INCREMENT,</span><br><span class="line">     name CHAR(30) NOT NULL,</span><br><span class="line">     PRIMARY KEY (id));</span><br><span class="line"></span><br><span class="line">mysql&gt; INSERT INTO animals (name) VALUES</span><br><span class="line">    (&#39;dog&#39;),(&#39;cat&#39;),(&#39;penguin&#39;),</span><br><span class="line">    (&#39;lax&#39;),(&#39;whale&#39;),(&#39;ostrich&#39;);</span><br></pre></td></tr></table></figure>
+<p>  Then if you run:</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT * FROM animals;</span><br><span class="line">+----+---------+</span><br><span class="line">| id | name    |</span><br><span class="line">+----+---------+</span><br><span class="line">|  1 | dog     |</span><br><span class="line">|  2 | cat     |</span><br><span class="line">|  3 | penguin |</span><br><span class="line">|  4 | lax     |</span><br><span class="line">|  5 | whale   |</span><br><span class="line">|  6 | ostrich |</span><br><span class="line">+----+---------+</span><br></pre></td></tr></table></figure>
+<p>where </p>
+<ul>
+<li><p>you see <strong>other ways of <code>INSERT INTO</code></strong>:</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">INSERT INTO table_name (column1, column2, column3, ...)</span><br><span class="line">VALUES (value1, value2, value3, ...);</span><br></pre></td></tr></table></figure>
+
+<p>so that you speicify which columns to insert into with the <code>(column1, column2, column3, ...)</code>, meaning that you no longer have to insert into the table sequencially as the original label suggests.</p>
+</li>
+<li><p>a <code>PRIMARY KEY ()</code> is used. A primary key is used as a <strong>unique identifier to quickly parse data within the database</strong> and find the relation between different tables. A relational database cannot have more than one primary key, but it can be based on more than one field (for example, <code>PRIMARY KEY(id, name)</code>).</p>
+<p>A <strong>primary key’s main features</strong> are:</p>
+<ul>
+<li>It must contain a <strong>unique value for each row of data</strong>.</li>
+<li>It <strong>cannot contain null values</strong>.</li>
+<li><strong>Every row must have a primary key value</strong>.</li>
+</ul>
+<p>A primary key is either an existing table column or a column that is specifically generated by the database according to a defined sequence</p>
+</li>
+<li><p>No value was specified for the <strong><code>AUTO_INCREMENT</code> column</strong></p>
+<ul>
+<li>so MySQL assigned sequence numbers automatically starting from <code>1</code>. You can only <strong>change it after creation</strong> with <code>ALTER TABLE animals AUTO_INCREMENT=10;</code>, for example.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>When you have <code>AUTO_INCREMENT</code> enabled, you still can <strong>explicitly assign other values to the column</strong> to generate sequence numbers. However, this will <strong>affect future data as well so they also start from that number</strong>. For example:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">INSERT INTO animals (id,name) VALUES(100,&#39;rabbit&#39;);</span><br><span class="line">INSERT INTO animals (id,name) VALUES(NULL,&#39;mouse&#39;);</span><br><span class="line">SELECT * FROM animals;</span><br><span class="line">+-----+-----------+</span><br><span class="line">| id  | name      |</span><br><span class="line">+-----+-----------+</span><br><span class="line">|   1 | dog       |</span><br><span class="line">|   2 | cat       |</span><br><span class="line">|   3 | penguin   |</span><br><span class="line">|   4 | lax       |</span><br><span class="line">|   5 | whale     |</span><br><span class="line">|   6 | ostrich   |</span><br><span class="line">| 100 | rabbit    |</span><br><span class="line">| 101 | mouse     |</span><br><span class="line">+-----+-----------+</span><br></pre></td></tr></table></figure>
+
+<p>Also if you <strong>try to explicitly assign <code>0</code> or <code>NULL</code> to the column to generate sequence numbers</strong>, unless the <code>NO_AUTO_VALUE_ON_ZERO</code> SQL mode is enabled. For example:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">INSERT INTO animals (id,name) VALUES(0,&#39;groundhog&#39;);</span><br></pre></td></tr></table></figure>
+<p>or </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">INSERT INTO animals (id,name) VALUES(NULL,&#39;squirrel&#39;);</span><br></pre></td></tr></table></figure>
+
+<p>You will obtain:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM animals;</span><br><span class="line">+-----+-----------+</span><br><span class="line">| id  | name      |</span><br><span class="line">+-----+-----------+</span><br><span class="line">|   1 | dog       |</span><br><span class="line">|   2 | cat       |</span><br><span class="line">|   3 | penguin   |</span><br><span class="line">|   4 | lax       |</span><br><span class="line">|   5 | whale     |</span><br><span class="line">|   6 | ostrich   |</span><br><span class="line">| 100 | rabbit    |</span><br><span class="line">| 101 | mouse     |</span><br><span class="line">| 102 | groundhog |</span><br><span class="line">| 103 | squirrel  |</span><br><span class="line">+-----+-----------+</span><br></pre></td></tr></table></figure>
+
+<h2 id="Auto-Increment-in-MyISAM-Tables"><a href="#Auto-Increment-in-MyISAM-Tables" class="headerlink" title="Auto-Increment in MyISAM Tables"></a>Auto-Increment in MyISAM Tables</h2><p>For <code>MyISAM</code> tables, <strong>you can specify <code>AUTO_INCREMENT</code> on a secondary column</strong> in a <strong>multiple-column index</strong>. In this case, the generated value for the <code>AUTO_INCREMENT</code> column is calculated as <code>MAX(auto_increment_column) + 1</code> WHERE <code>prefix=given-prefix</code>. This is useful when you want to put data into ordered groups.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; CREATE TABLE animals (</span><br><span class="line">    grp ENUM(&#39;fish&#39;,&#39;mammal&#39;,&#39;bird&#39;) NOT NULL,</span><br><span class="line">    id MEDIUMINT NOT NULL AUTO_INCREMENT,</span><br><span class="line">    name CHAR(30) NOT NULL,</span><br><span class="line">    PRIMARY KEY (grp,id)</span><br><span class="line">) ENGINE&#x3D;MyISAM;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; INSERT INTO animals (grp,name) VALUES</span><br><span class="line">    (&#39;mammal&#39;,&#39;dog&#39;),(&#39;mammal&#39;,&#39;cat&#39;),</span><br><span class="line">    (&#39;bird&#39;,&#39;penguin&#39;),(&#39;fish&#39;,&#39;lax&#39;),(&#39;mammal&#39;,&#39;whale&#39;),</span><br><span class="line">    (&#39;bird&#39;,&#39;ostrich&#39;);</span><br></pre></td></tr></table></figure>
+
+<p>Now, if you look at the table:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT * FROM animals ORDER BY grp,id;</span><br><span class="line"></span><br><span class="line">+--------+----+---------+</span><br><span class="line">| grp    | id | name    |</span><br><span class="line">+--------+----+---------+</span><br><span class="line">| fish   |  1 | lax     |</span><br><span class="line">| mammal |  1 | dog     |</span><br><span class="line">| mammal |  2 | cat     |</span><br><span class="line">| mammal |  3 | whale   |</span><br><span class="line">| bird   |  1 | penguin |</span><br><span class="line">| bird   |  2 | ostrich |</span><br><span class="line">+--------+----+---------+</span><br></pre></td></tr></table></figure>
       
     </div>
     <footer class="article-footer">
@@ -762,12 +956,131 @@
 <p>  For other commands/options related to <code>docker container -rm</code> please refer to the <a href="#https://docs.docker.com/engine/reference/commandline/container_rm/">Docker Doc here</a></p>
 </li>
 </ul>
+<h2 id="Copying-Files-to-and-from-a-Container"><a href="#Copying-Files-to-and-from-a-Container" class="headerlink" title="Copying Files to and from a Container"></a>Copying Files to and from a Container</h2><ul>
+<li><p>To copy local files to a container, you can use teh command:</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker cp &lt;localPath&gt;&#x2F;&lt;fromFile&gt; &lt;container-id&gt;:&lt;pathInContainer&gt;&#x2F;&lt;toFile&gt;</span><br></pre></td></tr></table></figure>
+
+<p>  For example:</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker cp foo.txt test-container:~&#x2F;foo.txt</span><br></pre></td></tr></table></figure>
+<p>  Then you can see the file <code>foo.txt</code> in your container at the path <code>root/foo.txt</code></p>
+</li>
+<li><p>Similarily, to copy a file from a container to your local machine, you can use:</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker cp &lt;container-id&gt;:&lt;pathInContainer&gt;&#x2F;&lt;fromFile&gt; &lt;localPath&gt;&#x2F;&lt;toFile&gt;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="Configuring-your-Docker-Daemon"><a href="#Configuring-your-Docker-Daemon" class="headerlink" title="Configuring your Docker Daemon"></a>Configuring your Docker Daemon</h2><p>To configure the Docker daemon using a JSON file, create a file at <code>/etc/docker/daemon.json</code> on Linux systems, or <code>C:\ProgramData\docker\config\daemon.json</code> on Windows. On MacOS go to the whale in the <code>taskbar &gt; Preferences &gt; Daemon &gt; Advanced</code>.</p>
+<p>For example, if you want your Docker daemon to run in <code>debug mode</code>, uses <code>TLS</code>, and listens for traffic routed to <code>192.168.59.3</code> on port <code>2376</code>, you would have the following configuration in your <code>daemon.json</code> ( You can learn what configuration options are available in the <a href="https://docs.docker.com/engine/reference/commandline/dockerd/#daemon-configuration-file" target="_blank" rel="noopener">dockerd reference docs</a>):</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;debug&quot;: true,</span><br><span class="line">  &quot;tls&quot;: true,</span><br><span class="line">  &quot;tlscert&quot;: &quot;&#x2F;var&#x2F;docker&#x2F;server.pem&quot;,</span><br><span class="line">  &quot;tlskey&quot;: &quot;&#x2F;var&#x2F;docker&#x2F;serverkey.pem&quot;,</span><br><span class="line">  &quot;hosts&quot;: [&quot;tcp:&#x2F;&#x2F;192.168.59.3:2376&quot;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>However, you could also manually start a daemon with the same configuration in your command line:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">dockerd --debug \</span><br><span class="line">  --tls&#x3D;true \</span><br><span class="line">  --tlscert&#x3D;&#x2F;var&#x2F;docker&#x2F;server.pem \</span><br><span class="line">  --tlskey&#x3D;&#x2F;var&#x2F;docker&#x2F;serverkey.pem \</span><br><span class="line">  --host tcp:&#x2F;&#x2F;192.168.59.3:2376</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>Note:</p>
+<ul>
+<li><input disabled type="checkbox"> If you use a <code>daemon.json</code> file <strong>and also pass options to the <code>dockerd</code> command</strong> manually or using start-up scripts, and these options conflict, Docker fails to start with an error such as:</li>
+</ul>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">unable to configure the Docker daemon with file &#x2F;etc&#x2F;docker&#x2F;daemon.json:</span><br><span class="line">the following directives are specified both as a flag and in the configuration</span><br><span class="line">file: hosts: (from flag: [unix:&#x2F;&#x2F;&#x2F;var&#x2F;run&#x2F;docker.sock], from file: [tcp:&#x2F;&#x2F;127.0.0.1:2376])</span><br></pre></td></tr></table></figure>
+<p>If you see an error similar to this one and you are starting the daemon manually with flags, you may need to <strong>adjust your flags or the daemon.json to remove the conflict</strong>.</p>
+<p>This means if you want to enter the debug mode, you can set the <code>debug</code> key to <code>true</code> in the <code>daemon.json</code> file. This method works for every Docker platform and is recommended.</p>
+<ul>
+<li><p>If the file is empty, add the following:</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;debug&quot;: true</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>If the file already contains JSON, just add the key <code>&quot;debug&quot;: true</code>, being careful to add a comma to the end of the line if it is not the last line before the closing bracket. Also <strong>verify that if the <code>log-level</code> key is set, it is set to either <code>info</code> or <code>debug</code></strong>. <code>info</code> is the default, and possible values are <code>debug</code>, <code>info</code>, <code>warn</code>, <code>error</code>, <code>fatal</code>.</p>
+</li>
+<li><p>Send a HUP signal to the daemon to cause it to reload its configuration. </p>
+<ul>
+<li><p>On Linux hosts, use the following command.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo kill -SIGHUP $(pidof dockerd)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>On Windows hosts, restart Docker.</p>
+</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>Note:</p>
+<ul>
+<li><input disabled type="checkbox"> Instead of following this procedure, you can also <code>stop</code> the Docker <code>daemon</code> and <code>restart</code> it manually with the <code>debug flag -D</code>. However, this may result in Docker <strong>restarting with a different environment than the one the hosts’ startup scripts create</strong>, and this may make debugging more difficult.</li>
+</ul>
+</blockquote>
+<h2 id="Starting-your-Docker-Daemon-Manually"><a href="#Starting-your-Docker-Daemon-Manually" class="headerlink" title="Starting your Docker Daemon Manually"></a>Starting your Docker Daemon Manually</h2><p>Once Docker is installed, <strong>you need to start the Docker daemon</strong>. Most Linux distributions use <code>systemctl</code> to start services. If you do not have <code>systemctl</code>, use the <code>service</code> command.</p>
+<ul>
+<li><p><code>systemctl</code>:</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo systemctl start docker</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>service</code>:</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo service docker start</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
 <p><a name="MySQL-in-Docker"></a></p>
 <h2 id="Using-MySQL-Server-in-Docker"><a href="#Using-MySQL-Server-in-Docker" class="headerlink" title="Using MySQL Server in Docker"></a>Using MySQL Server in Docker</h2><ol>
-<li>You need to first setup your SQL server in docker via this <a href="#https://dev.mysql.com/doc/mysql-installation-excerpt/8.0/en/docker-mysql-getting-started.html">Official Guide</a></li>
+<li>You need to first setup your SQL server in docker via this <a href="https://dev.mysql.com/doc/mysql-installation-excerpt/8.0/en/docker-mysql-getting-started.html" target="_blank" rel="noopener">Official Guide</a></li>
 <li>Then refer to <a href="https://jasonyux.github.io/2020/05/26/MySQL-Manual" target="_blank" rel="noopener">MySQL Manual</a> for further reference on using MySQL</li>
 </ol>
+<h2 id="Creating-and-Mounting-MySQL-data-to-a-Volume"><a href="#Creating-and-Mounting-MySQL-data-to-a-Volume" class="headerlink" title="Creating and Mounting MySQL data to a Volume"></a>Creating and Mounting MySQL data to a Volume</h2><ol>
+<li><p>First, to create a volume, you need to run:</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker volume create &lt;my-vol&gt;</span><br></pre></td></tr></table></figure>
 
+<p> This will create a volume at your local directory <code>/var/lib/docker/volumes/&lt;my-vol&gt;/_data</code></p>
+</li>
+<li><p>You can list the volumes you have with:</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker volume ls</span><br></pre></td></tr></table></figure>
+
+<p> At this point, if you see some other volumes that are temporary created and you don’t want them, you can use:</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker volume rm &lt;my-vol&gt;</span><br></pre></td></tr></table></figure>
+
+<p> or use the <code>prune</code> keyword which will delete volumes that are not used by any containers:</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker volume prune</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Now, you can mount a volume to your container with either the <code>-v</code> or <code>--mount</code> option. To store mount volumes to directory where <code>mysql</code> stores its data, you need to mount to <code>/var/opt/mssql</code>. Examples below produce the same result (this example uses the image called <code>mysql:latest</code> and creates a container <code>devtest</code>). </p>
+<ul>
+<li><p><code>--mount</code></p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ docker run -d \</span><br><span class="line">  --name devtest \</span><br><span class="line">  --mount source&#x3D;myvol2,target&#x3D;&#x2F;var&#x2F;opt&#x2F;mssql \</span><br><span class="line">  mysql:latest</span><br></pre></td></tr></table></figure></li>
+<li><p><code>-v</code></p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ docker run -d \</span><br><span class="line">  --name devtest \</span><br><span class="line">  -v myvol2:&#x2F;var&#x2F;opt&#x2F;mssql \</span><br><span class="line">  mysql:latest</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>To mount multiple volumes, you can do:</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ docker run -d \</span><br><span class="line">  --name devtest \</span><br><span class="line">  -v myvol2:&#x2F;var&#x2F;opt&#x2F;mssql \</span><br><span class="line">  -v myvol3:&#x2F;var \</span><br><span class="line">  mysql:latest</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>Note:</p>
+<ul>
+<li><input disabled type="checkbox"> If the name of the volume you specified does not exist, <code>docker</code> will create one with that name for you.</li>
+<li><input disabled type="checkbox"> It is also allowed to mount multiple containers to the same volume.</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>You can then use <code>docker inspect devtest</code> to verify that the volume was created and mounted correctly. Look for the Mounts section:</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&quot;Mounts&quot;: [</span><br><span class="line">    &#123;</span><br><span class="line">        &quot;Type&quot;: &quot;volume&quot;,</span><br><span class="line">        &quot;Name&quot;: &quot;myvol2&quot;,</span><br><span class="line">        &quot;Source&quot;: &quot;&#x2F;var&#x2F;lib&#x2F;docker&#x2F;volumes&#x2F;myvol2&#x2F;_data&quot;,</span><br><span class="line">        &quot;Destination&quot;: &quot;&#x2F;app&quot;,</span><br><span class="line">        &quot;Driver&quot;: &quot;local&quot;,</span><br><span class="line">        &quot;Mode&quot;: &quot;&quot;,</span><br><span class="line">        &quot;RW&quot;: true,</span><br><span class="line">        &quot;Propagation&quot;: &quot;&quot;</span><br><span class="line">    &#125;</span><br><span class="line">],</span><br></pre></td></tr></table></figure>
+
+<p> This shows that the mount is a volume, it shows the correct source and destination, and that the mount is read-write.</p>
+</li>
+<li><p>If you want to remove a volume, you need to <strong>stop and remove the container, and then remove the volume</strong>. Note volume removal is a separate step.</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ docker container stop devtest</span><br><span class="line"></span><br><span class="line">$ docker container rm devtest</span><br><span class="line"></span><br><span class="line">$ docker volume rm myvol2</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h2 id="Use-a-Volume-for-Read-Only-Purpose"><a href="#Use-a-Volume-for-Read-Only-Purpose" class="headerlink" title="Use a Volume for Read-Only Purpose"></a>Use a Volume for Read-Only Purpose</h2><p>For some development applications, the container needs to write into the bind mount so that changes are propagated back to the Docker host. At other times, the container <strong>only needs read access to the data</strong>. Remember that multiple containers can mount the same volume, and it can be mounted read-write for some of them and read-only for others, at the same time.</p>
+<p>Suppose you want to access the data in the volume <code>nginx-vol</code> for the following examples.</p>
+<p>The following modifies the one above but <strong>mounts the directory as a read-only volume</strong>, by adding <code>readonly</code> or <code>ro</code> to the (empty by default) list of options, after the mount point within the container. If multiple options are present, separate them by commas.</p>
+<p>The <code>--mount</code> and <code>-v</code> examples have the same result.</p>
+<ul>
+<li><p><code>--mount</code></p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ docker run -d \</span><br><span class="line">  --name&#x3D;nginxtest \</span><br><span class="line">  --mount source&#x3D;nginx-vol,destination&#x3D;&#x2F;usr&#x2F;share&#x2F;nginx&#x2F;html,readonly \</span><br><span class="line">  nginx:latest</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>-v</code></p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ docker run -d \</span><br><span class="line">  --name&#x3D;nginxtest \</span><br><span class="line">  -v nginx-vol:&#x2F;usr&#x2F;share&#x2F;nginx&#x2F;html:ro \</span><br><span class="line">  nginx:latest</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>Now you can use <code>docker inspect nginxtest</code> to <strong>verify that the readonly mount was created correctly</strong>. Look for the Mounts section, where you see <code>&quot;RW&quot;: false</code>:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&quot;Mounts&quot;: [</span><br><span class="line">    &#123;</span><br><span class="line">        &quot;Type&quot;: &quot;volume&quot;,</span><br><span class="line">        &quot;Name&quot;: &quot;nginx-vol&quot;,</span><br><span class="line">        &quot;Source&quot;: &quot;&#x2F;var&#x2F;lib&#x2F;docker&#x2F;volumes&#x2F;nginx-vol&#x2F;_data&quot;,</span><br><span class="line">        &quot;Destination&quot;: &quot;&#x2F;usr&#x2F;share&#x2F;nginx&#x2F;html&quot;,</span><br><span class="line">        &quot;Driver&quot;: &quot;local&quot;,</span><br><span class="line">        &quot;Mode&quot;: &quot;&quot;,</span><br><span class="line">        &quot;RW&quot;: false,</span><br><span class="line">        &quot;Propagation&quot;: &quot;&quot;</span><br><span class="line">    &#125;</span><br><span class="line">],</span><br></pre></td></tr></table></figure>
       
     </div>
     <footer class="article-footer">
