@@ -1016,6 +1016,317 @@
 
 </li>
 </ul>
+<h2 id="Starting-your-Containers-Automatically"><a href="#Starting-your-Containers-Automatically" class="headerlink" title="Starting your Containers Automatically"></a>Starting your Containers Automatically</h2><p>Docker provides restart policies to <strong>control whether your containers start automatically when they exit, or when Docker restarts</strong>. Restart policies ensure that linked containers are started in the correct order. Docker recommends that you use restart policies, and avoid using process managers to start containers.</p>
+<p>To configure the <strong>restart policy</strong> for a container, use the <code>--restart</code> flag when using the <code>docker run</code> command. The value of the <code>--restart</code> flag can be any of the following:</p>
+<table>
+<thead>
+<tr>
+<th>Flag</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>no</code></td>
+<td>Do not automatically restart the container. (the default)</td>
+</tr>
+<tr>
+<td><code>on-failure</code></td>
+<td>Restart the container <strong>if it exits due to an error</strong>, which manifests as a non-zero exit code.</td>
+</tr>
+<tr>
+<td><code>always</code></td>
+<td><strong>Always restart the container if it stops</strong>. <strong>If it is manually stopped</strong>, it is <strong>restarted only when Docker daemon restarts or the container itself is manually restarted</strong>. (See the second bullet listed in restart policy details)</td>
+</tr>
+<tr>
+<td><code>unless-stopped</code></td>
+<td>Similar to always, except that <strong>when the container is stopped (manually or otherwise)</strong>, it is <strong>not restarted even after Docker daemon restarts</strong>.</td>
+</tr>
+</tbody></table>
+<p>The following example starts a Redis container and configures it to always restart unless it is explicitly stopped or Docker is restarted.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker run -d --restart unless-stopped redis</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>Note:</p>
+<ul>
+<li><input disabled type="checkbox"> A restart policy <strong>only takes effect after a container starts successfully (when you run the command specifying the restart policy)</strong>. In this case, starting successfully means that the container is up for at least 10 seconds and Docker has started monitoring it. This <strong>prevents a container</strong> which does not start at all from going <strong>into a restart loop</strong>.</li>
+<li><input disabled type="checkbox"> <strong>If you manually stop a container</strong>, <strong>its restart policy is ignored until the Docker daemon restarts or the container is manually restarted</strong>. This is another attempt to <strong>prevent a restart loop</strong>.</li>
+<li><input disabled type="checkbox"> Restart policies <strong>only apply to containers</strong>. Restart policies for swarm services are configured differently. See the flags related to service restart.</li>
+</ul>
+</blockquote>
+<h2 id="Keep-Containers-Alive-during-Daemon-Downtime"><a href="#Keep-Containers-Alive-during-Daemon-Downtime" class="headerlink" title="Keep Containers Alive during Daemon Downtime"></a>Keep Containers Alive during Daemon Downtime</h2><p><strong>By default</strong>, when the <strong>Docker daemon terminates</strong>, it <strong>shuts down running containers</strong>. Starting with Docker Engine 1.12, you can <strong>configure the daemon so that containers remain running if the daemon becomes unavailable</strong>. This functionality is called <code>live restore</code>. </p>
+<p>There are <strong>two ways to enable the <code>live restore</code> setting</strong> to <strong>keep containers alive when the daemon becomes unavailable</strong>. <strong>Only do one of the following</strong>.</p>
+<ul>
+<li><p>Add the configuration to the daemon configuration file. On Linux, this defaults to <code>/etc/docker/daemon.json</code>. On Docker Desktop for Mac or Docker Desktop for Windows, select the Docker icon from the task bar, then click Preferences -&gt; Daemon -&gt; Advanced.</p>
+<ul>
+<li><p>Use the following JSON to enable live-restore.</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"live-restore"</span>: <span class="literal">true</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Then, restart the Docker daemon. <strong>On Linux</strong>, you can avoid a restart (and avoid any downtime for your containers) by <strong>reloading the Docker daemon</strong>. If you use <code>systemd</code>, then use the command <code>systemctl reload docker</code>. Otherwise, send a SIGHUP signal to the dockerd process.</p>
+</li>
+</ul>
+</li>
+<li><p>The other way is to use the <code>--live-restore</code> flag <strong>when you start the dockerd process manually with the <code>--live-restore</code> flag</strong>. This approach is <strong>not recommended because it does not set up the environment that systemd or another process manager would use when starting the Docker process</strong>. This can cause unexpected behavior.</p>
+</li>
+</ul>
+<blockquote>
+<p>Note:</p>
+<ul>
+<li><input disabled type="checkbox"> The live restore option <strong>only works to restore containers if the daemon options</strong>, such as bridge IP addresses and graph driver, <strong>did not change</strong>. If any of these <strong>daemon-level configuration options have changed, the live restore may not work and you may need to manually start the containers</strong>.</li>
+<li><input disabled type="checkbox"> If the daemon is down <strong>for a long time</strong>, <strong>running containers may fill up the FIFO log the daemon normally reads</strong>. A full log blocks containers from logging more data. The default buffer size is 64K. <strong>If the buffers fill, you must restart the Docker daemon to flush them</strong>.</li>
+</ul>
+<p><strong>On Linux</strong>, you can modify the kernel’s buffer size by changing <code>/proc/sys/fs/pipe-max-size</code>. You cannot modify the buffer size on Docker Desktop for Mac or Docker Desktop for Windows.</p>
+<ul>
+<li><input disabled type="checkbox"> The live restore option <strong>only pertains to standalone containers, and not to swarm services</strong>. Swarm services are managed by <strong>swarm managers</strong>. If swarm managers are not available, swarm services continue to run on worker nodes but cannot be managed until enough swarm managers are available to maintain a quorum.</li>
+</ul>
+</blockquote>
+<h2 id="Running-Multiple-Services-in-a-Container"><a href="#Running-Multiple-Services-in-a-Container" class="headerlink" title="Running Multiple Services in a Container"></a>Running Multiple Services in a Container</h2><p>This involves writing scripts and editing the Dockerfile. For details please refer to <a href="https://docs.docker.com/config/containers/multi-service_container/" target="_blank" rel="noopener">this link</a>.</p>
+<h2 id="Viewing-Runtime-metrics-for-a-Container"><a href="#Viewing-Runtime-metrics-for-a-Container" class="headerlink" title="Viewing Runtime metrics for a Container"></a>Viewing Runtime metrics for a Container</h2><p>There are a couple of ways where you can view the current runtime metrics for your container.</p>
+<ol>
+<li><p>You can use the <code>docker stats</code> command to <strong>live stream a container’s runtime metrics</strong>. The command supports CPU, memory usage, memory limit, and network IO metrics.</p>
+<p> The following is a sample output from the docker stats command:</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ docker stats redis1 redis2</span><br><span class="line"></span><br><span class="line">CONTAINER           CPU %               MEM USAGE &#x2F; LIMIT     MEM %               NET I&#x2F;O             BLOCK I&#x2F;O</span><br><span class="line">redis1              0.07%               796 KB &#x2F; 64 MB        1.21%               788 B &#x2F; 648 B       3.568 MB &#x2F; 512 KB</span><br><span class="line">redis2              0.07%               2.746 MB &#x2F; 64 MB      4.29%               1.266 KB &#x2F;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Using Linux Control Groups</p>
+<p> <strong><em>Q: What is a Linux Control Group?</em></strong></p>
+<p> Truth be told, certain <strong>software applications in the wild may need to be controlled or limited—at least for the sake of stability and, to some degree, security</strong>. Far too often, <strong>a bug or just bad code</strong> can disrupt an entire machine and <strong>potentially cripple an entire ecosystem</strong>. Fortunately, a way exists to keep those same applications in check. <strong>Control groups (cgroups) is a kernel feature that limits, accounts for and isolates the CPU, memory, disk I/O and network’s usage of one or more processes</strong>.</p>
+<p> The primary design goal for cgroups was to provide a unified interface to manage processes or whole operating-system-level virtualization, including Linux Containers, or LXC (a topic I plan to revisit in more detail in a follow-up article). The cgroups framework provides the following:</p>
+<ul>
+<li><p>Resource limiting: a group can be configured not to exceed a specified memory limit or use more than the desired amount of processors or be limited to specific peripheral devices.</p>
+</li>
+<li><p>Prioritization: one or more groups may be configured to utilize fewer or more CPUs or disk I/O throughput.</p>
+</li>
+<li><p>Accounting: a group’s resource usage is monitored and measured.</p>
+</li>
+<li><p>Control: groups of processes can be frozen or stopped and restarted.</p>
+<p>For more details, please visit this <a href="https://www.linuxjournal.com/content/everything-you-need-know-about-linux-containers-part-i-linux-control-groups-and-process" target="_blank" rel="noopener">site</a>.</p>
+<p>Now, <strong>for each container, one cgroup is created in each hierarchy</strong>. On older systems with older versions of the LXC userland tools, the name of the cgroup is the name of the container. With more recent versions of the LXC tools, the cgroup is <code>lxc/&lt;container_name&gt;</code>.</p>
+</li>
+</ul>
+<p> <strong>For Docker containers using cgroups, the container name is the full ID or long ID of the container</strong>. If a container shows up as <code>ae836c95b4c3</code> in <code>docker ps</code>, its long ID might be something like <code>ae836c95b4c3c9e9179e0e91015512da89fdec91612f63cebae57df9a5444c79</code>. You can look it up with <code>docker inspect</code> or <code>docker ps --no-trunc</code>.</p>
+<p> Putting everything together to look at the memory metrics for a Docker container, take a look at <code>/sys/fs/cgroup/memory/docker/&lt;longid&gt;/</code>, where for each subsystem (memory, CPU, and block I/O), <strong>one or more pseudo-files exist and contain statistics:</strong></p>
+<pre><code>- **MEMORY METRICS: `MEMORY.STAT`**
+- **CPU metrics: `cpuacct.stat`**
+- **Network metrics** those are not directly exposed by the control group, but information can be gathered from other sources. For details, please follow the link below.</code></pre><p> For a detailed explaination of what you see in all those files, please refer to the <a href="https://docs.docker.com/config/containers/runmetrics/#metrics-from-cgroups-memory-cpu-block-io" target="_blank" rel="noopener">Offical Docker Documentation</a></p>
+</li>
+</ol>
+<h2 id="View-Logs-for-a-Particular-Container-or-Service"><a href="#View-Logs-for-a-Particular-Container-or-Service" class="headerlink" title="View Logs for a Particular Container or Service"></a>View Logs for a Particular Container or Service</h2><p>The <code>docker logs</code> command <strong>shows information logged by a running container</strong>. The <code>docker service logs</code> command <strong>shows information logged by all containers participating in a service</strong>. The information that is logged and the format of the log depends almost entirely on the container’s endpoint command.</p>
+<p>By default, <code>docker logs</code> or <code>docker service logs</code> <strong>shows the command’s output just as it would appear if you ran the command interactively in a terminal</strong>. UNIX and Linux commands typically open three I/O streams when they run, called <code>STDIN</code>, <code>STDOUT</code>, and <code>STDERR</code>. </p>
+<ul>
+<li><code>STDIN</code> is the <strong>command’s input stream</strong> (i.e. user input), which may include input from the keyboard or input from another command. </li>
+<li><code>STDOUT</code> is usually a <strong>command’s normal output</strong></li>
+<li><code>STDERR</code> is typically used to <strong>output error messages</strong>. </li>
+</ul>
+<p><strong>By default, <code>docker logs</code> shows the command’s <code>STDOUT</code> and <code>STDERR</code>.</strong> </p>
+<p>However, in some cases, <strong><code>docker logs</code> may not show useful information unless you take additional steps</strong>.</p>
+<ul>
+<li><strong>If you use a logging driver</strong> which <strong>sends logs to a file</strong>, an external host, a database, or another logging back-end, docker logs may not show useful information.<ul>
+<li>In this case, <strong>your logs are processed in other ways and you may choose not to use docker logs (continue to the section <a href="#Configuring-Logging-Drivers">Configure logging drivers</a>).</strong></li>
+</ul>
+</li>
+<li><strong>If your image runs a non-interactive process</strong> such as a web server or <strong>a database</strong>, that application may <strong>send its output to log files instead of STDOUT and STDERR</strong>.<ul>
+<li>In this case, the <strong>official <code>nginx</code> image shows one workaround</strong>, and the <strong>official <code>Apache httpd</code> image shows another</strong>.<ul>
+<li>The official nginx image creates a symbolic link from <code>/var/log/nginx/access.log</code> to <code>/dev/stdout</code>, and creates another symbolic link from <code>/var/log/nginx/error.log</code> to <code>/dev/stderr</code>, <strong>overwriting the log files and causing logs to be sent to the relevant special device instead</strong>. See this <a href="https://github.com/nginxinc/docker-nginx/blob/8921999083def7ba43a06fabd5f80e4406651353/mainline/jessie/Dockerfile#L21-L23" target="_blank" rel="noopener">Dockerfile</a>.</li>
+<li>The official httpd driver <strong>changes the httpd application’s configuration to write its normal output directly to /proc/self/fd/1</strong> (which is <code>STDOUT</code>) and <strong>its errors to /proc/self/fd/2</strong> (which is <code>STDERR</code>). See this <a href="https://github.com/docker-library/httpd/blob/b13054c7de5c74bbaa6d595dbe38969e6d4f860c/2.2/Dockerfile#L72-L75" target="_blank" rel="noopener">Dockerfile</a>.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><a name="Configuring-Logging-Drivers"></a></p>
+<h2 id="Configuring-Logging-Drivers"><a href="#Configuring-Logging-Drivers" class="headerlink" title="Configuring Logging Drivers"></a>Configuring Logging Drivers</h2><p>Docker includes multiple logging mechanisms to help you get information from running containers and services. These mechanisms are called <strong>logging drivers</strong> (I interpret them as driving your logs to a specific place with a specific format).</p>
+<p><strong>By default, Docker uses the <code>json</code> file to log all the outputs</strong>. The file of a container’s logs can be found in (if you use the default log format which is <code>json</code>):</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;var&#x2F;lib&#x2F;docker&#x2F;containers&#x2F;&lt;container id&gt;&#x2F;&lt;container id&gt;-json.log</span><br></pre></td></tr></table></figure>
+<p>This will contain the same log output as you will see if you run <code>docker logs &lt;container-id&gt;</code>. If you do not specify a logging driver, the default is json-file. Thus, the default output for commands such as <code>docker inspect &lt;CONTAINER&gt;</code> is also <code>JSON</code>.</p>
+<p>To <strong>configure the Docker daemon from the default to a specific logging driver</strong>, set the <strong>value of <code>log-driver</code> to the name of the logging driver</strong> in the <strong><code>daemon.json</code> file</strong>, which is located in <code>/etc/docker/</code> on Linux hosts or <code>C:\ProgramData\docker\config\</code> on Windows server hosts.The following example explicitly sets the default logging driver to <code>syslog</code>:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;log-driver&quot;: &quot;syslog&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>If the logging driver has configurable option</strong>s, you can set them in the <code>daemon.json</code> file as a <code>JSON</code> object <strong>with the key <code>log-opts</code></strong>. The following example sets two configurable options on the json-file logging driver:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;log-driver&quot;: &quot;json-file&quot;,</span><br><span class="line">  &quot;log-opts&quot;: &#123;</span><br><span class="line">    &quot;max-size&quot;: &quot;10m&quot;,</span><br><span class="line">    &quot;max-file&quot;: &quot;3&quot;,</span><br><span class="line">    &quot;labels&quot;: &quot;production_status&quot;,</span><br><span class="line">    &quot;env&quot;: &quot;os,customer&quot;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>and you can also specify directly for a particular container (this will overwrite the JSON file):</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ docker run -d --name&#x3D;&lt;container-name&gt; \</span><br><span class="line">--log-driver json-file \</span><br><span class="line">--log-opt max-size&#x3D;10m --log-opt max-file&#x3D;3 --log-opt labels&#x3D;production_status --log-opt env&#x3D;os,customer \</span><br><span class="line">&lt;yourImage&gt;:&lt;tag&gt;</span><br></pre></td></tr></table></figure>
+<p>where:</p>
+<ul>
+<li><code>max-size</code><ul>
+<li>The <strong>maximum size of the log before it is rolled</strong>. A positive integer plus a modifier representing the unit of measure (k=kb, m=mb, or g=gb). Defaults to -1 (unlimited).    </li>
+<li>Example: <code>--log-opt max-size=10m</code></li>
+</ul>
+</li>
+<li><code>max-file</code> <ul>
+<li>The <strong>maximum number of log files that can be present</strong>. <strong>If rolling the logs creates excess files, the oldest file is removed</strong>. Only effective when max-size is also set. A positive integer. <strong>Defaults to 1</strong>.</li>
+<li>Example: <code>--log-opt max-file=3</code></li>
+</ul>
+</li>
+<li><code>labels</code><ul>
+<li>Applies when starting the Docker daemon. A comma-separated list of <strong>logging-related labels</strong> this daemon accepts. <strong>Used for advanced log tag options</strong>.    </li>
+<li>Example: <code>--log-opt labels=production_status,geo</code></li>
+</ul>
+</li>
+<li><code>env</code><ul>
+<li>Applies when starting the Docker daemon. A comma-separated list of <strong>logging-related environment variables</strong> this daemon accepts. <strong>Used for advanced log tag options</strong>.    </li>
+<li>Example: <code>--log-opt env=os,customer</code></li>
+</ul>
+</li>
+</ul>
+<p>For more details on the JSON File logging driver, please visit <a href="https://docs.docker.com/config/containers/logging/json-file/" target="_blank" rel="noopener">this link</a></p>
+<blockquote>
+<p>Note:</p>
+<ul>
+<li><input disabled type="checkbox"> <code>log-opts</code> <strong>configuration options</strong> in the <code>daemon.json</code> configuration file <strong>must be provided as strings</strong>. Boolean and numeric values (such as the value for max-file in the example above) must therefore be enclosed in quotes (<code>&quot;</code>).</li>
+</ul>
+</blockquote>
+<p>Now, To <strong>find the current default logging driver for the Docker daemon</strong>, run <code>docker info</code> and search for Logging Driver. You can use the following command on Linux, macOS, or PowerShell on Windows:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ docker info --format &#39;&#123;&#123;.LoggingDriver&#125;&#125;&#39;</span><br><span class="line"></span><br><span class="line">json-file</span><br></pre></td></tr></table></figure>
+
+<p>To find the <strong>current logging driver for a running container</strong>, if the daemon is using the json-file logging driver, run the following docker inspect command, substituting the container name or ID for <code>&lt;CONTAINER&gt;</code>:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ docker inspect -f &#39;&#123;&#123;.HostConfig.LogConfig.Type&#125;&#125;&#39; &lt;CONTAINER&gt;</span><br><span class="line"></span><br><span class="line">json-file</span><br></pre></td></tr></table></figure>
+
+<h2 id="Use-environment-variables-or-labels-with-logging-drivers"><a href="#Use-environment-variables-or-labels-with-logging-drivers" class="headerlink" title="Use environment variables or labels with logging drivers"></a>Use environment variables or labels with logging drivers</h2><p>Some logging drivers add the value of a container’s <code>--env|-e</code> or –label flags to the container’s logs. This example starts a container using the Docker daemon’s default logging driver (let’s assume json-file) but sets the environment variable os=ubuntu.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker run -dit --label production_status&#x3D;testing -e os&#x3D;ubuntu alpine sh</span><br></pre></td></tr></table></figure>
+
+<p>If the logging driver supports it, this adds additional fields to the logging output. The following output is generated by the json-file logging driver:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;attrs&quot;:&#123;&quot;production_status&quot;:&quot;testing&quot;,&quot;os&quot;:&quot;ubuntu&quot;&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Supported-Logging-Drivers"><a href="#Supported-Logging-Drivers" class="headerlink" title="Supported Logging Drivers"></a>Supported Logging Drivers</h2><p>The following logging drivers are supported. If you are using logging driver plugins, you may see more options.</p>
+<table>
+<thead>
+<tr>
+<th>Driver</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>none</code></td>
+<td>No logs are available for the container and docker logs does not return any output.</td>
+</tr>
+<tr>
+<td><code>local</code></td>
+<td>Logs are stored in a custom format designed for minimal overhead.</td>
+</tr>
+<tr>
+<td><code>json-file</code></td>
+<td>The logs are formatted as JSON. The default logging driver for Docker.</td>
+</tr>
+<tr>
+<td><code>syslog</code></td>
+<td>Writes logging messages to the syslog facility. The syslog daemon must be running on the host machine.</td>
+</tr>
+<tr>
+<td><code>journald</code></td>
+<td>Writes log messages to journald. The journald daemon must be running on the host machine.</td>
+</tr>
+<tr>
+<td><code>gelf</code></td>
+<td>Writes log messages to a Graylog Extended Log Format (GELF) endpoint such as Graylog or Logstash.</td>
+</tr>
+<tr>
+<td><code>fluentd</code></td>
+<td>Writes log messages to fluentd (forward input). The fluentd daemon must be running on the host machine.</td>
+</tr>
+<tr>
+<td><code>awslogs</code></td>
+<td>Writes log messages to Amazon CloudWatch Logs.</td>
+</tr>
+<tr>
+<td><code>splunk</code></td>
+<td>Writes log messages to splunk using the HTTP Event Collector.</td>
+</tr>
+<tr>
+<td><code>etwlogs</code></td>
+<td>Writes log messages as Event Tracing for Windows (ETW) events. Only available on Windows platforms.</td>
+</tr>
+<tr>
+<td><code>gcplogs</code></td>
+<td>Writes log messages to Google Cloud Platform (GCP) Logging.</td>
+</tr>
+<tr>
+<td><code>logentries</code></td>
+<td>Writes log messages to Rapid7 Logentries.</td>
+</tr>
+</tbody></table>
+<p>However, there are <strong>limitations for using logging drivers in general</strong> as well:</p>
+<ul>
+<li>Users of <strong>Docker Enterprise can make use of “dual logging”</strong>, which enables you to use the docker logs command for any logging driver. Refer to reading logs when using remote logging drivers for information about using docker logs to read container logs locally for many third party logging solutions, including:<ul>
+<li><code>syslog</code></li>
+<li><code>gelf</code></li>
+<li><code>fluentd</code></li>
+<li><code>awslogs</code></li>
+<li><code>splunk</code></li>
+<li><code>etwlogs</code></li>
+<li><code>gcplogs</code></li>
+<li><code>Logentries</code></li>
+</ul>
+</li>
+<li>When using <strong>Docker Community Engine</strong>, the docker logs command is only available on the following drivers:<br>local<ul>
+<li><code>json-file</code></li>
+<li><code>journald</code></li>
+</ul>
+</li>
+<li>Reading log information <strong>requires decompressing rotated log files</strong>, which <strong>causes a temporary increase in disk usage</strong> (until the log entries from the rotated files are read) and an increased CPU usage while decompressing.</li>
+<li>The capacity of the host storage where the Docker data directory resides determines the maximum size of the log file information.</li>
+</ul>
+<h2 id="Using-a-Logging-Driver-Plugin"><a href="#Using-a-Logging-Driver-Plugin" class="headerlink" title="Using a Logging Driver Plugin"></a>Using a Logging Driver Plugin</h2><p>Docker logging plugins allow you to extend and customize Docker’s logging capabilities beyond those of the built-in logging drivers. <strong>A logging service provider can implement their own plugins and make them available on Docker Hub, or a private registry</strong>.</p>
+<ol>
+<li><p>First, you need to install the logging driver plugin</p>
+<ul>
+<li>To install a logging driver plugin, use <code>docker plugin install &lt;org/image&gt;</code>, using the information provided by the plugin developer.</li>
+</ul>
+</li>
+<li><p>You can <strong>list all installed plugins</strong> using <code>docker plugin ls</code>, and you can <strong>inspect a specific plugin</strong> using <code>docker inspect</code>.</p>
+</li>
+<li><p>If you wan to configure the plugin <strong>as the default logging driver</strong>:</p>
+<ul>
+<li>After the plugin is installed, you can configure the Docker daemon to use it as the default by setting the plugin’s name as the value of the <code>log-driver</code> key in the <code>daemon.json</code>, as detailed in the previous section. If the logging driver supports additional options, you can set those as the values of the <code>log-opts</code> array in the same file.</li>
+</ul>
+</li>
+<li><p>If you want to configure <strong>a container to use the plugin</strong> as the logging driver:</p>
+<ul>
+<li>After the plugin is installed, you can configure a container to use the plugin as its logging driver by <strong>specifying the <code>--log-driver</code> flag to <code>docker run</code></strong>, as detailed in the previous section. If the logging driver supports additional options, you can specify them using one or more <code>--log-opt</code> flags with the option name as the key and the option value as the value.</li>
+</ul>
+</li>
+</ol>
+<h2 id="Customizing-the-Logging-Driver-Tag"><a href="#Customizing-the-Logging-Driver-Tag" class="headerlink" title="Customizing the Logging Driver Tag"></a>Customizing the Logging Driver Tag</h2><p>The tag log option specifies how to format a tag that identifies the container’s log messages. By default, the system uses the first 12 characters of the container ID. To override this behavior, specify a tag option:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker run --log-driver&#x3D;fluentd --log-opt fluentd-address&#x3D;myhost.local:24224 --log-opt tag&#x3D;&quot;testTag&quot;</span><br></pre></td></tr></table></figure>
+
+<p>Often, you would like to use a special template markup:  --log-opt tag=".ImageName/.Name/.ID"  value yields syslog log lines like:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Aug  7 18:33:19 HOSTNAME hello-world&#x2F;foobar&#x2F;5790672ab6a0[9103]: Hello from Docker.</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>Markup</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>{{.ID}}</td>
+<td>The first 12 characters of the container ID.</td>
+</tr>
+<tr>
+<td>{{.FullID}}</td>
+<td>The full container ID.</td>
+</tr>
+<tr>
+<td>{{.Name}}</td>
+<td>The container name.</td>
+</tr>
+<tr>
+<td>{{.ImageID}}</td>
+<td>The first 12 characters of the container’s image ID.</td>
+</tr>
+<tr>
+<td>{{.ImageFullID}}</td>
+<td>The container’s full image ID.</td>
+</tr>
+<tr>
+<td>{{.ImageName}}</td>
+<td>The name of the image used by the container.</td>
+</tr>
+<tr>
+<td>{{.DaemonName}}</td>
+<td>The name of the docker program (docker).</td>
+</tr>
+</tbody></table>
 <p><a name="MySQL-in-Docker"></a></p>
 <h2 id="Using-MySQL-Server-in-Docker"><a href="#Using-MySQL-Server-in-Docker" class="headerlink" title="Using MySQL Server in Docker"></a>Using MySQL Server in Docker</h2><ol>
 <li>You need to first setup your SQL server in docker via this <a href="https://dev.mysql.com/doc/mysql-installation-excerpt/8.0/en/docker-mysql-getting-started.html" target="_blank" rel="noopener">Official Guide</a></li>
