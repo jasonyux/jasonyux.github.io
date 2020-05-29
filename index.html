@@ -2402,6 +2402,13 @@
 </blockquote>
 </li>
 </ol>
+<h2 id="Viewing-Changes-After-Fetching"><a href="#Viewing-Changes-After-Fetching" class="headerlink" title="Viewing Changes After Fetching"></a>Viewing Changes After Fetching</h2><p>After you have fetched from your repo with <code>git fetch &lt;remote&gt;</code>, it will automatically update (or create) all the so-called <strong>“remote-tracking branches”</strong> for that remote (if you only want to fetch from a specific branch, you need to run <code>git fetch &lt;remote&gt;/&lt;branchName&gt;</code>).</p>
+<p>Now, to see what has been changed, you can use the <code>^</code> or <code>..</code> operator. For example, If you want to see what remote <code>master</code> has compared to your local <code>master</code>, you ask Git to show you exactly this:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git log &lt;remote&gt;&#x2F;master ^master</span><br></pre></td></tr></table></figure>
+
+<p>which means <strong>all commits reachable from <code>&lt;remote&gt;/master</code> which do not include commits reachable from <code>master</code></strong> or, alternatively</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git log master..&lt;remote&gt;&#x2F;master</span><br></pre></td></tr></table></figure>
+
 <h2 id="Pushing-Sharing-to-Your-Remote"><a href="#Pushing-Sharing-to-Your-Remote" class="headerlink" title="Pushing/Sharing to Your Remote"></a>Pushing/Sharing to Your Remote</h2><p>When you have your project at a point that you want to share, you have to push it upstream. The command for this is simple: <code>git push &lt;remote&gt; &lt;branch&gt;</code>. If you want to <strong>push your master branch to your origin server</strong> (again, cloning generally sets up both of those names for you automatically), then you can run this to <strong>push any commits you’ve done</strong> back up to the server:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git push origin master</span><br></pre></td></tr></table></figure>
 <blockquote>
@@ -2589,7 +2596,7 @@ Now, the master head will point to the inital commit. If your friend is also wor
 <p>So we see that the two branches are diverged at the first <strong>commit object</strong>.</p>
 <h2 id="Merging-Different-Branches"><a href="#Merging-Different-Branches" class="headerlink" title="Merging Different Branches"></a>Merging Different Branches</h2><p>There are basically two cases: </p>
 <ol>
-<li><p>You have <strong>two diverged branches</strong>, but <strong>they used different files</strong>, or, to put it more suggestively, the <strong>file they shared are the same</strong>. In this case, it is simple for Git to figure out how to merge (basically just putting all the files together), and you run:<br><img src="/.com//mergingCase1.png" alt="Picture from git-scm.com, figure 25"></p>
+<li><p>You have <strong>two diverged branches</strong>, but <strong>they used different files</strong>, or, to put it more suggestively, the <strong>file they shared are the same</strong>. In this case, it is simple for Git to figure out how to merge (basically just putting all the files together), and you run:<br><img src="/.com//05/20/Git-Summary/mergingCase1.png" alt="Picture from git-scm.com, figure 25"></p>
  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git checkout master</span><br><span class="line">$ git merge testing</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>Note:</p>
@@ -2623,7 +2630,7 @@ Now, the master head will point to the inital commit. If your friend is also wor
 </blockquote>
 <h2 id="Typical-WorkFlow-Using-Git-Branches"><a href="#Typical-WorkFlow-Using-Git-Branches" class="headerlink" title="Typical WorkFlow Using Git Branches"></a>Typical WorkFlow Using Git Branches</h2><p>Usually, people tend to put <strong>code that is entirely stable in their master branch</strong> — possibly only code that has been or will be released. They have another parallel branch named <strong>develop</strong> or <strong>next</strong> that they work from or use to test stability — it isn’t necessarily always stable, but whenever it gets to a <strong>stable state, it can be merged into master</strong>.</p>
 <p>  In general, for some larger projects, you will want your branches are at various levels of stability, ordered from most stable top branch (<strong>master</strong>) to the least stable bottom branch(<strong>topic</strong>, for example); when they reach a <strong>more stable level, they’re merged into the branch above them</strong>.</p>
-<p><img src="/.com//branchManagement.png" alt="picture from https://git-scm.com/book/en/v2/Git-Branching-Branching-Workflows"></p>
+<p><img src="/.com//05/20/Git-Summary/branchManagement.png" alt="picture from https://git-scm.com/book/en/v2/Git-Branching-Branching-Workflows"></p>
 <blockquote>
 <p>Note:</p>
 <ul>
@@ -2636,7 +2643,7 @@ Now, the master head will point to the inital commit. If your friend is also wor
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git fetch &lt;remoteShortName&gt; command</span><br></pre></td></tr></table></figure>
 <p>This command looks up which server “<code>origin</code>” is (for example, it might be cloned from <code>git.ourcompany.com</code>), <strong>fetches any data from it that you don’t yet have</strong>, and updates your local database, moving your <code>origin/master</code> pointer to its new, more up-to-date position, but your <strong>current <code>master</code> pointer is still the same as you were working with</strong>.</p>
 <h2 id="Colaborating-with-Multiple-Repos"><a href="#Colaborating-with-Multiple-Repos" class="headerlink" title="Colaborating with Multiple Repos"></a>Colaborating with Multiple Repos</h2><p>Say you have a main repo that you have cloned, with the shortname <code>origin</code> at <code>git.outcompany.com</code>, and you have another team working on that repo as well, with their repo being at <code>git team1.ourcompany.com</code></p>
-<p><img src="/.com//remoteBranches1.png" alt="Picture from https://git-scm.com/book/en/v2/Git-Branching-Remote-Branches, Figure 33"></p>
+<p><img src="/.com//05/20/Git-Summary/remoteBranches1.png" alt="Picture from https://git-scm.com/book/en/v2/Git-Branching-Remote-Branches, Figure 33"></p>
 <p>You can add their work to your current repo by</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git remote add git.team1.ourcompany.com teamone</span><br></pre></td></tr></table></figure>
 
@@ -2644,7 +2651,7 @@ Now, the master head will point to the inital commit. If your friend is also wor
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git fetch teamone</span><br></pre></td></tr></table></figure>
 
 <p>In this case, since <code>teamone</code> actually didn’t have anything more than the server had, nothing will be fecthed, but you will still obtain a <strong>branch <code>teamone</code> that marks their progress</strong></p>
-<p><img src="/.com//remoteBranches2.png" alt="Picture from https://git-scm.com/book/en/v2/Git-Branching-Remote-Branches, Figure 34"></p>
+<p><img src="/.com//05/20/Git-Summary/remoteBranches2.png" alt="Picture from https://git-scm.com/book/en/v2/Git-Branching-Remote-Branches, Figure 34"></p>
 <blockquote>
 <p>Note:</p>
 <ul>
@@ -2706,7 +2713,7 @@ Now, the master head will point to the inital commit. If your friend is also wor
 <h2 id="Rebasing"><a href="#Rebasing" class="headerlink" title="Rebasing"></a>Rebasing</h2><p>In Git, there are <strong>two main ways to integrate changes from one branch into another</strong>: the <code>merge</code> and the <code>rebase</code>. </p>
 <p>This second operation <code>rebase</code> basically stand from the fact that <code>merge</code> does a three-way-merge, so that in all case, even if two branches had <strong>modification on completely different files</strong>.</p>
 <p>So if you <code>rebase</code>, what you want to do is actually this:</p>
-<p><img src="/.com//rebase1.png" alt="Picture from https://git-scm.com/book/en/v2/Git-Branching-Rebasing, Figure 37"></p>
+<p><img src="/.com//05/20/Git-Summary/rebase1.png" alt="Picture from https://git-scm.com/book/en/v2/Git-Branching-Rebasing, Figure 37"></p>
 <p>So, you can take the <strong>patch of the change that was introduced in C4</strong> and <strong>reapply</strong> it on top of C3. With the <code>rebase</code> command, you can take all the changes that were committed on one branch and <strong>replay them on a different branch</strong>.</p>
 <p>To place <code>experiment</code> on top of <code>master</code>, you run:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git checkout experiment</span><br><span class="line">$ git rebase master</span><br></pre></td></tr></table></figure>
@@ -2724,14 +2731,14 @@ Now, the master head will point to the inital commit. If your friend is also wor
 <li><input disabled type="checkbox"> Of course, do not rebase commits that exist outside your repository and that <strong>people may have based work on</strong>, because the changes are applied to that branch and it might <strong>destory their work</strong>.</li>
 </ul>
 </blockquote>
-<h2 id="A-More-Complicated-Rebase"><a href="#A-More-Complicated-Rebase" class="headerlink" title="A More Complicated Rebase"></a>A More Complicated Rebase</h2><p>Conside the case:<br><img src="/.com//complicatedRebase.png" alt="Picture from https://git-scm.com/book/en/v2/Git-Branching-Rebasing#rebasing-merging-example, Figure 39"><br>And you want to rebase the <strong>client</strong> branch to go from the <strong>master</strong> branch. This can be done simply using one line:</p>
+<h2 id="A-More-Complicated-Rebase"><a href="#A-More-Complicated-Rebase" class="headerlink" title="A More Complicated Rebase"></a>A More Complicated Rebase</h2><p>Conside the case:<br><img src="/.com//05/20/Git-Summary/complicatedRebase.png" alt="Picture from https://git-scm.com/book/en/v2/Git-Branching-Rebasing#rebasing-merging-example, Figure 39"><br>And you want to rebase the <strong>client</strong> branch to go from the <strong>master</strong> branch. This can be done simply using one line:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git rebase --onto master server client</span><br></pre></td></tr></table></figure>
 
 <p>This means to take the <strong>client</strong> branch, figure out the <strong>patches since it diverged from the server branch</strong>, and <strong>replay these patches in the client branch as if it was based directly off the master branch instead.</strong></p>
 <hr>
 <p><strong>Making a Disaster</strong></p>
 <hr>
-<h2 id="A-Disasterous-Case"><a href="#A-Disasterous-Case" class="headerlink" title="A Disasterous Case"></a>A Disasterous Case</h2><p>Consider if the server side actually <code>rebased</code> their <code>master</code> branch, and your work depends on it, and you did a <code>pull</code>, which automatically <code>merges</code> so it looks like this:<br><img src="/.com//rebase2.png" alt="Picture from https://git-scm.com/book/en/v2/Git-Branching-Rebasing#rebasing-merging-example, Figure 46"></p>
+<h2 id="A-Disasterous-Case"><a href="#A-Disasterous-Case" class="headerlink" title="A Disasterous Case"></a>A Disasterous Case</h2><p>Consider if the server side actually <code>rebased</code> their <code>master</code> branch, and your work depends on it, and you did a <code>pull</code>, which automatically <code>merges</code> so it looks like this:<br><img src="/.com//05/20/Git-Summary/rebase2.png" alt="Picture from https://git-scm.com/book/en/v2/Git-Branching-Rebasing#rebasing-merging-example, Figure 46"></p>
 <p>However, since we know that <code>C4</code> and <code>C6</code> are deleted/rebased because they are useless, we would also want <code>C4</code> and <code>C6</code> become removed. This can be done by <code>git pull --rebase</code> instead of <code>git pull</code>, which automatically successfully figure out what is <strong>uniquely yours</strong> and apply them back <strong>on top of the new branch</strong>.</p>
 <blockquote>
 <p>Note:</p>
@@ -2826,11 +2833,11 @@ Now, the master head will point to the inital commit. If your friend is also wor
 <h2 id="Distributed-WorkFlows"><a href="#Distributed-WorkFlows" class="headerlink" title="Distributed WorkFlows"></a>Distributed WorkFlows</h2><p> The aim for these flows is how to contribute code successfully to a project and make it <strong>as easy on you and the project maintainer as possible</strong>, and also how to <strong>maintain a project successfully with a number of developers contributing</strong>.</p>
 <p> In general, due to the flexibility of Git, it presents <strong>a vast range of workflow possibilities for your project and/or your team</strong>, so we’ll cover a few common paradigms that take advantage of this flexibility.</p>
 <ol>
-<li><p><strong>Centralized Workflow</strong><br><img src="/.com//centralized_workflow.png" alt="Picture from https://git-scm.com/book/en/v2/Distributed-Git-Distributed-Workflows, Figure 54"></p>
+<li><p><strong>Centralized Workflow</strong><br><img src="/.com//05/20/Git-Summary/centralized_workflow.png" alt="Picture from https://git-scm.com/book/en/v2/Distributed-Git-Distributed-Workflows, Figure 54"></p>
 <p> This means that if two developers clone from the hub and both make changes, <strong>the first developer to push their changes back up can do so with no problems</strong>. The <strong>second developer must merge</strong> in the first one’s work before pushing changes up, so as not to overwrite the first developer’s changes.    </p>
 </li>
 <li><p><strong>Integration-Manager Workflow</strong><br>Because Git allows you to have multiple remote repositories, it’s possible to have a workflow where each developer has <strong>write access to their own public repository</strong> and <strong>read access to everyone else’s</strong>. </p>
-<p> <img src="/.com//integration-manager.png" alt="Picture from https://git-scm.com/book/en/v2/Distributed-Git-Distributed-Workflows, Figure 55"></p>
+<p> <img src="/.com//05/20/Git-Summary/integration-manager.png" alt="Picture from https://git-scm.com/book/en/v2/Distributed-Git-Distributed-Workflows, Figure 55"></p>
 <p> This scenario often includes a <strong>canonical repository that represents the “official” project</strong>. To contribute to that project, you <strong>create your own public clone</strong> of the project and push your changes to it. Then, you can send a <strong>request to the maintainer of the main project to pull in your changes</strong>. The maintainer can then add your repository as a remote, <strong>test your changes locally</strong>, <strong>merge them into their branch</strong>, and <strong>push back to their repository</strong>. </p>
 <ol>
 <li>The project maintainer/manager pushes to their public/blessed repository.</li>
@@ -3010,7 +3017,7 @@ Now, the master head will point to the inital commit. If your friend is also wor
 <p><a name="merging-flow-small"></a></p>
 <h2 id="Small-Merging-Workflow"><a href="#Small-Merging-Workflow" class="headerlink" title="Small Merging Workflow"></a>Small Merging Workflow</h2><p>The simplest way is to do <code>git merge</code> all the time to your <code>master</code> branch. However, this might cause unpleasant history line to review. However, this is often manageable for small projects, and typically you will have <strong>a main track with two branches</strong>: <code>master</code> and <code>develop</code>, in which you determine that <strong><code>master</code> is updated only when a very stable release is cut</strong> and <strong>all new code is integrated into the <code>develop</code> branch</strong>.</p>
 <p>Then, since you typically first <code>merge</code> into your <code>develop</code> before deciding whether or not it is to be released in the <code>master</code> branch:</p>
-<p><img src="/.com//merging-workflows-1.png" alt="Picture from https://git-scm.com/book/en/v2/Distributed-Git-Maintaining-a-Project, Figure 76"><br>And then if you do decide to <code>merge</code> in to the <code>master</code> branch:<br><img src="/.com//merging-workflows-2.png" alt="Picture from https://git-scm.com/book/en/v2/Distributed-Git-Maintaining-a-Project, Figure 77"></p>
+<p><img src="/.com//05/20/Git-Summary/merging-workflows-1.png" alt="Picture from https://git-scm.com/book/en/v2/Distributed-Git-Maintaining-a-Project, Figure 76"><br>And then if you do decide to <code>merge</code> in to the <code>master</code> branch:<br><img src="/.com//05/20/Git-Summary/merging-workflows-2.png" alt="Picture from https://git-scm.com/book/en/v2/Distributed-Git-Maintaining-a-Project, Figure 77"></p>
 <p><a name="merging-flow-large"></a></p>
 <h2 id="Large-Merging-Workflow"><a href="#Large-Merging-Workflow" class="headerlink" title="Large Merging Workflow"></a>Large Merging Workflow</h2><p>This workflow will have four <code>branch</code>es on the main track: <code>master</code>,<code>next</code>,<code>pu</code>,and <code>maint</code>.</p>
 <ul>
@@ -3019,7 +3026,7 @@ Now, the master head will point to the inital commit. If your friend is also wor
 <li><code>pu</code> branch means <strong>proposed updates</strong>, these could be branches with work that are interesting but <strong>need more work</strong></li>
 <li><code>maint</code> branch usually stores the project <strong>at the state of the last release</strong>, so that it <strong>can be forked off to provide backported patches in case a maintenance release is required</strong>. </li>
 </ul>
-<p>For example, you might have your <code>topic</code> branches from your colaborators’ repos like this:<br><img src="/.com//large-merges-1.png" alt="Picture from https://git-scm.com/book/en/v2/Distributed-Git-Maintaining-a-Project, Figure 76"><br>And you organizes/maintains your main <code>branch</code>es (<code>maint</code> not shown here) like this:<br><img src="/.com//large-merges-2.png" alt="Picture from https://git-scm.com/book/en/v2/Distributed-Git-Maintaining-a-Project, Figure 76"></p>
+<p>For example, you might have your <code>topic</code> branches from your colaborators’ repos like this:<br><img src="/.com//05/20/Git-Summary/large-merges-1.png" alt="Picture from https://git-scm.com/book/en/v2/Distributed-Git-Maintaining-a-Project, Figure 76"><br>And you organizes/maintains your main <code>branch</code>es (<code>maint</code> not shown here) like this:<br><img src="/.com//05/20/Git-Summary/large-merges-2.png" alt="Picture from https://git-scm.com/book/en/v2/Distributed-Git-Maintaining-a-Project, Figure 76"></p>
 <p><a name="rebase-and-cherry"></a></p>
 <h2 id="Rebasing-and-Cherry-Picking-Workflow"><a href="#Rebasing-and-Cherry-Picking-Workflow" class="headerlink" title="Rebasing and Cherry-Picking Workflow"></a>Rebasing and Cherry-Picking Workflow</h2><p>Other maintainers prefer to <code>rebase</code> or <code>cherry-pick</code> contributed work on top of their master branch, rather than merging it in, to <strong>keep a mostly linear history</strong>. When you have work in a <code>topic</code> branch and have determined that you want to integrate it, you move to that branch and run the <code>rebase</code> command to <strong>rebuild the changes on top of your current <code>master</code></strong> (or <code>develop</code>, and so on) branch. <strong>If that works well</strong>, you can fast-forward your master branch, and you’ll end up with a linear project history.</p>
 <p>Or you could do a cherry-pick, which <strong>does not remove the original branch</strong> but <strong>“rebases” on top of the current branch</strong>, and you can <strong>choose which commit/commits you would like to incorporate</strong> (which means you might want to incorporate only several commits in that branch, but not all).</p>
