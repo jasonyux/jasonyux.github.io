@@ -1327,7 +1327,393 @@
 <td>The name of the docker program (docker).</td>
 </tr>
 </tbody></table>
-<p><a name="MySQL-in-Docker"></a></p>
+<h2 id="Dokcer-Network-Overview"><a href="#Dokcer-Network-Overview" class="headerlink" title="Dokcer Network Overview"></a>Dokcer Network Overview</h2><p>One of the reasons Docker containers and services are so powerful is that you can <strong>connect them together</strong>, or <strong>connect them to non-Docker workloads</strong>. Docker containers and services do not even need to be aware that they are deployed on Docker, or whether their peers are also Docker workloads or not. Whether your Docker hosts run Linux, Windows, or a mix of the two, you can use Docker to manage them in a platform-agnostic way.</p>
+<p>However. this topic <strong>does not go into OS-specific details</strong> about how Docker networks work, so you will not find information about how Docker manipulates <code>iptables</code> rules on Linux or how it manipulates routing rules on Windows servers, and you will not find detailed information about how Docker forms and encapsulates packets or handles encryption. </p>
+<h2 id="Network-Drivers"><a href="#Network-Drivers" class="headerlink" title="Network Drivers"></a>Network Drivers</h2><p>Docker’s networking subsystem is pluggable, <strong>using drivers</strong>. Several drivers <strong>exist by default</strong>, and provide core networking functionality:</p>
+<ul>
+<li><p><code>bridge</code>: </p>
+<ul>
+<li>The <strong>default</strong> network driver. If you don’t specify a driver, this is the type of network you are creating. Bridge networks are usually used when your <strong>applications run in standalone containers that need to communicate</strong>. </li>
+<li>This is usually the best choice when you need <strong>multiple containers to communicate on the same Docker host</strong>.</li>
+<li>For more details, see the <a href="#Using-bridge-networks">bridge networks section</a>.</li>
+</ul>
+</li>
+<li><p><code>host</code>: </p>
+<ul>
+<li>For standalone containers, this will <strong>remove network isolation between the container and the Docker host, and use the host’s networking directly</strong>. <code>host</code> is only available for swarm services on <code>Docker 17.06</code> and higher.</li>
+<li>This is the best choice when the <strong>network stack should not be isolated from the Docker host</strong>, but you want <strong>other aspects of the container to be isolated</strong>.</li>
+<li>For more details, see the <a href="#Using-host-networks">host networks section</a></li>
+</ul>
+</li>
+<li><p><code>overlay</code>: </p>
+<ul>
+<li>Overlay networks <strong>connect multiple Docker daemons together and enable swarm services to communicate with each other</strong>. You can also use <strong>overlay networks</strong> to facilitate communication between a swarm service and a standalone container, or between two standalone containers on different Docker daemons. This strategy removes the need to do OS-level routing between these containers.</li>
+<li>This is the best choice when you need <strong>containers running on different Docker hosts to communicate</strong>, or when <strong>multiple applications work together using swarm services</strong>.</li>
+<li>This is the best choice when you are <strong>migrating from a VM setup</strong> or <strong>need your containers to look like physical hosts</strong> on your network, each with a unique MAC address.</li>
+<li>For more details, see the <a href="#Using-overlay-networks">overlay networks section</a></li>
+</ul>
+</li>
+<li><p><code>macvlan</code>: </p>
+<ul>
+<li>Macvlan networks allow you to <strong>assign a MAC address to a container, making it appear as a physical device on your network</strong>. The Docker daemon routes traffic to containers by their MAC addresses. Using the macvlan driver is sometimes the best choice when dealing with legacy applications that expect to be directly connected to the physical network, rather than routed through the Docker host’s network stack. </li>
+<li>For more details, see the <a href="#Using-mcvlan-networks">mcvlan networks section</a></li>
+</ul>
+</li>
+<li><p><code>none</code>: </p>
+<ul>
+<li>For this container, <strong>disable all networking</strong>. Usually used in conjunction with a custom network driver. <code>none</code> is not available for swarm services. </li>
+<li>For more details, see the <a href="#Using-none-networks">none networks section</a></li>
+</ul>
+</li>
+<li><p><code>Network plugins</code>: </p>
+<ul>
+<li>You can <strong>install and use third-party network plugins</strong> with Docker. These plugins are available from Docker Hub or from third-party vendors. See the vendor’s documentation for installing and using a given network plugin.</li>
+</ul>
+</li>
+</ul>
+<p><a name="Using-bridge-networks"></a></p>
+<h2 id="Using-bridge-networks"><a href="#Using-bridge-networks" class="headerlink" title="Using bridge networks"></a>Using <code>bridge</code> networks</h2><p>In terms of Docker, a <code>bridge</code> network uses a software bridge which allows <strong>containers connected to the same bridge network to communicate, while providing isolation from containers which are not connected to that bridge network</strong>. </p>
+<p>The Docker bridge driver <strong>automatically installs rules in the host machine</strong> so that containers on different bridge networks cannot communicate directly with each other. However, <code>bridge</code> networks <strong>apply to containers running on the same Docker daemon host</strong>. For communication among containers running on different Docker daemon hosts, you can either manage routing at the OS level, or you can use an overlay network.</p>
+<p>Now, for bridge networks, we can have either the <code>default bridge</code> network or the <code>user-defined bridge</code> network.</p>
+<p>When you <strong>start Docker</strong>, <strong>a <code>default bridge</code> network (also called bridge) is created automatically</strong>, and newly-started containers connect to it unless otherwise specified. You <strong>can also create <code>user-defined custom bridge</code> networks</strong>. User-defined bridge networks are superior to the default bridge network.</p>
+<ul>
+<li><p><code>User-defined bridges</code> provide <strong>automatic DNS resolution between containers</strong>.</p>
+<p>  Containers on the <code>default</code> bridge network can only access each other by IP addresses, unless you use the <code>--link</code> option, which is considered legacy. On a <strong><code>user-defined bridge</code> network, containers can resolve each other by name or alias</strong>.</p>
+<p>  Imagine an application with a web front-end and a database back-end. If you call your containers <code>web</code> and <code>db</code>, the <code>web</code> container can connect to the <code>db</code> container at <code>db</code>, no matter which Docker host the application stack is running on.</p>
+<p>  If you run the same application stack on the <code>default</code> bridge network, you need to <strong>manually create links between the containers</strong> (using the legacy <code>--link</code> flag). These links need to be <strong>created in both directions</strong>, so you can see this gets complex with more than two containers which need to communicate. Alternatively, you can manipulate the <code>/etc/hosts</code> files within the containers, but this creates problems that are difficult to debug.</p>
+</li>
+<li><p><code>User-defined bridges</code> provide <strong>better isolation</strong>.</p>
+<p>  All containers without a <code>--network</code> specified, are attached to the default bridge network. This can be a risk, as unrelated stacks/services/containers are then able to communicate.</p>
+<p>  Using a <code>user-defined network</code> provides a scoped network <strong>in which only containers attached to that network are able to communicate</strong>.</p>
+<p>  If you use a <code>user-defined bridge</code>, <strong>during a container’s lifetime, you can connect or disconnect it from user-defined networks</strong> on the fly. To remove a container from the <code>default</code> bridge network, you need to stop the container and recreate it with different network options.</p>
+</li>
+<li><p>Each <code>user-defined network</code> creates a <strong>configurable bridge</strong>.</p>
+<p>  If your containers use the <strong><code>default</code> bridge network</strong>, you can configure it, but <strong>all the containers use the same settings</strong>, such as <code>MTU</code> and <code>iptables</code> rules. In addition, configuring the default bridge network happens outside of Docker itself, and requires a restart of Docker.</p>
+<p>  <code>User-defined bridge</code> networks are created and configured using <code>docker network create</code>. If different groups of applications have <strong>different network requirements</strong>, you can <strong>configure each <code>user-defined bridge</code> separately</strong>, as you create it.</p>
+</li>
+<li><p>Linked containers on the <strong><code>default bridge</code> network share environment variables</strong>.</p>
+<p>  Originally, the only way to share environment variables between two containers was to link them using the <code>--link</code> flag. This type of variable sharing is <strong>not possible with <code>user-defined networks</code></strong>. However, there are <strong>superior ways to share environment variables</strong>. A few ideas:</p>
+<ul>
+<li><p>Multiple containers can <strong>mount a file or directory containing the shared information</strong>, using a Docker <code>volume</code>.</p>
+</li>
+<li><p>Multiple containers can be started together using <code>docker-compose</code> and the compose file can define the shared variables.</p>
+</li>
+<li><p>You can use <code>swarm</code> services instead of standalone containers, and take advantage of shared secrets and configs.</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>In general, containers connected to the <strong>same <code>user-defined bridge</code> network effectively expose all ports to each other</strong>. For a port to be <strong>accessible to containers or non-Docker hosts</strong> on <strong>different networks</strong>, that port must be <strong>published using the <code>-p</code> or <code>--publish</code> flag</strong>.</p>
+<h2 id="Creating-and-Removing-a-user-defined-bridge"><a href="#Creating-and-Removing-a-user-defined-bridge" class="headerlink" title="Creating and Removing a user-defined bridge"></a>Creating and Removing a <code>user-defined bridge</code></h2><ul>
+<li><p>You can use the <code>docker network create &lt;networkName&gt;</code> command to <strong>create a <code>user-defined bridge</code> network.</strong></p>
+<p>  For example:</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker network create --driver bridge my-net</span><br></pre></td></tr></table></figure>
+
+<p>  or, since <code>bridge</code> is also the default:</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker network create my-net</span><br></pre></td></tr></table></figure>
+
+<p>  You can also specify the subnet, the IP address range, the gateway, and other options. See the <a href="https://docs.docker.com/engine/reference/commandline/network_create/#specify-advanced-options" target="_blank" rel="noopener">Docker network create reference</a> or the output of <code>docker network create --help</code> for details.</p>
+</li>
+<li><p>If you don’t need a <code>user-defined brigde</code>, you can <strong>use the <code>docker network rm &lt;networkName&gt;</code> command to remove a <code>user-defined bridge</code> network</strong>. If <strong>containers are currently connected to the network, disconnect them first</strong>.</p>
+<p>  For example, if you have all containers disconnected from the <code>my-net</code> bridge, and you want to remove it:</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker network rm my-net</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="Connecting-and-Disconnecting-from-a-user-defined-bridge"><a href="#Connecting-and-Disconnecting-from-a-user-defined-bridge" class="headerlink" title="Connecting and Disconnecting from a user-defined bridge"></a>Connecting and Disconnecting from a <code>user-defined bridge</code></h2><ul>
+<li><p>You can specify the connection to a <code>user-defined network</code> via 2 ways:</p>
+<ul>
+<li>with the <code>--network</code> flag when you <strong>create a container</strong></li>
+<li>with the <code>docker network connect &lt;networkName&gt; &lt;containerName&gt;</code> when you have a <strong>running container</strong></li>
+</ul>
+<ol>
+<li><p>When you <strong>create a new container</strong>, you can specify one or more <code>--network</code> flags. This example connects a <code>Nginx</code> container to the <code>my-net</code> network. It also publishes port <code>80</code> in the container to port <code>8080</code> on the Docker host, so <strong>external clients can access that port</strong>. <strong>Any other container connected to the <code>my-net</code> network</strong> has access to <strong>all ports on the <code>my-nginx</code> container</strong>, and vice versa.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ docker create --name my-nginx \</span><br><span class="line">  --network my-net \</span><br><span class="line">  --publish 8080:80 \</span><br><span class="line">  nginx:latest</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>To connect a running container to an existing user-defined bridge, use the docker network connect command. The following command connects an already-running my-nginx container to an already-existing my-net network:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker network connect my-net my-nginx</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>Note:</p>
+<ul>
+<li><input disabled type="checkbox"> If you need <code>IPv6</code> support for Docker containers, you need to <strong>enable the option on the Docker daemon and reload its configuration</strong>, <strong>before creating any <code>IPv6</code> networks</strong> or assigning containers IPv6 addresses.<br>When you create your network, you can specify the <code>--ipv6</code> flag to enable IPv6. You can’t selectively disable IPv6 support on the default bridge network.</li>
+</ul>
+</blockquote>
+</li>
+</ol>
+</li>
+<li><p>To <strong>disconnect a running container from a <code>user-defined bridge</code></strong>, use the <code>docker network disconnect</code> command. The following command disconnects the <code>my-nginx</code> container from the <code>my-net</code> network.</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker network disconnect my-net my-nginx</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="Enabling-Forwarding-from-Containers-to-Outside-World"><a href="#Enabling-Forwarding-from-Containers-to-Outside-World" class="headerlink" title="Enabling Forwarding from Containers to Outside World"></a>Enabling Forwarding from Containers to Outside World</h2><p>By default, traffic from containers connected to the <code>default</code> bridge network is <strong>not forwarded to the outside world</strong>. To <strong>enable forwarding</strong>, you need to change two settings. These are not Docker commands and they affect the Docker host’s kernel.</p>
+<ol>
+<li>Configure the Linux kernel to allow IP forwarding.<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sysctl net.ipv4.conf.all.forwarding&#x3D;1</span><br></pre></td></tr></table></figure></li>
+<li>Then change the policy for the iptables FORWARD policy from <code>DROP</code> to <code>ACCEPT</code>.<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo iptables -P FORWARD ACCEPT</span><br></pre></td></tr></table></figure>
+These settings <strong>do not persist across a reboot</strong>, so you may need to add them to a start-up script.</li>
+</ol>
+<h2 id="Viewing-and-Configuring-your-user-defined-bridge"><a href="#Viewing-and-Configuring-your-user-defined-bridge" class="headerlink" title="Viewing and Configuring your user-defined bridge"></a>Viewing and Configuring your <code>user-defined bridge</code></h2><ol>
+<li><p>First, after you have created your <code>user-defined bridge</code>, you can use <code>docker network ls</code> to view the networks that docker has:</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ docker network ls</span><br><span class="line"></span><br><span class="line">NETWORK ID          NAME                DRIVER              SCOPE</span><br><span class="line">9210b6312956        test-net            bridge              local</span><br><span class="line">17e324f45964        bridge              bridge              local</span><br><span class="line">6ed54d316334        host                host                local</span><br><span class="line">7092879f2cc8        none                null                local</span><br></pre></td></tr></table></figure></li>
+<li><p>Then you can use <code>docker inspect &lt;network-id&gt;</code> to see details about your <code>bridge</code>:</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">$ docker inspect test-net</span><br><span class="line">[</span><br><span class="line">    &#123;</span><br><span class="line">        &quot;Name&quot;: &quot;test-net&quot;,</span><br><span class="line">        &quot;Id&quot;: &quot;9210b6312956eb510fc1ad59f3ebc1ac14270fc27d44f3b98d0c71bcb5409d83&quot;,</span><br><span class="line">        &quot;Created&quot;: &quot;2020-06-01T09:37:22.875610678+08:00&quot;,</span><br><span class="line">        &quot;Scope&quot;: &quot;local&quot;,</span><br><span class="line">        &quot;Driver&quot;: &quot;bridge&quot;,</span><br><span class="line">        &quot;EnableIPv6&quot;: false,</span><br><span class="line">        &quot;IPAM&quot;: &#123;</span><br><span class="line">            &quot;Driver&quot;: &quot;default&quot;,</span><br><span class="line">            &quot;Options&quot;: &#123;&#125;,</span><br><span class="line">            &quot;Config&quot;: [</span><br><span class="line">                &#123;</span><br><span class="line">                    &quot;Subnet&quot;: &quot;172.18.0.0&#x2F;16&quot;,</span><br><span class="line">                    &quot;Gateway&quot;: &quot;172.18.0.1&quot;</span><br><span class="line">                &#125;</span><br><span class="line">            ]</span><br><span class="line">        &#125;,</span><br><span class="line">        &quot;Internal&quot;: false,</span><br><span class="line">        &quot;Attachable&quot;: false,</span><br><span class="line">        &quot;Ingress&quot;: false,</span><br><span class="line">        &quot;ConfigFrom&quot;: &#123;</span><br><span class="line">            &quot;Network&quot;: &quot;&quot;</span><br><span class="line">        &#125;,</span><br><span class="line">        &quot;ConfigOnly&quot;: false,</span><br><span class="line">        &quot;Containers&quot;: &#123;&#125;,</span><br><span class="line">        &quot;Options&quot;: &#123;&#125;,</span><br><span class="line">        &quot;Labels&quot;: &#123;&#125;</span><br><span class="line">    &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<p> here you see that:</p>
+<ul>
+<li>there are <strong>no containers</strong> attached to it: <code>&quot;Containers&quot;: {}</code></li>
+<li>your <strong>Gateway</strong> is: <code>&quot;Gateway&quot;: &quot;172.18.0.1&quot;</code></li>
+</ul>
+</li>
+<li><p>Now, to test your <code>user-defined bridge</code>, you can create 4 containers: the first two will be connected to the bridge you created, the third will only be connected to be default bridge, and the fourth connected to both:</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ docker run -dit --name alpine1 --network test-net alpine ash</span><br><span class="line"></span><br><span class="line">$ docker run -dit --name alpine2 --network test-net alpine ash</span><br><span class="line"></span><br><span class="line">$ docker run -dit --name alpine3 alpine ash</span><br><span class="line"></span><br><span class="line">$ docker run -dit --name alpine4 --network test-net alpine ash</span><br><span class="line"></span><br><span class="line">$ docker network connect bridge alpine4</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Note:</p>
+<ul>
+<li><input disabled type="checkbox"> Since you can only specify <strong>one network when you use the <code>--network</code> flag for <code>docker run</code></strong>, if you need to <strong>connect to more than one network</strong>, you need to <strong>use <code>docker network connect</code> command with a running container</strong>.  </li>
+</ul>
+</blockquote>
+</li>
+<li><p>Now, if all the 4 containers are running properly, you can then <strong>inspect the <code>bridge</code> and the <code>test-net</code></strong> to see that the containers are included properly in the <code>&quot;containers&quot;</code> section. You should <strong>also be able to see the IP address</strong> that each one has been assigned.</p>
+</li>
+<li><p>Now, you can test their communication ability by connecting each one of them to the terminal (so that you  can do the <code>stdin</code> and see the <code>stdout</code> in your terminal) with the <code>docker container attach &lt;container-id&gt;</code> command. </p>
+<p> On <code>user-defined network</code>s like <code>test-net</code>, containers can <strong>not only communicate by IP address</strong>, but can also <strong>resolve a container name to an IP address</strong>. This capability is called <strong>automatic service discovery</strong>. However, you will see that containers not connected to the same <code>bridge</code> cannot communicate with each other (both <code>alpine1</code> and <code>alpine2</code> cannot communicate with <code>alpine3</code>).</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">$ docker container attach alpine1</span><br><span class="line"></span><br><span class="line"># ping -c 2 alpine2</span><br><span class="line"></span><br><span class="line">PING alpine2 (172.18.0.3): 56 data bytes</span><br><span class="line">64 bytes from 172.18.0.3: seq&#x3D;0 ttl&#x3D;64 time&#x3D;0.085 ms</span><br><span class="line">64 bytes from 172.18.0.3: seq&#x3D;1 ttl&#x3D;64 time&#x3D;0.090 ms</span><br><span class="line"></span><br><span class="line">--- alpine2 ping statistics ---</span><br><span class="line">2 packets transmitted, 2 packets received, 0% packet loss</span><br><span class="line">round-trip min&#x2F;avg&#x2F;max &#x3D; 0.085&#x2F;0.087&#x2F;0.090 ms</span><br><span class="line"></span><br><span class="line"># ping -c 2 alpine4</span><br><span class="line"></span><br><span class="line">PING alpine4 (172.18.0.4): 56 data bytes</span><br><span class="line">64 bytes from 172.18.0.4: seq&#x3D;0 ttl&#x3D;64 time&#x3D;0.076 ms</span><br><span class="line">64 bytes from 172.18.0.4: seq&#x3D;1 ttl&#x3D;64 time&#x3D;0.091 ms</span><br><span class="line"></span><br><span class="line">--- alpine4 ping statistics ---</span><br><span class="line">2 packets transmitted, 2 packets received, 0% packet loss</span><br><span class="line">round-trip min&#x2F;avg&#x2F;max &#x3D; 0.076&#x2F;0.083&#x2F;0.091 ms</span><br><span class="line"></span><br><span class="line"># ping -c 2 alpine1</span><br><span class="line"></span><br><span class="line">PING alpine1 (172.18.0.2): 56 data bytes</span><br><span class="line">64 bytes from 172.18.0.2: seq&#x3D;0 ttl&#x3D;64 time&#x3D;0.026 ms</span><br><span class="line">64 bytes from 172.18.0.2: seq&#x3D;1 ttl&#x3D;64 time&#x3D;0.054 ms</span><br><span class="line"></span><br><span class="line">--- alpine1 ping statistics ---</span><br><span class="line">2 packets transmitted, 2 packets received, 0% packet loss</span><br><span class="line">round-trip min&#x2F;avg&#x2F;max &#x3D; 0.026&#x2F;0.040&#x2F;0.054 ms</span><br><span class="line">From alpine1, you should not be able to connect to alpine3 at all, since it is not on the alpine-net network.</span><br><span class="line"></span><br><span class="line"># ping -c 2 alpine3</span><br><span class="line"></span><br><span class="line">ping: bad address &#39;alpine3&#39;</span><br><span class="line"></span><br><span class="line">Ctrl+p Ctrl+q</span><br></pre></td></tr></table></figure>
+<p> To exit the attached terminal, use <code>Ctrl+p</code> then <code>Ctrl+q</code>.</p>
+</li>
+<li><p>Finally, remember that <code>alpine4</code> is <strong>connected to both the <code>default</code> bridge network and <code>test-net</code></strong>. It should be able to reach all of the other containers. However, you will <strong>need to address <code>alpine3</code> by its IP address, which is the behavior of a default <code>bridge</code></strong>. Attach to it and run the tests.</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">$ docker container attach alpine4</span><br><span class="line"></span><br><span class="line"># ping -c 2 alpine1</span><br><span class="line"></span><br><span class="line">PING alpine1 (172.18.0.2): 56 data bytes</span><br><span class="line">64 bytes from 172.18.0.2: seq&#x3D;0 ttl&#x3D;64 time&#x3D;0.074 ms</span><br><span class="line">64 bytes from 172.18.0.2: seq&#x3D;1 ttl&#x3D;64 time&#x3D;0.082 ms</span><br><span class="line"></span><br><span class="line">--- alpine1 ping statistics ---</span><br><span class="line">2 packets transmitted, 2 packets received, 0% packet loss</span><br><span class="line">round-trip min&#x2F;avg&#x2F;max &#x3D; 0.074&#x2F;0.078&#x2F;0.082 ms</span><br><span class="line"></span><br><span class="line"># ping -c 2 alpine2</span><br><span class="line"></span><br><span class="line">PING alpine2 (172.18.0.3): 56 data bytes</span><br><span class="line">64 bytes from 172.18.0.3: seq&#x3D;0 ttl&#x3D;64 time&#x3D;0.075 ms</span><br><span class="line">64 bytes from 172.18.0.3: seq&#x3D;1 ttl&#x3D;64 time&#x3D;0.080 ms</span><br><span class="line"></span><br><span class="line">--- alpine2 ping statistics ---</span><br><span class="line">2 packets transmitted, 2 packets received, 0% packet loss</span><br><span class="line">round-trip min&#x2F;avg&#x2F;max &#x3D; 0.075&#x2F;0.077&#x2F;0.080 ms</span><br><span class="line"></span><br><span class="line"># ping -c 2 alpine3</span><br><span class="line">ping: bad address &#39;alpine3&#39;</span><br><span class="line"></span><br><span class="line"># ping -c 2 172.17.0.2</span><br><span class="line"></span><br><span class="line">PING 172.17.0.2 (172.17.0.2): 56 data bytes</span><br><span class="line">64 bytes from 172.17.0.2: seq&#x3D;0 ttl&#x3D;64 time&#x3D;0.089 ms</span><br><span class="line">64 bytes from 172.17.0.2: seq&#x3D;1 ttl&#x3D;64 time&#x3D;0.075 ms</span><br><span class="line"></span><br><span class="line">--- 172.17.0.2 ping statistics ---</span><br><span class="line">2 packets transmitted, 2 packets received, 0% packet loss</span><br><span class="line">round-trip min&#x2F;avg&#x2F;max &#x3D; 0.075&#x2F;0.082&#x2F;0.089 ms</span><br><span class="line"></span><br><span class="line"># ping -c 2 alpine4</span><br><span class="line"></span><br><span class="line">PING alpine4 (172.18.0.4): 56 data bytes</span><br><span class="line">64 bytes from 172.18.0.4: seq&#x3D;0 ttl&#x3D;64 time&#x3D;0.033 ms</span><br><span class="line">64 bytes from 172.18.0.4: seq&#x3D;1 ttl&#x3D;64 time&#x3D;0.064 ms</span><br><span class="line"></span><br><span class="line">--- alpine4 ping statistics ---</span><br><span class="line">2 packets transmitted, 2 packets received, 0% packet loss</span><br><span class="line">round-trip min&#x2F;avg&#x2F;max &#x3D; 0.033&#x2F;0.048&#x2F;0.064 ms</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Now, you have finished your testsings, and you can <strong>stop and remove/disconnect all containers and the <code>test-net</code> network</strong>.</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ docker container stop alpine1 alpine2 alpine3 alpine4</span><br><span class="line"></span><br><span class="line">$ docker container rm alpine1 alpine2 alpine3 alpine4</span><br><span class="line"></span><br><span class="line">$ docker network rm test-net</span><br></pre></td></tr></table></figure>
+
+<p> or if you still need those containers:</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ docker container stop alpine1 alpine2 alpine3 alpine4</span><br><span class="line"></span><br><span class="line">$ docker network disconnect test-net alpine1</span><br><span class="line"></span><br><span class="line">$ docker network disconnect test-net alpine2</span><br><span class="line"></span><br><span class="line">$ docker network disconnect test-net alpine4</span><br><span class="line"></span><br><span class="line">$ docker network rm test-net</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<p><a name="Using-host-networks"></a></p>
+<h2 id="Using-host-networks"><a href="#Using-host-networks" class="headerlink" title="Using host networks"></a>Using <code>host</code> networks</h2><p><a name="Using-overlay-networks"></a></p>
+<h2 id="Using-overlay-networks"><a href="#Using-overlay-networks" class="headerlink" title="Using overlay networks"></a>Using <code>overlay</code> networks</h2><p>The <code>overlay</code> network driver creates a <strong>distributed network</strong> among <strong>multiple Docker daemon hosts</strong>. This network sits on top of (overlays) the host-specific networks, allowing containers connected to it (including swarm service containers) to communicate securely when encryption is enabled.</p>
+<p>When you initialize a <code>swarm</code> or join a Docker host to an existing <code>swarm</code>, two new networks are created on that Docker host:</p>
+<ul>
+<li>an <code>overlay</code> network called <code>ingress</code>, which <strong>handles control and data traffic related to swarm services</strong>. When you create a <code>swarm</code> service and <strong>do not connect it to a <code>user-defined overlay</code></strong> network, it connects to the <code>ingress</code> network by default.<ul>
+<li>You can <strong>create <code>user-defined overlay</code> networks using <code>docker network create</code></strong>, in the same way that you can create <code>user-defined bridge</code> networks. Remember that services or containers can be connected to more than one network at a time, and that services or containers can only communicate across networks they are each connected to.</li>
+</ul>
+</li>
+<li>a <code>bridge</code> network called <code>docker_gwbridge</code>, which <strong>connects the individual Docker daemon to the other daemons participating in the swarm</strong>.</li>
+</ul>
+<h2 id="Creating-an-Overlay-Network-With-Swarm"><a href="#Creating-an-Overlay-Network-With-Swarm" class="headerlink" title="Creating an Overlay Network With Swarm"></a>Creating an Overlay Network With Swarm</h2><ol>
+<li><p>First, there are two prerequisites you need to fulfill:</p>
+<ul>
+<li><p><strong>Firewall rules for Docker daemons</strong> using overlay networks<br>  You need the following ports open to traffic to and from each Docker host participating on an overlay network:</p>
+<ul>
+<li>TCP port 2377 for cluster management communications</li>
+<li>TCP and UDP port 7946 for communication among nodes</li>
+<li>UDP port 4789 for overlay network traffic</li>
+</ul>
+</li>
+<li><p><strong>Before you can create an <code>overlay</code> network</strong>, you need to either** initialize your Docker daemon as a swarm manager using <code>docker swarm init</code> or join it to an existing swarm using <code>docker swarm join</code><strong>. Either of these creates the default <code>ingress</code> overlay network which is used by swarm services by default. You need to do this even if you never plan to use swarm services. **Afterward, you can create additional <code>user-defined overlay</code> networks</strong>.</p>
+</li>
+</ul>
+</li>
+<li><p>To create an <code>overlay</code> network <strong>for use with <code>swarm</code> services</strong>, use a command like the following:</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker network create -d overlay my-overlay</span><br></pre></td></tr></table></figure>
+<p> To create an overlay network which can be <strong>used by swarm services</strong> or <strong>standalone containers</strong> to communicate with other standalone containers running on other Docker daemons, add the –attachable flag:</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker network create -d overlay --attachable my-attachable-overlay</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Encryption:</p>
+<p> All swarm <strong>service management traffic</strong> is <strong>encrypted by default</strong>, using the AES algorithm in GCM mode. <strong>Manager nodes in the swarm rotate the key</strong> used to encrypt gossip data <strong>every 12 hours</strong>.</p>
+<p> To <strong>encrypt application data</strong> as well, <strong>add <code>--opt</code> encrypted when creating the <code>overlay</code> network</strong>. This enables IPSEC encryption at the level of the vxlan. This encryption imposes a <strong>non-negligible performance penalty</strong>, so you should test this option before using it in production.</p>
+<p> So, for example, to encrypt your application data as well:</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker network create --opt encrypted --driver overlay --attachable my-attachable-multi-host-network</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Now, you can customized your default <code>ingress</code> network or your <code>docker_gwbridge</code>, and your <code>user-defined overlay</code>.</p>
+</li>
+<li><p>Now, you have 4 options on how to use this <code>overlay</code> system:</p>
+<ul>
+<li><p>Use the <strong>default <code>overlay</code> network</strong>, which demonstrates how to use the default overlay network that Docker sets up for you automatically when you initialize or join a swarm. This network is not the best choice for production systems.</p>
+</li>
+<li><p>Use <strong><code>user-defined overlay</code> networks</strong> which shows how to create and use your own custom overlay networks, to <strong>connect services</strong>. This is recommended for services running in production.</p>
+</li>
+<li><p>Use an <strong><code>overlay</code> network for standalone containers shows how to communicate between standalone containers on different Docker daemons</strong> using an overlay network.</p>
+</li>
+<li><p>Communicate between <strong>a container and a swarm service</strong>, which sets up communication between a standalone container and a swarm service, using an <code>attachable</code> overlay network. This is supported in Docker 17.06 and higher.</p>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="Use-the-default-overlay-network"><a href="#Use-the-default-overlay-network" class="headerlink" title="Use the default overlay network"></a>Use the <code>default overlay</code> network</h2><p>In this example, you start an <code>alpin</code>e service and examine the characteristics of the network from the point of view of the individual service containers.</p>
+<ol>
+<li><p>Prerequisites:</p>
+<p> This requires <strong>three physical or virtual Docker hosts which can all communicate with one another</strong>, all running new installations of Docker 17.03 or higher. This tutorial <strong>assumes that the three hosts are running on the same network</strong> with no firewall involved.</p>
+<p> These hosts will be referred to as <code>manager</code>, <code>worker-1</code>, and <code>worker-2</code>. The manager host will function as both a <code>manager</code> and a <code>worker</code>, which means it can <strong>both run service tasks</strong> and <strong>manage the swarm</strong>. <code>worker-1</code> and <code>worker-2</code> will function as workers only,</p>
+<blockquote>
+<p>Note:</p>
+<ul>
+<li><input disabled type="checkbox"> To open those ports specified above, you can use the following command (on both worker and manager): <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --add-port&#x3D;22&#x2F;tcp --permanent</span><br><span class="line">firewall-cmd --add-port&#x3D;2376&#x2F;tcp --permanent</span><br><span class="line">firewall-cmd --add-port&#x3D;2377&#x2F;tcp --permanent</span><br><span class="line">firewall-cmd --add-port&#x3D;7946&#x2F;tcp --permanent</span><br><span class="line">firewall-cmd --add-port&#x3D;7946&#x2F;udp --permanent</span><br><span class="line">firewall-cmd --add-port&#x3D;4789&#x2F;udp --permanent </span><br></pre></td></tr></table></figure>
+Afterwards, reload the firewall:<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --reload</span><br></pre></td></tr></table></figure>
+Then restart Docker.<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl restart docker</span><br></pre></td></tr></table></figure>
+For other means of doing the same thing, please visit <a href="https://www.digitalocean.com/community/tutorials/how-to-configure-the-linux-firewall-for-docker-swarm-on-ubuntu-16-04#method-2-%E2%80%94-opening-docker-swarm-ports-using-firewalld" target="_blank" rel="noopener">this link</a></li>
+</ul>
+</blockquote>
+</li>
+<li><p><strong>On <code>manager</code>, initialize the swarm</strong>. If the host only has one network interface, the <code>--advertise-addr</code> flag is optional.</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker swarm init --advertise-addr&#x3D;&lt;IP-ADDRESS-OF-MANAGER&gt;</span><br></pre></td></tr></table></figure>
+
+<p> Make a note of the text that is printed, as this contains the token that you will use to join <code>worker-1</code> and <code>worker-2</code> to the swarm. It is a good idea to store the token in a password manager.</p>
+</li>
+<li><p><strong>On <code>worker-1</code>, join the swarm</strong>. If the host only has one network interface, the <code>--advertise-addr</code> flag is optional.</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ docker swarm join --token &lt;TOKEN&gt; \</span><br><span class="line">  --advertise-addr &lt;IP-ADDRESS-OF-WORKER-1&gt; \</span><br><span class="line">  &lt;IP-ADDRESS-OF-MANAGER&gt;:2377</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>On <code>worker-2</code>, join the swarm. If the host only has one network interface, the <code>--advertise-addr</code> flag is optional.</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ docker swarm join --token &lt;TOKEN&gt; \</span><br><span class="line">  --advertise-addr &lt;IP-ADDRESS-OF-WORKER-2&gt; \</span><br><span class="line">  &lt;IP-ADDRESS-OF-MANAGER&gt;:2377</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>On <code>manager</code>, list all the nodes</strong>. This command <strong>can only be done from a manager</strong>.</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ docker node ls</span><br><span class="line"></span><br><span class="line">ID                            HOSTNAME            STATUS              AVAILABILITY        MANAGER STATUS</span><br><span class="line">d68ace5iraw6whp7llvgjpu48 *   ip-172-31-34-146    Ready               Active              Leader</span><br><span class="line">nvp5rwavvb8lhdggo8fcf7plg     ip-172-31-35-151    Ready               Active</span><br><span class="line">ouvx2l7qfcxisoyms8mtkgahw     ip-172-31-36-89     Ready               Active</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>You can also use the <code>--filter</code> flag to filter by role:</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$ docker node ls --filter role&#x3D;manager</span><br><span class="line"></span><br><span class="line">ID                            HOSTNAME            STATUS              AVAILABILITY        MANAGER STATUS</span><br><span class="line">d68ace5iraw6whp7llvgjpu48 *   ip-172-31-34-146    Ready               Active              Leader</span><br><span class="line"></span><br><span class="line">$ docker node ls --filter role&#x3D;worker</span><br><span class="line"></span><br><span class="line">ID                            HOSTNAME            STATUS              AVAILABILITY        MANAGER STATUS</span><br><span class="line">nvp5rwavvb8lhdggo8fcf7plg     ip-172-31-35-151    Ready               Active</span><br><span class="line">ouvx2l7qfcxisoyms8mtkgahw     ip-172-31-36-89     Ready               Active</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>List the Docker networks on <code>manager</code>, <code>worker-1</code>, and <code>worker-2</code> and notice that <strong>each of them now has an overlay network called <code>ingress</code></strong> and a <code>bridge</code> network called <code>docker_gwbridge</code>. Only the listing for manager is shown here:</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ docker network ls</span><br><span class="line"></span><br><span class="line">NETWORK ID          NAME                DRIVER              SCOPE</span><br><span class="line">495c570066be        bridge              bridge              local</span><br><span class="line">961c6cae9945        docker_gwbridge     bridge              local</span><br><span class="line">ff35ceda3643        host                host                local</span><br><span class="line">trtnl4tqnc3n        ingress             overlay             swarm</span><br><span class="line">c8357deec9cb        none                null                local</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>The <code>docker_gwbridge</code> connects the <code>ingress</code> network to the Docker host’s network interface so that traffic can flow to and from swarm managers and workers. If you create <code>swarm</code> services and <strong>do not specify a network, they are connected to the <code>ingress</code> network</strong>. It is recommended that you use separate overlay networks for each application or group of applications which will work together. In the next procedure, you will create two overlay networks and connect a service to each of them.</p>
+</li>
+<li><p>CREATE THE <strong>SERVICES</strong></p>
+<p> <strong>On <code>manager</code></strong>, create a new <code>overlay</code> network called <code>nginx-net</code>:</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker network create -d overlay nginx-net</span><br></pre></td></tr></table></figure>
+
+<p> You <strong>don’t need to create the <code>overlay</code> network on the other nodes</strong>, beacause it will be automatically created when one of those <strong>nodes starts running a service task which requires it</strong>.</p>
+<p> On <code>manager</code>, create a 5-replica Nginx <strong>service connected to <code>nginx-net</code></strong>. The service will publish port 80 to the outside world. All of the service task containers can communicate with each other without opening any ports.</p>
+<p> Note: Services can only be created on a manager.</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ docker service create \</span><br><span class="line">  --name my-nginx \</span><br><span class="line">  --publish target&#x3D;80,published&#x3D;80 \</span><br><span class="line">  --replicas&#x3D;5 \</span><br><span class="line">  --network nginx-net \</span><br><span class="line">  nginx</span><br></pre></td></tr></table></figure>
+
+<p> The default publish mode of <code>ingress</code>, which is used when you <strong>do not specify a mode</strong> for the <code>--publish</code> flag, means that if you browse to port 80 on <code>manager</code>, <code>worker-1</code>, or <code>worker-2</code>, you will be connected to port 80 on one of the 5 service tasks, even if no tasks are currently running on the node you browse to. If you want to publish the port using host mode, you can add mode=host to the –publish output. However, you should also use <code>--mode global</code> instead of <code>--replicas=5</code> in this case, since only one service task can bind a given port on a given node.</p>
+</li>
+<li><p>Run <code>docker service ls</code> to <strong>monitor the progress of service bring-up</strong>, which may take a few seconds.</p>
+</li>
+<li><p>Inspect the <code>nginx-net</code> network on <code>manager</code>, <code>worker-1</code>, and <code>worker-2</code>. Remember that you did not need to create it manually on <code>worker-1</code> and <code>worker-2</code> because Docker created it for you. The output will be long, but notice the <code>Containers</code> and <code>Peers</code> sections. Containers lists all service tasks (or standalone containers) connected to the overlay network from that host.</p>
+<p>From manager, inspect the service using <code>docker service inspect my-nginx</code> and notice the information about the ports and endpoints used by the service.</p>
+</li>
+<li><p>Create a new network <code>nginx-net-2</code>, then update the service to use this network instead of <code>nginx-net</code>:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ docker network create -d overlay nginx-net-2</span><br><span class="line">$ docker service update \</span><br><span class="line">  --network-add nginx-net-2 \</span><br><span class="line">  --network-rm nginx-net \</span><br><span class="line">  my-nginx</span><br></pre></td></tr></table></figure></li>
+<li><p>Run <code>docker service ls</code> to verify that the service has been updated and all tasks have been redeployed. Run <code>docker network inspect nginx-net</code> to verify that no containers are connected to it. Run the same command for <code>nginx-net-2</code> and notice that all the service task containers are connected to it.</p>
+<p>Note: Even though overlay networks are automatically created on swarm worker nodes as needed, they are not automatically removed.</p>
+</li>
+<li><p>Clean up the service and the networks. From <code>manager</code>, run the following commands. The manager will direct the workers to remove the networks automatically.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ docker service rm my-nginx</span><br><span class="line">$ docker network rm nginx-net nginx-net-2</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h2 id="Using-a-user-defined-overlay"><a href="#Using-a-user-defined-overlay" class="headerlink" title="Using a user-defined overlay"></a>Using a <code>user-defined overlay</code></h2><ol>
+<li><p>First you need to create the <code>user-defined overlay</code> network.</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker network create -d overlay my-overlay</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Start a service using the <code>overlay</code> network and publishing port <code>80</code> to port <code>8080</code> on the Docker host.</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ docker service create \</span><br><span class="line">  --name my-nginx \</span><br><span class="line">  --network my-overlay \</span><br><span class="line">  --replicas 1 \</span><br><span class="line">  --publish published&#x3D;8080,target&#x3D;80 \</span><br><span class="line">  nginx:latest</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Run <code>docker network inspect my-overlay</code> and verify that the <code>my-nginx</code> <strong>service task</strong> is connected to it, by looking at the <strong>Containers section</strong>.</p>
+</li>
+<li><p>Inspect the <code>my-overlay</code> network on <code>manager</code>, <code>worker-1</code>, and <code>worker-2</code>. Remember that you did not need to create it manually on <code>worker-1</code> and <code>worker-2</code> because Docker created it for you. The output will be long, but notice the <code>Containers</code> and <code>Peers</code> sections. Containers lists all service tasks (or standalone containers) connected to the overlay network from that host.</p>
+</li>
+<li><p>Remove the service and the network on the <code>manager</code> after you see it works fine.</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ docker service rm my-nginx</span><br><span class="line"></span><br><span class="line">$ docker network rm my-overlay</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h2 id="Using-an-overlay-network-for-standalone-containers-recommended"><a href="#Using-an-overlay-network-for-standalone-containers-recommended" class="headerlink" title="Using an overlay network for standalone containers (recommended)"></a>Using an <code>overlay</code> network for standalone containers (recommended)</h2><p>This example refers to the <strong>two nodes</strong> in our swarm as <code>host1</code> and <code>host2</code>. This example also uses Linux hosts, but the same commands work on Windows.</p>
+<p>This example demonstrates DNS container discovery – specifically, how to <strong>communicate between standalone containers on different Docker daemons</strong> using an <code>overlay</code> network. In short, steps are:</p>
+<ul>
+<li>On <code>host1</code>, initialize the node as a swarm (<code>manager</code>).</li>
+<li>On <code>host2</code>, join the node to the swarm (<code>worker</code>).</li>
+<li>On <code>host1</code>, create an <strong>attachable overlay network</strong> (<code>test-net</code>).</li>
+<li>On <code>host1</code>, run an <strong>interactive alpine container</strong> (<code>alpine1</code>) <strong>on <code>test-net</code></strong>.</li>
+<li>On <code>host2</code>, run an <strong>interactive, and detached, alpine container</strong> (<code>alpine2</code>) on <code>test-net</code>.</li>
+<li>On <code>host1</code>, <strong>from</strong> within a session of <strong><code>alpine1</code></strong>, <strong>ping <code>alpine2</code></strong>.</li>
+</ul>
+<ol>
+<li><p>Set up the swarm.</p>
+<p> a. On <code>host1</code>, <strong>initialize a swarm</strong> (and if prompted, use <code>--advertise-addr</code> to specify the IP address for the interface that communicates with other hosts in the swarm, for instance, the private IP address on AWS).<br> b. On <code>host2</code>, join the swarm as instructed above, usually in the form:</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ docker swarm join --token &lt;your_token&gt; &lt;your_ip_address&gt;:2377</span><br><span class="line">This node joined a swarm as a worker.</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>On <code>host1</code>, create an <strong>attachable overlay network</strong> called <code>test-net</code>:</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ docker network create --driver&#x3D;overlay --attachable test-net</span><br><span class="line">uqsof8phj3ak0rq9k86zta6ht</span><br></pre></td></tr></table></figure>
+
+<p> Notice the returned NETWORK ID – you will see it again when you connect to it from <code>host2</code>.</p>
+</li>
+<li><p>On <code>host1</code>, start an <strong>interactive (<code>-it</code>) container</strong> (<code>alpine1</code>) that <strong>connects to <code>test-net</code></strong>:</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ docker run -it --name alpine1 --network test-net alpine</span><br><span class="line">&#x2F; #</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>On <code>host2</code>, list the available networks – notice that <code>test-net</code> <strong>does not yet exist</strong> (because it is not currently required by any containers, though it is available. see next step):</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ docker network ls</span><br><span class="line">NETWORK ID          NAME                DRIVER              SCOPE</span><br><span class="line">ec299350b504        bridge              bridge              local</span><br><span class="line">66e77d0d0e9a        docker_gwbridge     bridge              local</span><br><span class="line">9f6ae26ccb82        host                host                local</span><br><span class="line">omvdxqrda80z        ingress             overlay             swarm</span><br><span class="line">b65c952a4b2b        none                null                local</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>On <code>host2</code>, start a detached (<code>-d</code>) and interactive (<code>-it</code>) container (alpine2) that connects to test-net:</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ docker run -dit --name alpine2 --network test-net alpine</span><br><span class="line">fb635f5ece59563e7b8b99556f816d24e6949a5f6a5b1fbd92ca244db17a4342</span><br></pre></td></tr></table></figure>
+
+<p> where:</p>
+<ul>
+<li>Automatic DNS container discovery only works with unique container names.</li>
+<li>Being <code>detached</code> means the container is <strong>no longer listening to the command line where <code>docker run</code> was run</strong>.  By design, containers started in detached mode <strong>exit when the root process used to run the container exits</strong>, unless you also specify the <code>--rm</code> option. If you use <code>-d</code> with <code>--rm</code>, the container is removed when it exits or when the daemon exits, whichever happens first.</li>
+</ul>
+</li>
+<li><p>On <code>host2</code>, verify that <code>test-net</code> was created (and has the same NETWORK ID as test-net on host1):</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ docker network ls</span><br><span class="line">NETWORK ID          NAME                DRIVER              SCOPE</span><br><span class="line">...</span><br><span class="line">uqsof8phj3ak        test-net            overlay             swarm</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>On <code>host1</code>, ping <code>alpine2</code> within the interactive terminal of alpine1:</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#x2F; # ping -c 2 alpine2</span><br><span class="line">PING alpine2 (10.0.0.5): 56 data bytes</span><br><span class="line">64 bytes from 10.0.0.5: seq&#x3D;0 ttl&#x3D;64 time&#x3D;0.600 ms</span><br><span class="line">64 bytes from 10.0.0.5: seq&#x3D;1 ttl&#x3D;64 time&#x3D;0.555 ms</span><br><span class="line"></span><br><span class="line">--- alpine2 ping statistics ---</span><br><span class="line">2 packets transmitted, 2 packets received, 0% packet loss</span><br><span class="line">round-trip min&#x2F;avg&#x2F;max &#x3D; 0.555&#x2F;0.577&#x2F;0.600 ms</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>The two containers communicate with the <code>overlay</code> network connecting the two hosts. If you run another <code>alpine</code> container on <code>host2</code> that is <strong>not detached</strong>, you can ping <code>alpine1</code> from <code>host2</code> (and here we add the remove option for automatic container cleanup):</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ docker run -it --rm --name alpine3 --network test-net alpine</span><br><span class="line">&#x2F; # ping -c 2 alpine1</span><br><span class="line">&#x2F; # exit</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>On host1, close the alpine1 session (which also stops the container):</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#x2F; # exit</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Clean up your containers and networks:</p>
+<p>You must <strong>stop and remove the containers on each host independently</strong> because Docker daemons operate independently and these are standalone containers. You only have to remove the network on <code>host1</code> because when you stop <code>alpine2</code> on <code>host2</code>, <code>test-net</code> disappears (as it is no longer required).</p>
+<p>a. On <code>host2</code>, stop <code>alpine2</code>, check that <code>test-net</code> was removed, then remove <code>alpine2</code>:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ docker container stop alpine2</span><br><span class="line">$ docker network ls</span><br><span class="line">$ docker container rm alpine2</span><br></pre></td></tr></table></figure>
+
+<p>b. On <code>host1</code>, remove <code>alpine1</code> and <code>test-net</code>:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ docker container rm alpine1</span><br><span class="line">$ docker network rm test-net</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h2 id="Customizing-your-ingress-network"><a href="#Customizing-your-ingress-network" class="headerlink" title="Customizing your ingress network"></a>Customizing your <code>ingress</code> network</h2><p>Most users never need to configure the <code>ingress</code> network, but Docker 17.05 and higher allow you to do so. This can be useful <strong>if the automatically-chosen subnet conflicts with one that already exists on your network</strong>, or you need to customize other low-level network settings such as the MTU.</p>
+<p>Customizing the ingress network <strong>involves removing and recreating it</strong>. This is usually done <strong>before you create any services in the swarm</strong>. If you have existing services which publish ports, <strong>those services need to be removed</strong> before you can remove the ingress network.</p>
+<p>During the time that no <code>ingress</code> network exists, existing services which do not publish ports continue to function but are not load-balanced. This affects services which publish ports, such as a WordPress service which publishes port 80.</p>
+<p>Inspect the <code>ingress</code> network using <code>docker network inspect ingress</code>, and remove any services whose containers are connected to it. These are services that publish ports, such as a WordPress service which publishes port 80. If all such services are not stopped, the next step fails.</p>
+<ol>
+<li><p>Remove the existing ingress network:</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ docker network rm ingress</span><br><span class="line"></span><br><span class="line">WARNING! Before removing the routing-mesh network, make sure all the nodes</span><br><span class="line">in your swarm run the same docker engine version. Otherwise, removal may not</span><br><span class="line">be effective and functionality of newly created ingress networks will be</span><br><span class="line">impaired.</span><br><span class="line">Are you sure you want to continue? [y&#x2F;N]</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Create a new overlay network using the <code>--ingress</code> flag, along with the custom options you want to set. This example sets the <code>MTU</code> to <code>1200</code>, sets the <code>subnet</code> to <code>10.11.0.0/16</code>, and sets the <code>gateway</code> to <code>10.11.0.2</code>.</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ docker network create \</span><br><span class="line">  --driver overlay \</span><br><span class="line">  --ingress \</span><br><span class="line">  --subnet&#x3D;10.11.0.0&#x2F;16 \</span><br><span class="line">  --gateway&#x3D;10.11.0.2 \</span><br><span class="line">  --opt com.docker.network.driver.mtu&#x3D;1200 \</span><br><span class="line">  my-ingress</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Note: </p>
+<ul>
+<li><input disabled type="checkbox"> You can name your <code>ingress</code> network with a name of something other than <code>ingress</code>, but you can only have one <code>ingress</code> network. An attempt to create a second one fails.</li>
+</ul>
+</blockquote>
+</li>
+<li><p>Restart the services that you stopped in the first step.</p>
+</li>
+</ol>
+<h2 id="Customizing-your-docker-gwbridge-network"><a href="#Customizing-your-docker-gwbridge-network" class="headerlink" title="Customizing your docker_gwbridge network"></a>Customizing your <code>docker_gwbridge</code> network</h2><p><code>docker_gwbridge</code> <strong>connects the overlay networks (including the <code>ingress</code> network)</strong> to an individual Docker daemon’s physical network (<strong><code>swarm</code> host</strong>). Docker creates it automatically when you initialize a <code>swarm</code> or join a Docker host to a <code>swarm</code>, but it is <strong>not a Docker device</strong>. It exists in the kernel of the Docker host. If you need to customize its settings, you must do so <strong>before joining the Docker host to the swarm</strong>, or after temporarily removing the host from the swarm.</p>
+<ol>
+<li><p>Stop Docker, and delete the existing docker_gwbridge interface.</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ sudo ip link set docker_gwbridge down</span><br><span class="line"></span><br><span class="line">$ sudo ip link del dev docker_gwbridge</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Start Docker. <strong>Do not join or initialize</strong> the swarm.</p>
+</li>
+<li><p><strong>Create or re-create the <code>docker_gwbridge</code> bridge manually with your custom settings</strong>, using the <code>docker network create</code> command. This example uses the <code>subnet</code> <code>10.11.0.0/16</code>. For a full list of customizable options, see <a href="https://docs.docker.com/engine/reference/commandline/network_create/#bridge-driver-options" target="_blank" rel="noopener">Bridge driver options</a>.</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ docker network create \</span><br><span class="line">--subnet 10.11.0.0&#x2F;16 \</span><br><span class="line">--opt com.docker.network.bridge.name&#x3D;docker_gwbridge \</span><br><span class="line">--opt com.docker.network.bridge.enable_icc&#x3D;false \</span><br><span class="line">--opt com.docker.network.bridge.enable_ip_masquerade&#x3D;true \</span><br><span class="line">docker_gwbridge</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Initialize or join the <code>swarm</code>. Since the bridge <strong>already exists</strong>, Docker <strong>does not create it with automatic settings</strong>.</p>
+</li>
+</ol>
+<h2 id="Customizing-your-user-defined-overlay-network"><a href="#Customizing-your-user-defined-overlay-network" class="headerlink" title="Customizing your user-defined overlay network"></a>Customizing your <code>user-defined overlay</code> network</h2><p><a name="Using-mcvlan-networks"></a></p>
+<h2 id="Using-mcvlan-networks"><a href="#Using-mcvlan-networks" class="headerlink" title="Using mcvlan networks"></a>Using <code>mcvlan</code> networks</h2><p><a name="Using-none-networks"></a></p>
+<h2 id="Using-none-networks"><a href="#Using-none-networks" class="headerlink" title="Using none networks"></a>Using <code>none</code> networks</h2><p><a name="MySQL-in-Docker"></a></p>
 <h2 id="Using-MySQL-Server-in-Docker"><a href="#Using-MySQL-Server-in-Docker" class="headerlink" title="Using MySQL Server in Docker"></a>Using MySQL Server in Docker</h2><ol>
 <li>You need to first setup your SQL server in docker via this <a href="https://dev.mysql.com/doc/mysql-installation-excerpt/8.0/en/docker-mysql-getting-started.html" target="_blank" rel="noopener">Official Guide</a></li>
 <li>Then refer to <a href="https://jasonyux.github.io/2020/05/26/MySQL-Manual" target="_blank" rel="noopener">MySQL Manual</a> for further reference on using MySQL</li>
@@ -1392,6 +1778,32 @@
 </ul>
 <p>Now you can use <code>docker inspect nginxtest</code> to <strong>verify that the readonly mount was created correctly</strong>. Look for the Mounts section, where you see <code>&quot;RW&quot;: false</code>:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&quot;Mounts&quot;: [</span><br><span class="line">    &#123;</span><br><span class="line">        &quot;Type&quot;: &quot;volume&quot;,</span><br><span class="line">        &quot;Name&quot;: &quot;nginx-vol&quot;,</span><br><span class="line">        &quot;Source&quot;: &quot;&#x2F;var&#x2F;lib&#x2F;docker&#x2F;volumes&#x2F;nginx-vol&#x2F;_data&quot;,</span><br><span class="line">        &quot;Destination&quot;: &quot;&#x2F;usr&#x2F;share&#x2F;nginx&#x2F;html&quot;,</span><br><span class="line">        &quot;Driver&quot;: &quot;local&quot;,</span><br><span class="line">        &quot;Mode&quot;: &quot;&quot;,</span><br><span class="line">        &quot;RW&quot;: false,</span><br><span class="line">        &quot;Propagation&quot;: &quot;&quot;</span><br><span class="line">    &#125;</span><br><span class="line">],</span><br></pre></td></tr></table></figure>
+
+<h2 id="Overview-of-Docker-Compose"><a href="#Overview-of-Docker-Compose" class="headerlink" title="Overview of Docker Compose"></a>Overview of Docker Compose</h2><p>Compose is a tool for <strong>defining and running multi-container Docker applications</strong>. With Compose, you use a <code>YAML</code> file to configure your application’s services. Then, with a single command, you create and start all the services from your configuration.</p>
+<p>Using Compose is basically a <strong>three-step process</strong>:</p>
+<ol>
+<li><strong>Define</strong> your app’s environment with a <strong>Dockerfile</strong> so it can be reproduced anywhere.</li>
+<li><strong>Define the services</strong> that make up your app in <code>docker-compose.yml</code> so they can be run together in an isolated environment.</li>
+<li><strong>Run <code>docker-compose up</code></strong> and Compose starts and runs your entire app.</li>
+</ol>
+<p>A <code>docker-compose.yml</code> looks like this:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">version: &#39;2.0&#39;</span><br><span class="line">services:</span><br><span class="line">  web:</span><br><span class="line">    build: .</span><br><span class="line">    ports:</span><br><span class="line">    - &quot;5000:5000&quot;</span><br><span class="line">    volumes:</span><br><span class="line">    - .:&#x2F;code</span><br><span class="line">    - logvolume01:&#x2F;var&#x2F;log</span><br><span class="line">    links:</span><br><span class="line">    - redis</span><br><span class="line">  redis:</span><br><span class="line">    image: redis</span><br><span class="line">volumes:</span><br><span class="line">  logvolume01: &#123;&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Installing-Docker-Compose"><a href="#Installing-Docker-Compose" class="headerlink" title="Installing Docker Compose"></a>Installing Docker Compose</h2><p>Docker Compose depends on the Docker engine to work properly. After you have installed the Docker engine, please refer to <a href="https://docs.docker.com/compose/install/" target="_blank" rel="noopener">this link</a> to install Docker Compose.</p>
+<h2 id="QuickStart-with-Docker-Compose"><a href="#QuickStart-with-Docker-Compose" class="headerlink" title="QuickStart with Docker Compose"></a>QuickStart with Docker Compose</h2><p>For getting a sense of how <code>docker compose</code> works, please visit the <a href="https://docs.docker.com/compose/gettingstarted/" target="_blank" rel="noopener">this Docker Documentation</a>.</p>
+<p>Some important steps are shown here:</p>
+<ul>
+<li><p>Step 5: Edit the Compose file to <strong>add a bind mount</strong></p>
+<p>  Edit docker-compose.yml in your project directory to add a bind mount for the web service:</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">version: &#39;3&#39;</span><br><span class="line">services:</span><br><span class="line">  web:</span><br><span class="line">    build: .</span><br><span class="line">    ports:</span><br><span class="line">      - &quot;5000:5000&quot;</span><br><span class="line">    volumes:</span><br><span class="line">      - .:&#x2F;code</span><br><span class="line">    environment:</span><br><span class="line">      FLASK_ENV: development</span><br><span class="line">  redis:</span><br><span class="line">    image: &quot;redis:alpine&quot;</span><br></pre></td></tr></table></figure>
+
+<p>  The new volumes key <strong>mounts the project directory (current directory)</strong> on the host <strong>to <code>/code</code> inside the container</strong>. Now, you need to re-build the image for it to take effect. Afterwards, by mounting a volume it is allowing you to modify the code on the fly, without having to rebuild the image. The environment key sets the <code>FLASK_ENV</code> environment variable, which tells flask run to run in development mode and reload the code on change. <strong>This mode should only be used in development</strong>.</p>
+</li>
+<li><p>Step 6: <strong>Re-build and run</strong> the app with Compose</p>
+<p>  From your project directory, type docker-compose up to build the app with the updated Compose file, and run it.</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ docker-compose up</span><br><span class="line">Creating network &quot;composetest_default&quot; with the default driver</span><br><span class="line">Creating composetest_web_1 ...</span><br><span class="line">Creating composetest_redis_1 ...</span><br><span class="line">Creating composetest_web_1</span><br><span class="line">Creating composetest_redis_1 ... done</span><br><span class="line">Attaching to composetest_web_1, composetest_redis_1</span><br><span class="line">web_1    |  * Running on http:&#x2F;&#x2F;0.0.0.0:5000&#x2F; (Press CTRL+C to quit)</span><br><span class="line">...</span><br></pre></td></tr></table></figure></li>
+</ul>
+
       
     </div>
     <footer class="article-footer">
