@@ -68,6 +68,369 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Redis-Manual" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/06/02/Redis-Manual/" class="article-date">
+  <time datetime="2020-06-02T01:10:15.000Z" itemprop="datePublished">2020-06-02</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/06/02/Redis-Manual/">Redis Manual</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <hr>
+<p><strong>IMPORTANT</strong>:<br>Much of the content here is a personal summary/abbrieviation of contents on the <a href="https://redislabs.com/ebook/part-1-getting-started/chapter-1-getting-to-know-redis/" target="_blank" rel="noopener">Offical Redis Guide</a>. For more complete information, please refer to the offical site.</p>
+<hr>
+<h2 id="Redis-Intro"><a href="#Redis-Intro" class="headerlink" title="Redis Intro"></a>Redis Intro</h2><p>Redis is an <strong>in-memory remote database</strong> that offers high performance, replication, and a unique data model to produce a platform for solving problems. By supporting <strong>five different types of data structures</strong> (<code>Strings</code>, <code>Lists</code>, <code>Sets</code>, <code>Hashes</code>, and <code>Sorted sets</code>), Redis accommodates a wide variety of problems that can be naturally mapped into what Redis offers.</p>
+<p>To be specific, Redis is a very fast <strong>non-relational database</strong> that stores a <strong>mapping of keys to five different types of values</strong>. Redis supports <strong>in-memory persistent storage on disk</strong>, replication to scale read performance, and client-side sharding1 to scale write performance.</p>
+<ul>
+<li><strong>non-relational</strong><ul>
+<li>In Redis, there are no tables, and there’s no database-defined or -enforced way of relating data in Redis with other data in Redis. Generally speaking, many Redis users will choose to <strong>store data in Redis</strong> only when the performance or functionality of Redis is necessary, using other relational or non-relational data storage for data where slower performance is acceptable, or where data is too large to fit in memory economically.</li>
+</ul>
+</li>
+</ul>
+<h2 id="Data-Structures-in-Redis"><a href="#Data-Structures-in-Redis" class="headerlink" title="Data Structures in Redis"></a>Data Structures in Redis</h2><table>
+<thead>
+<tr>
+<th>Structure type</th>
+<th>What it contains</th>
+<th>Structure read/write ability</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>STRING</code></td>
+<td>Strings, integers, or floating-point values</td>
+<td>Operate on the whole string, parts, increment/ decrement the integers and floats</td>
+</tr>
+<tr>
+<td><code>LIST</code></td>
+<td>Linked list of strings</td>
+<td>Push or pop items from both ends, trim based on offsets, read individual or multiple items, find or remove items by value</td>
+</tr>
+<tr>
+<td><code>SET</code></td>
+<td>Unordered collection of unique strings</td>
+<td>Add, fetch, or remove individual items, check membership, intersect, union, difference, fetch random items</td>
+</tr>
+<tr>
+<td><code>HASH</code></td>
+<td>Unordered hash table of keys to values</td>
+<td>Add, fetch, or remove individual items, fetch the whole hash</td>
+</tr>
+<tr>
+<td><code>ZSET</code> (sorted set)</td>
+<td>Ordered mapping of string members to floating-point scores, ordered by score</td>
+<td>Add, fetch, or remove individual values, fetch items based on score ranges or member value</td>
+</tr>
+</tbody></table>
+<p>In the following sections, we will use the <code>redis cli</code> to pratice using redis commands and data structures.</p>
+<h2 id="Strings-in-Redis-Basics"><a href="#Strings-in-Redis-Basics" class="headerlink" title="Strings in Redis - Basics"></a><code>String</code>s in Redis - Basics</h2><p>The operations available to <code>STRING</code>s start with what’s available in other <code>key-value</code> stores. We can <code>GET</code>values, <code>SET</code> values, and <code>DEL</code> values. After you have installed and tested Redis, within <code>redis-cli</code> you can try to <code>SET</code>, <code>GET</code>, and <code>DEL</code> values in Redis. The basic meanings are shown below in the table:</p>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>GET</code></td>
+<td><strong>Fetches the value</strong> stored at the <strong>given key</strong></td>
+</tr>
+<tr>
+<td><code>SET</code></td>
+<td><strong>Sets the value</strong> stored at the <strong>given key</strong></td>
+</tr>
+<tr>
+<td><code>DEL</code></td>
+<td><strong>Deletes the key-value pair</strong> stored at the <strong>given key</strong> (works for all types)</td>
+</tr>
+</tbody></table>
+<p>Example demonstrating each of the commands:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; set hello value</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; get hello</span><br><span class="line">&quot;value&quot;</span><br><span class="line">127.0.0.1:6379&gt; del hello</span><br><span class="line">(integer) 1</span><br><span class="line">127.0.0.1:6379&gt; get hello</span><br><span class="line">(nil)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>Note:</p>
+<ul>
+<li><input disabled type="checkbox"> You see outputs such as <code>(integer) 1</code>, which usually represents execution success/true. <code>(nil)</code> represents execution failure, and <code>(integer) 0</code> also means failure but to the extent where the output means <code>false</code>, for example when a value (rather than the key) DNE.</li>
+</ul>
+</blockquote>
+<h2 id="Lists-in-Redis-Basics"><a href="#Lists-in-Redis-Basics" class="headerlink" title="Lists in Redis - Basics"></a><code>List</code>s in Redis - Basics</h2><p>The operations that can be performed on <code>LIST</code>s are typical of what we find in <code>LinkedList</code> data structures in almost any programming language. We can <code>push</code> items to the front and the back of the <code>LIST</code> with <code>LPUSH</code>/<code>RPUSH</code>; we can <code>pop</code> items from the front and back of the list with <code>LPOP</code>/<code>RPOP</code>; we can <code>fetch</code> an item at a given position with <code>LINDEX</code>; and we can <code>fetch</code> a range of items with <code>LRANGE</code>. </p>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>RPUSH</code></td>
+<td>Pushes the value onto the <strong>right end</strong> of the list. If list DNE, creates a new list</td>
+</tr>
+<tr>
+<td><code>LRANGE</code></td>
+<td>Fetches a <strong>range of values</strong> from the list</td>
+</tr>
+<tr>
+<td><code>LINDEX</code></td>
+<td>Fetches <strong>an item at a given position</strong> in the list (begins at index <code>0</code>)</td>
+</tr>
+<tr>
+<td><code>LPOP</code></td>
+<td>Pops the value from the <strong>left end</strong> of the list and returns it</td>
+</tr>
+</tbody></table>
+<p>For example:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; rpush test-list item1</span><br><span class="line">(integer) 1</span><br><span class="line">127.0.0.1:6379&gt; rpush test-list item2</span><br><span class="line">(integer) 2</span><br><span class="line">127.0.0.1:6379&gt; rpush test-list item1</span><br><span class="line">(integer) 3</span><br><span class="line">127.0.0.1:6379&gt; lrange test-list 0 -1</span><br><span class="line">1) &quot;item1&quot;</span><br><span class="line">2) &quot;item2&quot;</span><br><span class="line">3) &quot;item1&quot;</span><br><span class="line">127.0.0.1:6379&gt; lindex test-list 1</span><br><span class="line">&quot;item2&quot;</span><br><span class="line">127.0.0.1:6379&gt; lpop test-list</span><br><span class="line">&quot;item1&quot;</span><br><span class="line">127.0.0.1:6379&gt; lrange test-list 0 -1</span><br><span class="line">1) &quot;item2&quot;</span><br><span class="line">2) &quot;item1&quot;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>Note:</p>
+<ul>
+<li><input disabled type="checkbox"> See that <strong>duplicates in values</strong> are allowed. </li>
+</ul>
+</blockquote>
+<h2 id="Sets-in-Redis-Basics"><a href="#Sets-in-Redis-Basics" class="headerlink" title="Sets in Redis - Basics"></a><code>Set</code>s in Redis - Basics</h2><p>In Redis, <code>SET</code>s are similar to <code>LIST</code>s in that they’re a sequence of strings, but unlike <code>LIST</code>s, Redis <code>SET</code>s use a <strong>hash table</strong> to keep <strong>all values/strings unique</strong>. </p>
+<p>Because Redis <code>SET</code>s are <strong>unordered</strong>, we <strong>can’t <code>push</code> and <code>pop</code> items</strong> from the ends like we did with <code>LIST</code>s. Instead, we <strong><code>add</code> and <code>remove</code> items by value</strong> with the <code>SADD</code> and <code>SREM</code> commands. We can also find out whether an item is in the <code>SET</code> quickly with <code>SISMEMBER</code>, or <code>fetch</code> the entire set with <code>SMEMBERS</code> (this can be slow for large SETs, so be careful)</p>
+<table>
+<thead>
+<tr>
+<th>Comamnd</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>SADD</code></td>
+<td><strong>Adds the item</strong> to the set</td>
+</tr>
+<tr>
+<td><code>SMEMBERS</code></td>
+<td>Returns the <strong>entire set of items</strong></td>
+</tr>
+<tr>
+<td><code>SISMEMBER</code></td>
+<td><strong>Checks if an item</strong> is in the set</td>
+</tr>
+<tr>
+<td><code>SREM</code></td>
+<td><strong>Removes the item</strong> from the set, <strong>if it exists</strong></td>
+</tr>
+</tbody></table>
+<p>For example:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; sadd test-set item1</span><br><span class="line">(integer) 1</span><br><span class="line">127.0.0.1:6379&gt; sadd test-set item2</span><br><span class="line">(integer) 1</span><br><span class="line">127.0.0.1:6379&gt; sadd test-set item1</span><br><span class="line">(integer) 0</span><br><span class="line">127.0.0.1:6379&gt; smembers test-set</span><br><span class="line">1) &quot;item2&quot;</span><br><span class="line">2) &quot;item1&quot;</span><br><span class="line">127.0.0.1:6379&gt; sismember test-set item1</span><br><span class="line">(integer) 1</span><br><span class="line">127.0.0.1:6379&gt; sismember test-set item3</span><br><span class="line">(integer) 0</span><br><span class="line">127.0.0.1:6379&gt; srem test-set item1</span><br><span class="line">(integer) 1</span><br><span class="line">127.0.0.1:6379&gt; srem test-set item1</span><br><span class="line">(integer) 0</span><br><span class="line">127.0.0.1:6379&gt; smembers test-set</span><br><span class="line">1) &quot;item2&quot;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Hashes-in-Redis-Basics"><a href="#Hashes-in-Redis-Basics" class="headerlink" title="Hashes in Redis - Basics"></a><code>Hash</code>es in Redis - Basics</h2><p>Whereas <code>LIST</code>s and <code>SET</code>s in Redis hold sequences of items, Redis <code>HASH</code>es store a <strong>mapping of (distinct) keys to values</strong>. The values that can be stored in <code>HASH</code>es are the same as what can be stored as normal <code>STRING</code>s: strings themselves, or if a value can be interpreted as a number, that value can be incremented or decremented.</p>
+<p>In a lot of ways, we can think of <strong><code>HASH</code>es in Redis as miniature versions of Redis itself</strong>. </p>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>HSET</code></td>
+<td>Creats a hashtable, and <strong>stores the key-value pair</strong> in tha hashtable</td>
+</tr>
+<tr>
+<td><code>HGET</code></td>
+<td>Fetches the <strong>value at the given hash key</strong></td>
+</tr>
+<tr>
+<td><code>HGETALL</code></td>
+<td>Fetches the <strong>entire hashtable</strong></td>
+</tr>
+<tr>
+<td><code>HDEL</code></td>
+<td><strong>Removes a key-value pair</strong> from the hash, if it exists</td>
+</tr>
+</tbody></table>
+<p>For example:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; hset test-hasht key1 value1</span><br><span class="line">(integer) 1</span><br><span class="line">127.0.0.1:6379&gt; hset test-hasht key2 value2</span><br><span class="line">(integer) 1</span><br><span class="line">127.0.0.1:6379&gt; hset test-hasht key1 value2</span><br><span class="line">(integer) 0</span><br><span class="line">127.0.0.1:6379&gt; hgetall test-hasht</span><br><span class="line">1) &quot;key1&quot;</span><br><span class="line">2) &quot;value2&quot;</span><br><span class="line">3) &quot;key2&quot;</span><br><span class="line">4) &quot;value2&quot;</span><br><span class="line">127.0.0.1:6379&gt; hget test-hasht key1</span><br><span class="line">&quot;value2&quot;</span><br><span class="line">127.0.0.1:6379&gt; hdel test-hasht key2</span><br><span class="line">(integer) 1</span><br><span class="line">127.0.0.1:6379&gt; hgetall test-hasht</span><br><span class="line">1) &quot;key1&quot;</span><br><span class="line">2) &quot;value2&quot;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Sorted-sets-Zsets-in-Redis-Basics"><a href="#Sorted-sets-Zsets-in-Redis-Basics" class="headerlink" title="Sorted sets/Zsets in Redis - Basics"></a><code>Sorted set</code>s/<code>Zset</code>s in Redis - Basics</h2><p>Like Redis <code>HASH</code>es, <code>ZSET</code>s also hold <strong>pairs of key and value</strong>. The <strong>keys (called <code>member</code>s) are unique</strong>, and the <strong>values (called <code>score</code>s) are limited to floating-point numbers</strong>. <code>ZSET</code>s have the unique property in Redis of being able to be accessed by member (like a HASH), but <strong>items can also be accessed by the sorted order and values of the <code>score</code>s</strong>. </p>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>ZADD</code></td>
+<td><strong>Adds member/key with the given score</strong> to the ZSET. The order of input is <code>score</code> and then <code>member</code>.</td>
+</tr>
+<tr>
+<td><code>ZRANGE</code></td>
+<td>Fetches the items in the ZSET <strong>from their positions in sorted order</strong></td>
+</tr>
+<tr>
+<td><code>ZRANGEBYSCORE</code></td>
+<td>Fetches items in the ZSET <strong>based on a range of scores</strong></td>
+</tr>
+<tr>
+<td><code>ZREM</code></td>
+<td>Removes the <strong>item</strong> from the ZSET, if it exists</td>
+</tr>
+</tbody></table>
+<p>For example:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; zadd test-zset 100 member1</span><br><span class="line">(integer) 1</span><br><span class="line">127.0.0.1:6379&gt; zadd test-zset 200 member2</span><br><span class="line">(integer) 1</span><br><span class="line">127.0.0.1:6379&gt; zadd test-zset 200 member3</span><br><span class="line">(integer) 1</span><br><span class="line">127.0.0.1:6379&gt; zrange test-zset 0 -1 withscores</span><br><span class="line">1) &quot;member1&quot;</span><br><span class="line">2) &quot;100&quot;</span><br><span class="line">3) &quot;member2&quot;</span><br><span class="line">4) &quot;200&quot;</span><br><span class="line">5) &quot;member3&quot;</span><br><span class="line">6) &quot;200&quot;</span><br><span class="line">127.0.0.1:6379&gt; zrange test-zset 0 -1</span><br><span class="line">1) &quot;member1&quot;</span><br><span class="line">2) &quot;member2&quot;</span><br><span class="line">3) &quot;member3&quot;</span><br><span class="line">127.0.0.1:6379&gt; zrangebyscore test-zset 0 150 withscores</span><br><span class="line">1) &quot;member1&quot;</span><br><span class="line">2) &quot;100&quot;</span><br><span class="line">127.0.0.1:6379&gt; zrem test-zset member1</span><br><span class="line">(integer) 1</span><br><span class="line">127.0.0.1:6379&gt; zrange test-zset 0 -1 withscores</span><br><span class="line">1) &quot;member2&quot;</span><br><span class="line">2) &quot;200&quot;</span><br><span class="line">3) &quot;member3&quot;</span><br><span class="line">4) &quot;200&quot;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Connecting-a-Python-Standalone-Container-to-Redis"><a href="#Connecting-a-Python-Standalone-Container-to-Redis" class="headerlink" title="Connecting a Python Standalone Container to Redis"></a>Connecting a Python Standalone Container to Redis</h2><p>The basic idea is as follows (assuming you already have a <code>redis</code> container):</p>
+<ul>
+<li>create a <code>bridge</code> that allows the two containers to automatically resolve each other’s IP by container name</li>
+<li>connect your <code>redis</code> container to that <code>bridge</code></li>
+<li>create a <code>python</code> container, connecting it to the same <code>bridge</code> you just created, and configuring your mount volume(s)</li>
+<li>install Redis libraries in the <code>python</code> container</li>
+<li>connect your to the <code>redis</code> container by <code>connected = redis.Redis(host=&#39;&lt;your-redis-container-name&gt;&#39;, port=6379)</code>.<br>(alternatively, you could use <code>docker-compose</code> to achieve the same thing.)</li>
+</ul>
+<ol>
+<li><p>Create a <code>user-defined bridge</code> with the name <code>redis-py</code> in Docker with the following command:</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker network create -d bridge redis-py</span><br></pre></td></tr></table></figure></li>
+<li><p>Connect your already exitsed <code>redis</code> container to that bridge. If you do not have a <code>redis</code> container yet, you need to set one up first. You connect the <code>redis</code> container (called <code>test-redis</code> in this example) to that bridge <code>redis-py</code> by running:</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker network connect redis-py test-redis</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>Note:</p>
+<ul>
+<li><input disabled type="checkbox"> Here you would also need to remember the port name your <code>redis</code> container uses. By default, it should be <code>6379</code>. You can see the port once you run your <code>redis</code> container with <code>docker exec -it test-redis redis-cli</code>, and it will show, for example: <code>127.0.0.1:6379&gt;</code>.</li>
+</ul>
+</blockquote>
+</li>
+<li><p>Now you need to build another <code>python</code> container. You can first pull the image with <code>docker pull python</code>, and then start a container with:</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ docker run -it --name&#x3D;test-py-red \</span><br><span class="line">	--network redis-py \</span><br><span class="line">	-e REDIS_HOST&#x3D;test-redis \</span><br><span class="line">	-e REDIS_PORT&#x3D;6379 \</span><br><span class="line">	-p 8080:80 \</span><br><span class="line">	-v python-vol:&#x2F;data \</span><br><span class="line">	python bash</span><br></pre></td></tr></table></figure>
+<p> Note that some of the commands above are <strong>optional</strong>:</p>
+<ul>
+<li><code>-e REDIS_HOST=test-redis</code><ul>
+<li>this will configure your enviromental variable <code>REDIS_HOST</code> to be set to <code>test-redis</code> (your <code>redis</code> container name). However, this is not necessary.</li>
+</ul>
+</li>
+<li><code>e REDIS_PORT=6379</code><ul>
+<li>this will configure your enviromental variable <code>REDIS_PORT</code> to be set to <code>6379</code> (your <code>redis</code> port). However, this is not necessary.</li>
+</ul>
+</li>
+<li><code>v python-vol:/data</code> (recommended to have a mount)<ul>
+<li>this will mount the directory <code>/data</code> in your <code>python</code> container to the external local volume <code>python-vol</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Now, since we specified <code>python bash</code> in the last line, it will start in bash inside the container. This allows you to install the <code>redis</code> library for python:</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ pip install --trusted-host pypi.python.org Flask Redis</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>Note:</p>
+<ul>
+<li><input disabled type="checkbox"> A problem with this is that if you remove the container, you will need to execute to re-install this library again. A solution could be to build your own Dockerfile and create your own image with:<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">FROM python:latest</span><br><span class="line">WORKDIR &#x2F;app</span><br><span class="line">ADD . &#x2F;app</span><br><span class="line">RUN pip install --trusted-host pypi.python.org Flask Redis</span><br><span class="line">EXPOSE 80 </span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</blockquote>
+</li>
+<li><p>Finally, you can connect to your <code>redis</code> container names <code>test-redis</code> with:</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ python</span><br></pre></td></tr></table></figure>
+<p> which enters the <code>python</code> command line.</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; import redis</span><br></pre></td></tr></table></figure>
+<p> which imports the <code>redis</code> library you just installed</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; connected &#x3D; redis.Redis(host&#x3D;&#39;test-redis&#39;,port&#x3D;6379)</span><br></pre></td></tr></table></figure>
+<p> which connects to the <code>test-redis</code> container at port <code>6379</code>, so that now you can access <code>redis</code> contents and comamnds such as:</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; connected.set(&#39;hello&#39;,&#39;world&#39;)</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h2 id="Antonomy-of-a-Redis-Web-Application"><a href="#Antonomy-of-a-Redis-Web-Application" class="headerlink" title="Antonomy of a Redis Web Application"></a>Antonomy of a Redis Web Application</h2><p>Consider the case that you are managing a large online retail store, and you have millions of customers using it. Now, besides managing your website’s functionality, you would need several things to consider related to user-generated information:</p>
+<ul>
+<li>login management</li>
+<li>user browsing data</li>
+<li>…<br>You may thing that you could simply use a database like SQL. However, the problem is that most relational databases are limited to inserting, updating, or deleting <strong>roughly 200–2,000 individual rows every second per database server</strong>. Though bulk inserts/updates/deletes can be performed faster, a customer will only be updating a small handful of rows for each web page view, so higher-speed bulk insertion doesn’t help here.</li>
+</ul>
+<p>At present, due to the relatively large load through the day (assume averaging roughly 1,200 writes per second, close to 6,000 writes per second at peak), you needed to <strong>set up 10 relational database servers to deal with the load during peak hours</strong>. But now, you would like to try the new <code>redis</code> tool and see if all those data could be managed more easily.</p>
+<h2 id="Login-and-Cookie-Caching"><a href="#Login-and-Cookie-Caching" class="headerlink" title="Login and Cookie Caching"></a>Login and Cookie Caching</h2><p>Whenever we sign in to services on the internet, such as bank accounts or web mail, these services <strong>remember who we are using cookies</strong>. <strong>Cookies are small pieces of data</strong> that websites ask our <strong>web browsers to store and resend</strong> on every request to that service. </p>
+<p>For <strong>login cookies</strong>, there are two common methods of storing login information in cookies: <strong>a signed cookie</strong> or <strong>a token cookie</strong>.</p>
+<p>In general, cookies <strong>do not store passwords</strong>.</p>
+<ul>
+<li><p><strong>Signed cookies</strong> typically store the <code>username</code> when they last logged in, or maybe their user ID, and whatever else the service may find useful. Along with this user-specific information, the <strong>cookie also includes a signature that allows the server to verify that the information that the browser sent hasn’t been altered</strong> (like replacing the login name of one user with another).</p>
+</li>
+<li><p><strong>Token cookies</strong> use a series of <strong>random bytes as the data</strong> in the cookie. The series of random bytes is generated when you logged in successfully, and then <strong>the server issues you that long random number token as a secret identifier</strong>. Then, on the server, <strong>the token is used as a key to look up the user who owns that token by querying a database of some kind</strong>. Over time, old tokens can be deleted to make room for new tokens (so that your loggin session expires).</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Cookie type</th>
+<th>Pros</th>
+<th>Cons</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Signed cookie</strong></td>
+<td>Everything needed to verify the cookie is in the cookie. Additional information can be included and signed easily</td>
+<td>Correctly handling signatures is hard. It’s easy to forget to sign and/or verify data, allowing security vulnerabilities</td>
+</tr>
+<tr>
+<td><strong>Token cookie</strong></td>
+<td>Adding information is easy. Very small cookie, so mobile and slow clients can send requests faster</td>
+<td>More information to store on the server. If using a relational database, cookie loading / storing can be expensive</td>
+</tr>
+</tbody></table>
+<p>To get started, we’ll use a <code>HASH</code> to store our <strong>mapping from login cookie tokens</strong> to the <strong>user that’s logged in</strong>. </p>
+<ul>
+<li><p>To <strong>check the login</strong>, we need to fetch the user based on the token and return it, if it’s available. The following listing shows how we check login cookies.</p>
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># conn=redis.Redis(host='&lt;yourhost&gt;', port='&lt;yourPort&gt;')</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">check_token</span><span class="params">(conn, token)</span>:</span></span><br><span class="line">	<span class="keyword">return</span> conn.hget(<span class="string">'login:'</span>, token)  <span class="comment"># Fetch and return the given user, if available.</span></span><br></pre></td></tr></table></figure>
+
+
+</li>
+</ul>
+<ul>
+<li><p>Then, for a visit, we’ll <strong>update the login <code>HASH</code> for the user and record the current timestamp for the token</strong> in the <code>ZSET</code> of recent users. If the user was viewing an item, we also add the item to the user’s recently viewed <code>ZSET</code> and trim that <code>ZSET</code> <strong>if it grows past 25 items</strong>. The function that does all of this can be seen next.</p>
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">update_token</span><span class="params">(conn, token, user, item=None)</span>:</span></span><br><span class="line">	timestamp = time.time()  <span class="comment">#Get the timestamp.</span></span><br><span class="line"></span><br><span class="line">	conn.hset(<span class="string">'login:'</span>, token, user)  <span class="comment">#Keep a mapping from the token to the logged-in user.</span></span><br><span class="line">	conn.zadd(<span class="string">'recent:'</span>, token, timestamp)  <span class="comment">#Record when the token was last seen.</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> item:</span><br><span class="line">		conn.zadd(<span class="string">'viewed:'</span> + token, item, timestamp)  <span class="comment">#Record that the user viewed the item.</span></span><br><span class="line">		conn.zremrangebyrank(<span class="string">'viewed:'</span> + token, <span class="number">0</span>, <span class="number">-26</span>)  <span class="comment">#Remove old items, keeping the most recent 25.</span></span><br></pre></td></tr></table></figure>
+
+<p>  And you know what? That’s it. We’ve now <strong>recorded when a user with the given session last viewed an item and what item that user most recently looked at</strong>. On a server made in the last few years, you can record this information <strong>for at least 20,000 item views every second</strong>, which is more than three times what we needed to perform against the database. This can be made even faster, which we’ll talk about later. But even for this version, we’ve improved performance by 10–100 times over a typical relational database in this context.</p>
+</li>
+<li><p>Over time, memory use will grow, and we’ll want to <strong>clean out old data</strong>. As a way of limiting our data, we’ll only <strong>keep the most recent 10 million sessions</strong>.</p>
+<p>  For our cleanup, we’ll <code>fetch</code> the size of the <code>ZSET</code> in a loop. If the <code>ZSET</code> is too large, we’ll fetch the oldest items up to 100 at a time (because we’re using timestamps, this is just the first 100 items in the ZSET), <strong>remove them from the <code>recent ZSET</code></strong>, <strong>delete the login tokens from the <code>login HASH</code></strong>, and <strong>delete the relevant <code>viewed ZSET</code>s</strong>. If the ZSET isn’t too large, we’ll <strong>sleep for one second and try again later</strong>. The code for cleaning out old sessions is shown next.</p>
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">QUIT = <span class="literal">False</span></span><br><span class="line">LIMIT = <span class="number">10000000</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">clean_sessions</span><span class="params">(conn)</span>:</span></span><br><span class="line">	<span class="keyword">while</span> <span class="keyword">not</span> QUIT:</span><br><span class="line">		size = conn.zcard(<span class="string">'recent:'</span>)  <span class="comment"># Find out how many tokens are known.</span></span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span> size &lt;= LIMIT:</span><br><span class="line">			time.sleep(<span class="number">1</span>)  <span class="comment"># We’re still under our limit; sleep and try again.</span></span><br><span class="line">		<span class="keyword">else</span>:</span><br><span class="line">			end_index = min(size - LIMIT, <span class="number">100</span>)</span><br><span class="line">			tokens = conn.zrange(<span class="string">'recent:'</span>, <span class="number">0</span>, end_index<span class="number">-1</span>)  <span class="comment"># Fetch the token IDs that should be removed.</span></span><br><span class="line">		</span><br><span class="line">			session_keys = []</span><br><span class="line">			<span class="keyword">for</span> token <span class="keyword">in</span> tokens:</span><br><span class="line">				session_keys.append(<span class="string">'viewed:'</span> + token)  <span class="comment"># Prepare the key names for the tokens to delete.</span></span><br><span class="line">		</span><br><span class="line">			conn.delete(*session_keys)</span><br><span class="line">			conn.hdel(<span class="string">'login:'</span>, *tokens)</span><br><span class="line">			conn.zrem(<span class="string">'recent:'</span>, *tokens)</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<blockquote>
+<p>Note:</p>
+<ul>
+<li><input disabled type="checkbox"> The <code>cleanup</code> function written above may be run as a <strong>daemon process</strong>, to be run periodically via a cron job, or even to be run during every execution. As a general rule, if the function includes a <code>while not QUIT</code>: line, it’s <strong>supposed to be run as a daemon</strong>, though it could probably be modified to be run periodically, depending on its purpose.</li>
+<li><input disabled type="checkbox"> You also notice that we called three functions with a syntax similar to <code>conn.delete(*vtokens)</code>. Basically, we’re <strong>passing a sequence of arguments to the underlying function without previously unpacking</strong> the arguments. For further details on the semantics of how this works, you can visit the Python language tutorial website by visiting this short url: <a href="https://mng.bz/8I7W" target="_blank" rel="noopener">https://mng.bz/8I7W</a>.</li>
+</ul>
+</blockquote>
+<h2 id="Storing-Shopping-Carts-Info"><a href="#Storing-Shopping-Carts-Info" class="headerlink" title="Storing Shopping Carts Info"></a>Storing Shopping Carts Info</h2><p>Because we’ve had such good luck with session cookies and recently viewed items, we’ll push our <strong>shopping cart information</strong> into Redis. Since we’re already keeping user session cookies in Redis (along with recently viewed items), we can use the <strong>same cookie ID for referencing the shopping cart</strong>.</p>
+<p>The shopping cart that we’ll use is simple: it’s a <code>HASH</code> that <strong>maps an item ID to the quantity of that item that the customer would like to purchase</strong>. We’ll have the web application handle validation for item count, so we only need to update counts in the cart as they change. If the user wants more than 0 items, we add the item(s) to the <code>HASH</code> (replacing an earlier count if it existed). If not, we remove the entry from the hash. Our <code>add_to_cart()</code> function can be seen in this listing.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">add_to_cart</span><span class="params">(conn, session, item, count)</span>:</span></span><br><span class="line">	<span class="keyword">if</span> count &lt;= <span class="number">0</span>:</span><br><span class="line">		conn.hrem(<span class="string">'cart:'</span> + session, item)  <span class="comment"># Remove the item from the cart.</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">else</span>:</span><br><span class="line">		conn.hset(<span class="string">'cart:'</span> + session, item, count)  <span class="comment"># Add the item to the cart.</span></span><br></pre></td></tr></table></figure>
+
+<p>Now, we’ll update our <code>session cleanup</code> function to include <strong>deleting old shopping carts</strong> as   <code>clean_full_sessions()</code> in the next listing.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">clean_full_sessions</span><span class="params">(conn)</span>:</span></span><br><span class="line">	<span class="keyword">while</span> <span class="keyword">not</span> QUIT:</span><br><span class="line">		size = conn.zcard(<span class="string">'recent:'</span>)</span><br><span class="line">		<span class="keyword">if</span> size &lt;= LIMIT:</span><br><span class="line">			time.sleep(<span class="number">1</span>)</span><br><span class="line">			<span class="keyword">continue</span></span><br><span class="line"></span><br><span class="line">		end_index = min(size - LIMIT, <span class="number">100</span>)</span><br><span class="line">		sessions = conn.zrange(<span class="string">'recent:'</span>, <span class="number">0</span>, end_index<span class="number">-1</span>)</span><br><span class="line"></span><br><span class="line">		session_keys = []</span><br><span class="line">		<span class="keyword">for</span> sess <span class="keyword">in</span> sessions:</span><br><span class="line">			session_keys.append(<span class="string">'viewed:'</span> + sess)</span><br><span class="line">			session_keys.append(<span class="string">'cart:'</span> + sess)  <span class="comment"># The required added line to delete the shopping cart for old sessions.</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">		conn.delete(*session_keys)</span><br><span class="line">		conn.hdel(<span class="string">'login:'</span>, *sessions)</span><br><span class="line">		conn.zrem(<span class="string">'recent:'</span>, *sessions)</span><br></pre></td></tr></table></figure>
+
+<p>We now have <strong>both sessions and the shopping cart stored in Redis</strong>, which helps to reduce request size, as well as allows the performing of statistical calculations on visitors to our site based on what items they looked at, what items ended up in their shopping carts, and what items they finally purchased.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/06/02/Redis-Manual/" data-id="ckaxrmfph00009cor310hfxk3" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-MySQL-Manual" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/05/26/MySQL-Manual/" class="article-date">
@@ -2823,7 +3186,10 @@ For other means of doing the same thing, please visit <a href="https://www.digit
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="Git-Intro"><a href="#Git-Intro" class="headerlink" title="Git Intro"></a>Git Intro</h2><ul>
+        <hr>
+<p><strong>IMPORTANT</strong>:<br>Much of the content here is a personal summary/abbrieviation of contents on the <a href="https://git-scm.com/book/en/v2" target="_blank" rel="noopener">Offical Git Guide</a>. For more complete information, please refer to the offical site.</p>
+<hr>
+<h2 id="Git-Intro"><a href="#Git-Intro" class="headerlink" title="Git Intro"></a>Git Intro</h2><ul>
 <li>Version Control<ul>
 <li>Version control is a <strong>system</strong> that records and manages changes for a file or a set of file, so that you could later revert those changes if needed</li>
 </ul>
@@ -4075,7 +4441,7 @@ Now, the master head will point to the inital commit. If your friend is also wor
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li></ul>
     </div>
   </div>
 
@@ -4086,6 +4452,10 @@ Now, the master head will point to the inital commit. If your friend is also wor
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2020/06/02/Redis-Manual/">Redis Manual</a>
+          </li>
         
           <li>
             <a href="/2020/05/26/MySQL-Manual/">MySQL Manual</a>
@@ -4101,10 +4471,6 @@ Now, the master head will point to the inital commit. If your friend is also wor
         
           <li>
             <a href="/2020/05/20/Git-Summary/">Git Manual</a>
-          </li>
-        
-          <li>
-            <a href="/2020/05/19/MarkDown-Summary/">MarkDown Manual</a>
           </li>
         
       </ul>
