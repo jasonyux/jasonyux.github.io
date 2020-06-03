@@ -15,7 +15,7 @@
 <meta property="og:description" content="IMPORTANT:Much of the content here is a personal summary&#x2F;abbrieviation of contents on the Offical Redis Guide. For more complete information, please refer to the offical site.  Redis IntroRedis is an">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-06-02T01:10:15.000Z">
-<meta property="article:modified_time" content="2020-06-02T12:30:08.059Z">
+<meta property="article:modified_time" content="2020-06-03T08:48:36.325Z">
 <meta property="article:author" content="Xiao Yu">
 <meta name="twitter:card" content="summary">
   
@@ -138,6 +138,7 @@
 </tr>
 </tbody></table>
 <p>In the following sections, we will use the <code>redis cli</code> to pratice using redis commands and data structures.</p>
+<p><a name="String-Basics"></a></p>
 <h2 id="Strings-in-Redis-Basics"><a href="#Strings-in-Redis-Basics" class="headerlink" title="Strings in Redis - Basics"></a><code>String</code>s in Redis - Basics</h2><p>The operations available to <code>STRING</code>s start with what’s available in other <code>key-value</code> stores. We can <code>GET</code>values, <code>SET</code> values, and <code>DEL</code> values. After you have installed and tested Redis, within <code>redis-cli</code> you can try to <code>SET</code>, <code>GET</code>, and <code>DEL</code> values in Redis. The basic meanings are shown below in the table:</p>
 <table>
 <thead>
@@ -168,6 +169,7 @@
 <li><input disabled type="checkbox"> You see outputs such as <code>(integer) 1</code>, which usually represents execution success/true. <code>(nil)</code> represents execution failure, and <code>(integer) 0</code> also means failure but to the extent where the output means <code>false</code>, for example when a value (rather than the key) DNE.</li>
 </ul>
 </blockquote>
+<p><a name="List-Basics"></a></p>
 <h2 id="Lists-in-Redis-Basics"><a href="#Lists-in-Redis-Basics" class="headerlink" title="Lists in Redis - Basics"></a><code>List</code>s in Redis - Basics</h2><p>The operations that can be performed on <code>LIST</code>s are typical of what we find in <code>LinkedList</code> data structures in almost any programming language. We can <code>push</code> items to the front and the back of the <code>LIST</code> with <code>LPUSH</code>/<code>RPUSH</code>; we can <code>pop</code> items from the front and back of the list with <code>LPOP</code>/<code>RPOP</code>; we can <code>fetch</code> an item at a given position with <code>LINDEX</code>; and we can <code>fetch</code> a range of items with <code>LRANGE</code>. </p>
 <table>
 <thead>
@@ -202,6 +204,7 @@
 <li><input disabled type="checkbox"> See that <strong>duplicates in values</strong> are allowed. </li>
 </ul>
 </blockquote>
+<p><a name="Set-Basics"></a></p>
 <h2 id="Sets-in-Redis-Basics"><a href="#Sets-in-Redis-Basics" class="headerlink" title="Sets in Redis - Basics"></a><code>Set</code>s in Redis - Basics</h2><p>In Redis, <code>SET</code>s are similar to <code>LIST</code>s in that they’re a sequence of strings, but unlike <code>LIST</code>s, Redis <code>SET</code>s use a <strong>hash table</strong> to keep <strong>all values/strings unique</strong>. </p>
 <p>Because Redis <code>SET</code>s are <strong>unordered</strong>, we <strong>can’t <code>push</code> and <code>pop</code> items</strong> from the ends like we did with <code>LIST</code>s. Instead, we <strong><code>add</code> and <code>remove</code> items by value</strong> with the <code>SADD</code> and <code>SREM</code> commands. We can also find out whether an item is in the <code>SET</code> quickly with <code>SISMEMBER</code>, or <code>fetch</code> the entire set with <code>SMEMBERS</code> (this can be slow for large SETs, so be careful)</p>
 <table>
@@ -231,6 +234,7 @@
 <p>For example:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; sadd test-set item1</span><br><span class="line">(integer) 1</span><br><span class="line">127.0.0.1:6379&gt; sadd test-set item2</span><br><span class="line">(integer) 1</span><br><span class="line">127.0.0.1:6379&gt; sadd test-set item1</span><br><span class="line">(integer) 0</span><br><span class="line">127.0.0.1:6379&gt; smembers test-set</span><br><span class="line">1) &quot;item2&quot;</span><br><span class="line">2) &quot;item1&quot;</span><br><span class="line">127.0.0.1:6379&gt; sismember test-set item1</span><br><span class="line">(integer) 1</span><br><span class="line">127.0.0.1:6379&gt; sismember test-set item3</span><br><span class="line">(integer) 0</span><br><span class="line">127.0.0.1:6379&gt; srem test-set item1</span><br><span class="line">(integer) 1</span><br><span class="line">127.0.0.1:6379&gt; srem test-set item1</span><br><span class="line">(integer) 0</span><br><span class="line">127.0.0.1:6379&gt; smembers test-set</span><br><span class="line">1) &quot;item2&quot;</span><br></pre></td></tr></table></figure>
 
+<p><a name="Hash-Basics"></a></p>
 <h2 id="Hashes-in-Redis-Basics"><a href="#Hashes-in-Redis-Basics" class="headerlink" title="Hashes in Redis - Basics"></a><code>Hash</code>es in Redis - Basics</h2><p>Whereas <code>LIST</code>s and <code>SET</code>s in Redis hold sequences of items, Redis <code>HASH</code>es store a <strong>mapping of (distinct) keys to values</strong>. The values that can be stored in <code>HASH</code>es are the same as what can be stored as normal <code>STRING</code>s: strings themselves, or if a value can be interpreted as a number, that value can be incremented or decremented.</p>
 <p>In a lot of ways, we can think of <strong><code>HASH</code>es in Redis as miniature versions of Redis itself</strong>. </p>
 <table>
@@ -260,6 +264,7 @@
 <p>For example:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; hset test-hasht key1 value1</span><br><span class="line">(integer) 1</span><br><span class="line">127.0.0.1:6379&gt; hset test-hasht key2 value2</span><br><span class="line">(integer) 1</span><br><span class="line">127.0.0.1:6379&gt; hset test-hasht key1 value2</span><br><span class="line">(integer) 0</span><br><span class="line">127.0.0.1:6379&gt; hgetall test-hasht</span><br><span class="line">1) &quot;key1&quot;</span><br><span class="line">2) &quot;value2&quot;</span><br><span class="line">3) &quot;key2&quot;</span><br><span class="line">4) &quot;value2&quot;</span><br><span class="line">127.0.0.1:6379&gt; hget test-hasht key1</span><br><span class="line">&quot;value2&quot;</span><br><span class="line">127.0.0.1:6379&gt; hdel test-hasht key2</span><br><span class="line">(integer) 1</span><br><span class="line">127.0.0.1:6379&gt; hgetall test-hasht</span><br><span class="line">1) &quot;key1&quot;</span><br><span class="line">2) &quot;value2&quot;</span><br></pre></td></tr></table></figure>
 
+<p><a name="ZSet-Basics"></a></p>
 <h2 id="Sorted-sets-Zsets-in-Redis-Basics"><a href="#Sorted-sets-Zsets-in-Redis-Basics" class="headerlink" title="Sorted sets/Zsets in Redis - Basics"></a><code>Sorted set</code>s/<code>Zset</code>s in Redis - Basics</h2><p>Like Redis <code>HASH</code>es, <code>ZSET</code>s also hold <strong>pairs of key and value</strong>. The <strong>keys (called <code>member</code>s) are unique</strong>, and the <strong>values (called <code>score</code>s) are limited to floating-point numbers</strong>. <code>ZSET</code>s have the unique property in Redis of being able to be accessed by member (like a HASH), but <strong>items can also be accessed by the sorted order and values of the <code>score</code>s</strong>. </p>
 <table>
 <thead>
@@ -419,7 +424,438 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">clean_full_sessions</span><span class="params">(conn)</span>:</span></span><br><span class="line">	<span class="keyword">while</span> <span class="keyword">not</span> QUIT:</span><br><span class="line">		size = conn.zcard(<span class="string">'recent:'</span>)</span><br><span class="line">		<span class="keyword">if</span> size &lt;= LIMIT:</span><br><span class="line">			time.sleep(<span class="number">1</span>)</span><br><span class="line">		<span class="keyword">else</span>:</span><br><span class="line">			end_index = min(size - LIMIT, <span class="number">100</span>)</span><br><span class="line">			sessions = conn.zrange(<span class="string">'recent:'</span>, <span class="number">0</span>, end_index<span class="number">-1</span>)</span><br><span class="line"></span><br><span class="line">			session_keys = []</span><br><span class="line">			<span class="keyword">for</span> sess <span class="keyword">in</span> sessions:</span><br><span class="line">				session_keys.append(<span class="string">'viewed:'</span> + sess)</span><br><span class="line">				session_keys.append(<span class="string">'cart:'</span> + sess)  <span class="comment"># The required added line to delete the shopping cart for old sessions.</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">			conn.delete(*session_keys)</span><br><span class="line">			conn.hdel(<span class="string">'login:'</span>, *sessions)</span><br><span class="line">			conn.zrem(<span class="string">'recent:'</span>, *sessions)</span><br></pre></td></tr></table></figure>
 
 <p>We now have <strong>both sessions and the shopping cart stored in Redis</strong>, which helps to reduce request size, as well as allows the performing of statistical calculations on visitors to our site based on what items they looked at, what items ended up in their shopping carts, and what items they finally purchased.</p>
+<h2 id="Webpage-Caching"><a href="#Webpage-Caching" class="headerlink" title="Webpage Caching"></a>Webpage Caching</h2><p>Caching is different from a cookie. While they both act as some kind of storage, <strong>cache is actually a part of computer memory</strong>, whereas <strong>cookie is just stored and used by web browsers</strong>. </p>
+<p>In genearl, when a processor wants something (e.g. values(a,b) for doing an operation (a+b)), it <strong>first search in cache if cache have these values</strong> then processor will fetch values form cache (fetching values from cache is really fast), but if cache don’t have these values <strong>then it will search in RAM</strong> (fetching values from ram is faster than hdd,ssd but slower than cache) if ram don’t have <strong>then it will search in hhd or ssd</strong>.</p>
+<p><strong>In the context of web services</strong>, this means that cache in general can deal with larger data pieces than cookies, so one common way of using it in web services is for <strong>storing static website contents</strong>. Since those static contenst don’t need to be dynamically generated upon every request, we can store most of the information in cache for <strong>faster browsing experience</strong>. </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">cache_request</span><span class="params">(conn, request)</span>:</span></span><br><span class="line">	</span><br><span class="line">	<span class="keyword">if</span> <span class="keyword">not</span> can_cache(request):</span><br><span class="line">		<span class="keyword">return</span> callback(request)  <span class="comment"># calls the request back to generate the content</span></span><br><span class="line"></span><br><span class="line">	page_key = <span class="string">"cache:"</span> + hash_request(request)  <span class="comment"># hash the request for lookup and storing</span></span><br><span class="line">	</span><br><span class="line">	content = conn.get(pagekey)</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> content <span class="keyword">is</span> <span class="literal">None</span>:  <span class="comment"># reached here means content is cachable but not stored in cache</span></span><br><span class="line"></span><br><span class="line">		content = callback(request) <span class="comment"># content not cached. calls the request back to generate the content</span></span><br><span class="line">		conn.setex(page_key, <span class="number">300</span>, content)  <span class="comment"># cache the content and set expire in 300 seconds</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> content</span><br></pre></td></tr></table></figure>
 
+<h2 id="Database-row-caching"><a href="#Database-row-caching" class="headerlink" title="Database row caching"></a>Database row caching</h2><p>For a daily deal with inventory counts being reduced and affecting whether someone can buy the item, the site cannot be entirely cached. However, an easy solution would be caching <strong>but also remmeber updating that specific database row</strong>. This means that you can choose to update the <strong>cached row for that specific item every few seconds</strong>, if there are <strong>many buyers</strong>. But if the data doesn’t change often, or when back-ordered items are acceptable, it may make sense to only update the cache every minute.</p>
+<p>This can be done via using two <code>ZSET</code>s, one called <code>delay:</code> that tells you how often you should update your database row, and another called <code>schedule:</code> which tells you when the database row has been last updated in your cache.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">cache_rows</span><span class="params">(conn)</span>:</span>  <span class="comment"># this will be a daemon process</span></span><br><span class="line">	<span class="keyword">while</span> <span class="keyword">not</span> QUIT:</span><br><span class="line">		next = conn.zrange(<span class="string">'schedule:'</span>,<span class="number">0</span>,<span class="number">0</span>, withscores=TRUE)  <span class="comment"># this fetches the first/earliest item that we have updated, if there is</span></span><br><span class="line"></span><br><span class="line">		now = time.time()</span><br><span class="line">		<span class="keyword">if</span> next <span class="keyword">is</span> <span class="literal">None</span> <span class="keyword">or</span> next[<span class="number">0</span>][<span class="number">1</span>] &gt; now:  <span class="comment"># if there are no items in schedule: </span></span><br><span class="line">											  <span class="comment"># or time hasn't come yet for updating</span></span><br><span class="line">			time.sleep(<span class="number">0.05</span>)</span><br><span class="line">		<span class="keyword">else</span>:</span><br><span class="line">			row_id = next[<span class="number">0</span>][<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line">			delay = conn.zscore(<span class="string">'delay:'</span>, row_id)  <span class="comment"># delay also stores information on whether</span></span><br><span class="line">												   <span class="comment"># we should remove the item in the scheduling</span></span><br><span class="line">			</span><br><span class="line">			<span class="keyword">if</span> delay &lt;= <span class="number">0</span>:</span><br><span class="line">				conn.zrem(<span class="string">'delay:'</span>, row_id)</span><br><span class="line">				conn.zrem(<span class="string">'schedule:'</span>, row_id)</span><br><span class="line">				conn.delete(<span class="string">'inv:'</span> + row_id)  </span><br><span class="line">			<span class="keyword">else</span>:  <span class="comment"># now we need to handle the cache updating</span></span><br><span class="line"></span><br><span class="line">				d_row = Inventory.get(row_id)  <span class="comment"># gets the database row</span></span><br><span class="line"></span><br><span class="line">				conn.zadd(<span class="string">'schedule:'</span>, row_id, now+delay)  <span class="comment"># re-schedule the item for update</span></span><br><span class="line">				</span><br><span class="line">				conn.set(<span class="string">'inv:`+row_id, json.dumps(row.to_dict()))  # updates the cache with the latest database row</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">def add_schedule_row_cache(conn, row_id, delay):</span></span><br><span class="line"><span class="string">	conn.zadd('</span>delay:<span class="string">', row_id, delay)  # adds the item and tells how often it should be updated</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">	conn.zadd('</span>schedule:<span class="string">', row_id, time.time())  # adds the item with the time it was placed in cache</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Simple-Webpage-Analytics"><a href="#Simple-Webpage-Analytics" class="headerlink" title="Simple Webpage Analytics"></a>Simple Webpage Analytics</h2><p>In the previous examples, we were able to cache webpage contents. However, we did not limit how much pages should be cached, as we did not specify the <code>can_cache()</code> function yet. But what would be a sensible way to <strong>decide which webpage should be cached and which one shouldn’t</strong>? </p>
+<p>A simple idea is to only include (for example) 10,000 webpages that has items you are browing the most often. For the other webpages with items that you browse only occaasionally, you do not store them in cache. However, you also need to be able to include possible new trending items, so you cannot just simply discard all items below the 10,000 limit. One solution you could use is to <strong>rescale the view counts of the top 10,000 items you viewed to be half</strong> has much as they were before.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">rescale_viewed</span><span class="params">(conn)</span>:</span></span><br><span class="line">	<span class="keyword">while</span> <span class="keyword">not</span> QUIT:</span><br><span class="line">		conn.zremrangebyrank(<span class="string">'viewed:'</span>, <span class="number">20000</span>, <span class="number">-1</span>)  <span class="comment"># Remove any item not in the top 20,000 viewed items.</span></span><br><span class="line"></span><br><span class="line">		conn.zinterstore(<span class="string">'viewed:'</span>, &#123;<span class="string">'viewed:'</span>: <span class="number">.5</span>&#125;)  <span class="comment"># Rescale all counts to be 1/2 of what they were before.</span></span><br><span class="line"></span><br><span class="line">		time.sleep(<span class="number">300</span>)  <span class="comment"># Do it again in 5 minutes.</span></span><br></pre></td></tr></table></figure>
+<p>where the line:</p>
+<ul>
+<li><code>conn.zinterstore(&#39;viewed:&#39;, {&#39;viewed:&#39;: .5})</code>, the function <code>ZINTERSTORE</code> lets us combine one or more <code>ZSET</code>s and <strong>multiply every score in the input <code>ZSET</code>s by a given number</strong>. (Each input <code>ZSET</code> can be multiplied by a different number.)</li>
+</ul>
+<p>Now, one sensible way to call this function is to place it in the place where you kept a reference to every item visited when you do login and shopping cart info storing. So you can place it in here:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">update_token</span><span class="params">(conn, token, user, item=None)</span>:</span></span><br><span class="line">	timestamp = time.time()</span><br><span class="line">	conn.hset(<span class="string">'login:'</span>, token, user)</span><br><span class="line">	conn.zadd(<span class="string">'recent:'</span>, token, timestamp)</span><br><span class="line">	<span class="keyword">if</span> item <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">		conn.zadd(<span class="string">'viewed:'</span> + token, item, timestamp)</span><br><span class="line">		conn.zremrangebyrank(<span class="string">'viewed:'</span> + token, <span class="number">0</span>, <span class="number">-26</span>)</span><br><span class="line"></span><br><span class="line">		conn.zincrby(<span class="string">'viewed:'</span>, item, <span class="number">-1</span>)  <span class="comment"># the added line, move the item forward if viewed again</span></span><br></pre></td></tr></table></figure>
+
+<p>With the <code>rescaling</code> and the <code>counting</code>, we now have a <strong>constantly updated list of the most-frequently viewed items</strong>. Now all we need to do is to specify our <code>can_cache()</code> function to take into consideration our new method of deciding whether a page can be cached, and we’re done:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">can_cache</span><span class="params">(conn, request)</span>:</span></span><br><span class="line">	item_id = extract_item_id(request)  <span class="comment"># Get the item ID for the page, if any.</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> item_id <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span> <span class="keyword">or</span> is_dynamic(request):  <span class="comment"># Check whether the page can be statically cached and whether this is an item page.</span></span><br><span class="line"></span><br><span class="line">		<span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line"></span><br><span class="line">	rank = conn.zrank(<span class="string">'viewed:'</span>, item_id)  <span class="comment"># Get the rank of the item.</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> rank <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span> <span class="keyword">and</span> rank &lt; <span class="number">10000</span>  <span class="comment"># Return whether the item has a high enough view count to be cached.</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Strings-in-Redis"><a href="#Strings-in-Redis" class="headerlink" title="Strings in Redis"></a><code>String</code>s in Redis</h2><p>In this section, we’ll talk about the simplest structure available to Redis, the STRING. This builds on the section <a href="#String-Basics"><code>String</code>s in Redis - Basics</a>, and here it covers the basic <strong>numeric increment and decrement operations</strong>, followed later by the <strong>bit and substring manipulation</strong> calls, and you’ll come to understand that even the simplest of structures has a few surprises that can make it useful in a variety of powerful ways.</p>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Example use and description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>INCR</code></td>
+<td><code>INCR key-name</code> — Increments the value stored at the key <strong>by 1</strong></td>
+</tr>
+<tr>
+<td><code>DECR</code></td>
+<td><code>DECR key-name</code> — Decrements the value stored at the key <strong>by 1</strong></td>
+</tr>
+<tr>
+<td><code>INCRBY</code></td>
+<td><code>INCRBY key-name amount</code> — Increments the value stored at the key <strong>by the provided integer value</strong></td>
+</tr>
+<tr>
+<td><code>DECRBY</code></td>
+<td><code>DECRBY key-name amount</code> — Decrements the value stored at the key <strong>by the provided integer value</strong></td>
+</tr>
+<tr>
+<td><code>INCRBYFLOAT</code></td>
+<td><code>INCRBYFLOAT key-name amount</code> — Increments the value stored at the key <strong>by the provided float value</strong> (available in Redis 2.6 and later)</td>
+</tr>
+</tbody></table>
+<p>This means that, when setting a <code>STRING</code> value in Redis, if that <strong>value could be interpreted as a base-10 integer or a floating-point value</strong>, Redis will detect this and <strong>allow you to manipulate the value using the various <code>INCR*</code> and <code>DECR*</code> operations</strong>. So, if you try to <strong>increment or decrement</strong> a key that has a value that <strong>can’t be interpreted as an integer or float</strong>, you’ll receive <strong>an error</strong>.</p>
+<blockquote>
+<p>Note:</p>
+<ul>
+<li><input disabled type="checkbox"> If you try to <strong>increment or decrement a key that doesn’t exist or is an empty string</strong>, Redis will operate as though that <strong>key’s value were zero</strong>. </li>
+</ul>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> redis; conn=redis.Redis(host=<span class="string">'cust-redis'</span>,port=<span class="number">6379</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>conn.get(<span class="string">'new-key'</span>)  </span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>conn.incr(<span class="string">'new-key'</span>)  <span class="comment"># incrementing a non-existant key by 1</span></span><br><span class="line"><span class="number">1</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>conn.incr(<span class="string">'new-key-2'</span>)  <span class="comment"># incrementing a non-existant key by </span></span><br><span class="line"><span class="number">1</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>conn.get(<span class="string">'new-key-2'</span>)</span><br><span class="line"><span class="string">b'1'</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>conn.incr(<span class="string">'new-key'</span>,<span class="number">10</span>)  <span class="comment"># python implemented to have the option of passing in a value</span></span><br><span class="line"><span class="number">11</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>conn.incrby(<span class="string">'new-key'</span>,<span class="number">10</span>)</span><br><span class="line"><span class="number">21</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>conn.decr(<span class="string">'new-key'</span>,<span class="number">10</span>)</span><br><span class="line"><span class="number">11</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>conn.decrby(<span class="string">'new-key'</span>,<span class="number">10</span>)</span><br><span class="line"><span class="number">1</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>conn.set(<span class="string">'new-key'</span>,<span class="number">10</span>)</span><br><span class="line"><span class="literal">True</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>conn.get(<span class="string">'new-key'</span>)</span><br><span class="line"><span class="string">b'10'</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>Note:</p>
+<ul>
+<li><input disabled type="checkbox"> You see those <code>b</code> in front of the result string because these data are <strong>byte literal</strong>s instead of <strong>String</strong> objects. Therefore, to <strong>get rid of the <code>b</code></strong>, you can <strong>add the method <code>decode(&#39;utf8&#39;)</code> to the end</strong>.</li>
+</ul>
+</blockquote>
+<p>Redis additionally offers methods for <strong>reading and writing parts of byte string values</strong> (integer and float values can also be accessed as though they’re byte strings, though that use is somewhat uncommon).</p>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Example use and description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>APPEND</code></td>
+<td><code>APPEND key-name value</code> — Concatenates the provided value to the string already stored at the given key</td>
+</tr>
+<tr>
+<td><code>GETRANGE</code></td>
+<td><code>GETRANGE key-name start end</code> — Fetches the substring, including all characters from the start offset to the end offset, inclusive</td>
+</tr>
+<tr>
+<td><code>SETRANGE</code></td>
+<td><code>SETRANGE key-name offset value</code> — Sets the substring starting at the provided offset to the given value</td>
+</tr>
+<tr>
+<td><code>GETBIT</code></td>
+<td><code>GETBIT key-name offset</code> — Treats the byte string as a bit string, and returns the value of the bit in the string at the provided bit offset</td>
+</tr>
+<tr>
+<td><code>SETBIT</code></td>
+<td><code>SETBIT key-name offset value</code> — Treats the byte string as a bit string, and sets the value of the bit in the string at the provided bit offset</td>
+</tr>
+<tr>
+<td><code>BITCOUNT</code></td>
+<td><code>BITCOUNT key-name [start end]</code> — Counts the number of 1 bits in the string, optionally starting and finishing at the provided byte offsets</td>
+</tr>
+<tr>
+<td><code>BITOP</code></td>
+<td><code>BITOP operation dest-key key-name [key-name …]</code> — Performs one of the bitwise operations, AND, OR, XOR, or NOT, on the strings provided, storing the result in the destination key</td>
+</tr>
+</tbody></table>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>conn.append(<span class="string">'new-string-key'</span>, <span class="string">'hello '</span>)  <span class="comment"># append the string ‘hello ’ to the previously nonexistent key </span></span><br><span class="line"><span class="number">6L</span>  <span class="comment"># When appending a value, Redis returns the length of the string so far.</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>conn.append(<span class="string">'new-string-key'</span>, <span class="string">'world!'</span>)</span><br><span class="line"><span class="number">12L</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>conn.substr(<span class="string">'new-string-key'</span>, <span class="number">3</span>, <span class="number">7</span>)  <span class="comment"># Redis uses 0-indexing. It is inclusive of the endpoints by default.</span></span><br><span class="line"><span class="string">'lo wo'</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>conn.setrange(<span class="string">'new-string-key'</span>, <span class="number">0</span>, <span class="string">'H'</span>)  <span class="comment"># Sets the 0th char to 'H'</span></span><br><span class="line"><span class="number">12</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>conn.setrange(<span class="string">'new-string-key'</span>, <span class="number">6</span>, <span class="string">'W'</span>)</span><br><span class="line"><span class="number">12</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>conn.get(<span class="string">'new-string-key'</span>)</span><br><span class="line"><span class="string">'Hello World!'</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>conn.setrange(<span class="string">'new-string-key'</span>, <span class="number">11</span>, <span class="string">', how are you?'</span>)  <span class="comment"># With setrange, we can replace anywhere inside the string</span></span><br><span class="line">                                                           <span class="comment"># and we can make the string longer as a result</span></span><br><span class="line"><span class="number">25</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>conn.get(<span class="string">'new-string-key'</span>)</span><br><span class="line"><span class="string">'Hello World, how are you?'</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>conn.setbit(<span class="string">'another-key'</span>, <span class="number">2</span>, <span class="number">1</span>)  <span class="comment"># If we write to a bit beyond the size of the string, it’s filled with 0s.</span></span><br><span class="line"><span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>conn.setbit(<span class="string">'another-key'</span>, <span class="number">7</span>, <span class="number">1</span>)</span><br><span class="line"><span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>conn.get(<span class="string">'another-key'</span>)  <span class="comment"># If you want to interpret the bits stored in Redis</span></span><br><span class="line">                             <span class="comment"># you have 0010 0001, which is '!' in ASCII</span></span><br><span class="line"><span class="string">'!'</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Lists-in-Redis"><a href="#Lists-in-Redis" class="headerlink" title="Lists in Redis"></a><code>List</code>s in Redis</h2><p>In this section, we’ll talk about <code>LIST</code>s, which store an ordered sequence of <code>STRING</code> values. This builds on from the section <a href="#List-Basics"><code>List</code>s in Redis - Basics</a>. We’ll cover some of the most commonly used <code>LIST</code> manipulation commands for pushing and popping items from <code>LIST</code>s. </p>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Example use and description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>RPUSH</code></td>
+<td><code>RPUSH key-name value [value …]</code> — Pushes the value(s) onto the <strong>right end</strong> of the list</td>
+</tr>
+<tr>
+<td><code>LPUSH</code></td>
+<td><code>LPUSH key-name value [value …]</code> — Pushes the value(s) onto the <strong>left end</strong> of the list</td>
+</tr>
+<tr>
+<td><code>RPOP</code></td>
+<td><code>RPOP key-name</code> — Removes and returns the <strong>rightmost</strong> item from the list</td>
+</tr>
+<tr>
+<td><code>LPOP</code></td>
+<td><code>LPOP key-name</code> — Removes and returns the <strong>leftmost</strong> item from the list</td>
+</tr>
+<tr>
+<td><code>LINDEX</code></td>
+<td><code>LINDEX key-name offset</code> — Returns the item at the given offset/index</td>
+</tr>
+<tr>
+<td><code>LRANGE</code></td>
+<td><code>LRANGE key-name start end</code> — Returns the items in the list at the offsets from start to end, <strong>inclusive</strong></td>
+</tr>
+<tr>
+<td><code>LTRIM</code></td>
+<td><code>LTRIM key-name start end</code> — Trims the list to <strong>only include items at indices between start and end</strong>, <strong>inclusive</strong></td>
+</tr>
+</tbody></table>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>conn.rpush(<span class="string">'list-key'</span>, <span class="string">'last'</span>)</span><br><span class="line"><span class="number">1L</span>  <span class="comment"># When we push items onto the list, it returns the length of the list after the push has completed.</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>conn.lpush(<span class="string">'list-key'</span>, <span class="string">'first'</span>)</span><br><span class="line"><span class="number">2L</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>conn.rpush(<span class="string">'list-key'</span>, <span class="string">'new last'</span>)</span><br><span class="line"><span class="number">3L</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>conn.lrange(<span class="string">'list-key'</span>, <span class="number">0</span>, <span class="number">-1</span>)</span><br><span class="line">[<span class="string">'first'</span>, <span class="string">'last'</span>, <span class="string">'new last'</span>]</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>conn.lpop(<span class="string">'list-key'</span>)</span><br><span class="line"><span class="string">'first'</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>conn.lpop(<span class="string">'list-key'</span>)</span><br><span class="line"><span class="string">'last'</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>conn.lrange(<span class="string">'list-key'</span>, <span class="number">0</span>, <span class="number">-1</span>)</span><br><span class="line">[<span class="string">'new last'</span>]</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>conn.rpush(<span class="string">'list-key'</span>, <span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>)  <span class="comment"># We can push multiple items at the same time.</span></span><br><span class="line"><span class="number">4L</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>conn.lrange(<span class="string">'list-key'</span>, <span class="number">0</span>, <span class="number">-1</span>)</span><br><span class="line">[<span class="string">'new last'</span>, <span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>]</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>conn.ltrim(<span class="string">'list-key'</span>, <span class="number">2</span>, <span class="number">-1</span>)  <span class="comment"># Only keep elements from the 2nd position to the last</span></span><br><span class="line"><span class="literal">True</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>conn.lrange(<span class="string">'list-key'</span>, <span class="number">0</span>, <span class="number">-1</span>)</span><br><span class="line">[<span class="string">'b'</span>, <span class="string">'c'</span>]</span><br></pre></td></tr></table></figure>
+
+<p>Among the <code>LIST</code> commands we didn’t introduce before are a few commands that allow you to <strong>move items from one list to another</strong>, and even <strong>block while waiting for other clients to add items</strong> to <code>LIST</code>s. </p>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Example use and description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>BLPOP</code></td>
+<td><code>BLPOP key-name [key-name …] timeout</code> — Pops the leftmost item from the first non-empty LIST, or waits the timeout in seconds for an item</td>
+</tr>
+<tr>
+<td><code>BRPOP</code></td>
+<td><code>BRPOP key-name [key-name …] timeout</code> — Pops the rightmost item from the first non-empty LIST, or waits the timeout in seconds for an item</td>
+</tr>
+<tr>
+<td><code>RPOPLPUSH</code></td>
+<td><code>RPOPLPUSH source-key dest-key</code> — Pops the rightmost item from the source and LPUSHes the item to the destination, also returning the item to the user</td>
+</tr>
+<tr>
+<td><code>BRPOPLPUSH</code></td>
+<td><code>BRPOPLPUSH source-key dest-key timeout</code> — Pops the rightmost item from the source and LPUSHes the item to the destination, also returning the item to the user, and waiting up to the timeout if the source is empty</td>
+</tr>
+</tbody></table>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Let’s add some items to a couple of lists to start.</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>conn.rpush(<span class="string">'list'</span>, <span class="string">'item1'</span>)</span><br><span class="line"><span class="number">1</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>conn.rpush(<span class="string">'list'</span>, <span class="string">'item2'</span>)</span><br><span class="line"><span class="number">2</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>conn.rpush(<span class="string">'list2'</span>, <span class="string">'item3'</span>)</span><br><span class="line"><span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>conn.brpoplpush(<span class="string">'list2'</span>, <span class="string">'list'</span>, <span class="number">1</span>)  <span class="comment"># move an item from one list to the other, also returning the item.</span></span><br><span class="line"><span class="string">'item3'</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>conn.brpoplpush(<span class="string">'list2'</span>, <span class="string">'list'</span>, <span class="number">1</span>)  <span class="comment"># When a list is empty, the blocking pop will stall for the timeout, </span></span><br><span class="line">                                         <span class="comment"># and return None (which isn’t displayed in the interactive console).</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>conn.lrange(<span class="string">'list'</span>, <span class="number">0</span>, <span class="number">-1</span>)</span><br><span class="line">[<span class="string">'item3'</span>, <span class="string">'item1'</span>, <span class="string">'item2'</span>]</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>conn.brpoplpush(<span class="string">'list'</span>, <span class="string">'list2'</span>, <span class="number">1</span>)</span><br><span class="line"><span class="string">'item2'</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>conn.blpop([<span class="string">'list'</span>, <span class="string">'list2'</span>], <span class="number">1</span>)</span><br><span class="line">(<span class="string">'list'</span>, <span class="string">'item3'</span>)</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>conn.blpop([<span class="string">'list'</span>, <span class="string">'list2'</span>], <span class="number">1</span>)</span><br><span class="line">(<span class="string">'list'</span>, <span class="string">'item1'</span>)</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>conn.blpop([<span class="string">'list'</span>, <span class="string">'list2'</span>], <span class="number">1</span>)</span><br><span class="line">(<span class="string">'list2'</span>, <span class="string">'item2'</span>)</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>conn.blpop([<span class="string">'list'</span>, <span class="string">'list2'</span>], <span class="number">1</span>) <span class="comment"># block for 1 second until this operation is completed</span></span><br><span class="line">(<span class="number">1.02</span>s)  </span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Sets-in-Redis"><a href="#Sets-in-Redis" class="headerlink" title="Sets in Redis"></a><code>Set</code>s in Redis</h2><p>In this section, we’ll discuss some of the most frequently used commands that operate on <code>SET</code>s. This builds on from the section <a href="#Set-Basics"><code>Set</code>s in Redis - Basics</a>. You’ll learn about the standard operations for inserting, removing, and moving members between <code>SET</code>s, as well as commands to perform intersection, union, and differences on <code>SET</code>s. </p>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Example use and description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>SADD</code></td>
+<td><code>SADD key-name item [item …]</code> — Adds the items to the set and returns the number of items added that weren’t already present</td>
+</tr>
+<tr>
+<td><code>SREM</code></td>
+<td><code>SREM key-name item [item …]</code> — Removes the items and returns the number of items that were removed</td>
+</tr>
+<tr>
+<td><code>SISMEMBER</code></td>
+<td><code>SISMEMBER key-name item</code> — Returns whether the item is in the SET</td>
+</tr>
+<tr>
+<td><code>SCARD</code></td>
+<td><code>SCARD key-name</code> — Returns the number of items in the SET</td>
+</tr>
+<tr>
+<td><code>SMEMBERS</code></td>
+<td><code>SMEMBERS key-name</code> — Returns all of the items in the SET as a Python set</td>
+</tr>
+<tr>
+<td><code>SRANDMEMBER</code></td>
+<td><code>SRANDMEMBER key-name [count]</code> — Returns one or more random items from the SET. When count is positive, Redis will return count distinct randomly chosen items, and when count is negative, Redis will return count randomly chosen items that may not be distinct.</td>
+</tr>
+<tr>
+<td><code>SPOP</code></td>
+<td><code>SPOP key-name</code> — Removes and returns a random item from the SET</td>
+</tr>
+<tr>
+<td><code>SMOVE</code></td>
+<td><code>SMOVE source-key dest-key item</code> — If the item is in the source, removes the item from the source and adds it to the destination, returning if the item was moved</td>
+</tr>
+</tbody></table>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>conn.sadd(<span class="string">'set-key'</span>, <span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>)</span><br><span class="line"><span class="number">3</span>  <span class="comment"># Adding items to the SET returns the number of items that weren’t already in the SET.</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>conn.srem(<span class="string">'set-key'</span>, <span class="string">'c'</span>, <span class="string">'d'</span>)</span><br><span class="line"><span class="literal">True</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>conn.srem(<span class="string">'set-key'</span>, <span class="string">'c'</span>, <span class="string">'d'</span>)</span><br><span class="line"><span class="literal">False</span>  <span class="comment"># Removing items from the SET returns whether an item was removed; </span></span><br><span class="line">       <span class="comment"># note that the client is buggy in that respect — Redis itself returns the total number of items removed.</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>conn.scard(<span class="string">'set-key'</span>)  <span class="comment"># We can get the number of items in the SET.</span></span><br><span class="line"><span class="number">2</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>conn.smembers(<span class="string">'set-key'</span>)</span><br><span class="line">set([<span class="string">'a'</span>, <span class="string">'b'</span>])</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>conn.smove(<span class="string">'set-key'</span>, <span class="string">'set-key2'</span>, <span class="string">'a'</span>)</span><br><span class="line"><span class="literal">True</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>conn.smove(<span class="string">'set-key'</span>, <span class="string">'set-key2'</span>, <span class="string">'c'</span>)</span><br><span class="line"><span class="literal">False</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>conn.smembers(<span class="string">'set-key2'</span>)</span><br><span class="line">set([<span class="string">'a'</span>])</span><br></pre></td></tr></table></figure>
+
+<h2 id="Hashes-in-Redis"><a href="#Hashes-in-Redis" class="headerlink" title="Hashes in Redis"></a><code>Hash</code>es in Redis</h2><p>In this section, we’ll talk about the most commonly used commands that manipulate <code>HASH</code>es. This builds on fro the section <a href="#Hash-Basics"><code>Hash</code>es in Redis - Basics</a>. You’ll learn more about the operations for adding and removing key-value pairs to <code>HASH</code>es, as well as commands to fetch all of the <code>HASH</code> contents along with the ability to increment or decrement values.</p>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Example use and description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>HMGET</code></td>
+<td><code>HMGET key-name key [key …]</code> — Fetches the values at the fields/keys in the HASH</td>
+</tr>
+<tr>
+<td><code>HMSET</code></td>
+<td><code>HMSET key-name key value [key value …]</code> — Sets the values of the fields in the HASH</td>
+</tr>
+<tr>
+<td><code>HDEL</code></td>
+<td><code>HDEL key-name key [key …]</code> — Deletes the key-value pairs in the HASH, returning the number of pairs that were found and deleted</td>
+</tr>
+<tr>
+<td><code>HLEN</code></td>
+<td><code>HLEN key-name</code> — Returns the number of key-value pairs in the HASH</td>
+</tr>
+</tbody></table>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>conn.hmset(<span class="string">'hash-key'</span>, &#123;<span class="string">'k1'</span>:<span class="string">'v1'</span>, <span class="string">'k2'</span>:<span class="string">'v2'</span>, <span class="string">'k3'</span>:<span class="string">'v3'</span>&#125;)</span><br><span class="line"><span class="literal">True</span>  <span class="comment"># We can add multiple items to the hash in one call.</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>conn.hmget(<span class="string">'hash-key'</span>, [<span class="string">'k2'</span>, <span class="string">'k3'</span>])</span><br><span class="line">[<span class="string">'v2'</span>, <span class="string">'v3'</span>]</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>conn.hlen(<span class="string">'hash-key'</span>)</span><br><span class="line"><span class="number">3</span>  <span class="comment"># The HLEN command is typically used for debugging very large HASHes.</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>conn.hdel(<span class="string">'hash-key'</span>, <span class="string">'k1'</span>, <span class="string">'k3'</span>)</span><br><span class="line"><span class="literal">True</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>Note:</p>
+<ul>
+<li><input disabled type="checkbox"> The <code>HMGET</code>/<code>HMSET</code> commands are similar to their single-argument versions (<code>HSET</code>/<code>HGET</code>), only differing in that they <strong>take a list or dictionary for arguments</strong> instead of the single entries.</li>
+</ul>
+</blockquote>
+<p>With the availability of <code>HGETALL</code>, it may not seem as though <code>HKEYS</code> and <code>HVALUES</code> would be that useful, but when you expect your values to be large, you can fetch the keys, and then get the values one by one to keep from blocking other requests.</p>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Example use and description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>HEXISTS</code></td>
+<td><code>HEXISTS key-name key</code> — Returns whether the given key exists in the HASH</td>
+</tr>
+<tr>
+<td><code>HKEYS</code></td>
+<td><code>HKEYS key-name</code> — Fetches the keys in the HASH</td>
+</tr>
+<tr>
+<td><code>HVALS</code></td>
+<td><code>HVALS key-name</code> — Fetches the values in the HASH</td>
+</tr>
+<tr>
+<td><code>HGETALL</code></td>
+<td><code>HGETALL key-name</code> — Fetches all key-value pairs from the HASH</td>
+</tr>
+<tr>
+<td><code>HINCRBY</code></td>
+<td><code>HINCRBY key-name key increment</code> — Increments the value stored at the given key by the integer increment</td>
+</tr>
+<tr>
+<td><code>HINCRBYFLOAT</code></td>
+<td><code>HINCRBYFLOAT key-name key increment</code> — Increments the value stored at the given key by the float increment</td>
+</tr>
+</tbody></table>
+<p><code>HINCRBY</code> and <code>HINCRBYFLOAT</code> should remind you of the <code>INCRBY</code> and <code>INCRBYFLOAT</code> operations available on <code>STRING</code> keys, and they have the same semantics, applied to <code>HASH</code> values.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>conn.hmset(<span class="string">'hash-key2'</span>, &#123;<span class="string">'short'</span>:<span class="string">'hello'</span>, <span class="string">'long'</span>:<span class="number">1000</span>*<span class="string">'1'</span>&#125;)</span><br><span class="line"><span class="literal">True</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>conn.hkeys(<span class="string">'hash-key2'</span>)</span><br><span class="line">[<span class="string">'long'</span>, <span class="string">'short'</span>]</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>conn.hexists(<span class="string">'hash-key2'</span>, <span class="string">'num'</span>)</span><br><span class="line"><span class="literal">False</span>  <span class="comment"># We can also check the existence of specific keys.</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>conn.hincrby(<span class="string">'hash-key2'</span>, <span class="string">'num'</span>)  <span class="comment"># Incrementing a previously nonexistent key in a hash behaves just like on strings; </span></span><br><span class="line">                                      <span class="comment"># Redis operates as though the value had been 0.</span></span><br><span class="line"><span class="number">1L</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>conn.hexists(<span class="string">'hash-key2'</span>, <span class="string">'num'</span>)</span><br><span class="line"><span class="literal">True</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="ZSets-in-Redis"><a href="#ZSets-in-Redis" class="headerlink" title="ZSets in Redis"></a><code>ZSet</code>s in Redis</h2><p>In this section, we’ll talk about commands that operate on <code>ZSET</code>s. This builds on from the section <a href="#ZSet-Basics"><code>ZSet</code>s in Redis - Basics</a>. You’ll learn how to add and update items in <code>ZSET</code>s, as well as how to use the <code>ZSET</code> intersection and union commands.</p>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Example use and description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>ZADD</code></td>
+<td><code>ZADD key-name score member [score member …]</code> — Adds members with the given scores to the ZSET</td>
+</tr>
+<tr>
+<td><code>ZREM</code></td>
+<td><code>ZREM key-name member [member …]</code> — Removes the members from the ZSET, returning the number of members that were removed</td>
+</tr>
+<tr>
+<td><code>ZCARD</code></td>
+<td><code>ZCARD key-name</code> — Returns the number of members in the ZSET</td>
+</tr>
+<tr>
+<td><code>ZINCRBY</code></td>
+<td><code>ZINCRBY key-name increment member</code> — Increments the member in the ZSET</td>
+</tr>
+<tr>
+<td><code>ZCOUNT</code></td>
+<td><code>ZCOUNT key-name min max</code> — Returns the <strong>number of members</strong> with <strong>scores between the provided minimum and maximum</strong></td>
+</tr>
+<tr>
+<td><code>ZRANK</code></td>
+<td><code>ZRANK key-name member</code> — Returns the <strong>position of the given member</strong> in the ZSET</td>
+</tr>
+<tr>
+<td><code>ZSCORE</code></td>
+<td><code>ZSCORE key-name member</code> — Returns the score of the member in the ZSET</td>
+</tr>
+<tr>
+<td><code>ZRANGE</code></td>
+<td><code>ZRANGE key-name start stop [WITHSCORES]</code> — Returns the members and optionally the scores for the <strong>members with ranks between start and stop</strong></td>
+</tr>
+</tbody></table>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>conn.zadd(<span class="string">'zset-key'</span>, <span class="string">'a'</span>, <span class="number">3</span>, <span class="string">'b'</span>, <span class="number">2</span>, <span class="string">'c'</span>, <span class="number">1</span>)  <span class="comment"># Adding members to ZSETs in Python has the arguments </span></span><br><span class="line">                                                   <span class="comment"># reversed compared to standard Redis, which makes the order the same as HASHes.</span></span><br><span class="line"><span class="number">3</span>  </span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>conn.zcard(<span class="string">'zset-key'</span>)</span><br><span class="line"><span class="number">3</span>  <span class="comment"># Knowing how large a ZSET is can tell us in some cases if it’s necessary to trim our ZSET.</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>conn.zincrby(<span class="string">'zset-key'</span>, <span class="string">'c'</span>, <span class="number">3</span>)</span><br><span class="line"><span class="number">4.0</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>conn.zscore(<span class="string">'zset-key'</span>, <span class="string">'b'</span>)</span><br><span class="line"><span class="number">2.0</span>  <span class="comment"># Fetching scores of individual members can be useful if we’ve been keeping counters or toplists.</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>conn.zrank(<span class="string">'zset-key'</span>, <span class="string">'c'</span>)</span><br><span class="line"><span class="number">2</span>  <span class="comment"># By fetching the 0-indexed position of a member, we can then later use ZRANGE to fetch a range of the values easily.</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>conn.zcount(<span class="string">'zset-key'</span>, <span class="number">0</span>, <span class="number">3</span>)</span><br><span class="line"><span class="number">2L</span>  <span class="comment"># Counting the number of items with a given range of scores can be quite useful for some tasks.</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>conn.zrem(<span class="string">'zset-key'</span>, <span class="string">'b'</span>)</span><br><span class="line"><span class="literal">True</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>conn.zrange(<span class="string">'zset-key'</span>, <span class="number">0</span>, <span class="number">-1</span>, withscores=<span class="literal">True</span>)</span><br><span class="line">[(<span class="string">'a'</span>, <span class="number">3.0</span>), (<span class="string">'c'</span>, <span class="number">4.0</span>)]</span><br></pre></td></tr></table></figure>
+
+<p>For <strong>debugging</strong>, we usually fetch the entire <code>ZSET</code> with this <code>ZRANGE</code> call, but real use cases will usually fetch items a relatively small group at a time.</p>
+<p>Below shows several more <code>ZSET</code> commands in Redis that you’ll find useful.</p>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Example use and description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>ZREVRANK</code></td>
+<td><code>ZREVRANK key-name member</code> — Returns the position of the member in the ZSET, with members ordered in reverse</td>
+</tr>
+<tr>
+<td><code>ZREVRANGE</code></td>
+<td><code>ZREVRANGE key-name start stop [WITHSCORES]</code> — Fetches the given members from the ZSET by rank, with members in reverse order</td>
+</tr>
+<tr>
+<td><code>ZRANGEBYSCORE</code></td>
+<td><code>ZRANGEBYSCORE key min max [WITHSCORES] [LIMIT offset count]</code> — Fetches the <strong>members between min and max</strong></td>
+</tr>
+<tr>
+<td><code>ZREVRANGEBYSCORE</code></td>
+<td><code>ZREVRANGEBYSCORE key max min [WITHSCORES] [LIMIT offset count]</code> — Fetches the members in reverse order between min and max</td>
+</tr>
+<tr>
+<td><code>ZREMRANGEBYRANK</code></td>
+<td><code>ZREMRANGEBYRANK key-name start stop</code> — Removes the items from the ZSET with ranks between start and stop</td>
+</tr>
+<tr>
+<td><code>ZREMRANGEBYSCORE</code></td>
+<td><code>ZREMRANGEBYSCORE key-name min max</code> — Removes the items from the ZSET with scores between min and max</td>
+</tr>
+<tr>
+<td><code>ZINTERSTORE</code></td>
+<td><code>ZINTERSTORE dest-key key-count key [key …] [WEIGHTS weight [weight …]]</code> — Performs a SET-like intersection of the provided ZSETs</td>
+</tr>
+<tr>
+<td><code>ZUNIONSTORE</code></td>
+<td><code>ZUNIONSTORE dest-key key-count key [key …] [WEIGHTS weight [weight …]]</code> — Performs a SET-like union of the provided ZSETs</td>
+</tr>
+</tbody></table>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># We’ll start out by creating a couple of ZSETs.</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>conn.zadd(<span class="string">'zset-1'</span>, <span class="string">'a'</span>, <span class="number">1</span>, <span class="string">'b'</span>, <span class="number">2</span>, <span class="string">'c'</span>, <span class="number">3</span>)</span><br><span class="line"><span class="number">3</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>conn.zadd(<span class="string">'zset-2'</span>, <span class="string">'b'</span>, <span class="number">4</span>, <span class="string">'c'</span>, <span class="number">1</span>, <span class="string">'d'</span>, <span class="number">0</span>)</span><br><span class="line"><span class="number">3</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>conn.zinterstore(<span class="string">'zset-i'</span>, [<span class="string">'zset-1'</span>, <span class="string">'zset-2'</span>])  <span class="comment"># When performing ZINTERSTORE or ZUNIONSTORE, our default aggregate is sum (which adds the value of the shared members)</span></span><br><span class="line"><span class="number">2L</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>conn.zrange(<span class="string">'zset-i'</span>, <span class="number">0</span>, <span class="number">-1</span>, withscores=<span class="literal">True</span>)</span><br><span class="line">[(<span class="string">'c'</span>, <span class="number">4.0</span>), (<span class="string">'b'</span>, <span class="number">6.0</span>)]</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>conn.zunionstore(<span class="string">'zset-u'</span>, [<span class="string">'zset-1'</span>, <span class="string">'zset-2'</span>], aggregate=<span class="string">'min'</span>)  <span class="comment"># here we are using min, which selects the minimum of the shared members</span></span><br><span class="line"><span class="number">4L</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>conn.zrange(<span class="string">'zset-u'</span>, <span class="number">0</span>, <span class="number">-1</span>, withscores=<span class="literal">True</span>)</span><br><span class="line">[(<span class="string">'d'</span>, <span class="number">0.0</span>), (<span class="string">'a'</span>, <span class="number">1.0</span>), (<span class="string">'c'</span>, <span class="number">1.0</span>), (<span class="string">'b'</span>, <span class="number">2.0</span>)]</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>conn.sadd(<span class="string">'set-1'</span>, <span class="string">'a'</span>, <span class="string">'d'</span>) </span><br><span class="line"><span class="number">2</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>conn.zunionstore(<span class="string">'zset-u2'</span>, [<span class="string">'zset-1'</span>, <span class="string">'zset-2'</span>, <span class="string">'set-1'</span>]) </span><br><span class="line"><span class="number">4L</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>conn.zrange(<span class="string">'zset-u2'</span>, <span class="number">0</span>, <span class="number">-1</span>, withscores=<span class="literal">True</span>)</span><br><span class="line">[(<span class="string">'d'</span>, <span class="number">1.0</span>), (<span class="string">'a'</span>, <span class="number">2.0</span>), (<span class="string">'c'</span>, <span class="number">4.0</span>), (<span class="string">'b'</span>, <span class="number">6.0</span>)]</span><br></pre></td></tr></table></figure>
+
+<h2 id="Publish-Subscribe-in-Redis"><a href="#Publish-Subscribe-in-Redis" class="headerlink" title="Publish/Subscribe in Redis"></a><code>Publish</code>/<code>Subscribe</code> in Redis</h2><p> Generally, the concept of <code>publish</code>/<code>subscribe</code>, also known as <code>pub/sub</code>, is characterized by listeners subscribing to <code>channels</code>, with publishers sending binary string messages to <code>channels</code>. </p>
+<ul>
+<li>Anyone <strong>listening to a given channel will receive all messages sent to that channel</strong> while they’re connected and listening. You can think of it like a radio station, where subscribers can listen to multiple radio stations at the same time</li>
+<li>Any publishers can <strong>send messages to a given channel</strong>, like being a radio station.</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Example use and description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>SUBSCRIBE</code></td>
+<td><code>SUBSCRIBE channel [channel …]</code> — Subscribes to the given channels</td>
+</tr>
+<tr>
+<td><code>UNSUBSCRIBE</code></td>
+<td><code>UNSUBSCRIBE [channel [channel …]]</code> — Unsubscribes from the provided channels, or unsubscribes all channels if no channel is given</td>
+</tr>
+<tr>
+<td><code>PUBLISH</code></td>
+<td><code>PUBLISH channel message</code> — Publishes a message to the given channel</td>
+</tr>
+<tr>
+<td><code>PSUBSCRIBE</code></td>
+<td><code>PSUBSCRIBE pattern [pattern …]</code> — Subscribes to messages broadcast to channels that match the given pattern</td>
+</tr>
+<tr>
+<td><code>PUNSUBSCRIBE</code></td>
+<td><code>PUNSUBSCRIBE [pattern [pattern …]]</code> — Unsubscribes from the provided patterns, or unsubscribes from all subscribed patterns if none are given</td>
+</tr>
+</tbody></table>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="function"><span class="keyword">def</span> <span class="title">publisher</span><span class="params">(n)</span>:</span></span><br><span class="line">	time.sleep(<span class="number">1</span>)  <span class="comment"># We sleep initially in the function to let the SUBSCRIBEr connect and start listening for messages.</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> i <span class="keyword">in</span> xrange(n):</span><br><span class="line">				conn.publish(<span class="string">'channel'</span>, i)</span><br><span class="line">				time.sleep(<span class="number">1</span>)  <span class="comment"># After publishing, we’ll pause for a moment so that we can see this happen over time.</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="function"><span class="keyword">def</span> <span class="title">run_pubsub</span><span class="params">()</span>:</span></span><br><span class="line">	threading.Thread(target=publisher, args=(<span class="number">3</span>,)).start()  <span class="comment"># start the publisher thread to send three messages.</span></span><br><span class="line"></span><br><span class="line">	pubsub = conn.pubsub()</span><br><span class="line">	pubsub.subscribe([<span class="string">'channel'</span>])  <span class="comment"># We’ll set up the pubsub object and subscribe to a channel.</span></span><br><span class="line"></span><br><span class="line">	count = <span class="number">0</span></span><br><span class="line">	<span class="keyword">for</span> item <span class="keyword">in</span> pubsub.listen():  <span class="comment"># listen to subscription messages by iterating over the result of pubsub.listen().</span></span><br><span class="line"></span><br><span class="line">		<span class="keyword">print</span> item  <span class="comment"># print every message that we receive.</span></span><br><span class="line"></span><br><span class="line">		count += <span class="number">1</span></span><br><span class="line">		<span class="keyword">if</span> count == <span class="number">4</span>:  <span class="comment"># We’ll stop listening for new messages after the subscribe message and three real messages by unsubscribing.</span></span><br><span class="line">			pubsub.unsubscribe()</span><br><span class="line">			<span class="keyword">break</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>run_pubsub()  <span class="comment"># Actually run the functions to see them work.</span></span><br><span class="line"></span><br><span class="line">&#123;<span class="string">'pattern'</span>: <span class="literal">None</span>, <span class="string">'type'</span>: <span class="string">'subscribe'</span>, <span class="string">'channel'</span>: <span class="string">'channel'</span>, <span class="string">'data'</span>: <span class="number">1L</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># When subscribing, we receive a message on the channel.</span></span><br><span class="line"><span class="comment"># These are the structures that are produced as items when we iterate over pubsub.listen().</span></span><br><span class="line">&#123;<span class="string">'pattern'</span>: <span class="literal">None</span>, <span class="string">'type'</span>: <span class="string">'message'</span>, <span class="string">'channel'</span>: <span class="string">'channel'</span>, <span class="string">'data'</span>: <span class="string">'0'</span>&#125;</span><br><span class="line">&#123;<span class="string">'pattern'</span>: <span class="literal">None</span>, <span class="string">'type'</span>: <span class="string">'message'</span>, <span class="string">'channel'</span>: <span class="string">'channel'</span>, <span class="string">'data'</span>: <span class="string">'1'</span>&#125;</span><br><span class="line">&#123;<span class="string">'pattern'</span>: <span class="literal">None</span>, <span class="string">'type'</span>: <span class="string">'message'</span>, <span class="string">'channel'</span>: <span class="string">'channel'</span>, <span class="string">'data'</span>: <span class="string">'2'</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># When we unsubscribe, we receive a message telling us which channels we have unsubscribed from </span></span><br><span class="line"><span class="comment"># and also the number of channels we are still subscribed to.</span></span><br><span class="line">&#123;<span class="string">'pattern'</span>: <span class="literal">None</span>, <span class="string">'type'</span>: <span class="string">'unsubscribe'</span>, <span class="string">'channel'</span>: <span class="string">'channel'</span>, <span class="string">'data'</span>: <span class="number">0L</span>&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>Note:</p>
+<ul>
+<li><input disabled type="checkbox"> But in the case of clients that have subscribed, <strong>if the client is disconnected and a message is sent before it can reconnect</strong>, the client will never see the message. When you’re relying on receiving messages over a channel, the semantics of <code>PUBLISH</code>/<code>SUBSCRIBE</code>in Redis may let you down.</li>
+<li><input disabled type="checkbox"> However, there are different methods to handle reliable message delivery (you will see in a later section), which <strong>works in the face of network disconnections</strong>, and which won’t cause Redis memory to grow (even in older versions of Redis) unless you want it to.</li>
+</ul>
+</blockquote>
+<h2 id="Operations-in-Redis-Sorting"><a href="#Operations-in-Redis-Sorting" class="headerlink" title="Operations in Redis - Sorting"></a>Operations in Redis - Sorting</h2><p>Sorting in Redis is similar to sorting in other languages: we want to <strong>take a sequence of items and order them according to some comparison between elements</strong>. <code>SORT</code> allows us to sort <code>LIST</code>s, <code>SET</code>s, and <code>ZSET</code>s according to data in the <code>LIST</code>/<code>SET</code>/<code>ZSET</code> data stored in <code>STRING</code> keys, or even data stored in <code>HASH</code>es. If you’re coming from a relational database background, <strong>you can think of <code>SORT</code> as like the <code>order by</code> clause in a SQL statement that can reference other rows and tables</strong>.</p>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Example use and description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>SORT</code></td>
+<td><code>SORT source-key [BY pattern] [LIMIT offset count] [GET pattern [GET pattern …]] ...</code> — Sorts the input <code>LIST</code>, <code>SET</code>, or <code>ZSET</code> according to the options provided, and returns or stores the result</td>
+</tr>
+</tbody></table>
+<p>Some of the more basic options with <code>SORT</code> include the ability to <strong>order the results in descending order rather than the default ascending order</strong>, consider <strong>items as though they were numbers</strong>, compare as though items were <strong>binary strings</strong>, and etc.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"># Start by adding some items to a LIST.</span><br><span class="line">&gt;&gt;&gt; conn.rpush(&#39;sort-input&#39;, 23, 15, 110, 7)</span><br><span class="line">4</span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt; conn.sort(&#39;sort-input&#39;)  # We can sort the items numerically.</span><br><span class="line">[&#39;7&#39;, &#39;15&#39;, &#39;23&#39;, &#39;110&#39;]</span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt; conn.sort(&#39;sort-input&#39;, alpha&#x3D;True)  # And we can sort the items alphabetically. In this case, sort each number character by character</span><br><span class="line">[&#39;110&#39;, &#39;15&#39;, &#39;23&#39;, &#39;7&#39;]  </span><br><span class="line"></span><br><span class="line"># Adding some additional data for SORTing and fetching.</span><br><span class="line">&gt;&gt;&gt; conn.hset(&#39;d-7&#39;, &#39;field&#39;, 5)</span><br><span class="line">1L</span><br><span class="line">&gt;&gt;&gt; conn.hset(&#39;d-15&#39;, &#39;field&#39;, 1)</span><br><span class="line">1L</span><br><span class="line">&gt;&gt;&gt; conn.hset(&#39;d-23&#39;, &#39;field&#39;, 9)</span><br><span class="line">1L</span><br><span class="line">&gt;&gt;&gt; conn.hset(&#39;d-110&#39;, &#39;field&#39;, 3)</span><br><span class="line">1L</span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt; conn.sort(&#39;sort-input&#39;, by&#x3D;&#39;d-*-&gt;field&#39;)  # We can sort our data by fields of HASHes.</span><br><span class="line">[&#39;15&#39;, &#39;110&#39;, &#39;7&#39;, &#39;23&#39;]</span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt; conn.sort(&#39;sort-input&#39;, by&#x3D;&#39;d-*-&gt;field&#39;, get&#x3D;&#39;d-*-&gt;field&#39;)</span><br><span class="line">[&#39;1&#39;, &#39;3&#39;, &#39;5&#39;, &#39;9&#39;]</span><br></pre></td></tr></table></figure>
+
+<p>Sorting can be used to sort <code>LIST</code>s, but it can also sort <code>SET</code>s, turning the result into a <code>LIST</code>.</p>
+<p>Though <code>SORT</code> is the only command that can <strong>manipulate three types of data at the same time</strong>, <strong><a href="#Basic-Redis-Transactions">basic Redis transactions</a> can let you manipulate multiple data types with a series of commands without interruption</strong>.</p>
+<p><a name="Basic-Redis-Transactions"></a></p>
+<h2 id="Basic-Redis-Transactions"><a href="#Basic-Redis-Transactions" class="headerlink" title="Basic Redis Transactions"></a>Basic Redis Transactions</h2>
       
     </div>
     <footer class="article-footer">
