@@ -15,7 +15,7 @@
 <meta property="og:description" content="IMPORTANT:Much of the content here is a personal summary&#x2F;abbrieviation of contents on the Offical Spring Boot Documentation. For more complete information, please refer to the offical site.  Spring B">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-06-09T03:35:00.000Z">
-<meta property="article:modified_time" content="2020-06-09T07:21:49.304Z">
+<meta property="article:modified_time" content="2020-06-15T10:21:09.398Z">
 <meta property="article:author" content="Xiao Yu">
 <meta name="twitter:card" content="summary">
   
@@ -100,7 +100,7 @@
 <ul>
 <li><p>Your <code>main application</code> class:</p>
 <ul>
-<li><p>It is generally recommend that you locate <strong>your <code>main applicatio</code>n class in a root package above other<br>classes.</strong> The <code>@SpringBootApplication</code> annotation is often placed on your main class, and it implicitly<br>defines a base “search package” for certain items</p>
+<li><p>It is generally recommend that you locate <strong>your <code>main application</code> class in a root package above other<br>classes.</strong> The <code>@SpringBootApplication</code> annotation is often placed on your main class, and it implicitly<br>defines a base “search package” for certain items</p>
 </li>
 <li><p>For example, the follwoing structure:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">com</span><br><span class="line">+- example</span><br><span class="line">	+- myapplication</span><br><span class="line">		+- Application.java</span><br><span class="line">		|</span><br><span class="line">		+- customer</span><br><span class="line">		|   +- Customer.java</span><br><span class="line">		|   +- CustomerController.java</span><br><span class="line">		|   +- CustomerService.java</span><br><span class="line">		|   +- CustomerRepository.java</span><br><span class="line">		|</span><br><span class="line">		+- order</span><br><span class="line">			+- Order.java</span><br><span class="line">			+- OrderController.java</span><br><span class="line">			+- OrderService.java</span><br><span class="line">			+- OrderRepository.java</span><br></pre></td></tr></table></figure></li>
@@ -120,9 +120,103 @@
 </ul>
 </li>
 </ul>
-<h3 id="Auto-Configuration"><a href="#Auto-Configuration" class="headerlink" title="Auto-Configuration"></a>Auto-Configuration</h3><p>You can also choose to use the Spring Boot <code>auto-configuration</code>, which attempts to automatically configure your Spring application based on the jar dependencies that you have added.</p>
-<p>To enable <code>auto-configuration</code>, you need to <strong>add either <code>@EnableAutoConfiguration</code> or <code>@SpringBootApplication</code> annotations to one of your <code>@Configuration</code> classes</strong>.</p>
+<blockquote>
+<p>Note:</p>
+<ul>
+<li><input disabled type="checkbox"> A single <code>@SpringBootApplication</code> annotation can be <strong>used to enable three features</strong>, that is:<ul>
+<li><code>@EnableAutoConfiguration</code>: enable Spring Boot’s auto-configuration mechanism</li>
+<li><code>@ComponentScan</code>: enable @Component scan on the package where the application is located (see the best practices)</li>
+<li><code>@Configuration</code>: allow to register extra beans in the context or import additional configuration classes<br>SO, the <code>@SpringBootApplication</code> annotation is <strong>equivalent to using <code>@Configuration</code>, <code>@EnableAutoConfiguration</code>, and <code>@ComponentScan</code> with their default attributes</strong>, as shown in the following example:</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.example.myapplication;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.SpringApplication;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.autoconfigure.SpringBootApplication;</span><br><span class="line"></span><br><span class="line"><span class="meta">@SpringBootApplication</span> <span class="comment">// same as @Configuration @EnableAutoConfiguration @ComponentScan</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Application</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		SpringApplication.run(Application<span class="class">.<span class="keyword">class</span>, <span class="title">args</span>)</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+<h3 id="Auto-Configuration"><a href="#Auto-Configuration" class="headerlink" title="Auto-Configuration"></a>Auto-Configuration</h3><p>(additional reference: <a href="https://www.javatpoint.com/spring-boot-auto-configuration" target="_blank" rel="noopener">https://www.javatpoint.com/spring-boot-auto-configuration</a>)</p>
+<p>You can also choose to use the Spring Boot <code>auto-configuration</code>, which attempts to automatically configure your Spring application based on the jar dependencies that you have added.</p>
+<p>For example, if the H2 database Jar is <strong>present in the classpath and we have not configured any beans</strong> related to the database manually, the Spring Boot’s auto-configuration feature automatically configures it in the project.</p>
+<p>To enable <code>auto-configuration</code>, you need to <strong>add either <code>@EnableAutoConfiguration</code> or <code>@SpringBootApplication</code> annotations to one of your <code>@Configuration</code> classes</strong>.</p>
+<p>However, if you find that specific auto-configuration classes that you do not want are being applied, you can also specify to disable <strong>disable the specific auto-configuration classes</strong>. We <strong>use the <code>exclude</code> attribute of the annotation <code>@EnableAutoConfiguration</code></strong> to disable the auto-configuration classes. For example:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.springframework.boot.autoconfigure.*;  </span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.autoconfigure.jdbc.*;  </span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.*;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Configuration</span>(proxyBeanMethods = <span class="keyword">false</span>)  </span><br><span class="line"><span class="meta">@EnableAutoConfiguration</span>(exclude=&#123;DataSourceAutoConfiguration<span class="class">.<span class="keyword">class</span>&#125;)  </span></span><br><span class="line"><span class="class"><span class="title">public</span> <span class="title">class</span> <span class="title">MyConfiguration</span></span>&#123;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>We can <strong>use the attribute <code>excludeName</code></strong> of the annotation <code>@EnableAutoConfiguration</code> and specify the qualified name of the class, <strong>if the class is not on the class path</strong>. We can exclude any number of auto-configuration classes by using the property <code>spring.autoconfigure.exclude</code>.</p>
+<p>This is also supported if you use the <code>@SpringBootApplication</code> annotation:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.springframework.boot.autoconfigure.*;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.autoconfigure.jdbc.*;</span><br><span class="line"><span class="meta">@SpringBootApplication</span>(exclude=&#123;DataSourceAutoConfiguration<span class="class">.<span class="keyword">class</span>&#125;)  // <span class="title">also</span> <span class="title">supported</span></span></span><br><span class="line"><span class="class"><span class="title">public</span> <span class="title">class</span> <span class="title">MyApplication</span> </span>&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Spring-Beans-and-Dependency-Injection-in-Spring-Boot"><a href="#Spring-Beans-and-Dependency-Injection-in-Spring-Boot" class="headerlink" title="Spring Beans and Dependency Injection in Spring Boot"></a>Spring Beans and Dependency Injection in Spring Boot</h3><p>You are free to use any of the standard <strong>Spring Framework techniques</strong> to define your beans and their injected dependencies. For simplicity, we often find that <strong>using <code>@ComponentScan</code> (to find your beans) and using <code>@Autowired</code> (to do constructor injection) works well</strong>. If you structure your code as suggested above <strong>(locating your application class in a root package), you can add <code>@ComponentScan</code> without any arguments, as it will automatically scan all component classes in current package and all its subpackages</strong>. All of your application components (<code>@Component</code>, <code>@Service</code>, <code>@Repository</code>, <code>@Controller</code> etc.) are automatically registered as Spring Beans.</p>
+<p>For example, if you have in your sub-package a <code>@Service</code> as shown below, it will be automatically included in the configuration:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.example.service;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Service;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DatabaseAccountService</span> <span class="keyword">implements</span> <span class="title">AccountService</span> </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">final</span> RiskAssessor riskAssessor;  <span class="comment">// Notice this will be final</span></span><br><span class="line"></span><br><span class="line">	<span class="meta">@Autowired</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">DatabaseAccountService</span><span class="params">(RiskAssessor riskAssessor)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.riskAssessor = riskAssessor;</span><br><span class="line">	&#125;</span><br><span class="line"><span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Notice how <strong>using constructor injection lets the <code>riskAssessor</code> field be marked as <code>final</code></strong>, indicating that the reference to that <code>riskAssessor</code> object cannot be subsequently changed (mutator methods of that object can still be used, of course).</p>
+<h2 id="Running-Your-Application"><a href="#Running-Your-Application" class="headerlink" title="Running Your Application"></a>Running Your Application</h2><p>One of the biggest advantages of packaging your application as a jar and using an embedded HTTP server is that you can run your application as you would any other. Debugging Spring Boot applications is also easy. You do not need any special IDE plugins or extensions.</p>
+<p>If you use the Spring Boot Maven or Gradle plugins to create an executable <code>jar</code>, you can <strong>run your application using <code>java -jar</code></strong>, as shown in the following example: </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ java -jar target&#x2F;myapplication-0.0.1-SNAPSHOT.jar</span><br></pre></td></tr></table></figure>
+
+<p>It is also possible to run a packaged application with remote debugging support enabled. Doing so lets you attach a debugger to your packaged application, as shown in the following example:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ java -Xdebug -Xrunjdwp:server&#x3D;y,transport&#x3D;dt_socket,address&#x3D;8000,suspend&#x3D;n \</span><br><span class="line">-jar target&#x2F;myapplication-0.0.1-SNAPSHOT.jar</span><br></pre></td></tr></table></figure>
+
+<h3 id="Compiling-and-Running-using-Maven-Plugin"><a href="#Compiling-and-Running-using-Maven-Plugin" class="headerlink" title="Compiling and Running using Maven Plugin"></a>Compiling and Running using Maven Plugin</h3><p>The Spring Boot Maven plugin includes a <code>run</code> goal that can be used to quickly compile and run your application. Applications run in an exploded form, as they do in your IDE. The following example shows a typical Maven command to run a Spring Boot application:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ mvn spring-boot:run</span><br></pre></td></tr></table></figure>
+
+<p>You might also want to use the <code>MAVEN_OPTS</code> operating system environment variable, as shown in the following example:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ export MAVEN_OPTS&#x3D;-Xmx1024m</span><br></pre></td></tr></table></figure>
+
+<p>where:</p>
+<ul>
+<li><code>-Xmx1024m</code> specifies the maximum size, in bytes, of the memory allocation pool. This value must <strong>a multiple of 1024 greater than 2 MB</strong>. Append the letter <code>k</code> or <code>K</code> to indicate kilobytes, or <code>m</code> or <code>M</code> to indicate megabytes. The default value is chosen at runtime based on system configuration.</li>
+</ul>
+<h2 id="Developer-Tools"><a href="#Developer-Tools" class="headerlink" title="Developer Tools"></a>Developer Tools</h2><p>Spring Boot includes an additional set of tools that can make the application development experience a little more pleasant. The <code>spring-boot-devtools module</code> can be included in any project to <strong>provide additional development-time features</strong>.</p>
+<p>For example, if you have worked on latest UI development frameworks e.g. <code>Node</code>, <code>angular</code>, <code>gulp</code> etc. then you must have appreciated the <strong>auto-reload of UI in browser</strong> whenever there is <strong>change in some code</strong>. Its pretty useful and saves a lot of time.</p>
+<p>Well, <strong>same feature can be utilized in spring boot applications using <code>spring-boot-devtools</code> dependency provided features</strong>.</p>
+<h3 id="Enabling-spring-boot-devtools"><a href="#Enabling-spring-boot-devtools" class="headerlink" title="Enabling spring-boot-devtools"></a>Enabling <code>spring-boot-devtools</code></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependencies&gt;</span><br><span class="line">	&lt;dependency&gt;</span><br><span class="line">		&lt;groupId&gt;org.springframework.boot&lt;&#x2F;groupId&gt;</span><br><span class="line">		&lt;artifactId&gt;spring-boot-devtools&lt;&#x2F;artifactId&gt;</span><br><span class="line">		&lt;optional&gt;true&lt;&#x2F;optional&gt;</span><br><span class="line">	&lt;&#x2F;dependency&gt;</span><br><span class="line">&lt;&#x2F;dependencies&gt;</span><br></pre></td></tr></table></figure>
+
+<p>where we flagged the dependency as <code>optional</code> because:</p>
+<ul>
+<li>Flagging the <strong>dependency as <code>optional</code> in maven</strong> (as shown above) <strong>prevents devtools from being transitively applied to other modules</strong> that use your project.</li>
+</ul>
+<blockquote>
+<p>Note:</p>
+<ul>
+<li><input disabled type="checkbox"> <strong>Developer tools are automatically disabled when running a fully packaged application</strong>. If your application is launched from <code>java -jar</code> or if it is started from a special classloader, then it is considered a “production application”. If that does not apply to you (i.e. if you run your application from a container), consider excluding devtools or set the <code>-Dspring.devtools.restart.enabled=false</code> system property.</li>
+</ul>
+</blockquote>
+<h3 id="Configuring-your-spring-boot-devtools"><a href="#Configuring-your-spring-boot-devtools" class="headerlink" title="Configuring your spring-boot-devtools"></a>Configuring your <code>spring-boot-devtools</code></h3><p>(additional reference: <a href="https://howtodoinjava.com/spring-boot2/developer-tools-module-tutorial/#:~:text=The%20spring%2Dboot%2Ddevtools%20module,default%2C%20live%20reload%20is%20enabled" target="_blank" rel="noopener">https://howtodoinjava.com/spring-boot2/developer-tools-module-tutorial/#:~:text=The%20spring%2Dboot%2Ddevtools%20module,default%2C%20live%20reload%20is%20enabled</a>)</p>
+<p>To improve the performance, <strong>dev tools cache the static content/template files to serve them faster to browser/client</strong>. This is <strong>very good feature in production</strong> where every milli-second performance improvement matters. But <strong>in development environment, it can be a problem and cause stale cache problem</strong> and you may not see your changes immediatly in browser. For this reason, <code>springboot-devtools</code> <strong>disables the caching options by default</strong>.</p>
+<p>Also, because you need more information about web requests while developing Spring MVC and Spring WebFlux applications, <strong>developer tools will enable <code>DEBUG</code> logging for the web logging group</strong>. This will give you <strong>information about the incoming request, which handler is processing it, the response outcome, etc</strong>.</p>
+<p>More importantly, you can also <strong>configure the <code>springboot-devtools</code> to meet your own needs</strong>:</p>
+<ol>
+<li><p>You can enable the static caching to use in production environment by setting a property:</p>
+ <figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># inside application.properties</span></span><br><span class="line"><span class="meta">spring.freemarker.cache</span> = <span class="string">true //false by default in production environment</span></span><br><span class="line"></span><br><span class="line"><span class="meta">//</span> <span class="string">Other such properties</span></span><br><span class="line"> </span><br><span class="line"><span class="meta">//</span> <span class="string">spring.thymeleaf.cache = false</span></span><br><span class="line"><span class="meta">//</span> <span class="string">spring.mustache.cache = false</span></span><br><span class="line"><span class="meta">//</span> <span class="string">spring.groovy.template.cache = false</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>If you wish to log all request details (including potentially sensitive information), you can turn on the <code>spring.mvc.log-request-details</code> or <code>spring.codec.log-request-details</code> configuration properties.</p>
+ <figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># inside application.properties</span></span><br><span class="line"><span class="meta">spring.mvn.log-request-details</span> = <span class="string">true // or spring.codec.log-request-details = true</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>The <code>spring-boot-devtools</code> module <strong>includes an embedded LiveReload server that can be used to trigger a browser refresh when a resource is changed</strong>. Precondition is that your browser should have supported extention for it. You can find such browser extentions in this <a href="https://livereload.com/extensions/" target="_blank" rel="noopener">link</a>.</p>
+<p> <strong>By default, live reload is enabled</strong>. If you wish to disable this feature for some reason, then set <code>sping.devtools.livereload.enabled</code> property to <code>false</code>.</p>
+ <figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#inside application.properties</span></span><br><span class="line"><span class="meta">spring.devtools.livereload.enabled</span>  = <span class="string">false #Set false to disable live reload</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>For a complete list of the properties that are applied by the devtools, see <a href="https://github.com/spring-projects/spring-boot/tree/v2.3.0.RELEASE/spring-boot-project/spring-boot-devtools/src/main/java/org/springframework/boot/devtools/env/DevToolsPropertyDefaultsPostProcessor.java" target="_blank" rel="noopener">DevToolsPropertyDefaultsPostProcessor</a>.</p>
+</li>
+</ol>
+<h3 id="Automatic-Reload"><a href="#Automatic-Reload" class="headerlink" title="Automatic Reload"></a>Automatic Reload</h3><p>The automatic reload has been introduced in the section above, which triggers a browser refresh when a resource is changed. By default, it is triggered on these paths:</p>
+<ul>
+<li><code>/META-INF/maven</code></li>
+<li><code>/META-INF/resources</code></li>
+<li><code>/resources</code></li>
+<li><code>/static</code></li>
+<li><code>/public</code></li>
+<li><code>/templates</code></li>
+</ul>
+<p>If you want to <strong>disable auto-reload in browser for files in few of these paths</strong>, then use <code>spring.devtools.restart.exclude property</code>. For example:</p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">spring.devtools.restart.exclude</span>=<span class="string">static/**,public/**</span></span><br></pre></td></tr></table></figure>
+
+<p>If you want to <strong>watch those addtional files/paths not in the default list</strong> to reload the application, use the <code>spring.devtools.restart.additional-paths</code> property.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">spring.devtools.restart.additional-paths&#x3D;script&#x2F;**</span><br></pre></td></tr></table></figure>
+
+<p>Similarily, If you want to <strong>exclude those additional paths</strong>, use the <code>spring.devtools.restart.additional-exclude property</code>.</p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">spring.devtools.restart.additional-exclude</span>=<span class="string">styles/**</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Automatic-Restart"><a href="#Automatic-Restart" class="headerlink" title="Automatic Restart"></a>Automatic Restart</h3>
       
     </div>
     <footer class="article-footer">
@@ -184,6 +278,10 @@
       <ul>
         
           <li>
+            <a href="/2020/06/15/Go-Manual/">Go Manual</a>
+          </li>
+        
+          <li>
             <a href="/2020/06/09/Spring-Framework-Guide/">Spring Framework Guide</a>
           </li>
         
@@ -197,10 +295,6 @@
         
           <li>
             <a href="/2020/05/26/MySQL-Manual/">MySQL Manual</a>
-          </li>
-        
-          <li>
-            <a href="/2020/05/25/Docker-Manual/">Docker Manual</a>
           </li>
         
       </ul>

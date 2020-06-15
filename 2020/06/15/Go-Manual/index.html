@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Go Manual | From a Beginner to a Disaster</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="IMPORTANT:Much of the content here is a personal summary&#x2F;abbrieviation of contents on the Offical Go Documentation. For more complete information, please refer to the offical site.  Installing GoPlea">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Go Manual">
+<meta property="og:url" content="http://yoursite.com/2020/06/15/Go-Manual/index.html">
+<meta property="og:site_name" content="From a Beginner to a Disaster">
+<meta property="og:description" content="IMPORTANT:Much of the content here is a personal summary&#x2F;abbrieviation of contents on the Offical Go Documentation. For more complete information, please refer to the offical site.  Installing GoPlea">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-06-15T02:57:30.000Z">
+<meta property="article:modified_time" content="2020-06-15T08:50:22.960Z">
+<meta property="article:author" content="Xiao Yu">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="From a Beginner to a Disaster" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">From a Beginner to a Disaster</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">Xiao.Y</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Go-Manual" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/06/15/Go-Manual/" class="article-date">
+  <time datetime="2020-06-15T02:57:30.000Z" itemprop="datePublished">2020-06-15</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Go Manual
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <hr>
+<p><strong>IMPORTANT</strong>:<br>Much of the content here is a personal summary/abbrieviation of contents on the <a href="https://golang.org/doc/" target="_blank" rel="noopener">Offical Go Documentation</a>. For more complete information, please refer to the offical site.</p>
+<hr>
+<h2 id="Installing-Go"><a href="#Installing-Go" class="headerlink" title="Installing Go"></a>Installing Go</h2><p>Please follow the <a href="https://golang.org/doc/install" target="_blank" rel="noopener">Offical Guide on Installing Go</a>.</p>
+<h2 id="Packages"><a href="#Packages" class="headerlink" title="Packages"></a>Packages</h2><p>(additional reference: <a href="https://www.callicoder.com/golang-packages/#:~:text=Go%20Package,following%20syntax%20%2D%20package" target="_blank" rel="noopener">https://www.callicoder.com/golang-packages/#:~:text=Go%20Package,following%20syntax%20%2D%20package</a>)</p>
+<p>Every <strong>Go program is made up of packages</strong>, and every <strong>Go source file belongs to a package</strong>. To declare a source file to be part of a package, we use the following syntax -</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> &lt;packagename&gt;</span><br></pre></td></tr></table></figure>
+
+<p>The above package declaration must be the first line of code in your Go source file. All the functions, types, and variables defined in your Go source file become part of the declared package.</p>
+<p>You can <strong>choose to export a member defined in your package to outside packages</strong>, or keep them private to the same package. Other packages can <strong>import and reuse the functions or types that are exported from your package</strong>.</p>
+<p>Let’s see an example</p>
+<p>Almost all the code that we will see in this tutorial series include the following line -</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">"fmt"</span></span><br></pre></td></tr></table></figure>
+
+<p><code>fmt</code> is a core library package that contains functionalities related to formatting and printing output or reading input from various I/O sources. It exports functions like <code>Println()</code>, <code>Printf()</code>, <code>Scanf()</code> etc, for other packages to reuse.</p>
+<blockquote>
+<p>Note:</p>
+<ul>
+<li><input disabled type="checkbox"> By convention, the <strong>package name is</strong> the same as the <strong>last element of the import path</strong>. For instance, the <code>&quot;math/rand&quot;</code> package comprises files that begin with the statement <code>package rand</code>.</li>
+</ul>
+</blockquote>
+<h3 id="The-main-package-and-main-function"><a href="#The-main-package-and-main-function" class="headerlink" title="The main package and main() function"></a>The <code>main</code> package and <code>main()</code> function</h3><p>Go programs start running in the <code>main</code> package. It is a <strong>special package that is used with programs that are meant to be executable</strong>. The <strong><code>main()</code> function is a special function that is the entry point of an executable program</strong>.</p>
+<p>By convention, Executable programs (the ones with the main package) are called Commands. Others are called simply Packages.</p>
+<p>Usually, you would have a <code>main</code> package at the top level of your project, and then create sub-directories for other packages. For example, you could have the following structure:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">myProject&#x2F;</span><br><span class="line">	main.go</span><br><span class="line">	subModule&#x2F;</span><br><span class="line">		test1.go</span><br><span class="line">		test2.go</span><br><span class="line">	anotherModule&#x2F;</span><br><span class="line">		test3.go</span><br></pre></td></tr></table></figure>
+
+<h2 id="Running-a-Program"><a href="#Running-a-Program" class="headerlink" title="Running a Program"></a>Running a Program</h2><p><strong>Programs start running in <code>package main</code></strong>.</p>
+<p>For example, using the <code>math/rand</code> pacakge, we could generate a random number by:</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"fmt"</span></span><br><span class="line">	<span class="string">"math/rand"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	fmt.Printf(<span class="string">"hello, world\n"</span>)</span><br><span class="line">	fmt.Println(rand.Intn(<span class="number">10</span>))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>Note:</p>
+<ul>
+<li><input disabled type="checkbox"> The environment in which these programs are executed is <strong>deterministic, so each time you run the example program rand.Intn will return the same number</strong>. To see a <strong>different number</strong>, <strong>seed the number generator</strong>; see <code>rand.Seed</code>.</li>
+</ul>
+</blockquote>
+<h2 id="Imports"><a href="#Imports" class="headerlink" title="Imports"></a>Imports</h2><p>To import a <strong>go package (a collection of go files)</strong>, it first needs to be <strong>included in your GoPath</strong>.</p>
+<p>There are two ways to import packages in Go -</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Multiple import statements</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">"fmt"</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">"time"</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">"math"</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">"math/rand"</span></span><br><span class="line"><span class="comment">// Factored import statements</span></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"fmt"</span></span><br><span class="line">	<span class="string">"time"</span></span><br><span class="line">	<span class="string">"math"</span></span><br><span class="line">    <span class="string">"math/rand"</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<p>It is generally considered a <strong>good style to use the factored import statement</strong>.</p>
+<p>Notice that the imported package name basically follow the directory hierarchy (as mentioned before, Go’s convention is that - the package name is the same as the last element of the import path). For example, the name of the package imported as <code>math/rand</code> is rand. It is <strong>imported with path <code>math/rand</code> because It is nested inside the math package as a subdirectory</strong>.</p>
+<h3 id="Import-Paths"><a href="#Import-Paths" class="headerlink" title="Import Paths"></a>Import Paths</h3><p>(additional reference: <a href="https://www.callicoder.com/golang-packages/" target="_blank" rel="noopener">https://www.callicoder.com/golang-packages/</a>)</p>
+<p>All import paths are relative to the <strong>GoPath or GoModule (this will be talked about later) path</strong>.</p>
+<p>For example, if you have <code>github.com/callicode/packer</code> as the directory where you initiate your <code>go.module</code> file, then you can refer to packages <strong>relative to that module’s directory</strong>:</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> (</span><br><span class="line">    <span class="string">"github.com/callicoder/packer/numbers"</span></span><br><span class="line">    <span class="string">"github.com/callicoder/packer/strings"</span>  </span><br><span class="line">    <span class="string">"github.com/callicoder/packer/strings/greeting"</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<h3 id="Package-Alias"><a href="#Package-Alias" class="headerlink" title="Package Alias"></a>Package Alias</h3><p>You can use <strong>package alias to resolve conflicts between different packages of the same name</strong>, or just to give a short name to the imported package</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">import (</span><br><span class="line">    str &quot;strings&quot;   &#x2F;&#x2F; Package Alias, so that you can use str.some_function() for strings.some_function()</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<h3 id="Adding-3rd-party-Packages"><a href="#Adding-3rd-party-Packages" class="headerlink" title="Adding 3rd party Packages"></a>Adding 3rd party Packages</h3><p>Adding 3rd party packages to your project is very easy with Go modules. You can just import the package to any of the source files in your project, and the next time you build/run the project, Go automatically downloads it for you -</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"fmt"</span></span><br><span class="line">	<span class="string">"rsc.io/quote"</span>  <span class="comment">// a third-party package</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	fmt.Println(quote.Go())</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>And the output will look like:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">$ go run main.go</span><br><span class="line">go: finding rsc.io&#x2F;quote v1.5.2</span><br><span class="line">go: downloading rsc.io&#x2F;quote v1.5.2</span><br><span class="line">go: extracting rsc.io&#x2F;quote v1.5.2</span><br><span class="line">go: downloading rsc.io&#x2F;sampler v1.3.0</span><br><span class="line">go: extracting rsc.io&#x2F;sampler v1.3.0</span><br><span class="line">go: downloading golang.org&#x2F;x&#x2F;text v0.0.0-20170915032832-14c0d48ead0c</span><br><span class="line">go: extracting golang.org&#x2F;x&#x2F;text v0.0.0-20170915032832-14c0d48ead0c</span><br><span class="line">go: finding rsc.io&#x2F;sampler v1.3.0</span><br><span class="line">go: finding golang.org&#x2F;x&#x2F;text v0.0.0-20170915032832-14c0d48ead0c</span><br><span class="line"></span><br><span class="line">Don&#39;t communicate by sharing memory, share memory by communicating.</span><br></pre></td></tr></table></figure>
+<p>Go will also add this new dependency to the <code>go.mod</code> file.</p>
+<h2 id="Exports"><a href="#Exports" class="headerlink" title="Exports"></a>Exports</h2><p>In Go, a <strong>function/variable/type is exported if its name begins with a capital letter</strong>. For example, <code>Pizza()</code> is an exported name, as is <code>Pi</code>, which is exported from the <code>math</code> package.</p>
+<p><code>pizza</code> and <code>pi</code> do not start with a capital letter, <strong>so they are not exported</strong>. This means that they are <strong>not accessible from outside the package when using imports</strong>.</p>
+<p>So, in short:</p>
+<ul>
+<li>Anything (variable, type, or function) that <strong>starts with a capital letter is exported</strong>, and visible outside the package.</li>
+<li>Anything that <strong>does not start with a capital letter is not exported</strong>, and is <strong>visible only inside the same package</strong>.</li>
+</ul>
+<p>For example:</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"fmt"</span></span><br><span class="line">	<span class="string">"math"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="comment">// MaxInt64 is an exported name</span></span><br><span class="line">	fmt.Println(<span class="string">"Max value of int64: "</span>, <span class="keyword">int64</span>(math.MaxInt64))</span><br><span class="line"></span><br><span class="line">	<span class="comment">// Phi is an exported name</span></span><br><span class="line">	fmt.Println(<span class="string">"Value of Phi (ϕ): "</span>, math.Phi)</span><br><span class="line"></span><br><span class="line">	<span class="comment">// pi starts with a small letter, so it is NOT exported</span></span><br><span class="line">	fmt.Println(<span class="string">"Value of Pi (𝜋): "</span>, math.pi)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># Output</span><br><span class="line">.&#x2F;exported_names.go:16:38: cannot refer to unexported name math.pi</span><br><span class="line">.&#x2F;exported_names.go:16:38: undefined: math.pi</span><br></pre></td></tr></table></figure>
+
+<h2 id="Functions"><a href="#Functions" class="headerlink" title="Functions"></a>Functions</h2><p>(additional reference: <a href="https://www.callicoder.com/golang-functions/" target="_blank" rel="noopener">https://www.callicoder.com/golang-functions/</a>)</p>
+<p>In Golang, we declare a function using the <code>func</code> keyword. A function has a <strong>name</strong>, a list of comma-separated <strong>input parameters</strong> along with their types, the** result type(s)<strong>, and a **body</strong>.</p>
+<p>Following is an example of a simple function called avg that takes two input parameters of type float64 and returns the average of the inputs. The <strong>result is also of type <code>float64</code></strong> -</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">avg</span><span class="params">(x <span class="keyword">float64</span>, y <span class="keyword">float64</span>)</span> <span class="title">float64</span></span> &#123;</span><br><span class="line">	<span class="keyword">return</span> (x + y) / <span class="number">2</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Notice that the <strong>type comes after the variable name</strong>.</p>
+<h3 id="Function-Parameters-and-Return-Types"><a href="#Function-Parameters-and-Return-Types" class="headerlink" title="Function Parameters and Return Types"></a>Function Parameters and Return Types</h3><p>The <strong>input parameters and return type(s) are optional for a function</strong>. A function can be declared without any input and output.</p>
+<p>The <code>main()</code> function is an example of such a function -</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Here is another example -</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">sayHello</span><span class="params">()</span></span> &#123;</span><br><span class="line">	fmt.Println(<span class="string">"Hello, World"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Input-Type-Abbreviation"><a href="#Input-Type-Abbreviation" class="headerlink" title="Input Type Abbreviation"></a>Input Type Abbreviation</h3><p>You need to <strong>specify the type only once</strong> for multiple <strong>consecutive</strong> parameters of the same type</p>
+<p>If a function has two or more consecutive parameters of the same type, then it suffices to specify the type <strong>only once for the last parameter of that type</strong>.</p>
+<p>For example, we can declare the avg function that we saw in the previous section like this as well -</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">avg</span><span class="params">(x, y <span class="keyword">float64</span>)</span> <span class="title">float64</span></span> &#123; &#125;</span><br><span class="line"><span class="comment">// Same as - func avg(x float64, y float64) float64 &#123; &#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>Here is another example -</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">printPersonDetails</span><span class="params">(firstName, lastName <span class="keyword">string</span>, age <span class="keyword">int</span>)</span></span> &#123; &#125;</span><br><span class="line"><span class="comment">// Same as - func printPersonDetails(firstName string, lastName string, age int) &#123; &#125;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Multiple-Return-Results"><a href="#Multiple-Return-Results" class="headerlink" title="Multiple Return Results"></a>Multiple Return Results</h3><p>Go is capable of returning multiple results. You just need to <strong>specify the return types separated by comma inside parentheses</strong>, and then return multiple comma-separated values from the function.</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">"fmt"</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">swap</span><span class="params">(x, y <span class="keyword">string</span>)</span> <span class="params">(<span class="keyword">string</span>, <span class="keyword">string</span>)</span></span> &#123;	<span class="comment">// returning two strings</span></span><br><span class="line">	<span class="keyword">return</span> y, x</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	a, b := swap(<span class="string">"hello"</span>, <span class="string">"world"</span>)	<span class="comment">// notice the use of :=, the short declaration, which will come later in this guide</span></span><br><span class="line">	fmt.Println(a, b)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>A common approach using this feature is to <strong>return an error value from a function</strong> if there could be an abnormal behavior with some input.</p>
+<p>Let’s see an example - The <code>getStockPriceChange</code> function that we saw will return <code>±Inf (Infinity)</code> if the <code>prevPrice</code> is <code>0</code>. If you want to return an <code>error</code> instead, you can do so by <strong>adding another return value of type <code>error</code></strong> and return the <code>error</code> value like so -</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">getStockPriceChangeWithError</span><span class="params">(prevPrice, currentPrice <span class="keyword">float64</span>)</span> <span class="params">(<span class="keyword">float64</span>, <span class="keyword">float64</span>, error)</span></span> &#123;</span><br><span class="line">	<span class="keyword">if</span> prevPrice == <span class="number">0</span> &#123;</span><br><span class="line">		err := errors.New(<span class="string">"Previous price cannot be zero"</span>)</span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span>, <span class="number">0</span>, err</span><br><span class="line">	&#125;</span><br><span class="line">	change := currentPrice - prevPrice</span><br><span class="line">	percentChange := (change / prevPrice) * <span class="number">100</span></span><br><span class="line">	<span class="keyword">return</span> change, percentChange, <span class="literal">nil</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>The <strong><code>error</code> type is a built-in type in Golang</strong>. Go programs use error values to indicate an abnormal situation. Don’t worry if you don’t understand about errors for now. You’ll learn more about error handling in a later section.</p>
+<h3 id="Named-return-values"><a href="#Named-return-values" class="headerlink" title="Named return values"></a>Named return values</h3><p>Go’s return values may be named. If so, they are treated as <strong>variables defined at the top of the function</strong>.</p>
+<p>For example:</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">"fmt"</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">split</span><span class="params">(sum <span class="keyword">int</span>)</span> <span class="params">(x, y <span class="keyword">int</span>)</span></span> &#123;	<span class="comment">// notice the specified type</span></span><br><span class="line">	x = sum * <span class="number">4</span> / <span class="number">9</span>		<span class="comment">// notice the change from := (short declaration) to = (assignment)</span></span><br><span class="line">	y = sum - x</span><br><span class="line">	<span class="keyword">return</span>		<span class="comment">// naked return</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	fmt.Println(split(<span class="number">17</span>))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>Note:</p>
+<ul>
+<li><input disabled type="checkbox"> A good practise would be <strong>using those names to document the meaning of the return values.</strong></li>
+</ul>
+</blockquote>
+<p>A <strong>return statement without arguments returns the named return values</strong>. This is known as a “naked” return.</p>
+<p>Naked return statements <strong>should</strong> be used only in <strong>short functions</strong>, as with the example shown here. They can harm readability in longer functions.</p>
+<h3 id="Blank-Identifier"><a href="#Blank-Identifier" class="headerlink" title="Blank Identifier"></a>Blank Identifier</h3><p>Sometimes you may want to <strong>ignore some of the results from a function that returns multiple values</strong>.</p>
+<p>For example, Let’s say that you’re using the <code>split</code> function that we defined in the previous section, but you’re only interested in the final result of <code>y</code>, not the intermediate <code>x</code>.</p>
+<p>Well, you can use a blank identifier instead -</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_, y := split(<span class="number">17</span>)</span><br></pre></td></tr></table></figure>
+
+<p><strong>Q: Why can you not just declare a variable but not use it?</strong></p>
+<p>The problem is that in Go, you’ll be forced to use the variables you declared because <strong>Go doesn’t allow creating variables that you never use</strong>.</p>
+<h2 id="Variables"><a href="#Variables" class="headerlink" title="Variables"></a>Variables</h2><p>(additional reference: <a href="https://www.callicoder.com/golang-variables-zero-values-type-inference/" target="_blank" rel="noopener">https://www.callicoder.com/golang-variables-zero-values-type-inference/</a>)</p>
+<p>Every program needs to store some data/information in memory. The data is stored in memory at a particular memory location.</p>
+<p>A variable is just a convenient name given to a memory location where the data is stored. Apart from a <strong>name</strong>, every variable also has an <strong>associated type</strong>.</p>
+<p>For example, Golang has a data type called <code>int8</code>. It represents 8-bit integers whose values can range from <code>-128</code> to <code>127</code>. It <strong>also defines the operations</strong> that can be done on <code>int8</code> data type such as addition, subtraction, multiplication, division etc.</p>
+<h3 id="Declaring-Variables"><a href="#Declaring-Variables" class="headerlink" title="Declaring Variables"></a>Declaring Variables</h3><p>In Golang, We use the <code>var</code> keyword to declare variables -</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> firstName <span class="keyword">string</span></span><br><span class="line"><span class="keyword">var</span> lastName <span class="keyword">string</span>  </span><br><span class="line"><span class="keyword">var</span> age <span class="keyword">int</span></span><br></pre></td></tr></table></figure>
+
+<p>You can also declare multiple variables at once like so -</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> (</span><br><span class="line">	firstName <span class="keyword">string</span></span><br><span class="line">	lastName  <span class="keyword">string</span></span><br><span class="line">	age       <span class="keyword">int</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<p>You can even combine multiple variable declarations of the same type with comma -</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> (</span><br><span class="line">	firstName, lastName <span class="keyword">string</span></span><br><span class="line">	age                 <span class="keyword">int</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<h3 id="Zero-Values"><a href="#Zero-Values" class="headerlink" title="Zero Values"></a>Zero Values</h3><p>Any <strong>variable declared without an initial value</strong> will have a zero-value depending on the type of the variable-</p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Zero Value</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>bool</td>
+<td>false</td>
+</tr>
+<tr>
+<td>string</td>
+<td>””</td>
+</tr>
+<tr>
+<td>int, int8, int16 etc.</td>
+<td>0</td>
+</tr>
+<tr>
+<td>float32, float64</td>
+<td>0.0</td>
+</tr>
+</tbody></table>
+<p>The example below demonstrates the concept of zero values:</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">"fmt"</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="keyword">var</span> (</span><br><span class="line">		firstName, lastName <span class="keyword">string</span></span><br><span class="line">		age                 <span class="keyword">int</span></span><br><span class="line">		salary              <span class="keyword">float64</span></span><br><span class="line">		isConfirmed         <span class="keyword">bool</span></span><br><span class="line">	)</span><br><span class="line"></span><br><span class="line">	fmt.Printf(<span class="string">"firstName: %s, lastName: %s, age: %d, salary: %f, isConfirmed: %t\n"</span>,</span><br><span class="line">		firstName, lastName, age, salary, isConfirmed)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># Output</span><br><span class="line">firstName: , lastName: , age: 0, salary: 0.000000, isConfirmed: false</span><br></pre></td></tr></table></figure>
+
+<h3 id="Variable-Initialization"><a href="#Variable-Initialization" class="headerlink" title="Variable Initialization"></a>Variable Initialization</h3><p>Here is how you can initialize variables during declaration -</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> firstName <span class="keyword">string</span> = <span class="string">"Satoshi"</span></span><br><span class="line"><span class="keyword">var</span> lastName <span class="keyword">string</span> = <span class="string">"Nakamoto"</span></span><br><span class="line"><span class="keyword">var</span> age <span class="keyword">int</span> = <span class="number">35</span></span><br></pre></td></tr></table></figure>
+
+<p>You can also use multiple declarations like this -</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> (</span><br><span class="line">	firstName <span class="keyword">string</span> = <span class="string">"Satoshi"</span></span><br><span class="line">	lastName  <span class="keyword">string</span> = <span class="string">"Nakamoto"</span></span><br><span class="line">	age       <span class="keyword">int</span>    = <span class="number">35</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<p>Or even combine multiple variable declarations of the same type with comma and initialize them like so -</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var (</span><br><span class="line">	firstName, lastName string &#x3D; &quot;Satoshi&quot;, &quot;Nakamoto&quot;</span><br><span class="line">	age int &#x3D; 35</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>Note:</p>
+<ul>
+<li><input disabled type="checkbox"> All these styles are allowed in both package level declaration and function level declaration</li>
+</ul>
+</blockquote>
+<h3 id="Type-Inference"><a href="#Type-Inference" class="headerlink" title="Type Inference"></a>Type Inference</h3><p>Although Go is a Statically typed language (a language is statically-typed if the <strong>type of a variable is known at compile-time</strong> instead of at run-time), It doesn’t require you to explicitly specify the type of every variable you declare.</p>
+<p>When you declare a variable with an initial value, Golang automatically <strong>infers the type</strong> of the variable from the <strong>value on the right-hand side</strong>. So you need not specify the type when you’re initializing the variable at the time of declaration -</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"><span class="keyword">import</span> <span class="string">"fmt"</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">var</span> name = <span class="string">"Rajeev Singh"</span> <span class="comment">// Type declaration is optional here.</span></span><br><span class="line">    fmt.Printf(<span class="string">"Variable 'name' is of type %T\n"</span>, name)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># Output</span><br><span class="line">Variable &#39;name&#39; is of type string</span><br></pre></td></tr></table></figure>
+<p>In the above example, Golang automatically infers the type of the variable as string from the value on the right-hand side. <strong>If you try to reassign the variable to a value of some other type, then the compiler will throw an error</strong> -</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> name = <span class="string">"Rajeev Singh"</span>  <span class="comment">// Type inferred as `string`</span></span><br><span class="line">name = <span class="number">1234</span> <span class="comment">// Compiler Error</span></span><br></pre></td></tr></table></figure>
+
+<p>This also means that type inference allows us to <strong>declare and initialize multiple variables of different data types</strong> in a single line like so -</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"><span class="keyword">import</span> <span class="string">"fmt"</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="comment">// Multiple variable declarations with inferred types. No type is explicitly specified here</span></span><br><span class="line">    <span class="keyword">var</span> firstName, lastName, age, salary = <span class="string">"John"</span>, <span class="string">"Maxwell"</span>, <span class="number">28</span>, <span class="number">50000.0</span></span><br><span class="line"></span><br><span class="line">    fmt.Printf(<span class="string">"firstName: %T, lastName: %T, age: %T, salary: %T\n"</span>, </span><br><span class="line">        firstName, lastName, age, salary)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># Output</span><br><span class="line">firstName: string, lastName: string, age: int, salary: float64</span><br></pre></td></tr></table></figure>
+
+<h3 id="Short-Variable-Declarations"><a href="#Short-Variable-Declarations" class="headerlink" title="Short Variable Declarations"></a>Short Variable Declarations</h3><p>Inside a function, the <code>:=</code> short assignment statement can be used in place of a <code>var</code> declaration <strong>with implicit/inferred type</strong>.</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">"fmt"</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="keyword">var</span> i, j <span class="keyword">int</span> = <span class="number">1</span>, <span class="number">2</span></span><br><span class="line">	k := <span class="number">3</span></span><br><span class="line">	c, python, java := <span class="literal">true</span>, <span class="literal">false</span>, <span class="string">"yes!"</span>		<span class="comment">// all of them would work in a function level</span></span><br><span class="line"></span><br><span class="line">	fmt.Println(i, j, k, c, python, java)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>Outside a function</strong>, every statement <strong>needs to begin with a keyword</strong> (<code>var</code>, <code>func</code>, and so on) and so the <code>:=</code> construct is not available.</p>
+<h3 id="Scope-of-Variables"><a href="#Scope-of-Variables" class="headerlink" title="Scope of Variables"></a>Scope of Variables</h3><p>A var statement can be <strong>at package or function level</strong>.</p>
+<ul>
+<li>If you defined a variable at the function level, then it is visible <strong>only inside that function</strong>.</li>
+<li>If you defined a variable at the package level, then it is visible to <strong>all functions inside that package</strong>.</li>
+</ul>
+<p>However, when you declared a variable inside a function with the same name as the variable defined in the package level, then, from that declaration onwards, <strong>the variable defined in the function will be used</strong>.</p>
+<p>For example:</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">"fmt"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span>(</span><br><span class="line">	age <span class="keyword">int8</span> = <span class="number">10</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	fmt.Println(age)</span><br><span class="line">	testScope</span><br><span class="line">	fmt.Println(age)	<span class="comment">// still 10</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">testScope</span><span class="params">()</span></span>&#123;</span><br><span class="line">	fmt.Println(<span class="string">"Inside testScope"</span>)</span><br><span class="line"></span><br><span class="line">	fmt.Println(age)</span><br><span class="line">	<span class="keyword">var</span> age <span class="keyword">int8</span> = <span class="number">20</span>	<span class="comment">// overrides the value in the function level</span></span><br><span class="line">	fmt.Println(age)</span><br><span class="line"></span><br><span class="line">	fmt.Println(<span class="string">"Exited testScope"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Types"><a href="#Types" class="headerlink" title="Types"></a>Types</h2><p>Go is a <strong>statically typed programming language</strong>. Every variable in Golang has an associated type.</p>
+<p>Data types classify a related set of data. They define how the data is stored in memory, what are the possible values that a variable of a particular data type can hold, and the operations that can be done on them.</p>
+<h3 id="Basic-Types"><a href="#Basic-Types" class="headerlink" title="Basic Types"></a>Basic Types</h3><p>Go’s basic types are</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">bool</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">string</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span>  <span class="keyword">int8</span>  <span class="keyword">int16</span>  <span class="keyword">int32</span>  <span class="keyword">int64</span>	<span class="comment">// signed</span></span><br><span class="line"><span class="keyword">uint</span> <span class="keyword">uint8</span> <span class="keyword">uint16</span> <span class="keyword">uint32</span> <span class="keyword">uint64</span> <span class="keyword">uintptr</span>	<span class="comment">// unsigned</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">byte</span> <span class="comment">// alias for uint8</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">rune</span> <span class="comment">// alias for int32</span></span><br><span class="line">     <span class="comment">// represents a Unicode code point</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">float32</span> <span class="keyword">float64</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">complex64</span> <span class="keyword">complex128</span>	<span class="comment">// e.g. 0.867 + 0.5i. By default it will be type complex128</span></span><br></pre></td></tr></table></figure>
+<p>The example shows variables of several types, and also that variable declarations may be “factored” into blocks, as with import statements.</p>
+<p>The <code>int</code>, <code>uint</code>, and <code>uintptr</code> types are usually 32 bits wide on 32-bit systems and 64 bits wide on 64-bit systems. <strong>When you need an integer value you should use <code>int</code></strong> unless you have a specific reason to use a sized or unsigned integer type.</p>
+<h3 id="Byte-and-Rune"><a href="#Byte-and-Rune" class="headerlink" title="Byte and Rune"></a>Byte and Rune</h3><p>Golang has two integer type aliases called <code>byte</code> and <code>rune</code> that are aliases for <code>uint8</code> and <code>int32</code> data types respectively -</p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Alias For</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>byte</td>
+<td>uint8</td>
+</tr>
+<tr>
+<td>rune</td>
+<td>int32</td>
+</tr>
+</tbody></table>
+<p>In Go, the <code>byte</code> and <code>rune</code> data types are used to <strong>distinguish characters from integer values</strong>.</p>
+<p>Golang <strong>doesn’t have a <code>char</code> data type</strong>. It uses** <code>byte</code> and <code>rune</code> to represent character values<strong>. The **<code>byte</code> data type represents ASCII characters</strong> and the <strong><code>rune</code> data type represents</strong> a more broader set of Unicode characters that are encoded in <strong>UTF-8 format</strong>.</p>
+<p>Characters are expressed in Golang by enclosing them in single quotes like this: ‘A’.</p>
+<p><strong>The default type for character values is <code>rune</code></strong>. That means, if you don’t declare a type explicitly when declaring a variable with a character value, then Go will infer the type as <code>rune</code> -</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> firstLetter = <span class="string">'A'</span> <span class="comment">// Type inferred as `rune` (Default type for character values)</span></span><br></pre></td></tr></table></figure>
+
+<p>You can create a <code>byte</code> variable by explicitly specifying the type -</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> lastLetter <span class="keyword">byte</span> = <span class="string">'Z'</span></span><br></pre></td></tr></table></figure>
+
+<p>Both byte and rune data types are essentially integers. For example, a <code>byte</code> variable with value ‘a’ is converted to the integer 97. Similarly, a <code>rune</code> variable with a unicode value ‘♥’ is converted to the corresponding unicode codepoint <code>U+2665</code>, where <code>U+</code> means unicode and the numbers are hexadecimal, which is essentially an integer.</p>
+<h3 id="Operations-on-Numberic-Types"><a href="#Operations-on-Numberic-Types" class="headerlink" title="Operations on Numberic Types"></a>Operations on Numberic Types</h3><p>Go provides several operators for performing operations on numeric types -</p>
+<ul>
+<li>Arithmetic Operators: <code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>, <code>%</code></li>
+<li>Comparison Operators: <code>==</code>, <code>!=</code>, <code>&lt;</code>, <code>&gt;</code>, <code>&lt;=</code>, <code>&gt;=</code></li>
+<li>Bitwise Operators: <code>&amp;</code>, <code>|</code>, <code>^</code>, <code>&lt;&lt;</code>, <code>&gt;&gt;</code></li>
+<li>Increment and Decrement Operators: <code>++</code>, <code>--</code></li>
+<li>Assignment Operators: <code>+=</code>, <code>-=</code>, <code>*=</code>, <code>/=</code>, <code>%=</code>, <code>&lt;&lt;=</code>, <code>&gt;&gt;=</code>, <code>&amp;=</code>, <code>|=</code>, <code>^=</code></li>
+</ul>
+<p>Here is an example demonstrating some of the above operators -</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"fmt"</span></span><br><span class="line">	<span class="string">"math"</span></span><br><span class="line">)</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="keyword">var</span> a, b = <span class="number">4</span>, <span class="number">5</span></span><br><span class="line">	<span class="keyword">var</span> res1 = (a + b) * (a + b)/<span class="number">2</span>  <span class="comment">// Arithmetic operations</span></span><br><span class="line"></span><br><span class="line">	a++ <span class="comment">// Increment a by 1</span></span><br><span class="line"></span><br><span class="line">	b += <span class="number">10</span> <span class="comment">// Increment b by 10</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">var</span> res2 = a ^ b <span class="comment">// Bitwise XOR</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">var</span> r = <span class="number">3.5</span></span><br><span class="line">	<span class="keyword">var</span> res3 = math.Pi * r * r  <span class="comment">// Operations on floating-point type</span></span><br><span class="line"></span><br><span class="line">	fmt.Printf(<span class="string">"res1 : %v, res2 : %v, res3 : %v\n"</span>, res1, res2, res3)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># Output</span><br><span class="line">res1 : 40, res2 : 10, res3 : 38.48451000647496</span><br></pre></td></tr></table></figure>
+
+<h3 id="Operations-on-Boolean-Types"><a href="#Operations-on-Boolean-Types" class="headerlink" title="Operations on Boolean Types"></a>Operations on Boolean Types</h3><p>You can use the following operators on boolean types -</p>
+<ul>
+<li>Logical Operators:<ul>
+<li><code>&amp;&amp;</code> (logical conjunction, “and”)</li>
+<li><code>||</code> (logical disjunction, “or”)</li>
+<li><code>!</code>   (logical negation)</li>
+</ul>
+</li>
+<li>Equality and Inequality: <ul>
+<li><code>==</code> (“equals”)</li>
+<li><code>!=</code> (“not equals”)</li>
+</ul>
+</li>
+</ul>
+<p>The operators <strong><code>&amp;&amp;</code> and <code>||</code> follow short-circuiting rules</strong>. That means, in the expression <code>E1 &amp;&amp; E2</code>, if <code>E1</code> evaluates to <code>false</code> then <code>E2</code> won’t be evaluated. Similarly, in the expression <code>E1 || E2</code>, if <code>E1</code>evaluates to <code>true</code> then <code>E2</code> won’t be evaluated.</p>
+<p>Here is an example of Boolean types-</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"><span class="keyword">import</span> <span class="string">"fmt"</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="keyword">var</span> truth = <span class="number">3</span> &lt;= <span class="number">5</span></span><br><span class="line">	<span class="keyword">var</span> falsehood = <span class="number">10</span> != <span class="number">10</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">// Short Circuiting</span></span><br><span class="line">	<span class="keyword">var</span> res1 = <span class="number">10</span> &gt; <span class="number">20</span> &amp;&amp; <span class="number">5</span> == <span class="number">5</span> <span class="comment">// Second operand is not evaluated since first evaluates to false</span></span><br><span class="line">	<span class="keyword">var</span> res2 = <span class="number">2</span>*<span class="number">2</span> == <span class="number">4</span> || <span class="number">10</span>%<span class="number">3</span> == <span class="number">0</span> <span class="comment">// Second operand is not evaluated since first evaluates to true</span></span><br><span class="line"></span><br><span class="line">	fmt.Println(truth, falsehood, res1, res2)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># Output</span><br><span class="line">true false false true</span><br></pre></td></tr></table></figure>
+
+<h3 id="Operations-on-Complex-Types"><a href="#Operations-on-Complex-Types" class="headerlink" title="Operations on Complex Types"></a>Operations on Complex Types</h3><p>You can perform arithmetic operations like addition, subtraction, multiplication, and division on complex numbers -</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"><span class="keyword">import</span> <span class="string">"fmt"</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="keyword">var</span> a = <span class="number">3</span> + <span class="number">5i</span></span><br><span class="line">	<span class="keyword">var</span> b = <span class="number">2</span> + <span class="number">4i</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">var</span> res1 = a + b</span><br><span class="line">	<span class="keyword">var</span> res2 = a - b</span><br><span class="line">	<span class="keyword">var</span> res3 = a * b</span><br><span class="line">	<span class="keyword">var</span> res4 = a / b</span><br><span class="line"></span><br><span class="line">	fmt.Println(res1, res2, res3, res4)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># Output</span><br><span class="line">(5+9i) (1+1i) (-14+22i) (1.3-0.1i)</span><br></pre></td></tr></table></figure>
+
+<h3 id="Strings"><a href="#Strings" class="headerlink" title="Strings"></a>Strings</h3><p>In Go, a string is a <strong>sequence of <code>bytes</code></strong>.</p>
+<p>Strings in Golang are declared either using double quotes as in <code>&quot;Hello World&quot;</code> or back ticks as in <code>`Hello World`</code>.</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Normal String (Can not contain newlines, and can have escape characters like `\n`, `\t` etc)</span></span><br><span class="line"><span class="keyword">var</span> name = <span class="string">"Steve Jobs"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Raw String (Can span multiple lines. Escape characters are not interpreted)</span></span><br><span class="line"><span class="keyword">var</span> bio = <span class="string">`Steve Jobs was an American entrepreneur and inventor.</span></span><br><span class="line"><span class="string">           He was the CEO and co-founder of Apple Inc.`</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>Double-quoted strings cannot contain newlines</strong> but they <strong>can have escape characters</strong> like <code>\n</code>, <code>\t</code> etc. In double-quoted strings, a <code>\n</code> character is replaced with a newline, and a <code>\t</code> character is replaced with a tab space, and so on.</p>
+<p>Strings enclosed within <strong>back ticks are raw strings</strong>. They <strong>can span multiple lines</strong>. Moreover, <strong>Escape characters don’t have any special meaning</strong> in raw strings.</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"><span class="keyword">import</span> <span class="string">"fmt"</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="keyword">var</span> website = <span class="string">"\thttps://www.callicoder.com\t\n"</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">var</span> siteDescription = <span class="string">`\t\tCalliCoder is a programming blog where you can find</span></span><br><span class="line"><span class="string">                           practical guides and tutorials on programming languages, </span></span><br><span class="line"><span class="string">                           web development, and desktop app development.\t\n`</span></span><br><span class="line"></span><br><span class="line">    fmt.Println(website, siteDescription)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># Output</span><br><span class="line">        https:&#x2F;&#x2F;www.callicoder.com      </span><br><span class="line"> \t\tCalliCoder is a programming blog where you can find</span><br><span class="line">                           practical guides and tutorials on programming languages, </span><br><span class="line">                           web development, and desktop app development.\t\n</span><br></pre></td></tr></table></figure>
+
+<p>There is quite a lot about operations in String, which will be covered later, but not in this section.</p>
+<h3 id="Type-Conversion"><a href="#Type-Conversion" class="headerlink" title="Type Conversion"></a>Type Conversion</h3><p>The expression T(v) converts the value v to the type T.</p>
+<p>Some numeric conversions:</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> i <span class="keyword">int</span> = <span class="number">42</span></span><br><span class="line"><span class="keyword">var</span> f <span class="keyword">float64</span> = <span class="keyword">float64</span>(i)</span><br><span class="line"><span class="keyword">var</span> u <span class="keyword">uint</span> = <span class="keyword">uint</span>(f)</span><br></pre></td></tr></table></figure>
+
+<p>Or, put more simply:</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">i := <span class="number">42</span></span><br><span class="line">f := <span class="keyword">float64</span>(i)</span><br><span class="line">u := <span class="keyword">uint</span>(f)</span><br></pre></td></tr></table></figure>
+
+<p>Unlike in C, in Go assignment between items of different type requires an explicit conversion.</p>
+<p>Additionally, Golang has <strong>a strong type system</strong>. It <strong>doesn’t allow you to mix numeric types in an expression</strong>. For example, You cannot add an <code>int</code> variable to a <code>float64</code> variable or even an <code>int</code> variable to an <code>int64</code> variable. You cannot even perform an assignment between mixed types -</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var a int64 &#x3D; 4</span><br><span class="line">var b int &#x3D; a  &#x2F;&#x2F; Compiler Error (Cannot use a (type in64) as type int in assignment)</span><br><span class="line"></span><br><span class="line">var c int &#x3D; 500</span><br><span class="line"></span><br><span class="line">var result &#x3D; a + c &#x2F;&#x2F; Compiler Error (Invalid Operation: mismatched types int64 and int)</span><br></pre></td></tr></table></figure>
+
+<p>Unlike other statically typed languages like C, C++, and Java, <strong>Go doesn’t provide any implicit type conversion</strong>. </p>
+<h2 id="Constants"><a href="#Constants" class="headerlink" title="Constants"></a>Constants</h2><p>In Golang, we use the term <strong><code>constant</code> to represent fixed (unchanging) values</strong> such as <code>5</code>, <code>1.34</code>, <code>true</code>, <code>&quot;Hello&quot;</code> etc.</p>
+<p>Constants can be character, string, boolean, or numeric values. In fact, all the literals in Golang, be it integer literals like <code>5</code>, <code>1000</code>, or floating-point literals like <code>4.76</code>, <code>1.89</code>, or boolean literals like <code>true</code>, <code>false</code>, or string literals like <code>&quot;Hello&quot;</code>, <code>&quot;John&quot;</code> are constants (cannot be modified). This means that <strong>self-made types cannot be declared as <code>constant</code>s</strong>.</p>
+<p>Some examples are:</p>
+<table>
+<thead>
+<tr>
+<th>Constants</th>
+<th>Examples</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>integer constants</td>
+<td>1000, 67413</td>
+</tr>
+<tr>
+<td>floating-point constants</td>
+<td>4.56, 128.372</td>
+</tr>
+<tr>
+<td>boolean constants</td>
+<td>true, false</td>
+</tr>
+<tr>
+<td>rune constants</td>
+<td>‘C’, ‘ä’</td>
+</tr>
+<tr>
+<td>complex constants</td>
+<td>2.7i, 3 + 5i</td>
+</tr>
+<tr>
+<td>string constants</td>
+<td>“Hello”, “Rajeev”</td>
+</tr>
+</tbody></table>
+<h3 id="Declaring-a-Constant"><a href="#Declaring-a-Constant" class="headerlink" title="Declaring a Constant"></a>Declaring a Constant</h3><p>Literals are basically constants without a name. To <strong>declare a constant and give it a name</strong>, you can <strong>use the <code>const</code> keyword</strong> like so -</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> sunRisesInTheEast = <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+<p>You can also specify a type in the declaration like this -</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> a <span class="keyword">int</span> = <span class="number">1234</span></span><br><span class="line"><span class="keyword">const</span> b <span class="keyword">string</span> = <span class="string">"Hi"</span></span><br></pre></td></tr></table></figure>
+
+<p>Multiple declarations in a single statement is also possible -</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> country, code = <span class="string">"India"</span>, <span class="number">91</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> (</span><br><span class="line">	employeeId <span class="keyword">string</span> = <span class="string">"E101"</span></span><br><span class="line">	salary <span class="keyword">float64</span> = <span class="number">50000.0</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<p>Constants declarations are very similar to variable declaratios, except that <strong>constans cannot be declared using the <code>:=</code> syntax, but with <code>=</code></strong>.</p>
+<h3 id="Typed-and-Untyped-Constants"><a href="#Typed-and-Untyped-Constants" class="headerlink" title="Typed and Untyped Constants"></a>Typed and Untyped Constants</h3><p>This basically has the same mechanism of a typed and an untyped variable. So it is not covered here again. Even the default types used for type inference are the same.</p>
+<p>If you really would like to see the details on constants, please visit <a href="https://www.callicoder.com/golang-typed-untyped-constants/" target="_blank" rel="noopener">https://www.callicoder.com/golang-typed-untyped-constants/</a> for more details.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/06/15/Go-Manual/" data-id="ckbgcm43g0000r8orh3afhr12" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2020/06/09/Spring-Framework-Guide/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Spring Framework Guide</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/06/15/Go-Manual/">Go Manual</a>
+          </li>
+        
+          <li>
+            <a href="/2020/06/09/Spring-Framework-Guide/">Spring Framework Guide</a>
+          </li>
+        
+          <li>
+            <a href="/2020/06/09/SpringBoot-Manual/">Spring Boot Manual</a>
+          </li>
+        
+          <li>
+            <a href="/2020/06/02/Redis-Manual/">Redis Manual</a>
+          </li>
+        
+          <li>
+            <a href="/2020/05/26/MySQL-Manual/">MySQL Manual</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 Xiao Yu<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
