@@ -15,7 +15,7 @@
 <meta property="og:description" content="IMPORTANT:Much of the content here is a personal summary&#x2F;abbrieviation of contents on the Offical Spring Boot Documentation. For more complete information, please refer to the offical site.  Spring B">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-06-09T03:35:00.000Z">
-<meta property="article:modified_time" content="2020-06-15T10:21:09.398Z">
+<meta property="article:modified_time" content="2020-06-15T13:02:40.863Z">
 <meta property="article:author" content="Xiao Yu">
 <meta name="twitter:card" content="summary">
   
@@ -186,14 +186,14 @@
 <p>More importantly, you can also <strong>configure the <code>springboot-devtools</code> to meet your own needs</strong>:</p>
 <ol>
 <li><p>You can enable the static caching to use in production environment by setting a property:</p>
- <figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># inside application.properties</span></span><br><span class="line"><span class="meta">spring.freemarker.cache</span> = <span class="string">true //false by default in production environment</span></span><br><span class="line"></span><br><span class="line"><span class="meta">//</span> <span class="string">Other such properties</span></span><br><span class="line"> </span><br><span class="line"><span class="meta">//</span> <span class="string">spring.thymeleaf.cache = false</span></span><br><span class="line"><span class="meta">//</span> <span class="string">spring.mustache.cache = false</span></span><br><span class="line"><span class="meta">//</span> <span class="string">spring.groovy.template.cache = false</span></span><br></pre></td></tr></table></figure>
+ <figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># inside application.properties</span></span><br><span class="line"><span class="meta">spring.freemarker.cache</span> = <span class="string">true 	# false by default in production environment</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Other such properties</span></span><br><span class="line"> </span><br><span class="line"><span class="comment"># spring.thymeleaf.cache = false</span></span><br><span class="line"><span class="comment"># spring.mustache.cache = false</span></span><br><span class="line"><span class="comment"># spring.groovy.template.cache = false</span></span><br></pre></td></tr></table></figure>
 </li>
 <li><p>If you wish to log all request details (including potentially sensitive information), you can turn on the <code>spring.mvc.log-request-details</code> or <code>spring.codec.log-request-details</code> configuration properties.</p>
- <figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># inside application.properties</span></span><br><span class="line"><span class="meta">spring.mvn.log-request-details</span> = <span class="string">true // or spring.codec.log-request-details = true</span></span><br></pre></td></tr></table></figure>
+ <figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># inside application.properties</span></span><br><span class="line"><span class="meta">spring.mvn.log-request-details</span> = <span class="string">true 	# or spring.codec.log-request-details = true</span></span><br></pre></td></tr></table></figure>
 </li>
 <li><p>The <code>spring-boot-devtools</code> module <strong>includes an embedded LiveReload server that can be used to trigger a browser refresh when a resource is changed</strong>. Precondition is that your browser should have supported extention for it. You can find such browser extentions in this <a href="https://livereload.com/extensions/" target="_blank" rel="noopener">link</a>.</p>
 <p> <strong>By default, live reload is enabled</strong>. If you wish to disable this feature for some reason, then set <code>sping.devtools.livereload.enabled</code> property to <code>false</code>.</p>
- <figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#inside application.properties</span></span><br><span class="line"><span class="meta">spring.devtools.livereload.enabled</span>  = <span class="string">false #Set false to disable live reload</span></span><br></pre></td></tr></table></figure>
+ <figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#inside application.properties</span></span><br><span class="line"><span class="meta">spring.devtools.livereload.enabled</span>  = <span class="string">false 	# Set false to disable live reload</span></span><br></pre></td></tr></table></figure>
 </li>
 <li><p>For a complete list of the properties that are applied by the devtools, see <a href="https://github.com/spring-projects/spring-boot/tree/v2.3.0.RELEASE/spring-boot-project/spring-boot-devtools/src/main/java/org/springframework/boot/devtools/env/DevToolsPropertyDefaultsPostProcessor.java" target="_blank" rel="noopener">DevToolsPropertyDefaultsPostProcessor</a>.</p>
 </li>
@@ -216,7 +216,47 @@
 <p>Similarily, If you want to <strong>exclude those additional paths</strong>, use the <code>spring.devtools.restart.additional-exclude property</code>.</p>
 <figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">spring.devtools.restart.additional-exclude</span>=<span class="string">styles/**</span></span><br></pre></td></tr></table></figure>
 
-<h3 id="Automatic-Restart"><a href="#Automatic-Restart" class="headerlink" title="Automatic Restart"></a>Automatic Restart</h3>
+<h3 id="Automatic-Restart"><a href="#Automatic-Restart" class="headerlink" title="Automatic Restart"></a>Automatic Restart</h3><p>Auto-restart means <strong>reloading the java classes and consiguration at server side</strong>. After the server side changes are re-deployed dynamically, server restart happen and load the modified code and configutation.</p>
+<p>This can be a useful feature when working in an IDE, as it gives a very fast feedback loop for code changes. By default, <strong>any entry on the classpath that points to a directory is monitored for changes</strong>. Note that certain resources, such as <strong>static assets and view templates, do not need to restart the application (these would be more appropriate for auto-reload)</strong>.</p>
+<p>As DevTools monitors classpath resources, the <strong>only way to trigger a restart is to update the classpath</strong>. The way in which you cause the classpath to be updated depends on the IDE that you are using. In Eclipse, saving a modified file causes the classpath to be updated and triggers a restart. <strong>In IntelliJ IDEA, building the project (Build → Build Project) triggers the restart</strong>.</p>
+<p>In general, <strong>automatic restart works very well when used with LiveReload</strong>. See the <a href="#LiveReload">LiveReload</a> section for details. If you use JRebel, automatic restarts are disabled in favor of dynamic class reloading. Other devtools features (such as LiveReload and property overrides) can still be used.</p>
+<blockquote>
+<p>Note:</p>
+<ul>
+<li><input disabled type="checkbox"> DevTools relies on the application context’s shutdown hook to close it during a restart. It does not work correctly if you have disabled the shutdown hook (<code>SpringApplication.setRegisterShutdownHook(false)</code>).</li>
+</ul>
+</blockquote>
+<p><strong>To enable/disable automatic restart</strong>, you could use the property <code>spring.devtools.restart.enabled</code>:</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># inside application.properties</span><br><span class="line">spring.devtools.restart.enabled = false 	# disables restart. Set to true to enable it</span><br></pre></td></tr></table></figure>
+
+<p><strong>To enable/disable logging of auto-configuration changes</strong>, you need to use <code>pring.devtools.restart.log-condition-evaluation-delta</code>. <strong>By default, each time your application restarts, a report showing the condition evaluation delta is logged</strong>. The report shows the changes to your application’s auto-configuration as you make changes such as adding or removing beans and setting configuration properties.</p>
+<p>To disable the logging of the report, set the following property:</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># inside application.properties</span><br><span class="line">spring.devtools.restart.log-condition-evaluation-delta = false 		# set to true to enable it</span><br></pre></td></tr></table></figure>
+
+<p>Doing so still <strong>initializes the restart classloader</strong>, but it does not watch for file changes.</p>
+<p>If you need to <strong>completely disable restart support</strong> (for example, because it does not work with a specific library), you need to set the <strong><code>spring.devtools.restart.enabled</code> System property to <code>false</code> before calling <code>SpringApplication.run(…)</code></strong>, as shown in the following example: </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">	System.setProperty(<span class="string">"spring.devtools.restart.enabled"</span>, <span class="string">"false"</span>);</span><br><span class="line">	SpringApplication.run(MyApp<span class="class">.<span class="keyword">class</span>, <span class="title">args</span>)</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>To trigger a restart with a Trigger File</strong>, you need to set the property <code>spring.devtools.restart.trigger-file</code>. This is useful if automatic restarts may not be desirable on every file change and sometimes can slower down development time due to frequent restarts. To solve this problem, you can use a trigger file. <strong>Spring boot will keep monitoring that file and once it will detect any modification in that file, it will restart the server and reload all your previous changes</strong>.</p>
+<p>To use a trigger file, <strong>set the <code>spring.devtools.restart.trigger-file</code> property to the name (excluding<br>any path) of your trigger file</strong>. The trigger file <strong>must appear somewhere on your classpath</strong>.</p>
+<p>For example, if you have a project with the following structure:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">src</span><br><span class="line">+- main</span><br><span class="line">	+- resources</span><br><span class="line">		+- .reloadtrigger</span><br></pre></td></tr></table></figure>
+
+<p>Then your trigger-file property would be:</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">spring.devtools.restart.trigger-file=.reloadtrigger</span><br></pre></td></tr></table></figure>
+
+<p>Restarts <strong>will now only happen when the <code>src/main/resources/.reloadtrigger</code> is updated</strong>.</p>
+<p>Some IDEs have features that save you from needing to update your trigger file manually. For IntelliJ, you can follow the instructions in <a href="https://www.jetbrains.com/help/idea/spring-boot.html#configure-application-update-policies-with-devtools" target="_blank" rel="noopener">their documentation</a>.</p>
+<blockquote>
+<p>Note:</p>
+<ul>
+<li><input disabled type="checkbox"> You might want to <strong>set <code>spring.devtools.restart.trigger-file</code> as a global setting</strong>, so that all your projects behave in the same way.</li>
+</ul>
+</blockquote>
+<h3 id="Auto-Reload-vs-Auto-Restart"><a href="#Auto-Reload-vs-Auto-Restart" class="headerlink" title="Auto-Reload vs Auto-Restart"></a>Auto-Reload vs Auto-Restart</h3><p><strong>Auto-reload</strong> (or auto-refresh) refer to <strong>UI reload at browser to see static content changes</strong>. <strong>Auto-restart</strong> is referred to <strong>reloading the server side code and configurations</strong> followed by server restart.</p>
+<p>The <strong>restart technology provided by Spring Boot works by using two classloaders</strong>. Classes that do not change (for example, those from third-party jars) are loaded into a base classloader. Classes that you are actively developing are loaded into a restart classloader. When the application is restarted, <strong>the restart classloader is thrown away and a new one is created</strong>. This approach means that application <strong>restarts are typically much faster than “cold starts”</strong>, since the base classloader is already available and populated.</p>
+<p>If you find that** restarts are not quick enough for your applications or you encounter classloading issues<strong>, you **could consider reloading</strong> technologies such as JRebel from ZeroTurnaround. These work by rewriting classes as they are loaded to make them more amenable to reloading.</p>
+<h3 id="LiveReload"><a href="#LiveReload" class="headerlink" title="LiveReload"></a>LiveReload</h3>
       
     </div>
     <footer class="article-footer">
