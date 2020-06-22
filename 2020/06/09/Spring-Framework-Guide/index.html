@@ -10,16 +10,16 @@
   <meta name="description" content="IMPORTANT:Much of the content here is a personal summary&#x2F;abbrieviation of contents on the Offical Spring Framework Documentation. For more complete information, please refer to the offical site.  Thi">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Spring Framework Guide">
-<meta property="og:url" content="http://yoursite.com/2020/06/09/Spring-Framework-Guide/index.html">
+<meta property="og:url" content="https://jasonyux.github.io/2020/06/09/Spring-Framework-Guide/index.html">
 <meta property="og:site_name" content="From a Beginner to a Disaster">
 <meta property="og:description" content="IMPORTANT:Much of the content here is a personal summary&#x2F;abbrieviation of contents on the Offical Spring Framework Documentation. For more complete information, please refer to the offical site.  Thi">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://yoursite.com/.com//06/09/Spring-Framework-Guide/SpringIoC.png">
+<meta property="og:image" content="https://jasonyux.github.io/2020/06/09/Spring-Framework-Guide/SpringIoC.png">
 <meta property="article:published_time" content="2020-06-09T07:25:30.000Z">
-<meta property="article:modified_time" content="2020-06-13T12:11:06.096Z">
+<meta property="article:modified_time" content="2020-06-22T08:34:25.283Z">
 <meta property="article:author" content="Xiao Yu">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://yoursite.com/.com//06/09/Spring-Framework-Guide/SpringIoC.png">
+<meta name="twitter:image" content="https://jasonyux.github.io/2020/06/09/Spring-Framework-Guide/SpringIoC.png">
   
     <link rel="alternate" href="/atom.xml" title="From a Beginner to a Disaster" type="application/atom+xml">
   
@@ -66,7 +66,7 @@
         <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://jasonyux.github.io"></form>
       </div>
     </div>
   </div>
@@ -97,7 +97,7 @@
         <hr>
 <p><strong>IMPORTANT</strong>:<br>Much of the content here is a personal summary/abbrieviation of contents on the <a href="https://docs.spring.io/spring/docs/5.3.0-SNAPSHOT/spring-framework-reference/index.html" target="_blank" rel="noopener">Offical Spring Framework Documentation</a>. For more complete information, please refer to the offical site.</p>
 <hr>
-<p>This is a <strong>Guide</strong>, since it is mostly <strong>conceptual</strong> and does not include much actual coding (except for examples illustrating those concepts). For more practical uses/examples, please refer to the <a href="https://jasonyux.github.io/2020/06/09/SpringBoot-Manual/" target="_blank" rel="noopener">Spring Boot Manual</a> or the <a href>Spring Cloud Manual</a>.</p>
+<p>This is a <strong>Guide</strong>, since it is mostly <strong>conceptual</strong> and does not include much actual coding (except for examples illustrating those concepts). For more practical uses/examples, please refer to the <a href="https://jasonyux.github.io/2020/06/09/SpringBoot-Manual/">Spring Boot Manual</a> or the <a href="">Spring Cloud Manual</a>.</p>
 <h2 id="Spring-Intro"><a href="#Spring-Intro" class="headerlink" title="Spring Intro"></a>Spring Intro</h2><p>The term “Spring” means different things in different contexts. It can be used to refer to the Spring Framework project itself, which is where it all started. Over time, other Spring projects have been built on top of the Spring Framework. Most often, when people say “Spring”, they mean the entire family of projects. This reference documentation focuses on the foundation: the Spring Framework itself.</p>
 <p>When you learn about a framework, it’s important to know not only what it does but <strong>what principles it follows</strong>. Here are the guiding principles of the Spring Framework:</p>
 <ul>
@@ -153,6 +153,9 @@
 <li>returns a <code>boolean</code></li>
 </ul>
 </li>
+</ul>
+<a id="more"></a>
+<ul>
 <li><p><strong>POJO is an acronym for Plain Old Java Object</strong>. The term was coined by <a href="http://www.martinfowler.com/bliki/POJO.html" target="_blank" rel="noopener">Martin Fowler et. al.</a>, as a ‘fancy’ way to describe ordinary Java Objects that do not require a framework to use, nor need to be run in a application server environment.</p>
 </li>
 <li><p><strong>A Spring bean is basically an object managed by Spring</strong>. More specifically, it is an object that is instantiated, configured and otherwise managed by a Spring Framework container. Spring beans are defined in a Spring configuration file (or, more recently, by using annotations), instantiated by the Spring container, and then injected into your application.</p>
@@ -162,7 +165,8 @@
 <h3 id="IoC-Container-Overview"><a href="#IoC-Container-Overview" class="headerlink" title="IoC Container Overview"></a>IoC Container Overview</h3><p>The <code>org.springframework.context.ApplicationContext</code> interface represents the Spring IoC container and is responsible for <strong>instantiating, configuring, and assembling the beans</strong>. The container gets its instructions on <strong>what objects to instantiate, configure, and assemble by reading configuration metadata.</strong> </p>
 <p>The <strong>configuration metadata</strong> is represented in XML, <strong>Java annotations</strong>, or Java code.</p>
 <p>The following diagram shows a high-level view of how Spring works. Your application classes are combined with configuration metadata so that, after the ApplicationContext is created and initialized, you have a fully configured and executable system or application.</p>
-<p><img src="/.com//06/09/Spring-Framework-Guide/SpringIoC.png" alt="Picture from https://docs.spring.io/spring/docs/5.3.0-SNAPSHOT/spring-framework-reference/core.html#beans" title="Picture from https://docs.spring.io/spring/docs/5.3.0-SNAPSHOT/spring-framework-reference/core.html#beans"></p>
+<img src="/2020/06/09/Spring-Framework-Guide/SpringIoC.png" class="" title="Picture from https:&#x2F;&#x2F;docs.spring.io&#x2F;spring&#x2F;docs&#x2F;5.3.0-SNAPSHOT&#x2F;spring-framework-reference&#x2F;core.html#beans">
+
 <p>A Spring IoC container manages one or more beans. These beans are created with the configuration metadata that you supply to the container (e.g. via an XML file).</p>
 <p>Within the container itself, <strong>these bean definitions are represented as <code>BeanDefinition</code> objects, which contain (among other information) the following metadata:</strong></p>
 <ul>
@@ -232,7 +236,7 @@
 <blockquote>
 <p>Note:</p>
 <ul>
-<li><input disabled type="checkbox"> Unlike full <code>@Configuration</code>, lite <code>@Bean</code> methods (declared within classes that are not annotated with @Configuration) <strong>cannot declare inter-bean dependencies</strong>. Instead, they operate on their containing component’s internal state and, optionally, on arguments that they may declare. Such a <code>@Bean</code> method should therefore not invoke other <code>@Bean</code> methods. <strong>Each such method is literally only a factory method for a particular bean reference, without any special runtime semantics</strong>.</li>
+<li><input disabled="" type="checkbox"> Unlike full <code>@Configuration</code>, lite <code>@Bean</code> methods (declared within classes that are not annotated with @Configuration) <strong>cannot declare inter-bean dependencies</strong>. Instead, they operate on their containing component’s internal state and, optionally, on arguments that they may declare. Such a <code>@Bean</code> method should therefore not invoke other <code>@Bean</code> methods. <strong>Each such method is literally only a factory method for a particular bean reference, without any special runtime semantics</strong>.</li>
 </ul>
 </blockquote>
 <p>The <code>@Bean</code> and <code>@Configuration</code> annotations are discussed in depth in the following sections. <strong>First, however, we need to cover the various ways of creating a spring container</strong> using by Java-based configuration.</p>
@@ -516,7 +520,7 @@
 <blockquote>
 <p>Note:</p>
 <ul>
-<li><input disabled type="checkbox"> Note that both <code>@PostConstruct</code> and <code>@PreDestroy</code> annotations are part of Java EE. And since Java EE <strong>has been deprecated in Java 9 and removed in Java 11</strong> we have to add an additional dependency to use these annotations if you are using versions of Java beyond 11.</li>
+<li><input disabled="" type="checkbox"> Note that both <code>@PostConstruct</code> and <code>@PreDestroy</code> annotations are part of Java EE. And since Java EE <strong>has been deprecated in Java 9 and removed in Java 11</strong> we have to add an additional dependency to use these annotations if you are using versions of Java beyond 11.</li>
 </ul>
 </blockquote>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;javax.annotation&lt;&#x2F;groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;javax.annotation-api&lt;&#x2F;artifactId&gt;</span><br><span class="line">    &lt;version&gt;1.3.2&lt;&#x2F;version&gt;</span><br><span class="line">&lt;&#x2F;dependency&gt;</span><br></pre></td></tr></table></figure>
@@ -557,7 +561,7 @@
 <blockquote>
 <p>Note:</p>
 <ul>
-<li><input disabled type="checkbox"> Note that the regular <code>org.springframework.context.Lifecycle</code> interface is a plain contract for explicit start and stop notifications and <strong>does not imply auto-startup at context refresh time</strong>. For fine-grained control over auto-startup of a specific bean (including startup phases), consider implementing <code>org.springframework.context.SmartLifecycle</code> instead.</li>
+<li><input disabled="" type="checkbox"> Note that the regular <code>org.springframework.context.Lifecycle</code> interface is a plain contract for explicit start and stop notifications and <strong>does not imply auto-startup at context refresh time</strong>. For fine-grained control over auto-startup of a specific bean (including startup phases), consider implementing <code>org.springframework.context.SmartLifecycle</code> instead.</li>
 </ul>
 </blockquote>
 <h5 id="Order-of-Startup-and-Shutdown-with-Dependencies"><a href="#Order-of-Startup-and-Shutdown-with-Dependencies" class="headerlink" title="Order of Startup and Shutdown with Dependencies"></a>Order of Startup and Shutdown with Dependencies</h5><p>The order of startup and shutdown invocations can be important. If a “depends-on” relationship exists between any two objects, the dependent side starts after its dependency, and it stops before its dependency. However, sometimes you might not want this order of execution. In this case, you would need to use the <code>SmartLifeCycle</code> Interface:</p>
@@ -815,7 +819,7 @@
 <blockquote>
 <p>Note:</p>
 <ul>
-<li><input disabled type="checkbox"> By auto-proxying, we mean that, if Spring determines that <strong>a bean is advised by one or more aspects, it automatically generates a proxy for that bean to intercept method invocations and ensures that advice is executed as needed</strong>.</li>
+<li><input disabled="" type="checkbox"> By auto-proxying, we mean that, if Spring determines that <strong>a bean is advised by one or more aspects, it automatically generates a proxy for that bean to intercept method invocations and ensures that advice is executed as needed</strong>.</li>
 </ul>
 </blockquote>
 <h5 id="Declaring-an-Aspect"><a href="#Declaring-an-Aspect" class="headerlink" title="Declaring an Aspect"></a>Declaring an Aspect</h5><p>With <code>@AspectJ</code> support enabled, <strong>any bean defined in your application context with a class that is an <code>@AspectJ</code> aspect (has the <code>@Aspect</code> annotation) is automatically detected by Spring and used to configure Spring AOP</strong>. </p>
@@ -826,8 +830,8 @@
 <blockquote>
 <p>Note:</p>
 <ul>
-<li><input disabled type="checkbox"> You can register aspect classes as regular beans in your Spring XML configuration or autodetect them through classpath scanning — the same as any other Spring-managed bean. However, <strong>note that the <code>@Aspect</code>annotation is not sufficient for autodetection in the classpath</strong>. For that purpose, you need to <strong>add a separate <code>@Component</code> annotation</strong> (or, alternatively, a custom stereotype annotation that qualifies, as per the rules of Spring’s component scanner).</li>
-<li><input disabled type="checkbox"> In Spring AOP, <strong>aspects themselves cannot be the targets of advice from other aspects</strong>. The <code>@Aspect</code> annotation on a class marks it as an aspect and, hence, excludes it from auto-proxying.</li>
+<li><input disabled="" type="checkbox"> You can register aspect classes as regular beans in your Spring XML configuration or autodetect them through classpath scanning — the same as any other Spring-managed bean. However, <strong>note that the <code>@Aspect</code>annotation is not sufficient for autodetection in the classpath</strong>. For that purpose, you need to <strong>add a separate <code>@Component</code> annotation</strong> (or, alternatively, a custom stereotype annotation that qualifies, as per the rules of Spring’s component scanner).</li>
+<li><input disabled="" type="checkbox"> In Spring AOP, <strong>aspects themselves cannot be the targets of advice from other aspects</strong>. The <code>@Aspect</code> annotation on a class marks it as an aspect and, hence, excludes it from auto-proxying.</li>
 </ul>
 </blockquote>
 <h4 id="Declaring-a-Pointcut"><a href="#Declaring-a-Pointcut" class="headerlink" title="Declaring a Pointcut"></a>Declaring a Pointcut</h4><p>Pointcuts determine join points of interest and thus enable us to <strong>control when advice executes</strong>. Spring AOP <strong>only supports method execution join points for Spring beans</strong>, so you can think of a pointcut as matching the execution of methods on Spring beans.</p>
@@ -863,7 +867,7 @@
 <blockquote>
 <p>Note:</p>
 <ul>
-<li><input disabled type="checkbox"> Declaring type pattern means: <strong>Package or class</strong> (ex: <code>com.app.service.*</code> - applies to all classes in this package; <code>com.app.service.UserService</code> - applies only to UserService class; <code>*</code> - all)</li>
+<li><input disabled="" type="checkbox"> Declaring type pattern means: <strong>Package or class</strong> (ex: <code>com.app.service.*</code> - applies to all classes in this package; <code>com.app.service.UserService</code> - applies only to UserService class; <code>*</code> - all)</li>
 </ul>
 </blockquote>
 <h4 id="Combining-PointCut-Expressions"><a href="#Combining-PointCut-Expressions" class="headerlink" title="Combining PointCut Expressions"></a>Combining PointCut Expressions</h4><p>You can <strong>combine pointcut expressions</strong> by using <code>&amp;&amp;</code>, <code>||</code> and <code>!</code>. You can also <strong>refer to pointcut expressions by name(method name)</strong>. The following example shows three pointcut expressions:</p>
@@ -990,7 +994,7 @@
 <blockquote>
 <p>Note:</p>
 <ul>
-<li><input disabled type="checkbox"> When two pieces of advice <strong>defined in different aspects both need to run at the same join point</strong>, unless you specify otherwise, the order of execution is undefined.</li>
+<li><input disabled="" type="checkbox"> When two pieces of advice <strong>defined in different aspects both need to run at the same join point</strong>, unless you specify otherwise, the order of execution is undefined.</li>
 </ul>
 </blockquote>
 <h4 id="Using-Introductions-DeclareParents"><a href="#Using-Introductions-DeclareParents" class="headerlink" title="Using Introductions/@DeclareParents"></a>Using Introductions/@DeclareParents</h4><p>Introductions (known as inter-type declarations in AspectJ) enable an aspect to declare that advised objects implement a given interface, and to provide an implementation of that interface on behalf of those objects.</p>
@@ -1032,7 +1036,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/06/09/Spring-Framework-Guide/" data-id="ckb7qqory0001xworgz0y9qwv" class="article-share-link">Share</a>
+      <a data-url="https://jasonyux.github.io/2020/06/09/Spring-Framework-Guide/" data-id="ckbqgsgqi00070kordyudbvvm" class="article-share-link">Share</a>
       
       
     </footer>

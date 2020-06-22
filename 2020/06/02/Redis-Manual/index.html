@@ -10,18 +10,18 @@
   <meta name="description" content="IMPORTANT:Much of the content here is a personal summary&#x2F;abbrieviation of contents on the Offical Redis Guide. For more complete information, please refer to the offical site.  Redis IntroRedis is an">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Redis Manual">
-<meta property="og:url" content="http://yoursite.com/2020/06/02/Redis-Manual/index.html">
+<meta property="og:url" content="https://jasonyux.github.io/2020/06/02/Redis-Manual/index.html">
 <meta property="og:site_name" content="From a Beginner to a Disaster">
 <meta property="og:description" content="IMPORTANT:Much of the content here is a personal summary&#x2F;abbrieviation of contents on the Offical Redis Guide. For more complete information, please refer to the offical site.  Redis IntroRedis is an">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://yoursite.com/.com//06/02/Redis-Manual/master-slave-chain.png">
-<meta property="og:image" content="http://yoursite.com/.com//06/02/Redis-Manual/market-listing.png">
-<meta property="og:image" content="http://yoursite.com/.com//06/02/Redis-Manual/fair-semaphore.png">
+<meta property="og:image" content="https://jasonyux.github.io/2020/06/02/Redis-Manual/master-slave-chain.png">
+<meta property="og:image" content="https://jasonyux.github.io/2020/06/02/Redis-Manual/market-listing.png">
+<meta property="og:image" content="https://jasonyux.github.io/2020/06/02/Redis-Manual/fair-semaphore.png">
 <meta property="article:published_time" content="2020-06-02T01:10:15.000Z">
-<meta property="article:modified_time" content="2020-06-08T08:06:03.622Z">
+<meta property="article:modified_time" content="2020-06-22T08:33:20.981Z">
 <meta property="article:author" content="Xiao Yu">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://yoursite.com/.com//06/02/Redis-Manual/master-slave-chain.png">
+<meta name="twitter:image" content="https://jasonyux.github.io/2020/06/02/Redis-Manual/master-slave-chain.png">
   
     <link rel="alternate" href="/atom.xml" title="From a Beginner to a Disaster" type="application/atom+xml">
   
@@ -68,7 +68,7 @@
         <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://jasonyux.github.io"></form>
       </div>
     </div>
   </div>
@@ -142,7 +142,7 @@
 </tr>
 </tbody></table>
 <p>In the following sections, we will use the <code>redis cli</code> to pratice using redis commands and data structures.</p>
-<p><a name="String-Basics"></a></p>
+<p><a name='String-Basics'></a></p>
 <h2 id="Strings-in-Redis-Basics"><a href="#Strings-in-Redis-Basics" class="headerlink" title="Strings in Redis - Basics"></a><code>String</code>s in Redis - Basics</h2><p>The operations available to <code>STRING</code>s start with what’s available in other <code>key-value</code> stores. We can <code>GET</code>values, <code>SET</code> values, and <code>DEL</code> values. After you have installed and tested Redis, within <code>redis-cli</code> you can try to <code>SET</code>, <code>GET</code>, and <code>DEL</code> values in Redis. The basic meanings are shown below in the table:</p>
 <table>
 <thead>
@@ -164,16 +164,17 @@
 <td><strong>Deletes the key-value pair</strong> stored at the <strong>given key</strong> (works for all types)</td>
 </tr>
 </tbody></table>
+<a id="more"></a>
 <p>Example demonstrating each of the commands:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; set hello value</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; get hello</span><br><span class="line">&quot;value&quot;</span><br><span class="line">127.0.0.1:6379&gt; del hello</span><br><span class="line">(integer) 1</span><br><span class="line">127.0.0.1:6379&gt; get hello</span><br><span class="line">(nil)</span><br></pre></td></tr></table></figure>
 
 <blockquote>
 <p>Note:</p>
 <ul>
-<li><input disabled type="checkbox"> You see outputs such as <code>(integer) 1</code>, which usually represents execution success/true. <code>(nil)</code> represents execution failure, and <code>(integer) 0</code> also means failure but to the extent where the output means <code>false</code>, for example when a value (rather than the key) DNE.</li>
+<li><input disabled="" type="checkbox"> You see outputs such as <code>(integer) 1</code>, which usually represents execution success/true. <code>(nil)</code> represents execution failure, and <code>(integer) 0</code> also means failure but to the extent where the output means <code>false</code>, for example when a value (rather than the key) DNE.</li>
 </ul>
 </blockquote>
-<p><a name="List-Basics"></a></p>
+<p><a name='List-Basics'></a></p>
 <h2 id="Lists-in-Redis-Basics"><a href="#Lists-in-Redis-Basics" class="headerlink" title="Lists in Redis - Basics"></a><code>List</code>s in Redis - Basics</h2><p>The operations that can be performed on <code>LIST</code>s are typical of what we find in <code>LinkedList</code> data structures in almost any programming language. We can <code>push</code> items to the front and the back of the <code>LIST</code> with <code>LPUSH</code>/<code>RPUSH</code>; we can <code>pop</code> items from the front and back of the list with <code>LPOP</code>/<code>RPOP</code>; we can <code>fetch</code> an item at a given position with <code>LINDEX</code>; and we can <code>fetch</code> a range of items with <code>LRANGE</code>. </p>
 <table>
 <thead>
@@ -205,10 +206,10 @@
 <blockquote>
 <p>Note:</p>
 <ul>
-<li><input disabled type="checkbox"> See that <strong>duplicates in values</strong> are allowed. </li>
+<li><input disabled="" type="checkbox"> See that <strong>duplicates in values</strong> are allowed. </li>
 </ul>
 </blockquote>
-<p><a name="Set-Basics"></a></p>
+<p><a name='Set-Basics'></a></p>
 <h2 id="Sets-in-Redis-Basics"><a href="#Sets-in-Redis-Basics" class="headerlink" title="Sets in Redis - Basics"></a><code>Set</code>s in Redis - Basics</h2><p>In Redis, <code>SET</code>s are similar to <code>LIST</code>s in that they’re a sequence of strings, but unlike <code>LIST</code>s, Redis <code>SET</code>s use a <strong>hash table</strong> to keep <strong>all values/strings unique</strong>. </p>
 <p>Because Redis <code>SET</code>s are <strong>unordered</strong>, we <strong>can’t <code>push</code> and <code>pop</code> items</strong> from the ends like we did with <code>LIST</code>s. Instead, we <strong><code>add</code> and <code>remove</code> items by value</strong> with the <code>SADD</code> and <code>SREM</code> commands. We can also find out whether an item is in the <code>SET</code> quickly with <code>SISMEMBER</code>, or <code>fetch</code> the entire set with <code>SMEMBERS</code> (this can be slow for large SETs, so be careful)</p>
 <table>
@@ -238,7 +239,7 @@
 <p>For example:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; sadd test-set item1</span><br><span class="line">(integer) 1</span><br><span class="line">127.0.0.1:6379&gt; sadd test-set item2</span><br><span class="line">(integer) 1</span><br><span class="line">127.0.0.1:6379&gt; sadd test-set item1</span><br><span class="line">(integer) 0</span><br><span class="line">127.0.0.1:6379&gt; smembers test-set</span><br><span class="line">1) &quot;item2&quot;</span><br><span class="line">2) &quot;item1&quot;</span><br><span class="line">127.0.0.1:6379&gt; sismember test-set item1</span><br><span class="line">(integer) 1</span><br><span class="line">127.0.0.1:6379&gt; sismember test-set item3</span><br><span class="line">(integer) 0</span><br><span class="line">127.0.0.1:6379&gt; srem test-set item1</span><br><span class="line">(integer) 1</span><br><span class="line">127.0.0.1:6379&gt; srem test-set item1</span><br><span class="line">(integer) 0</span><br><span class="line">127.0.0.1:6379&gt; smembers test-set</span><br><span class="line">1) &quot;item2&quot;</span><br></pre></td></tr></table></figure>
 
-<p><a name="Hash-Basics"></a></p>
+<p><a name='Hash-Basics'></a></p>
 <h2 id="Hashes-in-Redis-Basics"><a href="#Hashes-in-Redis-Basics" class="headerlink" title="Hashes in Redis - Basics"></a><code>Hash</code>es in Redis - Basics</h2><p>Whereas <code>LIST</code>s and <code>SET</code>s in Redis hold sequences of items, Redis <code>HASH</code>es store a <strong>mapping of (distinct) keys to values</strong>. The values that can be stored in <code>HASH</code>es are the same as what can be stored as normal <code>STRING</code>s: strings themselves, or if a value can be interpreted as a number, that value can be incremented or decremented.</p>
 <p>In a lot of ways, we can think of <strong><code>HASH</code>es in Redis as miniature versions of Redis itself</strong>. </p>
 <table>
@@ -268,7 +269,7 @@
 <p>For example:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; hset test-hasht key1 value1</span><br><span class="line">(integer) 1</span><br><span class="line">127.0.0.1:6379&gt; hset test-hasht key2 value2</span><br><span class="line">(integer) 1</span><br><span class="line">127.0.0.1:6379&gt; hset test-hasht key1 value2</span><br><span class="line">(integer) 0</span><br><span class="line">127.0.0.1:6379&gt; hgetall test-hasht</span><br><span class="line">1) &quot;key1&quot;</span><br><span class="line">2) &quot;value2&quot;</span><br><span class="line">3) &quot;key2&quot;</span><br><span class="line">4) &quot;value2&quot;</span><br><span class="line">127.0.0.1:6379&gt; hget test-hasht key1</span><br><span class="line">&quot;value2&quot;</span><br><span class="line">127.0.0.1:6379&gt; hdel test-hasht key2</span><br><span class="line">(integer) 1</span><br><span class="line">127.0.0.1:6379&gt; hgetall test-hasht</span><br><span class="line">1) &quot;key1&quot;</span><br><span class="line">2) &quot;value2&quot;</span><br></pre></td></tr></table></figure>
 
-<p><a name="ZSet-Basics"></a></p>
+<p><a name='ZSet-Basics'></a></p>
 <h2 id="Sorted-sets-Zsets-in-Redis-Basics"><a href="#Sorted-sets-Zsets-in-Redis-Basics" class="headerlink" title="Sorted sets/Zsets in Redis - Basics"></a><code>Sorted set</code>s/<code>Zset</code>s in Redis - Basics</h2><p>Like Redis <code>HASH</code>es, <code>ZSET</code>s also hold <strong>pairs of key and value</strong>. The <strong>keys (called <code>member</code>s) are unique</strong>, and the <strong>values (called <code>score</code>s) are limited to floating-point numbers</strong>. <code>ZSET</code>s have the unique property in Redis of being able to be accessed by member (like a HASH), but <strong>items can also be accessed by the sorted order and values of the <code>score</code>s</strong>. </p>
 <table>
 <thead>
@@ -314,7 +315,7 @@
 <blockquote>
 <p>Note:</p>
 <ul>
-<li><input disabled type="checkbox"> Here you would also need to remember the port name your <code>redis</code> container uses. By default, it should be <code>6379</code>. You can see the port once you run your <code>redis</code> container with <code>docker exec -it test-redis redis-cli</code>, and it will show, for example: <code>127.0.0.1:6379&gt;</code>.</li>
+<li><input disabled="" type="checkbox"> Here you would also need to remember the port name your <code>redis</code> container uses. By default, it should be <code>6379</code>. You can see the port once you run your <code>redis</code> container with <code>docker exec -it test-redis redis-cli</code>, and it will show, for example: <code>127.0.0.1:6379&gt;</code>.</li>
 </ul>
 </blockquote>
 </li>
@@ -342,7 +343,7 @@
 <blockquote>
 <p>Note:</p>
 <ul>
-<li><input disabled type="checkbox"> A problem with this is that if you remove the container, you will need to execute to re-install this library again. A solution could be to build your own Dockerfile and create your own image with:<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">FROM python:latest</span><br><span class="line">WORKDIR &#x2F;app</span><br><span class="line">ADD . &#x2F;app</span><br><span class="line">RUN pip install --trusted-host pypi.python.org Flask Redis</span><br><span class="line">EXPOSE 80 </span><br></pre></td></tr></table></figure>
+<li><input disabled="" type="checkbox"> A problem with this is that if you remove the container, you will need to execute to re-install this library again. A solution could be to build your own Dockerfile and create your own image with:<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">FROM python:latest</span><br><span class="line">WORKDIR &#x2F;app</span><br><span class="line">ADD . &#x2F;app</span><br><span class="line">RUN pip install --trusted-host pypi.python.org Flask Redis</span><br><span class="line">EXPOSE 80 </span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 </blockquote>
@@ -416,8 +417,8 @@
 <blockquote>
 <p>Note:</p>
 <ul>
-<li><input disabled type="checkbox"> The <code>cleanup</code> function written above may be run as a <strong>daemon process</strong>, to be run periodically via a cron job, or even to be run during every execution. As a general rule, if the function includes a <code>while not QUIT</code>: line, it’s <strong>supposed to be run as a daemon</strong>, though it could probably be modified to be run periodically, depending on its purpose.</li>
-<li><input disabled type="checkbox"> You also notice that we called three functions with a syntax similar to <code>conn.delete(*vtokens)</code>. Basically, we’re <strong>passing a sequence of arguments to the underlying function without previously unpacking</strong> the arguments. For further details on the semantics of how this works, you can visit the Python language tutorial website by visiting this short url: <a href="https://mng.bz/8I7W" target="_blank" rel="noopener">https://mng.bz/8I7W</a>.</li>
+<li><input disabled="" type="checkbox"> The <code>cleanup</code> function written above may be run as a <strong>daemon process</strong>, to be run periodically via a cron job, or even to be run during every execution. As a general rule, if the function includes a <code>while not QUIT</code>: line, it’s <strong>supposed to be run as a daemon</strong>, though it could probably be modified to be run periodically, depending on its purpose.</li>
+<li><input disabled="" type="checkbox"> You also notice that we called three functions with a syntax similar to <code>conn.delete(*vtokens)</code>. Basically, we’re <strong>passing a sequence of arguments to the underlying function without previously unpacking</strong> the arguments. For further details on the semantics of how this works, you can visit the Python language tutorial website by visiting this short url: <a href="https://mng.bz/8I7W" target="_blank" rel="noopener">https://mng.bz/8I7W</a>.</li>
 </ul>
 </blockquote>
 <h2 id="Storing-Shopping-Carts-Info"><a href="#Storing-Shopping-Carts-Info" class="headerlink" title="Storing Shopping Carts Info"></a>Storing Shopping Carts Info</h2><p>Because we’ve had such good luck with session cookies and recently viewed items, we’ll push our <strong>shopping cart information</strong> into Redis. Since we’re already keeping user session cookies in Redis (along with recently viewed items), we can use the <strong>same cookie ID for referencing the shopping cart</strong>.</p>
@@ -483,7 +484,7 @@
 <blockquote>
 <p>Note:</p>
 <ul>
-<li><input disabled type="checkbox"> If you try to <strong>increment or decrement a key that doesn’t exist or is an empty string</strong>, Redis will operate as though that <strong>key’s value were zero</strong>. </li>
+<li><input disabled="" type="checkbox"> If you try to <strong>increment or decrement a key that doesn’t exist or is an empty string</strong>, Redis will operate as though that <strong>key’s value were zero</strong>. </li>
 </ul>
 </blockquote>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> redis; conn=redis.Redis(host=<span class="string">'cust-redis'</span>,port=<span class="number">6379</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>conn.get(<span class="string">'new-key'</span>)  </span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>conn.incr(<span class="string">'new-key'</span>)  <span class="comment"># incrementing a non-existant key by 1</span></span><br><span class="line"><span class="number">1</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>conn.incr(<span class="string">'new-key-2'</span>)  <span class="comment"># incrementing a non-existant key by </span></span><br><span class="line"><span class="number">1</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>conn.get(<span class="string">'new-key-2'</span>)</span><br><span class="line"><span class="string">b'1'</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>conn.incr(<span class="string">'new-key'</span>,<span class="number">10</span>)  <span class="comment"># python implemented to have the option of passing in a value</span></span><br><span class="line"><span class="number">11</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>conn.incrby(<span class="string">'new-key'</span>,<span class="number">10</span>)</span><br><span class="line"><span class="number">21</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>conn.decr(<span class="string">'new-key'</span>,<span class="number">10</span>)</span><br><span class="line"><span class="number">11</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>conn.decrby(<span class="string">'new-key'</span>,<span class="number">10</span>)</span><br><span class="line"><span class="number">1</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>conn.set(<span class="string">'new-key'</span>,<span class="number">10</span>)</span><br><span class="line"><span class="literal">True</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>conn.get(<span class="string">'new-key'</span>)</span><br><span class="line"><span class="string">b'10'</span></span><br></pre></td></tr></table></figure>
@@ -491,7 +492,7 @@
 <blockquote>
 <p>Note:</p>
 <ul>
-<li><input disabled type="checkbox"> You see those <code>b</code> in front of the result string because these data are <strong>byte literal</strong>s instead of <strong>String</strong> objects. Therefore, to <strong>get rid of the <code>b</code></strong>, you can <strong>add the method <code>decode(&#39;utf8&#39;)</code> to the end</strong>.</li>
+<li><input disabled="" type="checkbox"> You see those <code>b</code> in front of the result string because these data are <strong>byte literal</strong>s instead of <strong>String</strong> objects. Therefore, to <strong>get rid of the <code>b</code></strong>, you can <strong>add the method <code>decode(&#39;utf8&#39;)</code> to the end</strong>.</li>
 </ul>
 </blockquote>
 <p>Redis additionally offers methods for <strong>reading and writing parts of byte string values</strong> (integer and float values can also be accessed as though they’re byte strings, though that use is somewhat uncommon).</p>
@@ -672,7 +673,7 @@
 <blockquote>
 <p>Note:</p>
 <ul>
-<li><input disabled type="checkbox"> The <code>HMGET</code>/<code>HMSET</code> commands are similar to their single-argument versions (<code>HSET</code>/<code>HGET</code>), only differing in that they <strong>take a list or dictionary for arguments</strong> instead of the single entries.</li>
+<li><input disabled="" type="checkbox"> The <code>HMGET</code>/<code>HMSET</code> commands are similar to their single-argument versions (<code>HSET</code>/<code>HGET</code>), only differing in that they <strong>take a list or dictionary for arguments</strong> instead of the single entries.</li>
 </ul>
 </blockquote>
 <p>With the availability of <code>HGETALL</code>, it may not seem as though <code>HKEYS</code> and <code>HVALUES</code> would be that useful, but when you expect your values to be large, you can fetch the keys, and then get the values one by one to keep from blocking other requests.</p>
@@ -836,8 +837,8 @@
 <blockquote>
 <p>Note:</p>
 <ul>
-<li><input disabled type="checkbox"> But in the case of clients that have subscribed, <strong>if the client is disconnected and a message is sent before it can reconnect</strong>, the client will never see the message. When you’re relying on receiving messages over a channel, the semantics of <code>PUBLISH</code>/<code>SUBSCRIBE</code>in Redis may let you down.</li>
-<li><input disabled type="checkbox"> However, there are different methods to handle reliable message delivery (you will see in a later section), which <strong>works in the face of network disconnections</strong>, and which won’t cause Redis memory to grow (even in older versions of Redis) unless you want it to.</li>
+<li><input disabled="" type="checkbox"> But in the case of clients that have subscribed, <strong>if the client is disconnected and a message is sent before it can reconnect</strong>, the client will never see the message. When you’re relying on receiving messages over a channel, the semantics of <code>PUBLISH</code>/<code>SUBSCRIBE</code>in Redis may let you down.</li>
+<li><input disabled="" type="checkbox"> However, there are different methods to handle reliable message delivery (you will see in a later section), which <strong>works in the face of network disconnections</strong>, and which won’t cause Redis memory to grow (even in older versions of Redis) unless you want it to.</li>
 </ul>
 </blockquote>
 <h2 id="Operations-in-Redis-Sorting"><a href="#Operations-in-Redis-Sorting" class="headerlink" title="Operations in Redis - Sorting"></a>Operations in Redis - Sorting</h2><p>Sorting in Redis is similar to sorting in other languages: we want to <strong>take a sequence of items and order them according to some comparison between elements</strong>. <code>SORT</code> allows us to sort <code>LIST</code>s, <code>SET</code>s, and <code>ZSET</code>s according to data in the <code>LIST</code>/<code>SET</code>/<code>ZSET</code> data stored in <code>STRING</code> keys, or even data stored in <code>HASH</code>es. If you’re coming from a relational database background, <strong>you can think of <code>SORT</code> as like the <code>order by</code> clause in a SQL statement that can reference other rows and tables</strong>.</p>
@@ -926,8 +927,8 @@
 <blockquote>
 <p>Note:</p>
 <ul>
-<li><input disabled type="checkbox"> There are two ways to do the above configuration for <code>redis</code>. One is to use the <code>config set &lt;value&gt;</code> command. The other is to change the <code>redis.conf</code> file, which should be under <code>/usr/local/etc/redis/redis.conf</code>.</li>
-<li><input disabled type="checkbox"> For <code>docker</code> users, if that file does not exist, you might need to manually create one and mount that directory.</li>
+<li><input disabled="" type="checkbox"> There are two ways to do the above configuration for <code>redis</code>. One is to use the <code>config set &lt;value&gt;</code> command. The other is to change the <code>redis.conf</code> file, which should be under <code>/usr/local/etc/redis/redis.conf</code>.</li>
+<li><input disabled="" type="checkbox"> For <code>docker</code> users, if that file does not exist, you might need to manually create one and mount that directory.</li>
 </ul>
 </blockquote>
 <p>However, as mentioned before, if a system crashes while you are doing a <code>snapshot</code>, data will be lost. Then the question becomes how to <strong>recover it</strong>. Suppose you are processing log files, and the system crashes before you are diong a dump. Then, in order to recover from it, you need to find a way to first know what has been lost, in other words, you need to somehow <strong>track your progress:</strong></p>
@@ -1021,7 +1022,7 @@
 <blockquote>
 <p>Note:</p>
 <ul>
-<li><input disabled type="checkbox"> Just to make sure that we’re all on the same page (some users forget this the first time they try  using <code>slave</code>s): <strong>when a <code>slave</code> initially connects to a <code>master</code>, any data that had been in memory will be lost, to be replaced by the data coming from the <code>master</code>.</strong></li>
+<li><input disabled="" type="checkbox"> Just to make sure that we’re all on the same page (some users forget this the first time they try  using <code>slave</code>s): <strong>when a <code>slave</code> initially connects to a <code>master</code>, any data that had been in memory will be lost, to be replaced by the data coming from the <code>master</code>.</strong></li>
 </ul>
 </blockquote>
 <p>But what happens when you have more than one <code>slave</code>? When another <code>slave</code> connects to an existing master, sometimes it can reuse an existing dump file (if there is). In general, <strong>only one of the two scenario will happen</strong>:</p>
@@ -1043,7 +1044,8 @@
 </tbody></table>
 <h3 id="Master-Slave-Chain"><a href="#Master-Slave-Chain" class="headerlink" title="Master/Slave Chain"></a><code>Master</code>/<code>Slave</code> Chain</h3><p>Some developers have found that when they need to <strong>replicate to more than a handful of <code>slave</code>s</strong>, some networks are unable to keep up — especially when replication is being performed over the internet or between data centers. Because there’s nothing particularly special about being a <code>master</code> or a <code>slave</code> in Redis, <strong><code>slave</code>s can have their own <code>slave</code>s, resulting in <code>master</code>/<code>slave</code> chaining</strong>.</p>
 <p>In general, <strong>when read load significantly outweighs write load, and when the number of reads pushes well beyond what a single Redis server can handle</strong>, it’s common to keep <strong>adding <code>slave</code>s to help deal with the load</strong>. As load continues to increase, we can run into situations where the single <code>master</code> can’t write to all of its <code>slave</code>s fast enough, or is overloaded with <code>slave</code>s reconnecting and resyncing. To alleviate such issues, we may want to set up a layer of intermediate Redis <code>master</code>/<code>slave</code> nodes:</p>
-<p><img src="/.com//06/02/Redis-Manual/master-slave-chain.png" alt="Picture from https://redislabs.com/ebook/part-2-core-concepts/chapter-4-keeping-data-safe-and-ensuring-performance/4-2-replication/4-2-3-masterslave-chains/" title="Picture from https://redislabs.com/ebook/part-2-core-concepts/chapter-4-keeping-data-safe-and-ensuring-performance/4-2-replication/4-2-3-masterslave-chains/"></p>
+<img src="/2020/06/02/Redis-Manual/master-slave-chain.png" class="" title="Picture from https:&#x2F;&#x2F;redislabs.com&#x2F;ebook&#x2F;part-2-core-concepts&#x2F;chapter-4-keeping-data-safe-and-ensuring-performance&#x2F;4-2-replication&#x2F;4-2-3-masterslave-chains&#x2F;">
+
 <h3 id="Verifying-Disk-Writes"><a href="#Verifying-Disk-Writes" class="headerlink" title="Verifying Disk Writes"></a>Verifying Disk Writes</h3><p>Verifying that the <strong>data we wrote to the <code>master</code> made it to the <code>slave</code> is easy</strong>: we merely need to write a unique dummy value after our important data, and then check for it on the slave. <strong>But verifying that the data made it to disk is more difficult</strong>. If we wait at least one second, we know that our data made it to disk. But if we’re careful, we may be able to <strong>wait less time by checking the output of <code>INFO</code> for the value of <code>aof_pending_bio_fsync</code></strong>, which will be <strong><code>0</code> if all data that the server knows about has been written to disk</strong>.</p>
 <p>Now, if we know this, we could write a program to automate the check for us:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">def wait_for_sync(mconn, sconn):</span><br><span class="line">   identifier &#x3D; str(uuid.uuid4())</span><br><span class="line"></span><br><span class="line">   time &#x3D; time.time()</span><br><span class="line">   mconn.zadd(&#39;sync:wait&#39;, identifier, time)  # Add a token to the master to verify slave data later</span><br><span class="line"></span><br><span class="line">   while not sconn.INFO()[&#39;master_link_status&#39;] !&#x3D; &#39;up&#39;:  # Wait for the slave to sync (if necessary).</span><br><span class="line"></span><br><span class="line">      time.sleep(.001)</span><br><span class="line"></span><br><span class="line">   while sconn.zscore(&#39;sync:wait&#39;, identifier) !&#x3D; time:  # Wait for the slave to receive the data change.</span><br><span class="line"></span><br><span class="line">      time.sleep(.001)</span><br><span class="line"></span><br><span class="line">   deadline &#x3D; time.time() + 1.01</span><br><span class="line"></span><br><span class="line">   while time.time() &lt; deadline:  # Loops up to one second. </span><br><span class="line">			                      # After a second, the AOF will be completed anyway</span><br><span class="line"></span><br><span class="line">      if sconn.INFO()[&#39;aof_pending_bio_fsync&#39;] &#x3D;&#x3D; 0:  # Check to see if the data is known to be on disk.</span><br><span class="line">         break</span><br><span class="line"></span><br><span class="line">      time.sleep(.001)</span><br><span class="line"></span><br><span class="line">   mconn.zrem(&#39;sync:wait&#39;, identifier)</span><br><span class="line">   mconn.zremrangebyscore(&#39;sync:wait&#39;, 0, time.time()-900)  # Clean up our status by </span><br><span class="line">															# cleaning out older entries that may have been left there</span><br></pre></td></tr></table></figure>
@@ -1063,7 +1065,7 @@
 <blockquote>
 <p>Note:</p>
 <ul>
-<li><input disabled type="checkbox"> If we <strong>cannot access machine A, then usually we cannot access and correct the <code>AOF</code></strong>. However, if we could, then we could simply use the <strong>correct <code>AOF</code> file we just fixed</strong> in the last section to become the <code>AOF</code> file for Machine C. Then, we set machine B to be the slave of machine C, and we finish.</li>
+<li><input disabled="" type="checkbox"> If we <strong>cannot access machine A, then usually we cannot access and correct the <code>AOF</code></strong>. However, if we could, then we could simply use the <strong>correct <code>AOF</code> file we just fixed</strong> in the last section to become the <code>AOF</code> file for Machine C. Then, we set machine B to be the slave of machine C, and we finish.</li>
 </ul>
 </blockquote>
 <ol>
@@ -1083,7 +1085,8 @@
 <p>Consider the example of a Fake Game Company has seen major growth in their webbased RPG that’s played on YouTwitFace, a fictional social network. Because it pays attention to the needs and desires of its community, it has determined that the <strong>players need the ability to buy and sell items in a marketplace.</strong> It’s our job to design and <strong>build a marketplace</strong> that can scale to the needs of the community.</p>
 <h3 id="Posting-Items-in-a-Marketplace"><a href="#Posting-Items-in-a-Marketplace" class="headerlink" title="Posting Items in a Marketplace"></a>Posting Items in a Marketplace</h3><p>Our requirements for the market are simple: <strong>a user can list an item for a given price</strong>, and when another user purchases the item, the seller receives the money. We’ll also say that the part of the market we’ll be worrying about only needs to be ordered by selling price. In a later chapter, we’ll cover some topics for handling other orders.</p>
 <p>Our basic marketplace that includes an <strong>ItemA being sold by user 4 for 35 e-dollars</strong>. To include enough information to sell a given item in the market, we’ll <strong>concatenate the item ID for the item with the user ID of the seller and use that as a member of a market ZSET</strong>, with the <strong>score being the item’s selling price.</strong> By including all of this information together, we greatly simplify our data structures and what we need to look up, and get the benefit of being able to easily paginate through a presorted market.</p>
-<p><img src="/.com//06/02/Redis-Manual/market-listing.png" alt="Picture from https://redislabs.com/ebook/part-2-core-concepts/chapter-4-keeping-data-safe-and-ensuring-performance/4-4-redis-transactions/4-4-1-defining-users-and-their-inventory/" title="Picture from https://redislabs.com/ebook/part-2-core-concepts/chapter-4-keeping-data-safe-and-ensuring-performance/4-4-redis-transactions/4-4-1-defining-users-and-their-inventory/"></p>
+<img src="/2020/06/02/Redis-Manual/market-listing.png" class="" title="Picture from https:&#x2F;&#x2F;redislabs.com&#x2F;ebook&#x2F;part-2-core-concepts&#x2F;chapter-4-keeping-data-safe-and-ensuring-performance&#x2F;4-4-redis-transactions&#x2F;4-4-1-defining-users-and-their-inventory&#x2F;">
+
 <p>Now, we need to deal with the code part.</p>
 <p>In the process of listing, we’ll use a Redis operation called <code>WATCH</code>, which we combine with <code>MULTI</code> and <code>EXEC</code>, and sometimes <code>UNWATCH</code> or <code>DISCARD</code>. When <strong>we’ve watched keys with <code>WATCH</code>, if at any time some other client replaces, updates, or deletes any keys that we’ve <code>WATCH</code>ed before we have performed the <code>EXEC</code> operation, our operations against Redis will fail with an error message when we try to <code>EXEC</code> (at which point we can retry or abort the operation)</strong>. By using <code>WATCH</code>, <code>MULTI</code>/<code>EXEC</code>, and <code>UNWATCH</code>/<code>DISCARD</code>, we can <strong>ensure that the data that we’re working with doesn’t change while we’re doing something important, which protects us from data corruption.</strong></p>
 <ul>
@@ -1094,7 +1097,7 @@
 <blockquote>
 <p>Note:</p>
 <ul>
-<li><input disabled type="checkbox"> While <code>UNWATCH</code> is obvious as it sounds, <strong><code>DISCARD</code> needs more explaination.</strong> In the same way that <code>UNWATCH</code> will let us reset our connection if sent after <code>WATCH</code> but <strong>before <code>MULTI</code></strong>, <strong><code>DISCARD</code> will also reset the connection if sent after <code>MULTI</code> but before <code>EXEC</code>.</strong> That is to say, if we’d <code>WATCH</code>ed a key or keys, fetched some data, and then started a transaction with <code>MULTI</code> followed by a group of commands, we could <strong>cancel the <code>WATCH</code> and clear out any queued commands with <code>DISCARD</code>.</strong> We don’t use <code>DISCARD</code> here, primarily because we know whether we want to perform a <code>MULTI</code>/<code>EXEC</code> or <code>UNWATCH</code>, so a <code>DISCARD</code> is unnecessary for our purposes.</li>
+<li><input disabled="" type="checkbox"> While <code>UNWATCH</code> is obvious as it sounds, <strong><code>DISCARD</code> needs more explaination.</strong> In the same way that <code>UNWATCH</code> will let us reset our connection if sent after <code>WATCH</code> but <strong>before <code>MULTI</code></strong>, <strong><code>DISCARD</code> will also reset the connection if sent after <code>MULTI</code> but before <code>EXEC</code>.</strong> That is to say, if we’d <code>WATCH</code>ed a key or keys, fetched some data, and then started a transaction with <code>MULTI</code> followed by a group of commands, we could <strong>cancel the <code>WATCH</code> and clear out any queued commands with <code>DISCARD</code>.</strong> We don’t use <code>DISCARD</code> here, primarily because we know whether we want to perform a <code>MULTI</code>/<code>EXEC</code> or <code>UNWATCH</code>, so a <code>DISCARD</code> is unnecessary for our purposes.</li>
 </ul>
 </blockquote>
 <p>Therefore, all we need to do for listing/posting those items would be to <strong>add the item to the market <code>ZSET</code>, while <code>WATCH</code>ing the seller’s inventory to make sure that the item is still available to be sold.</strong> </p>
@@ -1191,7 +1194,7 @@
 <blockquote>
 <p>Note:</p>
 <ul>
-<li><input disabled type="checkbox"> For simplicity, we performed lock on the entire <code>market</code> data, which also means that listing an item could be blocked. However, if we <strong>replace the market-level lock with one specific to the item to be bought or sold, we can reduce lock contention and increase performance.</strong></li>
+<li><input disabled="" type="checkbox"> For simplicity, we performed lock on the entire <code>market</code> data, which also means that listing an item could be blocked. However, if we <strong>replace the market-level lock with one specific to the item to be bought or sold, we can reduce lock contention and increase performance.</strong></li>
 </ul>
 </blockquote>
 <h3 id="Locks-with-timeouts"><a href="#Locks-with-timeouts" class="headerlink" title="Locks with timeouts"></a>Locks with timeouts</h3><p>The above locks still had one important problem: it doesn’t handle cases where a <strong>lock holder crashes without releasing the lock</strong>, or when a lock holder fails and holds the lock forever. To handle the crash/failure cases, we <strong>add a timeout to the lock.</strong></p>
@@ -1203,7 +1206,7 @@
 <blockquote>
 <p>Note:</p>
 <ul>
-<li><input disabled type="checkbox"> As of Redis 2.6.12, <strong>*the <code>SET</code> command added options to support a combination of <code>SETNX</code> and <code>SETEX</code> functionality</strong>, which makes our lock acquire function trivial. We still need the complicated release lock to be correct. In python, this looks like: <code>set(name, value, ex=None, px=None, nx=False, xx=False, keepttl=False)</code></li>
+<li><input disabled="" type="checkbox"> As of Redis 2.6.12, <strong>*the <code>SET</code> command added options to support a combination of <code>SETNX</code> and <code>SETEX</code> functionality</strong>, which makes our lock acquire function trivial. We still need the complicated release lock to be correct. In python, this looks like: <code>set(name, value, ex=None, px=None, nx=False, xx=False, keepttl=False)</code></li>
 </ul>
 </blockquote>
 <h3 id="Building-a-Semaphore"><a href="#Building-a-Semaphore" class="headerlink" title="Building a Semaphore"></a>Building a Semaphore</h3><p>Sometimes, we need to use a semaphore to hold the ocks, instead of having a timeout lock shown above for a single use.</p>
@@ -1219,7 +1222,8 @@
 <p>Any time we have a lock or a semaphore where <strong>such a slight difference in the system clock can drastically affect who can get the lock, the lock or semaphore is considered <code>unfair</code></strong>. Unfair locks and semaphores can cause clients that should’ve gotten the lock or semaphore to never get it, and this is something that we’ll fix in the next section.</p>
 <h3 id="Fair-Semaphore"><a href="#Fair-Semaphore" class="headerlink" title="Fair Semaphore"></a>Fair Semaphore</h3><p>In order to minimize problems with inconsistent system times, <strong>we’ll add a <code>counter</code> (a <code>String</code>) and a second <code>ZSET</code>.</strong> The <strong><code>counter</code> creates a steadily increasing timer-like mechanism</strong> that ensures that whoever incremented the counter first should be the one to get the semaphore.</p>
 <p>We then enforce our requirement that <strong>clients that want the semaphore who get the <code>counter</code> first</strong> also get the <strong>semaphore inside an “owner” <code>ZSET</code> with the counter-produced value as the score</strong>, checking our identifier’s rank in the new <code>ZSET</code> to determine which client got the semaphore.</p>
-<p><img src="/.com//06/02/Redis-Manual/fair-semaphore.png" alt="Picture from https://redislabs.com/ebook/part-2-core-concepts/chapter-6-application-components-in-redis/6-3-counting-semaphores/6-3-2-fair-semaphores/" title="Picture from https://redislabs.com/ebook/part-2-core-concepts/chapter-6-application-components-in-redis/6-3-counting-semaphores/6-3-2-fair-semaphores/"></p>
+<img src="/2020/06/02/Redis-Manual/fair-semaphore.png" class="" title="Picture from https:&#x2F;&#x2F;redislabs.com&#x2F;ebook&#x2F;part-2-core-concepts&#x2F;chapter-6-application-components-in-redis&#x2F;6-3-counting-semaphores&#x2F;6-3-2-fair-semaphores&#x2F;">
+
 <p>We continue to <strong>handle timeouts the same way as our basic semaphore</strong>, by <strong>removing entries from the system time <code>ZSET</code></strong>. We <strong>propagate those timeouts to the new owner <code>ZSET</code></strong> by the use of <code>ZINTERSTORE</code> and the <code>WEIGHTS</code>argument.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">acquire_fair_semaphore</span><span class="params">(conn, semname, limit, timeout=<span class="number">10</span>)</span>:</span></span><br><span class="line">   identifier = str(uuid.uuid4())  <span class="comment"># A 128-bit random identifier.</span></span><br><span class="line"></span><br><span class="line">   czset = semname + <span class="string">':owner'</span></span><br><span class="line">   ctr = semname + <span class="string">':counter'</span></span><br><span class="line"></span><br><span class="line">   now = time.time()</span><br><span class="line">   pipeline = conn.pipeline(<span class="literal">True</span>)</span><br><span class="line">   pipeline.zremrangebyscore(semname, <span class="string">'-inf'</span>, now - timeout)  <span class="comment"># Time out old entries.</span></span><br><span class="line">   pipeline.zinterstore(czset, &#123;czset: <span class="number">1</span>, semname: <span class="number">0</span>&#125;)  <span class="comment"># since they have the same UUID member name</span></span><br><span class="line">											  		    <span class="comment"># weights for czset is 1, semanme is 0</span></span><br><span class="line"></span><br><span class="line">   pipeline.incr(ctr)</span><br><span class="line">   counter = pipeline.execute()[<span class="number">-1</span>]  <span class="comment"># Get the counter.</span></span><br><span class="line"></span><br><span class="line">   pipeline.zadd(semname, identifier, now)</span><br><span class="line">   pipeline.zadd(czset, identifier, counter)</span><br><span class="line"></span><br><span class="line">   pipeline.zrank(czset, identifier)  <span class="comment"># Try to acquire the semaphore.</span></span><br><span class="line">   <span class="keyword">if</span> pipeline.execute()[<span class="number">-1</span>] &lt; limit:  <span class="comment"># Check the rank to determine if we got the semaphore.</span></span><br><span class="line"></span><br><span class="line">      <span class="keyword">return</span> identifier  <span class="comment"># We got the semaphore.</span></span><br><span class="line"></span><br><span class="line">   pipeline.zrem(semname, identifier)</span><br><span class="line">   pipeline.zrem(czset, identifier)  <span class="comment"># We didn’t get the semaphore; clean out the bad data.</span></span><br><span class="line"></span><br><span class="line">   pipeline.execute()</span><br><span class="line">   <span class="keyword">return</span> <span class="literal">None</span></span><br></pre></td></tr></table></figure>
 
@@ -1228,7 +1232,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/06/02/Redis-Manual/" data-id="ckaxrmfph00009cor310hfxk3" class="article-share-link">Share</a>
+      <a data-url="https://jasonyux.github.io/2020/06/02/Redis-Manual/" data-id="ckbqgsgpx00060kor2q9ldvdy" class="article-share-link">Share</a>
       
       
     </footer>

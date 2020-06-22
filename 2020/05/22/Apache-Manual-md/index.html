@@ -10,12 +10,12 @@
   <meta name="description" content="IMPORTANT:Much of the content here is a personal summary&#x2F;abbrieviation of contents on the Offical Apache Maven Guide. For more complete information, please refer to the offical site.  Apache Maven In">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Apache Maven Manual">
-<meta property="og:url" content="http://yoursite.com/2020/05/22/Apache-Manual-md/index.html">
+<meta property="og:url" content="https://jasonyux.github.io/2020/05/22/Apache-Manual-md/index.html">
 <meta property="og:site_name" content="From a Beginner to a Disaster">
 <meta property="og:description" content="IMPORTANT:Much of the content here is a personal summary&#x2F;abbrieviation of contents on the Offical Apache Maven Guide. For more complete information, please refer to the offical site.  Apache Maven In">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-05-22T05:40:13.000Z">
-<meta property="article:modified_time" content="2020-05-25T07:05:50.404Z">
+<meta property="article:modified_time" content="2020-06-22T08:31:58.356Z">
 <meta property="article:author" content="Xiao Yu">
 <meta name="twitter:card" content="summary">
   
@@ -64,7 +64,7 @@
         <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://jasonyux.github.io"></form>
       </div>
     </div>
   </div>
@@ -116,13 +116,15 @@
 <blockquote>
 <p>Note:</p>
 <ul>
-<li><input disabled type="checkbox"> If you have just installed Maven, it may take a while on the first run.</li>
+<li><input disabled="" type="checkbox"> If you have just installed Maven, it may take a while on the first run.</li>
 </ul>
 </blockquote>
 <p>After it completes the setup, you can switch to that folder <code>my-app</code> and look at what’s created by Maven:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd my-app</span><br></pre></td></tr></table></figure>
 
 <p>Under this directory you will notice the following <a href="https://maven.apache.org/guides/introduction/introduction-to-the-standard-directory-layout.html" target="_blank" rel="noopener">standard project structure</a>.</p>
+<a id="more"></a>
+
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">my-app</span><br><span class="line">|-- pom.xml</span><br><span class="line">&#96;-- src</span><br><span class="line">    |-- main</span><br><span class="line">    |   &#96;-- java</span><br><span class="line">    |       &#96;-- com</span><br><span class="line">    |           &#96;-- mycompany</span><br><span class="line">    |               &#96;-- app</span><br><span class="line">    |                   &#96;-- App.java</span><br><span class="line">    &#96;-- test</span><br><span class="line">        &#96;-- java</span><br><span class="line">            &#96;-- com</span><br><span class="line">                &#96;-- mycompany</span><br><span class="line">                    &#96;-- app</span><br><span class="line">                        &#96;-- AppTest.java</span><br></pre></td></tr></table></figure>
 
 <p>where:</p>
@@ -168,8 +170,8 @@
 <blockquote>
 <p>Note:</p>
 <ul>
-<li><input disabled type="checkbox"> Unlike the first command executed (<code>archetype:generate</code>) you may notice the second is simply a single word - <code>package</code>. The difference is that the <strong>first one is a goal</strong> (i.e. the prefix <code>archetype</code> is the <strong>plugin</strong> that provides the goal <code>archetype:generate</code>. Maven is - at its heart - a plugin execution framework; all work is done by plugins), where as the <strong>second one is a phase</strong>.</li>
-<li><input disabled type="checkbox"> After you run the <code>mvn package</code>, you will see that it created a <strong>new folder <code>target</code></strong>, in which there will be a <strong>packaged <code>JAR</code> file that is the snap-shot of the project</strong> (in this case, MAVEN starts with a <code>Hello World</code> java file)</li>
+<li><input disabled="" type="checkbox"> Unlike the first command executed (<code>archetype:generate</code>) you may notice the second is simply a single word - <code>package</code>. The difference is that the <strong>first one is a goal</strong> (i.e. the prefix <code>archetype</code> is the <strong>plugin</strong> that provides the goal <code>archetype:generate</code>. Maven is - at its heart - a plugin execution framework; all work is done by plugins), where as the <strong>second one is a phase</strong>.</li>
+<li><input disabled="" type="checkbox"> After you run the <code>mvn package</code>, you will see that it created a <strong>new folder <code>target</code></strong>, in which there will be a <strong>packaged <code>JAR</code> file that is the snap-shot of the project</strong> (in this case, MAVEN starts with a <code>Hello World</code> java file)</li>
 </ul>
 </blockquote>
 <p>Now, since you see that in the standard lifecycle, <code>package</code> already included <code>compile</code> phase, it means we could test the newly compiled and packaged <code>JAR</code>:</p>
@@ -224,7 +226,7 @@
 <blockquote>
 <p>Note:</p>
 <ul>
-<li><input disabled type="checkbox"> The value of the <code>version</code> tag in the pom.xml file shown below has the suffix: <code>-SNAPSHOT</code>. The SNAPSHOT value refers to the <strong>‘latest’ code along a <code>development</code> branch</strong>, and provides <strong>no guarantee the code is stable or unchanging</strong>. Conversely, the code in a <code>&#39;release&#39;</code> version (any version value without the suffix SNAPSHOT) is unchanging. In other words, a SNAPSHOT version is the ‘development’ version before the final ‘release’ version. The SNAPSHOT is “older” than its release.</li>
+<li><input disabled="" type="checkbox"> The value of the <code>version</code> tag in the pom.xml file shown below has the suffix: <code>-SNAPSHOT</code>. The SNAPSHOT value refers to the <strong>‘latest’ code along a <code>development</code> branch</strong>, and provides <strong>no guarantee the code is stable or unchanging</strong>. Conversely, the code in a <code>&#39;release&#39;</code> version (any version value without the suffix SNAPSHOT) is unchanging. In other words, a SNAPSHOT version is the ‘development’ version before the final ‘release’ version. The SNAPSHOT is “older” than its release.</li>
 </ul>
 </blockquote>
 <p>For more complete understanding of a <strong>POM</strong> visit <a href="https://maven.apache.org/guides/introduction/introduction-to-the-pom.html" target="_blank" rel="noopener">Apache Maven POM Guide</a></p>
@@ -241,7 +243,7 @@
 <blockquote>
 <p>Note:</p>
 <ul>
-<li><input disabled type="checkbox"> If you ran into error running this command, it might be cause because the code is not for the default compiler used by MAVEN. You can specify it similarly in the section [Configuing for Java 9 or Later](#<br>re-Java-9), by adding those before the root element ends:<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependencies&gt; </span><br><span class="line">... </span><br><span class="line">&lt;&#x2F;dependencies&gt; </span><br><span class="line">&lt;build&gt; </span><br><span class="line">&lt;plugins&gt; </span><br><span class="line">	&lt;plugin&gt;</span><br><span class="line">		&lt;groupId&gt;org.apache.maven.plugins&lt;&#x2F;groupId&gt; </span><br><span class="line">		&lt;artifactId&gt;maven-compiler-plugin&lt;&#x2F;artifactId&gt; </span><br><span class="line">		&lt;version&gt;3.8.1&lt;&#x2F;version&gt; </span><br><span class="line">		&lt;configuration&gt; </span><br><span class="line">			&lt;source&gt;13&lt;&#x2F;source&gt; </span><br><span class="line">			&lt;target&gt;13&lt;&#x2F;target&gt; </span><br><span class="line">		&lt;&#x2F;configuration&gt; </span><br><span class="line">	&lt;&#x2F;plugin&gt; </span><br><span class="line">&lt;&#x2F;plugins&gt; </span><br><span class="line">&lt;&#x2F;build&gt; </span><br></pre></td></tr></table></figure>
+<li><input disabled="" type="checkbox"> If you ran into error running this command, it might be cause because the code is not for the default compiler used by MAVEN. You can specify it similarly in the section [Configuing for Java 9 or Later](#<br>re-Java-9), by adding those before the root element ends:<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependencies&gt; </span><br><span class="line">... </span><br><span class="line">&lt;&#x2F;dependencies&gt; </span><br><span class="line">&lt;build&gt; </span><br><span class="line">&lt;plugins&gt; </span><br><span class="line">	&lt;plugin&gt;</span><br><span class="line">		&lt;groupId&gt;org.apache.maven.plugins&lt;&#x2F;groupId&gt; </span><br><span class="line">		&lt;artifactId&gt;maven-compiler-plugin&lt;&#x2F;artifactId&gt; </span><br><span class="line">		&lt;version&gt;3.8.1&lt;&#x2F;version&gt; </span><br><span class="line">		&lt;configuration&gt; </span><br><span class="line">			&lt;source&gt;13&lt;&#x2F;source&gt; </span><br><span class="line">			&lt;target&gt;13&lt;&#x2F;target&gt; </span><br><span class="line">		&lt;&#x2F;configuration&gt; </span><br><span class="line">	&lt;&#x2F;plugin&gt; </span><br><span class="line">&lt;&#x2F;plugins&gt; </span><br><span class="line">&lt;&#x2F;build&gt; </span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 </blockquote>
@@ -253,8 +255,8 @@
 <blockquote>
 <p>Note:</p>
 <ul>
-<li><input disabled type="checkbox"> Maven downloads more dependencies this time. These are the dependencies and plugins <strong>necessary for executing the tests</strong> (it already has the dependencies it needs for compiling and won’t download them again).</li>
-<li><input disabled type="checkbox"> <strong>Before compiling and executing the tests</strong> Maven <strong>compiles the main code</strong> (in case there are some changes. In this case all these classes are up to date because we haven’t changed anything since we compiled last).</li>
+<li><input disabled="" type="checkbox"> Maven downloads more dependencies this time. These are the dependencies and plugins <strong>necessary for executing the tests</strong> (it already has the dependencies it needs for compiling and won’t download them again).</li>
+<li><input disabled="" type="checkbox"> <strong>Before compiling and executing the tests</strong> Maven <strong>compiles the main code</strong> (in case there are some changes. In this case all these classes are up to date because we haven’t changed anything since we compiled last).</li>
 </ul>
 </blockquote>
 <p>If you simply want to compile your test sources (but not execute the tests), you can execute the following:</p>
@@ -307,7 +309,7 @@
 <blockquote>
 <p>Note:</p>
 <ul>
-<li><input disabled type="checkbox"> To add resources to the <code>classpath</code> <strong>for your unit tests</strong>, you follow the <strong>same pattern as you do for adding resources to the JAR except the directory you place resources in is <code>${basedir}/src/test/resources</code></strong>.</li>
+<li><input disabled="" type="checkbox"> To add resources to the <code>classpath</code> <strong>for your unit tests</strong>, you follow the <strong>same pattern as you do for adding resources to the JAR except the directory you place resources in is <code>${basedir}/src/test/resources</code></strong>.</li>
 </ul>
 </blockquote>
 <h2 id="Resource-Filtering-in-Maven"><a href="#Resource-Filtering-in-Maven" class="headerlink" title="Resource Filtering in Maven"></a>Resource Filtering in Maven</h2><p>This is useful if sometimes a resource file will need to contain a value that can only be <strong>supplied at build time</strong>. Then, you can use Maven to perform <strong>variable replacement</strong> on project resources. When <strong>resource filtering is activated</strong>, Maven will scan <code>resources</code> for <strong>property references surrounded by <code>${&lt;property name&gt;}</code></strong>. When it finds these references it will <strong>replace them with the appropriate value</strong>.</p>
@@ -345,7 +347,7 @@
 <blockquote>
 <p>Note:</p>
 <ul>
-<li><input disabled type="checkbox"> The file <code>filter.property</code> created in the <code>src/main/filters</code> will <strong>not get outputted by MAVEN to the <code>target</code> folder</strong>. This is because, it is <strong>not in the default location tree that MAVEN knows</strong>, so MAVEN will <strong>not compile</strong> it and include in your project.</li>
+<li><input disabled="" type="checkbox"> The file <code>filter.property</code> created in the <code>src/main/filters</code> will <strong>not get outputted by MAVEN to the <code>target</code> folder</strong>. This is because, it is <strong>not in the default location tree that MAVEN knows</strong>, so MAVEN will <strong>not compile</strong> it and include in your project.</li>
 </ul>
 </blockquote>
 <p><a name="Using-External-Dependency"></a></p>
@@ -361,7 +363,7 @@
 <blockquote>
 <p>Note:</p>
 <ul>
-<li><input disabled type="checkbox"> Where does Maven reference the dependency from? Maven <strong>looks in your local repository</strong> (<code>${user.home}/.m2/repository</code> is the <strong>default location) to find all dependencies</strong>.</li>
+<li><input disabled="" type="checkbox"> Where does Maven reference the dependency from? Maven <strong>looks in your local repository</strong> (<code>${user.home}/.m2/repository</code> is the <strong>default location) to find all dependencies</strong>.</li>
 </ul>
 </blockquote>
 <p>This means that we could use code/projects made by others!</p>
@@ -372,7 +374,7 @@
 <blockquote>
 <p>Note:</p>
 <ul>
-<li><input disabled type="checkbox"> If a <strong>remote repo is needed</strong>, you could use the mirror in MAVEN to setup the dependency correctly. By default, the remote repository Maven uses can be found (and browsed) at <a href="https://repo.maven.apache.org/maven2/" target="_blank" rel="noopener">https://repo.maven.apache.org/maven2/</a>. You can also set up your own remote repository (maybe a central repository for your company) to use instead of or in addition to the default remote repository. For more information on repositories you can refer to the <a href="https://maven.apache.org/guides/introduction/introduction-to-repositories.html" target="_blank" rel="noopener">Apache Maven Introduction to Repositories</a>. </li>
+<li><input disabled="" type="checkbox"> If a <strong>remote repo is needed</strong>, you could use the mirror in MAVEN to setup the dependency correctly. By default, the remote repository Maven uses can be found (and browsed) at <a href="https://repo.maven.apache.org/maven2/" target="_blank" rel="noopener">https://repo.maven.apache.org/maven2/</a>. You can also set up your own remote repository (maybe a central repository for your company) to use instead of or in addition to the default remote repository. For more information on repositories you can refer to the <a href="https://maven.apache.org/guides/introduction/introduction-to-repositories.html" target="_blank" rel="noopener">Apache Maven Introduction to Repositories</a>. </li>
 </ul>
 </blockquote>
 <p>Now, when we compile the project (<code>mvn compile</code>), we’ll see Maven download the <code>my-app</code> dependency for us.</p>
@@ -386,7 +388,7 @@
 <blockquote>
 <p>Note:</p>
 <ul>
-<li><input disabled type="checkbox"> <code>settings.xml</code> is a configuration file that <strong>should not be bundled to any specific project</strong> whereas the <strong><code>pom.xml</code> can be distributed</strong>.</li>
+<li><input disabled="" type="checkbox"> <code>settings.xml</code> is a configuration file that <strong>should not be bundled to any specific project</strong> whereas the <strong><code>pom.xml</code> can be distributed</strong>.</li>
 </ul>
 </blockquote>
 <p>Now, going back to the exmple, we can use scp and username/password authentication:</p>
@@ -398,7 +400,7 @@
 <blockquote>
 <p>Note:</p>
 <ul>
-<li><input disabled type="checkbox"> If you are connecting to an openssh ssh server which has the parameter <code>&quot;PasswordAuthentication&quot;</code> set to <code>&quot;no&quot;</code> in the <code>sshd_confing</code>, you will have to type your password each time for username/password authentication (although you can log in using another ssh client by typing in the username and password). You might want to switch to public key authentication in this case.</li>
+<li><input disabled="" type="checkbox"> If you are connecting to an openssh ssh server which has the parameter <code>&quot;PasswordAuthentication&quot;</code> set to <code>&quot;no&quot;</code> in the <code>sshd_confing</code>, you will have to type your password each time for username/password authentication (although you can log in using another ssh client by typing in the username and password). You might want to switch to public key authentication in this case.</li>
 </ul>
 </blockquote>
 <h2 id="Creating-Documentation-with-a-Site"><a href="#Creating-Documentation-with-a-Site" class="headerlink" title="Creating Documentation with a Site"></a>Creating Documentation with a Site</h2><p>To get you jump started with Maven’s documentation system you can use the <code>archetype</code> mechanism to generate a site for your existing project using the following command:</p>
@@ -432,7 +434,7 @@
 <blockquote>
 <p>Note:</p>
 <ul>
-<li><input disabled type="checkbox"> The parent <code>POM</code> created (called <code>app</code>), has a <strong><code>packaging</code> of <code>pom</code> and a list of <code>modules</code></strong> defined. This tells Maven to <strong>run all operations over the set of projects</strong> instead of just the current one</li>
+<li><input disabled="" type="checkbox"> The parent <code>POM</code> created (called <code>app</code>), has a <strong><code>packaging</code> of <code>pom</code> and a list of <code>modules</code></strong> defined. This tells Maven to <strong>run all operations over the set of projects</strong> instead of just the current one</li>
 </ul>
 </blockquote>
 <p>Finally, we need the following <code>parent</code> information to the <code>pom.xml</code> of the sub-projects like this:</p>
@@ -444,7 +446,7 @@
 <blockquote>
 <p>Note:</p>
 <ul>
-<li><input disabled type="checkbox"> The <code>parent</code> definition ensures that the <code>POM</code> can always be located <strong>even if the project is distributed separately from its parent</strong> by <strong>looking it up in the repository</strong>.</li>
+<li><input disabled="" type="checkbox"> The <code>parent</code> definition ensures that the <code>POM</code> can always be located <strong>even if the project is distributed separately from its parent</strong> by <strong>looking it up in the repository</strong>.</li>
 </ul>
 </blockquote>
 <p>Now, if you try to run from the top level, the outer directory where the outer <code>pom.xml</code> reside, the following command:</p>
@@ -483,7 +485,7 @@
 <blockquote>
 <p>Note:</p>
 <ul>
-<li><input disabled type="checkbox"> A phase can also have <strong>no goals bounded</strong>. If so, no action will be executed during that phase. </li>
+<li><input disabled="" type="checkbox"> A phase can also have <strong>no goals bounded</strong>. If so, no action will be executed during that phase. </li>
 </ul>
 </blockquote>
 <h2 id="Customizing-your-Build-Lifecycle"><a href="#Customizing-your-Build-Lifecycle" class="headerlink" title="Customizing your Build Lifecycle"></a>Customizing your Build Lifecycle</h2><p>The first, and most common way, is to set the <code>packaging</code> for your project via the <strong>element <code>&lt;packaging&gt;</code> in your <code>POM.xml</code> file</strong>. Some of the <strong>valid packaging values</strong> are <code>jar</code>, <code>war</code>, <code>ear</code> and <code>pom</code>. If no packaging value has been specified, it will default to <code>jar</code></p>
@@ -540,8 +542,8 @@
 <blockquote>
 <p>Note:</p>
 <ul>
-<li><input disabled type="checkbox"> Perhaps it is clear already, but to make sure: <strong>adding the plugin on its own is not enough information</strong> - you must also <strong>specify the <code>goals</code> you want to run from that plugin</strong>.</li>
-<li><input disabled type="checkbox"> As you will see in the later sections, plugins can contain information that indicates <strong>which lifecycle phase</strong> to bind a goal to. If <strong>more than one goal is bound to a particular <code>phase</code></strong>, the <strong>order used</strong> is that those from the <strong><code>packaging</code> are executed first</strong>, followed by those configured in the <code>POM</code>. However, you can use the <code>&lt;executions&gt;</code> element to gain more control over the order of particular goals.</li>
+<li><input disabled="" type="checkbox"> Perhaps it is clear already, but to make sure: <strong>adding the plugin on its own is not enough information</strong> - you must also <strong>specify the <code>goals</code> you want to run from that plugin</strong>.</li>
+<li><input disabled="" type="checkbox"> As you will see in the later sections, plugins can contain information that indicates <strong>which lifecycle phase</strong> to bind a goal to. If <strong>more than one goal is bound to a particular <code>phase</code></strong>, the <strong>order used</strong> is that those from the <strong><code>packaging</code> are executed first</strong>, followed by those configured in the <code>POM</code>. However, you can use the <code>&lt;executions&gt;</code> element to gain more control over the order of particular goals.</li>
 </ul>
 </blockquote>
 <p>For example, the Modello plugin <strong>binds by default its goal <code>modello:java</code> to the<code>generate-sources</code> phase</strong> (Note: The <code>modello:java</code> goal generates Java source codes). So to use the Modello plugin and have it generate sources from a model and incorporate that into the build, you would add the following to your <code>POM</code> in the <code>&lt;plugins&gt;</code> section of <code>&lt;build&gt;</code>, and it will be <strong>executed in the <code>generate-sources</code> phase if you do not explicitly call it by itself</strong>:</p>
@@ -609,8 +611,8 @@
 <blockquote>
 <p>Note:</p>
 <ul>
-<li><input disabled type="checkbox"> This is different from the example in the section <a href="#Creating-Multiple-Projects-at-Once">Creating Multiple Projects at Once</a> section, because we <strong>did not have the <code>&lt;packaging&gt;pom&lt;/packaging&gt;</code></strong>. The difference is that, in this case (without specifying <code>packaging</code>) the <strong><code>parentProject</code> is/will be used by its child projects</strong> (like Java Inheritance), but in the other case, the <strong>parent uses the children projects</strong> (like Java Composition) <a href="#Project/POM-Aggregation">see below</a></li>
-<li><input disabled type="checkbox"> If you want to <strong>compile a specific children project</strong>, you might need to <strong>change the parent <code>POM</code> to <code>&lt;packaging&gt;pom&lt;/packaging&gt;</code></strong>. If you need to access the source codes in the parent directory, you should add the dependencies.</li>
+<li><input disabled="" type="checkbox"> This is different from the example in the section <a href="#Creating-Multiple-Projects-at-Once">Creating Multiple Projects at Once</a> section, because we <strong>did not have the <code>&lt;packaging&gt;pom&lt;/packaging&gt;</code></strong>. The difference is that, in this case (without specifying <code>packaging</code>) the <strong><code>parentProject</code> is/will be used by its child projects</strong> (like Java Inheritance), but in the other case, the <strong>parent uses the children projects</strong> (like Java Composition) <a href="#Project/POM-Aggregation">see below</a></li>
+<li><input disabled="" type="checkbox"> If you want to <strong>compile a specific children project</strong>, you might need to <strong>change the parent <code>POM</code> to <code>&lt;packaging&gt;pom&lt;/packaging&gt;</code></strong>. If you need to access the source codes in the parent directory, you should add the dependencies.</li>
 </ul>
 </blockquote>
 <p><a name="Project/POM-Aggregatio"></a></p>
@@ -657,7 +659,7 @@
 <blockquote>
 <p>Note:</p>
 <ul>
-<li><input disabled type="checkbox"> If you get an error, you might need to make the variable by yourself in the parent <code>pom</code>. To do this, <a href="#own-variable">see below</a></li>
+<li><input disabled="" type="checkbox"> If you get an error, you might need to make the variable by yourself in the parent <code>pom</code>. To do this, <a href="#own-variable">see below</a></li>
 </ul>
 </blockquote>
 <ul>
@@ -722,8 +724,8 @@
 <blockquote>
 <p>Note:</p>
 <ul>
-<li><input disabled type="checkbox"> In the above examples, there is an <code>&lt;id&gt;</code> element for that <code>profile</code>. <strong>This will be used later to activate the profile</strong>, so it is important to give it a sensible name,</li>
-<li><input disabled type="checkbox"> We can also <strong>configure as many profiles</strong> as we want by <strong>giving them unique <code>id</code>s</strong>.</li>
+<li><input disabled="" type="checkbox"> In the above examples, there is an <code>&lt;id&gt;</code> element for that <code>profile</code>. <strong>This will be used later to activate the profile</strong>, so it is important to give it a sensible name,</li>
+<li><input disabled="" type="checkbox"> We can also <strong>configure as many profiles</strong> as we want by <strong>giving them unique <code>id</code>s</strong>.</li>
 </ul>
 </blockquote>
 <h2 id="Activate-a-Profile"><a href="#Activate-a-Profile" class="headerlink" title="Activate a Profile"></a>Activate a Profile</h2><p>You can activate a profile in a number of ways:</p>
@@ -791,7 +793,7 @@
 <blockquote>
 <p>Note:</p>
 <ul>
-<li><input disabled type="checkbox"> As of Maven 2.0.9, the tags <code>&lt;exists&gt;</code> and <code>&lt;missing&gt;</code> could be <strong>interpolated</strong>. <strong>Supported variables</strong> are system properties like <code>${user.home}</code> and environment variables like <code>${env.HOME}</code>. Please note that <strong>properties and values defined in the POM</strong> itself are <strong>not available</strong> for interpolation here</li>
+<li><input disabled="" type="checkbox"> As of Maven 2.0.9, the tags <code>&lt;exists&gt;</code> and <code>&lt;missing&gt;</code> could be <strong>interpolated</strong>. <strong>Supported variables</strong> are system properties like <code>${user.home}</code> and environment variables like <code>${env.HOME}</code>. Please note that <strong>properties and values defined in the POM</strong> itself are <strong>not available</strong> for interpolation here</li>
 </ul>
 </blockquote>
 </li>
@@ -833,7 +835,7 @@
 <blockquote>
 <p>Note:</p>
 <ul>
-<li><input disabled type="checkbox"> If you have conflicting profiles in both the <code>pom</code> file and the <code>settings.xml</code> file, take note that <strong>profiles in the <code>settings.xml</code> takes higher priority</strong> than profiles in the <code>POM</code>.</li>
+<li><input disabled="" type="checkbox"> If you have conflicting profiles in both the <code>pom</code> file and the <code>settings.xml</code> file, take note that <strong>profiles in the <code>settings.xml</code> takes higher priority</strong> than profiles in the <code>POM</code>.</li>
 </ul>
 </blockquote>
 <h2 id="Standard-Directory-Output"><a href="#Standard-Directory-Output" class="headerlink" title="Standard Directory Output"></a>Standard Directory Output</h2><p>Having a common directory layout would allow for users familiar with one Maven project to immediately feel at home in another Maven project. The following table documents the <strong>directory layout expected by Maven</strong> and the directory layout created by Maven. Please try to conform to this structure as much as possible; however, if you can’t these settings <strong>can be overridden via the project descriptor</strong>.</p>
@@ -947,7 +949,7 @@
 <blockquote>
 <p>Note:</p>
 <ul>
-<li><input disabled type="checkbox"> In two of these dependency references, we had to specify the <code>&lt;type&gt;</code> element. This is because the <strong>minimal set of information for matching a dependency reference against a <code>&lt;dependencyManagement&gt;</code> section is actually <code>{groupId, artifactId, type, classifier}</code></strong>. In many cases, these dependencies will refer to <strong><code>jar</code> artifacts with no classifier</strong>. <strong>This allows us to shorthand the identity set to <code>{groupId, artifactId}</code></strong>. However, in other cases, we would need to include the <code>&lt;type&gt;</code> element.</li>
+<li><input disabled="" type="checkbox"> In two of these dependency references, we had to specify the <code>&lt;type&gt;</code> element. This is because the <strong>minimal set of information for matching a dependency reference against a <code>&lt;dependencyManagement&gt;</code> section is actually <code>{groupId, artifactId, type, classifier}</code></strong>. In many cases, these dependencies will refer to <strong><code>jar</code> artifacts with no classifier</strong>. <strong>This allows us to shorthand the identity set to <code>{groupId, artifactId}</code></strong>. However, in other cases, we would need to include the <code>&lt;type&gt;</code> element.</li>
 </ul>
 </blockquote>
 <h2 id="Difference-between-using-lt-dependency-gt-and-lt-dependencyManagement-gt"><a href="#Difference-between-using-lt-dependency-gt-and-lt-dependencyManagement-gt" class="headerlink" title="Difference between using &lt;dependency&gt; and &lt;dependencyManagement&gt;"></a>Difference between using <code>&lt;dependency&gt;</code> and <code>&lt;dependencyManagement&gt;</code></h2><ul>
@@ -1044,7 +1046,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/05/22/Apache-Manual-md/" data-id="ckai5yba00000ssorfsxh613e" class="article-share-link">Share</a>
+      <a data-url="https://jasonyux.github.io/2020/05/22/Apache-Manual-md/" data-id="ckbqgsgpu00030kor9mpufbw0" class="article-share-link">Share</a>
       
       
     </footer>

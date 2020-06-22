@@ -10,12 +10,12 @@
   <meta name="description" content="IMPORTANT:Much of the content here is a personal summary&#x2F;abbrieviation of contents on the Offical Spring Boot Documentation. For more complete information, please refer to the offical site.  Spring B">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Spring Boot Manual">
-<meta property="og:url" content="http://yoursite.com/2020/06/09/SpringBoot-Manual/index.html">
+<meta property="og:url" content="https://jasonyux.github.io/2020/06/09/SpringBoot-Manual/index.html">
 <meta property="og:site_name" content="From a Beginner to a Disaster">
 <meta property="og:description" content="IMPORTANT:Much of the content here is a personal summary&#x2F;abbrieviation of contents on the Offical Spring Boot Documentation. For more complete information, please refer to the offical site.  Spring B">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-06-09T03:35:00.000Z">
-<meta property="article:modified_time" content="2020-06-20T05:40:20.650Z">
+<meta property="article:modified_time" content="2020-06-22T08:34:00.581Z">
 <meta property="article:author" content="Xiao Yu">
 <meta name="twitter:card" content="summary">
   
@@ -64,7 +64,7 @@
         <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://jasonyux.github.io"></form>
       </div>
     </div>
   </div>
@@ -116,16 +116,11 @@
 </ul>
 </li>
 <li><strong>Import XML Configuration</strong><ul>
-<li>If you need to use an XML based configuration, we recommend that you <strong>still start with a <code>@Configuration</code> class</strong>. You can <strong>then use an <code>@ImportResource</code> annotation</strong> to load XML configuration files.</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
+<li>If you need to use an XML based configuration, we recommend that you <strong>still start with a <code>@Configuration</code> class</strong>. You can <strong>then use an <code>@ImportResource</code> annotation</strong> to load XML configuration files.<a id="more"></a>
 <blockquote>
 <p>Note:</p>
 <ul>
-<li><input disabled type="checkbox"> A single <code>@SpringBootApplication</code> annotation can be <strong>used to enable three features</strong>, that is:<ul>
+<li><input disabled="" type="checkbox"> A single <code>@SpringBootApplication</code> annotation can be <strong>used to enable three features</strong>, that is:<ul>
 <li><code>@EnableAutoConfiguration</code>: enable Spring Boot’s auto-configuration mechanism</li>
 <li><code>@ComponentScan</code>: enable @Component scan on the package where the application is located (see the best practices)</li>
 <li><code>@Configuration</code>: allow to register extra beans in the context or import additional configuration classes<br>SO, the <code>@SpringBootApplication</code> annotation is <strong>equivalent to using <code>@Configuration</code>, <code>@EnableAutoConfiguration</code>, and <code>@ComponentScan</code> with their default attributes</strong>, as shown in the following example:</li>
@@ -133,6 +128,12 @@
 </li>
 </ul>
 </blockquote>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.example.myapplication;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.SpringApplication;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.autoconfigure.SpringBootApplication;</span><br><span class="line"></span><br><span class="line"><span class="meta">@SpringBootApplication</span> <span class="comment">// same as @Configuration @EnableAutoConfiguration @ComponentScan</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Application</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		SpringApplication.run(Application<span class="class">.<span class="keyword">class</span>, <span class="title">args</span>)</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h3 id="Auto-Configuration"><a href="#Auto-Configuration" class="headerlink" title="Auto-Configuration"></a>Auto-Configuration</h3><p>(additional reference: <a href="https://www.javatpoint.com/spring-boot-auto-configuration" target="_blank" rel="noopener">https://www.javatpoint.com/spring-boot-auto-configuration</a>)</p>
@@ -181,7 +182,7 @@
 <blockquote>
 <p>Note:</p>
 <ul>
-<li><input disabled type="checkbox"> <strong>Developer tools are automatically disabled when running a fully packaged application</strong>. If your application is launched from <code>java -jar</code> or if it is started from a special classloader, then it is considered a “production application”. If that does not apply to you (i.e. if you run your application from a container), consider excluding devtools or set the <code>-Dspring.devtools.restart.enabled=false</code> system property.</li>
+<li><input disabled="" type="checkbox"> <strong>Developer tools are automatically disabled when running a fully packaged application</strong>. If your application is launched from <code>java -jar</code> or if it is started from a special classloader, then it is considered a “production application”. If that does not apply to you (i.e. if you run your application from a container), consider excluding devtools or set the <code>-Dspring.devtools.restart.enabled=false</code> system property.</li>
 </ul>
 </blockquote>
 <h3 id="Configuring-your-spring-boot-devtools"><a href="#Configuring-your-spring-boot-devtools" class="headerlink" title="Configuring your spring-boot-devtools"></a>Configuring your <code>spring-boot-devtools</code></h3><p>(additional reference: <a href="https://howtodoinjava.com/spring-boot2/developer-tools-module-tutorial/#:~:text=The%20spring%2Dboot%2Ddevtools%20module,default%2C%20live%20reload%20is%20enabled" target="_blank" rel="noopener">https://howtodoinjava.com/spring-boot2/developer-tools-module-tutorial/#:~:text=The%20spring%2Dboot%2Ddevtools%20module,default%2C%20live%20reload%20is%20enabled</a>)</p>
@@ -227,7 +228,7 @@
 <blockquote>
 <p>Note:</p>
 <ul>
-<li><input disabled type="checkbox"> DevTools relies on the application context’s shutdown hook to close it during a restart. It does not work correctly if you have disabled the shutdown hook (<code>SpringApplication.setRegisterShutdownHook(false)</code>).</li>
+<li><input disabled="" type="checkbox"> DevTools relies on the application context’s shutdown hook to close it during a restart. It does not work correctly if you have disabled the shutdown hook (<code>SpringApplication.setRegisterShutdownHook(false)</code>).</li>
 </ul>
 </blockquote>
 <p><strong>To enable/disable automatic restart</strong>, you could use the property <code>spring.devtools.restart.enabled</code>:</p>
@@ -254,7 +255,7 @@
 <blockquote>
 <p>Note:</p>
 <ul>
-<li><input disabled type="checkbox"> You might want to <strong>set <code>spring.devtools.restart.trigger-file</code> as a global setting (adding a <code>spring-boot-devtools.properties</code> file to <code>$HOME/.config/spring-boot</code> directory, for example)</strong>, so that all your projects behave in the same way.</li>
+<li><input disabled="" type="checkbox"> You might want to <strong>set <code>spring.devtools.restart.trigger-file</code> as a global setting (adding a <code>spring-boot-devtools.properties</code> file to <code>$HOME/.config/spring-boot</code> directory, for example)</strong>, so that all your projects behave in the same way.</li>
 </ul>
 </blockquote>
 <h3 id="Auto-Reload-vs-Auto-Restart"><a href="#Auto-Reload-vs-Auto-Restart" class="headerlink" title="Auto-Reload vs Auto-Restart"></a>Auto-Reload vs Auto-Restart</h3><p><strong>Auto-reload</strong> (or auto-refresh) refer to <strong>UI reload at browser to see static content changes</strong>. <strong>Auto-restart</strong> is referred to <strong>reloading the server side code and configurations</strong> followed by server restart.</p>
@@ -267,7 +268,7 @@
 <blockquote>
 <p>Note:</p>
 <ul>
-<li><input disabled type="checkbox"> Restart functionality <strong>does not work well with objects that are deserialized</strong> by using a standard <code>ObjectInputStream</code>. If you need to deserialize data, you may need to use Spring’s <code>ConfigurableObjectInputStream</code> in combination with <code>Thread.currentThread().getContextClassLoader()</code>.</li>
+<li><input disabled="" type="checkbox"> Restart functionality <strong>does not work well with objects that are deserialized</strong> by using a standard <code>ObjectInputStream</code>. If you need to deserialize data, you may need to use Spring’s <code>ConfigurableObjectInputStream</code> in combination with <code>Thread.currentThread().getContextClassLoader()</code>.</li>
 </ul>
 </blockquote>
 <p><a name="LiveReload"></a></p>
@@ -277,7 +278,7 @@
 <blockquote>
 <p>Note:</p>
 <ul>
-<li><input disabled type="checkbox"> <strong>In Intellij</strong>, you might need to configure some settings to make this feature available. For more details, please follow the link: <a href="https://mkyong.com/spring-boot/intellij-idea-spring-boot-template-reload-is-not-working/" target="_blank" rel="noopener">https://mkyong.com/spring-boot/intellij-idea-spring-boot-template-reload-is-not-working/</a></li>
+<li><input disabled="" type="checkbox"> <strong>In Intellij</strong>, you might need to configure some settings to make this feature available. For more details, please follow the link: <a href="https://mkyong.com/spring-boot/intellij-idea-spring-boot-template-reload-is-not-working/" target="_blank" rel="noopener">https://mkyong.com/spring-boot/intellij-idea-spring-boot-template-reload-is-not-working/</a></li>
 </ul>
 </blockquote>
 <h3 id="Configure-your-File-System-Watcher"><a href="#Configure-your-File-System-Watcher" class="headerlink" title="Configure your File System Watcher"></a>Configure your File System Watcher</h3><p>If you find that there are times when certain <strong>changes are not reflected</strong> when devtools restarts the application, you might need to configure your File System Watcher.</p>
@@ -310,8 +311,8 @@
 <blockquote>
 <p>Note:</p>
 <ul>
-<li><input disabled type="checkbox"> Because the <strong>remote client is using the same classpath as the real application it can directly read application properties</strong>. This is how the** <code>spring.devtools.remote.secret</code> property is read and passed to the server for authentication**.</li>
-<li><input disabled type="checkbox"> It is always advisable to use <code>https://</code> as the connection protocol, so that traffic is encrypted and passwords cannot be intercepted.</li>
+<li><input disabled="" type="checkbox"> Because the <strong>remote client is using the same classpath as the real application it can directly read application properties</strong>. This is how the** <code>spring.devtools.remote.secret</code> property is read and passed to the server for authentication**.</li>
+<li><input disabled="" type="checkbox"> It is always advisable to use <code>https://</code> as the connection protocol, so that traffic is encrypted and passwords cannot be intercepted.</li>
 </ul>
 </blockquote>
 <h3 id="Updates-in-your-Remote-Application"><a href="#Updates-in-your-Remote-Application" class="headerlink" title="Updates in your Remote Application"></a>Updates in your Remote Application</h3><p>The <strong>remote client monitors your application classpath for changes in the same way as the local restart</strong>. Any updated resource is pushed to the remote application and (if required) triggers a restart. This can be helpful if you iterate on a feature that uses a cloud service that you do not have locally. Generally, remote updates and restarts are much quicker than a full rebuild and deploy cycle.</p>
@@ -319,7 +320,7 @@
 <blockquote>
 <p>Note:</p>
 <ul>
-<li><input disabled type="checkbox"> Files are <strong>only monitored when the remote client is running</strong>. If you change a file before starting the remote client, it is not pushed to the remote server.</li>
+<li><input disabled="" type="checkbox"> Files are <strong>only monitored when the remote client is running</strong>. If you change a file before starting the remote client, it is not pushed to the remote server.</li>
 </ul>
 </blockquote>
 <h2 id="Spring-Boot-Features"><a href="#Spring-Boot-Features" class="headerlink" title="Spring Boot Features"></a>Spring Boot Features</h2><hr>
@@ -393,7 +394,7 @@
 <blockquote>
 <p>Note:</p>
 <ul>
-<li><input disabled type="checkbox"> A wildcard location <strong>must contain only one and end with <code>/</code> for search locations</strong> that are directories or <strong><code>*/&lt;filename&gt;</code> for search locations that are files</strong>. Locations with wildcards are sorted alphabetically based on the absolute path of the file names.</li>
+<li><input disabled="" type="checkbox"> A wildcard location <strong>must contain only one and end with <code>/</code> for search locations</strong> that are directories or <strong><code>*/&lt;filename&gt;</code> for search locations that are files</strong>. Locations with wildcards are sorted alphabetically based on the absolute path of the file names.</li>
 </ul>
 </blockquote>
 <h3 id="Generating-and-Using-Random-Values"><a href="#Generating-and-Using-Random-Values" class="headerlink" title="Generating and Using Random Values"></a>Generating and Using Random Values</h3><p>The <code>RandomValuePropertySource</code> is useful for injecting random values <strong>(for example, into secrets or test cases</strong>). It can produce integers, longs, uuids, or strings, as shown in the following example</p>
@@ -472,7 +473,7 @@
 <blockquote>
 <p>Note:</p>
 <ul>
-<li><input disabled type="checkbox"> Here constructor injection is used. For reason why constructor injection is preferred over field injection, please visit the Spring Framework Guide.</li>
+<li><input disabled="" type="checkbox"> Here constructor injection is used. For reason why constructor injection is preferred over field injection, please visit the Spring Framework Guide.</li>
 </ul>
 </blockquote>
 <h3 id="Type-safe-Configuration-Properties"><a href="#Type-safe-Configuration-Properties" class="headerlink" title="Type-safe Configuration Properties"></a>Type-safe Configuration Properties</h3><h4 id="JavaBean-properties-binding"><a href="#JavaBean-properties-binding" class="headerlink" title="JavaBean properties binding"></a>JavaBean properties binding</h4><p>It is possible to bind a bean declaring standard JavaBean properties as shown in the following<br>example:</p>
@@ -485,7 +486,7 @@
 <blockquote>
 <p>Note:</p>
 <ul>
-<li><input disabled type="checkbox"> To use <strong>constructor binding the class must be enabled using <code>@EnableConfigurationProperties</code> or configuration property scanning</strong>. You <strong>cannot use constructor binding with beans that are created by the regular Spring mechanisms</strong> (e.g. <code>@Component</code> beans, beans created via @Bean methods or beans loaded using <code>@Import</code>).</li>
+<li><input disabled="" type="checkbox"> To use <strong>constructor binding the class must be enabled using <code>@EnableConfigurationProperties</code> or configuration property scanning</strong>. You <strong>cannot use constructor binding with beans that are created by the regular Spring mechanisms</strong> (e.g. <code>@Component</code> beans, beans created via @Bean methods or beans loaded using <code>@Import</code>).</li>
 </ul>
 </blockquote>
 <h3 id="Enabling-ConfigurationProperties"><a href="#Enabling-ConfigurationProperties" class="headerlink" title="Enabling @ConfigurationProperties"></a>Enabling @ConfigurationProperties</h3><p>Spring Boot provides <strong>infrastructure to bind <code>@ConfigurationProperties</code> types and register them as beans</strong>. You can either enable configuration properties on a class-by-class basis or** enable configuration property scanning** that works in a similar manner to component scanning. </p>
@@ -569,8 +570,8 @@
 <blockquote>
 <p>Note:</p>
 <ul>
-<li><input disabled type="checkbox"> To use this feature, you need to add the dependency<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;groupId&gt;org.springframework.boot&lt;&#x2F;groupId&gt;</span><br><span class="line">&lt;artifactId&gt;spring-boot-starter-validation&lt;&#x2F;artifactId&gt;</span><br></pre></td></tr></table></figure></li>
-<li><input disabled type="checkbox"> You can also trigger validation by annotating the <code>@Bean</code> method that creates the configuration properties with <code>@Validated</code></li>
+<li><input disabled="" type="checkbox"> To use this feature, you need to add the dependency<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;groupId&gt;org.springframework.boot&lt;&#x2F;groupId&gt;</span><br><span class="line">&lt;artifactId&gt;spring-boot-starter-validation&lt;&#x2F;artifactId&gt;</span><br></pre></td></tr></table></figure></li>
+<li><input disabled="" type="checkbox"> You can also trigger validation by annotating the <code>@Bean</code> method that creates the configuration properties with <code>@Validated</code></li>
 </ul>
 </blockquote>
 <p>To ensure that validation is always <strong>triggered for nested properties</strong>, the <strong>associated field must be annotated with <code>@Valid</code></strong>, even when no properties are found. The following example builds on the preceding <code>AcmeProperties</code> example:</p>
@@ -600,7 +601,7 @@
 <blockquote>
 <p>Note:</p>
 <ul>
-<li><input disabled type="checkbox"> In the previous section, it is seen that <strong>some of the loggers have the name <code>o.s.boot</code> or <code>o.s.b</code></strong>. They <strong>actually stand for <code>org.springframework.boot</code></strong>. So you can configure them by specifying the logger level of <code>org.springframework.boot</code>.</li>
+<li><input disabled="" type="checkbox"> In the previous section, it is seen that <strong>some of the loggers have the name <code>o.s.boot</code> or <code>o.s.b</code></strong>. They <strong>actually stand for <code>org.springframework.boot</code></strong>. So you can configure them by specifying the logger level of <code>org.springframework.boot</code>.</li>
 </ul>
 </blockquote>
 <h3 id="Configuring-Log-Levels-using-Log-Groups"><a href="#Configuring-Log-Levels-using-Log-Groups" class="headerlink" title="Configuring Log Levels using Log Groups"></a>Configuring Log Levels using Log Groups</h3><p>It’s often useful to be able to <strong>group related loggers together so that they can all be configured at the same time</strong>. For example, you might commonly change the logging levels for all Tomcat related loggers, but you can’t easily remember top level packages.</p>
@@ -672,8 +673,8 @@
 <blockquote>
 <p>Note:</p>
 <ul>
-<li><input disabled type="checkbox"> Because the <strong>standard <code>logback.xml</code> configuration file is loaded too early</strong>, you <strong>cannot use extensions in it</strong>. You need to either use <code>logback-spring.xml</code> or define a <code>logging.config</code> property.</li>
-<li><input disabled type="checkbox"> The extensions <strong>cannot be used with Logback’s configuration scanning</strong>. If you attempt to do so, making changes to the configuration file results in an error.</li>
+<li><input disabled="" type="checkbox"> Because the <strong>standard <code>logback.xml</code> configuration file is loaded too early</strong>, you <strong>cannot use extensions in it</strong>. You need to either use <code>logback-spring.xml</code> or define a <code>logging.config</code> property.</li>
+<li><input disabled="" type="checkbox"> The extensions <strong>cannot be used with Logback’s configuration scanning</strong>. If you attempt to do so, making changes to the configuration file results in an error.</li>
 </ul>
 </blockquote>
 <h5 id="Profile-Specific-Configuration"><a href="#Profile-Specific-Configuration" class="headerlink" title="Profile Specific Configuration"></a>Profile Specific Configuration</h5><p>The <code>&lt;springProfile&gt;</code> tag lets you optionally <strong>include or exclude sections of configuration based on the active Spring profiles</strong>. Profile sections are supported anywhere within the <code>&lt;configuration&gt;</code> element. </p>
@@ -703,7 +704,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/06/09/SpringBoot-Manual/" data-id="ckb7qqorv0000xworfjw0fm12" class="article-share-link">Share</a>
+      <a data-url="https://jasonyux.github.io/2020/06/09/SpringBoot-Manual/" data-id="ckbqgsgqj00080koreuhn0hqj" class="article-share-link">Share</a>
       
       
     </footer>

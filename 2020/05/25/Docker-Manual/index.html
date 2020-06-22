@@ -10,12 +10,12 @@
   <meta name="description" content="IMPORTANT:Much of the content here is a personal summary&#x2F;abbrieviation of contents on the Offical Docker Guide. For more complete information, please refer to the offical site.  Docker IntroDocker pr">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Docker Manual">
-<meta property="og:url" content="http://yoursite.com/2020/05/25/Docker-Manual/index.html">
+<meta property="og:url" content="https://jasonyux.github.io/2020/05/25/Docker-Manual/index.html">
 <meta property="og:site_name" content="From a Beginner to a Disaster">
 <meta property="og:description" content="IMPORTANT:Much of the content here is a personal summary&#x2F;abbrieviation of contents on the Offical Docker Guide. For more complete information, please refer to the offical site.  Docker IntroDocker pr">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-05-25T07:18:39.000Z">
-<meta property="article:modified_time" content="2020-06-01T07:58:22.581Z">
+<meta property="article:modified_time" content="2020-06-22T08:32:11.989Z">
 <meta property="article:author" content="Xiao Yu">
 <meta name="twitter:card" content="summary">
   
@@ -64,7 +64,7 @@
         <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://jasonyux.github.io"></form>
       </div>
     </div>
   </div>
@@ -134,11 +134,13 @@
 </li>
 </ul>
 <h2 id="Docker-Objects"><a href="#Docker-Objects" class="headerlink" title="Docker Objects"></a>Docker Objects</h2><ul>
-<li><p><code>IMAGE</code></p>
-<ul>
+<li><code>IMAGE</code><ul>
 <li>An <code>image</code> is a <strong>read-only template</strong> with <strong>instructions for creating a Docker <code>container</code></strong>. Often, an <code>image</code> is based on another <code>image</code>, with some additional customization. For example, you may build an image which is based on the ubuntu image, but installs the Apache web server and your application, as well as the configuration details needed to make your application run.</li>
 </ul>
 </li>
+</ul>
+<a id="more"></a>
+<ul>
 <li><p><code>CONTAINER</code></p>
 <ul>
 <li><p>A container is a <strong>runnable instance of an <code>image</code></strong>. You can create, start, stop, move, or delete a <code>container</code> using the Docker API or CLI. You can connect a <code>container</code> to one or more networks, attach storage to it, or even create a new image based on its current state.</p>
@@ -269,7 +271,7 @@
 <blockquote>
 <p>Note:</p>
 <ul>
-<li><input disabled type="checkbox"> The <code>-f</code> or <code>--force</code> option is <strong>only necessay when you have the <code>container</code> running</strong>. If it is not running, it can be removed just by specifying <code>docker image rm</code></li>
+<li><input disabled="" type="checkbox"> The <code>-f</code> or <code>--force</code> option is <strong>only necessay when you have the <code>container</code> running</strong>. If it is not running, it can be removed just by specifying <code>docker image rm</code></li>
 </ul>
 </blockquote>
 </li>
@@ -359,7 +361,7 @@
 <blockquote>
 <p>Note:</p>
 <ul>
-<li><input disabled type="checkbox"> If you use a <code>daemon.json</code> file <strong>and also pass options to the <code>dockerd</code> command</strong> manually or using start-up scripts, and these options conflict, Docker fails to start with an error such as:</li>
+<li><input disabled="" type="checkbox"> If you use a <code>daemon.json</code> file <strong>and also pass options to the <code>dockerd</code> command</strong> manually or using start-up scripts, and these options conflict, Docker fails to start with an error such as:</li>
 </ul>
 </blockquote>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">unable to configure the Docker daemon with file &#x2F;etc&#x2F;docker&#x2F;daemon.json:</span><br><span class="line">the following directives are specified both as a flag and in the configuration</span><br><span class="line">file: hosts: (from flag: [unix:&#x2F;&#x2F;&#x2F;var&#x2F;run&#x2F;docker.sock], from file: [tcp:&#x2F;&#x2F;127.0.0.1:2376])</span><br></pre></td></tr></table></figure>
@@ -383,7 +385,7 @@
 <blockquote>
 <p>Note:</p>
 <ul>
-<li><input disabled type="checkbox"> Instead of following this procedure, you can also <code>stop</code> the Docker <code>daemon</code> and <code>restart</code> it manually with the <code>debug flag -D</code>. However, this may result in Docker <strong>restarting with a different environment than the one the hosts’ startup scripts create</strong>, and this may make debugging more difficult.</li>
+<li><input disabled="" type="checkbox"> Instead of following this procedure, you can also <code>stop</code> the Docker <code>daemon</code> and <code>restart</code> it manually with the <code>debug flag -D</code>. However, this may result in Docker <strong>restarting with a different environment than the one the hosts’ startup scripts create</strong>, and this may make debugging more difficult.</li>
 </ul>
 </blockquote>
 <h2 id="Starting-your-Docker-Daemon-Manually"><a href="#Starting-your-Docker-Daemon-Manually" class="headerlink" title="Starting your Docker Daemon Manually"></a>Starting your Docker Daemon Manually</h2><p>Once Docker is installed, <strong>you need to start the Docker daemon</strong>. Most Linux distributions use <code>systemctl</code> to start services. If you do not have <code>systemctl</code>, use the <code>service</code> command.</p>
@@ -428,9 +430,9 @@
 <blockquote>
 <p>Note:</p>
 <ul>
-<li><input disabled type="checkbox"> A restart policy <strong>only takes effect after a container starts successfully (when you run the command specifying the restart policy)</strong>. In this case, starting successfully means that the container is up for at least 10 seconds and Docker has started monitoring it. This <strong>prevents a container</strong> which does not start at all from going <strong>into a restart loop</strong>.</li>
-<li><input disabled type="checkbox"> <strong>If you manually stop a container</strong>, <strong>its restart policy is ignored until the Docker daemon restarts or the container is manually restarted</strong>. This is another attempt to <strong>prevent a restart loop</strong>.</li>
-<li><input disabled type="checkbox"> Restart policies <strong>only apply to containers</strong>. Restart policies for swarm services are configured differently. See the flags related to service restart.</li>
+<li><input disabled="" type="checkbox"> A restart policy <strong>only takes effect after a container starts successfully (when you run the command specifying the restart policy)</strong>. In this case, starting successfully means that the container is up for at least 10 seconds and Docker has started monitoring it. This <strong>prevents a container</strong> which does not start at all from going <strong>into a restart loop</strong>.</li>
+<li><input disabled="" type="checkbox"> <strong>If you manually stop a container</strong>, <strong>its restart policy is ignored until the Docker daemon restarts or the container is manually restarted</strong>. This is another attempt to <strong>prevent a restart loop</strong>.</li>
+<li><input disabled="" type="checkbox"> Restart policies <strong>only apply to containers</strong>. Restart policies for swarm services are configured differently. See the flags related to service restart.</li>
 </ul>
 </blockquote>
 <h2 id="Keep-Containers-Alive-during-Daemon-Downtime"><a href="#Keep-Containers-Alive-during-Daemon-Downtime" class="headerlink" title="Keep Containers Alive during Daemon Downtime"></a>Keep Containers Alive during Daemon Downtime</h2><p><strong>By default</strong>, when the <strong>Docker daemon terminates</strong>, it <strong>shuts down running containers</strong>. Starting with Docker Engine 1.12, you can <strong>configure the daemon so that containers remain running if the daemon becomes unavailable</strong>. This functionality is called <code>live restore</code>. </p>
@@ -451,12 +453,12 @@
 <blockquote>
 <p>Note:</p>
 <ul>
-<li><input disabled type="checkbox"> The live restore option <strong>only works to restore containers if the daemon options</strong>, such as bridge IP addresses and graph driver, <strong>did not change</strong>. If any of these <strong>daemon-level configuration options have changed, the live restore may not work and you may need to manually start the containers</strong>.</li>
-<li><input disabled type="checkbox"> If the daemon is down <strong>for a long time</strong>, <strong>running containers may fill up the FIFO log the daemon normally reads</strong>. A full log blocks containers from logging more data. The default buffer size is 64K. <strong>If the buffers fill, you must restart the Docker daemon to flush them</strong>.</li>
+<li><input disabled="" type="checkbox"> The live restore option <strong>only works to restore containers if the daemon options</strong>, such as bridge IP addresses and graph driver, <strong>did not change</strong>. If any of these <strong>daemon-level configuration options have changed, the live restore may not work and you may need to manually start the containers</strong>.</li>
+<li><input disabled="" type="checkbox"> If the daemon is down <strong>for a long time</strong>, <strong>running containers may fill up the FIFO log the daemon normally reads</strong>. A full log blocks containers from logging more data. The default buffer size is 64K. <strong>If the buffers fill, you must restart the Docker daemon to flush them</strong>.</li>
 </ul>
 <p><strong>On Linux</strong>, you can modify the kernel’s buffer size by changing <code>/proc/sys/fs/pipe-max-size</code>. You cannot modify the buffer size on Docker Desktop for Mac or Docker Desktop for Windows.</p>
 <ul>
-<li><input disabled type="checkbox"> The live restore option <strong>only pertains to standalone containers, and not to swarm services</strong>. Swarm services are managed by <strong>swarm managers</strong>. If swarm managers are not available, swarm services continue to run on worker nodes but cannot be managed until enough swarm managers are available to maintain a quorum.</li>
+<li><input disabled="" type="checkbox"> The live restore option <strong>only pertains to standalone containers, and not to swarm services</strong>. Swarm services are managed by <strong>swarm managers</strong>. If swarm managers are not available, swarm services continue to run on worker nodes but cannot be managed until enough swarm managers are available to maintain a quorum.</li>
 </ul>
 </blockquote>
 <h2 id="Running-Multiple-Services-in-a-Container"><a href="#Running-Multiple-Services-in-a-Container" class="headerlink" title="Running Multiple Services in a Container"></a>Running Multiple Services in a Container</h2><p>This involves writing scripts and editing the Dockerfile. For details please refer to <a href="https://docs.docker.com/config/containers/multi-service_container/" target="_blank" rel="noopener">this link</a>.</p>
@@ -552,7 +554,7 @@
 <blockquote>
 <p>Note:</p>
 <ul>
-<li><input disabled type="checkbox"> <code>log-opts</code> <strong>configuration options</strong> in the <code>daemon.json</code> configuration file <strong>must be provided as strings</strong>. Boolean and numeric values (such as the value for max-file in the example above) must therefore be enclosed in quotes (<code>&quot;</code>).</li>
+<li><input disabled="" type="checkbox"> <code>log-opts</code> <strong>configuration options</strong> in the <code>daemon.json</code> configuration file <strong>must be provided as strings</strong>. Boolean and numeric values (such as the value for max-file in the example above) must therefore be enclosed in quotes (<code>&quot;</code>).</li>
 </ul>
 </blockquote>
 <p>Now, To <strong>find the current default logging driver for the Docker daemon</strong>, run <code>docker info</code> and search for Logging Driver. You can use the following command on Linux, macOS, or PowerShell on Windows:</p>
@@ -816,7 +818,7 @@
 <blockquote>
 <p>Note:</p>
 <ul>
-<li><input disabled type="checkbox"> If you need <code>IPv6</code> support for Docker containers, you need to <strong>enable the option on the Docker daemon and reload its configuration</strong>, <strong>before creating any <code>IPv6</code> networks</strong> or assigning containers IPv6 addresses.<br>When you create your network, you can specify the <code>--ipv6</code> flag to enable IPv6. You can’t selectively disable IPv6 support on the default bridge network.</li>
+<li><input disabled="" type="checkbox"> If you need <code>IPv6</code> support for Docker containers, you need to <strong>enable the option on the Docker daemon and reload its configuration</strong>, <strong>before creating any <code>IPv6</code> networks</strong> or assigning containers IPv6 addresses.<br>When you create your network, you can specify the <code>--ipv6</code> flag to enable IPv6. You can’t selectively disable IPv6 support on the default bridge network.</li>
 </ul>
 </blockquote>
 </li>
@@ -849,7 +851,7 @@ These settings <strong>do not persist across a reboot</strong>, so you may need 
 <blockquote>
 <p>Note:</p>
 <ul>
-<li><input disabled type="checkbox"> Since you can only specify <strong>one network when you use the <code>--network</code> flag for <code>docker run</code></strong>, if you need to <strong>connect to more than one network</strong>, you need to <strong>use <code>docker network connect</code> command with a running container</strong>.  </li>
+<li><input disabled="" type="checkbox"> Since you can only specify <strong>one network when you use the <code>--network</code> flag for <code>docker run</code></strong>, if you need to <strong>connect to more than one network</strong>, you need to <strong>use <code>docker network connect</code> command with a running container</strong>.  </li>
 </ul>
 </blockquote>
 </li>
@@ -930,7 +932,7 @@ These settings <strong>do not persist across a reboot</strong>, so you may need 
 <blockquote>
 <p>Note:</p>
 <ul>
-<li><input disabled type="checkbox"> To open those ports specified above, you can use the following command (on both worker and manager): <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --add-port&#x3D;22&#x2F;tcp --permanent</span><br><span class="line">firewall-cmd --add-port&#x3D;2376&#x2F;tcp --permanent</span><br><span class="line">firewall-cmd --add-port&#x3D;2377&#x2F;tcp --permanent</span><br><span class="line">firewall-cmd --add-port&#x3D;7946&#x2F;tcp --permanent</span><br><span class="line">firewall-cmd --add-port&#x3D;7946&#x2F;udp --permanent</span><br><span class="line">firewall-cmd --add-port&#x3D;4789&#x2F;udp --permanent </span><br></pre></td></tr></table></figure>
+<li><input disabled="" type="checkbox"> To open those ports specified above, you can use the following command (on both worker and manager): <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --add-port&#x3D;22&#x2F;tcp --permanent</span><br><span class="line">firewall-cmd --add-port&#x3D;2376&#x2F;tcp --permanent</span><br><span class="line">firewall-cmd --add-port&#x3D;2377&#x2F;tcp --permanent</span><br><span class="line">firewall-cmd --add-port&#x3D;7946&#x2F;tcp --permanent</span><br><span class="line">firewall-cmd --add-port&#x3D;7946&#x2F;udp --permanent</span><br><span class="line">firewall-cmd --add-port&#x3D;4789&#x2F;udp --permanent </span><br></pre></td></tr></table></figure>
 Afterwards, reload the firewall:<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --reload</span><br></pre></td></tr></table></figure>
 Then restart Docker.<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl restart docker</span><br></pre></td></tr></table></figure>
 For other means of doing the same thing, please visit <a href="https://www.digitalocean.com/community/tutorials/how-to-configure-the-linux-firewall-for-docker-swarm-on-ubuntu-16-04#method-2-%E2%80%94-opening-docker-swarm-ports-using-firewalld" target="_blank" rel="noopener">this link</a></li>
@@ -1071,7 +1073,7 @@ For other means of doing the same thing, please visit <a href="https://www.digit
 <blockquote>
 <p>Note: </p>
 <ul>
-<li><input disabled type="checkbox"> You can name your <code>ingress</code> network with a name of something other than <code>ingress</code>, but you can only have one <code>ingress</code> network. An attempt to create a second one fails.</li>
+<li><input disabled="" type="checkbox"> You can name your <code>ingress</code> network with a name of something other than <code>ingress</code>, but you can only have one <code>ingress</code> network. An attempt to create a second one fails.</li>
 </ul>
 </blockquote>
 </li>
@@ -1096,7 +1098,7 @@ For other means of doing the same thing, please visit <a href="https://www.digit
 <h2 id="Using-none-networks"><a href="#Using-none-networks" class="headerlink" title="Using none networks"></a>Using <code>none</code> networks</h2><p><a name="MySQL-in-Docker"></a></p>
 <h2 id="Using-MySQL-Server-in-Docker"><a href="#Using-MySQL-Server-in-Docker" class="headerlink" title="Using MySQL Server in Docker"></a>Using MySQL Server in Docker</h2><ol>
 <li>You need to first setup your SQL server in docker via this <a href="https://dev.mysql.com/doc/mysql-installation-excerpt/8.0/en/docker-mysql-getting-started.html" target="_blank" rel="noopener">Official Guide</a></li>
-<li>Then refer to <a href="https://jasonyux.github.io/2020/05/26/MySQL-Manual" target="_blank" rel="noopener">MySQL Manual</a> for further reference on using MySQL</li>
+<li>Then refer to <a href="https://jasonyux.github.io/2020/05/26/MySQL-Manual">MySQL Manual</a> for further reference on using MySQL</li>
 </ol>
 <h2 id="Creating-and-Mounting-a-Volume-to-MySQL-data"><a href="#Creating-and-Mounting-a-Volume-to-MySQL-data" class="headerlink" title="Creating and Mounting a Volume to MySQL data"></a>Creating and Mounting a Volume to MySQL data</h2><ol>
 <li><p>First, to create a volume, you need to run:</p>
@@ -1126,8 +1128,8 @@ For other means of doing the same thing, please visit <a href="https://www.digit
 <blockquote>
 <p>Note:</p>
 <ul>
-<li><input disabled type="checkbox"> If the name of the volume you specified does not exist, <code>docker</code> will create one with that name for you.</li>
-<li><input disabled type="checkbox"> It is also allowed to mount multiple containers to the same volume.</li>
+<li><input disabled="" type="checkbox"> If the name of the volume you specified does not exist, <code>docker</code> will create one with that name for you.</li>
+<li><input disabled="" type="checkbox"> It is also allowed to mount multiple containers to the same volume.</li>
 </ul>
 </blockquote>
 </li>
@@ -1187,7 +1189,7 @@ For other means of doing the same thing, please visit <a href="https://www.digit
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/05/25/Docker-Manual/" data-id="ckamcbohu000060orfr6dh1u8" class="article-share-link">Share</a>
+      <a data-url="https://jasonyux.github.io/2020/05/25/Docker-Manual/" data-id="ckbqgsgpu00020kor5vx7bfx3" class="article-share-link">Share</a>
       
       
     </footer>
