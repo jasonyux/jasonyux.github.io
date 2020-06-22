@@ -1,12 +1,25 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
-  
-  <title>Git Manual | From a Beginner to a Disaster</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"jasonyux.github.io","root":"/","scheme":"Pisces","version":"8.0.0-rc.3","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
   <meta name="description" content="IMPORTANT:Much of the content here is a personal summary&#x2F;abbrieviation of contents on the Offical Git Guide. For more complete information, please refer to the offical site.  Git Intro Version Contro">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Git Manual">
@@ -28,88 +41,216 @@
 <meta property="og:image" content="https://jasonyux.github.io/2020/05/20/Git-Summary/large-merges-1.png">
 <meta property="og:image" content="https://jasonyux.github.io/2020/05/20/Git-Summary/large-merges-2.png">
 <meta property="article:published_time" content="2020-05-20T12:46:25.000Z">
-<meta property="article:modified_time" content="2020-06-22T08:32:39.965Z">
+<meta property="article:modified_time" content="2020-06-22T13:28:17.078Z">
 <meta property="article:author" content="Xiao Yu">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://jasonyux.github.io/2020/05/20/Git-Summary/mergingCase1.png">
-  
-    <link rel="alternate" href="/atom.xml" title="From a Beginner to a Disaster" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  
-<link rel="stylesheet" href="/css/style.css">
 
-<meta name="generator" content="Hexo 4.2.1"></head>
+<link rel="canonical" href="https://jasonyux.github.io/2020/05/20/Git-Summary/">
 
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">From a Beginner to a Disaster</a>
-      </h1>
-      
-        <h2 id="subtitle-wrap">
-          <a href="/" id="subtitle">Xiao.Y</a>
-        </h2>
-      
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>Git Manual | From a Beginner to a Disaster</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before, .use-motion .logo-line-after {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+  <div id="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <main class="main">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+        <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
     </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://jasonyux.github.io"></form>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line-before"></i>
+      <h1 class="site-title">From a Beginner to a Disaster</h1>
+      <i class="logo-line-after"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Xiao.Y</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">1.</span> <span class="nav-text">Git Intro</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">2.</span> <span class="nav-text">Git Setup</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">3.</span> <span class="nav-text">Getting Help in Git</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">4.</span> <span class="nav-text">Git Basics</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#"><span class="nav-number">4.1.</span> <span class="nav-text">Recording Changes</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#"><span class="nav-number">4.2.</span> <span class="nav-text">Checking File Status</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#"><span class="nav-number">4.3.</span> <span class="nav-text">Modifying a Tracked File</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#"><span class="nav-number">4.4.</span> <span class="nav-text">Difference between git add and git commit</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#"><span class="nav-number">4.5.</span> <span class="nav-text">Abbreviated version for git status</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#"><span class="nav-number">4.6.</span> <span class="nav-text">Ignoring Files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#"><span class="nav-number">4.7.</span> <span class="nav-text">Knowing the Modifications</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#"><span class="nav-number">4.8.</span> <span class="nav-text">Committing Changes</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#"><span class="nav-number">4.9.</span> <span class="nav-text">Committing and Skipping the Staging</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#"><span class="nav-number">4.10.</span> <span class="nav-text">Removing Tracked File&#x2F; Untracking File</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#"><span class="nav-number">4.11.</span> <span class="nav-text">Renaming a File</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#"><span class="nav-number">4.12.</span> <span class="nav-text">Viewing Commits</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#"><span class="nav-number">4.13.</span> <span class="nav-text">Changing your Staging</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#"><span class="nav-number">4.14.</span> <span class="nav-text">Changing&#x2F;Undoing your Commit</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#"><span class="nav-number">4.15.</span> <span class="nav-text">Working with Remotes</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#"><span class="nav-number">4.16.</span> <span class="nav-text">Difference between git clone and git remote add</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#"><span class="nav-number">4.17.</span> <span class="nav-text">Fetching and Pulling from Remote Repos</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#"><span class="nav-number">4.18.</span> <span class="nav-text">Viewing Changes After Fetching</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#"><span class="nav-number">4.19.</span> <span class="nav-text">Pushing&#x2F;Sharing to Your Remote</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#"><span class="nav-number">4.20.</span> <span class="nav-text">Renaming or Removing Remote Repo</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#"><span class="nav-number">4.21.</span> <span class="nav-text">Inspecting a Remote for Pushing and Pulling Information</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#"><span class="nav-number">4.22.</span> <span class="nav-text">Tagging</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#"><span class="nav-number">4.23.</span> <span class="nav-text">Listing the Tags of a Repo</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#"><span class="nav-number">4.24.</span> <span class="nav-text">Creating Tags</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#"><span class="nav-number">4.25.</span> <span class="nav-text">Creating a Lightweight Tag</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#"><span class="nav-number">4.26.</span> <span class="nav-text">Creating an Annotated Tag</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#"><span class="nav-number">4.27.</span> <span class="nav-text">Tagging Previous Commits</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#"><span class="nav-number">4.28.</span> <span class="nav-text">Sharing Tags</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#"><span class="nav-number">4.29.</span> <span class="nav-text">Deleting Tags</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#"><span class="nav-number">4.30.</span> <span class="nav-text">Viewing Files at a Different State using Tag</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">5.</span> <span class="nav-text">Git Alias</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#"><span class="nav-number">5.1.</span> <span class="nav-text">Resetting the Alias</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">6.</span> <span class="nav-text">Git Branching</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#"><span class="nav-number">6.1.</span> <span class="nav-text">Create a New Branch</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#"><span class="nav-number">6.2.</span> <span class="nav-text">Switching Branches</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#"><span class="nav-number">6.3.</span> <span class="nav-text">Viewing the Diversion Tree</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#"><span class="nav-number">6.4.</span> <span class="nav-text">Merging Different Branches</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#"><span class="nav-number">6.5.</span> <span class="nav-text">Branch Management</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#"><span class="nav-number">6.6.</span> <span class="nav-text">Typical WorkFlow Using Git Branches</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#"><span class="nav-number">6.7.</span> <span class="nav-text">Remote Branches</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#"><span class="nav-number">6.8.</span> <span class="nav-text">Colaborating with Multiple Repos</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#"><span class="nav-number">6.9.</span> <span class="nav-text">Pushing Your Branch to the Server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#"><span class="nav-number">6.10.</span> <span class="nav-text">Tracking Branches</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#"><span class="nav-number">6.11.</span> <span class="nav-text">Difference between git fetch and git pull</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#"><span class="nav-number">6.12.</span> <span class="nav-text">Viewing the Current Tracking Branch</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#"><span class="nav-number">6.13.</span> <span class="nav-text">Switching a Tracking Branch</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#"><span class="nav-number">6.14.</span> <span class="nav-text">Deleting a Remote Branch</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#"><span class="nav-number">6.15.</span> <span class="nav-text">Rebasing</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#"><span class="nav-number">6.16.</span> <span class="nav-text">A More Complicated Rebase</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#"><span class="nav-number">6.17.</span> <span class="nav-text">A Disasterous Case</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">7.</span> <span class="nav-text">Running Git On Server</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#"><span class="nav-number">7.1.</span> <span class="nav-text">The Protocals for Git Data Transfer</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#"><span class="nav-number">7.2.</span> <span class="nav-text">Setting up Git on a Server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#"><span class="nav-number">7.3.</span> <span class="nav-text">Setting up an Existing Git Repo on Github</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">8.</span> <span class="nav-text">Distributed WorkFlows</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#"><span class="nav-number">8.1.</span> <span class="nav-text">Commit Guidelines</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#"><span class="nav-number">8.2.</span> <span class="nav-text">Branch Naming</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#"><span class="nav-number">8.3.</span> <span class="nav-text">Forking a Project</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#"><span class="nav-number">8.4.</span> <span class="nav-text">Difference bewtween git merge --squash and git rebase</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#"><span class="nav-number">8.5.</span> <span class="nav-text">Nofifying Changes via Email</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#"><span class="nav-number">8.6.</span> <span class="nav-text">Maintaining a Project</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#"><span class="nav-number">8.7.</span> <span class="nav-text">Using git apply</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#"><span class="nav-number">8.8.</span> <span class="nav-text">Using git am</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#"><span class="nav-number">8.9.</span> <span class="nav-text">Managing Using the Remote Branches</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#"><span class="nav-number">8.10.</span> <span class="nav-text">Determining What is Changed</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#"><span class="nav-number">8.11.</span> <span class="nav-text">Determining your Merging Workflow</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#"><span class="nav-number">8.12.</span> <span class="nav-text">Small Merging Workflow</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#"><span class="nav-number">8.13.</span> <span class="nav-text">Large Merging Workflow</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#"><span class="nav-number">8.14.</span> <span class="nav-text">Rebasing and Cherry-Picking Workflow</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#"><span class="nav-number">8.15.</span> <span class="nav-text">Rerere in Git</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#"><span class="nav-number">8.16.</span> <span class="nav-text">Generating a Build Number</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#"><span class="nav-number">8.17.</span> <span class="nav-text">Preparing a Release Using a Zip&#x2F;Gzip</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#"><span class="nav-number">8.18.</span> <span class="nav-text">Shortlog</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">9.</span> <span class="nav-text">Git Commit Selection Tools</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#"><span class="nav-number">9.1.</span> <span class="nav-text">Git Tools for Interactive Staging</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#"><span class="nav-number">9.2.</span> <span class="nav-text">Git Tools for Stashing</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#"><span class="nav-number">9.3.</span> <span class="nav-text">Git Tools for Cleanig Up Your Workspace</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#"><span class="nav-number">9.4.</span> <span class="nav-text">Git Tools for Signing a Commit</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Xiao Yu</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+  </nav>
+</div>
+
+
+
       </div>
     </div>
-  </div>
-</header>
-      <div class="outer">
-        <section id="main"><article id="post-Git-Summary" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/05/20/Git-Summary/" class="article-date">
-  <time datetime="2020-05-20T12:46:25.000Z" itemprop="datePublished">2020-05-20</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      Git Manual
-    </h1>
-  
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
 
       </header>
+
+      
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+      <div class="main-inner">
+        
+
+        <div class="content post posts-expand">
+          
+
     
-    <div class="article-entry" itemprop="articleBody">
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://jasonyux.github.io/2020/05/20/Git-Summary/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Xiao Yu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="From a Beginner to a Disaster">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Git Manual
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-05-20 20:46:25" itemprop="dateCreated datePublished" datetime="2020-05-20T20:46:25+08:00">2020-05-20</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-06-22 21:28:17" itemprop="dateModified" datetime="2020-06-22T21:28:17+08:00">2020-06-22</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
         <hr>
 <p><strong>IMPORTANT</strong>:<br>Much of the content here is a personal summary/abbrieviation of contents on the <a href="https://git-scm.com/book/en/v2" target="_blank" rel="noopener">Offical Git Guide</a>. For more complete information, please refer to the offical site.</p>
 <hr>
-<h2 id="Git-Intro"><a href="#Git-Intro" class="headerlink" title="Git Intro"></a>Git Intro</h2><ul>
+<h2><span id="git-intro">Git Intro</span><a href="#git-intro" class="header-anchor">⌨</a></h2><ul>
 <li>Version Control<ul>
 <li>Version control is a <strong>system</strong> that records and manages changes for a file or a set of file, so that you could later revert those changes if needed</li>
 </ul>
@@ -148,8 +289,8 @@
 </ul>
 </li>
 </ul>
-<h2 id="Git-Setup"><a href="#Git-Setup" class="headerlink" title="Git Setup"></a>Git Setup</h2><p>Please follow the offical documentation for setup and installation.</p>
-<h2 id="Getting-Help-in-Git"><a href="#Getting-Help-in-Git" class="headerlink" title="Getting Help in Git"></a>Getting Help in Git</h2><p>To get more information about a command in Git, use any of the three below:</p>
+<h2><span id="git-setup">Git Setup</span><a href="#git-setup" class="header-anchor">⌨</a></h2><p>Please follow the offical documentation for setup and installation.</p>
+<h2><span id="getting-help-in-git">Getting Help in Git</span><a href="#getting-help-in-git" class="header-anchor">⌨</a></h2><p>To get more information about a command in Git, use any of the three below:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git help &lt;verb&gt;</span><br><span class="line">$ git &lt;verb&gt; --help</span><br><span class="line">$ man git-&lt;verb&gt;</span><br></pre></td></tr></table></figure>
 <p>It is recommended to use <code>git &lt;verb&gt; --help</code> because it sticks to the pattern of command line code. For example, for a quick refresher on the available options for a Git command, you do <code>git &lt;verb&gt; -h</code></p>
 <ul>
@@ -158,7 +299,7 @@
 </ul>
 </li>
 </ul>
-<h2 id="Git-Basics"><a href="#Git-Basics" class="headerlink" title="Git Basics"></a>Git Basics</h2><ul>
+<h2><span id="git-basics">Git Basics</span><a href="#git-basics" class="header-anchor">⌨</a></h2><ul>
 <li><p><strong>Getting a Git Repository</strong><br>This can be done in two ways</p>
 <ol>
 <li>take a local directory that is currently <strong>not under version control</strong> and turn it into a Git repository</li>
@@ -193,7 +334,7 @@
 
 </li>
 </ul>
-<h2 id="Recording-Changes"><a href="#Recording-Changes" class="headerlink" title="Recording Changes"></a>Recording Changes</h2><p>Typically, you’ll want to <strong>start making changes</strong> and <strong>committing snapshots of those changes</strong> (i.e. recording/saving those changes) into your repository each time the project reaches a state you want to record.</p>
+<h3><span id="recording-changes">Recording Changes</span><a href="#recording-changes" class="header-anchor">⌨</a></h3><p>Typically, you’ll want to <strong>start making changes</strong> and <strong>committing snapshots of those changes</strong> (i.e. recording/saving those changes) into your repository each time the project reaches a state you want to record.</p>
 <p>As you edit files, Git sees them as <strong>modified</strong>, because you’ve changed them since your last commit. As you work, you selectively <strong>stage these modified files</strong> and then <strong>commit/save all those staged changes</strong>, and the cycle repeats.</p>
 <ul>
 <li><em>Note</em><ul>
@@ -202,7 +343,7 @@
 </ul>
 </li>
 </ul>
-<h2 id="Checking-File-Status"><a href="#Checking-File-Status" class="headerlink" title="Checking File Status"></a>Checking File Status</h2><p>The main tool you use to <strong>determine which files are in which state</strong> is the <code>git status</code> command. </p>
+<h3><span id="checking-file-status">Checking File Status</span><a href="#checking-file-status" class="header-anchor">⌨</a></h3><p>The main tool you use to <strong>determine which files are in which state</strong> is the <code>git status</code> command. </p>
 <p>For example, if you see:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ git status</span><br><span class="line">On branch master</span><br><span class="line">Your branch is up-to-date with &#39;origin&#x2F;master&#39;.</span><br><span class="line">nothing to commit, working directory clean</span><br></pre></td></tr></table></figure>
 <p>A <strong>clean working directory</strong> means <strong>none of your tracked files are modified</strong>.</p>
@@ -213,7 +354,7 @@
 </ul>
 </li>
 </ul>
-<h2 id="Modifying-a-Tracked-File"><a href="#Modifying-a-Tracked-File" class="headerlink" title="Modifying a Tracked File"></a>Modifying a Tracked File</h2><p>There are three status that a tracked file can be at <strong>after being modified</strong>:</p>
+<h3><span id="modifying-a-tracked-file">Modifying a Tracked File</span><a href="#modifying-a-tracked-file" class="header-anchor">⌨</a></h3><p>There are three status that a tracked file can be at <strong>after being modified</strong>:</p>
 <ol>
 <li><strong>Unstaged and uncomitted</strong><ul>
 <li>This happens <strong>right after</strong> you have <strong>modified a tracked file</strong>. At this point, if you did not call <code>git add thatFile</code> again, Git will only know about the previous checkpoint.<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Changes not staged for commit:</span><br><span class="line">  (use &quot;git add &lt;file&gt;...&quot; to update what will be committed)</span><br><span class="line">  (use &quot;git restore &lt;file&gt;...&quot; to discard changes in working directory)</span><br><span class="line">        modified:   firstFile.txt</span><br></pre></td></tr></table></figure></li>
@@ -228,12 +369,12 @@
 </ul>
 </li>
 </ol>
-<h2 id="Difference-between-git-add-and-git-commit"><a href="#Difference-between-git-add-and-git-commit" class="headerlink" title="Difference between git add and git commit"></a>Difference between <code>git add</code> and <code>git commit</code></h2><ul>
+<h3><span id="difference-between-git-add-and-git-commit">Difference between <code>git add</code> and <code>git commit</code></span><a href="#difference-between-git-add-and-git-commit" class="header-anchor">⌨</a></h3><ul>
 <li><strong><em>Q: why add and commit as two functions? They seem to be two repeated checkpoint procedures.</em></strong></li>
 </ul>
 <p>The <code>git add</code> command adds a <strong>change in the working directory to the staging area</strong>. It tells Git that you want to include updates to a particular file in the next commit. However, <code>git add</code> doesn’t really affect the repository in any significant way—changes are not actually recorded until you run git commit.</p>
 <p>The command <code>git commit</code> takes <strong>all changes in the Staging Area</strong>, wraps them together and** puts them in your Local Repository<strong>. A commit is simply a checkpoint telling git to track all changes that have occurred up to this point using our last commit as a comparison. **After committing, your Staging Area will be empty</strong>.</p>
-<h2 id="Abbreviated-version-for-git-status"><a href="#Abbreviated-version-for-git-status" class="headerlink" title="Abbreviated version for git status"></a>Abbreviated version for <code>git status</code></h2><p>To quickly view which file is at which status, you can execute <code>git status -s</code> to see <strong>each file under the current directory with their status</strong></p>
+<h3><span id="abbreviated-version-for-git-status">Abbreviated version for <code>git status</code></span><a href="#abbreviated-version-for-git-status" class="header-anchor">⌨</a></h3><p>To quickly view which file is at which status, you can execute <code>git status -s</code> to see <strong>each file under the current directory with their status</strong></p>
 <p>For example, you could see</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">MM LICENSE.txt</span><br><span class="line">AM README.md</span><br><span class="line">M  firstFile.txt</span><br><span class="line">A  justTracked.txt</span><br><span class="line">?? unTracked.txt</span><br></pre></td></tr></table></figure>
 <ul>
@@ -251,7 +392,7 @@
 </ul>
 </li>
 </ul>
-<h2 id="Ignoring-Files"><a href="#Ignoring-Files" class="headerlink" title="Ignoring Files"></a>Ignoring Files</h2><p>A <strong>gitignore file</strong> specifies intentionally <strong>untracked files</strong> that Git should ignore. Files already tracked by Git are not affected.</p>
+<h3><span id="ignoring-files">Ignoring Files</span><a href="#ignoring-files" class="header-anchor">⌨</a></h3><p>A <strong>gitignore file</strong> specifies intentionally <strong>untracked files</strong> that Git should ignore. Files already tracked by Git are not affected.</p>
 <p><strong>Each line in a gitignore file</strong> specifies a pattern. When deciding whether to ignore a path, Git normally checks gitignore patterns from multiple sources, with the following order of precedence, from highest to lowest.</p>
 <ol>
 <li>First, you need to have/create a <strong>.gitignore</strong> file under the repository. This can be simply done by <code>touch .gitignore</code></li>
@@ -270,7 +411,7 @@
 </ul>
 </li>
 </ul>
-<h2 id="Knowing-the-Modifications"><a href="#Knowing-the-Modifications" class="headerlink" title="Knowing the Modifications"></a>Knowing the Modifications</h2><ol>
+<h3><span id="knowing-the-modifications">Knowing the Modifications</span><a href="#knowing-the-modifications" class="header-anchor">⌨</a></h3><ol>
 <li><p>By just executing <code>git diff</code> will compare what is in your <strong>working directory</strong> with what is in your <strong>staging area</strong>. The result tells you the <strong>changes you’ve made that you haven’t yet staged</strong>.</p>
 <p>For example:  </p>
  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">$ git diff</span><br><span class="line">warning: LF will be replaced by CRLF in firstFile.txt.</span><br><span class="line">The file will have its original line endings in your working directory</span><br><span class="line">diff --git a&#x2F;firstFile.txt b&#x2F;firstFile.txt</span><br><span class="line">index 640bb73..caada99 100644</span><br><span class="line">--- a&#x2F;firstFile.txt</span><br><span class="line">+++ b&#x2F;firstFile.txt</span><br><span class="line">@@ -1,3 +1,5 @@</span><br><span class="line"> hello</span><br><span class="line"> hello</span><br><span class="line"> hello</span><br><span class="line">+</span><br><span class="line">+aa</span><br></pre></td></tr></table></figure>
@@ -282,7 +423,7 @@
 <p>Notice that the last two lines <code>+</code> and <code>+aa</code> are not present.</p>
 </li>
 </ol>
-<h2 id="Committing-Changes"><a href="#Committing-Changes" class="headerlink" title="Committing Changes"></a>Committing Changes</h2><p>Now if you want to commit to those changes, you can execute <code>git commit</code>. However, this will <strong>only commit changes that are staged</strong>, so <strong>modified yet unstaged</strong> changes will not be recorded.</p>
+<h3><span id="committing-changes">Committing Changes</span><a href="#committing-changes" class="header-anchor">⌨</a></h3><p>Now if you want to commit to those changes, you can execute <code>git commit</code>. However, this will <strong>only commit changes that are staged</strong>, so <strong>modified yet unstaged</strong> changes will not be recorded.</p>
 <p>After executing <code>git commit</code>, it will bring up your editor of choice, which can be chosen when you setup your Git.</p>
 <p>For example</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ git commit</span><br><span class="line">[master 2031fb7] first commit made</span><br><span class="line"> 4 files changed, 11 insertions(+)</span><br><span class="line"> create mode 100644 LICENSE.txt</span><br><span class="line"> create mode 100644 README.md</span><br><span class="line"> create mode 100644 justTracked.txt</span><br></pre></td></tr></table></figure>
@@ -297,9 +438,9 @@
 </li>
 </ul>
 <p>After you have made a commmit, <strong>all the tracked file will not appear</strong> if you execute <code>git status -s</code></p>
-<h2 id="Committing-and-Skipping-the-Staging"><a href="#Committing-and-Skipping-the-Staging" class="headerlink" title="Committing and Skipping the Staging"></a>Committing and Skipping the Staging</h2><p> If you want to skip the staging area, Git provides a simple shortcut. Adding the <code>-a</code> option to the <code>git commit</code> command makes Git automatically <strong>stage every file that is already tracked</strong> before doing the commit, letting you skip the <code>git add</code> part.</p>
+<h3><span id="committing-and-skipping-the-staging">Committing and Skipping the Staging</span><a href="#committing-and-skipping-the-staging" class="header-anchor">⌨</a></h3><p> If you want to skip the staging area, Git provides a simple shortcut. Adding the <code>-a</code> option to the <code>git commit</code> command makes Git automatically <strong>stage every file that is already tracked</strong> before doing the commit, letting you skip the <code>git add</code> part.</p>
 <p>Though this is convenient, but be careful; sometimes this flag will cause you to include unwanted changes.</p>
-<h2 id="Removing-Tracked-File-Untracking-File"><a href="#Removing-Tracked-File-Untracking-File" class="headerlink" title="Removing Tracked File/ Untracking File"></a>Removing Tracked File/ Untracking File</h2><ul>
+<h3><span id="removing-tracked-file-untracking-file">Removing Tracked File/ Untracking File</span><a href="#removing-tracked-file-untracking-file" class="header-anchor">⌨</a></h3><ul>
 <li><p>If you want to <strong>remove a tracked file</strong>, meaning you want to delete the file, you need to execute <code>git rm yourFile</code>. This will:</p>
 <ol>
 <li>remove the file from the <strong>current working directory</strong></li>
@@ -311,14 +452,14 @@
 <p>Now, same as before, you will still need to execute <code>git commit</code> to complete the removal from the Git</p>
 </li>
 </ul>
-<h2 id="Renaming-a-File"><a href="#Renaming-a-File" class="headerlink" title="Renaming a File"></a>Renaming a File</h2><p>If you rename a file, and wants it still being tracked by Git properly, you should do<br><code>git mv myFile myNewFile</code></p>
+<h3><span id="renaming-a-file">Renaming a File</span><a href="#renaming-a-file" class="header-anchor">⌨</a></h3><p>If you rename a file, and wants it still being tracked by Git properly, you should do<br><code>git mv myFile myNewFile</code></p>
 <p>Now, if you call <code>git status</code>, you will see:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ git mv README.md README</span><br><span class="line">$ git status</span><br><span class="line">On branch master</span><br><span class="line">Your branch is up-to-date with &#39;origin&#x2F;master&#39;.</span><br><span class="line">Changes to be committed:</span><br><span class="line">  (use &quot;git reset HEAD &lt;file&gt;...&quot; to unstage)</span><br><span class="line"></span><br><span class="line">    renamed:    README.md -&gt; README</span><br></pre></td></tr></table></figure>
 
 <p>This is also equivalent of doing seperately three lines:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ mv README.md README</span><br><span class="line">$ git rm README.md</span><br><span class="line">$ git add README</span><br></pre></td></tr></table></figure>
 
-<h2 id="Viewing-Commits"><a href="#Viewing-Commits" class="headerlink" title="Viewing Commits"></a>Viewing Commits</h2><p>You can see all commits in a repo by:</p>
+<h3><span id="viewing-commits">Viewing Commits</span><a href="#viewing-commits" class="header-anchor">⌨</a></h3><p>You can see all commits in a repo by:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git log</span><br></pre></td></tr></table></figure>
 <p>By default, with no arguments, <code>git log</code> lists the commits made in that repository in <strong>reverse chronological order</strong></p>
 <ul>
@@ -353,7 +494,7 @@
 </ul>
 </li>
 </ul>
-<h2 id="Changing-your-Staging"><a href="#Changing-your-Staging" class="headerlink" title="Changing your Staging"></a>Changing your Staging</h2><ol>
+<h3><span id="changing-your-staging">Changing your Staging</span><a href="#changing-your-staging" class="header-anchor">⌨</a></h3><ol>
 <li><p>If you forget to do some small changes, but you have just committed, you can easily “re-commit” by</p>
 <ul>
 <li>first make those additional changes you forgot</li>
@@ -366,7 +507,7 @@
 <p>Now, the file [README.md] is unstaged and you can add changes to it and restage.</p>
 </li>
 </ol>
-<h2 id="Changing-Undoing-your-Commit"><a href="#Changing-Undoing-your-Commit" class="headerlink" title="Changing/Undoing your Commit"></a>Changing/Undoing your Commit</h2><p>If you want to <strong>revert the file to its previous committed state</strong> (you cannot revert to those added state),  you have several options to do. You could:</p>
+<h3><span id="changing-undoing-your-commit">Changing/Undoing your Commit</span><a href="#changing-undoing-your-commit" class="header-anchor">⌨</a></h3><p>If you want to <strong>revert the file to its previous committed state</strong> (you cannot revert to those added state),  you have several options to do. You could:</p>
 <ol>
 <li><p>Run <code>git restore &lt;file&gt;</code>. In fact, this is also adviced by the command <code>git status</code> <strong>if the file is in the unstaged area</strong>. It is usually used for <strong>restoring files in the working tree from either the index or another commit</strong>. This command <strong>does not update your branch</strong>.</p>
 </li>
@@ -378,61 +519,61 @@
 <blockquote>
 <p>Note:</p>
 <ul>
-<li><input disabled="" type="checkbox"> If you use the <code>restore</code> command, <strong>any local changes you made to that file are gon</strong>e — Git just <strong>replaced that file with the most recently-committed version</strong>. Don’t ever use this command unless you absolutely know that you don’t want those unsaved local changes.</li>
+<li><input disabled type="checkbox"> If you use the <code>restore</code> command, <strong>any local changes you made to that file are gon</strong>e — Git just <strong>replaced that file with the most recently-committed version</strong>. Don’t ever use this command unless you absolutely know that you don’t want those unsaved local changes.</li>
 </ul>
 </blockquote>
 <p> If you would like to <strong>keep the changes</strong> you’ve made to that file but <strong>still need to get it out of the way for now</strong>, we’ll go over stashing and branching in <a href="#Git-Branching">Git Branching</a>; these are generally better ways to go.</p>
 </li>
 </ol>
-<h2 id="Working-with-Remotes"><a href="#Working-with-Remotes" class="headerlink" title="Working with Remotes"></a>Working with Remotes</h2><p>To be able to collaborate on any Git project, you need to know how to <strong>manage your remote repositories</strong>. Remote repositories are <strong>versions of your project that are hosted on the Internet or network somewhere</strong>. Managing these remote repositories involves <strong>pushing and pulling data to and from them</strong> when you need to share work.</p>
+<h3><span id="working-with-remotes">Working with Remotes</span><a href="#working-with-remotes" class="header-anchor">⌨</a></h3><p>To be able to collaborate on any Git project, you need to know how to <strong>manage your remote repositories</strong>. Remote repositories are <strong>versions of your project that are hosted on the Internet or network somewhere</strong>. Managing these remote repositories involves <strong>pushing and pulling data to and from them</strong> when you need to share work.</p>
 <ul>
 <li>To show the remote server for repo in the current  directory, you can execute <code>git remote</code>, or <code>git remote -v</code> to see the URLs stored as well.</li>
 <li>To add a remote server, you can execute <code>git remote add &lt;shortname&gt; &lt;url&gt;</code>, which will configure the <strong>shortname/nickname</strong> for that repo. Then you can <strong>use that shortname to access that repo</strong>.<blockquote>
 <p>Note:</p>
 <ul>
-<li><input disabled="" type="checkbox"> You can only add remote repo in an existing repo</li>
-<li><input disabled="" type="checkbox"> Executing <code>git clone &lt;url&gt;</code> will give you a default shortname of <code>origin</code></li>
+<li><input disabled type="checkbox"> You can only add remote repo in an existing repo</li>
+<li><input disabled type="checkbox"> Executing <code>git clone &lt;url&gt;</code> will give you a default shortname of <code>origin</code></li>
 </ul>
 </blockquote>
 </li>
 </ul>
-<h2 id="Difference-between-git-clone-and-git-remote-add"><a href="#Difference-between-git-clone-and-git-remote-add" class="headerlink" title="Difference between git clone and git remote add"></a>Difference between <code>git clone</code> and <code>git remote add</code></h2><ul>
+<h3><span id="difference-between-git-clone-and-git-remote-add">Difference between <code>git clone</code> and <code>git remote add</code></span><a href="#difference-between-git-clone-and-git-remote-add" class="header-anchor">⌨</a></h3><ul>
 <li><p><code>git remote add</code> just creates an entry in your git config that specifies a name for a particular URL. You must have an existing git repo to use this. You will not see a folder or any file from that repo. To get them, you need to use <code>git pull &lt;shortname&gt; &lt;branch&gt;</code></p>
 </li>
 <li><p><code>git clone</code> creates a new git repository by copying an existing one located at the URL you specify. This will be physical.</p>
 </li>
 </ul>
-<h2 id="Fetching-and-Pulling-from-Remote-Repos"><a href="#Fetching-and-Pulling-from-Remote-Repos" class="headerlink" title="Fetching and Pulling from Remote Repos"></a>Fetching and Pulling from Remote Repos</h2><ol>
+<h3><span id="fetching-and-pulling-from-remote-repos">Fetching and Pulling from Remote Repos</span><a href="#fetching-and-pulling-from-remote-repos" class="header-anchor">⌨</a></h3><ol>
 <li><code>git fetch &lt;remote&gt;</code> This command goes out to that remote project and <strong>pulls down all the data from that remote project that you don’t have yet</strong>. After you do this, you should have references to all the branches from that remote, which you can merge in or inspect at any time (merge operations will be discussed in <a href="#Git-Branching">Git Branching</a>.</li>
 <li>If you <strong>cloned a repository</strong>, the command  <code>git fetch origin</code> fetches <strong>any new work that has been pushed to that server</strong> since you cloned (or last fetched from) it<blockquote>
 <p>Note:</p>
 <ul>
-<li><input disabled="" type="checkbox"> <code>git fetch</code> command only <strong>downloads the data to your local repository</strong> — it <strong>doesn’t automatically merge it</strong> with any of your work <strong>or modify what you’re currently working on</strong>. You have to merge it manually into your work when you’re ready</li>
-<li><input disabled="" type="checkbox"> <code>get pull</code> will <strong>fetch and merge the remote branches into your current branch</strong>. More covered in <a href="#Git-Branching">Git Branching</a></li>
+<li><input disabled type="checkbox"> <code>git fetch</code> command only <strong>downloads the data to your local repository</strong> — it <strong>doesn’t automatically merge it</strong> with any of your work <strong>or modify what you’re currently working on</strong>. You have to merge it manually into your work when you’re ready</li>
+<li><input disabled type="checkbox"> <code>get pull</code> will <strong>fetch and merge the remote branches into your current branch</strong>. More covered in <a href="#Git-Branching">Git Branching</a></li>
 </ul>
 </blockquote>
 </li>
 </ol>
-<h2 id="Viewing-Changes-After-Fetching"><a href="#Viewing-Changes-After-Fetching" class="headerlink" title="Viewing Changes After Fetching"></a>Viewing Changes After Fetching</h2><p>After you have fetched from your repo with <code>git fetch &lt;remote&gt;</code>, it will automatically update (or create) all the so-called <strong>“remote-tracking branches”</strong> for that remote (if you only want to fetch from a specific branch, you need to run <code>git fetch &lt;remote&gt;/&lt;branchName&gt;</code>).</p>
+<h3><span id="viewing-changes-after-fetching">Viewing Changes After Fetching</span><a href="#viewing-changes-after-fetching" class="header-anchor">⌨</a></h3><p>After you have fetched from your repo with <code>git fetch &lt;remote&gt;</code>, it will automatically update (or create) all the so-called <strong>“remote-tracking branches”</strong> for that remote (if you only want to fetch from a specific branch, you need to run <code>git fetch &lt;remote&gt;/&lt;branchName&gt;</code>).</p>
 <p>Now, to see what has been changed, you can use the <code>^</code> or <code>..</code> operator. For example, If you want to see what remote <code>master</code> has compared to your local <code>master</code>, you ask Git to show you exactly this:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git log &lt;remote&gt;&#x2F;master ^master</span><br></pre></td></tr></table></figure>
 
 <p>which means <strong>all commits reachable from <code>&lt;remote&gt;/master</code> which do not include commits reachable from <code>master</code></strong> or, alternatively</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git log master..&lt;remote&gt;&#x2F;master</span><br></pre></td></tr></table></figure>
 
-<h2 id="Pushing-Sharing-to-Your-Remote"><a href="#Pushing-Sharing-to-Your-Remote" class="headerlink" title="Pushing/Sharing to Your Remote"></a>Pushing/Sharing to Your Remote</h2><p>When you have your project at a point that you want to share, you have to push it upstream. The command for this is simple: <code>git push &lt;remote&gt; &lt;branch&gt;</code>. If you want to <strong>push your master branch to your origin server</strong> (again, cloning generally sets up both of those names for you automatically), then you can run this to <strong>push any commits you’ve done</strong> back up to the server:</p>
+<h3><span id="pushing-sharing-to-your-remote">Pushing/Sharing to Your Remote</span><a href="#pushing-sharing-to-your-remote" class="header-anchor">⌨</a></h3><p>When you have your project at a point that you want to share, you have to push it upstream. The command for this is simple: <code>git push &lt;remote&gt; &lt;branch&gt;</code>. If you want to <strong>push your master branch to your origin server</strong> (again, cloning generally sets up both of those names for you automatically), then you can run this to <strong>push any commits you’ve done</strong> back up to the server:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git push origin master</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>Note:</p>
 <ul>
-<li><input disabled="" type="checkbox"> This command works only <strong>if you cloned from a server</strong> to which you <strong>have write access</strong> and <strong>if nobody has pushed in the meantime</strong>. If someone else if pushing, your push will be rejected and you will have to <strong>fetch their work first and incorporate it into yours</strong> before you’ll be allowed to push. </li>
+<li><input disabled type="checkbox"> This command works only <strong>if you cloned from a server</strong> to which you <strong>have write access</strong> and <strong>if nobody has pushed in the meantime</strong>. If someone else if pushing, your push will be rejected and you will have to <strong>fetch their work first and incorporate it into yours</strong> before you’ll be allowed to push. </li>
 </ul>
 </blockquote>
-<h2 id="Renaming-or-Removing-Remote-Repo"><a href="#Renaming-or-Removing-Remote-Repo" class="headerlink" title="Renaming or Removing Remote Repo"></a>Renaming or Removing Remote Repo</h2><ol>
+<h3><span id="renaming-or-removing-remote-repo">Renaming or Removing Remote Repo</span><a href="#renaming-or-removing-remote-repo" class="header-anchor">⌨</a></h3><ol>
 <li>If you want to rename a shorthand for a remote repo, you can execute <code>git remote rename &lt;originalName&gt; &lt;newName&gt;</code> to change a remote’s shortname.</li>
 <li>If you want to <strong>remove a remote for some reason</strong> — you’ve moved the server or are no longer using a particular mirror, or perhaps a contributor isn’t contributing anymore, you can use <code>git remote remove &lt;shortname&gt;</code></li>
 </ol>
-<h2 id="Inspecting-a-Remote-for-Pushing-and-Pulling-Information"><a href="#Inspecting-a-Remote-for-Pushing-and-Pulling-Information" class="headerlink" title="Inspecting a Remote for Pushing and Pulling Information"></a>Inspecting a Remote for Pushing and Pulling Information</h2><p>If you want to see more information about a particular remote, you can use the <code>git remote show &lt;remote&gt;</code> command</p>
+<h3><span id="inspecting-a-remote-for-pushing-and-pulling-information">Inspecting a Remote for Pushing and Pulling Information</span><a href="#inspecting-a-remote-for-pushing-and-pulling-information" class="header-anchor">⌨</a></h3><p>If you want to see more information about a particular remote, you can use the <code>git remote show &lt;remote&gt;</code> command</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$ git remote show pb</span><br><span class="line">* remote pb</span><br><span class="line">  Fetch URL: https:&#x2F;&#x2F;github.com&#x2F;paulboone&#x2F;ticgit</span><br><span class="line">  Push  URL: https:&#x2F;&#x2F;github.com&#x2F;paulboone&#x2F;ticgit</span><br><span class="line">  HEAD branch: master</span><br><span class="line">  Remote branches:</span><br><span class="line">    master tracked</span><br><span class="line">    ticgit tracked</span><br><span class="line">  Local ref configured for &#39;git push&#39;:</span><br><span class="line">    master pushes to master (local out of date)</span><br></pre></td></tr></table></figure>
 <p>It lists the URL for the remote repository as well as the tracking branch information. The command helpfully tells you that if you’re on the master branch and you run git pull, it will automatically merge in the master branch on the remote after it fetches all the remote references. It also lists all the remote references it has pulled down.</p>
 <p>In general, it will show you:</p>
@@ -442,19 +583,19 @@
 <li>which <strong>remote branches you have but have been removed from the server</strong></li>
 <li>multiple <strong>local branches that are able to merge</strong> automatically with their remote-tracking branch when you run <code>git pull</code></li>
 </ul>
-<h2 id="Tagging"><a href="#Tagging" class="headerlink" title="Tagging"></a>Tagging</h2><p>Git has the ability to <strong>tag specific points in a repository’s history as being important</strong>. Typically, people use this functionality to mark release points (<code>v1.0</code>, <code>v2.0</code> and so on).</p>
-<h2 id="Listing-the-Tags-of-a-Repo"><a href="#Listing-the-Tags-of-a-Repo" class="headerlink" title="Listing the Tags of a Repo"></a>Listing the Tags of a Repo</h2><p>You can list <strong>all the tags</strong> by calling:</p>
+<h3><span id="tagging">Tagging</span><a href="#tagging" class="header-anchor">⌨</a></h3><p>Git has the ability to <strong>tag specific points in a repository’s history as being important</strong>. Typically, people use this functionality to mark release points (<code>v1.0</code>, <code>v2.0</code> and so on).</p>
+<h3><span id="listing-the-tags-of-a-repo">Listing the Tags of a Repo</span><a href="#listing-the-tags-of-a-repo" class="header-anchor">⌨</a></h3><p>You can list <strong>all the tags</strong> by calling:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git tag</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>Note:</p>
 <ul>
-<li><input disabled="" type="checkbox"> this command lists the tags in <strong>alphabetical order</strong>; the order in which they are displayed <strong>has no real importance</strong>.</li>
+<li><input disabled type="checkbox"> this command lists the tags in <strong>alphabetical order</strong>; the order in which they are displayed <strong>has no real importance</strong>.</li>
 </ul>
 </blockquote>
 <p>You can also filter the tags by using the optional <code>-l</code> or <code>--list</code>, for example</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git tag -l &quot;v1.8.5*&quot;</span><br></pre></td></tr></table></figure>
 <p>This will list all the tags that *<em>starts with *</em><code>v1.8.5</code></p>
-<h2 id="Creating-Tags"><a href="#Creating-Tags" class="headerlink" title="Creating Tags"></a>Creating Tags</h2><p>You can have two types of tags:</p>
+<h3><span id="creating-tags">Creating Tags</span><a href="#creating-tags" class="header-anchor">⌨</a></h3><p>You can have two types of tags:</p>
 <ol>
 <li><p>a <strong>lightweight tag</strong></p>
 <ul>
@@ -470,14 +611,14 @@
 <blockquote>
 <p>Note:</p>
 <ul>
-<li><input disabled="" type="checkbox"> Those tags will be attached to the <strong>lastest committed version</strong> of your repo</li>
+<li><input disabled type="checkbox"> Those tags will be attached to the <strong>lastest committed version</strong> of your repo</li>
 </ul>
 </blockquote>
-<h2 id="Creating-a-Lightweight-Tag"><a href="#Creating-a-Lightweight-Tag" class="headerlink" title="Creating a Lightweight Tag"></a>Creating a Lightweight Tag</h2><p> This is basically the commit checksum stored in a file — no other information is kept. To create a lightweight tag, <strong>don’t supply</strong> any of the <code>-a</code>, <code>-s</code>, or <code>-m</code> options, just provide a tag name.</p>
+<h3><span id="creating-a-lightweight-tag">Creating a Lightweight Tag</span><a href="#creating-a-lightweight-tag" class="header-anchor">⌨</a></h3><p> This is basically the commit checksum stored in a file — no other information is kept. To create a lightweight tag, <strong>don’t supply</strong> any of the <code>-a</code>, <code>-s</code>, or <code>-m</code> options, just provide a tag name.</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git tag &lt;tag-id&gt;</span><br></pre></td></tr></table></figure>
 
 
-<h2 id="Creating-an-Annotated-Tag"><a href="#Creating-an-Annotated-Tag" class="headerlink" title="Creating an Annotated Tag"></a>Creating an Annotated Tag</h2><p>This is created by   </p>
+<h3><span id="creating-an-annotated-tag">Creating an Annotated Tag</span><a href="#creating-an-annotated-tag" class="header-anchor">⌨</a></h3><p>This is created by   </p>
 <p><code>$ git tag -a &lt;tag-id&gt; -m &quot;yourMessage&quot;</code></p>
 <ul>
 <li><code>-a</code>, <code>-s</code>, or <code>-u</code> <code>&lt;keyid&gt;</code> is passed, the command <strong>creates a tag object</strong>, and <strong>requires a tag message</strong>. Unless <code>-m &lt;msg&gt;</code> or <code>-F &lt;file&gt;</code> is given, <strong>an editor is started for the user to type in the tag message</strong>.</li>
@@ -488,18 +629,18 @@
 <blockquote>
 <p>Note:</p>
 <ul>
-<li><input disabled="" type="checkbox"> Don’t be mistaken to execute <code>git tag show &lt;tag-id&gt;</code>!</li>
+<li><input disabled type="checkbox"> Don’t be mistaken to execute <code>git tag show &lt;tag-id&gt;</code>!</li>
 </ul>
 </blockquote>
-<h2 id="Tagging-Previous-Commits"><a href="#Tagging-Previous-Commits" class="headerlink" title="Tagging Previous Commits"></a>Tagging Previous Commits</h2><p>To <strong>tag any specific commit</strong>, you specify the <strong>commit checksum (or part of it)</strong> at the end of the command:</p>
+<h3><span id="tagging-previous-commits">Tagging Previous Commits</span><a href="#tagging-previous-commits" class="header-anchor">⌨</a></h3><p>To <strong>tag any specific commit</strong>, you specify the <strong>commit checksum (or part of it)</strong> at the end of the command:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git tag -a &lt;tag-id&gt; -m &quot;yourMessage&quot; &lt;commit-checksum&gt;</span><br></pre></td></tr></table></figure>
 
-<h2 id="Sharing-Tags"><a href="#Sharing-Tags" class="headerlink" title="Sharing Tags"></a>Sharing Tags</h2><p>By default, the <code>git push</code> command <strong>doesn’t transfer tags to remote servers</strong>. You will have to explicitly push tags to a shared server after you have created them. This process is just like sharing remote branches — you can run </p>
+<h3><span id="sharing-tags">Sharing Tags</span><a href="#sharing-tags" class="header-anchor">⌨</a></h3><p>By default, the <code>git push</code> command <strong>doesn’t transfer tags to remote servers</strong>. You will have to explicitly push tags to a shared server after you have created them. This process is just like sharing remote branches — you can run </p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git push &lt;repo-shortname&gt; &lt;tagname&gt;</span><br></pre></td></tr></table></figure>
 <p>To push <strong>all the tags</strong>, you run</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git push &lt;repo-shortname&gt; --tags</span><br></pre></td></tr></table></figure>
 
-<h2 id="Deleting-Tags"><a href="#Deleting-Tags" class="headerlink" title="Deleting Tags"></a>Deleting Tags</h2><p>You can use</p>
+<h3><span id="deleting-tags">Deleting Tags</span><a href="#deleting-tags" class="header-anchor">⌨</a></h3><p>You can use</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git tag -d &lt;tag-id&gt;</span><br></pre></td></tr></table></figure>
 <p>to delete a specific tag. However, this does not remove the tag from the remote servers.</p>
 <p>To delete the tag from the server, you could either use:</p>
@@ -507,14 +648,14 @@
 <p>or, the slightly less intuitive command</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git push origin :refs&#x2F;tags&#x2F;v1.4-lw</span><br></pre></td></tr></table></figure>
 <p>which means the <strong>null value before the colon</strong> is being pushed to the <strong>remote tag name</strong>, effectively deleting it.</p>
-<h2 id="Viewing-Files-at-a-Different-State-using-Tag"><a href="#Viewing-Files-at-a-Different-State-using-Tag" class="headerlink" title="Viewing Files at a Different State using Tag"></a>Viewing Files at a Different State using Tag</h2><p>You can view the different versions of files by using its tag. This is done by a <code>git checkout</code> of that tag, although this puts your repository in “detached HEAD” state, (which has some ill side effects)</p>
+<h3><span id="viewing-files-at-a-different-state-using-tag">Viewing Files at a Different State using Tag</span><a href="#viewing-files-at-a-different-state-using-tag" class="header-anchor">⌨</a></h3><p>You can view the different versions of files by using its tag. This is done by a <code>git checkout</code> of that tag, although this puts your repository in “detached HEAD” state, (which has some ill side effects)</p>
 <ul>
 <li>in a detached-head state, if you <strong>make changes and then create a commit</strong>, the tag will stay the same, but your <strong>new commit won’t belong to any branch and will be unreachable</strong>, except by the exact commit hash. Thus, if you need to make changes — say you’re fixing a bug on an older version, for instance — you will <strong>generally want to create a branch</strong> (covered more in <a href="#Git-Branching">Git Branching</a>)</li>
 </ul>
 <p><strong><em>Q: What does <code>git checkout</code> mean?</em></strong></p>
 <p>If you call <code>git log</code>, you will see something called <code>HEAD</code>. <code>HEAD</code> is a label noting where you are in the <strong>commit tree</strong>. It moves with you when you <strong>move from one commit to another</strong>. <code>git checkout &lt;commit&gt;</code> is the basic mechanism for <strong>moving around in the commit tree, moving your focus (HEAD) to the specified commit</strong>.</p>
 <p>The commit can be specified by any of a number of ways, <strong>commit hash</strong>, <strong>branch name</strong>, <strong>tag name</strong>, the relative syntax (HEAD^, HEAD~1, etc.) and so on. (It is often useful to consider a checkout to be changing branches)</p>
-<h2 id="Git-Alias"><a href="#Git-Alias" class="headerlink" title="Git Alias"></a>Git Alias</h2><p>Alias can be understood as shortcuts to execute commands. They can be setup by using the <code>git config</code> command.</p>
+<h2><span id="git-alias">Git Alias</span><a href="#git-alias" class="header-anchor">⌨</a></h2><p>Alias can be understood as shortcuts to execute commands. They can be setup by using the <code>git config</code> command.</p>
 <p>For example:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ git config --global alias.co checkout</span><br><span class="line">$ git config --global alias.br branch</span><br><span class="line">$ git config --global alias.ci commit</span><br><span class="line">$ git config --global alias.st status</span><br></pre></td></tr></table></figure>
 <p>This means that </p>
@@ -527,7 +668,7 @@
 <blockquote>
 <p>Note:</p>
 <ul>
-<li><input disabled="" type="checkbox"> <code>global</code> means access for <strong>one user</strong> (yourself) in <strong>all the repos</strong>. In comparison, <code>local</code> means for <strong>one user</strong> in this <strong>specific repo</strong>. <code>system</code> means for <strong>all users</strong> in <strong>all repos</strong>.</li>
+<li><input disabled type="checkbox"> <code>global</code> means access for <strong>one user</strong> (yourself) in <strong>all the repos</strong>. In comparison, <code>local</code> means for <strong>one user</strong> in this <strong>specific repo</strong>. <code>system</code> means for <strong>all users</strong> in <strong>all repos</strong>.</li>
 </ul>
 </blockquote>
 <p>Some useful <strong>alias</strong> include:</p>
@@ -535,7 +676,7 @@
 <p>So you can see the last commit easily:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ git last</span><br><span class="line">commit e946cadfbd3b378582b0be5e5385a7702d1d10da (HEAD -&gt; master, tag: v1.0)</span><br><span class="line">Author: Xiao Yu &lt;jasonyux17@gmail.com&gt;</span><br><span class="line">Date:   Wed May 20 10:59:55 2020 +0800</span><br><span class="line"></span><br><span class="line">    amended: edited AND deleted file removal and untracking</span><br></pre></td></tr></table></figure>
 
-<h2 id="Resetting-the-Alias"><a href="#Resetting-the-Alias" class="headerlink" title="Resetting the Alias"></a>Resetting the Alias</h2><p>If you find certain alias used before as a bad idea, you can do</p>
+<h3><span id="resetting-the-alias">Resetting the Alias</span><a href="#resetting-the-alias" class="header-anchor">⌨</a></h3><p>If you find certain alias used before as a bad idea, you can do</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git config --global --unset alias.&lt;yourAlias&gt;</span><br></pre></td></tr></table></figure>
 
 <p>You can also directly edit in the config file to change the alias by:</p>
@@ -543,7 +684,7 @@
 
 <p>which will open the default text editor and then you can edit your alias directly (delete it if not needed).</p>
 <p><a name="Git-Branching"></a></p>
-<h2 id="Git-Branching"><a href="#Git-Branching" class="headerlink" title="Git Branching"></a>Git Branching</h2><p> Git doesn’t store data as a series of changesets or differences, but instead as a <strong>series of snapshots</strong>.</p>
+<h2><span id="git-branching">Git Branching</span><a href="#git-branching" class="header-anchor">⌨</a></h2><p> Git doesn’t store data as a series of changesets or differences, but instead as a <strong>series of snapshots</strong>.</p>
 <p>When you <strong>make a commit</strong>, Git stores a <strong>commit object that contains a pointer to the snapshot</strong> of the content you staged. This object also contains the author’s name and email address, the message that you typed, and <strong>pointers to the commit or commits that directly came before this commit</strong> (its parent or parents): <strong>zero parents for the initial commit</strong>, <strong>one parent for a normal commit</strong>, and <strong>multiple parents for a commit that results from a merge of two or more branches</strong>.</p>
 <ol>
 <li>When you staged a file/files<ul>
@@ -562,17 +703,17 @@
 <p>If you had 3 files that were staged, and you committed them, you will get in totl five objects: <strong>three blobs</strong> (each representing the contents of one of the three files), <strong>one tree</strong> that lists the contents of the directory and specifies which file names are stored as which blobs, and <strong>one commit</strong> with the pointer to that root tree and all the commit metadata.</p>
 <p>If you make some changes and commit again, the next <strong>commit object</strong> stores a <strong>(parent) pointer</strong> to the <strong>commit object</strong> that came immediately before it. Essentially it is like a linked list of <strong>commit objects</strong>.</p>
 <p><strong>A branch in Git is simply a lightweight movable pointer to one of these commits objects</strong>. The default branch name in Git is <strong>master</strong> (default when you run <code>git init</code>). As you start making commits, you’re given a master branch that <strong>points to the last commit you made</strong>. Every time you commit, the master branch pointer moves forward automatically.</p>
-<h2 id="Create-a-New-Branch"><a href="#Create-a-New-Branch" class="headerlink" title="Create a New Branch"></a>Create a New Branch</h2><p> Creating a new branch means <strong>creating a new pointer for you to move around</strong>. Let’s say you want to create a new branch called testing. You do this with the git branch command:</p>
+<h3><span id="create-a-new-branch">Create a New Branch</span><a href="#create-a-new-branch" class="header-anchor">⌨</a></h3><p> Creating a new branch means <strong>creating a new pointer for you to move around</strong>. Let’s say you want to create a new branch called testing. You do this with the git branch command:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git branch &lt;newBranchName&gt;</span><br></pre></td></tr></table></figure>
 
 <blockquote>
 <p>Note:</p>
 <ul>
-<li><input disabled="" type="checkbox"> this new branch will by default point to the <strong>current commit object (the head)</strong> you are working on.</li>
-<li><input disabled="" type="checkbox"> you can see the head commit object by running <code>git log</code></li>
+<li><input disabled type="checkbox"> this new branch will by default point to the <strong>current commit object (the head)</strong> you are working on.</li>
+<li><input disabled type="checkbox"> you can see the head commit object by running <code>git log</code></li>
 </ul>
 </blockquote>
-<h2 id="Switching-Branches"><a href="#Switching-Branches" class="headerlink" title="Switching Branches"></a>Switching Branches</h2><p>To switch to an existing branch, you run the <code>git checkout</code> command. </p>
+<h3><span id="switching-branches">Switching Branches</span><a href="#switching-branches" class="header-anchor">⌨</a></h3><p>To switch to an existing branch, you run the <code>git checkout</code> command. </p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git checkout &lt;branchName&gt;</span><br></pre></td></tr></table></figure>
 
 <p>For example, if you have another branch called <code>testing</code>, you switch to that by <code>git checkout testing</code>.</p>
@@ -580,10 +721,10 @@
 <blockquote>
 <p>Note:</p>
 <ul>
-<li><input disabled="" type="checkbox"> Now, if you run <code>git log</code>, you will <strong>not see the new commit object that is made by the testing branch</strong>. By default, git log will only show commit history below the branch you’ve checked out.</li>
-<li><input disabled="" type="checkbox"> In general, if you move backward in the tree, you will not be able to see future <strong>commit objects</strong> by running <code>git log</code></li>
-<li><input disabled="" type="checkbox"> To <strong>show commit history for the desired branch</strong> you have to explicitly specify it: <code>git log &lt;branchName&gt;</code>. To <strong>show all of the branches</strong>, run <code>git log --all</code>.</li>
-<li><input disabled="" type="checkbox"> You can actually create a new branch and switching to it at the same time — this can be done in one operation with <code>git checkout -b &lt;newBranchName&gt;</code></li>
+<li><input disabled type="checkbox"> Now, if you run <code>git log</code>, you will <strong>not see the new commit object that is made by the testing branch</strong>. By default, git log will only show commit history below the branch you’ve checked out.</li>
+<li><input disabled type="checkbox"> In general, if you move backward in the tree, you will not be able to see future <strong>commit objects</strong> by running <code>git log</code></li>
+<li><input disabled type="checkbox"> To <strong>show commit history for the desired branch</strong> you have to explicitly specify it: <code>git log &lt;branchName&gt;</code>. To <strong>show all of the branches</strong>, run <code>git log --all</code>.</li>
+<li><input disabled type="checkbox"> You can actually create a new branch and switching to it at the same time — this can be done in one operation with <code>git checkout -b &lt;newBranchName&gt;</code></li>
 </ul>
 </blockquote>
 <p>However, if you have made some changes in this new branch and <strong>switched back to the old branch</strong>, your current working directory will be <strong>reverted back to the snapshot that old branch points to</strong>. Now, if you make some changes on the old branch, the <strong>two branch will diverge</strong>:</p>
@@ -600,22 +741,22 @@
 Now, the master head will point to the inital commit. If your friend is also working on this branch, they will be dismayed as thinking somehow all the progress is lost, but in fact it is kept by the other branch that you just created.</li>
 </ol>
 <hr>
-<h2 id="Viewing-the-Diversion-Tree"><a href="#Viewing-the-Diversion-Tree" class="headerlink" title="Viewing the Diversion Tree"></a>Viewing the Diversion Tree</h2><p>The entire tree for all branches can be seen by running</p>
+<h3><span id="viewing-the-diversion-tree">Viewing the Diversion Tree</span><a href="#viewing-the-diversion-tree" class="header-anchor">⌨</a></h3><p>The entire tree for all branches can be seen by running</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git log --oneline --graph --all</span><br></pre></td></tr></table></figure>
 <p>For example, it can look like this:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ git log --oneline --graph --all</span><br><span class="line">* ae182e6 (HEAD, testing) first commit made now more with the new testing branch</span><br><span class="line">| * e946cad (tag: v1.0, master) amended: edited AND deleted file removal and untracking</span><br><span class="line">| * 0e6428a second commit made</span><br><span class="line">| * 2031fb7 (tag: v0.1) first commit made</span><br><span class="line">|&#x2F;</span><br><span class="line">* 75d2c61 Initial project version</span><br></pre></td></tr></table></figure>
 <p>So we see that the two branches are diverged at the first <strong>commit object</strong>.</p>
-<h2 id="Merging-Different-Branches"><a href="#Merging-Different-Branches" class="headerlink" title="Merging Different Branches"></a>Merging Different Branches</h2><p>There are basically two cases: </p>
+<h3><span id="merging-different-branches">Merging Different Branches</span><a href="#merging-different-branches" class="header-anchor">⌨</a></h3><p>There are basically two cases: </p>
 <ol>
 <li><p>You have <strong>two diverged branches</strong>, but <strong>they used different files</strong>, or, to put it more suggestively, the <strong>file they shared are the same</strong>. In this case, it is simple for Git to figure out how to merge (basically just putting all the files together), and you run:</p>
-<img src="/2020/05/20/Git-Summary/mergingCase1.png" class="" title="Picture from git-scm.com, figure 25">
+<img src="/2020/05/20/Git-Summary/mergingCase1.png" class title="Picture from git-scm.com, figure 25">
 
  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git checkout master</span><br><span class="line">$ git merge testing</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>Note:</p>
 <ul>
-<li><input disabled="" type="checkbox"> This means that you are merging files <strong>from the testing branch to the master branch</strong></li>
-<li><input disabled="" type="checkbox"> The merge operation will only be allowed if you have <strong>committed in the testing branch</strong>/current working directory</li>
+<li><input disabled type="checkbox"> This means that you are merging files <strong>from the testing branch to the master branch</strong></li>
+<li><input disabled type="checkbox"> The merge operation will only be allowed if you have <strong>committed in the testing branch</strong>/current working directory</li>
 </ul>
 </blockquote>
 </li>
@@ -628,7 +769,7 @@ Now, the master head will point to the inital commit. If your friend is also wor
 <p>In the end, when you have finished all the work, you can delete the branch you don’t need by:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git branch -d &lt;branchName&gt;</span><br></pre></td></tr></table></figure>
 
-<h2 id="Branch-Management"><a href="#Branch-Management" class="headerlink" title="Branch Management"></a>Branch Management</h2><p>There are a handful of commands with <code>git branch</code> that is useful for branch management:</p>
+<h3><span id="branch-management">Branch Management</span><a href="#branch-management" class="header-anchor">⌨</a></h3><p>There are a handful of commands with <code>git branch</code> that is useful for branch management:</p>
 <ul>
 <li><code>git branch</code> This will show you a list of branches that yuo have, with an asterisk <code>*</code> in front of the current branch you are on.</li>
 <li><code>git branch -v</code> Shows you a list of branches with their last commit message </li>
@@ -638,26 +779,26 @@ Now, the master head will point to the inital commit. If your friend is also wor
 <blockquote>
 <p>Note</p>
 <ul>
-<li><input disabled="" type="checkbox"> Each of the command above shows the information <strong>relative to the current branch</strong>. To specify which branch you want to know, you can do, for example, <code>git branch --no-merged testing</code> (to get information <strong>relative to the testing branch</strong>)</li>
+<li><input disabled type="checkbox"> Each of the command above shows the information <strong>relative to the current branch</strong>. To specify which branch you want to know, you can do, for example, <code>git branch --no-merged testing</code> (to get information <strong>relative to the testing branch</strong>)</li>
 </ul>
 </blockquote>
-<h2 id="Typical-WorkFlow-Using-Git-Branches"><a href="#Typical-WorkFlow-Using-Git-Branches" class="headerlink" title="Typical WorkFlow Using Git Branches"></a>Typical WorkFlow Using Git Branches</h2><p>Usually, people tend to put <strong>code that is entirely stable in their master branch</strong> — possibly only code that has been or will be released. They have another parallel branch named <strong>develop</strong> or <strong>next</strong> that they work from or use to test stability — it isn’t necessarily always stable, but whenever it gets to a <strong>stable state, it can be merged into master</strong>.</p>
+<h3><span id="typical-workflow-using-git-branches">Typical WorkFlow Using Git Branches</span><a href="#typical-workflow-using-git-branches" class="header-anchor">⌨</a></h3><p>Usually, people tend to put <strong>code that is entirely stable in their master branch</strong> — possibly only code that has been or will be released. They have another parallel branch named <strong>develop</strong> or <strong>next</strong> that they work from or use to test stability — it isn’t necessarily always stable, but whenever it gets to a <strong>stable state, it can be merged into master</strong>.</p>
 <p>  In general, for some larger projects, you will want your branches are at various levels of stability, ordered from most stable top branch (<strong>master</strong>) to the least stable bottom branch(<strong>topic</strong>, for example); when they reach a <strong>more stable level, they’re merged into the branch above them</strong>.</p>
-<img src="/2020/05/20/Git-Summary/branchManagement.png" class="" title="picture from https:&#x2F;&#x2F;git-scm.com&#x2F;book&#x2F;en&#x2F;v2&#x2F;Git-Branching-Branching-Workflows">
+<img src="/2020/05/20/Git-Summary/branchManagement.png" class title="picture from https:&#x2F;&#x2F;git-scm.com&#x2F;book&#x2F;en&#x2F;v2&#x2F;Git-Branching-Branching-Workflows">
 
 <blockquote>
 <p>Note:</p>
 <ul>
-<li><input disabled="" type="checkbox"> It’s important to remember when you’re doing all this that <strong>these branches are completely local</strong>. When you’re branching and merging, <strong>everything is being done only in your Git repository</strong> — there is no communication with the server, for now.</li>
+<li><input disabled type="checkbox"> It’s important to remember when you’re doing all this that <strong>these branches are completely local</strong>. When you’re branching and merging, <strong>everything is being done only in your Git repository</strong> — there is no communication with the server, for now.</li>
 </ul>
 </blockquote>
-<h2 id="Remote-Branches"><a href="#Remote-Branches" class="headerlink" title="Remote Branches"></a>Remote Branches</h2><p><strong>Remote-tracking branches</strong> are references to the state of remote branches. They’re <strong>local references that you can’t move</strong>; <strong>Git moves them for you whenever you do any network communication</strong>, to make sure they accurately represent the state of the remote repository. Think of them as bookmarks, to remind you where the branches in your remote repositories were the last time you connected to them.</p>
+<h3><span id="remote-branches">Remote Branches</span><a href="#remote-branches" class="header-anchor">⌨</a></h3><p><strong>Remote-tracking branches</strong> are references to the state of remote branches. They’re <strong>local references that you can’t move</strong>; <strong>Git moves them for you whenever you do any network communication</strong>, to make sure they accurately represent the state of the remote repository. Think of them as bookmarks, to remind you where the branches in your remote repositories were the last time you connected to them.</p>
 <p><strong>Remote-tracking branch names</strong> take the form <code>&lt;remoteShortName&gt;/&lt;branch&gt;</code>. For instance, if you wanted to see what the <code>master</code> branch on your <code>origin</code> remote looked like as of the last time you communicated with it, you would check the <code>origin/master</code> branch. This means that, if you were working on an issue with a partner and they <strong>pushed up an <code>iss53</code> branch</strong>, but <strong>you also have your own local <code>iss53</code> branch</strong>, the branch on the server would be represented by the remote-tracking branch <code>origin/iss53</code> <strong>updated with your friend’s version</strong></p>
 <p>Now, to synchronize your work with a given remote, you run </p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git fetch &lt;remoteShortName&gt; command</span><br></pre></td></tr></table></figure>
 <p>This command looks up which server “<code>origin</code>” is (for example, it might be cloned from <code>git.ourcompany.com</code>), <strong>fetches any data from it that you don’t yet have</strong>, and updates your local database, moving your <code>origin/master</code> pointer to its new, more up-to-date position, but your <strong>current <code>master</code> pointer is still the same as you were working with</strong>.</p>
-<h2 id="Colaborating-with-Multiple-Repos"><a href="#Colaborating-with-Multiple-Repos" class="headerlink" title="Colaborating with Multiple Repos"></a>Colaborating with Multiple Repos</h2><p>Say you have a main repo that you have cloned, with the shortname <code>origin</code> at <code>git.outcompany.com</code>, and you have another team working on that repo as well, with their repo being at <code>git team1.ourcompany.com</code></p>
-<img src="/2020/05/20/Git-Summary/remoteBranches1.png" class="" title="Picture from https:&#x2F;&#x2F;git-scm.com&#x2F;book&#x2F;en&#x2F;v2&#x2F;Git-Branching-Remote-Branches, Figure 33">
+<h3><span id="colaborating-with-multiple-repos">Colaborating with Multiple Repos</span><a href="#colaborating-with-multiple-repos" class="header-anchor">⌨</a></h3><p>Say you have a main repo that you have cloned, with the shortname <code>origin</code> at <code>git.outcompany.com</code>, and you have another team working on that repo as well, with their repo being at <code>git team1.ourcompany.com</code></p>
+<img src="/2020/05/20/Git-Summary/remoteBranches1.png" class title="Picture from https:&#x2F;&#x2F;git-scm.com&#x2F;book&#x2F;en&#x2F;v2&#x2F;Git-Branching-Remote-Branches, Figure 33">
 
 <p>You can add their work to your current repo by</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git remote add git.team1.ourcompany.com teamone</span><br></pre></td></tr></table></figure>
@@ -666,15 +807,15 @@ Now, the master head will point to the inital commit. If your friend is also wor
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git fetch teamone</span><br></pre></td></tr></table></figure>
 
 <p>In this case, since <code>teamone</code> actually didn’t have anything more than the server had, nothing will be fecthed, but you will still obtain a <strong>branch <code>teamone</code> that marks their progress</strong></p>
-<img src="/2020/05/20/Git-Summary/remoteBranches2.png" class="" title="Picture from https:&#x2F;&#x2F;git-scm.com&#x2F;book&#x2F;en&#x2F;v2&#x2F;Git-Branching-Remote-Branches, Figure 34">
+<img src="/2020/05/20/Git-Summary/remoteBranches2.png" class title="Picture from https:&#x2F;&#x2F;git-scm.com&#x2F;book&#x2F;en&#x2F;v2&#x2F;Git-Branching-Remote-Branches, Figure 34">
 
 <blockquote>
 <p>Note:</p>
 <ul>
-<li><input disabled="" type="checkbox"> At this point, if all you have called is <code>fetch</code>, you will <strong>not have a physical copy of their work on your local machine</strong>, but just a <strong>unmovable pointer</strong>. To get their work to your local machine and work on it, you need to call <code>git merge teamone/master</code> and switch to that, or <code>git checkout -b teamone teamone/master</code>, which creates a new <strong>local branch called <code>teamone</code> that has all the progress on the server of <code>teamone</code></strong>.</li>
+<li><input disabled type="checkbox"> At this point, if all you have called is <code>fetch</code>, you will <strong>not have a physical copy of their work on your local machine</strong>, but just a <strong>unmovable pointer</strong>. To get their work to your local machine and work on it, you need to call <code>git merge teamone/master</code> and switch to that, or <code>git checkout -b teamone teamone/master</code>, which creates a new <strong>local branch called <code>teamone</code> that has all the progress on the server of <code>teamone</code></strong>.</li>
 </ul>
 </blockquote>
-<h2 id="Pushing-Your-Branch-to-the-Server"><a href="#Pushing-Your-Branch-to-the-Server" class="headerlink" title="Pushing Your Branch to the Server"></a>Pushing Your Branch to the Server</h2><p> Your <strong>local branches aren’t automatically synchronized</strong> to the remotes you write to — you have to explicitly push the branches you want to share. That way, you can use private branches for work you don’t want to share, and <strong>push up only the topic branches you want to collaborate on</strong>.</p>
+<h3><span id="pushing-your-branch-to-the-server">Pushing Your Branch to the Server</span><a href="#pushing-your-branch-to-the-server" class="header-anchor">⌨</a></h3><p> Your <strong>local branches aren’t automatically synchronized</strong> to the remotes you write to — you have to explicitly push the branches you want to share. That way, you can use private branches for work you don’t want to share, and <strong>push up only the topic branches you want to collaborate on</strong>.</p>
 <p>To do this, you run:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git push &lt;remoteShortName&gt; &lt;yourBranchName&gt;</span><br></pre></td></tr></table></figure>
 
@@ -684,10 +825,10 @@ Now, the master head will point to the inital commit. If your friend is also wor
 <blockquote>
 <p>Note:</p>
 <ul>
-<li><input disabled="" type="checkbox"> The command <code>git push origin serverfix</code> is a bit of a shortcut. The slightly more complete version is <code>git push origin serverfix:serverfix</code>, which means to <strong>push the <code>serverfix</code> branch of the local machine (left side of colon) to the <code>serverfix</code> branch of the server (right side of colon)</strong>. This means you could also push to have <strong>different names</strong> by <code>git push origin serverfix:anotherNameOnServer</code></li>
+<li><input disabled type="checkbox"> The command <code>git push origin serverfix</code> is a bit of a shortcut. The slightly more complete version is <code>git push origin serverfix:serverfix</code>, which means to <strong>push the <code>serverfix</code> branch of the local machine (left side of colon) to the <code>serverfix</code> branch of the server (right side of colon)</strong>. This means you could also push to have <strong>different names</strong> by <code>git push origin serverfix:anotherNameOnServer</code></li>
 </ul>
 </blockquote>
-<h2 id="Tracking-Branches"><a href="#Tracking-Branches" class="headerlink" title="Tracking Branches"></a>Tracking Branches</h2><p>Checking out a <strong>local branch from a remote-tracking branch automatically creates what is called a “tracking branch”</strong> (and the branch it tracks is called an “upstream branch”). Tracking branches are local branches that have a <strong>direct relationship to a remote branch</strong>. If you’re on a tracking branch and type <code>git pull</code>, Git automatically knows which server to <code>fetch</code> from and which branch to merge in.</p>
+<h3><span id="tracking-branches">Tracking Branches</span><a href="#tracking-branches" class="header-anchor">⌨</a></h3><p>Checking out a <strong>local branch from a remote-tracking branch automatically creates what is called a “tracking branch”</strong> (and the branch it tracks is called an “upstream branch”). Tracking branches are local branches that have a <strong>direct relationship to a remote branch</strong>. If you’re on a tracking branch and type <code>git pull</code>, Git automatically knows which server to <code>fetch</code> from and which branch to merge in.</p>
 <p>For example, when you made a <code>clone</code> from the server with shorthand <code>origin</code>, you made a <strong>tracking branch</strong> with a <strong>master</strong> branch that <strong>tracks</strong> the <strong>origin/master</strong> branch.</p>
 <p>In general, when you do</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git checkout -b &lt;branchName&gt; &lt;remoteShortName&gt;&#x2F;&lt;branchName&gt;</span><br></pre></td></tr></table></figure>
@@ -696,9 +837,9 @@ Now, the master head will point to the inital commit. If your friend is also wor
 <p>In fact, this is so common that you could do the <strong>same thing</strong> by running, more explicitly:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git checkout --track origin&#x2F;serverfix</span><br><span class="line">Branch serverfix set up to track remote branch serverfix from origin.</span><br><span class="line">Switched to a new branch &#39;serverfix&#39;</span><br></pre></td></tr></table></figure>
 <p>But this will setup the <strong>same branchname as the branchname on the remote</strong>. If you want to <strong>change the local branchname</strong>, use the first one <code>git checkout -b &lt;branchName&gt; &lt;remoteShortName&gt;/&lt;branchName&gt;</code></p>
-<h2 id="Difference-between-git-fetch-and-git-pull"><a href="#Difference-between-git-fetch-and-git-pull" class="headerlink" title="Difference between git fetch and git pull"></a>Difference between <code>git fetch</code> and <code>git pull</code></h2><p><code>git fetch</code> only gets you information on what their progess is, but <strong>does not have a physical copy</strong> of their work. <code>git pull</code> gets you both the information about their progess <strong>and a physical copy on your local machine</strong> of their work on server. </p>
+<h3><span id="difference-between-git-fetch-and-git-pull">Difference between <code>git fetch</code> and <code>git pull</code></span><a href="#difference-between-git-fetch-and-git-pull" class="header-anchor">⌨</a></h3><p><code>git fetch</code> only gets you information on what their progess is, but <strong>does not have a physical copy</strong> of their work. <code>git pull</code> gets you both the information about their progess <strong>and a physical copy on your local machine</strong> of their work on server. </p>
 <p><code>git pull</code>  is essentially a <code>git fetch</code> immediately followed by a <code>git merge</code> in most cases. If you <strong>have a tracking branch set up</strong> as demonstrated in the last section, either by explicitly setting it or by having it created for you by the clone or checkout commands, <code>git pull</code> <strong>will look up what server and branch your current branch is tracking</strong>, <strong>fetch from that server and then try to merge in that remote branch for you</strong>.</p>
-<h2 id="Viewing-the-Current-Tracking-Branch"><a href="#Viewing-the-Current-Tracking-Branch" class="headerlink" title="Viewing the Current Tracking Branch"></a>Viewing the Current Tracking Branch</h2><p>You can view the current tracking branches by:</p>
+<h3><span id="viewing-the-current-tracking-branch">Viewing the Current Tracking Branch</span><a href="#viewing-the-current-tracking-branch" class="header-anchor">⌨</a></h3><p>You can view the current tracking branches by:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ git fetch --all</span><br><span class="line">$ git branch -vv</span><br><span class="line">  iss53     7e424c3 [origin&#x2F;iss53: ahead 2] Add forgotten brackets</span><br><span class="line">  master    1ae2a45 [origin&#x2F;master] Deploy index fix</span><br><span class="line">* serverfix f8674d9 [teamone&#x2F;server-fix-good: ahead 3, behind 1] This should do it</span><br><span class="line">  testing   5ea463a Try something new</span><br></pre></td></tr></table></figure>
 <p>So here we can see that:</p>
 <ul>
@@ -708,28 +849,28 @@ Now, the master head will point to the inital commit. If your friend is also wor
 <li><code>testing</code> branch is <strong>not tracking any remote branch</strong>.<blockquote>
 <p>Note:</p>
 <ul>
-<li><input disabled="" type="checkbox"> We ran <code>git fetch --all</code> before to make sure the <strong>data we have locally about the server is up-to-date</strong>. This means that <code>git branch --vv</code> will only <strong>compare the cached data from the server, and it does not update from the server if there are any changes</strong>.</li>
+<li><input disabled type="checkbox"> We ran <code>git fetch --all</code> before to make sure the <strong>data we have locally about the server is up-to-date</strong>. This means that <code>git branch --vv</code> will only <strong>compare the cached data from the server, and it does not update from the server if there are any changes</strong>.</li>
 </ul>
 </blockquote>
 </li>
 </ul>
-<h2 id="Switching-a-Tracking-Branch"><a href="#Switching-a-Tracking-Branch" class="headerlink" title="Switching a Tracking Branch"></a>Switching a Tracking Branch</h2><p>If you have a <strong>local branch that you want to track another branch on the server</strong>, you can use the <code>-u</code> or <code>--set-upstream-to</code> option to <code>git branch</code> to explicitly set your <strong>current branch</strong> at any time:</p>
+<h3><span id="switching-a-tracking-branch">Switching a Tracking Branch</span><a href="#switching-a-tracking-branch" class="header-anchor">⌨</a></h3><p>If you have a <strong>local branch that you want to track another branch on the server</strong>, you can use the <code>-u</code> or <code>--set-upstream-to</code> option to <code>git branch</code> to explicitly set your <strong>current branch</strong> at any time:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">$ git branch -u &lt;remoteShortName&gt;&#x2F;&lt;branchName&gt;</span><br></pre></td></tr></table></figure>
 
-<h2 id="Deleting-a-Remote-Branch"><a href="#Deleting-a-Remote-Branch" class="headerlink" title="Deleting a Remote Branch"></a>Deleting a Remote Branch</h2><p>Suppose you’re <strong>done with a remote branch</strong> — say you and your collaborators are finished with a feature and have <strong>merged it into your remote’s master branch</strong> (or whatever branch your stable codeline is in). You can delete a remote branch using the </p>
+<h3><span id="deleting-a-remote-branch">Deleting a Remote Branch</span><a href="#deleting-a-remote-branch" class="header-anchor">⌨</a></h3><p>Suppose you’re <strong>done with a remote branch</strong> — say you and your collaborators are finished with a feature and have <strong>merged it into your remote’s master branch</strong> (or whatever branch your stable codeline is in). You can delete a remote branch using the </p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push &lt;remoteShortName&gt; --delete &lt;remoteBranchName&gt;</span><br></pre></td></tr></table></figure>
 
 <blockquote>
 <p>Note:</p>
 <ul>
-<li><input disabled="" type="checkbox"> You don’t need to use <code>--delete &lt;remoteShortName&gt;/&lt;remoteBranchName&gt;</code>, because it is repetitive</li>
-<li><input disabled="" type="checkbox"> This operation <strong>does not remove the branch in the server immediately</strong>. All this does is <strong>remove the pointer from the server</strong>. The Git server will generally keep the data there for a while <strong>until a garbage collection runs</strong>, so if it was accidentally deleted, it’s often easy to recover.</li>
+<li><input disabled type="checkbox"> You don’t need to use <code>--delete &lt;remoteShortName&gt;/&lt;remoteBranchName&gt;</code>, because it is repetitive</li>
+<li><input disabled type="checkbox"> This operation <strong>does not remove the branch in the server immediately</strong>. All this does is <strong>remove the pointer from the server</strong>. The Git server will generally keep the data there for a while <strong>until a garbage collection runs</strong>, so if it was accidentally deleted, it’s often easy to recover.</li>
 </ul>
 </blockquote>
-<h2 id="Rebasing"><a href="#Rebasing" class="headerlink" title="Rebasing"></a>Rebasing</h2><p>In Git, there are <strong>two main ways to integrate changes from one branch into another</strong>: the <code>merge</code> and the <code>rebase</code>. </p>
+<h3><span id="rebasing">Rebasing</span><a href="#rebasing" class="header-anchor">⌨</a></h3><p>In Git, there are <strong>two main ways to integrate changes from one branch into another</strong>: the <code>merge</code> and the <code>rebase</code>. </p>
 <p>This second operation <code>rebase</code> basically stand from the fact that <code>merge</code> does a three-way-merge, so that in all case, even if two branches had <strong>modification on completely different files</strong>.</p>
 <p>So if you <code>rebase</code>, what you want to do is actually this:</p>
-<img src="/2020/05/20/Git-Summary/rebase1.png" class="" title="Picture from https:&#x2F;&#x2F;git-scm.com&#x2F;book&#x2F;en&#x2F;v2&#x2F;Git-Branching-Rebasing, Figure 37">
+<img src="/2020/05/20/Git-Summary/rebase1.png" class title="Picture from https:&#x2F;&#x2F;git-scm.com&#x2F;book&#x2F;en&#x2F;v2&#x2F;Git-Branching-Rebasing, Figure 37">
 
 <p>So, you can take the <strong>patch of the change that was introduced in C4</strong> and <strong>reapply</strong> it on top of C3. With the <code>rebase</code> command, you can take all the changes that were committed on one branch and <strong>replay them on a different branch</strong>.</p>
 <p>To place <code>experiment</code> on top of <code>master</code>, you run:</p>
@@ -744,12 +885,12 @@ Now, the master head will point to the inital commit. If your friend is also wor
 <blockquote>
 <p>Note:</p>
 <ul>
-<li><input disabled="" type="checkbox"> The end product from <code>merge</code> and <code>rebase</code> will be the same, but rebasing makes for a <strong>cleaner history</strong>. If you examine the <code>log</code> of a rebased branch, it looks like a <strong>linear history</strong>: it appears that all the work happened in series, even when it originally happened in parallel.</li>
-<li><input disabled="" type="checkbox"> Of course, do not rebase commits that exist outside your repository and that <strong>people may have based work on</strong>, because the changes are applied to that branch and it might <strong>destory their work</strong>.</li>
+<li><input disabled type="checkbox"> The end product from <code>merge</code> and <code>rebase</code> will be the same, but rebasing makes for a <strong>cleaner history</strong>. If you examine the <code>log</code> of a rebased branch, it looks like a <strong>linear history</strong>: it appears that all the work happened in series, even when it originally happened in parallel.</li>
+<li><input disabled type="checkbox"> Of course, do not rebase commits that exist outside your repository and that <strong>people may have based work on</strong>, because the changes are applied to that branch and it might <strong>destory their work</strong>.</li>
 </ul>
 </blockquote>
-<h2 id="A-More-Complicated-Rebase"><a href="#A-More-Complicated-Rebase" class="headerlink" title="A More Complicated Rebase"></a>A More Complicated Rebase</h2><p>Conside the case:</p>
-<img src="/2020/05/20/Git-Summary/complicatedRebase.png" class="" title="Picture from https:&#x2F;&#x2F;git-scm.com&#x2F;book&#x2F;en&#x2F;v2&#x2F;Git-Branching-Rebasing#rebasing-merging-example, Figure 39">
+<h3><span id="a-more-complicated-rebase">A More Complicated Rebase</span><a href="#a-more-complicated-rebase" class="header-anchor">⌨</a></h3><p>Conside the case:</p>
+<img src="/2020/05/20/Git-Summary/complicatedRebase.png" class title="Picture from https:&#x2F;&#x2F;git-scm.com&#x2F;book&#x2F;en&#x2F;v2&#x2F;Git-Branching-Rebasing#rebasing-merging-example, Figure 39">
 <p>And you want to rebase the <strong>client</strong> branch to go from the <strong>master</strong> branch. This can be done simply using one line:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git rebase --onto master server client</span><br></pre></td></tr></table></figure>
 
@@ -757,20 +898,20 @@ Now, the master head will point to the inital commit. If your friend is also wor
 <hr>
 <p><strong>Making a Disaster</strong></p>
 <hr>
-<h2 id="A-Disasterous-Case"><a href="#A-Disasterous-Case" class="headerlink" title="A Disasterous Case"></a>A Disasterous Case</h2><p>Consider if the server side actually <code>rebased</code> their <code>master</code> branch, and your work depends on it, and you did a <code>pull</code>, which automatically <code>merges</code> so it looks like this:</p>
-<img src="/2020/05/20/Git-Summary/rebase2.png" class="" title="Picture from https:&#x2F;&#x2F;git-scm.com&#x2F;book&#x2F;en&#x2F;v2&#x2F;Git-Branching-Rebasing#rebasing-merging-example, Figure 46">
+<h3><span id="a-disasterous-case">A Disasterous Case</span><a href="#a-disasterous-case" class="header-anchor">⌨</a></h3><p>Consider if the server side actually <code>rebased</code> their <code>master</code> branch, and your work depends on it, and you did a <code>pull</code>, which automatically <code>merges</code> so it looks like this:</p>
+<img src="/2020/05/20/Git-Summary/rebase2.png" class title="Picture from https:&#x2F;&#x2F;git-scm.com&#x2F;book&#x2F;en&#x2F;v2&#x2F;Git-Branching-Rebasing#rebasing-merging-example, Figure 46">
 
 <p>However, since we know that <code>C4</code> and <code>C6</code> are deleted/rebased because they are useless, we would also want <code>C4</code> and <code>C6</code> become removed. This can be done by <code>git pull --rebase</code> instead of <code>git pull</code>, which automatically successfully figure out what is <strong>uniquely yours</strong> and apply them back <strong>on top of the new branch</strong>.</p>
 <blockquote>
 <p>Note:</p>
 <ul>
-<li><input disabled="" type="checkbox"> If you are using <code>git pull</code> and want to make <code>--rebase</code> the <strong>default</strong>, you can set the <code>pull.rebase config</code> value with something like <code>git config --global pull.rebase true</code>.</li>
+<li><input disabled type="checkbox"> If you are using <code>git pull</code> and want to make <code>--rebase</code> the <strong>default</strong>, you can set the <code>pull.rebase config</code> value with something like <code>git config --global pull.rebase true</code>.</li>
 </ul>
 </blockquote>
-<h2 id="Running-Git-On-Server"><a href="#Running-Git-On-Server" class="headerlink" title="Running Git On Server"></a>Running Git On Server</h2><p>Running a Git server is fairly straightforward. First, you <strong>choose which protocols you want your server to support</strong>. </p>
+<h2><span id="running-git-on-server">Running Git On Server</span><a href="#running-git-on-server" class="header-anchor">⌨</a></h2><p>Running a Git server is fairly straightforward. First, you <strong>choose which protocols you want your server to support</strong>. </p>
 <p>A <strong>remote repository is generally a bare repository</strong> — a Git repository that has no working directory. Because the repository is only used as a collaboration point, there is no reason to have a snapshot checked out on disk; it’s just the Git data. In the simplest terms, a bare repository is the contents of your project’s <strong>.git directory</strong> and nothing else.</p>
 <p>Basically, a <strong>bare repository does not directly contain the actual files and code that you want to edit</strong> on your local machine. However, when you do <code>git clone</code> from it, you will get the progress <strong>and the code</strong> translated from the bare repo on the server to your local machine where you cloned it. Everytime you push changes to the <strong>remote bare repo</strong>, only the <strong>progress information</strong> will be pushed, but there will <strong>still be no actual code files in the remote bare repo</strong></p>
-<h2 id="The-Protocals-for-Git-Data-Transfer"><a href="#The-Protocals-for-Git-Data-Transfer" class="headerlink" title="The Protocals for Git Data Transfer"></a>The Protocals for Git Data Transfer</h2><p>Git can use four distinct protocols to transfer data: <strong>Local</strong>, <strong>HTTP</strong>, <strong>Secure Shell</strong> (SSH) and <strong>Git</strong>.</p>
+<h3><span id="the-protocals-for-git-data-transfer">The Protocals for Git Data Transfer</span><a href="#the-protocals-for-git-data-transfer" class="header-anchor">⌨</a></h3><p>Git can use four distinct protocols to transfer data: <strong>Local</strong>, <strong>HTTP</strong>, <strong>Secure Shell</strong> (SSH) and <strong>Git</strong>.</p>
 <ol>
 <li><p><strong>Local</strong> Protocal</p>
 <ul>
@@ -784,8 +925,8 @@ Now, the master head will point to the inital commit. If your friend is also wor
 <blockquote>
 <p>Note:</p>
 <ul>
-<li><input disabled="" type="checkbox"> Doing it in the first way is a faster transfer process, but it will let Git use <strong>hardlinks</strong> or <strong>directly copy the files it needs</strong>.</li>
-<li><input disabled="" type="checkbox"> Doing it the second way will fire up the processes that Git normally uses to <strong>transfer data over a network</strong>, which is generally much <strong>less efficient</strong>. The main reason to specify the <code>file://</code> prefix is if you want a <strong>clean copy of the repository with extraneous references or objects left out</strong></li>
+<li><input disabled type="checkbox"> Doing it in the first way is a faster transfer process, but it will let Git use <strong>hardlinks</strong> or <strong>directly copy the files it needs</strong>.</li>
+<li><input disabled type="checkbox"> Doing it the second way will fire up the processes that Git normally uses to <strong>transfer data over a network</strong>, which is generally much <strong>less efficient</strong>. The main reason to specify the <code>file://</code> prefix is if you want a <strong>clean copy of the repository with extraneous references or objects left out</strong></li>
 </ul>
 </blockquote>
 </li>
@@ -817,7 +958,7 @@ Now, the master head will point to the inital commit. If your friend is also wor
 <blockquote>
 <p>Note</p>
 <ul>
-<li><input disabled="" type="checkbox"> A negative aspect of SSH is that it <strong>doesn’t support anonymous access to your Git repository</strong>. If you’re using SSH, people <strong>must have SSH access to your machine</strong>, even in a read-only capacity, which doesn’t make SSH conducive to open source projects for which people might simply want to clone your repository to examine it.</li>
+<li><input disabled type="checkbox"> A negative aspect of SSH is that it <strong>doesn’t support anonymous access to your Git repository</strong>. If you’re using SSH, people <strong>must have SSH access to your machine</strong>, even in a read-only capacity, which doesn’t make SSH conducive to open source projects for which people might simply want to clone your repository to examine it.</li>
 </ul>
 </blockquote>
 </li>
@@ -831,36 +972,36 @@ Now, the master head will point to the inital commit. If your friend is also wor
 <blockquote>
 <p>Note:</p>
 <ul>
-<li><input disabled="" type="checkbox"> It is the fastest network transfer protocal available currently. It uses the same data-transfer mechanism as the SSH protocol <strong>but without the encryption and authentication overhead</strong>. </li>
-<li><input disabled="" type="checkbox"> It’s generally undesirable for the Git protocol to be the only access to your project. <strong>Generally, you’ll pair it with SSH or HTTPS access for the few developers who have push (write) access and have everyone else use <code>git://</code> for read-only access</strong>. It’s also probably the most difficult protocol to set up. It must run its own daemon, which requires xinetd or systemd configuration or the like, which isn’t always a walk in the park. </li>
+<li><input disabled type="checkbox"> It is the fastest network transfer protocal available currently. It uses the same data-transfer mechanism as the SSH protocol <strong>but without the encryption and authentication overhead</strong>. </li>
+<li><input disabled type="checkbox"> It’s generally undesirable for the Git protocol to be the only access to your project. <strong>Generally, you’ll pair it with SSH or HTTPS access for the few developers who have push (write) access and have everyone else use <code>git://</code> for read-only access</strong>. It’s also probably the most difficult protocol to set up. It must run its own daemon, which requires xinetd or systemd configuration or the like, which isn’t always a walk in the park. </li>
 </ul>
 </blockquote>
 </li>
 </ul>
 </li>
 </ol>
-<h2 id="Setting-up-Git-on-a-Server"><a href="#Setting-up-Git-on-a-Server" class="headerlink" title="Setting up Git on a Server"></a>Setting up Git on a Server</h2><h2 id="Setting-up-an-Existing-Git-Repo-on-Github"><a href="#Setting-up-an-Existing-Git-Repo-on-Github" class="headerlink" title="Setting up an Existing Git Repo on Github"></a>Setting up an Existing Git Repo on Github</h2><ol>
+<h3><span id="setting-up-git-on-a-server">Setting up Git on a Server</span><a href="#setting-up-git-on-a-server" class="header-anchor">⌨</a></h3><h3><span id="setting-up-an-existing-git-repo-on-github">Setting up an Existing Git Repo on Github</span><a href="#setting-up-an-existing-git-repo-on-github" class="header-anchor">⌨</a></h3><ol>
 <li><p>First you need to decide which protocal to use. Github provides two protocals: HTTP and SSH, which you can get when you see the <code>Quick Setup</code> tab or when you are inside the repo with the <code>Clone or Download</code>.</p>
 </li>
 <li><p>Then, you navigate to your existing repo in your Git Bash, and add the remote repo by:</p>
  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git remote add &lt;remoteShortName&gt; &lt;remoteURLYouJustCopied&gt;</span><br></pre></td></tr></table></figure></li>
 <li><p>Then you can push any of your branch in your local repo to the remote repo by:</p>
  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git push &lt;remoteShortName&gt; &lt;localBranchName:remoteBranchName&gt;</span><br></pre></td></tr></table></figure>
-<p> If the <remoteBranchName> is the same as your <localBranchName>, then you can just</p>
+<p> If the <remotebranchname> is the same as your <localbranchname>, then you can just</localbranchname></remotebranchname></p>
  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git push &lt;remoteShortName&gt; &lt;localBranchName&gt;</span><br></pre></td></tr></table></figure>
 
 </li>
 </ol>
-<h2 id="Distributed-WorkFlows"><a href="#Distributed-WorkFlows" class="headerlink" title="Distributed WorkFlows"></a>Distributed WorkFlows</h2><p> The aim for these flows is how to contribute code successfully to a project and make it <strong>as easy on you and the project maintainer as possible</strong>, and also how to <strong>maintain a project successfully with a number of developers contributing</strong>.</p>
+<h2><span id="distributed-workflows">Distributed WorkFlows</span><a href="#distributed-workflows" class="header-anchor">⌨</a></h2><p> The aim for these flows is how to contribute code successfully to a project and make it <strong>as easy on you and the project maintainer as possible</strong>, and also how to <strong>maintain a project successfully with a number of developers contributing</strong>.</p>
 <p> In general, due to the flexibility of Git, it presents <strong>a vast range of workflow possibilities for your project and/or your team</strong>, so we’ll cover a few common paradigms that take advantage of this flexibility.</p>
 <ol>
 <li><p><strong>Centralized Workflow</strong></p>
-<img src="/2020/05/20/Git-Summary/centralized_workflow.png" class="" title="Picture from https:&#x2F;&#x2F;git-scm.com&#x2F;book&#x2F;en&#x2F;v2&#x2F;Distributed-Git-Distributed-Workflows, Figure 54">
+<img src="/2020/05/20/Git-Summary/centralized_workflow.png" class title="Picture from https:&#x2F;&#x2F;git-scm.com&#x2F;book&#x2F;en&#x2F;v2&#x2F;Distributed-Git-Distributed-Workflows, Figure 54">
 
 <p> This means that if two developers clone from the hub and both make changes, <strong>the first developer to push their changes back up can do so with no problems</strong>. The <strong>second developer must merge</strong> in the first one’s work before pushing changes up, so as not to overwrite the first developer’s changes.    </p>
 </li>
 <li><p><strong>Integration-Manager Workflow</strong><br>Because Git allows you to have multiple remote repositories, it’s possible to have a workflow where each developer has <strong>write access to their own public repository</strong> and <strong>read access to everyone else’s</strong>. </p>
- <img src="/2020/05/20/Git-Summary/integration-manager.png" class="" title="Picture from https:&#x2F;&#x2F;git-scm.com&#x2F;book&#x2F;en&#x2F;v2&#x2F;Distributed-Git-Distributed-Workflows, Figure 55">
+ <img src="/2020/05/20/Git-Summary/integration-manager.png" class title="Picture from https:&#x2F;&#x2F;git-scm.com&#x2F;book&#x2F;en&#x2F;v2&#x2F;Distributed-Git-Distributed-Workflows, Figure 55">
 
 <p> This scenario often includes a <strong>canonical repository that represents the “official” project</strong>. To contribute to that project, you <strong>create your own public clone</strong> of the project and push your changes to it. Then, you can send a <strong>request to the maintainer of the main project to pull in your changes</strong>. The maintainer can then add your repository as a remote, <strong>test your changes locally</strong>, <strong>merge them into their branch</strong>, and <strong>push back to their repository</strong>. </p>
 <ol>
@@ -873,7 +1014,7 @@ Now, the master head will point to the inital commit. If your friend is also wor
 </ol>
 </li>
 </ol>
-<h2 id="Commit-Guidelines"><a href="#Commit-Guidelines" class="headerlink" title="Commit Guidelines"></a>Commit Guidelines</h2><p>Having a good guideline for <strong>creating commits and sticking to it</strong> makes working with Git and collaborating with others a lot easier. The Git project provides a document that lays out a number of good tips for creating commits from which to submit patches — you can read it in the Git source code in the <code>Documentation/SubmittingPatches</code> file</p>
+<h3><span id="commit-guidelines">Commit Guidelines</span><a href="#commit-guidelines" class="header-anchor">⌨</a></h3><p>Having a good guideline for <strong>creating commits and sticking to it</strong> makes working with Git and collaborating with others a lot easier. The Git project provides a document that lays out a number of good tips for creating commits from which to submit patches — you can read it in the Git source code in the <code>Documentation/SubmittingPatches</code> file</p>
 <ul>
 <li><p>Do <strong>not commit/make whitespace changes</strong> (i.e. adding meaningless whitespaces into the program and committing those as changes). This can be easily detected by running</p>
   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git diff</span><br></pre></td></tr></table></figure></li>
@@ -884,11 +1025,11 @@ Now, the master head will point to the inital commit. If your friend is also wor
 
 </li>
 </ul>
-<h2 id="Branch-Naming"><a href="#Branch-Naming" class="headerlink" title="Branch Naming"></a>Branch Naming</h2><p>Sometimes, the maintainer of the Git project tends to <strong>namespace these branches</strong> — such as <code>sc/ruby_client</code>, where <code>sc</code> is short for the person who contributed the work, and <code>ruby_client</code> is the branch the person worked on. </p>
+<h3><span id="branch-naming">Branch Naming</span><a href="#branch-naming" class="header-anchor">⌨</a></h3><p>Sometimes, the maintainer of the Git project tends to <strong>namespace these branches</strong> — such as <code>sc/ruby_client</code>, where <code>sc</code> is short for the person who contributed the work, and <code>ruby_client</code> is the branch the person worked on. </p>
 <p>Therefore, it is sometimes a good idea to format your branchname to:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git checkout -b &lt;yourNickName&#x2F;descriptiveBranchName&gt;</span><br></pre></td></tr></table></figure>
 
-<h2 id="Forking-a-Project"><a href="#Forking-a-Project" class="headerlink" title="Forking a Project"></a>Forking a Project</h2><p>Sometimes you want to work with a project that you do <strong>not have open push access to</strong>, but you might have the <strong>fork</strong> option, which allows you to <strong>clone the repo at least</strong>.</p>
+<h3><span id="forking-a-project">Forking a Project</span><a href="#forking-a-project" class="header-anchor">⌨</a></h3><p>Sometimes you want to work with a project that you do <strong>not have open push access to</strong>, but you might have the <strong>fork</strong> option, which allows you to <strong>clone the repo at least</strong>.</p>
 <p>In this case, if you want to add some feature to the project, say <code>featureA</code>, you could:</p>
 <ol>
 <li><strong>clone the project to your local machine</strong></li>
@@ -899,12 +1040,12 @@ Now, the master head will point to the inital commit. If your friend is also wor
 <blockquote>
 <p>Note:</p>
 <ul>
-<li><input disabled="" type="checkbox"> To keep your forked project up-to-date, you could add another <code>upstream</code> remote to your local forked repo. Then, to update your local <code>master</code> branch with what the server has, you can run <code>git fetch upsteam/master</code> and then <code>checkout</code> to your local <code>master</code>, run <code>git merge upstream/master</code> to merge in the new changes</li>
+<li><input disabled type="checkbox"> To keep your forked project up-to-date, you could add another <code>upstream</code> remote to your local forked repo. Then, to update your local <code>master</code> branch with what the server has, you can run <code>git fetch upsteam/master</code> and then <code>checkout</code> to your local <code>master</code>, run <code>git merge upstream/master</code> to merge in the new changes</li>
 </ul>
 </blockquote>
 </li>
 </ol>
-<h2 id="Difference-bewtween-git-merge-squash-and-git-rebase"><a href="#Difference-bewtween-git-merge-squash-and-git-rebase" class="headerlink" title="Difference bewtween git merge --squash and git rebase"></a>Difference bewtween <code>git merge --squash</code> and <code>git rebase</code></h2><p>Sometimes, when there where quite a lot of updates in the server’s <code>master</code> branch, and you would like your new changes to be based on the latest commit/change made, you would either do a <code>rebase</code> or your <code>featureA</code> branch to be directly off from the latest <code>&lt;remoteRepo&gt;/master</code> branch, or you could do a <code>merge --squash</code>.</p>
+<h3><span id="difference-bewtween-git-merge-squash-and-git-rebase">Difference bewtween <code>git merge --squash</code> and <code>git rebase</code></span><a href="#difference-bewtween-git-merge-squash-and-git-rebase" class="header-anchor">⌨</a></h3><p>Sometimes, when there where quite a lot of updates in the server’s <code>master</code> branch, and you would like your new changes to be based on the latest commit/change made, you would either do a <code>rebase</code> or your <code>featureA</code> branch to be directly off from the latest <code>&lt;remoteRepo&gt;/master</code> branch, or you could do a <code>merge --squash</code>.</p>
 <ul>
 <li>doing a <code>rebase</code> would produce a cleaner history by actually moving your branch to continue off from the <code>&lt;remoteRepo&gt;/master</code> branch. This means it deletes the your original diverged branch and places it newly there.</li>
 <li>doing a <code>merge --squash</code> would <strong>not delete your original diverged branch</strong>, <strong>and base it off from the lastest <code>&lt;remoteRepo&gt;/master</code> branch</strong>. It does <strong>not delete the divergent history</strong>. This works by <strong>squashing all your changes/commit objects in your divergent branch to a single one</strong>, and puts it at the tip of the <code>&lt;remoteRepo&gt;/master</code> branch.</li>
@@ -912,10 +1053,10 @@ Now, the master head will point to the inital commit. If your friend is also wor
 <blockquote>
 <p>Note:</p>
 <ul>
-<li><input disabled="" type="checkbox"> After you do a <code>git merge --squash &lt;targetBranch&gt;</code>, you need to *<em>call another <code>git commit</code> *</em>manually to finish the change.</li>
+<li><input disabled type="checkbox"> After you do a <code>git merge --squash &lt;targetBranch&gt;</code>, you need to *<em>call another <code>git commit</code> *</em>manually to finish the change.</li>
 </ul>
 </blockquote>
-<h2 id="Nofifying-Changes-via-Email"><a href="#Nofifying-Changes-via-Email" class="headerlink" title="Nofifying Changes via Email"></a>Nofifying Changes via Email</h2><p>Sometimes, some projects might accept patches via a developer <strong>mailing list instead of pull requests</strong>. In this case, you need to mail your changes by:</p>
+<h3><span id="nofifying-changes-via-email">Nofifying Changes via Email</span><a href="#nofifying-changes-via-email" class="header-anchor">⌨</a></h3><p>Sometimes, some projects might accept patches via a developer <strong>mailing list instead of pull requests</strong>. In this case, you need to mail your changes by:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git format-patch -M &lt;remoteShortName&gt;&#x2F;master</span><br></pre></td></tr></table></figure>
 <p>For example</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git format-patch -M testRepo&#x2F;master</span><br><span class="line">0001-TESTING-EMAIL-PATCH.patch</span><br></pre></td></tr></table></figure>
@@ -929,7 +1070,7 @@ Now, the master head will point to the inital commit. If your friend is also wor
 <blockquote>
 <p>Note:</p>
 <ul>
-<li><input disabled="" type="checkbox"> If you want to edit some writings. you can also <strong>edit text between the — line and the beginning of the patch (the diff –git line)</strong>, if you <strong>don’t want them to show up in the commit message</strong>, so that the developers can read it, but that content is ignored by the patching process.</li>
+<li><input disabled type="checkbox"> If you want to edit some writings. you can also <strong>edit text between the — line and the beginning of the patch (the diff –git line)</strong>, if you <strong>don’t want them to show up in the commit message</strong>, so that the developers can read it, but that content is ignored by the patching process.</li>
 </ul>
 </blockquote>
 <p>To email this to a mailing list, you can <strong>either paste the file into your email</strong> program or <strong>send it via a command-line program</strong>. Pasting the text often causes formatting issues, especially with “smarter” clients that don’t preserve newlines and other whitespace appropriately.</p>
@@ -954,19 +1095,19 @@ Now, the master head will point to the inital commit. If your friend is also wor
 </ul>
 </li>
 </ol>
-<h2 id="Maintaining-a-Project"><a href="#Maintaining-a-Project" class="headerlink" title="Maintaining a Project"></a>Maintaining a Project</h2><p>Basically, your aim is to <strong>accept work in a way that is clearest for other contributors and sustainable</strong> by you over the long run.</p>
+<h3><span id="maintaining-a-project">Maintaining a Project</span><a href="#maintaining-a-project" class="header-anchor">⌨</a></h3><p>Basically, your aim is to <strong>accept work in a way that is clearest for other contributors and sustainable</strong> by you over the long run.</p>
 <p>Maintaining using patches from email</p>
 <ul>
 <li>basically, you need to run <code>git apply</code> for a <strong><code>git diff</code> formatted object</strong>, or <code>git am</code> for a <strong><code>patch</code> formatted object</strong>.</li>
 </ul>
-<h2 id="Using-git-apply"><a href="#Using-git-apply" class="headerlink" title="Using git apply"></a>Using <code>git apply</code></h2><p>If you received the patch from someone who <strong>generated it with <code>git diff</code> or some variation of the Unix diff command</strong> (which is not recommended; see the next section), you can <strong>apply it with the git apply command</strong>. Assuming you saved the patch at <code>/tmp/patch-ruby-client.patch</code>, you can apply the patch like this:</p>
+<h3><span id="using-git-apply">Using <code>git apply</code></span><a href="#using-git-apply" class="header-anchor">⌨</a></h3><p>If you received the patch from someone who <strong>generated it with <code>git diff</code> or some variation of the Unix diff command</strong> (which is not recommended; see the next section), you can <strong>apply it with the git apply command</strong>. Assuming you saved the patch at <code>/tmp/patch-ruby-client.patch</code>, you can apply the patch like this:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git apply &#x2F;tmp&#x2F;patch-ruby-client.patch</span><br></pre></td></tr></table></figure>
 <p> This will also <strong>handle file adds, deletes, and renames</strong> if they’re <strong>described in the <code>git diff</code></strong> format, which <strong>patch won’t</strong> do. Finally, <code>git apply</code> is an <strong>“apply all or abort all”</strong> model where either everything is applied or nothing is, whereas <code>git am</code> for <code>patch</code> can <strong>partially apply</strong> patchfiles, leaving your working directory in a weird state. <code>git apply</code> is overall much more conservative than patch. </p>
 <p>However, you can use <code>git apply --check</code>, for example:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git apply --check 0001-see-if-this-helps-the-gem.patch</span><br></pre></td></tr></table></figure>
 
 <p>To <strong>check</strong> if a <code>patch</code> applies cleanly to <strong>your working directory</strong>. If there is no output, then the patch should apply cleanly. </p>
-<h2 id="Using-git-am"><a href="#Using-git-am" class="headerlink" title="Using git am"></a>Using <code>git am</code></h2><p>To apply a <code>patch</code> generated by <code>format-patch</code>, you use <code>git am</code> (the command is named am as it is used to “apply a series of patches from a mailbox”).</p>
+<h3><span id="using-git-am">Using <code>git am</code></span><a href="#using-git-am" class="header-anchor">⌨</a></h3><p>To apply a <code>patch</code> generated by <code>format-patch</code>, you use <code>git am</code> (the command is named am as it is used to “apply a series of patches from a mailbox”).</p>
 <ul>
 <li><p>if someone <strong>emailed you the patch properly using <code>git send-email</code></strong>, namely the content of the patch being the mail content + subject title, and you <strong>download that into an mbox format</strong>, then you can point <code>git am</code> to that <strong>mbox file</strong>, and it will start applying all the patches it sees.</p>
 </li>
@@ -979,13 +1120,13 @@ Now, the master head will point to the inital commit. If your friend is also wor
 <p>This command puts conflict <strong>markers in any files it has issues with</strong>, much like a conflicted merge or rebase operation. You solve this issue much the same way — <strong>edit the file to resolve the conflict</strong>, stage the new file, and then run <code>git am --resolved</code> to <strong>continue to the next patch in the series of patches that you haven’t  yet completed</strong>:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ (fix the file)</span><br><span class="line">$ git add ticgit.gemspec</span><br><span class="line">$ git am --resolved</span><br><span class="line">Applying: See if this helps the gem</span><br></pre></td></tr></table></figure>
 
-<h2 id="Managing-Using-the-Remote-Branches"><a href="#Managing-Using-the-Remote-Branches" class="headerlink" title="Managing Using the Remote Branches"></a>Managing Using the Remote Branches</h2><p>If your contribution came from a Git user who set up their own repository, pushed a number of changes into it, and then <strong>sent you the URL to the repository and the name of the remote branch the changes are in</strong>, you can <strong>add them as a remote and do merges locally</strong>.</p>
+<h3><span id="managing-using-the-remote-branches">Managing Using the Remote Branches</span><a href="#managing-using-the-remote-branches" class="header-anchor">⌨</a></h3><p>If your contribution came from a Git user who set up their own repository, pushed a number of changes into it, and then <strong>sent you the URL to the repository and the name of the remote branch the changes are in</strong>, you can <strong>add them as a remote and do merges locally</strong>.</p>
 <p>For example, if a developer named Jessica sends you an email saying that she has a great <strong>new feature</strong> in the <strong><code>ruby-client</code> branch</strong> of <strong>her repository</strong>, you can test it by adding the remote and <strong>checking out that branch locall</strong>y:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git remote add jessica git:&#x2F;&#x2F;github.com&#x2F;jessica&#x2F;myproject.git</span><br><span class="line">$ git fetch jessica</span><br><span class="line">$ git checkout -b rubyclient jessica&#x2F;ruby-client</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>Note:</p>
 <ul>
-<li><input disabled="" type="checkbox"> You do a <code>fetch</code> here <strong>instead of a direct <code>pull</code></strong> because you might not want to automatically merge her work into any of your branch. You might want to see if her work functions properly before you run <code>merge</code>.</li>
+<li><input disabled type="checkbox"> You do a <code>fetch</code> here <strong>instead of a direct <code>pull</code></strong> because you might not want to automatically merge her work into any of your branch. You might want to see if her work functions properly before you run <code>merge</code>.</li>
 </ul>
 </blockquote>
 <p>However, if you aren’t working with a person consistently but do something like a one-time pull, you can use the URL of their remote repository to the <code>git pull</code> command. This does a one-time pull and <strong>doesn’t save the URL as a remote reference</strong>:</p>
@@ -994,10 +1135,10 @@ Now, the master head will point to the inital commit. If your friend is also wor
 <blockquote>
 <p>Note:</p>
 <ul>
-<li><input disabled="" type="checkbox"> Here the command <code>git pull https://github.com/onetimeguy/project</code> <strong>pulls in all the progress to your current branch</strong>. If you just want to <strong>pull a specific branch</strong>, remember to add the option of the <branchname> like this <code>git pull https://github.com/onetimeguy/project &lt;remoteBranchName&gt;</code></li>
+<li><input disabled type="checkbox"> Here the command <code>git pull https://github.com/onetimeguy/project</code> <strong>pulls in all the progress to your current branch</strong>. If you just want to <strong>pull a specific branch</strong>, remember to add the option of the <branchname> like this <code>git pull https://github.com/onetimeguy/project &lt;remoteBranchName&gt;</code></branchname></li>
 </ul>
 </blockquote>
-<h2 id="Determining-What-is-Changed"><a href="#Determining-What-is-Changed" class="headerlink" title="Determining What is Changed"></a>Determining What is Changed</h2><p>Now you have a <strong><code>topic</code> branch that contains contributed work</strong>. At this point, you can determine what you’d like to do with it. This section revisits a couple of commands so you can see <strong>exactly what you’ll be introducing if you merge this</strong> into your main branch.</p>
+<h3><span id="determining-what-is-changed">Determining What is Changed</span><a href="#determining-what-is-changed" class="header-anchor">⌨</a></h3><p>Now you have a <strong><code>topic</code> branch that contains contributed work</strong>. At this point, you can determine what you’d like to do with it. This section revisits a couple of commands so you can see <strong>exactly what you’ll be introducing if you merge this</strong> into your main branch.</p>
 <ol>
 <li><p>to see <strong>only commits that are different</strong> between the <code>topic</code> branch and your <code>master</code> branch (for example), you could run </p>
  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git log &lt;branch1&gt; --not &lt;branch2&gt;</span><br></pre></td></tr></table></figure>
@@ -1008,7 +1149,7 @@ Now, the master head will point to the inital commit. If your friend is also wor
 <blockquote>
 <p>Note</p>
 <ul>
-<li><input disabled="" type="checkbox"> To see what <strong>changes each commit introduces</strong>, remember that you can pass the <code>-p</code> option to <code>git log</code> and it will <strong>append the <code>diff</code> introduced to each commit</strong>.</li>
+<li><input disabled type="checkbox"> To see what <strong>changes each commit introduces</strong>, remember that you can pass the <code>-p</code> option to <code>git log</code> and it will <strong>append the <code>diff</code> introduced to each commit</strong>.</li>
 </ul>
 </blockquote>
 </li>
@@ -1027,26 +1168,26 @@ Now, the master head will point to the inital commit. If your friend is also wor
 <blockquote>
 <p>Note:</p>
 <ul>
-<li><input disabled="" type="checkbox"> You might think there is an easier way by doing <code>git diff master</code>. This might work, but not always. This is because this command gives you a <code>diff</code> by <strong>comparing the last commit of the topic branch you’re on and the last commit on the master branch</strong>. This means that if your <code>master</code> branch <strong>has moved forward since you created the <code>topic</code> branch from it</strong>, then you’ll get seemingly strange results. For example, if you’ve <strong>added a line in a file on the <code>master</code> branch</strong>, <strong>a direct comparison of the snapshots will look like the <code>topic</code> branch is going to remove that line</strong>.</li>
+<li><input disabled type="checkbox"> You might think there is an easier way by doing <code>git diff master</code>. This might work, but not always. This is because this command gives you a <code>diff</code> by <strong>comparing the last commit of the topic branch you’re on and the last commit on the master branch</strong>. This means that if your <code>master</code> branch <strong>has moved forward since you created the <code>topic</code> branch from it</strong>, then you’ll get seemingly strange results. For example, if you’ve <strong>added a line in a file on the <code>master</code> branch</strong>, <strong>a direct comparison of the snapshots will look like the <code>topic</code> branch is going to remove that line</strong>.</li>
 </ul>
 </blockquote>
 </li>
 </ol>
-<h2 id="Determining-your-Merging-Workflow"><a href="#Determining-your-Merging-Workflow" class="headerlink" title="Determining your Merging Workflow"></a>Determining your Merging Workflow</h2><p>Basically, you need to decide how to manage all your <code>merge</code> and <code>rebase</code> actions, so that you could easily track changes and make it easier to understand. There are several <strong>example styles that you could use for managing your project merges:</strong></p>
+<h3><span id="determining-your-merging-workflow">Determining your Merging Workflow</span><a href="#determining-your-merging-workflow" class="header-anchor">⌨</a></h3><p>Basically, you need to decide how to manage all your <code>merge</code> and <code>rebase</code> actions, so that you could easily track changes and make it easier to understand. There are several <strong>example styles that you could use for managing your project merges:</strong></p>
 <ol>
 <li><a href="#merging-flow-small">Merging Workflow for small projects</a></li>
 <li><a href="#merging-flow-large">Merging Workflow for large projects</a></li>
 <li><a href="#rebase-and-cherry">Rebasing and Cherry-Picking Workflows</a></li>
 </ol>
 <p><a name="merging-flow-small"></a></p>
-<h2 id="Small-Merging-Workflow"><a href="#Small-Merging-Workflow" class="headerlink" title="Small Merging Workflow"></a>Small Merging Workflow</h2><p>The simplest way is to do <code>git merge</code> all the time to your <code>master</code> branch. However, this might cause unpleasant history line to review. However, this is often manageable for small projects, and typically you will have <strong>a main track with two branches</strong>: <code>master</code> and <code>develop</code>, in which you determine that <strong><code>master</code> is updated only when a very stable release is cut</strong> and <strong>all new code is integrated into the <code>develop</code> branch</strong>.</p>
+<h3><span id="small-merging-workflow">Small Merging Workflow</span><a href="#small-merging-workflow" class="header-anchor">⌨</a></h3><p>The simplest way is to do <code>git merge</code> all the time to your <code>master</code> branch. However, this might cause unpleasant history line to review. However, this is often manageable for small projects, and typically you will have <strong>a main track with two branches</strong>: <code>master</code> and <code>develop</code>, in which you determine that <strong><code>master</code> is updated only when a very stable release is cut</strong> and <strong>all new code is integrated into the <code>develop</code> branch</strong>.</p>
 <p>Then, since you typically first <code>merge</code> into your <code>develop</code> before deciding whether or not it is to be released in the <code>master</code> branch:</p>
-<img src="/2020/05/20/Git-Summary/merging-workflows-1.png" class="" title="Picture from https:&#x2F;&#x2F;git-scm.com&#x2F;book&#x2F;en&#x2F;v2&#x2F;Distributed-Git-Maintaining-a-Project, Figure 76">
+<img src="/2020/05/20/Git-Summary/merging-workflows-1.png" class title="Picture from https:&#x2F;&#x2F;git-scm.com&#x2F;book&#x2F;en&#x2F;v2&#x2F;Distributed-Git-Maintaining-a-Project, Figure 76">
 <p>And then if you do decide to <code>merge</code> in to the <code>master</code> branch:</p>
-<img src="/2020/05/20/Git-Summary/merging-workflows-2.png" class="" title="Picture from https:&#x2F;&#x2F;git-scm.com&#x2F;book&#x2F;en&#x2F;v2&#x2F;Distributed-Git-Maintaining-a-Project, Figure 77">
+<img src="/2020/05/20/Git-Summary/merging-workflows-2.png" class title="Picture from https:&#x2F;&#x2F;git-scm.com&#x2F;book&#x2F;en&#x2F;v2&#x2F;Distributed-Git-Maintaining-a-Project, Figure 77">
 
 <p><a name="merging-flow-large"></a></p>
-<h2 id="Large-Merging-Workflow"><a href="#Large-Merging-Workflow" class="headerlink" title="Large Merging Workflow"></a>Large Merging Workflow</h2><p>This workflow will have four <code>branch</code>es on the main track: <code>master</code>,<code>next</code>,<code>pu</code>,and <code>maint</code>.</p>
+<h3><span id="large-merging-workflow">Large Merging Workflow</span><a href="#large-merging-workflow" class="header-anchor">⌨</a></h3><p>This workflow will have four <code>branch</code>es on the main track: <code>master</code>,<code>next</code>,<code>pu</code>,and <code>maint</code>.</p>
 <ul>
 <li><code>master</code> branch will still be the one with the <strong>most stable version of the system</strong></li>
 <li><code>next</code> branch will be controlling/merging the <code>topics</code>/<code>features</code> branches that you <strong>got from your colaborators repo</strong> and you tested are <strong>functioning properly</strong>, considering whether to include or not.</li>
@@ -1054,12 +1195,12 @@ Now, the master head will point to the inital commit. If your friend is also wor
 <li><code>maint</code> branch usually stores the project <strong>at the state of the last release</strong>, so that it <strong>can be forked off to provide backported patches in case a maintenance release is required</strong>. </li>
 </ul>
 <p>For example, you might have your <code>topic</code> branches from your colaborators’ repos like this:</p>
-<img src="/2020/05/20/Git-Summary/large-merges-1.png" class="" title="Picture from https:&#x2F;&#x2F;git-scm.com&#x2F;book&#x2F;en&#x2F;v2&#x2F;Distributed-Git-Maintaining-a-Project, Figure 76">
+<img src="/2020/05/20/Git-Summary/large-merges-1.png" class title="Picture from https:&#x2F;&#x2F;git-scm.com&#x2F;book&#x2F;en&#x2F;v2&#x2F;Distributed-Git-Maintaining-a-Project, Figure 76">
 <p>And you organizes/maintains your main <code>branch</code>es (<code>maint</code> not shown here) like this:</p>
-<img src="/2020/05/20/Git-Summary/large-merges-2.png" class="" title="Picture from https:&#x2F;&#x2F;git-scm.com&#x2F;book&#x2F;en&#x2F;v2&#x2F;Distributed-Git-Maintaining-a-Project, Figure 76">
+<img src="/2020/05/20/Git-Summary/large-merges-2.png" class title="Picture from https:&#x2F;&#x2F;git-scm.com&#x2F;book&#x2F;en&#x2F;v2&#x2F;Distributed-Git-Maintaining-a-Project, Figure 76">
 
 <p><a name="rebase-and-cherry"></a></p>
-<h2 id="Rebasing-and-Cherry-Picking-Workflow"><a href="#Rebasing-and-Cherry-Picking-Workflow" class="headerlink" title="Rebasing and Cherry-Picking Workflow"></a>Rebasing and Cherry-Picking Workflow</h2><p>Other maintainers prefer to <code>rebase</code> or <code>cherry-pick</code> contributed work on top of their master branch, rather than merging it in, to <strong>keep a mostly linear history</strong>. When you have work in a <code>topic</code> branch and have determined that you want to integrate it, you move to that branch and run the <code>rebase</code> command to <strong>rebuild the changes on top of your current <code>master</code></strong> (or <code>develop</code>, and so on) branch. <strong>If that works well</strong>, you can fast-forward your master branch, and you’ll end up with a linear project history.</p>
+<h3><span id="rebasing-and-cherry-picking-workflow">Rebasing and Cherry-Picking Workflow</span><a href="#rebasing-and-cherry-picking-workflow" class="header-anchor">⌨</a></h3><p>Other maintainers prefer to <code>rebase</code> or <code>cherry-pick</code> contributed work on top of their master branch, rather than merging it in, to <strong>keep a mostly linear history</strong>. When you have work in a <code>topic</code> branch and have determined that you want to integrate it, you move to that branch and run the <code>rebase</code> command to <strong>rebuild the changes on top of your current <code>master</code></strong> (or <code>develop</code>, and so on) branch. <strong>If that works well</strong>, you can fast-forward your master branch, and you’ll end up with a linear project history.</p>
 <p>Or you could do a cherry-pick, which <strong>does not remove the original branch</strong> but <strong>“rebases” on top of the current branch</strong>, and you can <strong>choose which commit/commits you would like to incorporate</strong> (which means you might want to incorporate only several commits in that branch, but not all).</p>
 <p>For example, if you are given this:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">      A---B---C topic</span><br><span class="line">     &#x2F;</span><br><span class="line">D---E---F---G master</span><br></pre></td></tr></table></figure>
@@ -1078,22 +1219,22 @@ Now, the master head will point to the inital commit. If your friend is also wor
 
 </li>
 </ul>
-<h2 id="Rerere-in-Git"><a href="#Rerere-in-Git" class="headerlink" title="Rerere in Git"></a>Rerere in Git</h2><p>Rerere stands for “reuse recorded resolution” — it’s a way of shortcutting manual conflict resolution. When rerere is enabled, Git will keep a set of pre- and post-images from successful merges, and if it notices that there’s a conflict that looks exactly like one you’ve already fixed, it’ll just use the fix from last time, without bothering you with it.</p>
+<h3><span id="rerere-in-git">Rerere in Git</span><a href="#rerere-in-git" class="header-anchor">⌨</a></h3><p>Rerere stands for “reuse recorded resolution” — it’s a way of shortcutting manual conflict resolution. When rerere is enabled, Git will keep a set of pre- and post-images from successful merges, and if it notices that there’s a conflict that looks exactly like one you’ve already fixed, it’ll just use the fix from last time, without bothering you with it.</p>
 <p>This feature comes in <strong>two parts</strong>: <strong>a configuration setting</strong> and <strong>a command</strong>. The configuration setting is <code>rerere.enabled</code>, and it’s handy enough to put in your <code>global config</code>:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git config --global rerere.enabled true</span><br></pre></td></tr></table></figure>
 
 <p>Now, whenever you <strong>do a <code>merge</code> that resolves conflicts</strong>, the <strong>resolution will be recorded</strong> in the cache in case you need it in the future.</p>
 <p>If you need to, you can interact with the rerere cache using the <code>git rerere</code> command. When it’s invoked alone, Git <strong>checks its database of resolutions and tries to find a match with any current merge conflicts</strong> and <strong>resolve</strong> them (although this is <strong>done automatically if <code>rerere.enabled</code> is set to true</strong>).</p>
-<h2 id="Generating-a-Build-Number"><a href="#Generating-a-Build-Number" class="headerlink" title="Generating a Build Number"></a>Generating a Build Number</h2><p>If you run <code>git describe</code>, Git generates a string consisting of the <strong>name of the most recent tag</strong> earlier than that commit, followed by the <strong>number of commits</strong> since that tag, followed finally by a <strong>partial SHA-1 value of the commit being described</strong> (prefixed with the letter “g” meaning Git):</p>
+<h3><span id="generating-a-build-number">Generating a Build Number</span><a href="#generating-a-build-number" class="header-anchor">⌨</a></h3><p>If you run <code>git describe</code>, Git generates a string consisting of the <strong>name of the most recent tag</strong> earlier than that commit, followed by the <strong>number of commits</strong> since that tag, followed finally by a <strong>partial SHA-1 value of the commit being described</strong> (prefixed with the letter “g” meaning Git):</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git describe</span><br><span class="line">v1.0-3-gca2e64e</span><br></pre></td></tr></table></figure>
 
 <blockquote>
 <p>Note</p>
 <ul>
-<li><input disabled="" type="checkbox"> By default, the <code>git describe</code> command <strong>requires annotated tags</strong> (tags created with the -a or -s flag); if you want to take advantage of <strong>lightweight (non-annotated) tags</strong> as well, add the <code>--tags</code> option to the command. </li>
+<li><input disabled type="checkbox"> By default, the <code>git describe</code> command <strong>requires annotated tags</strong> (tags created with the -a or -s flag); if you want to take advantage of <strong>lightweight (non-annotated) tags</strong> as well, add the <code>--tags</code> option to the command. </li>
 </ul>
 </blockquote>
-<h2 id="Preparing-a-Release-Using-a-Zip-Gzip"><a href="#Preparing-a-Release-Using-a-Zip-Gzip" class="headerlink" title="Preparing a Release Using a Zip/Gzip"></a>Preparing a Release Using a Zip/Gzip</h2><p>Now you want to release a build. One of the things you’ll want to do is <strong>create an archive of the latest snapshot of your code</strong> for those poor souls who don’t use Git. The command to do this is <code>git archive</code>:</p>
+<h3><span id="preparing-a-release-using-a-zip-gzip">Preparing a Release Using a Zip/Gzip</span><a href="#preparing-a-release-using-a-zip-gzip" class="header-anchor">⌨</a></h3><p>Now you want to release a build. One of the things you’ll want to do is <strong>create an archive of the latest snapshot of your code</strong> for those poor souls who don’t use Git. The command to do this is <code>git archive</code>:</p>
 <ul>
 <li><p>To create a <strong>GZip</strong> file with the <strong>name being the build number generated</strong> from the previous section, you do:</p>
   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ git archive master --prefix&#x3D;&#39;projectArchive&#x2F;&#39; | gzip &gt; &#96;git describe master&#96;.tar.gz</span><br><span class="line"></span><br><span class="line">$ ls *.tar.gz</span><br><span class="line">v1.0-3-gca2e64e.tar.gz</span><br></pre></td></tr></table></figure>
@@ -1104,10 +1245,10 @@ Now, the master head will point to the inital commit. If your friend is also wor
 <p>  Here you will have <strong>all the files directly in that Zip</strong>, without opening any more directory</p>
 </li>
 </ul>
-<h2 id="Shortlog"><a href="#Shortlog" class="headerlink" title="Shortlog"></a>Shortlog</h2><p>If you use the <code>git shortlog</code> command. It summarizes <strong>all the commits in the range you give it</strong>; for example, the following gives you a summary of all the commits <strong>since your last release, if your last release was named v0.1</strong>:</p>
+<h3><span id="shortlog">Shortlog</span><a href="#shortlog" class="header-anchor">⌨</a></h3><p>If you use the <code>git shortlog</code> command. It summarizes <strong>all the commits in the range you give it</strong>; for example, the following gives you a summary of all the commits <strong>since your last release, if your last release was named v0.1</strong>:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ git shortlog --no-merges master --not v0.1</span><br><span class="line">Xiao Yu (4):</span><br><span class="line">      second commit made</span><br><span class="line">      amended: edited AND deleted file removal and untracking</span><br><span class="line">      first commit made now more with the new testing branch</span><br><span class="line">      testing rebase, added a new file independent for the branch master</span><br></pre></td></tr></table></figure>
 
-<h2 id="Git-Commit-Selection-Tools"><a href="#Git-Commit-Selection-Tools" class="headerlink" title="Git Commit Selection Tools"></a>Git Commit Selection Tools</h2><p>Now you’ll explore a number of very powerful things that Git can do that you may not necessarily use on a day-to-day basis but that you <strong>may need at some point</strong>.</p>
+<h2><span id="git-commit-selection-tools">Git Commit Selection Tools</span><a href="#git-commit-selection-tools" class="header-anchor">⌨</a></h2><p>Now you’ll explore a number of very powerful things that Git can do that you may not necessarily use on a day-to-day basis but that you <strong>may need at some point</strong>.</p>
 <table>
 <thead>
 <tr>
@@ -1157,10 +1298,10 @@ Now, the master head will point to the inital commit. If your friend is also wor
 <blockquote>
 <p>Note:</p>
 <ul>
-<li><input disabled="" type="checkbox"> Whenver you want to <strong>see multiple commits</strong>, <strong>use <code>git log</code></strong> would be better than <code>git show</code>, because you can use <code>git log --oneline</code> to simplify the output while it is not available for <strong><code>git show</code></strong>, which is more for <strong>looking at a specific commit</strong>.</li>
+<li><input disabled type="checkbox"> Whenver you want to <strong>see multiple commits</strong>, <strong>use <code>git log</code></strong> would be better than <code>git show</code>, because you can use <code>git log --oneline</code> to simplify the output while it is not available for <strong><code>git show</code></strong>, which is more for <strong>looking at a specific commit</strong>.</li>
 </ul>
 </blockquote>
-<h2 id="Git-Tools-for-Interactive-Staging"><a href="#Git-Tools-for-Interactive-Staging" class="headerlink" title="Git Tools for Interactive Staging"></a>Git Tools for Interactive Staging</h2><p>These can help you <strong>craft your commits to include only certain combinations</strong> and parts of files. These tools are helpful if you modify a number of files extensively, then <strong>decide that you want those changes to be partitioned into several focused commits</strong> rather than one big messy commit. </p>
+<h3><span id="git-tools-for-interactive-staging">Git Tools for Interactive Staging</span><a href="#git-tools-for-interactive-staging" class="header-anchor">⌨</a></h3><p>These can help you <strong>craft your commits to include only certain combinations</strong> and parts of files. These tools are helpful if you modify a number of files extensively, then <strong>decide that you want those changes to be partitioned into several focused commits</strong> rather than one big messy commit. </p>
 <p>Basically, <strong>interactive staging is initiated if you call <code>git add -i</code></strong>:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$ git add -i</span><br><span class="line">           staged     unstaged path</span><br><span class="line">  1:    unchanged        +0&#x2F;-1 TODO</span><br><span class="line">  2:    unchanged        +1&#x2F;-1 index.html</span><br><span class="line">  3:    unchanged        +5&#x2F;-1 lib&#x2F;simplegit.rb</span><br><span class="line"></span><br><span class="line">*** Commands ***</span><br><span class="line">  1: [s]tatus     2: [u]pdate      3: [r]evert     4: [a]dd untracked</span><br><span class="line">  5: [p]atch      6: [d]iff        7: [q]uit       8: [h]elp</span><br><span class="line">What now&gt;</span><br></pre></td></tr></table></figure>
 
@@ -1199,7 +1340,7 @@ Now, the master head will point to the inital commit. If your friend is also wor
 <td>Similar as above</td>
 </tr>
 </tbody></table>
-<h2 id="Git-Tools-for-Stashing"><a href="#Git-Tools-for-Stashing" class="headerlink" title="Git Tools for Stashing"></a>Git Tools for Stashing</h2><p>When things are in a messy state and <strong>you want to switch branches for a bit to work on something else</strong>, but you <strong>don’t want to do a commit of half-done work</strong> just so you can get back to this point later, you can use <code>git stash</code> or <code>git stash push</code></p>
+<h3><span id="git-tools-for-stashing">Git Tools for Stashing</span><a href="#git-tools-for-stashing" class="header-anchor">⌨</a></h3><p>When things are in a messy state and <strong>you want to switch branches for a bit to work on something else</strong>, but you <strong>don’t want to do a commit of half-done work</strong> just so you can get back to this point later, you can use <code>git stash</code> or <code>git stash push</code></p>
 <p>For example, you have some modifications done but need to switch urgently to something else:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$ git status</span><br><span class="line">Changes to be committed:</span><br><span class="line">  (use &quot;git reset HEAD &lt;file&gt;...&quot; to unstage)</span><br><span class="line"></span><br><span class="line">	modified:   index.html</span><br><span class="line"></span><br><span class="line">Changes not staged for commit:</span><br><span class="line">  (use &quot;git add &lt;file&gt;...&quot; to update what will be committed)</span><br><span class="line">  (use &quot;git checkout -- &lt;file&gt;...&quot; to discard changes in working directory)</span><br><span class="line"></span><br><span class="line">	modified:   lib&#x2F;simplegit.rb</span><br></pre></td></tr></table></figure>
 <p>Then you do:</p>
@@ -1215,9 +1356,9 @@ Now, the master head will point to the inital commit. If your friend is also wor
 <blockquote>
 <p>Note:</p>
 <ul>
-<li><input disabled="" type="checkbox"> Similar to <code>rebase</code> or <code>merge</code>, there could be <strong>conflicts as changes might not re-apply cleanly</strong>, if the files you edited in your stash were edited again. To resolve the conflicts, the same mechanism for <code>merge</code> conflicts will pop up for you to deal with.</li>
-<li><input disabled="" type="checkbox"> After you have applied a stash, remember to <code>drop</code> it (i.e. delete it), because by default <code>git stash apply</code> will <strong>only apply the changes</strong>, and you have to <strong>delete that resolved stash manually</strong> by <code>git stash drop stash@{&lt;number&gt;}</code></li>
-<li><input disabled="" type="checkbox"> By default, <code>git stash</code> will stash <strong>only modified and staged tracked files</strong>. If you specify <code>--include-untracked</code> or <code>-u</code>, you can <strong>stash untracked files that are not ignored</strong>. To even include the ignored files, use <code>--all</code> or <code>-a</code> instead.</li>
+<li><input disabled type="checkbox"> Similar to <code>rebase</code> or <code>merge</code>, there could be <strong>conflicts as changes might not re-apply cleanly</strong>, if the files you edited in your stash were edited again. To resolve the conflicts, the same mechanism for <code>merge</code> conflicts will pop up for you to deal with.</li>
+<li><input disabled type="checkbox"> After you have applied a stash, remember to <code>drop</code> it (i.e. delete it), because by default <code>git stash apply</code> will <strong>only apply the changes</strong>, and you have to <strong>delete that resolved stash manually</strong> by <code>git stash drop stash@{&lt;number&gt;}</code></li>
+<li><input disabled type="checkbox"> By default, <code>git stash</code> will stash <strong>only modified and staged tracked files</strong>. If you specify <code>--include-untracked</code> or <code>-u</code>, you can <strong>stash untracked files that are not ignored</strong>. To even include the ignored files, use <code>--all</code> or <code>-a</code> instead.</li>
 </ul>
 </blockquote>
 <p>You can also use the <strong>interactive stash</strong> by running <code>git stash --patch</code> (not <code>-i</code>. This will prompt you interactively which of the <strong>changes you would like to stash</strong> and which you would like to <strong>keep/commit in your working directory</strong>.</p>
@@ -1226,7 +1367,7 @@ Now, the master head will point to the inital commit. If your friend is also wor
 <p>A last option is to <strong>create a new branch</strong> for recovering your stashed work. This is done by <code>git stash branch &lt;newBranchname&gt;</code>, for you with your selected branch name, <strong>checks out the commit you were on when you stashed your work</strong>, <strong>reapplies your work there</strong>, and then <strong>drops the stash if it applies</strong> successfully:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">$ git stash branch testchanges</span><br><span class="line">M	index.html</span><br><span class="line">M	lib&#x2F;simplegit.rb</span><br><span class="line">Switched to a new branch &#39;testchanges&#39;</span><br><span class="line">On branch testchanges</span><br><span class="line">Changes to be committed:</span><br><span class="line">  (use &quot;git reset HEAD &lt;file&gt;...&quot; to unstage)</span><br><span class="line"></span><br><span class="line">	modified:   index.html</span><br><span class="line"></span><br><span class="line">Changes not staged for commit:</span><br><span class="line">  (use &quot;git add &lt;file&gt;...&quot; to update what will be committed)</span><br><span class="line">  (use &quot;git checkout -- &lt;file&gt;...&quot; to discard changes in working directory)</span><br><span class="line"></span><br><span class="line">	modified:   lib&#x2F;simplegit.rb</span><br><span class="line"></span><br><span class="line">Dropped refs&#x2F;stash@&#123;0&#125; (29d385a81d163dfd45a452a2ce816487a6b8b014)</span><br></pre></td></tr></table></figure>
 
-<h2 id="Git-Tools-for-Cleanig-Up-Your-Workspace"><a href="#Git-Tools-for-Cleanig-Up-Your-Workspace" class="headerlink" title="Git Tools for Cleanig Up Your Workspace"></a>Git Tools for Cleanig Up Your Workspace</h2><p>You can use <code>git clean</code> for deleting files that are <strong>not tracked</strong>. However, you’ll want to be pretty careful with this command, since, If you change your mind, there is often <strong>no retrieving the content of those files</strong>.</p>
+<h3><span id="git-tools-for-cleanig-up-your-workspace">Git Tools for Cleanig Up Your Workspace</span><a href="#git-tools-for-cleanig-up-your-workspace" class="header-anchor">⌨</a></h3><p>You can use <code>git clean</code> for deleting files that are <strong>not tracked</strong>. However, you’ll want to be pretty careful with this command, since, If you change your mind, there is often <strong>no retrieving the content of those files</strong>.</p>
 <p>Therefore, often you might want to run <code>git clean --dry-run</code> or <code>git clean -n</code> to see what will happen before you run <code>git clean</code></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git clean --dry-run</span><br><span class="line">Would remove v1.0-3-gca2e64e.tar.gz</span><br><span class="line">Would remove v1.0-3-gca2e64e.zip</span><br></pre></td></tr></table></figure>
 <p>However, these do <strong>not include ignored files</strong>. To include those files for removal, you need to add the option <code>-x</code></p>
@@ -1235,10 +1376,10 @@ Now, the master head will point to the inital commit. If your friend is also wor
 <blockquote>
 <p>Note </p>
 <ul>
-<li><input disabled="" type="checkbox"> Sometimes you might need to add the flag <code>-f</code> to do a <code>git clean</code>, because it is required if the Git <strong>configuration variable <code>clean.requireForce</code> is not explicitly set to <code>false</code></strong>. Therefore, you will need to force it by <code>-f</code>.</li>
+<li><input disabled type="checkbox"> Sometimes you might need to add the flag <code>-f</code> to do a <code>git clean</code>, because it is required if the Git <strong>configuration variable <code>clean.requireForce</code> is not explicitly set to <code>false</code></strong>. Therefore, you will need to force it by <code>-f</code>.</li>
 </ul>
 </blockquote>
-<h2 id="Git-Tools-for-Signing-a-Commit"><a href="#Git-Tools-for-Signing-a-Commit" class="headerlink" title="Git Tools for Signing a Commit"></a>Git Tools for Signing a Commit</h2><p>In more recent versions of Git (v1.7.9 and above), you can now also <strong>sign individual commits</strong>. If you’re interested in signing commits directly instead of just the tags, all you need to do is add a <code>-S</code> to your <code>git commit</code> command.</p>
+<h3><span id="git-tools-for-signing-a-commit">Git Tools for Signing a Commit</span><a href="#git-tools-for-signing-a-commit" class="header-anchor">⌨</a></h3><p>In more recent versions of Git (v1.7.9 and above), you can now also <strong>sign individual commits</strong>. If you’re interested in signing commits directly instead of just the tags, all you need to do is add a <code>-S</code> to your <code>git commit</code> command.</p>
 <p>However, first you need to get your <strong>GPG configured and your personal key installed</strong>.</p>
 <p>If you don’t have a key installed, you can generate one with <code>gpg --gen-key</code>.</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ gpg --gen-key</span><br></pre></td></tr></table></figure>
@@ -1252,130 +1393,128 @@ Now, the master head will point to the inital commit. If your friend is also wor
 <p>Now, you can sign your commit properly with <code>-S</code>, which will pop up a window for putting in the <strong>password you created when you create the key</strong>.</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$ git commit -a -S -m &#39;Signed commit&#39;</span><br><span class="line"></span><br><span class="line">You need a passphrase to unlock the secret key for</span><br><span class="line">user: &quot;Scott Chacon (Git signing key) &lt;schacon@gmail.com&gt;&quot;</span><br><span class="line">2048-bit RSA key, ID 0A46826A, created 2014-06-04</span><br><span class="line"></span><br><span class="line">[master 5c3386c] Signed commit</span><br><span class="line"> 4 files changed, 4 insertions(+), 24 deletions(-)</span><br><span class="line"> rewrite Rakefile (100%)</span><br><span class="line"> create mode 100644 lib&#x2F;git.rb</span><br></pre></td></tr></table></figure>
 
-      
     </div>
-    <footer class="article-footer">
-      <a data-url="https://jasonyux.github.io/2020/05/20/Git-Summary/" data-id="ckbqgsgpw00050kora557g8w8" class="article-share-link">Share</a>
-      
-      
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/05/19/MarkDown-Summary/" rel="prev" title="MarkDown Manual">
+      <i class="fa fa-chevron-left"></i> MarkDown Manual
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/05/22/Apache-Manual-md/" rel="next" title="Apache Maven Manual">
+      Apache Maven Manual <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+        </div>
+        
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Xiao Yu</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
     </footer>
   </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/2020/05/22/Apache-Manual-md/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          Apache Maven Manual
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2020/05/19/MarkDown-Summary/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">MarkDown Manual</div>
-    </a>
-  
-</nav>
 
   
-</article>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
 
-</section>
-        
-          <aside id="sidebar">
-  
-    
+<script src="/js/utils.js"></script>
 
-  
-    
+<script src="/js/motion.js"></script>
 
-  
-    
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li></ul>
-    </div>
-  </div>
+
+<script src="/js/next-boot.js"></script>
 
 
   
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2020/06/15/Go-Manual/">Go Manual</a>
-          </li>
-        
-          <li>
-            <a href="/2020/06/09/Spring-Framework-Guide/">Spring Framework Guide</a>
-          </li>
-        
-          <li>
-            <a href="/2020/06/09/SpringBoot-Manual/">Spring Boot Manual</a>
-          </li>
-        
-          <li>
-            <a href="/2020/06/02/Redis-Manual/">Redis Manual</a>
-          </li>
-        
-          <li>
-            <a href="/2020/05/26/MySQL-Manual/">MySQL Manual</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
 
-  
-</aside>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2020 Xiao Yu<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
-    </div>
-  </div>
-</footer>
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
-    
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
 
 
   
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
 
   
-<script src="/fancybox/jquery.fancybox.pack.js"></script>
 
-
-
-
-<script src="/js/script.js"></script>
-
-
-
-
-  </div>
 </body>
 </html>

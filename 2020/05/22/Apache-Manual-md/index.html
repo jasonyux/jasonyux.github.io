@@ -1,12 +1,25 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
-  
-  <title>Apache Maven Manual | From a Beginner to a Disaster</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"jasonyux.github.io","root":"/","scheme":"Pisces","version":"8.0.0-rc.3","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
   <meta name="description" content="IMPORTANT:Much of the content here is a personal summary&#x2F;abbrieviation of contents on the Offical Apache Maven Guide. For more complete information, please refer to the offical site.  Apache Maven In">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Apache Maven Manual">
@@ -15,87 +28,215 @@
 <meta property="og:description" content="IMPORTANT:Much of the content here is a personal summary&#x2F;abbrieviation of contents on the Offical Apache Maven Guide. For more complete information, please refer to the offical site.  Apache Maven In">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-05-22T05:40:13.000Z">
-<meta property="article:modified_time" content="2020-06-22T08:31:58.356Z">
+<meta property="article:modified_time" content="2020-06-22T13:28:02.585Z">
 <meta property="article:author" content="Xiao Yu">
 <meta name="twitter:card" content="summary">
-  
-    <link rel="alternate" href="/atom.xml" title="From a Beginner to a Disaster" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  
-<link rel="stylesheet" href="/css/style.css">
 
-<meta name="generator" content="Hexo 4.2.1"></head>
+<link rel="canonical" href="https://jasonyux.github.io/2020/05/22/Apache-Manual-md/">
 
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">From a Beginner to a Disaster</a>
-      </h1>
-      
-        <h2 id="subtitle-wrap">
-          <a href="/" id="subtitle">Xiao.Y</a>
-        </h2>
-      
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>Apache Maven Manual | From a Beginner to a Disaster</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before, .use-motion .logo-line-after {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+  <div id="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <main class="main">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+        <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
     </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://jasonyux.github.io"></form>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line-before"></i>
+      <h1 class="site-title">From a Beginner to a Disaster</h1>
+      <i class="logo-line-after"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Xiao.Y</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">1.</span> <span class="nav-text">Apache Maven Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">2.</span> <span class="nav-text">Installing Maven</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">3.</span> <span class="nav-text">Creating a Project (QuickStart)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">4.</span> <span class="nav-text">Configuring for Java 9 or Later</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">5.</span> <span class="nav-text">Build the Project</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">6.</span> <span class="nav-text">Running Maven Tools</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">7.</span> <span class="nav-text">Generating a Site</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">8.</span> <span class="nav-text">Creating a Project</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">9.</span> <span class="nav-text">Compiling Project Source Code</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">10.</span> <span class="nav-text">Testing Project Source Code</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">11.</span> <span class="nav-text">Packaging into a Jar File</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">12.</span> <span class="nav-text">Installing into Local Repository</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">13.</span> <span class="nav-text">Other Useful Phases in Maven</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">14.</span> <span class="nav-text">Using Plugins in Maven</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">15.</span> <span class="nav-text">Adding Files&#x2F;Resources to My Jar</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">16.</span> <span class="nav-text">Resource Filtering in Maven</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">17.</span> <span class="nav-text">Filtering External Files</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">18.</span> <span class="nav-text">Using External Dependency</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">19.</span> <span class="nav-text">Deploying Jar into a Remote Repository</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">20.</span> <span class="nav-text">Creating Documentation with a Site</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">21.</span> <span class="nav-text">Creating Projects of Other Types</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">22.</span> <span class="nav-text">Creating Multiple Projects at Once</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">23.</span> <span class="nav-text">Build Lifecycle Basics</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">24.</span> <span class="nav-text">Phases in a Build Lifecycle</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">25.</span> <span class="nav-text">Executing Those Phases</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">26.</span> <span class="nav-text">“Special” Phases</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">27.</span> <span class="nav-text">Goals in a Phase</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">28.</span> <span class="nav-text">Customizing your Build Lifecycle</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">29.</span> <span class="nav-text">Customizing your Build Lifecycle by Plugins</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">30.</span> <span class="nav-text">Built-in Lifecycle and Phase Bindings</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">31.</span> <span class="nav-text">Built-in Phase and Goal Bindings</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">32.</span> <span class="nav-text">POM Basics</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">33.</span> <span class="nav-text">Super POM</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">34.</span> <span class="nav-text">Minimal POM</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">35.</span> <span class="nav-text">Project&#x2F;POM Inheritance</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">36.</span> <span class="nav-text">Project&#x2F;POM Aggregation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">37.</span> <span class="nav-text">Combining Project Inheritance and Project Aggregation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">38.</span> <span class="nav-text">Variables in POM</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">39.</span> <span class="nav-text">Profiles</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">40.</span> <span class="nav-text">Viewing Active Profiles</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">41.</span> <span class="nav-text">Making a Profile</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">42.</span> <span class="nav-text">Activate a Profile</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">43.</span> <span class="nav-text">Activate Profile for a Single Run</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">44.</span> <span class="nav-text">Activate Profile Automatically for a Project</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">45.</span> <span class="nav-text">Deactivating a Profile</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">46.</span> <span class="nav-text">Activate Profile Automatically for all Projects (per user)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">47.</span> <span class="nav-text">Activate Profiles by Triggers</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">48.</span> <span class="nav-text">Profiles in POMs and in Settings</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">49.</span> <span class="nav-text">Standard Directory Output</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">50.</span> <span class="nav-text">Transitive Dependency</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">51.</span> <span class="nav-text">Dependency Mediation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">52.</span> <span class="nav-text">Dependency Management</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">53.</span> <span class="nav-text">Difference between using &lt;dependency&gt; and &lt;dependencyManagement&gt;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">54.</span> <span class="nav-text">Dependency Scope</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">55.</span> <span class="nav-text">Importing Dependencies</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Xiao Yu</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+  </nav>
+</div>
+
+
+
       </div>
     </div>
-  </div>
-</header>
-      <div class="outer">
-        <section id="main"><article id="post-Apache-Manual-md" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/05/22/Apache-Manual-md/" class="article-date">
-  <time datetime="2020-05-22T05:40:13.000Z" itemprop="datePublished">2020-05-22</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      Apache Maven Manual
-    </h1>
-  
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
 
       </header>
+
+      
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+      <div class="main-inner">
+        
+
+        <div class="content post posts-expand">
+          
+
     
-    <div class="article-entry" itemprop="articleBody">
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://jasonyux.github.io/2020/05/22/Apache-Manual-md/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Xiao Yu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="From a Beginner to a Disaster">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Apache Maven Manual
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-05-22 13:40:13" itemprop="dateCreated datePublished" datetime="2020-05-22T13:40:13+08:00">2020-05-22</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-06-22 21:28:02" itemprop="dateModified" datetime="2020-06-22T21:28:02+08:00">2020-06-22</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
         <hr>
 <p><strong>IMPORTANT</strong>:<br>Much of the content here is a personal summary/abbrieviation of contents on the <a href="https://maven.apache.org/users/index.html" target="_blank" rel="noopener">Offical Apache Maven Guide</a>. For more complete information, please refer to the offical site.</p>
 <hr>
-<h2 id="Apache-Maven-Introduction"><a href="#Apache-Maven-Introduction" class="headerlink" title="Apache Maven Introduction"></a>Apache Maven Introduction</h2><ul>
+<h2><span id="apache-maven-introduction">Apache Maven Introduction</span><a href="#apache-maven-introduction" class="header-anchor">⌨</a></h2><ul>
 <li><strong>*Q: What is Apache Maven used for? *</strong></li>
 </ul>
 <p>In a nutshell Maven is an attempt to <strong>apply patterns to a project’s build infrastructure in order to promote comprehension and productivity</strong> by providing a clear path in the use of best practices. Maven is essentially a <strong>project management and comprehension tool</strong> and as such provides a way to help with managing:</p>
@@ -109,14 +250,14 @@
 <li>Distribution</li>
 </ul>
 <p>Maven can provide benefits for your build process by <strong>employing standard conventions and practices</strong> to accelerate your development cycle while at the same time helping you achieve a higher rate of success.</p>
-<h2 id="Installing-Maven"><a href="#Installing-Maven" class="headerlink" title="Installing Maven"></a>Installing Maven</h2><p>Please follow <a href="https://maven.apache.org/guides/getting-started/maven-in-five-minutes.html" target="_blank" rel="noopener">Apache Maven Guide</a></p>
-<h2 id="Creating-a-Project-QuickStart"><a href="#Creating-a-Project-QuickStart" class="headerlink" title="Creating a Project (QuickStart)"></a>Creating a Project (QuickStart)</h2><p>First you might want to create a workspace folder where all your Maven project resides. Then, you could <strong>navigate to that folder’s directory</strong> and run:</p>
+<h2><span id="installing-maven">Installing Maven</span><a href="#installing-maven" class="header-anchor">⌨</a></h2><p>Please follow <a href="https://maven.apache.org/guides/getting-started/maven-in-five-minutes.html" target="_blank" rel="noopener">Apache Maven Guide</a></p>
+<h2><span id="creating-a-project-quickstart">Creating a Project (QuickStart)</span><a href="#creating-a-project-quickstart" class="header-anchor">⌨</a></h2><p>First you might want to create a workspace folder where all your Maven project resides. Then, you could <strong>navigate to that folder’s directory</strong> and run:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn archetype:generate -DgroupId&#x3D;com.mycompany.app -DartifactId&#x3D;my-app -DarchetypeArtifactId&#x3D;maven-archetype-quickstart -DarchetypeVersion&#x3D;1.4 -DinteractiveMode&#x3D;false</span><br></pre></td></tr></table></figure>
 <p>where the <code>-DartifactId=my-app</code> would be the new <strong>folder with name <code>my-app</code></strong> under that directory you created.</p>
 <blockquote>
 <p>Note:</p>
 <ul>
-<li><input disabled="" type="checkbox"> If you have just installed Maven, it may take a while on the first run.</li>
+<li><input disabled type="checkbox"> If you have just installed Maven, it may take a while on the first run.</li>
 </ul>
 </blockquote>
 <p>After it completes the setup, you can switch to that folder <code>my-app</code> and look at what’s created by Maven:</p>
@@ -134,12 +275,12 @@
 <li><code>pom.xml</code> file is the project’s <strong>Project Object Model</strong>, or POM.</li>
 </ul>
 <p><a name="Configure-Java-9"></a></p>
-<h2 id="Configuring-for-Java-9-or-Later"><a href="#Configuring-for-Java-9-or-Later" class="headerlink" title="Configuring for Java 9 or Later"></a>Configuring for Java 9 or Later</h2><p><strong>By default</strong> your version of Maven might use an old version of the <code>maven-compiler-plugin</code> that is not compatible with Java 9 or later versions. To <strong>target Java 9 or later</strong>, you should at least use version <code>3.6.0</code> of the <code>maven-compiler-plugin</code> and set the <code>maven.compiler.release</code> property to the Java release you are targetting (e.g. 9, 10, 11, 12, etc.).</p>
+<h2><span id="configuring-for-java-9-or-later">Configuring for Java 9 or Later</span><a href="#configuring-for-java-9-or-later" class="header-anchor">⌨</a></h2><p><strong>By default</strong> your version of Maven might use an old version of the <code>maven-compiler-plugin</code> that is not compatible with Java 9 or later versions. To <strong>target Java 9 or later</strong>, you should at least use version <code>3.6.0</code> of the <code>maven-compiler-plugin</code> and set the <code>maven.compiler.release</code> property to the Java release you are targetting (e.g. 9, 10, 11, 12, etc.).</p>
 <p>In the following example, we have configured our Maven project to use version <code>3.8.1</code> of maven-compiler-plugin and target Java 11. You should be able to <strong>edit it in the <code>pom.xml</code> file</strong>.</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;properties&gt;</span><br><span class="line">    &lt;maven.compiler.release&gt;11&lt;&#x2F;maven.compiler.release&gt;</span><br><span class="line">&lt;&#x2F;properties&gt;</span><br><span class="line"></span><br><span class="line">&lt;build&gt;</span><br><span class="line">    &lt;plugins&gt;</span><br><span class="line">        &lt;plugin&gt;</span><br><span class="line">            &lt;groupId&gt;org.apache.maven.plugins&lt;&#x2F;groupId&gt;</span><br><span class="line">            &lt;artifactId&gt;maven-compiler-plugin&lt;&#x2F;artifactId&gt;</span><br><span class="line">            &lt;version&gt;3.8.1&lt;&#x2F;version&gt;</span><br><span class="line">            &lt;configuration&gt;</span><br><span class="line">                &lt;source&gt;13&lt;&#x2F;source&gt;</span><br><span class="line">                &lt;target&gt;13&lt;&#x2F;target&gt;</span><br><span class="line">            &lt;&#x2F;configuration&gt;</span><br><span class="line">        &lt;&#x2F;plugin&gt;</span><br><span class="line">	&lt;&#x2F;plugins&gt;</span><br><span class="line">&lt;&#x2F;build&gt;</span><br></pre></td></tr></table></figure>
 
 <p><a name="Build-the-Project"></a></p>
-<h2 id="Build-the-Project"><a href="#Build-the-Project" class="headerlink" title="Build the Project"></a>Build the Project</h2><p>Maven is based around the central concept of a <strong>build lifecycle</strong>, which consists of a number of <strong>phases</strong>. (Each of these build lifecycles is defined by a different list of build phases, wherein a build phase represents a stage in the lifecycle.)</p>
+<h2><span id="build-the-project">Build the Project</span><a href="#build-the-project" class="header-anchor">⌨</a></h2><p>Maven is based around the central concept of a <strong>build lifecycle</strong>, which consists of a number of <strong>phases</strong>. (Each of these build lifecycles is defined by a different list of build phases, wherein a build phase represents a stage in the lifecycle.)</p>
 <p>For example, the <strong>default lifecycle comprises of the following phases</strong> (for a complete list of the lifecycle phases, refer to the Lifecycle Reference):</p>
 <ul>
 <li><code>validate</code> - validate the project is correct and all necessary information is available</li>
@@ -170,8 +311,8 @@
 <blockquote>
 <p>Note:</p>
 <ul>
-<li><input disabled="" type="checkbox"> Unlike the first command executed (<code>archetype:generate</code>) you may notice the second is simply a single word - <code>package</code>. The difference is that the <strong>first one is a goal</strong> (i.e. the prefix <code>archetype</code> is the <strong>plugin</strong> that provides the goal <code>archetype:generate</code>. Maven is - at its heart - a plugin execution framework; all work is done by plugins), where as the <strong>second one is a phase</strong>.</li>
-<li><input disabled="" type="checkbox"> After you run the <code>mvn package</code>, you will see that it created a <strong>new folder <code>target</code></strong>, in which there will be a <strong>packaged <code>JAR</code> file that is the snap-shot of the project</strong> (in this case, MAVEN starts with a <code>Hello World</code> java file)</li>
+<li><input disabled type="checkbox"> Unlike the first command executed (<code>archetype:generate</code>) you may notice the second is simply a single word - <code>package</code>. The difference is that the <strong>first one is a goal</strong> (i.e. the prefix <code>archetype</code> is the <strong>plugin</strong> that provides the goal <code>archetype:generate</code>. Maven is - at its heart - a plugin execution framework; all work is done by plugins), where as the <strong>second one is a phase</strong>.</li>
+<li><input disabled type="checkbox"> After you run the <code>mvn package</code>, you will see that it created a <strong>new folder <code>target</code></strong>, in which there will be a <strong>packaged <code>JAR</code> file that is the snap-shot of the project</strong> (in this case, MAVEN starts with a <code>Hello World</code> java file)</li>
 </ul>
 </blockquote>
 <p>Now, since you see that in the standard lifecycle, <code>package</code> already included <code>compile</code> phase, it means we could test the newly compiled and packaged <code>JAR</code>:</p>
@@ -182,7 +323,7 @@
 <li><code>-cp</code>, or <strong>CLASSPATH</strong> (where the JVM will look for the <strong>.class</strong> file. In this case, the file is packaged in the <strong>my-app-1.0-SNAPSHOT.jar</strong>), is used as an option to the Java command that specifies the <strong>location of classes and packages which are defined by the user</strong>, for example, a list of directories, <strong>JAR archives and ZIP archives</strong> to search for class files.</li>
 <li><code>com.mycompany.app.App</code> is the java file that is created by MAVEN and packaged into <code>target/my-app-1.0-SNAPSHOT.jar</code></li>
 </ul>
-<h2 id="Running-Maven-Tools"><a href="#Running-Maven-Tools" class="headerlink" title="Running Maven Tools"></a>Running Maven Tools</h2><p>Although hardly a comprehensive list, these are the <strong>most common default lifecycle phases</strong> executed, also shown in the section <a href="#Build-the-Project">Build the Project</a></p>
+<h2><span id="running-maven-tools">Running Maven Tools</span><a href="#running-maven-tools" class="header-anchor">⌨</a></h2><p>Although hardly a comprehensive list, these are the <strong>most common default lifecycle phases</strong> executed, also shown in the section <a href="#Build-the-Project">Build the Project</a></p>
 <ul>
 <li><code>validate</code></li>
 <li><code>compile</code></li>
@@ -203,10 +344,10 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn clean dependency:copy-dependencies package</span><br></pre></td></tr></table></figure>
 
 <p>This command will clean the project, copy dependencies, and package the project (<strong>executing all phases up to <code>package</code>, of course</strong>).</p>
-<h2 id="Generating-a-Site"><a href="#Generating-a-Site" class="headerlink" title="Generating a Site"></a>Generating a Site</h2><p>This site will contain information about your project, organized by MAVEN:</p>
+<h2><span id="generating-a-site">Generating a Site</span><a href="#generating-a-site" class="header-anchor">⌨</a></h2><p>This site will contain information about your project, organized by MAVEN:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn site</span><br></pre></td></tr></table></figure>
 <p>This phase <strong>generates a site based upon information on the project’s <code>pom</code></strong>. You can look at the documentation generated under <code>target/site</code>.</p>
-<h2 id="Creating-a-Project"><a href="#Creating-a-Project" class="headerlink" title="Creating a Project"></a>Creating a Project</h2><p>Different from the <code>quickstart</code> you could use, you could also create a standard project by:</p>
+<h2><span id="creating-a-project">Creating a Project</span><a href="#creating-a-project" class="header-anchor">⌨</a></h2><p>Different from the <code>quickstart</code> you could use, you could also create a standard project by:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mvn -B archetype:generate \</span><br><span class="line">  -DarchetypeGroupId&#x3D;org.apache.maven.archetypes \</span><br><span class="line">  -DgroupId&#x3D;com.mycompany.app \</span><br><span class="line">  -DartifactId&#x3D;&lt;yourProjectName&gt;</span><br></pre></td></tr></table></figure>
 <p>Then, in the directory you created, you could look at the <code>POM</code> file:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&lt;project xmlns&#x3D;&quot;http:&#x2F;&#x2F;maven.apache.org&#x2F;POM&#x2F;4.0.0&quot;</span><br><span class="line">  xmlns:xsi&#x3D;&quot;http:&#x2F;&#x2F;www.w3.org&#x2F;2001&#x2F;XMLSchema-instance&quot;</span><br><span class="line">  xsi:schemaLocation&#x3D;&quot;http:&#x2F;&#x2F;maven.apache.org&#x2F;POM&#x2F;4.0.0</span><br><span class="line">                      http:&#x2F;&#x2F;maven.apache.org&#x2F;xsd&#x2F;maven-4.0.0.xsd&quot;&gt;</span><br><span class="line">  &lt;modelVersion&gt;4.0.0&lt;&#x2F;modelVersion&gt;</span><br><span class="line">  &lt;groupId&gt;com.mycompany.app&lt;&#x2F;groupId&gt;</span><br><span class="line">  &lt;artifactId&gt;my-app&lt;&#x2F;artifactId&gt;</span><br><span class="line">  &lt;packaging&gt;jar&lt;&#x2F;packaging&gt;</span><br><span class="line">  &lt;version&gt;1.0-SNAPSHOT&lt;&#x2F;version&gt;</span><br><span class="line">  &lt;name&gt;Maven Quick Start Archetype&lt;&#x2F;name&gt;</span><br><span class="line">  &lt;url&gt;http:&#x2F;&#x2F;maven.apache.org&lt;&#x2F;url&gt;</span><br><span class="line">  &lt;dependencies&gt;</span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">      &lt;groupId&gt;junit&lt;&#x2F;groupId&gt;</span><br><span class="line">      &lt;artifactId&gt;junit&lt;&#x2F;artifactId&gt;</span><br><span class="line">      &lt;version&gt;4.11&lt;&#x2F;version&gt;</span><br><span class="line">      &lt;scope&gt;test&lt;&#x2F;scope&gt;</span><br><span class="line">    &lt;&#x2F;dependency&gt;</span><br><span class="line">  &lt;&#x2F;dependencies&gt;</span><br><span class="line">&lt;&#x2F;project&gt;</span><br></pre></td></tr></table></figure>
@@ -226,14 +367,14 @@
 <blockquote>
 <p>Note:</p>
 <ul>
-<li><input disabled="" type="checkbox"> The value of the <code>version</code> tag in the pom.xml file shown below has the suffix: <code>-SNAPSHOT</code>. The SNAPSHOT value refers to the <strong>‘latest’ code along a <code>development</code> branch</strong>, and provides <strong>no guarantee the code is stable or unchanging</strong>. Conversely, the code in a <code>&#39;release&#39;</code> version (any version value without the suffix SNAPSHOT) is unchanging. In other words, a SNAPSHOT version is the ‘development’ version before the final ‘release’ version. The SNAPSHOT is “older” than its release.</li>
+<li><input disabled type="checkbox"> The value of the <code>version</code> tag in the pom.xml file shown below has the suffix: <code>-SNAPSHOT</code>. The SNAPSHOT value refers to the <strong>‘latest’ code along a <code>development</code> branch</strong>, and provides <strong>no guarantee the code is stable or unchanging</strong>. Conversely, the code in a <code>&#39;release&#39;</code> version (any version value without the suffix SNAPSHOT) is unchanging. In other words, a SNAPSHOT version is the ‘development’ version before the final ‘release’ version. The SNAPSHOT is “older” than its release.</li>
 </ul>
 </blockquote>
 <p>For more complete understanding of a <strong>POM</strong> visit <a href="https://maven.apache.org/guides/introduction/introduction-to-the-pom.html" target="_blank" rel="noopener">Apache Maven POM Guide</a></p>
 <p>After the archetype generation of your first project you will also notice the <strong>same source tree structure you had above in the quickstart project created</strong>:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">my-app</span><br><span class="line">|-- pom.xml</span><br><span class="line">&#96;-- src</span><br><span class="line">    |-- main</span><br><span class="line">    |   &#96;-- java</span><br><span class="line">    |       &#96;-- com</span><br><span class="line">    |           &#96;-- mycompany</span><br><span class="line">    |               &#96;-- app</span><br><span class="line">    |                   &#96;-- App.java</span><br><span class="line">    &#96;-- test</span><br><span class="line">        &#96;-- java</span><br><span class="line">            &#96;-- com</span><br><span class="line">                &#96;-- mycompany</span><br><span class="line">                    &#96;-- app</span><br><span class="line">                        &#96;-- AppTest.java</span><br></pre></td></tr></table></figure>
 
-<h2 id="Compiling-Project-Source-Code"><a href="#Compiling-Project-Source-Code" class="headerlink" title="Compiling Project Source Code"></a>Compiling Project Source Code</h2><p>Change to the directory where <code>pom.xml</code> is created by <code>archetype:generate</code> (this will be the default directory we are using for MAVEN commands) and execute the following command to compile your application sources:</p>
+<h2><span id="compiling-project-source-code">Compiling Project Source Code</span><a href="#compiling-project-source-code" class="header-anchor">⌨</a></h2><p>Change to the directory where <code>pom.xml</code> is created by <code>archetype:generate</code> (this will be the default directory we are using for MAVEN commands) and execute the following command to compile your application sources:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn compile</span><br></pre></td></tr></table></figure>
 
 <p>Upon executing this command you should see output like the following:</p>
@@ -243,32 +384,32 @@
 <blockquote>
 <p>Note:</p>
 <ul>
-<li><input disabled="" type="checkbox"> If you ran into error running this command, it might be cause because the code is not for the default compiler used by MAVEN. You can specify it similarly in the section [Configuing for Java 9 or Later](#<br>re-Java-9), by adding those before the root element ends:<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependencies&gt; </span><br><span class="line">... </span><br><span class="line">&lt;&#x2F;dependencies&gt; </span><br><span class="line">&lt;build&gt; </span><br><span class="line">&lt;plugins&gt; </span><br><span class="line">	&lt;plugin&gt;</span><br><span class="line">		&lt;groupId&gt;org.apache.maven.plugins&lt;&#x2F;groupId&gt; </span><br><span class="line">		&lt;artifactId&gt;maven-compiler-plugin&lt;&#x2F;artifactId&gt; </span><br><span class="line">		&lt;version&gt;3.8.1&lt;&#x2F;version&gt; </span><br><span class="line">		&lt;configuration&gt; </span><br><span class="line">			&lt;source&gt;13&lt;&#x2F;source&gt; </span><br><span class="line">			&lt;target&gt;13&lt;&#x2F;target&gt; </span><br><span class="line">		&lt;&#x2F;configuration&gt; </span><br><span class="line">	&lt;&#x2F;plugin&gt; </span><br><span class="line">&lt;&#x2F;plugins&gt; </span><br><span class="line">&lt;&#x2F;build&gt; </span><br></pre></td></tr></table></figure>
+<li><input disabled type="checkbox"> If you ran into error running this command, it might be cause because the code is not for the default compiler used by MAVEN. You can specify it similarly in the section [Configuing for Java 9 or Later](#<br>re-Java-9), by adding those before the root element ends:<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependencies&gt; </span><br><span class="line">... </span><br><span class="line">&lt;&#x2F;dependencies&gt; </span><br><span class="line">&lt;build&gt; </span><br><span class="line">&lt;plugins&gt; </span><br><span class="line">	&lt;plugin&gt;</span><br><span class="line">		&lt;groupId&gt;org.apache.maven.plugins&lt;&#x2F;groupId&gt; </span><br><span class="line">		&lt;artifactId&gt;maven-compiler-plugin&lt;&#x2F;artifactId&gt; </span><br><span class="line">		&lt;version&gt;3.8.1&lt;&#x2F;version&gt; </span><br><span class="line">		&lt;configuration&gt; </span><br><span class="line">			&lt;source&gt;13&lt;&#x2F;source&gt; </span><br><span class="line">			&lt;target&gt;13&lt;&#x2F;target&gt; </span><br><span class="line">		&lt;&#x2F;configuration&gt; </span><br><span class="line">	&lt;&#x2F;plugin&gt; </span><br><span class="line">&lt;&#x2F;plugins&gt; </span><br><span class="line">&lt;&#x2F;build&gt; </span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 </blockquote>
 <p>As you can see from the output, the <strong>compiled classes were placed in <code>${basedir}/target/classes</code></strong>, which is another standard convention employed by Maven. </p>
-<h2 id="Testing-Project-Source-Code"><a href="#Testing-Project-Source-Code" class="headerlink" title="Testing Project Source Code"></a>Testing Project Source Code</h2><p>Now you’re successfully compiling your application’s sources and now you’ve got some unit tests that you want to <strong>compile and execute</strong> (because every programmer always writes and executes their unit tests <em>nudge nudge wink wink</em>).</p>
+<h2><span id="testing-project-source-code">Testing Project Source Code</span><a href="#testing-project-source-code" class="header-anchor">⌨</a></h2><p>Now you’re successfully compiling your application’s sources and now you’ve got some unit tests that you want to <strong>compile and execute</strong> (because every programmer always writes and executes their unit tests <em>nudge nudge wink wink</em>).</p>
 <p>Execute the following command:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn test</span><br></pre></td></tr></table></figure>
 
 <blockquote>
 <p>Note:</p>
 <ul>
-<li><input disabled="" type="checkbox"> Maven downloads more dependencies this time. These are the dependencies and plugins <strong>necessary for executing the tests</strong> (it already has the dependencies it needs for compiling and won’t download them again).</li>
-<li><input disabled="" type="checkbox"> <strong>Before compiling and executing the tests</strong> Maven <strong>compiles the main code</strong> (in case there are some changes. In this case all these classes are up to date because we haven’t changed anything since we compiled last).</li>
+<li><input disabled type="checkbox"> Maven downloads more dependencies this time. These are the dependencies and plugins <strong>necessary for executing the tests</strong> (it already has the dependencies it needs for compiling and won’t download them again).</li>
+<li><input disabled type="checkbox"> <strong>Before compiling and executing the tests</strong> Maven <strong>compiles the main code</strong> (in case there are some changes. In this case all these classes are up to date because we haven’t changed anything since we compiled last).</li>
 </ul>
 </blockquote>
 <p>If you simply want to compile your test sources (but not execute the tests), you can execute the following:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn test-compile</span><br></pre></td></tr></table></figure>
 
-<h2 id="Packaging-into-a-Jar-File"><a href="#Packaging-into-a-Jar-File" class="headerlink" title="Packaging into a Jar File"></a>Packaging into a Jar File</h2><p>Making a JAR file is straight forward enough and can be accomplished by executing the following command:</p>
+<h2><span id="packaging-into-a-jar-file">Packaging into a Jar File</span><a href="#packaging-into-a-jar-file" class="header-anchor">⌨</a></h2><p>Making a JAR file is straight forward enough and can be accomplished by executing the following command:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn package</span><br></pre></td></tr></table></figure>
 
 <p>If you take a look at the <code>POM</code> for your project you will notice the packaging element is set to <code>jar</code>. This is <strong>how Maven knows to produce a <code>JAR</code> file from the above command</strong>.</p>
 <p>The generated file will be in <code>${basedir}/target directory</code> and you will see the generated <code>JAR</code> file there as well.</p>
 <p><a name="Installing-into-Local"></a></p>
-<h2 id="Installing-into-Local-Repository"><a href="#Installing-into-Local-Repository" class="headerlink" title="Installing into Local Repository"></a>Installing into Local Repository</h2><p>If you want to install the artifact you’ve generated (the JAR file) in your local repository (<code>${user.home}/.m2/repository</code>; for Windows,<code>C:\Users\&lt;Username&gt;\.m2\repository</code> is the default location). For more information on repositories you can refer to <a href="#https://maven.apache.org/guides/introduction/introduction-to-repositories.html">Apache Maven Introduction to Repositories</a> but let’s move on to installing our artifact! To do so execute the following command:</p>
+<h2><span id="installing-into-local-repository">Installing into Local Repository</span><a href="#installing-into-local-repository" class="header-anchor">⌨</a></h2><p>If you want to install the artifact you’ve generated (the JAR file) in your local repository (<code>${user.home}/.m2/repository</code>; for Windows,<code>C:\Users\&lt;Username&gt;\.m2\repository</code> is the default location). For more information on repositories you can refer to <a href="#https://maven.apache.org/guides/introduction/introduction-to-repositories.html">Apache Maven Introduction to Repositories</a> but let’s move on to installing our artifact! To do so execute the following command:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn install</span><br></pre></td></tr></table></figure>
 
 <p>Upon executing this command you should see the following output:</p>
@@ -282,20 +423,20 @@
 <li><code>**/*TestCase.java</code></li>
 </ul>
 <p>And in the end you can find your files in <code>C:\Users\&lt;Username&gt;\.m2\repository\com\mycompany\app\</code> (for Windows)</p>
-<h2 id="Other-Useful-Phases-in-Maven"><a href="#Other-Useful-Phases-in-Maven" class="headerlink" title="Other Useful Phases in Maven"></a>Other Useful Phases in Maven</h2><p>One of the highly prized features of Maven is: without any work on your part this POM has enough information to <strong>generate a web site for your project</strong>! You will most likely want to customize your Maven site but if you’re pressed for time all you need to do to provide basic information about your project is execute the following command:</p>
+<h2><span id="other-useful-phases-in-maven">Other Useful Phases in Maven</span><a href="#other-useful-phases-in-maven" class="header-anchor">⌨</a></h2><p>One of the highly prized features of Maven is: without any work on your part this POM has enough information to <strong>generate a web site for your project</strong>! You will most likely want to customize your Maven site but if you’re pressed for time all you need to do to provide basic information about your project is execute the following command:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn site</span><br></pre></td></tr></table></figure>
 
 <p>There are plenty of other standalone goals that can be executed as well (again only with this <code>POM</code> file), for example:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn clean</span><br></pre></td></tr></table></figure>
 
 <p>This will <strong>remove the target directory with all the build data before starting so that it is fresh</strong>.</p>
-<h2 id="Using-Plugins-in-Maven"><a href="#Using-Plugins-in-Maven" class="headerlink" title="Using Plugins in Maven"></a>Using Plugins in Maven</h2><p>Whenever you want to <strong>customise the build</strong> for a Maven project, this is <strong>done by adding or reconfiguring plugins</strong>.</p>
+<h2><span id="using-plugins-in-maven">Using Plugins in Maven</span><a href="#using-plugins-in-maven" class="header-anchor">⌨</a></h2><p>Whenever you want to <strong>customise the build</strong> for a Maven project, this is <strong>done by adding or reconfiguring plugins</strong>.</p>
 <p>For this example, we will <strong>configure the Java compiler</strong> to allow JDK 5.0 sources (we have in fact done this already when we configure for Java 9.0 or later). This is as simple as <strong>adding this to your <code>POM</code></strong>:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">&lt;build&gt;</span><br><span class="line">  &lt;plugins&gt;</span><br><span class="line">    &lt;plugin&gt;</span><br><span class="line">      &lt;groupId&gt;org.apache.maven.plugins&lt;&#x2F;groupId&gt;</span><br><span class="line">      &lt;artifactId&gt;maven-compiler-plugin&lt;&#x2F;artifactId&gt;</span><br><span class="line">      &lt;version&gt;3.3&lt;&#x2F;version&gt;</span><br><span class="line">      &lt;configuration&gt;</span><br><span class="line">        &lt;source&gt;1.5&lt;&#x2F;source&gt;</span><br><span class="line">        &lt;target&gt;1.5&lt;&#x2F;target&gt;</span><br><span class="line">      &lt;&#x2F;configuration&gt;</span><br><span class="line">    &lt;&#x2F;plugin&gt;</span><br><span class="line">  &lt;&#x2F;plugins&gt;</span><br><span class="line">&lt;&#x2F;build&gt;</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
 
 <p>You’ll notice that all plugins in Maven look much like a dependency - and in some ways they are. This <strong>plugin will be automatically downloaded and used - including a specific version if you request it</strong> (the default is to use the latest available).</p>
 <p>To find out <strong>what configuration is available</strong> for a plugin, you can see the <a href="https://maven.apache.org/plugins/" target="_blank" rel="noopener">Apache Maven Plugins List</a> and navigate to the plugin and goal you are using. For general information about how to configure the available parameters of a plugin, have a look at the <a href="https://maven.apache.org/guides/mini/guide-configuring-plugins.html" target="_blank" rel="noopener">Apache Maven Guide to Configuring Plugins</a>.</p>
-<h2 id="Adding-Files-Resources-to-My-Jar"><a href="#Adding-Files-Resources-to-My-Jar" class="headerlink" title="Adding Files/Resources to My Jar"></a>Adding Files/Resources to My Jar</h2><p>Another common use case that can be satisfied which requires <strong>no changes to the POM</strong> that we have above is packaging resources in the JAR file. For this common task, Maven again relies on the <strong>Standard Directory Layout</strong>.</p>
+<h2><span id="adding-files-resources-to-my-jar">Adding Files/Resources to My Jar</span><a href="#adding-files-resources-to-my-jar" class="header-anchor">⌨</a></h2><p>Another common use case that can be satisfied which requires <strong>no changes to the POM</strong> that we have above is packaging resources in the JAR file. For this common task, Maven again relies on the <strong>Standard Directory Layout</strong>.</p>
 <p>You see below in our example we have <strong>added the directory <code>${basedir}/src/main/resources</code></strong> into which we place <strong>any resources/files we wish to package in our JAR</strong>. The simple rule employed by Maven is this: <strong>any directories or files placed within the <code>${basedir}/src/main/resources</code> directory are packaged in your JAR with the exact same structure starting at the base of the JAR</strong></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">my-app</span><br><span class="line">|-- pom.xml</span><br><span class="line">&#96;-- src</span><br><span class="line">    |-- main</span><br><span class="line">    |   |-- java</span><br><span class="line">    |   |   &#96;-- com</span><br><span class="line">    |   |       &#96;-- mycompany</span><br><span class="line">    |   |           &#96;-- app</span><br><span class="line">    |   |               &#96;-- App.java</span><br><span class="line">    |   &#96;-- resources</span><br><span class="line">    |       &#96;-- META-INF</span><br><span class="line">    |           &#96;-- application.properties</span><br><span class="line">    &#96;-- test</span><br><span class="line">        &#96;-- java</span><br><span class="line">            &#96;-- com</span><br><span class="line">                &#96;-- mycompany</span><br><span class="line">                    &#96;-- app</span><br><span class="line">                        &#96;-- AppTest.java</span><br></pre></td></tr></table></figure>
 <p>Generates:</p>
@@ -309,10 +450,10 @@
 <blockquote>
 <p>Note:</p>
 <ul>
-<li><input disabled="" type="checkbox"> To add resources to the <code>classpath</code> <strong>for your unit tests</strong>, you follow the <strong>same pattern as you do for adding resources to the JAR except the directory you place resources in is <code>${basedir}/src/test/resources</code></strong>.</li>
+<li><input disabled type="checkbox"> To add resources to the <code>classpath</code> <strong>for your unit tests</strong>, you follow the <strong>same pattern as you do for adding resources to the JAR except the directory you place resources in is <code>${basedir}/src/test/resources</code></strong>.</li>
 </ul>
 </blockquote>
-<h2 id="Resource-Filtering-in-Maven"><a href="#Resource-Filtering-in-Maven" class="headerlink" title="Resource Filtering in Maven"></a>Resource Filtering in Maven</h2><p>This is useful if sometimes a resource file will need to contain a value that can only be <strong>supplied at build time</strong>. Then, you can use Maven to perform <strong>variable replacement</strong> on project resources. When <strong>resource filtering is activated</strong>, Maven will scan <code>resources</code> for <strong>property references surrounded by <code>${&lt;property name&gt;}</code></strong>. When it finds these references it will <strong>replace them with the appropriate value</strong>.</p>
+<h2><span id="resource-filtering-in-maven">Resource Filtering in Maven</span><a href="#resource-filtering-in-maven" class="header-anchor">⌨</a></h2><p>This is useful if sometimes a resource file will need to contain a value that can only be <strong>supplied at build time</strong>. Then, you can use Maven to perform <strong>variable replacement</strong> on project resources. When <strong>resource filtering is activated</strong>, Maven will scan <code>resources</code> for <strong>property references surrounded by <code>${&lt;property name&gt;}</code></strong>. When it finds these references it will <strong>replace them with the appropriate value</strong>.</p>
 <p>To enable resource filtering, you need to <strong>set <code>filtering</code> to <code>true</code> in your <code>pom.xml</code></strong>, and <strong>add the directory <code>src/main/resources</code> which is the default location MAVEN will look into when it compiles</strong> (since we overwrote the value to <code>true</code>, this has to be re-written again):</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">&lt;project xmlns&#x3D;&quot;http:&#x2F;&#x2F;maven.apache.org&#x2F;POM&#x2F;4.0.0&quot;</span><br><span class="line">  xmlns:xsi&#x3D;&quot;http:&#x2F;&#x2F;www.w3.org&#x2F;2001&#x2F;XMLSchema-instance&quot;</span><br><span class="line">  xsi:schemaLocation&#x3D;&quot;http:&#x2F;&#x2F;maven.apache.org&#x2F;POM&#x2F;4.0.0</span><br><span class="line">                      http:&#x2F;&#x2F;maven.apache.org&#x2F;xsd&#x2F;maven-4.0.0.xsd&quot;&gt;</span><br><span class="line">  &lt;modelVersion&gt;4.0.0&lt;&#x2F;modelVersion&gt;</span><br><span class="line"> </span><br><span class="line">  &lt;groupId&gt;com.mycompany.app&lt;&#x2F;groupId&gt;</span><br><span class="line">  &lt;artifactId&gt;my-app&lt;&#x2F;artifactId&gt;</span><br><span class="line">  &lt;version&gt;1.0-SNAPSHOT&lt;&#x2F;version&gt;</span><br><span class="line">  &lt;packaging&gt;jar&lt;&#x2F;packaging&gt;</span><br><span class="line"> </span><br><span class="line">  &lt;name&gt;Maven Quick Start Archetype&lt;&#x2F;name&gt;</span><br><span class="line">  &lt;url&gt;http:&#x2F;&#x2F;maven.apache.org&lt;&#x2F;url&gt;</span><br><span class="line"> </span><br><span class="line">  &lt;dependencies&gt;</span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">      &lt;groupId&gt;junit&lt;&#x2F;groupId&gt;</span><br><span class="line">      &lt;artifactId&gt;junit&lt;&#x2F;artifactId&gt;</span><br><span class="line">      &lt;version&gt;4.11&lt;&#x2F;version&gt;</span><br><span class="line">      &lt;scope&gt;test&lt;&#x2F;scope&gt;</span><br><span class="line">    &lt;&#x2F;dependency&gt;</span><br><span class="line">  &lt;&#x2F;dependencies&gt;</span><br><span class="line"> </span><br><span class="line">  &lt;build&gt;</span><br><span class="line">    &lt;resources&gt;</span><br><span class="line">      &lt;resource&gt;</span><br><span class="line">        &lt;directory&gt;src&#x2F;main&#x2F;resources&lt;&#x2F;directory&gt;</span><br><span class="line">        &lt;filtering&gt;true&lt;&#x2F;filtering&gt;</span><br><span class="line">      &lt;&#x2F;resource&gt;</span><br><span class="line">    &lt;&#x2F;resources&gt;</span><br><span class="line">  &lt;&#x2F;build&gt;</span><br><span class="line">&lt;&#x2F;project&gt;</span><br></pre></td></tr></table></figure>
 
@@ -333,7 +474,7 @@
 <p>and the <code>application.properties</code> file under <code>target/classes/META-INF</code> (and will eventually go into the jar) looks like this:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># application.properties</span><br><span class="line">application.name&#x3D;my-app</span><br><span class="line">application.version&#x3D;1.0-SNAPSHOT</span><br></pre></td></tr></table></figure>
 
-<h2 id="Filtering-External-Files"><a href="#Filtering-External-Files" class="headerlink" title="Filtering External Files"></a>Filtering External Files</h2><p>To reference a property defined in an external file, all you need to do is <strong>add a reference to this external file in your <code>pom.xml</code></strong>.</p>
+<h2><span id="filtering-external-files">Filtering External Files</span><a href="#filtering-external-files" class="header-anchor">⌨</a></h2><p>To reference a property defined in an external file, all you need to do is <strong>add a reference to this external file in your <code>pom.xml</code></strong>.</p>
 <p>First, let’s create our external properties file and call it <code>src/main/filters/filter.properties</code>:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># filter.properties</span><br><span class="line">my.filter.value&#x3D;hello!</span><br></pre></td></tr></table></figure>
 
@@ -347,11 +488,11 @@
 <blockquote>
 <p>Note:</p>
 <ul>
-<li><input disabled="" type="checkbox"> The file <code>filter.property</code> created in the <code>src/main/filters</code> will <strong>not get outputted by MAVEN to the <code>target</code> folder</strong>. This is because, it is <strong>not in the default location tree that MAVEN knows</strong>, so MAVEN will <strong>not compile</strong> it and include in your project.</li>
+<li><input disabled type="checkbox"> The file <code>filter.property</code> created in the <code>src/main/filters</code> will <strong>not get outputted by MAVEN to the <code>target</code> folder</strong>. This is because, it is <strong>not in the default location tree that MAVEN knows</strong>, so MAVEN will <strong>not compile</strong> it and include in your project.</li>
 </ul>
 </blockquote>
 <p><a name="Using-External-Dependency"></a></p>
-<h2 id="Using-External-Dependency"><a href="#Using-External-Dependency" class="headerlink" title="Using External Dependency"></a>Using External Dependency</h2><p>You have, in fact, been using an external dependency all this time, but here we’ll talk about how this works in a bit more detail. For a more thorough introduction, please refer to our Introduction to <a href="https://maven.apache.org/guides/introduction/introduction-to-dependency-mechanism.html" target="_blank" rel="noopener">Apache Maven Dependency Mechanism</a>.</p>
+<h2><span id="using-external-dependency">Using External Dependency</span><a href="#using-external-dependency" class="header-anchor">⌨</a></h2><p>You have, in fact, been using an external dependency all this time, but here we’ll talk about how this works in a bit more detail. For a more thorough introduction, please refer to our Introduction to <a href="https://maven.apache.org/guides/introduction/introduction-to-dependency-mechanism.html" target="_blank" rel="noopener">Apache Maven Dependency Mechanism</a>.</p>
 <p>The dependencies section of the <code>pom.xml</code> lists <strong>all of the external dependencies that our project needs in order to build (whether it needs that dependency at compile time, test time, run time, or whatever)</strong>. Right now, our project is depending on <code>JUnit</code> only (I took out all of the resource filtering stuff for clarity):</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&lt;project xmlns&#x3D;&quot;http:&#x2F;&#x2F;maven.apache.org&#x2F;POM&#x2F;4.0.0&quot;</span><br><span class="line">  xmlns:xsi&#x3D;&quot;http:&#x2F;&#x2F;www.w3.org&#x2F;2001&#x2F;XMLSchema-instance&quot;</span><br><span class="line">  xsi:schemaLocation&#x3D;&quot;http:&#x2F;&#x2F;maven.apache.org&#x2F;POM&#x2F;4.0.0</span><br><span class="line">                      http:&#x2F;&#x2F;maven.apache.org&#x2F;xsd&#x2F;maven-4.0.0.xsd&quot;&gt;</span><br><span class="line">  &lt;modelVersion&gt;4.0.0&lt;&#x2F;modelVersion&gt;</span><br><span class="line"> </span><br><span class="line">  &lt;groupId&gt;com.mycompany.app&lt;&#x2F;groupId&gt;</span><br><span class="line">  &lt;artifactId&gt;my-app&lt;&#x2F;artifactId&gt;</span><br><span class="line">  &lt;version&gt;1.0-SNAPSHOT&lt;&#x2F;version&gt;</span><br><span class="line">  &lt;packaging&gt;jar&lt;&#x2F;packaging&gt;</span><br><span class="line"> </span><br><span class="line">  &lt;name&gt;Maven Quick Start Archetype&lt;&#x2F;name&gt;</span><br><span class="line">  &lt;url&gt;http:&#x2F;&#x2F;maven.apache.org&lt;&#x2F;url&gt;</span><br><span class="line"> </span><br><span class="line">  &lt;dependencies&gt;</span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">      &lt;groupId&gt;junit&lt;&#x2F;groupId&gt;</span><br><span class="line">      &lt;artifactId&gt;junit&lt;&#x2F;artifactId&gt;</span><br><span class="line">      &lt;version&gt;4.11&lt;&#x2F;version&gt;</span><br><span class="line">      &lt;scope&gt;test&lt;&#x2F;scope&gt;</span><br><span class="line">    &lt;&#x2F;dependency&gt;</span><br><span class="line">  &lt;&#x2F;dependencies&gt;</span><br><span class="line"></span><br><span class="line">  ...</span><br><span class="line"></span><br><span class="line">&lt;&#x2F;project&gt;</span><br></pre></td></tr></table></figure>
 
@@ -363,7 +504,7 @@
 <blockquote>
 <p>Note:</p>
 <ul>
-<li><input disabled="" type="checkbox"> Where does Maven reference the dependency from? Maven <strong>looks in your local repository</strong> (<code>${user.home}/.m2/repository</code> is the <strong>default location) to find all dependencies</strong>.</li>
+<li><input disabled type="checkbox"> Where does Maven reference the dependency from? Maven <strong>looks in your local repository</strong> (<code>${user.home}/.m2/repository</code> is the <strong>default location) to find all dependencies</strong>.</li>
 </ul>
 </blockquote>
 <p>This means that we could use code/projects made by others!</p>
@@ -374,11 +515,11 @@
 <blockquote>
 <p>Note:</p>
 <ul>
-<li><input disabled="" type="checkbox"> If a <strong>remote repo is needed</strong>, you could use the mirror in MAVEN to setup the dependency correctly. By default, the remote repository Maven uses can be found (and browsed) at <a href="https://repo.maven.apache.org/maven2/" target="_blank" rel="noopener">https://repo.maven.apache.org/maven2/</a>. You can also set up your own remote repository (maybe a central repository for your company) to use instead of or in addition to the default remote repository. For more information on repositories you can refer to the <a href="https://maven.apache.org/guides/introduction/introduction-to-repositories.html" target="_blank" rel="noopener">Apache Maven Introduction to Repositories</a>. </li>
+<li><input disabled type="checkbox"> If a <strong>remote repo is needed</strong>, you could use the mirror in MAVEN to setup the dependency correctly. By default, the remote repository Maven uses can be found (and browsed) at <a href="https://repo.maven.apache.org/maven2/" target="_blank" rel="noopener">https://repo.maven.apache.org/maven2/</a>. You can also set up your own remote repository (maybe a central repository for your company) to use instead of or in addition to the default remote repository. For more information on repositories you can refer to the <a href="https://maven.apache.org/guides/introduction/introduction-to-repositories.html" target="_blank" rel="noopener">Apache Maven Introduction to Repositories</a>. </li>
 </ul>
 </blockquote>
 <p>Now, when we compile the project (<code>mvn compile</code>), we’ll see Maven download the <code>my-app</code> dependency for us.</p>
-<h2 id="Deploying-Jar-into-a-Remote-Repository"><a href="#Deploying-Jar-into-a-Remote-Repository" class="headerlink" title="Deploying Jar into a Remote Repository"></a>Deploying Jar into a Remote Repository</h2><p>For deploying jars to an external repository, you have to <strong>configure the repository <code>url</code> in the <code>pom.xml</code></strong> and the <strong>authentication information for connectiong to the repository in the <code>settings.xml</code></strong>.</p>
+<h2><span id="deploying-jar-into-a-remote-repository">Deploying Jar into a Remote Repository</span><a href="#deploying-jar-into-a-remote-repository" class="header-anchor">⌨</a></h2><p>For deploying jars to an external repository, you have to <strong>configure the repository <code>url</code> in the <code>pom.xml</code></strong> and the <strong>authentication information for connectiong to the repository in the <code>settings.xml</code></strong>.</p>
 <p>There are <strong>two locations where a <code>settings.xml</code> file may live</strong>:</p>
 <ul>
 <li>The Maven install: <code>${maven.home}/conf/settings.xml</code></li>
@@ -388,7 +529,7 @@
 <blockquote>
 <p>Note:</p>
 <ul>
-<li><input disabled="" type="checkbox"> <code>settings.xml</code> is a configuration file that <strong>should not be bundled to any specific project</strong> whereas the <strong><code>pom.xml</code> can be distributed</strong>.</li>
+<li><input disabled type="checkbox"> <code>settings.xml</code> is a configuration file that <strong>should not be bundled to any specific project</strong> whereas the <strong><code>pom.xml</code> can be distributed</strong>.</li>
 </ul>
 </blockquote>
 <p>Now, going back to the exmple, we can use scp and username/password authentication:</p>
@@ -400,18 +541,18 @@
 <blockquote>
 <p>Note:</p>
 <ul>
-<li><input disabled="" type="checkbox"> If you are connecting to an openssh ssh server which has the parameter <code>&quot;PasswordAuthentication&quot;</code> set to <code>&quot;no&quot;</code> in the <code>sshd_confing</code>, you will have to type your password each time for username/password authentication (although you can log in using another ssh client by typing in the username and password). You might want to switch to public key authentication in this case.</li>
+<li><input disabled type="checkbox"> If you are connecting to an openssh ssh server which has the parameter <code>&quot;PasswordAuthentication&quot;</code> set to <code>&quot;no&quot;</code> in the <code>sshd_confing</code>, you will have to type your password each time for username/password authentication (although you can log in using another ssh client by typing in the username and password). You might want to switch to public key authentication in this case.</li>
 </ul>
 </blockquote>
-<h2 id="Creating-Documentation-with-a-Site"><a href="#Creating-Documentation-with-a-Site" class="headerlink" title="Creating Documentation with a Site"></a>Creating Documentation with a Site</h2><p>To get you jump started with Maven’s documentation system you can use the <code>archetype</code> mechanism to generate a site for your existing project using the following command:</p>
+<h2><span id="creating-documentation-with-a-site">Creating Documentation with a Site</span><a href="#creating-documentation-with-a-site" class="header-anchor">⌨</a></h2><p>To get you jump started with Maven’s documentation system you can use the <code>archetype</code> mechanism to generate a site for your existing project using the following command:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mvn archetype:generate \</span><br><span class="line">  -DarchetypeGroupId&#x3D;org.apache.maven.archetypes \</span><br><span class="line">  -DarchetypeArtifactId&#x3D;maven-archetype-site \</span><br><span class="line">  -DgroupId&#x3D;com.mycompany.app \</span><br><span class="line">  -DartifactId&#x3D;my-app-site</span><br></pre></td></tr></table></figure>
 <p>here we used the additional line: <code>-Darchetype ArtifactIds=maven-archetype-site</code>, which is an archetype to generate a sample Maven site.</p>
 <p>Now head on over to the <a href="https://maven.apache.org/guides/mini/guide-site.html" target="_blank" rel="noopener">Apache Maven Guide to creating a site</a> to learn how to create the documentation for your project.</p>
-<h2 id="Creating-Projects-of-Other-Types"><a href="#Creating-Projects-of-Other-Types" class="headerlink" title="Creating Projects of Other Types"></a>Creating Projects of Other Types</h2><p>For example, back in the base directory we can create a simple <code>web application</code>:</p>
+<h2><span id="creating-projects-of-other-types">Creating Projects of Other Types</span><a href="#creating-projects-of-other-types" class="header-anchor">⌨</a></h2><p>For example, back in the base directory we can create a simple <code>web application</code>:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mvn archetype:generate \</span><br><span class="line">    -DarchetypeGroupId&#x3D;org.apache.maven.archetypes \</span><br><span class="line">    -DarchetypeArtifactId&#x3D;maven-archetype-webapp \</span><br><span class="line">    -DgroupId&#x3D;com.mycompany.app \</span><br><span class="line">    -DartifactId&#x3D;my-webapp</span><br></pre></td></tr></table></figure>
 <p>Here we used <code>-DarchetypeArtifactId=maven-archetype-webapp</code> to use an archetype to generate a sample Maven Webapp project. (For the available archetypes, see <a href="https://maven.apache.org/guides/introduction/introduction-to-archetypes.html" target="_blank" rel="noopener">https://maven.apache.org/guides/introduction/introduction-to-archetypes.html</a>)</p>
 <p><a name="Creating-Multiple-Projects-at-Once"></a></p>
-<h2 id="Creating-Multiple-Projects-at-Once"><a href="#Creating-Multiple-Projects-at-Once" class="headerlink" title="Creating Multiple Projects at Once"></a>Creating Multiple Projects at Once</h2><p>The basic idea is as follows:</p>
+<h2><span id="creating-multiple-projects-at-once">Creating Multiple Projects at Once</span><a href="#creating-multiple-projects-at-once" class="header-anchor">⌨</a></h2><p>The basic idea is as follows:</p>
 <ul>
 <li>First, you could use Maven to create two (or more) projects. </li>
 <li>Then, you need to create a <code>pom.xml</code> file that is <strong>above the two folder</strong></li>
@@ -434,7 +575,7 @@
 <blockquote>
 <p>Note:</p>
 <ul>
-<li><input disabled="" type="checkbox"> The parent <code>POM</code> created (called <code>app</code>), has a <strong><code>packaging</code> of <code>pom</code> and a list of <code>modules</code></strong> defined. This tells Maven to <strong>run all operations over the set of projects</strong> instead of just the current one</li>
+<li><input disabled type="checkbox"> The parent <code>POM</code> created (called <code>app</code>), has a <strong><code>packaging</code> of <code>pom</code> and a list of <code>modules</code></strong> defined. This tells Maven to <strong>run all operations over the set of projects</strong> instead of just the current one</li>
 </ul>
 </blockquote>
 <p>Finally, we need the following <code>parent</code> information to the <code>pom.xml</code> of the sub-projects like this:</p>
@@ -446,16 +587,16 @@
 <blockquote>
 <p>Note:</p>
 <ul>
-<li><input disabled="" type="checkbox"> The <code>parent</code> definition ensures that the <code>POM</code> can always be located <strong>even if the project is distributed separately from its parent</strong> by <strong>looking it up in the repository</strong>.</li>
+<li><input disabled type="checkbox"> The <code>parent</code> definition ensures that the <code>POM</code> can always be located <strong>even if the project is distributed separately from its parent</strong> by <strong>looking it up in the repository</strong>.</li>
 </ul>
 </blockquote>
 <p>Now, if you try to run from the top level, the outer directory where the outer <code>pom.xml</code> reside, the following command:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn verify</span><br></pre></td></tr></table></figure>
 <p>Then you will have successfully find both of your projects compiled and packed in their respective <code>target</code> folder.</p>
-<h2 id="Build-Lifecycle-Basics"><a href="#Build-Lifecycle-Basics" class="headerlink" title="Build Lifecycle Basics"></a>Build Lifecycle Basics</h2><p>Maven is based around the central concept of a build <strong>lifecycle</strong>. What this means is that the process for building and distributing a particular artifact (project) is clearly defined.</p>
+<h2><span id="build-lifecycle-basics">Build Lifecycle Basics</span><a href="#build-lifecycle-basics" class="header-anchor">⌨</a></h2><p>Maven is based around the central concept of a build <strong>lifecycle</strong>. What this means is that the process for building and distributing a particular artifact (project) is clearly defined.</p>
 <p>There are three built-in build <strong>lifecycles</strong>: <code>default</code>, <code>clean</code> and <code>site</code>. The <code>default</code> lifecycle handles your project deployment, the <code>clean</code> lifecycle handles project cleaning, while the <code>site</code> lifecycle handles the creation of your project’s site documentation.</p>
 <p>Then, you need to understand that a build <strong><code>Lifecycle</code> is made up of <code>Phases</code></strong>, and a <strong><code>Phase</code> is made up of <code>Goals</code></strong>.</p>
-<h2 id="Phases-in-a-Build-Lifecycle"><a href="#Phases-in-a-Build-Lifecycle" class="headerlink" title="Phases in a Build Lifecycle"></a>Phases in a Build Lifecycle</h2><p>Each of these build lifecycles is defined by a different list of build phases, wherein a build phase represents a stage in the lifecycle.</p>
+<h2><span id="phases-in-a-build-lifecycle">Phases in a Build Lifecycle</span><a href="#phases-in-a-build-lifecycle" class="header-anchor">⌨</a></h2><p>Each of these build lifecycles is defined by a different list of build phases, wherein a build phase represents a stage in the lifecycle.</p>
 <p>For example, the <code>default</code> lifecycle comprises of the following <code>phases</code> (these are not all the phases, only some are picked to illustrate the general concept behind <code>phases</code> and <code>lifecycles</code>):</p>
 <ul>
 <li><code>validate</code> - validate the project is correct and all necessary information is available</li>
@@ -467,16 +608,16 @@
 <li><code>deploy</code> - done in the build environment, copies the final package to the remote repository for sharing with other developers and projects.</li>
 </ul>
 <p>Given the <code>default lifecycle</code> phases above, this means that when the <code>default</code> lifecycle is used, Maven will first validate the project, then will try to compile the sources, run those against the tests, package the binaries (e.g. jar), run integration tests against that package, verify the integration tests, install the verified package to the local repository, then deploy the installed package to a remote repository.</p>
-<h2 id="Executing-Those-Phases"><a href="#Executing-Those-Phases" class="headerlink" title="Executing Those Phases"></a>Executing Those Phases</h2><p>You should first decide/select the <code>phase</code> that matches your outcome, and then run the command. If you want your <code>jar</code> to be made from your project, run <code>mvn package</code>. If you want to run the unit tests, run <code>mvn test</code>.</p>
+<h2><span id="executing-those-phases">Executing Those Phases</span><a href="#executing-those-phases" class="header-anchor">⌨</a></h2><p>You should first decide/select the <code>phase</code> that matches your outcome, and then run the command. If you want your <code>jar</code> to be made from your project, run <code>mvn package</code>. If you want to run the unit tests, run <code>mvn test</code>.</p>
 <p><strong>If you are uncertain what you want, the preferred phase to call</strong> is:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn verify</span><br></pre></td></tr></table></figure>
 
 <p>This command executes <strong>each <code>default</code> lifecycle <code>phase</code></strong> in order (<code>validate</code>, <code>compile</code>, <code>package</code>, etc.), up to and including, finally, executing <code>verify</code>.</p>
-<h2 id="“Special”-Phases"><a href="#“Special”-Phases" class="headerlink" title="“Special” Phases"></a>“Special” Phases</h2><p>The phases named with <strong>hyphenated-words (pre-<em>, post-</em>, or process-*)</strong> are <strong>not usually directly called from the command line</strong>. These phases sequence the build, <strong>producing intermediate results that are not useful outside the build</strong>. In the case of invoking <code>integration-test</code>, the environment may be left in a hanging state.</p>
+<h2><span id="special-phases">“Special” Phases</span><a href="#special-phases" class="header-anchor">⌨</a></h2><p>The phases named with <strong>hyphenated-words (pre-<em>, post-</em>, or process-*)</strong> are <strong>not usually directly called from the command line</strong>. These phases sequence the build, <strong>producing intermediate results that are not useful outside the build</strong>. In the case of invoking <code>integration-test</code>, the environment may be left in a hanging state.</p>
 <p>For example:</p>
 <p>Failsafe and code coverage plugins bind goals to <code>integration-test</code> and <code>verify</code> phases. But if <code>integration-test</code> were to be called from the command line, no reports are generated. If <code>verify</code> is run, the net result is test and coverage reports are available after the <code>verify</code> phase.</p>
 <p>In fact, the worse for executing <code>integration-test</code> is that the integration test container environment is left in a hanging state; the Tomcat webserver or Docker instance is left running, and <strong>Maven may not even terminate by itself</strong>.</p>
-<h2 id="Goals-in-a-Phase"><a href="#Goals-in-a-Phase" class="headerlink" title="Goals in a Phase"></a>Goals in a Phase</h2><p>A build phase is responsible for a specific step in the build lifecycle, the manner in which it carries out those responsibilities may vary: it depends on the specific <code>goals</code> (plugins) that are attached to the <code>phase</code>.</p>
+<h2><span id="goals-in-a-phase">Goals in a Phase</span><a href="#goals-in-a-phase" class="header-anchor">⌨</a></h2><p>A build phase is responsible for a specific step in the build lifecycle, the manner in which it carries out those responsibilities may vary: it depends on the specific <code>goals</code> (plugins) that are attached to the <code>phase</code>.</p>
 <p>A plugin/<code>goal</code> represents <strong>a specific task (finer than a build phase)</strong> which contributes to the building and managing of a project. It may be bound to zero or more build phases. A goal not bound to any build phase could be executed outside of the build lifecycle by direct invocation. </p>
 <p>The <strong>order of execution</strong> depends on the <strong>order in which the <code>goal(s)</code> and the build <code>phase(s)</code> are invoked</strong>. For example, consider the command below. The <code>clean</code> and <code>package</code> arguments are build phases, while the <code>dependency:copy-dependencies</code> is a <code>goal</code> (the goal <code>copy-dependencies</code> of a plugin <code>depedency</code>/<code>&quot;maven-dependency-plugin&quot;</code>).</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn clean dependency:copy-dependencies package</span><br></pre></td></tr></table></figure>
@@ -485,10 +626,10 @@
 <blockquote>
 <p>Note:</p>
 <ul>
-<li><input disabled="" type="checkbox"> A phase can also have <strong>no goals bounded</strong>. If so, no action will be executed during that phase. </li>
+<li><input disabled type="checkbox"> A phase can also have <strong>no goals bounded</strong>. If so, no action will be executed during that phase. </li>
 </ul>
 </blockquote>
-<h2 id="Customizing-your-Build-Lifecycle"><a href="#Customizing-your-Build-Lifecycle" class="headerlink" title="Customizing your Build Lifecycle"></a>Customizing your Build Lifecycle</h2><p>The first, and most common way, is to set the <code>packaging</code> for your project via the <strong>element <code>&lt;packaging&gt;</code> in your <code>POM.xml</code> file</strong>. Some of the <strong>valid packaging values</strong> are <code>jar</code>, <code>war</code>, <code>ear</code> and <code>pom</code>. If no packaging value has been specified, it will default to <code>jar</code></p>
+<h2><span id="customizing-your-build-lifecycle">Customizing your Build Lifecycle</span><a href="#customizing-your-build-lifecycle" class="header-anchor">⌨</a></h2><p>The first, and most common way, is to set the <code>packaging</code> for your project via the <strong>element <code>&lt;packaging&gt;</code> in your <code>POM.xml</code> file</strong>. Some of the <strong>valid packaging values</strong> are <code>jar</code>, <code>war</code>, <code>ear</code> and <code>pom</code>. If no packaging value has been specified, it will default to <code>jar</code></p>
 <p>For example, in the section where you made multiple projects and had a parent <code>pom.xml</code> file, it looked like:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;project xmlns&#x3D;&quot;http:&#x2F;&#x2F;maven.apache.org&#x2F;POM&#x2F;4.0.0&quot;</span><br><span class="line">  xmlns:xsi&#x3D;&quot;http:&#x2F;&#x2F;www.w3.org&#x2F;2001&#x2F;XMLSchema-instance&quot;</span><br><span class="line">  xsi:schemaLocation&#x3D;&quot;http:&#x2F;&#x2F;maven.apache.org&#x2F;POM&#x2F;4.0.0</span><br><span class="line">                      http:&#x2F;&#x2F;maven.apache.org&#x2F;xsd&#x2F;maven-4.0.0.xsd&quot;&gt;</span><br><span class="line">  &lt;modelVersion&gt;4.0.0&lt;&#x2F;modelVersion&gt;</span><br><span class="line"></span><br><span class="line">  &lt;groupId&gt;com.mycompany.app&lt;&#x2F;groupId&gt;</span><br><span class="line">  &lt;artifactId&gt;app&lt;&#x2F;artifactId&gt;</span><br><span class="line">  &lt;version&gt;1.0-SNAPSHOT&lt;&#x2F;version&gt;</span><br><span class="line">  &lt;packaging&gt;pom&lt;&#x2F;packaging&gt;</span><br><span class="line"></span><br><span class="line">  ...</span><br></pre></td></tr></table></figure>
 
@@ -537,13 +678,13 @@
 <td>deploy:deploy</td>
 </tr>
 </tbody></table>
-<h2 id="Customizing-your-Build-Lifecycle-by-Plugins"><a href="#Customizing-your-Build-Lifecycle-by-Plugins" class="headerlink" title="Customizing your Build Lifecycle by Plugins"></a>Customizing your Build Lifecycle by Plugins</h2><p>The second way to <strong>add <code>goals</code> to <code>phases</code></strong> is to <strong>configure plugins in your project</strong>. Plugins are artifacts that <strong>provide <code>goals</code></strong> to Maven. This means that <strong>a plugin may have one or more <code>goals</code></strong> wherein each goal represents a capability of that plugin.</p>
+<h2><span id="customizing-your-build-lifecycle-by-plugins">Customizing your Build Lifecycle by Plugins</span><a href="#customizing-your-build-lifecycle-by-plugins" class="header-anchor">⌨</a></h2><p>The second way to <strong>add <code>goals</code> to <code>phases</code></strong> is to <strong>configure plugins in your project</strong>. Plugins are artifacts that <strong>provide <code>goals</code></strong> to Maven. This means that <strong>a plugin may have one or more <code>goals</code></strong> wherein each goal represents a capability of that plugin.</p>
 <p>For example, the <code>Compiler</code> plugin has two goals: <code>compile</code> and <code>testCompile</code>. The former compiles the source code of your main code, while the latter compiles the source code of your test code.</p>
 <blockquote>
 <p>Note:</p>
 <ul>
-<li><input disabled="" type="checkbox"> Perhaps it is clear already, but to make sure: <strong>adding the plugin on its own is not enough information</strong> - you must also <strong>specify the <code>goals</code> you want to run from that plugin</strong>.</li>
-<li><input disabled="" type="checkbox"> As you will see in the later sections, plugins can contain information that indicates <strong>which lifecycle phase</strong> to bind a goal to. If <strong>more than one goal is bound to a particular <code>phase</code></strong>, the <strong>order used</strong> is that those from the <strong><code>packaging</code> are executed first</strong>, followed by those configured in the <code>POM</code>. However, you can use the <code>&lt;executions&gt;</code> element to gain more control over the order of particular goals.</li>
+<li><input disabled type="checkbox"> Perhaps it is clear already, but to make sure: <strong>adding the plugin on its own is not enough information</strong> - you must also <strong>specify the <code>goals</code> you want to run from that plugin</strong>.</li>
+<li><input disabled type="checkbox"> As you will see in the later sections, plugins can contain information that indicates <strong>which lifecycle phase</strong> to bind a goal to. If <strong>more than one goal is bound to a particular <code>phase</code></strong>, the <strong>order used</strong> is that those from the <strong><code>packaging</code> are executed first</strong>, followed by those configured in the <code>POM</code>. However, you can use the <code>&lt;executions&gt;</code> element to gain more control over the order of particular goals.</li>
 </ul>
 </blockquote>
 <p>For example, the Modello plugin <strong>binds by default its goal <code>modello:java</code> to the<code>generate-sources</code> phase</strong> (Note: The <code>modello:java</code> goal generates Java source codes). So to use the Modello plugin and have it generate sources from a model and incorporate that into the build, you would add the following to your <code>POM</code> in the <code>&lt;plugins&gt;</code> section of <code>&lt;build&gt;</code>, and it will be <strong>executed in the <code>generate-sources</code> phase if you do not explicitly call it by itself</strong>:</p>
@@ -554,11 +695,11 @@
 <p>For example, let’s say you have a goal <code>display:time</code> (that echos the current time to the commandline), and you want it to run in the <code>process-test-resources</code> phase to indicate when the tests were started. This would be configured like so:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line"> &lt;plugin&gt;</span><br><span class="line">   &lt;groupId&gt;com.mycompany.example&lt;&#x2F;groupId&gt;</span><br><span class="line">   &lt;artifactId&gt;display-maven-plugin&lt;&#x2F;artifactId&gt;</span><br><span class="line">   &lt;version&gt;1.0&lt;&#x2F;version&gt;</span><br><span class="line">   &lt;executions&gt;</span><br><span class="line">     &lt;execution&gt;</span><br><span class="line">       &lt;phase&gt;process-test-resources&lt;&#x2F;phase&gt;</span><br><span class="line">       &lt;goals&gt;</span><br><span class="line">         &lt;goal&gt;time&lt;&#x2F;goal&gt;</span><br><span class="line">       &lt;&#x2F;goals&gt;</span><br><span class="line">     &lt;&#x2F;execution&gt;</span><br><span class="line">   &lt;&#x2F;executions&gt;</span><br><span class="line"> &lt;&#x2F;plugin&gt;</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
 
-<h2 id="Built-in-Lifecycle-and-Phase-Bindings"><a href="#Built-in-Lifecycle-and-Phase-Bindings" class="headerlink" title="Built-in Lifecycle and Phase Bindings"></a>Built-in Lifecycle and Phase Bindings</h2><p>You can see the default bindings for the lifecycle <code>clean</code>, <code>default</code>, and <code>site</code> <a href="https://maven.apache.org/guides/introduction/introduction-to-the-lifecycle.html#lifecycle-reference" target="_blank" rel="noopener">here</a></p>
-<h2 id="Built-in-Phase-and-Goal-Bindings"><a href="#Built-in-Phase-and-Goal-Bindings" class="headerlink" title="Built-in Phase and Goal Bindings"></a>Built-in Phase and Goal Bindings</h2><p>Some <code>phase</code>s have <code>goal</code>s bound to them by default. You can see the default bindings for each <code>phase</code> in the three lifecycles <code>clean</code>, <code>default</code>, <code>site</code> <a href="https://maven.apache.org/guides/introduction/introduction-to-the-lifecycle.html#built-in-lifecycle-bindings" target="_blank" rel="noopener">here</a></p>
-<h2 id="POM-Basics"><a href="#POM-Basics" class="headerlink" title="POM Basics"></a>POM Basics</h2><p>A Project Object Model or <code>POM</code> is the fundamental unit of work in Maven. It is an <strong><code>XML</code> file that contains information about the project and configuration details</strong> used by Maven to build the project. When executing a task or goal, <strong>Maven looks for the <code>POM</code> in the current directory</strong>. It reads the <code>POM</code>, gets the needed configuration information, then executes the goal.</p>
+<h2><span id="built-in-lifecycle-and-phase-bindings">Built-in Lifecycle and Phase Bindings</span><a href="#built-in-lifecycle-and-phase-bindings" class="header-anchor">⌨</a></h2><p>You can see the default bindings for the lifecycle <code>clean</code>, <code>default</code>, and <code>site</code> <a href="https://maven.apache.org/guides/introduction/introduction-to-the-lifecycle.html#lifecycle-reference" target="_blank" rel="noopener">here</a></p>
+<h2><span id="built-in-phase-and-goal-bindings">Built-in Phase and Goal Bindings</span><a href="#built-in-phase-and-goal-bindings" class="header-anchor">⌨</a></h2><p>Some <code>phase</code>s have <code>goal</code>s bound to them by default. You can see the default bindings for each <code>phase</code> in the three lifecycles <code>clean</code>, <code>default</code>, <code>site</code> <a href="https://maven.apache.org/guides/introduction/introduction-to-the-lifecycle.html#built-in-lifecycle-bindings" target="_blank" rel="noopener">here</a></p>
+<h2><span id="pom-basics">POM Basics</span><a href="#pom-basics" class="header-anchor">⌨</a></h2><p>A Project Object Model or <code>POM</code> is the fundamental unit of work in Maven. It is an <strong><code>XML</code> file that contains information about the project and configuration details</strong> used by Maven to build the project. When executing a task or goal, <strong>Maven looks for the <code>POM</code> in the current directory</strong>. It reads the <code>POM</code>, gets the needed configuration information, then executes the goal.</p>
 <p>For example, some of the configuration that can be specified in the <code>POM</code> are the project <code>dependencies</code>, the <code>plugins</code> or <code>goals</code> that can be executed, the build profiles, project version, description, developers, mailing lists and so on.</p>
-<h2 id="Super-POM"><a href="#Super-POM" class="headerlink" title="Super POM"></a>Super POM</h2><p>The <code>Super POM</code> is Maven’s <strong>default <code>POM</code></strong>. All <strong><code>POMs</code> extend the <code>Super POM</code> unless explicitly set</strong>, meaning the configuration specified in the <code>Super POM</code> is inherited by the POMs you created for your projects. The snippet below is the Super POM for Maven 3.5.4.</p>
+<h2><span id="super-pom">Super POM</span><a href="#super-pom" class="header-anchor">⌨</a></h2><p>The <code>Super POM</code> is Maven’s <strong>default <code>POM</code></strong>. All <strong><code>POMs</code> extend the <code>Super POM</code> unless explicitly set</strong>, meaning the configuration specified in the <code>Super POM</code> is inherited by the POMs you created for your projects. The snippet below is the Super POM for Maven 3.5.4.</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br></pre></td><td class="code"><pre><span class="line">&lt;project&gt;</span><br><span class="line">  &lt;modelVersion&gt;4.0.0&lt;&#x2F;modelVersion&gt;</span><br><span class="line"> </span><br><span class="line">  &lt;repositories&gt;</span><br><span class="line">    &lt;repository&gt;</span><br><span class="line">      &lt;id&gt;central&lt;&#x2F;id&gt;</span><br><span class="line">      &lt;name&gt;Central Repository&lt;&#x2F;name&gt;</span><br><span class="line">      &lt;url&gt;https:&#x2F;&#x2F;repo.maven.apache.org&#x2F;maven2&lt;&#x2F;url&gt;</span><br><span class="line">      &lt;layout&gt;default&lt;&#x2F;layout&gt;</span><br><span class="line">      &lt;snapshots&gt;</span><br><span class="line">        &lt;enabled&gt;false&lt;&#x2F;enabled&gt;</span><br><span class="line">      &lt;&#x2F;snapshots&gt;</span><br><span class="line">    &lt;&#x2F;repository&gt;</span><br><span class="line">  &lt;&#x2F;repositories&gt;</span><br><span class="line"> </span><br><span class="line">  &lt;pluginRepositories&gt;</span><br><span class="line">    &lt;pluginRepository&gt;</span><br><span class="line">      &lt;id&gt;central&lt;&#x2F;id&gt;</span><br><span class="line">      &lt;name&gt;Central Repository&lt;&#x2F;name&gt;</span><br><span class="line">      &lt;url&gt;https:&#x2F;&#x2F;repo.maven.apache.org&#x2F;maven2&lt;&#x2F;url&gt;</span><br><span class="line">      &lt;layout&gt;default&lt;&#x2F;layout&gt;</span><br><span class="line">      &lt;snapshots&gt;</span><br><span class="line">        &lt;enabled&gt;false&lt;&#x2F;enabled&gt;</span><br><span class="line">      &lt;&#x2F;snapshots&gt;</span><br><span class="line">      &lt;releases&gt;</span><br><span class="line">        &lt;updatePolicy&gt;never&lt;&#x2F;updatePolicy&gt;</span><br><span class="line">      &lt;&#x2F;releases&gt;</span><br><span class="line">    &lt;&#x2F;pluginRepository&gt;</span><br><span class="line">  &lt;&#x2F;pluginRepositories&gt;</span><br><span class="line"> </span><br><span class="line">  &lt;build&gt;</span><br><span class="line">    &lt;directory&gt;$&#123;project.basedir&#125;&#x2F;target&lt;&#x2F;directory&gt;</span><br><span class="line">    &lt;outputDirectory&gt;$&#123;project.build.directory&#125;&#x2F;classes&lt;&#x2F;outputDirectory&gt;</span><br><span class="line">    &lt;finalName&gt;$&#123;project.artifactId&#125;-$&#123;project.version&#125;&lt;&#x2F;finalName&gt;</span><br><span class="line">    &lt;testOutputDirectory&gt;$&#123;project.build.directory&#125;&#x2F;test-classes&lt;&#x2F;testOutputDirectory&gt;</span><br><span class="line">    &lt;sourceDirectory&gt;$&#123;project.basedir&#125;&#x2F;src&#x2F;main&#x2F;java&lt;&#x2F;sourceDirectory&gt;</span><br><span class="line">    &lt;scriptSourceDirectory&gt;$&#123;project.basedir&#125;&#x2F;src&#x2F;main&#x2F;scripts&lt;&#x2F;scriptSourceDirectory&gt;</span><br><span class="line">    &lt;testSourceDirectory&gt;$&#123;project.basedir&#125;&#x2F;src&#x2F;test&#x2F;java&lt;&#x2F;testSourceDirectory&gt;</span><br><span class="line">    &lt;resources&gt;</span><br><span class="line">      &lt;resource&gt;</span><br><span class="line">        &lt;directory&gt;$&#123;project.basedir&#125;&#x2F;src&#x2F;main&#x2F;resources&lt;&#x2F;directory&gt;</span><br><span class="line">      &lt;&#x2F;resource&gt;</span><br><span class="line">    &lt;&#x2F;resources&gt;</span><br><span class="line">    &lt;testResources&gt;</span><br><span class="line">      &lt;testResource&gt;</span><br><span class="line">        &lt;directory&gt;$&#123;project.basedir&#125;&#x2F;src&#x2F;test&#x2F;resources&lt;&#x2F;directory&gt;</span><br><span class="line">      &lt;&#x2F;testResource&gt;</span><br><span class="line">    &lt;&#x2F;testResources&gt;</span><br><span class="line">    &lt;pluginManagement&gt;</span><br><span class="line">      &lt;!-- NOTE: These plugins will be removed from future versions of the super POM --&gt;</span><br><span class="line">      &lt;!-- They are kept for the moment as they are very unlikely to conflict with lifecycle mappings (MNG-4453) --&gt;</span><br><span class="line">      &lt;plugins&gt;</span><br><span class="line">        &lt;plugin&gt;</span><br><span class="line">          &lt;artifactId&gt;maven-antrun-plugin&lt;&#x2F;artifactId&gt;</span><br><span class="line">          &lt;version&gt;1.3&lt;&#x2F;version&gt;</span><br><span class="line">        &lt;&#x2F;plugin&gt;</span><br><span class="line">        &lt;plugin&gt;</span><br><span class="line">          &lt;artifactId&gt;maven-assembly-plugin&lt;&#x2F;artifactId&gt;</span><br><span class="line">          &lt;version&gt;2.2-beta-5&lt;&#x2F;version&gt;</span><br><span class="line">        &lt;&#x2F;plugin&gt;</span><br><span class="line">        &lt;plugin&gt;</span><br><span class="line">          &lt;artifactId&gt;maven-dependency-plugin&lt;&#x2F;artifactId&gt;</span><br><span class="line">          &lt;version&gt;2.8&lt;&#x2F;version&gt;</span><br><span class="line">        &lt;&#x2F;plugin&gt;</span><br><span class="line">        &lt;plugin&gt;</span><br><span class="line">          &lt;artifactId&gt;maven-release-plugin&lt;&#x2F;artifactId&gt;</span><br><span class="line">          &lt;version&gt;2.5.3&lt;&#x2F;version&gt;</span><br><span class="line">        &lt;&#x2F;plugin&gt;</span><br><span class="line">      &lt;&#x2F;plugins&gt;</span><br><span class="line">    &lt;&#x2F;pluginManagement&gt;</span><br><span class="line">  &lt;&#x2F;build&gt;</span><br><span class="line"> </span><br><span class="line">  &lt;reporting&gt;</span><br><span class="line">    &lt;outputDirectory&gt;$&#123;project.build.directory&#125;&#x2F;site&lt;&#x2F;outputDirectory&gt;</span><br><span class="line">  &lt;&#x2F;reporting&gt;</span><br><span class="line"> </span><br><span class="line">  &lt;profiles&gt;</span><br><span class="line">    &lt;!-- NOTE: The release profile will be removed from future versions of the super POM --&gt;</span><br><span class="line">    &lt;profile&gt;</span><br><span class="line">      &lt;id&gt;release-profile&lt;&#x2F;id&gt;</span><br><span class="line"> </span><br><span class="line">      &lt;activation&gt;</span><br><span class="line">        &lt;property&gt;</span><br><span class="line">          &lt;name&gt;performRelease&lt;&#x2F;name&gt;</span><br><span class="line">          &lt;value&gt;true&lt;&#x2F;value&gt;</span><br><span class="line">        &lt;&#x2F;property&gt;</span><br><span class="line">      &lt;&#x2F;activation&gt;</span><br><span class="line"> </span><br><span class="line">      &lt;build&gt;</span><br><span class="line">        &lt;plugins&gt;</span><br><span class="line">          &lt;plugin&gt;</span><br><span class="line">            &lt;inherited&gt;true&lt;&#x2F;inherited&gt;</span><br><span class="line">            &lt;artifactId&gt;maven-source-plugin&lt;&#x2F;artifactId&gt;</span><br><span class="line">            &lt;executions&gt;</span><br><span class="line">              &lt;execution&gt;</span><br><span class="line">                &lt;id&gt;attach-sources&lt;&#x2F;id&gt;</span><br><span class="line">                &lt;goals&gt;</span><br><span class="line">                  &lt;goal&gt;jar-no-fork&lt;&#x2F;goal&gt;</span><br><span class="line">                &lt;&#x2F;goals&gt;</span><br><span class="line">              &lt;&#x2F;execution&gt;</span><br><span class="line">            &lt;&#x2F;executions&gt;</span><br><span class="line">          &lt;&#x2F;plugin&gt;</span><br><span class="line">          &lt;plugin&gt;</span><br><span class="line">            &lt;inherited&gt;true&lt;&#x2F;inherited&gt;</span><br><span class="line">            &lt;artifactId&gt;maven-javadoc-plugin&lt;&#x2F;artifactId&gt;</span><br><span class="line">            &lt;executions&gt;</span><br><span class="line">              &lt;execution&gt;</span><br><span class="line">                &lt;id&gt;attach-javadocs&lt;&#x2F;id&gt;</span><br><span class="line">                &lt;goals&gt;</span><br><span class="line">                  &lt;goal&gt;jar&lt;&#x2F;goal&gt;</span><br><span class="line">                &lt;&#x2F;goals&gt;</span><br><span class="line">              &lt;&#x2F;execution&gt;</span><br><span class="line">            &lt;&#x2F;executions&gt;</span><br><span class="line">          &lt;&#x2F;plugin&gt;</span><br><span class="line">          &lt;plugin&gt;</span><br><span class="line">            &lt;inherited&gt;true&lt;&#x2F;inherited&gt;</span><br><span class="line">            &lt;artifactId&gt;maven-deploy-plugin&lt;&#x2F;artifactId&gt;</span><br><span class="line">            &lt;configuration&gt;</span><br><span class="line">              &lt;updateReleaseInfo&gt;true&lt;&#x2F;updateReleaseInfo&gt;</span><br><span class="line">            &lt;&#x2F;configuration&gt;</span><br><span class="line">          &lt;&#x2F;plugin&gt;</span><br><span class="line">        &lt;&#x2F;plugins&gt;</span><br><span class="line">      &lt;&#x2F;build&gt;</span><br><span class="line">    &lt;&#x2F;profile&gt;</span><br><span class="line">  &lt;&#x2F;profiles&gt;</span><br><span class="line"> </span><br><span class="line">&lt;&#x2F;project&gt;</span><br></pre></td></tr></table></figure>
 
 <p>Here, we can see some default settings that the <code>SUPER POM</code> has:</p>
@@ -567,7 +708,7 @@
 <li>the build <strong>source directory</strong> set to <code>&lt;sourceDirectory&gt;${project.basedir}/src/main/java&lt;/sourceDirectory&gt;</code></li>
 <li>the <strong>central repository</strong> set to <code>&lt;url&gt;https://repo.maven.apache.org/maven2&lt;/url&gt;</code></li>
 </ul>
-<h2 id="Minimal-POM"><a href="#Minimal-POM" class="headerlink" title="Minimal POM"></a>Minimal POM</h2><p>The <strong>minimum requirement</strong> for a <code>POM</code> are the following:</p>
+<h2><span id="minimal-pom">Minimal POM</span><a href="#minimal-pom" class="header-anchor">⌨</a></h2><p>The <strong>minimum requirement</strong> for a <code>POM</code> are the following:</p>
 <ul>
 <li>project root</li>
 <li>modelVersion - should be set to 4.0.0</li>
@@ -579,7 +720,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;project&gt;</span><br><span class="line">  &lt;modelVersion&gt;4.0.0&lt;&#x2F;modelVersion&gt;</span><br><span class="line">  &lt;groupId&gt;com.mycompany.app&lt;&#x2F;groupId&gt;</span><br><span class="line">  &lt;artifactId&gt;my-app&lt;&#x2F;artifactId&gt;</span><br><span class="line">  &lt;version&gt;1&lt;&#x2F;version&gt;</span><br><span class="line">&lt;&#x2F;project&gt;</span><br></pre></td></tr></table></figure>
 <p>This is because a needs project’s <strong>fully qualified artifact name</strong>, which will be <strong>in the form of <code>&lt;groupId&gt;:&lt;artifactId&gt;:&lt;version&gt;</code></strong>. As for the example above, its fully qualified artifact name is <code>&quot;com.mycompany.app:my-app:1&quot;</code>.</p>
 <p>Also, as mentioned in the previous section, if the configuration details are <strong>not specified</strong>, <strong>Maven will use their defaults</strong>. One of these default values is the packaging type. Every Maven project has a packaging type. If it is not specified in the <code>POM</code>, then the default value “<code>jar</code>“ would be used.</p>
-<h2 id="Project-POM-Inheritance"><a href="#Project-POM-Inheritance" class="headerlink" title="Project/POM Inheritance"></a>Project/POM Inheritance</h2><p>Elements in the <code>POM</code> that are merged when you inherit another parent <code>POM</code> are the following:</p>
+<h2><span id="project-pom-inheritance">Project/POM Inheritance</span><a href="#project-pom-inheritance" class="header-anchor">⌨</a></h2><p>Elements in the <code>POM</code> that are merged when you inherit another parent <code>POM</code> are the following:</p>
 <ul>
 <li>dependencies</li>
 <li>developers and contributors</li>
@@ -611,12 +752,12 @@
 <blockquote>
 <p>Note:</p>
 <ul>
-<li><input disabled="" type="checkbox"> This is different from the example in the section <a href="#Creating-Multiple-Projects-at-Once">Creating Multiple Projects at Once</a> section, because we <strong>did not have the <code>&lt;packaging&gt;pom&lt;/packaging&gt;</code></strong>. The difference is that, in this case (without specifying <code>packaging</code>) the <strong><code>parentProject</code> is/will be used by its child projects</strong> (like Java Inheritance), but in the other case, the <strong>parent uses the children projects</strong> (like Java Composition) <a href="#Project/POM-Aggregation">see below</a></li>
-<li><input disabled="" type="checkbox"> If you want to <strong>compile a specific children project</strong>, you might need to <strong>change the parent <code>POM</code> to <code>&lt;packaging&gt;pom&lt;/packaging&gt;</code></strong>. If you need to access the source codes in the parent directory, you should add the dependencies.</li>
+<li><input disabled type="checkbox"> This is different from the example in the section <a href="#Creating-Multiple-Projects-at-Once">Creating Multiple Projects at Once</a> section, because we <strong>did not have the <code>&lt;packaging&gt;pom&lt;/packaging&gt;</code></strong>. The difference is that, in this case (without specifying <code>packaging</code>) the <strong><code>parentProject</code> is/will be used by its child projects</strong> (like Java Inheritance), but in the other case, the <strong>parent uses the children projects</strong> (like Java Composition) <a href="#Project/POM-Aggregation">see below</a></li>
+<li><input disabled type="checkbox"> If you want to <strong>compile a specific children project</strong>, you might need to <strong>change the parent <code>POM</code> to <code>&lt;packaging&gt;pom&lt;/packaging&gt;</code></strong>. If you need to access the source codes in the parent directory, you should add the dependencies.</li>
 </ul>
 </blockquote>
 <p><a name="Project/POM-Aggregatio"></a></p>
-<h2 id="Project-POM-Aggregation"><a href="#Project-POM-Aggregation" class="headerlink" title="Project/POM Aggregation"></a>Project/POM Aggregation</h2><p>Project Aggregation is similar to Project Inheritance, but there is an essential difference:</p>
+<h2><span id="project-pom-aggregation">Project/POM Aggregation</span><a href="#project-pom-aggregation" class="header-anchor">⌨</a></h2><p>Project Aggregation is similar to Project Inheritance, but there is an essential difference:</p>
 <ul>
 <li>Project Inheritance would have <code>childrenProjects</code> (<code>modules</code>) using/inheriting the <code>parentProject</code>(<code>parent</code>)</li>
 <li>Project Aggregation would have <code>parentProjects</code> (<code>parent</code>) using/composed of the <code>childProjects</code> (<code>modules</code>)</li>
@@ -641,7 +782,7 @@
 
 </li>
 </ol>
-<h2 id="Combining-Project-Inheritance-and-Project-Aggregation"><a href="#Combining-Project-Inheritance-and-Project-Aggregation" class="headerlink" title="Combining Project Inheritance and Project Aggregation"></a>Combining Project Inheritance and Project Aggregation</h2><p>To achieve this, you just edit both child and parent <code>POM</code> in the same way introduced above:</p>
+<h2><span id="combining-project-inheritance-and-project-aggregation">Combining Project Inheritance and Project Aggregation</span><a href="#combining-project-inheritance-and-project-aggregation" class="header-anchor">⌨</a></h2><p>To achieve this, you just edit both child and parent <code>POM</code> in the same way introduced above:</p>
 <ul>
 <li>Specify in every child POM who their parent POM is. (Project Inheritance)</li>
 <li>Change the parent POMs packaging to the value “pom” . (Project Aggregation)</li>
@@ -653,13 +794,13 @@
 <p><code>com.mycompany.app:my-module:1</code>‘s POM</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;project&gt;</span><br><span class="line">  &lt;parent&gt;</span><br><span class="line">    &lt;groupId&gt;com.mycompany.app&lt;&#x2F;groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;parent&lt;&#x2F;artifactId&gt;</span><br><span class="line">    &lt;version&gt;1&lt;&#x2F;version&gt;</span><br><span class="line">    &lt;relativePath&gt;..&#x2F;parent&#x2F;pom.xml&lt;&#x2F;relativePath&gt;</span><br><span class="line">  &lt;&#x2F;parent&gt;</span><br><span class="line">  &lt;modelVersion&gt;4.0.0&lt;&#x2F;modelVersion&gt;</span><br><span class="line">  &lt;artifactId&gt;my-module&lt;&#x2F;artifactId&gt;</span><br><span class="line">&lt;&#x2F;project&gt;</span><br></pre></td></tr></table></figure>
 
-<h2 id="Variables-in-POM"><a href="#Variables-in-POM" class="headerlink" title="Variables in POM"></a>Variables in <code>POM</code></h2><p>One of the practices that Maven encourages is don’t repeat yourself. However, there are circumstances where you will need to use the same value in several different locations. To assist in ensuring the value is only specified once, Maven allows you to <strong>use both your own and pre-defined variables in the <code>POM</code></strong>.</p>
+<h2><span id="variables-in-pom">Variables in <code>POM</code></span><a href="#variables-in-pom" class="header-anchor">⌨</a></h2><p>One of the practices that Maven encourages is don’t repeat yourself. However, there are circumstances where you will need to use the same value in several different locations. To assist in ensuring the value is only specified once, Maven allows you to <strong>use both your own and pre-defined variables in the <code>POM</code></strong>.</p>
 <p>For example, to access the <code>project.version</code> variable (this is pre-defined), you would reference it like so:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;version&gt;$&#123;project.version&#125;&lt;&#x2F;version&gt;</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>Note:</p>
 <ul>
-<li><input disabled="" type="checkbox"> If you get an error, you might need to make the variable by yourself in the parent <code>pom</code>. To do this, <a href="#own-variable">see below</a></li>
+<li><input disabled type="checkbox"> If you get an error, you might need to make the variable by yourself in the parent <code>pom</code>. To do this, <a href="#own-variable">see below</a></li>
 </ul>
 </blockquote>
 <ul>
@@ -681,7 +822,7 @@
 
 </li>
 </ul>
-<h2 id="Profiles"><a href="#Profiles" class="headerlink" title="Profiles"></a>Profiles</h2><p>In short, Maven profiles can be used to create <strong>customized build configurations</strong>.</p>
+<h2><span id="profiles">Profiles</span><a href="#profiles" class="header-anchor">⌨</a></h2><p>In short, Maven profiles can be used to create <strong>customized build configurations</strong>.</p>
 <p>Profiles are specified using the element <code>&lt;profile&gt;</code> in the <code>POM</code>itself (in the extra section <code>&lt;profiles&gt;</code>), and can be <strong>triggered in many different ways</strong>. They modify the POM at build time, and are meant to be used in complementary sets to give equivalent-but-different parameters for a set of target environments (providing, for example, the path of the appserver root in the development, testing, and production environments). As such, profiles can easily lead to differing build results from different members of your team. </p>
 <p>Profiles (<code>&lt;profiles&gt;</code>) can be <strong>specified in any of the four file locations</strong>:</p>
 <ul>
@@ -706,7 +847,7 @@
 </ul>
 </li>
 </ul>
-<h2 id="Viewing-Active-Profiles"><a href="#Viewing-Active-Profiles" class="headerlink" title="Viewing Active Profiles"></a>Viewing Active Profiles</h2><p>To see which profiles are already active, you can use the <code>help</code> plugin from MAVEN:</p>
+<h2><span id="viewing-active-profiles">Viewing Active Profiles</span><a href="#viewing-active-profiles" class="header-anchor">⌨</a></h2><p>To see which profiles are already active, you can use the <code>help</code> plugin from MAVEN:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn help:active-profiles</span><br></pre></td></tr></table></figure>
 
 <p>and by default, nothing is actived so you will see nothing:</p>
@@ -714,7 +855,7 @@
 <p>If we want to <strong>automatically show the active profiles</strong> when we are doing, for example, the <code>compile</code> phase, we can use the similar approach shown in the section [Customizing your Build Lifecycle by Plugins](#Customizing-your-Build Lifecycle-by-Plugins) by <strong>adding the <code>help</code> plugin and the <code>goal</code></strong> in our phase <code>compile</code>:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;build&gt;</span><br><span class="line">    &lt;plugins&gt;</span><br><span class="line">        &lt;plugin&gt;</span><br><span class="line">            &lt;groupId&gt;org.apache.maven.plugins&lt;&#x2F;groupId&gt;</span><br><span class="line">            &lt;artifactId&gt;maven-help-plugin&lt;&#x2F;artifactId&gt;</span><br><span class="line">            &lt;version&gt;3.2.0&lt;&#x2F;version&gt;</span><br><span class="line">            &lt;executions&gt;</span><br><span class="line">                &lt;execution&gt;</span><br><span class="line">                    &lt;id&gt;show-profiles&lt;&#x2F;id&gt;</span><br><span class="line">                    &lt;phase&gt;compile&lt;&#x2F;phase&gt;</span><br><span class="line">                    &lt;goals&gt;</span><br><span class="line">                        &lt;goal&gt;active-profiles&lt;&#x2F;goal&gt;</span><br><span class="line">                    &lt;&#x2F;goals&gt;</span><br><span class="line">                &lt;&#x2F;execution&gt;</span><br><span class="line">            &lt;&#x2F;executions&gt;</span><br><span class="line">        &lt;&#x2F;plugin&gt;</span><br><span class="line">    &lt;&#x2F;plugins&gt;</span><br><span class="line">&lt;&#x2F;build&gt;</span><br></pre></td></tr></table></figure>
 
-<h2 id="Making-a-Profile"><a href="#Making-a-Profile" class="headerlink" title="Making a Profile"></a>Making a Profile</h2><p>Within each <code>&lt;profile&gt;</code> element, we can <strong>configure many elements such as <code>dependencies</code>, <code>plugins</code>, <code>resources</code>, <code>finalName</code></strong>.</p>
+<h2><span id="making-a-profile">Making a Profile</span><a href="#making-a-profile" class="header-anchor">⌨</a></h2><p>Within each <code>&lt;profile&gt;</code> element, we can <strong>configure many elements such as <code>dependencies</code>, <code>plugins</code>, <code>resources</code>, <code>finalName</code></strong>.</p>
 <p>For example (configured a <code>plugin</code>):</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">&lt;profiles&gt;</span><br><span class="line">	&lt;profile&gt;</span><br><span class="line">	  &lt;id&gt;test&lt;&#x2F;id&gt;</span><br><span class="line"></span><br><span class="line">	  &lt;build&gt;</span><br><span class="line">	     &lt;plugins&gt;</span><br><span class="line">	        &lt;plugin&gt;</span><br><span class="line">	           &lt;groupId&gt;org.apache.maven.plugins&lt;&#x2F;groupId&gt;</span><br><span class="line">	           &lt;artifactId&gt;maven-antrun-plugin&lt;&#x2F;artifactId&gt;</span><br><span class="line">	           &lt;version&gt;1.1&lt;&#x2F;version&gt;</span><br><span class="line">	           &lt;executions&gt;</span><br><span class="line">	              &lt;execution&gt;</span><br><span class="line">	                 &lt;phase&gt;test&lt;&#x2F;phase&gt;</span><br><span class="line">	                 &lt;goals&gt;</span><br><span class="line">	                    &lt;goal&gt;run&lt;&#x2F;goal&gt;</span><br><span class="line">	                 &lt;&#x2F;goals&gt;</span><br><span class="line">	                 &lt;configuration&gt;</span><br><span class="line">	                 &lt;tasks&gt;</span><br><span class="line">	                    &lt;echo&gt;Using app.test.properties&lt;&#x2F;echo&gt;</span><br><span class="line">	                    &lt;copy file&#x3D;&quot;src&#x2F;main&#x2F;resources&#x2F;app.test.properties&quot; </span><br><span class="line">	                    	tofile&#x3D;&quot;$&#123;project.build.outputDirectory&#125;&#x2F;env.properties&quot;&#x2F;&gt;</span><br><span class="line">	                 &lt;&#x2F;tasks&gt;</span><br><span class="line">	                 &lt;&#x2F;configuration&gt;</span><br><span class="line">	              &lt;&#x2F;execution&gt;</span><br><span class="line">	           &lt;&#x2F;executions&gt;</span><br><span class="line">	        &lt;&#x2F;plugin&gt;</span><br><span class="line">	     &lt;&#x2F;plugins&gt;</span><br><span class="line">	  &lt;&#x2F;build&gt;</span><br><span class="line"></span><br><span class="line">	&lt;&#x2F;profile&gt;</span><br><span class="line">&lt;&#x2F;profiles&gt;</span><br></pre></td></tr></table></figure>
 <p>Another simpler example could be:</p>
@@ -724,11 +865,11 @@
 <blockquote>
 <p>Note:</p>
 <ul>
-<li><input disabled="" type="checkbox"> In the above examples, there is an <code>&lt;id&gt;</code> element for that <code>profile</code>. <strong>This will be used later to activate the profile</strong>, so it is important to give it a sensible name,</li>
-<li><input disabled="" type="checkbox"> We can also <strong>configure as many profiles</strong> as we want by <strong>giving them unique <code>id</code>s</strong>.</li>
+<li><input disabled type="checkbox"> In the above examples, there is an <code>&lt;id&gt;</code> element for that <code>profile</code>. <strong>This will be used later to activate the profile</strong>, so it is important to give it a sensible name,</li>
+<li><input disabled type="checkbox"> We can also <strong>configure as many profiles</strong> as we want by <strong>giving them unique <code>id</code>s</strong>.</li>
 </ul>
 </blockquote>
-<h2 id="Activate-a-Profile"><a href="#Activate-a-Profile" class="headerlink" title="Activate a Profile"></a>Activate a Profile</h2><p>You can activate a profile in a number of ways:</p>
+<h2><span id="activate-a-profile">Activate a Profile</span><a href="#activate-a-profile" class="header-anchor">⌨</a></h2><p>You can activate a profile in a number of ways:</p>
 <ul>
 <li>For a <strong>single run</strong><ul>
 <li>explicitly add the <code>-P &lt;profile-id&gt;</code> at the end of a command</li>
@@ -749,24 +890,24 @@
 </ul>
 </li>
 </ul>
-<h2 id="Activate-Profile-for-a-Single-Run"><a href="#Activate-Profile-for-a-Single-Run" class="headerlink" title="Activate Profile for a Single Run"></a>Activate Profile for a Single Run</h2><p>This can be done by adding the option <code>-P &lt;profile-id&gt;</code> so that the profile will be <strong>activated for that specific run</strong>.</p>
+<h2><span id="activate-profile-for-a-single-run">Activate Profile for a Single Run</span><a href="#activate-profile-for-a-single-run" class="header-anchor">⌨</a></h2><p>This can be done by adding the option <code>-P &lt;profile-id&gt;</code> so that the profile will be <strong>activated for that specific run</strong>.</p>
 <p>For example, to use the <code>no-test</code> profile (assuming that profile is added to the <code>pom</code> file of this project), we could use:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn package -P no-test</span><br></pre></td></tr></table></figure>
 <p>This will execute all phases up to and until <code>package</code>, except <strong>skipping the <code>test</code> phase</strong>, as <strong>specified by our <code>no-test</code> profile</strong>.</p>
 <p>You could also activate multiple profiles by using comma as a delimiter:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn package -P no-test,profile2,profile3</span><br></pre></td></tr></table></figure>
 
-<h2 id="Activate-Profile-Automatically-for-a-Project"><a href="#Activate-Profile-Automatically-for-a-Project" class="headerlink" title="Activate Profile Automatically for a Project"></a>Activate Profile Automatically for a Project</h2><p>This can be done by adding another section <code>&lt;activation&gt;</code> in the same section where you specified the <code>&lt;profile&gt;</code>. </p>
+<h2><span id="activate-profile-automatically-for-a-project">Activate Profile Automatically for a Project</span><a href="#activate-profile-automatically-for-a-project" class="header-anchor">⌨</a></h2><p>This can be done by adding another section <code>&lt;activation&gt;</code> in the same section where you specified the <code>&lt;profile&gt;</code>. </p>
 <p>For example, if we want to automatically activate the profile <code>no-test</code> for a project (again, assuming that profile is added to the <code>pom</code> file of this project), then we would have in the <code>pom</code> file:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;profiles&gt;</span><br><span class="line">  &lt;profile&gt;</span><br><span class="line">    &lt;id&gt;no-test&lt;&#x2F;id&gt;</span><br><span class="line">    &lt;activation&gt;</span><br><span class="line">	  &lt;activateByDefault&gt;true&lt;&#x2F;activateByDefault&gt;</span><br><span class="line">    &lt;&#x2F;activation&gt;</span><br><span class="line"></span><br><span class="line">	&lt;properties&gt;</span><br><span class="line">	  &lt;maven.test.skip&gt;true&lt;&#x2F;maven.test.skip&gt;</span><br><span class="line">	&lt;&#x2F;properties&gt;</span><br><span class="line">  &lt;&#x2F;profile&gt;</span><br><span class="line">&lt;profiles&gt;</span><br></pre></td></tr></table></figure>
 <p>This will activate the profile <code>no-test</code> everytime when the project is run.</p>
-<h2 id="Deactivating-a-Profile"><a href="#Deactivating-a-Profile" class="headerlink" title="Deactivating a Profile"></a>Deactivating a Profile</h2><p>Deactivating a profile is done by adding the option <code>-P !&lt;profile-id&gt;</code> or <code>-P -&lt;profile-id&gt;</code></p>
+<h2><span id="deactivating-a-profile">Deactivating a Profile</span><a href="#deactivating-a-profile" class="header-anchor">⌨</a></h2><p>Deactivating a profile is done by adding the option <code>-P !&lt;profile-id&gt;</code> or <code>-P -&lt;profile-id&gt;</code></p>
 <p>However, one important thing to note is that, if you have several profiles that are <strong>activated by default</strong>, running the <code>-P !&lt;profile-id&gt;</code> or <code>-P -&lt;profile-id&gt;</code> would <strong>override the configuration such that all those profiles that are activated by default would be ignored/deactivated</strong>.</p>
-<h2 id="Activate-Profile-Automatically-for-all-Projects-per-user"><a href="#Activate-Profile-Automatically-for-all-Projects-per-user" class="headerlink" title="Activate Profile Automatically for all Projects (per user)"></a>Activate Profile Automatically for all Projects (per user)</h2><p>Profiles can be activated in the <strong>Maven settings file</strong> (per user, <code>%USER_HOME%/.m2/settings.xml</code>; globally/all users, <code>${maven.home}/conf/settings.xml</code>), via the <code>&lt;activeProfiles&gt;</code> section. This section takes a list of <code>&lt;activeProfile&gt;</code> elements, each containing a <code>&lt;profile-id&gt;</code> inside.</p>
+<h2><span id="activate-profile-automatically-for-all-projects-per-user">Activate Profile Automatically for all Projects (per user)</span><a href="#activate-profile-automatically-for-all-projects-per-user" class="header-anchor">⌨</a></h2><p>Profiles can be activated in the <strong>Maven settings file</strong> (per user, <code>%USER_HOME%/.m2/settings.xml</code>; globally/all users, <code>${maven.home}/conf/settings.xml</code>), via the <code>&lt;activeProfiles&gt;</code> section. This section takes a list of <code>&lt;activeProfile&gt;</code> elements, each containing a <code>&lt;profile-id&gt;</code> inside.</p>
 <p>For example, to activate the <code>no-test</code> profile for all projects of a user, add the following to the <code>%USER_HOME%/.m2/settings.xml</code>: </p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;settings&gt;</span><br><span class="line">  ...</span><br><span class="line">  &lt;activeProfiles&gt;</span><br><span class="line">    &lt;activeProfile&gt;no-test&lt;&#x2F;activeProfile&gt;</span><br><span class="line">  &lt;&#x2F;activeProfiles&gt;</span><br><span class="line">  ...</span><br><span class="line">&lt;&#x2F;settings&gt;</span><br></pre></td></tr></table></figure>
 <p>So that profiles listed in the <code>&lt;activeProfiles&gt;</code> tag would be <strong>activated by default every time that user runs a project</strong>.</p>
-<h2 id="Activate-Profiles-by-Triggers"><a href="#Activate-Profiles-by-Triggers" class="headerlink" title="Activate Profiles by Triggers"></a>Activate Profiles by Triggers</h2><p>Profiles can be automatically triggered based on the detected state of the build environment. <strong>These triggers are specified via an <code>&lt;activation&gt;</code> section in the profile itself</strong>.</p>
+<h2><span id="activate-profiles-by-triggers">Activate Profiles by Triggers</span><a href="#activate-profiles-by-triggers" class="header-anchor">⌨</a></h2><p>Profiles can be automatically triggered based on the detected state of the build environment. <strong>These triggers are specified via an <code>&lt;activation&gt;</code> section in the profile itself</strong>.</p>
 <ul>
 <li><p>Triggered by a specific JDK version:</p>
   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;profiles&gt;</span><br><span class="line">  &lt;profile&gt;</span><br><span class="line">    &lt;activation&gt;</span><br><span class="line">      &lt;jdk&gt;1.4&lt;&#x2F;jdk&gt;</span><br><span class="line">    &lt;&#x2F;activation&gt;</span><br><span class="line">    ...</span><br><span class="line">  &lt;&#x2F;profile&gt;</span><br><span class="line">&lt;&#x2F;profiles&gt;</span><br></pre></td></tr></table></figure>
@@ -793,13 +934,13 @@
 <blockquote>
 <p>Note:</p>
 <ul>
-<li><input disabled="" type="checkbox"> As of Maven 2.0.9, the tags <code>&lt;exists&gt;</code> and <code>&lt;missing&gt;</code> could be <strong>interpolated</strong>. <strong>Supported variables</strong> are system properties like <code>${user.home}</code> and environment variables like <code>${env.HOME}</code>. Please note that <strong>properties and values defined in the POM</strong> itself are <strong>not available</strong> for interpolation here</li>
+<li><input disabled type="checkbox"> As of Maven 2.0.9, the tags <code>&lt;exists&gt;</code> and <code>&lt;missing&gt;</code> could be <strong>interpolated</strong>. <strong>Supported variables</strong> are system properties like <code>${user.home}</code> and environment variables like <code>${env.HOME}</code>. Please note that <strong>properties and values defined in the POM</strong> itself are <strong>not available</strong> for interpolation here</li>
 </ul>
 </blockquote>
 </li>
 </ul>
 <p><a name="Profiles-in-POM-and-in-Settings"></a></p>
-<h2 id="Profiles-in-POMs-and-in-Settings"><a href="#Profiles-in-POMs-and-in-Settings" class="headerlink" title="Profiles in POMs and in Settings"></a>Profiles in <code>POM</code>s and in <code>Settings</code></h2><ul>
+<h2><span id="profiles-in-poms-and-in-settings">Profiles in <code>POM</code>s and in <code>Settings</code></span><a href="#profiles-in-poms-and-in-settings" class="header-anchor">⌨</a></h2><ul>
 <li><p>Profiles in external files (<code>settings.xml</code>)</p>
 <p>  Profiles specified in external files (i.e in <code>settings.xml</code> or <code>profiles.xml</code>) are not portable in the strictest sense. Things like repository lists could simply be a proprietary repository of approved artifacts, and won’t change the outcome of the build. Therefore, you will <strong>only be able to modify</strong> </p>
 <ul>
@@ -835,10 +976,10 @@
 <blockquote>
 <p>Note:</p>
 <ul>
-<li><input disabled="" type="checkbox"> If you have conflicting profiles in both the <code>pom</code> file and the <code>settings.xml</code> file, take note that <strong>profiles in the <code>settings.xml</code> takes higher priority</strong> than profiles in the <code>POM</code>.</li>
+<li><input disabled type="checkbox"> If you have conflicting profiles in both the <code>pom</code> file and the <code>settings.xml</code> file, take note that <strong>profiles in the <code>settings.xml</code> takes higher priority</strong> than profiles in the <code>POM</code>.</li>
 </ul>
 </blockquote>
-<h2 id="Standard-Directory-Output"><a href="#Standard-Directory-Output" class="headerlink" title="Standard Directory Output"></a>Standard Directory Output</h2><p>Having a common directory layout would allow for users familiar with one Maven project to immediately feel at home in another Maven project. The following table documents the <strong>directory layout expected by Maven</strong> and the directory layout created by Maven. Please try to conform to this structure as much as possible; however, if you can’t these settings <strong>can be overridden via the project descriptor</strong>.</p>
+<h2><span id="standard-directory-output">Standard Directory Output</span><a href="#standard-directory-output" class="header-anchor">⌨</a></h2><p>Having a common directory layout would allow for users familiar with one Maven project to immediately feel at home in another Maven project. The following table documents the <strong>directory layout expected by Maven</strong> and the directory layout created by Maven. Please try to conform to this structure as much as possible; however, if you can’t these settings <strong>can be overridden via the project descriptor</strong>.</p>
 <table>
 <thead>
 <tr>
@@ -906,7 +1047,7 @@
 <li>The <code>target</code> directory is used to house <strong>all output of the build</strong>.</li>
 </ul>
 <p>Also, it is important to see that, within artifact producing source directories (ie. main and test), <strong>there is one directory for the language java</strong> (under which the normal package hierarchy exists), and one for resources (the structure which is copied to the target classpath given the default resource definition). But <strong>if there are other contributing sources to the artifact build, they would be under other subdirectories</strong>: for example <code>src/main/antlr</code> would contain Antlr grammar definition files.</p>
-<h2 id="Transitive-Dependency"><a href="#Transitive-Dependency" class="headerlink" title="Transitive Dependency"></a>Transitive Dependency</h2><p>Maven avoids the need to <strong>specify the libraries that your own dependencies require</strong> by including <strong>transitive dependencies</strong> automatically.</p>
+<h2><span id="transitive-dependency">Transitive Dependency</span><a href="#transitive-dependency" class="header-anchor">⌨</a></h2><p>Maven avoids the need to <strong>specify the libraries that your own dependencies require</strong> by including <strong>transitive dependencies</strong> automatically.</p>
 <p>This feature is facilitated by <strong>reading the project files of your dependencies from the remote repositories specified</strong>. In general, <strong>all dependencies of those projects are used in your project</strong>, as are any that the project inherits from its parents, or from its dependencies, and so on.  A problem arises only if a cyclic dependency is discovered.</p>
 <p>However, with transitive dependency, the graph of included libraries will grow quite large. Therefore, there are <strong>additional features that can be used to limit which dependencies are included</strong>:</p>
 <ul>
@@ -916,12 +1057,12 @@
 <li>Dependency Exclusion</li>
 <li>Optional Dependency</li>
 </ul>
-<h2 id="Dependency-Mediation"><a href="#Dependency-Mediation" class="headerlink" title="Dependency Mediation"></a>Dependency Mediation</h2><p>This determines <strong>what version of an artifact/dependency will be chosen</strong> when multiple versions are encountered as dependencies. By default, Maven picks the “nearest definition”. That is, it uses the version of the closest dependency to your project in the tree of dependencies. </p>
+<h2><span id="dependency-mediation">Dependency Mediation</span><a href="#dependency-mediation" class="header-anchor">⌨</a></h2><p>This determines <strong>what version of an artifact/dependency will be chosen</strong> when multiple versions are encountered as dependencies. By default, Maven picks the “nearest definition”. That is, it uses the version of the closest dependency to your project in the tree of dependencies. </p>
 <p>However, you can always guarantee a version by declaring it <strong>explicitly in your project’s <code>POM</code></strong> (see section <a href="#Using-External-Dependency">Using External Dependency</a>). You basically need to add the following to your <code>POM</code>:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">      &lt;groupId&gt;com.mycompany.app&lt;&#x2F;groupId&gt;</span><br><span class="line">      &lt;artifactId&gt;myDependency&lt;&#x2F;artifactId&gt;</span><br><span class="line">      &lt;version&gt;aSpecificVersion&lt;&#x2F;version&gt;</span><br><span class="line">      &lt;scope&gt;compile&lt;&#x2F;scope&gt;</span><br><span class="line">&lt;&#x2F;dependency&gt;</span><br></pre></td></tr></table></figure>
 <p>Or, you could use the <a href="#Dependency-Management">Dependency Management</a> in the section below.</p>
 <p><a name="Dependency-Management"></a></p>
-<h2 id="Dependency-Management"><a href="#Dependency-Management" class="headerlink" title="Dependency Management"></a>Dependency Management</h2><p>The dependency management section is a mechanism for <strong>centralizing dependency information</strong>. When you have a set of projects that inherit from a common parent, it’s possible to put all information about the dependency in the common POM and have simpler references to the artifacts in the child POMs.</p>
+<h2><span id="dependency-management">Dependency Management</span><a href="#dependency-management" class="header-anchor">⌨</a></h2><p>The dependency management section is a mechanism for <strong>centralizing dependency information</strong>. When you have a set of projects that inherit from a common parent, it’s possible to put all information about the dependency in the common POM and have simpler references to the artifacts in the child POMs.</p>
 <ol>
 <li>For example, you could use it to control the <strong>versions of the artifacts in a set of dependencies</strong>:</li>
 </ol>
@@ -949,10 +1090,10 @@
 <blockquote>
 <p>Note:</p>
 <ul>
-<li><input disabled="" type="checkbox"> In two of these dependency references, we had to specify the <code>&lt;type&gt;</code> element. This is because the <strong>minimal set of information for matching a dependency reference against a <code>&lt;dependencyManagement&gt;</code> section is actually <code>{groupId, artifactId, type, classifier}</code></strong>. In many cases, these dependencies will refer to <strong><code>jar</code> artifacts with no classifier</strong>. <strong>This allows us to shorthand the identity set to <code>{groupId, artifactId}</code></strong>. However, in other cases, we would need to include the <code>&lt;type&gt;</code> element.</li>
+<li><input disabled type="checkbox"> In two of these dependency references, we had to specify the <code>&lt;type&gt;</code> element. This is because the <strong>minimal set of information for matching a dependency reference against a <code>&lt;dependencyManagement&gt;</code> section is actually <code>{groupId, artifactId, type, classifier}</code></strong>. In many cases, these dependencies will refer to <strong><code>jar</code> artifacts with no classifier</strong>. <strong>This allows us to shorthand the identity set to <code>{groupId, artifactId}</code></strong>. However, in other cases, we would need to include the <code>&lt;type&gt;</code> element.</li>
 </ul>
 </blockquote>
-<h2 id="Difference-between-using-lt-dependency-gt-and-lt-dependencyManagement-gt"><a href="#Difference-between-using-lt-dependency-gt-and-lt-dependencyManagement-gt" class="headerlink" title="Difference between using &lt;dependency&gt; and &lt;dependencyManagement&gt;"></a>Difference between using <code>&lt;dependency&gt;</code> and <code>&lt;dependencyManagement&gt;</code></h2><ul>
+<h2><span id="difference-between-using-lt-dependency-gt-and-lt-dependencymanagement-gt">Difference between using <code>&lt;dependency&gt;</code> and <code>&lt;dependencyManagement&gt;</code></span><a href="#difference-between-using-lt-dependency-gt-and-lt-dependencymanagement-gt" class="header-anchor">⌨</a></h2><ul>
 <li>if you use <code>&lt;dependencies&gt;</code> in the parent <code>pom</code> and specify all the dependencies your chlidren will need, this will<ul>
 <li>create a shorter child poms, as technically you don’t need to specify them again, unless you want to override something, like the <code>version</code>.</li>
 <li>it means that <strong>those dependencies will ALWAYS be defined for ALL the child modules</strong>. </li>
@@ -963,7 +1104,7 @@
 </ul>
 </li>
 </ul>
-<h2 id="Dependency-Scope"><a href="#Dependency-Scope" class="headerlink" title="Dependency Scope"></a>Dependency Scope</h2><p>Dependency scope is used to limit the transitivity of a dependency, and also to affect the classpath used for various build tasks.</p>
+<h2><span id="dependency-scope">Dependency Scope</span><a href="#dependency-scope" class="header-anchor">⌨</a></h2><p>Dependency scope is used to limit the transitivity of a dependency, and also to affect the classpath used for various build tasks.</p>
 <p>There are <strong>6 scopes available</strong>:</p>
 <ul>
 <li><code>compile</code> <ul>
@@ -1032,7 +1173,7 @@
 <td>-</td>
 </tr>
 </tbody></table>
-<h2 id="Importing-Dependencies"><a href="#Importing-Dependencies" class="headerlink" title="Importing Dependencies"></a>Importing Dependencies</h2><p>The examples in the previous section describe how to specify managed dependencies through inheritance. However, in larger projects it may be impossible to accomplish this <strong>since a project can only inherit from a single parent</strong>. To accommodate this, projects can <strong>import managed dependencies from other projects</strong>. This is accomplished by declaring a <code>pom</code> artifact as a dependency with a scope of <code>import</code>.</p>
+<h2><span id="importing-dependencies">Importing Dependencies</span><a href="#importing-dependencies" class="header-anchor">⌨</a></h2><p>The examples in the previous section describe how to specify managed dependencies through inheritance. However, in larger projects it may be impossible to accomplish this <strong>since a project can only inherit from a single parent</strong>. To accommodate this, projects can <strong>import managed dependencies from other projects</strong>. This is accomplished by declaring a <code>pom</code> artifact as a dependency with a scope of <code>import</code>.</p>
 <p>Consider the case of a <code>POM</code> file:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"># Project X</span><br><span class="line">&lt;project&gt;</span><br><span class="line"> &lt;modelVersion&gt;4.0.0&lt;&#x2F;modelVersion&gt;</span><br><span class="line"> &lt;groupId&gt;maven&lt;&#x2F;groupId&gt;</span><br><span class="line"> &lt;artifactId&gt;X&lt;&#x2F;artifactId&gt;</span><br><span class="line"> &lt;packaging&gt;pom&lt;&#x2F;packaging&gt;</span><br><span class="line"> &lt;name&gt;X&lt;&#x2F;name&gt;</span><br><span class="line"> &lt;version&gt;1.0&lt;&#x2F;version&gt;</span><br><span class="line"> </span><br><span class="line"> &lt;dependencyManagement&gt;</span><br><span class="line">   &lt;dependencies&gt;</span><br><span class="line">     &lt;dependency&gt;</span><br><span class="line">       &lt;groupId&gt;test&lt;&#x2F;groupId&gt;</span><br><span class="line">       &lt;artifactId&gt;a&lt;&#x2F;artifactId&gt;</span><br><span class="line">       &lt;version&gt;1.1&lt;&#x2F;version&gt;</span><br><span class="line">     &lt;&#x2F;dependency&gt;</span><br><span class="line"></span><br><span class="line">     &lt;dependency&gt;</span><br><span class="line">       &lt;groupId&gt;test&lt;&#x2F;groupId&gt;</span><br><span class="line">       &lt;artifactId&gt;b&lt;&#x2F;artifactId&gt;</span><br><span class="line">       &lt;version&gt;1.0&lt;&#x2F;version&gt;</span><br><span class="line">       &lt;scope&gt;compile&lt;&#x2F;scope&gt;</span><br><span class="line">     &lt;&#x2F;dependency&gt;</span><br><span class="line">   &lt;&#x2F;dependencies&gt;</span><br><span class="line"> &lt;&#x2F;dependencyManagement&gt;</span><br><span class="line">&lt;&#x2F;project&gt;</span><br></pre></td></tr></table></figure>
 
@@ -1043,130 +1184,128 @@
   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">&lt;project&gt;</span><br><span class="line">    &lt;modelVersion&gt;4.0.0&lt;&#x2F;modelVersion&gt;</span><br><span class="line">    &lt;groupId&gt;com.sample&lt;&#x2F;groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;project1&lt;&#x2F;artifactId&gt;</span><br><span class="line">    &lt;version&gt;1.0-SNAPSHOT&lt;&#x2F;version&gt;</span><br><span class="line">    &lt;packaging&gt;jar&lt;&#x2F;packaging&gt;</span><br><span class="line"></span><br><span class="line">	&lt;dependencyManagement&gt;</span><br><span class="line">	        &lt;dependencies&gt;</span><br><span class="line">	            &lt;!-- Imports the bill-of-materials POM. --&gt;</span><br><span class="line">	            &lt;dependency&gt;</span><br><span class="line">	                &lt;groupId&gt;maven&lt;&#x2F;groupId&gt;</span><br><span class="line">	                &lt;artifactId&gt;X&lt;&#x2F;artifactId&gt;</span><br><span class="line">	                &lt;version&gt;1.0&lt;&#x2F;version&gt;</span><br><span class="line">	                &lt;type&gt;pom&lt;&#x2F;type&gt;</span><br><span class="line">	                &lt;scope&gt;import&lt;&#x2F;scope&gt;</span><br><span class="line">	            &lt;&#x2F;dependency&gt;</span><br><span class="line">	        &lt;&#x2F;dependencies&gt;</span><br><span class="line">	&lt;&#x2F;dependencyManagement&gt;</span><br><span class="line"></span><br><span class="line">    &lt;dependencies&gt;</span><br><span class="line">        &lt;!-- Add a dependency from the BOM POM.</span><br><span class="line">        Note: no version or scope is required, it&#39;s inherited from the BOM POM! --&gt;</span><br><span class="line">        &lt;dependency&gt;</span><br><span class="line">            &lt;groupId&gt;test&lt;&#x2F;groupId&gt;</span><br><span class="line">            &lt;artifactId&gt;a&lt;&#x2F;artifactId&gt;</span><br><span class="line">        &lt;&#x2F;dependency&gt;</span><br><span class="line">    &lt;&#x2F;dependencies&gt;</span><br><span class="line">&lt;&#x2F;project&gt;</span><br></pre></td></tr></table></figure></li>
 </ul>
 
-      
     </div>
-    <footer class="article-footer">
-      <a data-url="https://jasonyux.github.io/2020/05/22/Apache-Manual-md/" data-id="ckbqgsgpu00030kor9mpufbw0" class="article-share-link">Share</a>
-      
-      
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/05/20/Git-Summary/" rel="prev" title="Git Manual">
+      <i class="fa fa-chevron-left"></i> Git Manual
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/05/25/Docker-Manual/" rel="next" title="Docker Manual">
+      Docker Manual <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+        </div>
+        
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Xiao Yu</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
     </footer>
   </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/2020/05/25/Docker-Manual/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          Docker Manual
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2020/05/20/Git-Summary/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Git Manual</div>
-    </a>
-  
-</nav>
 
   
-</article>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
 
-</section>
-        
-          <aside id="sidebar">
-  
-    
+<script src="/js/utils.js"></script>
 
-  
-    
+<script src="/js/motion.js"></script>
 
-  
-    
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li></ul>
-    </div>
-  </div>
+
+<script src="/js/next-boot.js"></script>
 
 
   
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2020/06/15/Go-Manual/">Go Manual</a>
-          </li>
-        
-          <li>
-            <a href="/2020/06/09/Spring-Framework-Guide/">Spring Framework Guide</a>
-          </li>
-        
-          <li>
-            <a href="/2020/06/09/SpringBoot-Manual/">Spring Boot Manual</a>
-          </li>
-        
-          <li>
-            <a href="/2020/06/02/Redis-Manual/">Redis Manual</a>
-          </li>
-        
-          <li>
-            <a href="/2020/05/26/MySQL-Manual/">MySQL Manual</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
 
-  
-</aside>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2020 Xiao Yu<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
-    </div>
-  </div>
-</footer>
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
-    
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
 
 
   
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
 
   
-<script src="/fancybox/jquery.fancybox.pack.js"></script>
 
-
-
-
-<script src="/js/script.js"></script>
-
-
-
-
-  </div>
 </body>
 </html>

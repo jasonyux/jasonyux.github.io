@@ -1,12 +1,25 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
-  
-  <title>Docker Manual | From a Beginner to a Disaster</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"jasonyux.github.io","root":"/","scheme":"Pisces","version":"8.0.0-rc.3","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
   <meta name="description" content="IMPORTANT:Much of the content here is a personal summary&#x2F;abbrieviation of contents on the Offical Docker Guide. For more complete information, please refer to the offical site.  Docker IntroDocker pr">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Docker Manual">
@@ -15,87 +28,215 @@
 <meta property="og:description" content="IMPORTANT:Much of the content here is a personal summary&#x2F;abbrieviation of contents on the Offical Docker Guide. For more complete information, please refer to the offical site.  Docker IntroDocker pr">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-05-25T07:18:39.000Z">
-<meta property="article:modified_time" content="2020-06-22T08:32:11.989Z">
+<meta property="article:modified_time" content="2020-06-22T13:28:10.866Z">
 <meta property="article:author" content="Xiao Yu">
 <meta name="twitter:card" content="summary">
-  
-    <link rel="alternate" href="/atom.xml" title="From a Beginner to a Disaster" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  
-<link rel="stylesheet" href="/css/style.css">
 
-<meta name="generator" content="Hexo 4.2.1"></head>
+<link rel="canonical" href="https://jasonyux.github.io/2020/05/25/Docker-Manual/">
 
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">From a Beginner to a Disaster</a>
-      </h1>
-      
-        <h2 id="subtitle-wrap">
-          <a href="/" id="subtitle">Xiao.Y</a>
-        </h2>
-      
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>Docker Manual | From a Beginner to a Disaster</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before, .use-motion .logo-line-after {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+  <div id="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <main class="main">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+        <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
     </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://jasonyux.github.io"></form>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line-before"></i>
+      <h1 class="site-title">From a Beginner to a Disaster</h1>
+      <i class="logo-line-after"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Xiao.Y</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">1.</span> <span class="nav-text">Docker Intro</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">2.</span> <span class="nav-text">Docker Basics</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">3.</span> <span class="nav-text">Docker Architecture</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">4.</span> <span class="nav-text">Docker Objects</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">5.</span> <span class="nav-text">Installing Docker</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">6.</span> <span class="nav-text">Basic Workflow</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">7.</span> <span class="nav-text">Quickstart for Building an Image and a Container</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">8.</span> <span class="nav-text">Quickstart for Sharing Images on Docker Hub</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">9.</span> <span class="nav-text">Starting and Stopping Containers</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">10.</span> <span class="nav-text">Viewing and Removing Unwanted Images</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">11.</span> <span class="nav-text">Viewing and Removing Containers</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">12.</span> <span class="nav-text">Copying Files to and from a Container</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">13.</span> <span class="nav-text">Configuring your Docker Daemon</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">14.</span> <span class="nav-text">Starting your Docker Daemon Manually</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">15.</span> <span class="nav-text">Starting your Containers Automatically</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">16.</span> <span class="nav-text">Keep Containers Alive during Daemon Downtime</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">17.</span> <span class="nav-text">Running Multiple Services in a Container</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">18.</span> <span class="nav-text">Viewing Runtime metrics for a Container</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">19.</span> <span class="nav-text">View Logs for a Particular Container or Service</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">20.</span> <span class="nav-text">Configuring Logging Drivers</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">21.</span> <span class="nav-text">Use environment variables or labels with logging drivers</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">22.</span> <span class="nav-text">Supported Logging Drivers</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">23.</span> <span class="nav-text">Using a Logging Driver Plugin</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">24.</span> <span class="nav-text">Customizing the Logging Driver Tag</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">25.</span> <span class="nav-text">Dokcer Network Overview</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">26.</span> <span class="nav-text">Network Drivers</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">27.</span> <span class="nav-text">Using bridge networks</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">28.</span> <span class="nav-text">Creating and Removing a user-defined bridge</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">29.</span> <span class="nav-text">Connecting and Disconnecting from a user-defined bridge</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">30.</span> <span class="nav-text">Enabling Forwarding from Containers to Outside World</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">31.</span> <span class="nav-text">Viewing and Configuring your user-defined bridge</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">32.</span> <span class="nav-text">Using host networks</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">33.</span> <span class="nav-text">Using overlay networks</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">34.</span> <span class="nav-text">Creating an Overlay Network With Swarm</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">35.</span> <span class="nav-text">Use the default overlay network</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">36.</span> <span class="nav-text">Using a user-defined overlay</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">37.</span> <span class="nav-text">Using an overlay network for standalone containers (recommended)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">38.</span> <span class="nav-text">Customizing your ingress network</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">39.</span> <span class="nav-text">Customizing your docker_gwbridge network</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">40.</span> <span class="nav-text">Customizing your user-defined overlay network</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">41.</span> <span class="nav-text">Using mcvlan networks</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">42.</span> <span class="nav-text">Using none networks</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">43.</span> <span class="nav-text">Using MySQL Server in Docker</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">44.</span> <span class="nav-text">Creating and Mounting a Volume to MySQL data</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">45.</span> <span class="nav-text">Use a Volume for Read-Only Purpose</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">46.</span> <span class="nav-text">Overview of Docker Compose</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">47.</span> <span class="nav-text">Installing Docker Compose</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">48.</span> <span class="nav-text">QuickStart with Docker Compose</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Xiao Yu</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+  </nav>
+</div>
+
+
+
       </div>
     </div>
-  </div>
-</header>
-      <div class="outer">
-        <section id="main"><article id="post-Docker-Manual" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/05/25/Docker-Manual/" class="article-date">
-  <time datetime="2020-05-25T07:18:39.000Z" itemprop="datePublished">2020-05-25</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      Docker Manual
-    </h1>
-  
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
 
       </header>
+
+      
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+      <div class="main-inner">
+        
+
+        <div class="content post posts-expand">
+          
+
     
-    <div class="article-entry" itemprop="articleBody">
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://jasonyux.github.io/2020/05/25/Docker-Manual/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Xiao Yu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="From a Beginner to a Disaster">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Docker Manual
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-05-25 15:18:39" itemprop="dateCreated datePublished" datetime="2020-05-25T15:18:39+08:00">2020-05-25</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-06-22 21:28:10" itemprop="dateModified" datetime="2020-06-22T21:28:10+08:00">2020-06-22</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
         <hr>
 <p><strong>IMPORTANT</strong>:<br>Much of the content here is a personal summary/abbrieviation of contents on the <a href="https://docs.docker.com/get-started/" target="_blank" rel="noopener">Offical Docker Guide</a>. For more complete information, please refer to the offical site.</p>
 <hr>
-<h2 id="Docker-Intro"><a href="#Docker-Intro" class="headerlink" title="Docker Intro"></a>Docker Intro</h2><p>Docker provides the ability to package and run an application in a loosely isolated environment called a <strong><code>container</code></strong>, which <strong>separate your applications from your infrastructure</strong>. The <strong>isolation and security</strong> allow you to run many containers simultaneously on a given host.</p>
+<h2><span id="docker-intro">Docker Intro</span><a href="#docker-intro" class="header-anchor">⌨</a></h2><p>Docker provides the ability to package and run an application in a loosely isolated environment called a <strong><code>container</code></strong>, which <strong>separate your applications from your infrastructure</strong>. The <strong>isolation and security</strong> allow you to run many containers simultaneously on a given host.</p>
 <p>The use of <code>container</code>s to deploy applications is called containerization. Containers are not new, but their use for easily deploying applications is.</p>
 <p>Docker provides tooling and a platform to manage the lifecycle of your <code>container</code>s:</p>
 <ul>
@@ -103,7 +244,7 @@
 <li>The <code>container</code> becomes the unit for distributing and testing your application.</li>
 <li>When you’re ready, deploy your application into your production environment, as a <code>container</code> or an orchestrated service. This works the same whether your production environment is a local data center, a cloud provider, or a hybrid of the two.</li>
 </ul>
-<h2 id="Docker-Basics"><a href="#Docker-Basics" class="headerlink" title="Docker Basics"></a>Docker Basics</h2><p><strong>Docker is mainly composed of the following elements</strong> (the first three is referred as Docker Engine by the official site): </p>
+<h2><span id="docker-basics">Docker Basics</span><a href="#docker-basics" class="header-anchor">⌨</a></h2><p><strong>Docker is mainly composed of the following elements</strong> (the first three is referred as Docker Engine by the official site): </p>
 <ul>
 <li><strong>A server</strong> (<code>docker daemon</code>) which is a type of long-running program called a daemon process (the <code>dockerd</code>command).</li>
 <li><strong>A command line interface (CLI)</strong> client that is used by most users (the <code>docker</code>command).</li>
@@ -111,7 +252,7 @@
 <li><strong>A Docker registry</strong>, which stores Docker images. Docker Hub is a public registry that anyone can use, and Docker is configured to look for images on Docker Hub by default.</li>
 </ul>
 <p>So we see that Docker uses a client-server architecture. The <strong><code>docker client</code> talks to the <code>docker daemon</code></strong>, which does the heavy lifting of building, running, and distributing your Docker containers. The Docker <code>client</code> and <code>daemon</code> can run on the same system, or you can connect a Docker client to a remote Docker daemon.</p>
-<h2 id="Docker-Architecture"><a href="#Docker-Architecture" class="headerlink" title="Docker Architecture"></a>Docker Architecture</h2><ul>
+<h2><span id="docker-architecture">Docker Architecture</span><a href="#docker-architecture" class="header-anchor">⌨</a></h2><ul>
 <li><p>The <strong>Docker <code>daemon</code></strong></p>
 <ul>
 <li>The Docker <code>daemon</code> (<code>dockerd</code>) listens for Docker API requests and manages Docker objects such as <code>images</code>, <code>container</code>s, networks, and volumes. A daemon can also communicate with other daemons to manage Docker services.</li>
@@ -133,7 +274,7 @@
 </ul>
 </li>
 </ul>
-<h2 id="Docker-Objects"><a href="#Docker-Objects" class="headerlink" title="Docker Objects"></a>Docker Objects</h2><ul>
+<h2><span id="docker-objects">Docker Objects</span><a href="#docker-objects" class="header-anchor">⌨</a></h2><ul>
 <li><code>IMAGE</code><ul>
 <li>An <code>image</code> is a <strong>read-only template</strong> with <strong>instructions for creating a Docker <code>container</code></strong>. Often, an <code>image</code> is based on another <code>image</code>, with some additional customization. For example, you may build an image which is based on the ubuntu image, but installs the Apache web server and your application, as well as the configuration details needed to make your application run.</li>
 </ul>
@@ -158,15 +299,15 @@
 </ul>
 </li>
 </ul>
-<h2 id="Installing-Docker"><a href="#Installing-Docker" class="headerlink" title="Installing Docker"></a>Installing Docker</h2><p>Please follow the <a href="#https://docs.docker.com/get-started/">Official Guide</a>.</p>
-<h2 id="Basic-Workflow"><a href="#Basic-Workflow" class="headerlink" title="Basic Workflow"></a>Basic Workflow</h2><p>In general, the development workflow for containerized applications looks like this:</p>
+<h2><span id="installing-docker">Installing Docker</span><a href="#installing-docker" class="header-anchor">⌨</a></h2><p>Please follow the <a href="#https://docs.docker.com/get-started/">Official Guide</a>.</p>
+<h2><span id="basic-workflow">Basic Workflow</span><a href="#basic-workflow" class="header-anchor">⌨</a></h2><p>In general, the development workflow for containerized applications looks like this:</p>
 <ol>
 <li><strong>Create</strong> a Docker <code>image</code> containing the components of your application</li>
 <li><strong>Test</strong> those components</li>
 <li><strong>Assemble</strong> your containers using the <code>image</code> file and supporting infrastructure into a complete application</li>
 <li>Test, share, and deploy your complete containerized application.</li>
 </ol>
-<h2 id="Quickstart-for-Building-an-Image-and-a-Container"><a href="#Quickstart-for-Building-an-Image-and-a-Container" class="headerlink" title="Quickstart for Building an Image and a Container"></a>Quickstart for Building an Image and a Container</h2><p>First, we could use an existing project to demonstrate some concepts mentioned above.</p>
+<h2><span id="quickstart-for-building-an-image-and-a-container">Quickstart for Building an Image and a Container</span><a href="#quickstart-for-building-an-image-and-a-container" class="header-anchor">⌨</a></h2><p>First, we could use an existing project to demonstrate some concepts mentioned above.</p>
 <ol>
 <li><p>Run:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git clone https:&#x2F;&#x2F;github.com&#x2F;dockersamples&#x2F;node-bulletin-board</span><br><span class="line">cd node-bulletin-board&#x2F;bulletin-board-app</span><br></pre></td></tr></table></figure>
@@ -217,7 +358,7 @@
 </li>
 </ol>
 <p>At this point, you’ve successfully <strong>built an <code>image</code></strong>, <strong>performed a simple containerization of an application using that <code>image</code></strong>, and confirmed that your app runs successfully in its container.</p>
-<h2 id="Quickstart-for-Sharing-Images-on-Docker-Hub"><a href="#Quickstart-for-Sharing-Images-on-Docker-Hub" class="headerlink" title="Quickstart for Sharing Images on Docker Hub"></a>Quickstart for Sharing Images on Docker Hub</h2><p>At this point, <strong>you’ve built a containerized application</strong>. The final step is to <strong>share your images on a <code>registry</code> like Docker Hub</strong>, so they can be easily downloaded and run on any destination machine. (first you need to have a Docker Hub account, if needed help, follow <a href="#https://docs.docker.com/get-started/part3/#set-up-your-docker-hub-account">this guide</a>)</p>
+<h2><span id="quickstart-for-sharing-images-on-docker-hub">Quickstart for Sharing Images on Docker Hub</span><a href="#quickstart-for-sharing-images-on-docker-hub" class="header-anchor">⌨</a></h2><p>At this point, <strong>you’ve built a containerized application</strong>. The final step is to <strong>share your images on a <code>registry</code> like Docker Hub</strong>, so they can be easily downloaded and run on any destination machine. (first you need to have a Docker Hub account, if needed help, follow <a href="#https://docs.docker.com/get-started/part3/#set-up-your-docker-hub-account">this guide</a>)</p>
 <ol>
 <li><p>Once you have an account, you need to create a repository. At this point, you can only <strong>specify a repository name</strong>, for example, <code>bulletin</code>, and click create.</p>
 </li>
@@ -231,7 +372,7 @@
 </ol>
 <p>Now that your image is available on Docker Hub, you’ll be able to run it anywhere. By moving images around in this way, you <strong>no longer need to install any dependencies except Docker on the machines</strong> you want to run your software on. The dependencies of containerized applications are completely encapsulated and isolated within your images, which you can share using Docker Hub as described above.</p>
 <p>However, there is one thing to keep in mind: at the moment, you’ve only <strong>pushed your <code>image</code></strong> to Docker Hub; <strong>what about your <code>Dockerfile</code></strong>? A crucial best practice is to <strong>keep these in version control (e.g.  using <code>git</code>), perhaps alongside your source code for your application</strong>. You can add a link or note in your Docker Hub repository description indicating where these files can be found, preserving the record not only of how your image was built, but how it’s meant to be run as a full application.</p>
-<h2 id="Starting-and-Stopping-Containers"><a href="#Starting-and-Stopping-Containers" class="headerlink" title="Starting and Stopping Containers"></a>Starting and Stopping Containers</h2><ul>
+<h2><span id="starting-and-stopping-containers">Starting and Stopping Containers</span><a href="#starting-and-stopping-containers" class="header-anchor">⌨</a></h2><ul>
 <li><p>To create a new <code>container</code> from an <code>image</code> and start it, use <code>docker run</code>:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run [options] &lt;image&gt; [command] [argument]</span><br></pre></td></tr></table></figure>
 
@@ -258,7 +399,7 @@
 <p>  If you want to <code>kill</code> those <code>container</code>s, just replace the <code>stop</code> with <code>kill</code>.</p>
 </li>
 </ul>
-<h2 id="Viewing-and-Removing-Unwanted-Images"><a href="#Viewing-and-Removing-Unwanted-Images" class="headerlink" title="Viewing and Removing Unwanted Images"></a>Viewing and Removing Unwanted Images</h2><ul>
+<h2><span id="viewing-and-removing-unwanted-images">Viewing and Removing Unwanted Images</span><a href="#viewing-and-removing-unwanted-images" class="header-anchor">⌨</a></h2><ul>
 <li><p>To view the <code>image</code>s, you could use the command:</p>
   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker images</span><br></pre></td></tr></table></figure>
 <p>  to provide you with a list of images that you have created. For example, they might look like this:</p>
@@ -271,13 +412,13 @@
 <blockquote>
 <p>Note:</p>
 <ul>
-<li><input disabled="" type="checkbox"> The <code>-f</code> or <code>--force</code> option is <strong>only necessay when you have the <code>container</code> running</strong>. If it is not running, it can be removed just by specifying <code>docker image rm</code></li>
+<li><input disabled type="checkbox"> The <code>-f</code> or <code>--force</code> option is <strong>only necessay when you have the <code>container</code> running</strong>. If it is not running, it can be removed just by specifying <code>docker image rm</code></li>
 </ul>
 </blockquote>
 </li>
 </ul>
 <p><a name="Viewing-and-Removing-Containers"></a></p>
-<h2 id="Viewing-and-Removing-Containers"><a href="#Viewing-and-Removing-Containers" class="headerlink" title="Viewing and Removing Containers"></a>Viewing and Removing Containers</h2><ul>
+<h2><span id="viewing-and-removing-containers">Viewing and Removing Containers</span><a href="#viewing-and-removing-containers" class="header-anchor">⌨</a></h2><ul>
 <li><p>To list all <strong>running containers</strong>, you can use the command:</p>
   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker ps</span><br></pre></td></tr></table></figure>
 <p>  which, for example, could gives you:</p>
@@ -338,7 +479,7 @@
 <p>  For other commands/options related to <code>docker container -rm</code> please refer to the <a href="#https://docs.docker.com/engine/reference/commandline/container_rm/">Docker Doc here</a></p>
 </li>
 </ul>
-<h2 id="Copying-Files-to-and-from-a-Container"><a href="#Copying-Files-to-and-from-a-Container" class="headerlink" title="Copying Files to and from a Container"></a>Copying Files to and from a Container</h2><ul>
+<h2><span id="copying-files-to-and-from-a-container">Copying Files to and from a Container</span><a href="#copying-files-to-and-from-a-container" class="header-anchor">⌨</a></h2><ul>
 <li><p>To copy local files to a container, you can use teh command:</p>
   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker cp &lt;localPath&gt;&#x2F;&lt;fromFile&gt; &lt;container-id&gt;:&lt;pathInContainer&gt;&#x2F;&lt;toFile&gt;</span><br></pre></td></tr></table></figure>
 
@@ -351,7 +492,7 @@
 
 </li>
 </ul>
-<h2 id="Configuring-your-Docker-Daemon"><a href="#Configuring-your-Docker-Daemon" class="headerlink" title="Configuring your Docker Daemon"></a>Configuring your Docker Daemon</h2><p>To configure the Docker daemon using a JSON file, create a file at <code>/etc/docker/daemon.json</code> on Linux systems, or <code>C:\ProgramData\docker\config\daemon.json</code> on Windows. On MacOS go to the whale in the <code>taskbar &gt; Preferences &gt; Daemon &gt; Advanced</code>.</p>
+<h2><span id="configuring-your-docker-daemon">Configuring your Docker Daemon</span><a href="#configuring-your-docker-daemon" class="header-anchor">⌨</a></h2><p>To configure the Docker daemon using a JSON file, create a file at <code>/etc/docker/daemon.json</code> on Linux systems, or <code>C:\ProgramData\docker\config\daemon.json</code> on Windows. On MacOS go to the whale in the <code>taskbar &gt; Preferences &gt; Daemon &gt; Advanced</code>.</p>
 <p>For example, if you want your Docker daemon to run in <code>debug mode</code>, uses <code>TLS</code>, and listens for traffic routed to <code>192.168.59.3</code> on port <code>2376</code>, you would have the following configuration in your <code>daemon.json</code> ( You can learn what configuration options are available in the <a href="https://docs.docker.com/engine/reference/commandline/dockerd/#daemon-configuration-file" target="_blank" rel="noopener">dockerd reference docs</a>):</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;debug&quot;: true,</span><br><span class="line">  &quot;tls&quot;: true,</span><br><span class="line">  &quot;tlscert&quot;: &quot;&#x2F;var&#x2F;docker&#x2F;server.pem&quot;,</span><br><span class="line">  &quot;tlskey&quot;: &quot;&#x2F;var&#x2F;docker&#x2F;serverkey.pem&quot;,</span><br><span class="line">  &quot;hosts&quot;: [&quot;tcp:&#x2F;&#x2F;192.168.59.3:2376&quot;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -361,7 +502,7 @@
 <blockquote>
 <p>Note:</p>
 <ul>
-<li><input disabled="" type="checkbox"> If you use a <code>daemon.json</code> file <strong>and also pass options to the <code>dockerd</code> command</strong> manually or using start-up scripts, and these options conflict, Docker fails to start with an error such as:</li>
+<li><input disabled type="checkbox"> If you use a <code>daemon.json</code> file <strong>and also pass options to the <code>dockerd</code> command</strong> manually or using start-up scripts, and these options conflict, Docker fails to start with an error such as:</li>
 </ul>
 </blockquote>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">unable to configure the Docker daemon with file &#x2F;etc&#x2F;docker&#x2F;daemon.json:</span><br><span class="line">the following directives are specified both as a flag and in the configuration</span><br><span class="line">file: hosts: (from flag: [unix:&#x2F;&#x2F;&#x2F;var&#x2F;run&#x2F;docker.sock], from file: [tcp:&#x2F;&#x2F;127.0.0.1:2376])</span><br></pre></td></tr></table></figure>
@@ -385,10 +526,10 @@
 <blockquote>
 <p>Note:</p>
 <ul>
-<li><input disabled="" type="checkbox"> Instead of following this procedure, you can also <code>stop</code> the Docker <code>daemon</code> and <code>restart</code> it manually with the <code>debug flag -D</code>. However, this may result in Docker <strong>restarting with a different environment than the one the hosts’ startup scripts create</strong>, and this may make debugging more difficult.</li>
+<li><input disabled type="checkbox"> Instead of following this procedure, you can also <code>stop</code> the Docker <code>daemon</code> and <code>restart</code> it manually with the <code>debug flag -D</code>. However, this may result in Docker <strong>restarting with a different environment than the one the hosts’ startup scripts create</strong>, and this may make debugging more difficult.</li>
 </ul>
 </blockquote>
-<h2 id="Starting-your-Docker-Daemon-Manually"><a href="#Starting-your-Docker-Daemon-Manually" class="headerlink" title="Starting your Docker Daemon Manually"></a>Starting your Docker Daemon Manually</h2><p>Once Docker is installed, <strong>you need to start the Docker daemon</strong>. Most Linux distributions use <code>systemctl</code> to start services. If you do not have <code>systemctl</code>, use the <code>service</code> command.</p>
+<h2><span id="starting-your-docker-daemon-manually">Starting your Docker Daemon Manually</span><a href="#starting-your-docker-daemon-manually" class="header-anchor">⌨</a></h2><p>Once Docker is installed, <strong>you need to start the Docker daemon</strong>. Most Linux distributions use <code>systemctl</code> to start services. If you do not have <code>systemctl</code>, use the <code>service</code> command.</p>
 <ul>
 <li><p><code>systemctl</code>:</p>
   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo systemctl start docker</span><br></pre></td></tr></table></figure>
@@ -398,7 +539,7 @@
 
 </li>
 </ul>
-<h2 id="Starting-your-Containers-Automatically"><a href="#Starting-your-Containers-Automatically" class="headerlink" title="Starting your Containers Automatically"></a>Starting your Containers Automatically</h2><p>Docker provides restart policies to <strong>control whether your containers start automatically when they exit, or when Docker restarts</strong>. Restart policies ensure that linked containers are started in the correct order. Docker recommends that you use restart policies, and avoid using process managers to start containers.</p>
+<h2><span id="starting-your-containers-automatically">Starting your Containers Automatically</span><a href="#starting-your-containers-automatically" class="header-anchor">⌨</a></h2><p>Docker provides restart policies to <strong>control whether your containers start automatically when they exit, or when Docker restarts</strong>. Restart policies ensure that linked containers are started in the correct order. Docker recommends that you use restart policies, and avoid using process managers to start containers.</p>
 <p>To configure the <strong>restart policy</strong> for a container, use the <code>--restart</code> flag when using the <code>docker run</code> command. The value of the <code>--restart</code> flag can be any of the following:</p>
 <table>
 <thead>
@@ -430,12 +571,12 @@
 <blockquote>
 <p>Note:</p>
 <ul>
-<li><input disabled="" type="checkbox"> A restart policy <strong>only takes effect after a container starts successfully (when you run the command specifying the restart policy)</strong>. In this case, starting successfully means that the container is up for at least 10 seconds and Docker has started monitoring it. This <strong>prevents a container</strong> which does not start at all from going <strong>into a restart loop</strong>.</li>
-<li><input disabled="" type="checkbox"> <strong>If you manually stop a container</strong>, <strong>its restart policy is ignored until the Docker daemon restarts or the container is manually restarted</strong>. This is another attempt to <strong>prevent a restart loop</strong>.</li>
-<li><input disabled="" type="checkbox"> Restart policies <strong>only apply to containers</strong>. Restart policies for swarm services are configured differently. See the flags related to service restart.</li>
+<li><input disabled type="checkbox"> A restart policy <strong>only takes effect after a container starts successfully (when you run the command specifying the restart policy)</strong>. In this case, starting successfully means that the container is up for at least 10 seconds and Docker has started monitoring it. This <strong>prevents a container</strong> which does not start at all from going <strong>into a restart loop</strong>.</li>
+<li><input disabled type="checkbox"> <strong>If you manually stop a container</strong>, <strong>its restart policy is ignored until the Docker daemon restarts or the container is manually restarted</strong>. This is another attempt to <strong>prevent a restart loop</strong>.</li>
+<li><input disabled type="checkbox"> Restart policies <strong>only apply to containers</strong>. Restart policies for swarm services are configured differently. See the flags related to service restart.</li>
 </ul>
 </blockquote>
-<h2 id="Keep-Containers-Alive-during-Daemon-Downtime"><a href="#Keep-Containers-Alive-during-Daemon-Downtime" class="headerlink" title="Keep Containers Alive during Daemon Downtime"></a>Keep Containers Alive during Daemon Downtime</h2><p><strong>By default</strong>, when the <strong>Docker daemon terminates</strong>, it <strong>shuts down running containers</strong>. Starting with Docker Engine 1.12, you can <strong>configure the daemon so that containers remain running if the daemon becomes unavailable</strong>. This functionality is called <code>live restore</code>. </p>
+<h2><span id="keep-containers-alive-during-daemon-downtime">Keep Containers Alive during Daemon Downtime</span><a href="#keep-containers-alive-during-daemon-downtime" class="header-anchor">⌨</a></h2><p><strong>By default</strong>, when the <strong>Docker daemon terminates</strong>, it <strong>shuts down running containers</strong>. Starting with Docker Engine 1.12, you can <strong>configure the daemon so that containers remain running if the daemon becomes unavailable</strong>. This functionality is called <code>live restore</code>. </p>
 <p>There are <strong>two ways to enable the <code>live restore</code> setting</strong> to <strong>keep containers alive when the daemon becomes unavailable</strong>. <strong>Only do one of the following</strong>.</p>
 <ul>
 <li><p>Add the configuration to the daemon configuration file. On Linux, this defaults to <code>/etc/docker/daemon.json</code>. On Docker Desktop for Mac or Docker Desktop for Windows, select the Docker icon from the task bar, then click Preferences -&gt; Daemon -&gt; Advanced.</p>
@@ -453,16 +594,16 @@
 <blockquote>
 <p>Note:</p>
 <ul>
-<li><input disabled="" type="checkbox"> The live restore option <strong>only works to restore containers if the daemon options</strong>, such as bridge IP addresses and graph driver, <strong>did not change</strong>. If any of these <strong>daemon-level configuration options have changed, the live restore may not work and you may need to manually start the containers</strong>.</li>
-<li><input disabled="" type="checkbox"> If the daemon is down <strong>for a long time</strong>, <strong>running containers may fill up the FIFO log the daemon normally reads</strong>. A full log blocks containers from logging more data. The default buffer size is 64K. <strong>If the buffers fill, you must restart the Docker daemon to flush them</strong>.</li>
+<li><input disabled type="checkbox"> The live restore option <strong>only works to restore containers if the daemon options</strong>, such as bridge IP addresses and graph driver, <strong>did not change</strong>. If any of these <strong>daemon-level configuration options have changed, the live restore may not work and you may need to manually start the containers</strong>.</li>
+<li><input disabled type="checkbox"> If the daemon is down <strong>for a long time</strong>, <strong>running containers may fill up the FIFO log the daemon normally reads</strong>. A full log blocks containers from logging more data. The default buffer size is 64K. <strong>If the buffers fill, you must restart the Docker daemon to flush them</strong>.</li>
 </ul>
 <p><strong>On Linux</strong>, you can modify the kernel’s buffer size by changing <code>/proc/sys/fs/pipe-max-size</code>. You cannot modify the buffer size on Docker Desktop for Mac or Docker Desktop for Windows.</p>
 <ul>
-<li><input disabled="" type="checkbox"> The live restore option <strong>only pertains to standalone containers, and not to swarm services</strong>. Swarm services are managed by <strong>swarm managers</strong>. If swarm managers are not available, swarm services continue to run on worker nodes but cannot be managed until enough swarm managers are available to maintain a quorum.</li>
+<li><input disabled type="checkbox"> The live restore option <strong>only pertains to standalone containers, and not to swarm services</strong>. Swarm services are managed by <strong>swarm managers</strong>. If swarm managers are not available, swarm services continue to run on worker nodes but cannot be managed until enough swarm managers are available to maintain a quorum.</li>
 </ul>
 </blockquote>
-<h2 id="Running-Multiple-Services-in-a-Container"><a href="#Running-Multiple-Services-in-a-Container" class="headerlink" title="Running Multiple Services in a Container"></a>Running Multiple Services in a Container</h2><p>This involves writing scripts and editing the Dockerfile. For details please refer to <a href="https://docs.docker.com/config/containers/multi-service_container/" target="_blank" rel="noopener">this link</a>.</p>
-<h2 id="Viewing-Runtime-metrics-for-a-Container"><a href="#Viewing-Runtime-metrics-for-a-Container" class="headerlink" title="Viewing Runtime metrics for a Container"></a>Viewing Runtime metrics for a Container</h2><p>There are a couple of ways where you can view the current runtime metrics for your container.</p>
+<h2><span id="running-multiple-services-in-a-container">Running Multiple Services in a Container</span><a href="#running-multiple-services-in-a-container" class="header-anchor">⌨</a></h2><p>This involves writing scripts and editing the Dockerfile. For details please refer to <a href="https://docs.docker.com/config/containers/multi-service_container/" target="_blank" rel="noopener">this link</a>.</p>
+<h2><span id="viewing-runtime-metrics-for-a-container">Viewing Runtime metrics for a Container</span><a href="#viewing-runtime-metrics-for-a-container" class="header-anchor">⌨</a></h2><p>There are a couple of ways where you can view the current runtime metrics for your container.</p>
 <ol>
 <li><p>You can use the <code>docker stats</code> command to <strong>live stream a container’s runtime metrics</strong>. The command supports CPU, memory usage, memory limit, and network IO metrics.</p>
 <p> The following is a sample output from the docker stats command:</p>
@@ -491,7 +632,7 @@
 - **Network metrics** those are not directly exposed by the control group, but information can be gathered from other sources. For details, please follow the link below.</code></pre><p> For a detailed explaination of what you see in all those files, please refer to the <a href="https://docs.docker.com/config/containers/runmetrics/#metrics-from-cgroups-memory-cpu-block-io" target="_blank" rel="noopener">Offical Docker Documentation</a></p>
 </li>
 </ol>
-<h2 id="View-Logs-for-a-Particular-Container-or-Service"><a href="#View-Logs-for-a-Particular-Container-or-Service" class="headerlink" title="View Logs for a Particular Container or Service"></a>View Logs for a Particular Container or Service</h2><p>The <code>docker logs</code> command <strong>shows information logged by a running container</strong>. The <code>docker service logs</code> command <strong>shows information logged by all containers participating in a service</strong>. The information that is logged and the format of the log depends almost entirely on the container’s endpoint command.</p>
+<h2><span id="view-logs-for-a-particular-container-or-service">View Logs for a Particular Container or Service</span><a href="#view-logs-for-a-particular-container-or-service" class="header-anchor">⌨</a></h2><p>The <code>docker logs</code> command <strong>shows information logged by a running container</strong>. The <code>docker service logs</code> command <strong>shows information logged by all containers participating in a service</strong>. The information that is logged and the format of the log depends almost entirely on the container’s endpoint command.</p>
 <p>By default, <code>docker logs</code> or <code>docker service logs</code> <strong>shows the command’s output just as it would appear if you ran the command interactively in a terminal</strong>. UNIX and Linux commands typically open three I/O streams when they run, called <code>STDIN</code>, <code>STDOUT</code>, and <code>STDERR</code>. </p>
 <ul>
 <li><code>STDIN</code> is the <strong>command’s input stream</strong> (i.e. user input), which may include input from the keyboard or input from another command. </li>
@@ -515,7 +656,7 @@
 </li>
 </ul>
 <p><a name="Configuring-Logging-Drivers"></a></p>
-<h2 id="Configuring-Logging-Drivers"><a href="#Configuring-Logging-Drivers" class="headerlink" title="Configuring Logging Drivers"></a>Configuring Logging Drivers</h2><p>Docker includes multiple logging mechanisms to help you get information from running containers and services. These mechanisms are called <strong>logging drivers</strong> (I interpret them as driving your logs to a specific place with a specific format).</p>
+<h2><span id="configuring-logging-drivers">Configuring Logging Drivers</span><a href="#configuring-logging-drivers" class="header-anchor">⌨</a></h2><p>Docker includes multiple logging mechanisms to help you get information from running containers and services. These mechanisms are called <strong>logging drivers</strong> (I interpret them as driving your logs to a specific place with a specific format).</p>
 <p><strong>By default, Docker uses the <code>json</code> file to log all the outputs</strong>. The file of a container’s logs can be found in (if you use the default log format which is <code>json</code>):</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;var&#x2F;lib&#x2F;docker&#x2F;containers&#x2F;&lt;container id&gt;&#x2F;&lt;container id&gt;-json.log</span><br></pre></td></tr></table></figure>
 <p>This will contain the same log output as you will see if you run <code>docker logs &lt;container-id&gt;</code>. If you do not specify a logging driver, the default is json-file. Thus, the default output for commands such as <code>docker inspect &lt;CONTAINER&gt;</code> is also <code>JSON</code>.</p>
@@ -554,7 +695,7 @@
 <blockquote>
 <p>Note:</p>
 <ul>
-<li><input disabled="" type="checkbox"> <code>log-opts</code> <strong>configuration options</strong> in the <code>daemon.json</code> configuration file <strong>must be provided as strings</strong>. Boolean and numeric values (such as the value for max-file in the example above) must therefore be enclosed in quotes (<code>&quot;</code>).</li>
+<li><input disabled type="checkbox"> <code>log-opts</code> <strong>configuration options</strong> in the <code>daemon.json</code> configuration file <strong>must be provided as strings</strong>. Boolean and numeric values (such as the value for max-file in the example above) must therefore be enclosed in quotes (<code>&quot;</code>).</li>
 </ul>
 </blockquote>
 <p>Now, To <strong>find the current default logging driver for the Docker daemon</strong>, run <code>docker info</code> and search for Logging Driver. You can use the following command on Linux, macOS, or PowerShell on Windows:</p>
@@ -563,13 +704,13 @@
 <p>To find the <strong>current logging driver for a running container</strong>, if the daemon is using the json-file logging driver, run the following docker inspect command, substituting the container name or ID for <code>&lt;CONTAINER&gt;</code>:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ docker inspect -f &#39;&#123;&#123;.HostConfig.LogConfig.Type&#125;&#125;&#39; &lt;CONTAINER&gt;</span><br><span class="line"></span><br><span class="line">json-file</span><br></pre></td></tr></table></figure>
 
-<h2 id="Use-environment-variables-or-labels-with-logging-drivers"><a href="#Use-environment-variables-or-labels-with-logging-drivers" class="headerlink" title="Use environment variables or labels with logging drivers"></a>Use environment variables or labels with logging drivers</h2><p>Some logging drivers add the value of a container’s <code>--env|-e</code> or –label flags to the container’s logs. This example starts a container using the Docker daemon’s default logging driver (let’s assume json-file) but sets the environment variable os=ubuntu.</p>
+<h2><span id="use-environment-variables-or-labels-with-logging-drivers">Use environment variables or labels with logging drivers</span><a href="#use-environment-variables-or-labels-with-logging-drivers" class="header-anchor">⌨</a></h2><p>Some logging drivers add the value of a container’s <code>--env|-e</code> or –label flags to the container’s logs. This example starts a container using the Docker daemon’s default logging driver (let’s assume json-file) but sets the environment variable os=ubuntu.</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker run -dit --label production_status&#x3D;testing -e os&#x3D;ubuntu alpine sh</span><br></pre></td></tr></table></figure>
 
 <p>If the logging driver supports it, this adds additional fields to the logging output. The following output is generated by the json-file logging driver:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;attrs&quot;:&#123;&quot;production_status&quot;:&quot;testing&quot;,&quot;os&quot;:&quot;ubuntu&quot;&#125;</span><br></pre></td></tr></table></figure>
 
-<h2 id="Supported-Logging-Drivers"><a href="#Supported-Logging-Drivers" class="headerlink" title="Supported Logging Drivers"></a>Supported Logging Drivers</h2><p>The following logging drivers are supported. If you are using logging driver plugins, you may see more options.</p>
+<h2><span id="supported-logging-drivers">Supported Logging Drivers</span><a href="#supported-logging-drivers" class="header-anchor">⌨</a></h2><p>The following logging drivers are supported. If you are using logging driver plugins, you may see more options.</p>
 <table>
 <thead>
 <tr>
@@ -647,7 +788,7 @@
 <li>Reading log information <strong>requires decompressing rotated log files</strong>, which <strong>causes a temporary increase in disk usage</strong> (until the log entries from the rotated files are read) and an increased CPU usage while decompressing.</li>
 <li>The capacity of the host storage where the Docker data directory resides determines the maximum size of the log file information.</li>
 </ul>
-<h2 id="Using-a-Logging-Driver-Plugin"><a href="#Using-a-Logging-Driver-Plugin" class="headerlink" title="Using a Logging Driver Plugin"></a>Using a Logging Driver Plugin</h2><p>Docker logging plugins allow you to extend and customize Docker’s logging capabilities beyond those of the built-in logging drivers. <strong>A logging service provider can implement their own plugins and make them available on Docker Hub, or a private registry</strong>.</p>
+<h2><span id="using-a-logging-driver-plugin">Using a Logging Driver Plugin</span><a href="#using-a-logging-driver-plugin" class="header-anchor">⌨</a></h2><p>Docker logging plugins allow you to extend and customize Docker’s logging capabilities beyond those of the built-in logging drivers. <strong>A logging service provider can implement their own plugins and make them available on Docker Hub, or a private registry</strong>.</p>
 <ol>
 <li><p>First, you need to install the logging driver plugin</p>
 <ul>
@@ -667,7 +808,7 @@
 </ul>
 </li>
 </ol>
-<h2 id="Customizing-the-Logging-Driver-Tag"><a href="#Customizing-the-Logging-Driver-Tag" class="headerlink" title="Customizing the Logging Driver Tag"></a>Customizing the Logging Driver Tag</h2><p>The tag log option specifies how to format a tag that identifies the container’s log messages. By default, the system uses the first 12 characters of the container ID. To override this behavior, specify a tag option:</p>
+<h2><span id="customizing-the-logging-driver-tag">Customizing the Logging Driver Tag</span><a href="#customizing-the-logging-driver-tag" class="header-anchor">⌨</a></h2><p>The tag log option specifies how to format a tag that identifies the container’s log messages. By default, the system uses the first 12 characters of the container ID. To override this behavior, specify a tag option:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker run --log-driver&#x3D;fluentd --log-opt fluentd-address&#x3D;myhost.local:24224 --log-opt tag&#x3D;&quot;testTag&quot;</span><br></pre></td></tr></table></figure>
 
 <p>Often, you would like to use a special template markup:  --log-opt tag=".ImageName/.Name/.ID"  value yields syslog log lines like:</p>
@@ -709,9 +850,9 @@
 <td>The name of the docker program (docker).</td>
 </tr>
 </tbody></table>
-<h2 id="Dokcer-Network-Overview"><a href="#Dokcer-Network-Overview" class="headerlink" title="Dokcer Network Overview"></a>Dokcer Network Overview</h2><p>One of the reasons Docker containers and services are so powerful is that you can <strong>connect them together</strong>, or <strong>connect them to non-Docker workloads</strong>. Docker containers and services do not even need to be aware that they are deployed on Docker, or whether their peers are also Docker workloads or not. Whether your Docker hosts run Linux, Windows, or a mix of the two, you can use Docker to manage them in a platform-agnostic way.</p>
+<h2><span id="dokcer-network-overview">Dokcer Network Overview</span><a href="#dokcer-network-overview" class="header-anchor">⌨</a></h2><p>One of the reasons Docker containers and services are so powerful is that you can <strong>connect them together</strong>, or <strong>connect them to non-Docker workloads</strong>. Docker containers and services do not even need to be aware that they are deployed on Docker, or whether their peers are also Docker workloads or not. Whether your Docker hosts run Linux, Windows, or a mix of the two, you can use Docker to manage them in a platform-agnostic way.</p>
 <p>However. this topic <strong>does not go into OS-specific details</strong> about how Docker networks work, so you will not find information about how Docker manipulates <code>iptables</code> rules on Linux or how it manipulates routing rules on Windows servers, and you will not find detailed information about how Docker forms and encapsulates packets or handles encryption. </p>
-<h2 id="Network-Drivers"><a href="#Network-Drivers" class="headerlink" title="Network Drivers"></a>Network Drivers</h2><p>Docker’s networking subsystem is pluggable, <strong>using drivers</strong>. Several drivers <strong>exist by default</strong>, and provide core networking functionality:</p>
+<h2><span id="network-drivers">Network Drivers</span><a href="#network-drivers" class="header-anchor">⌨</a></h2><p>Docker’s networking subsystem is pluggable, <strong>using drivers</strong>. Several drivers <strong>exist by default</strong>, and provide core networking functionality:</p>
 <ul>
 <li><p><code>bridge</code>: </p>
 <ul>
@@ -754,7 +895,7 @@
 </li>
 </ul>
 <p><a name="Using-bridge-networks"></a></p>
-<h2 id="Using-bridge-networks"><a href="#Using-bridge-networks" class="headerlink" title="Using bridge networks"></a>Using <code>bridge</code> networks</h2><p>In terms of Docker, a <code>bridge</code> network uses a software bridge which allows <strong>containers connected to the same bridge network to communicate, while providing isolation from containers which are not connected to that bridge network</strong>. </p>
+<h2><span id="using-bridge-networks">Using <code>bridge</code> networks</span><a href="#using-bridge-networks" class="header-anchor">⌨</a></h2><p>In terms of Docker, a <code>bridge</code> network uses a software bridge which allows <strong>containers connected to the same bridge network to communicate, while providing isolation from containers which are not connected to that bridge network</strong>. </p>
 <p>The Docker bridge driver <strong>automatically installs rules in the host machine</strong> so that containers on different bridge networks cannot communicate directly with each other. However, <code>bridge</code> networks <strong>apply to containers running on the same Docker daemon host</strong>. For communication among containers running on different Docker daemon hosts, you can either manage routing at the OS level, or you can use an overlay network.</p>
 <p>Now, for bridge networks, we can have either the <code>default bridge</code> network or the <code>user-defined bridge</code> network.</p>
 <p>When you <strong>start Docker</strong>, <strong>a <code>default bridge</code> network (also called bridge) is created automatically</strong>, and newly-started containers connect to it unless otherwise specified. You <strong>can also create <code>user-defined custom bridge</code> networks</strong>. User-defined bridge networks are superior to the default bridge network.</p>
@@ -786,7 +927,7 @@
 </li>
 </ul>
 <p>In general, containers connected to the <strong>same <code>user-defined bridge</code> network effectively expose all ports to each other</strong>. For a port to be <strong>accessible to containers or non-Docker hosts</strong> on <strong>different networks</strong>, that port must be <strong>published using the <code>-p</code> or <code>--publish</code> flag</strong>.</p>
-<h2 id="Creating-and-Removing-a-user-defined-bridge"><a href="#Creating-and-Removing-a-user-defined-bridge" class="headerlink" title="Creating and Removing a user-defined bridge"></a>Creating and Removing a <code>user-defined bridge</code></h2><ul>
+<h2><span id="creating-and-removing-a-user-defined-bridge">Creating and Removing a <code>user-defined bridge</code></span><a href="#creating-and-removing-a-user-defined-bridge" class="header-anchor">⌨</a></h2><ul>
 <li><p>You can use the <code>docker network create &lt;networkName&gt;</code> command to <strong>create a <code>user-defined bridge</code> network.</strong></p>
 <p>  For example:</p>
   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker network create --driver bridge my-net</span><br></pre></td></tr></table></figure>
@@ -802,7 +943,7 @@
 
 </li>
 </ul>
-<h2 id="Connecting-and-Disconnecting-from-a-user-defined-bridge"><a href="#Connecting-and-Disconnecting-from-a-user-defined-bridge" class="headerlink" title="Connecting and Disconnecting from a user-defined bridge"></a>Connecting and Disconnecting from a <code>user-defined bridge</code></h2><ul>
+<h2><span id="connecting-and-disconnecting-from-a-user-defined-bridge">Connecting and Disconnecting from a <code>user-defined bridge</code></span><a href="#connecting-and-disconnecting-from-a-user-defined-bridge" class="header-anchor">⌨</a></h2><ul>
 <li><p>You can specify the connection to a <code>user-defined network</code> via 2 ways:</p>
 <ul>
 <li>with the <code>--network</code> flag when you <strong>create a container</strong></li>
@@ -818,7 +959,7 @@
 <blockquote>
 <p>Note:</p>
 <ul>
-<li><input disabled="" type="checkbox"> If you need <code>IPv6</code> support for Docker containers, you need to <strong>enable the option on the Docker daemon and reload its configuration</strong>, <strong>before creating any <code>IPv6</code> networks</strong> or assigning containers IPv6 addresses.<br>When you create your network, you can specify the <code>--ipv6</code> flag to enable IPv6. You can’t selectively disable IPv6 support on the default bridge network.</li>
+<li><input disabled type="checkbox"> If you need <code>IPv6</code> support for Docker containers, you need to <strong>enable the option on the Docker daemon and reload its configuration</strong>, <strong>before creating any <code>IPv6</code> networks</strong> or assigning containers IPv6 addresses.<br>When you create your network, you can specify the <code>--ipv6</code> flag to enable IPv6. You can’t selectively disable IPv6 support on the default bridge network.</li>
 </ul>
 </blockquote>
 </li>
@@ -829,13 +970,13 @@
 
 </li>
 </ul>
-<h2 id="Enabling-Forwarding-from-Containers-to-Outside-World"><a href="#Enabling-Forwarding-from-Containers-to-Outside-World" class="headerlink" title="Enabling Forwarding from Containers to Outside World"></a>Enabling Forwarding from Containers to Outside World</h2><p>By default, traffic from containers connected to the <code>default</code> bridge network is <strong>not forwarded to the outside world</strong>. To <strong>enable forwarding</strong>, you need to change two settings. These are not Docker commands and they affect the Docker host’s kernel.</p>
+<h2><span id="enabling-forwarding-from-containers-to-outside-world">Enabling Forwarding from Containers to Outside World</span><a href="#enabling-forwarding-from-containers-to-outside-world" class="header-anchor">⌨</a></h2><p>By default, traffic from containers connected to the <code>default</code> bridge network is <strong>not forwarded to the outside world</strong>. To <strong>enable forwarding</strong>, you need to change two settings. These are not Docker commands and they affect the Docker host’s kernel.</p>
 <ol>
 <li>Configure the Linux kernel to allow IP forwarding.<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sysctl net.ipv4.conf.all.forwarding&#x3D;1</span><br></pre></td></tr></table></figure></li>
 <li>Then change the policy for the iptables FORWARD policy from <code>DROP</code> to <code>ACCEPT</code>.<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo iptables -P FORWARD ACCEPT</span><br></pre></td></tr></table></figure>
 These settings <strong>do not persist across a reboot</strong>, so you may need to add them to a start-up script.</li>
 </ol>
-<h2 id="Viewing-and-Configuring-your-user-defined-bridge"><a href="#Viewing-and-Configuring-your-user-defined-bridge" class="headerlink" title="Viewing and Configuring your user-defined bridge"></a>Viewing and Configuring your <code>user-defined bridge</code></h2><ol>
+<h2><span id="viewing-and-configuring-your-user-defined-bridge">Viewing and Configuring your <code>user-defined bridge</code></span><a href="#viewing-and-configuring-your-user-defined-bridge" class="header-anchor">⌨</a></h2><ol>
 <li><p>First, after you have created your <code>user-defined bridge</code>, you can use <code>docker network ls</code> to view the networks that docker has:</p>
  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ docker network ls</span><br><span class="line"></span><br><span class="line">NETWORK ID          NAME                DRIVER              SCOPE</span><br><span class="line">9210b6312956        test-net            bridge              local</span><br><span class="line">17e324f45964        bridge              bridge              local</span><br><span class="line">6ed54d316334        host                host                local</span><br><span class="line">7092879f2cc8        none                null                local</span><br></pre></td></tr></table></figure></li>
 <li><p>Then you can use <code>docker inspect &lt;network-id&gt;</code> to see details about your <code>bridge</code>:</p>
@@ -851,7 +992,7 @@ These settings <strong>do not persist across a reboot</strong>, so you may need 
 <blockquote>
 <p>Note:</p>
 <ul>
-<li><input disabled="" type="checkbox"> Since you can only specify <strong>one network when you use the <code>--network</code> flag for <code>docker run</code></strong>, if you need to <strong>connect to more than one network</strong>, you need to <strong>use <code>docker network connect</code> command with a running container</strong>.  </li>
+<li><input disabled type="checkbox"> Since you can only specify <strong>one network when you use the <code>--network</code> flag for <code>docker run</code></strong>, if you need to <strong>connect to more than one network</strong>, you need to <strong>use <code>docker network connect</code> command with a running container</strong>.  </li>
 </ul>
 </blockquote>
 </li>
@@ -874,8 +1015,8 @@ These settings <strong>do not persist across a reboot</strong>, so you may need 
 </li>
 </ol>
 <p><a name="Using-host-networks"></a></p>
-<h2 id="Using-host-networks"><a href="#Using-host-networks" class="headerlink" title="Using host networks"></a>Using <code>host</code> networks</h2><p><a name="Using-overlay-networks"></a></p>
-<h2 id="Using-overlay-networks"><a href="#Using-overlay-networks" class="headerlink" title="Using overlay networks"></a>Using <code>overlay</code> networks</h2><p>The <code>overlay</code> network driver creates a <strong>distributed network</strong> among <strong>multiple Docker daemon hosts</strong>. This network sits on top of (overlays) the host-specific networks, allowing containers connected to it (including swarm service containers) to communicate securely when encryption is enabled.</p>
+<h2><span id="using-host-networks">Using <code>host</code> networks</span><a href="#using-host-networks" class="header-anchor">⌨</a></h2><p><a name="Using-overlay-networks"></a></p>
+<h2><span id="using-overlay-networks">Using <code>overlay</code> networks</span><a href="#using-overlay-networks" class="header-anchor">⌨</a></h2><p>The <code>overlay</code> network driver creates a <strong>distributed network</strong> among <strong>multiple Docker daemon hosts</strong>. This network sits on top of (overlays) the host-specific networks, allowing containers connected to it (including swarm service containers) to communicate securely when encryption is enabled.</p>
 <p>When you initialize a <code>swarm</code> or join a Docker host to an existing <code>swarm</code>, two new networks are created on that Docker host:</p>
 <ul>
 <li>an <code>overlay</code> network called <code>ingress</code>, which <strong>handles control and data traffic related to swarm services</strong>. When you create a <code>swarm</code> service and <strong>do not connect it to a <code>user-defined overlay</code></strong> network, it connects to the <code>ingress</code> network by default.<ul>
@@ -884,7 +1025,7 @@ These settings <strong>do not persist across a reboot</strong>, so you may need 
 </li>
 <li>a <code>bridge</code> network called <code>docker_gwbridge</code>, which <strong>connects the individual Docker daemon to the other daemons participating in the swarm</strong>.</li>
 </ul>
-<h2 id="Creating-an-Overlay-Network-With-Swarm"><a href="#Creating-an-Overlay-Network-With-Swarm" class="headerlink" title="Creating an Overlay Network With Swarm"></a>Creating an Overlay Network With Swarm</h2><ol>
+<h2><span id="creating-an-overlay-network-with-swarm">Creating an Overlay Network With Swarm</span><a href="#creating-an-overlay-network-with-swarm" class="header-anchor">⌨</a></h2><ol>
 <li><p>First, there are two prerequisites you need to fulfill:</p>
 <ul>
 <li><p><strong>Firewall rules for Docker daemons</strong> using overlay networks<br>  You need the following ports open to traffic to and from each Docker host participating on an overlay network:</p>
@@ -924,7 +1065,7 @@ These settings <strong>do not persist across a reboot</strong>, so you may need 
 </ul>
 </li>
 </ol>
-<h2 id="Use-the-default-overlay-network"><a href="#Use-the-default-overlay-network" class="headerlink" title="Use the default overlay network"></a>Use the <code>default overlay</code> network</h2><p>In this example, you start an <code>alpin</code>e service and examine the characteristics of the network from the point of view of the individual service containers.</p>
+<h2><span id="use-the-default-overlay-network">Use the <code>default overlay</code> network</span><a href="#use-the-default-overlay-network" class="header-anchor">⌨</a></h2><p>In this example, you start an <code>alpin</code>e service and examine the characteristics of the network from the point of view of the individual service containers.</p>
 <ol>
 <li><p>Prerequisites:</p>
 <p> This requires <strong>three physical or virtual Docker hosts which can all communicate with one another</strong>, all running new installations of Docker 17.03 or higher. This tutorial <strong>assumes that the three hosts are running on the same network</strong> with no firewall involved.</p>
@@ -932,7 +1073,7 @@ These settings <strong>do not persist across a reboot</strong>, so you may need 
 <blockquote>
 <p>Note:</p>
 <ul>
-<li><input disabled="" type="checkbox"> To open those ports specified above, you can use the following command (on both worker and manager): <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --add-port&#x3D;22&#x2F;tcp --permanent</span><br><span class="line">firewall-cmd --add-port&#x3D;2376&#x2F;tcp --permanent</span><br><span class="line">firewall-cmd --add-port&#x3D;2377&#x2F;tcp --permanent</span><br><span class="line">firewall-cmd --add-port&#x3D;7946&#x2F;tcp --permanent</span><br><span class="line">firewall-cmd --add-port&#x3D;7946&#x2F;udp --permanent</span><br><span class="line">firewall-cmd --add-port&#x3D;4789&#x2F;udp --permanent </span><br></pre></td></tr></table></figure>
+<li><input disabled type="checkbox"> To open those ports specified above, you can use the following command (on both worker and manager): <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --add-port&#x3D;22&#x2F;tcp --permanent</span><br><span class="line">firewall-cmd --add-port&#x3D;2376&#x2F;tcp --permanent</span><br><span class="line">firewall-cmd --add-port&#x3D;2377&#x2F;tcp --permanent</span><br><span class="line">firewall-cmd --add-port&#x3D;7946&#x2F;tcp --permanent</span><br><span class="line">firewall-cmd --add-port&#x3D;7946&#x2F;udp --permanent</span><br><span class="line">firewall-cmd --add-port&#x3D;4789&#x2F;udp --permanent </span><br></pre></td></tr></table></figure>
 Afterwards, reload the firewall:<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --reload</span><br></pre></td></tr></table></figure>
 Then restart Docker.<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl restart docker</span><br></pre></td></tr></table></figure>
 For other means of doing the same thing, please visit <a href="https://www.digitalocean.com/community/tutorials/how-to-configure-the-linux-firewall-for-docker-swarm-on-ubuntu-16-04#method-2-%E2%80%94-opening-docker-swarm-ports-using-firewalld" target="_blank" rel="noopener">this link</a></li>
@@ -987,7 +1128,7 @@ For other means of doing the same thing, please visit <a href="https://www.digit
 
 </li>
 </ol>
-<h2 id="Using-a-user-defined-overlay"><a href="#Using-a-user-defined-overlay" class="headerlink" title="Using a user-defined overlay"></a>Using a <code>user-defined overlay</code></h2><ol>
+<h2><span id="using-a-user-defined-overlay">Using a <code>user-defined overlay</code></span><a href="#using-a-user-defined-overlay" class="header-anchor">⌨</a></h2><ol>
 <li><p>First you need to create the <code>user-defined overlay</code> network.</p>
  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker network create -d overlay my-overlay</span><br></pre></td></tr></table></figure>
 </li>
@@ -1003,7 +1144,7 @@ For other means of doing the same thing, please visit <a href="https://www.digit
 
 </li>
 </ol>
-<h2 id="Using-an-overlay-network-for-standalone-containers-recommended"><a href="#Using-an-overlay-network-for-standalone-containers-recommended" class="headerlink" title="Using an overlay network for standalone containers (recommended)"></a>Using an <code>overlay</code> network for standalone containers (recommended)</h2><p>This example refers to the <strong>two nodes</strong> in our swarm as <code>host1</code> and <code>host2</code>. This example also uses Linux hosts, but the same commands work on Windows.</p>
+<h2><span id="using-an-overlay-network-for-standalone-containers-recommended">Using an <code>overlay</code> network for standalone containers (recommended)</span><a href="#using-an-overlay-network-for-standalone-containers-recommended" class="header-anchor">⌨</a></h2><p>This example refers to the <strong>two nodes</strong> in our swarm as <code>host1</code> and <code>host2</code>. This example also uses Linux hosts, but the same commands work on Windows.</p>
 <p>This example demonstrates DNS container discovery – specifically, how to <strong>communicate between standalone containers on different Docker daemons</strong> using an <code>overlay</code> network. In short, steps are:</p>
 <ul>
 <li>On <code>host1</code>, initialize the node as a swarm (<code>manager</code>).</li>
@@ -1060,7 +1201,7 @@ For other means of doing the same thing, please visit <a href="https://www.digit
 
 </li>
 </ol>
-<h2 id="Customizing-your-ingress-network"><a href="#Customizing-your-ingress-network" class="headerlink" title="Customizing your ingress network"></a>Customizing your <code>ingress</code> network</h2><p>Most users never need to configure the <code>ingress</code> network, but Docker 17.05 and higher allow you to do so. This can be useful <strong>if the automatically-chosen subnet conflicts with one that already exists on your network</strong>, or you need to customize other low-level network settings such as the MTU.</p>
+<h2><span id="customizing-your-ingress-network">Customizing your <code>ingress</code> network</span><a href="#customizing-your-ingress-network" class="header-anchor">⌨</a></h2><p>Most users never need to configure the <code>ingress</code> network, but Docker 17.05 and higher allow you to do so. This can be useful <strong>if the automatically-chosen subnet conflicts with one that already exists on your network</strong>, or you need to customize other low-level network settings such as the MTU.</p>
 <p>Customizing the ingress network <strong>involves removing and recreating it</strong>. This is usually done <strong>before you create any services in the swarm</strong>. If you have existing services which publish ports, <strong>those services need to be removed</strong> before you can remove the ingress network.</p>
 <p>During the time that no <code>ingress</code> network exists, existing services which do not publish ports continue to function but are not load-balanced. This affects services which publish ports, such as a WordPress service which publishes port 80.</p>
 <p>Inspect the <code>ingress</code> network using <code>docker network inspect ingress</code>, and remove any services whose containers are connected to it. These are services that publish ports, such as a WordPress service which publishes port 80. If all such services are not stopped, the next step fails.</p>
@@ -1073,14 +1214,14 @@ For other means of doing the same thing, please visit <a href="https://www.digit
 <blockquote>
 <p>Note: </p>
 <ul>
-<li><input disabled="" type="checkbox"> You can name your <code>ingress</code> network with a name of something other than <code>ingress</code>, but you can only have one <code>ingress</code> network. An attempt to create a second one fails.</li>
+<li><input disabled type="checkbox"> You can name your <code>ingress</code> network with a name of something other than <code>ingress</code>, but you can only have one <code>ingress</code> network. An attempt to create a second one fails.</li>
 </ul>
 </blockquote>
 </li>
 <li><p>Restart the services that you stopped in the first step.</p>
 </li>
 </ol>
-<h2 id="Customizing-your-docker-gwbridge-network"><a href="#Customizing-your-docker-gwbridge-network" class="headerlink" title="Customizing your docker_gwbridge network"></a>Customizing your <code>docker_gwbridge</code> network</h2><p><code>docker_gwbridge</code> <strong>connects the overlay networks (including the <code>ingress</code> network)</strong> to an individual Docker daemon’s physical network (<strong><code>swarm</code> host</strong>). Docker creates it automatically when you initialize a <code>swarm</code> or join a Docker host to a <code>swarm</code>, but it is <strong>not a Docker device</strong>. It exists in the kernel of the Docker host. If you need to customize its settings, you must do so <strong>before joining the Docker host to the swarm</strong>, or after temporarily removing the host from the swarm.</p>
+<h2><span id="customizing-your-docker-gwbridge-network">Customizing your <code>docker_gwbridge</code> network</span><a href="#customizing-your-docker-gwbridge-network" class="header-anchor">⌨</a></h2><p><code>docker_gwbridge</code> <strong>connects the overlay networks (including the <code>ingress</code> network)</strong> to an individual Docker daemon’s physical network (<strong><code>swarm</code> host</strong>). Docker creates it automatically when you initialize a <code>swarm</code> or join a Docker host to a <code>swarm</code>, but it is <strong>not a Docker device</strong>. It exists in the kernel of the Docker host. If you need to customize its settings, you must do so <strong>before joining the Docker host to the swarm</strong>, or after temporarily removing the host from the swarm.</p>
 <ol>
 <li><p>Stop Docker, and delete the existing docker_gwbridge interface.</p>
  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ sudo ip link set docker_gwbridge down</span><br><span class="line"></span><br><span class="line">$ sudo ip link del dev docker_gwbridge</span><br></pre></td></tr></table></figure>
@@ -1093,14 +1234,14 @@ For other means of doing the same thing, please visit <a href="https://www.digit
 <li><p>Initialize or join the <code>swarm</code>. Since the bridge <strong>already exists</strong>, Docker <strong>does not create it with automatic settings</strong>.</p>
 </li>
 </ol>
-<h2 id="Customizing-your-user-defined-overlay-network"><a href="#Customizing-your-user-defined-overlay-network" class="headerlink" title="Customizing your user-defined overlay network"></a>Customizing your <code>user-defined overlay</code> network</h2><p><a name="Using-mcvlan-networks"></a></p>
-<h2 id="Using-mcvlan-networks"><a href="#Using-mcvlan-networks" class="headerlink" title="Using mcvlan networks"></a>Using <code>mcvlan</code> networks</h2><p><a name="Using-none-networks"></a></p>
-<h2 id="Using-none-networks"><a href="#Using-none-networks" class="headerlink" title="Using none networks"></a>Using <code>none</code> networks</h2><p><a name="MySQL-in-Docker"></a></p>
-<h2 id="Using-MySQL-Server-in-Docker"><a href="#Using-MySQL-Server-in-Docker" class="headerlink" title="Using MySQL Server in Docker"></a>Using MySQL Server in Docker</h2><ol>
+<h2><span id="customizing-your-user-defined-overlay-network">Customizing your <code>user-defined overlay</code> network</span><a href="#customizing-your-user-defined-overlay-network" class="header-anchor">⌨</a></h2><p><a name="Using-mcvlan-networks"></a></p>
+<h2><span id="using-mcvlan-networks">Using <code>mcvlan</code> networks</span><a href="#using-mcvlan-networks" class="header-anchor">⌨</a></h2><p><a name="Using-none-networks"></a></p>
+<h2><span id="using-none-networks">Using <code>none</code> networks</span><a href="#using-none-networks" class="header-anchor">⌨</a></h2><p><a name="MySQL-in-Docker"></a></p>
+<h2><span id="using-mysql-server-in-docker">Using MySQL Server in Docker</span><a href="#using-mysql-server-in-docker" class="header-anchor">⌨</a></h2><ol>
 <li>You need to first setup your SQL server in docker via this <a href="https://dev.mysql.com/doc/mysql-installation-excerpt/8.0/en/docker-mysql-getting-started.html" target="_blank" rel="noopener">Official Guide</a></li>
 <li>Then refer to <a href="https://jasonyux.github.io/2020/05/26/MySQL-Manual">MySQL Manual</a> for further reference on using MySQL</li>
 </ol>
-<h2 id="Creating-and-Mounting-a-Volume-to-MySQL-data"><a href="#Creating-and-Mounting-a-Volume-to-MySQL-data" class="headerlink" title="Creating and Mounting a Volume to MySQL data"></a>Creating and Mounting a Volume to MySQL data</h2><ol>
+<h2><span id="creating-and-mounting-a-volume-to-mysql-data">Creating and Mounting a Volume to MySQL data</span><a href="#creating-and-mounting-a-volume-to-mysql-data" class="header-anchor">⌨</a></h2><ol>
 <li><p>First, to create a volume, you need to run:</p>
  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker volume create &lt;my-vol&gt;</span><br></pre></td></tr></table></figure>
 
@@ -1128,8 +1269,8 @@ For other means of doing the same thing, please visit <a href="https://www.digit
 <blockquote>
 <p>Note:</p>
 <ul>
-<li><input disabled="" type="checkbox"> If the name of the volume you specified does not exist, <code>docker</code> will create one with that name for you.</li>
-<li><input disabled="" type="checkbox"> It is also allowed to mount multiple containers to the same volume.</li>
+<li><input disabled type="checkbox"> If the name of the volume you specified does not exist, <code>docker</code> will create one with that name for you.</li>
+<li><input disabled type="checkbox"> It is also allowed to mount multiple containers to the same volume.</li>
 </ul>
 </blockquote>
 </li>
@@ -1145,7 +1286,7 @@ For other means of doing the same thing, please visit <a href="https://www.digit
 
 </li>
 </ol>
-<h2 id="Use-a-Volume-for-Read-Only-Purpose"><a href="#Use-a-Volume-for-Read-Only-Purpose" class="headerlink" title="Use a Volume for Read-Only Purpose"></a>Use a Volume for Read-Only Purpose</h2><p>For some development applications, the container needs to write into the bind mount so that changes are propagated back to the Docker host. At other times, the container <strong>only needs read access to the data</strong>. Remember that multiple containers can mount the same volume, and it can be mounted read-write for some of them and read-only for others, at the same time.</p>
+<h2><span id="use-a-volume-for-read-only-purpose">Use a Volume for Read-Only Purpose</span><a href="#use-a-volume-for-read-only-purpose" class="header-anchor">⌨</a></h2><p>For some development applications, the container needs to write into the bind mount so that changes are propagated back to the Docker host. At other times, the container <strong>only needs read access to the data</strong>. Remember that multiple containers can mount the same volume, and it can be mounted read-write for some of them and read-only for others, at the same time.</p>
 <p>Suppose you want to access the data in the volume <code>nginx-vol</code> for the following examples.</p>
 <p>The following modifies the one above but <strong>mounts the directory as a read-only volume</strong>, by adding <code>readonly</code> or <code>ro</code> to the (empty by default) list of options, after the mount point within the container. If multiple options are present, separate them by commas.</p>
 <p>The <code>--mount</code> and <code>-v</code> examples have the same result.</p>
@@ -1161,7 +1302,7 @@ For other means of doing the same thing, please visit <a href="https://www.digit
 <p>Now you can use <code>docker inspect nginxtest</code> to <strong>verify that the readonly mount was created correctly</strong>. Look for the Mounts section, where you see <code>&quot;RW&quot;: false</code>:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&quot;Mounts&quot;: [</span><br><span class="line">    &#123;</span><br><span class="line">        &quot;Type&quot;: &quot;volume&quot;,</span><br><span class="line">        &quot;Name&quot;: &quot;nginx-vol&quot;,</span><br><span class="line">        &quot;Source&quot;: &quot;&#x2F;var&#x2F;lib&#x2F;docker&#x2F;volumes&#x2F;nginx-vol&#x2F;_data&quot;,</span><br><span class="line">        &quot;Destination&quot;: &quot;&#x2F;usr&#x2F;share&#x2F;nginx&#x2F;html&quot;,</span><br><span class="line">        &quot;Driver&quot;: &quot;local&quot;,</span><br><span class="line">        &quot;Mode&quot;: &quot;&quot;,</span><br><span class="line">        &quot;RW&quot;: false,</span><br><span class="line">        &quot;Propagation&quot;: &quot;&quot;</span><br><span class="line">    &#125;</span><br><span class="line">],</span><br></pre></td></tr></table></figure>
 
-<h2 id="Overview-of-Docker-Compose"><a href="#Overview-of-Docker-Compose" class="headerlink" title="Overview of Docker Compose"></a>Overview of Docker Compose</h2><p>Compose is a tool for <strong>defining and running multi-container Docker applications</strong>. With Compose, you use a <code>YAML</code> file to configure your application’s services. Then, with a single command, you create and start all the services from your configuration.</p>
+<h2><span id="overview-of-docker-compose">Overview of Docker Compose</span><a href="#overview-of-docker-compose" class="header-anchor">⌨</a></h2><p>Compose is a tool for <strong>defining and running multi-container Docker applications</strong>. With Compose, you use a <code>YAML</code> file to configure your application’s services. Then, with a single command, you create and start all the services from your configuration.</p>
 <p>Using Compose is basically a <strong>three-step process</strong>:</p>
 <ol>
 <li><strong>Define</strong> your app’s environment with a <strong>Dockerfile</strong> so it can be reproduced anywhere.</li>
@@ -1171,8 +1312,8 @@ For other means of doing the same thing, please visit <a href="https://www.digit
 <p>A <code>docker-compose.yml</code> looks like this:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">version: &#39;2.0&#39;</span><br><span class="line">services:</span><br><span class="line">  web:</span><br><span class="line">    build: .</span><br><span class="line">    ports:</span><br><span class="line">    - &quot;5000:5000&quot;</span><br><span class="line">    volumes:</span><br><span class="line">    - .:&#x2F;code</span><br><span class="line">    - logvolume01:&#x2F;var&#x2F;log</span><br><span class="line">    links:</span><br><span class="line">    - redis</span><br><span class="line">  redis:</span><br><span class="line">    image: redis</span><br><span class="line">volumes:</span><br><span class="line">  logvolume01: &#123;&#125;</span><br></pre></td></tr></table></figure>
 
-<h2 id="Installing-Docker-Compose"><a href="#Installing-Docker-Compose" class="headerlink" title="Installing Docker Compose"></a>Installing Docker Compose</h2><p>Docker Compose depends on the Docker engine to work properly. After you have installed the Docker engine, please refer to <a href="https://docs.docker.com/compose/install/" target="_blank" rel="noopener">this link</a> to install Docker Compose.</p>
-<h2 id="QuickStart-with-Docker-Compose"><a href="#QuickStart-with-Docker-Compose" class="headerlink" title="QuickStart with Docker Compose"></a>QuickStart with Docker Compose</h2><p>For getting a sense of how <code>docker compose</code> works, please visit the <a href="https://docs.docker.com/compose/gettingstarted/" target="_blank" rel="noopener">this Docker Documentation</a>.</p>
+<h2><span id="installing-docker-compose">Installing Docker Compose</span><a href="#installing-docker-compose" class="header-anchor">⌨</a></h2><p>Docker Compose depends on the Docker engine to work properly. After you have installed the Docker engine, please refer to <a href="https://docs.docker.com/compose/install/" target="_blank" rel="noopener">this link</a> to install Docker Compose.</p>
+<h2><span id="quickstart-with-docker-compose">QuickStart with Docker Compose</span><a href="#quickstart-with-docker-compose" class="header-anchor">⌨</a></h2><p>For getting a sense of how <code>docker compose</code> works, please visit the <a href="https://docs.docker.com/compose/gettingstarted/" target="_blank" rel="noopener">this Docker Documentation</a>.</p>
 <p>Some important steps are shown here:</p>
 <ul>
 <li><p>Step 5: Edit the Compose file to <strong>add a bind mount</strong></p>
@@ -1186,130 +1327,128 @@ For other means of doing the same thing, please visit <a href="https://www.digit
   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ docker-compose up</span><br><span class="line">Creating network &quot;composetest_default&quot; with the default driver</span><br><span class="line">Creating composetest_web_1 ...</span><br><span class="line">Creating composetest_redis_1 ...</span><br><span class="line">Creating composetest_web_1</span><br><span class="line">Creating composetest_redis_1 ... done</span><br><span class="line">Attaching to composetest_web_1, composetest_redis_1</span><br><span class="line">web_1    |  * Running on http:&#x2F;&#x2F;0.0.0.0:5000&#x2F; (Press CTRL+C to quit)</span><br><span class="line">...</span><br></pre></td></tr></table></figure></li>
 </ul>
 
-      
     </div>
-    <footer class="article-footer">
-      <a data-url="https://jasonyux.github.io/2020/05/25/Docker-Manual/" data-id="ckbqgsgpu00020kor5vx7bfx3" class="article-share-link">Share</a>
-      
-      
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/05/22/Apache-Manual-md/" rel="prev" title="Apache Maven Manual">
+      <i class="fa fa-chevron-left"></i> Apache Maven Manual
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/05/26/MySQL-Manual/" rel="next" title="MySQL Manual">
+      MySQL Manual <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+        </div>
+        
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Xiao Yu</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
     </footer>
   </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/2020/05/26/MySQL-Manual/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          MySQL Manual
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2020/05/22/Apache-Manual-md/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Apache Maven Manual</div>
-    </a>
-  
-</nav>
 
   
-</article>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
 
-</section>
-        
-          <aside id="sidebar">
-  
-    
+<script src="/js/utils.js"></script>
 
-  
-    
+<script src="/js/motion.js"></script>
 
-  
-    
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li></ul>
-    </div>
-  </div>
+
+<script src="/js/next-boot.js"></script>
 
 
   
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2020/06/15/Go-Manual/">Go Manual</a>
-          </li>
-        
-          <li>
-            <a href="/2020/06/09/Spring-Framework-Guide/">Spring Framework Guide</a>
-          </li>
-        
-          <li>
-            <a href="/2020/06/09/SpringBoot-Manual/">Spring Boot Manual</a>
-          </li>
-        
-          <li>
-            <a href="/2020/06/02/Redis-Manual/">Redis Manual</a>
-          </li>
-        
-          <li>
-            <a href="/2020/05/26/MySQL-Manual/">MySQL Manual</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
 
-  
-</aside>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2020 Xiao Yu<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
-    </div>
-  </div>
-</footer>
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
-    
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
 
 
   
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
 
   
-<script src="/fancybox/jquery.fancybox.pack.js"></script>
 
-
-
-
-<script src="/js/script.js"></script>
-
-
-
-
-  </div>
 </body>
 </html>
