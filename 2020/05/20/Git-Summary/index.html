@@ -19,12 +19,12 @@
     var CONFIG = {"hostname":"jasonyux.github.io","root":"/","scheme":"Pisces","version":"8.0.0-rc.3","exturl":false,"sidebar":{"position":"left","width":350,"display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="IMPORTANT:Much of the content here is a personal summary&#x2F;abbrieviation of contents on the Offical Git Guide. For more complete information, please refer to the offical site.  Git Intro Version Contro">
+  <meta name="description" content="IMPORTANT:Much of the content here is a personal summary&#x2F;abbreviation of contents on the Offical Git Guide. For more complete information, please refer to the official site.  Git Intro Version Contro">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Git Manual">
 <meta property="og:url" content="https://jasonyux.github.io/2020/05/20/Git-Summary/index.html">
 <meta property="og:site_name" content="From a Beginner to a Disaster">
-<meta property="og:description" content="IMPORTANT:Much of the content here is a personal summary&#x2F;abbrieviation of contents on the Offical Git Guide. For more complete information, please refer to the offical site.  Git Intro Version Contro">
+<meta property="og:description" content="IMPORTANT:Much of the content here is a personal summary&#x2F;abbreviation of contents on the Offical Git Guide. For more complete information, please refer to the official site.  Git Intro Version Contro">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://jasonyux.github.io/2020/05/20/Git-Summary/mergingCase1.png">
 <meta property="og:image" content="https://jasonyux.github.io/2020/05/20/Git-Summary/branchManagement.png">
@@ -40,7 +40,7 @@
 <meta property="og:image" content="https://jasonyux.github.io/2020/05/20/Git-Summary/large-merges-1.png">
 <meta property="og:image" content="https://jasonyux.github.io/2020/05/20/Git-Summary/large-merges-2.png">
 <meta property="article:published_time" content="2020-05-20T12:46:25.000Z">
-<meta property="article:modified_time" content="2020-06-22T13:28:17.078Z">
+<meta property="article:modified_time" content="2020-07-07T09:42:35.814Z">
 <meta property="article:author" content="Xiao Yu">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://jasonyux.github.io/2020/05/20/Git-Summary/mergingCase1.png">
@@ -251,7 +251,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-06-22 21:28:17" itemprop="dateModified" datetime="2020-06-22T21:28:17+08:00">2020-06-22</time>
+                <time title="Modified: 2020-07-07 17:42:35" itemprop="dateModified" datetime="2020-07-07T17:42:35+08:00">2020-07-07</time>
               </span>
 
           
@@ -266,7 +266,7 @@
 
       
         <hr>
-<p><strong>IMPORTANT</strong>:<br>Much of the content here is a personal summary/abbrieviation of contents on the <a href="https://git-scm.com/book/en/v2" target="_blank" rel="noopener">Offical Git Guide</a>. For more complete information, please refer to the offical site.</p>
+<p><strong>IMPORTANT</strong>:<br>Much of the content here is a personal summary/abbreviation of contents on the <a href="https://git-scm.com/book/en/v2" target="_blank" rel="noopener">Offical Git Guide</a>. For more complete information, please refer to the official site.</p>
 <hr>
 <h2 id="Git-Intro"><a href="#Git-Intro" class="headerlink" title="Git Intro"></a>Git Intro</h2><ul>
 <li>Version Control<ul>
@@ -780,7 +780,7 @@ Now, the master head will point to the inital commit. If your friend is also wor
 </li>
 <li><p>You have <strong>two diverged branches</strong>, and they <strong>share a file that is modified differently in both branches</strong>. Now, if you want to merge them, Git will show you:</p>
  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ git merge testing</span><br><span class="line">Auto-merging firstFile.txt</span><br><span class="line">CONFLICT (content): Merge conflict in firstFile.txt</span><br><span class="line">Automatic merge failed; fix conflicts and then commit the result.</span><br></pre></td></tr></table></figure>
-<p>In this example, [firstFile.txt] is modified for both branches, and they both depend on it. Therefore, the merging cannot be completed, and you will need to <strong>manually edit that file</strong>.</p>
+<p> In this example, [firstFile.txt] is modified for both branches, and they both depend on it. Therefore, the merging cannot be completed, and you will need to <strong>manually edit that file</strong>.</p>
 <p>When you finish editing that file, you run <code>git add &lt;thatFile&gt;</code> to <strong>mark it as resolved</strong>, and then call <code>git commit</code> to <strong>complete the merge</strong>.</p>
 </li>
 </ol>
@@ -1018,7 +1018,7 @@ Now, the master head will point to the inital commit. If your friend is also wor
 
 <p> This means that if two developers clone from the hub and both make changes, <strong>the first developer to push their changes back up can do so with no problems</strong>. The <strong>second developer must merge</strong> in the first one’s work before pushing changes up, so as not to overwrite the first developer’s changes.    </p>
 </li>
-<li><p><strong>Integration-Manager Workflow</strong><br>Because Git allows you to have multiple remote repositories, it’s possible to have a workflow where each developer has <strong>write access to their own public repository</strong> and <strong>read access to everyone else’s</strong>. </p>
+<li><p><strong>Integration-Manager Workflow</strong><br> Because Git allows you to have multiple remote repositories, it’s possible to have a workflow where each developer has <strong>write access to their own public repository</strong> and <strong>read access to everyone else’s</strong>. </p>
  <img src="/2020/05/20/Git-Summary/integration-manager.png" class="" title="Picture from https:&#x2F;&#x2F;git-scm.com&#x2F;book&#x2F;en&#x2F;v2&#x2F;Distributed-Git-Distributed-Workflows, Figure 55">
 
 <p> This scenario often includes a <strong>canonical repository that represents the “official” project</strong>. To contribute to that project, you <strong>create your own public clone</strong> of the project and push your changes to it. Then, you can send a <strong>request to the maintainer of the main project to pull in your changes</strong>. The maintainer can then add your repository as a remote, <strong>test your changes locally</strong>, <strong>merge them into their branch</strong>, and <strong>push back to their repository</strong>. </p>
@@ -1159,10 +1159,10 @@ Now, the master head will point to the inital commit. If your friend is also wor
 <h3 id="Determining-What-is-Changed"><a href="#Determining-What-is-Changed" class="headerlink" title="Determining What is Changed"></a>Determining What is Changed</h3><p>Now you have a <strong><code>topic</code> branch that contains contributed work</strong>. At this point, you can determine what you’d like to do with it. This section revisits a couple of commands so you can see <strong>exactly what you’ll be introducing if you merge this</strong> into your main branch.</p>
 <ol>
 <li><p>to see <strong>only commits that are different</strong> between the <code>topic</code> branch and your <code>master</code> branch (for example), you could run </p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git log &lt;branch1&gt; --not &lt;branch2&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git log &lt;branch1&gt; --not &lt;branch2&gt;</span><br></pre></td></tr></table></figure>
 
-<p> In this example:</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">$ git log topic --not master</span><br><span class="line">commit 5b6235bd297351589efc4d73316f0a68d484f118</span><br><span class="line">Author: Scott Chacon &lt;schacon@gmail.com&gt;</span><br><span class="line">Date:   Fri Oct 24 09:53:59 2008 -0700</span><br><span class="line"></span><br><span class="line">    See if this helps the gem</span><br><span class="line"></span><br><span class="line">commit 7482e0d16d04bea79d0dba8988cc78df655f16a0</span><br><span class="line">Author: Scott Chacon &lt;schacon@gmail.com&gt;</span><br><span class="line">Date:   Mon Oct 22 19:38:36 2008 -0700</span><br><span class="line"></span><br><span class="line">    Update gemspec to hopefully work better</span><br></pre></td></tr></table></figure>
+<p>In this example:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">$ git log topic --not master</span><br><span class="line">commit 5b6235bd297351589efc4d73316f0a68d484f118</span><br><span class="line">Author: Scott Chacon &lt;schacon@gmail.com&gt;</span><br><span class="line">Date:   Fri Oct 24 09:53:59 2008 -0700</span><br><span class="line"></span><br><span class="line">    See if this helps the gem</span><br><span class="line"></span><br><span class="line">commit 7482e0d16d04bea79d0dba8988cc78df655f16a0</span><br><span class="line">Author: Scott Chacon &lt;schacon@gmail.com&gt;</span><br><span class="line">Date:   Mon Oct 22 19:38:36 2008 -0700</span><br><span class="line"></span><br><span class="line">    Update gemspec to hopefully work better</span><br></pre></td></tr></table></figure>
 
 <blockquote>
 <p>Note</p>
