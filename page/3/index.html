@@ -167,12 +167,16 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-count">10</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
   </nav>
 </div>
+  <div class="sidebar-button motion-element"><i class="fa fa-comment"></i>
+    Chat
+  </a>
+  </div>
 
 
 
@@ -197,6 +201,124 @@
 
         <div class="content index posts-expand">
           
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://jasonyux.github.io/2020/05/25/Docker-Manual/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Xiao Yu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="From a Beginner to a Disaster">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/05/25/Docker-Manual/" class="post-title-link" itemprop="url">Docker Manual</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-05-25 15:18:39" itemprop="dateCreated datePublished" datetime="2020-05-25T15:18:39+08:00">2020-05-25</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-07-07 17:42:29" itemprop="dateModified" datetime="2020-07-07T17:42:29+08:00">2020-07-07</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <hr>
+<p><strong>IMPORTANT</strong>:<br>Much of the content here is a personal summary/abbreviation of contents on the <a href="https://docs.docker.com/get-started/" target="_blank" rel="noopener">Offical Docker Guide</a>. For more complete information, please refer to the official site.</p>
+<hr>
+<h2 id="Docker-Intro"><a href="#Docker-Intro" class="headerlink" title="Docker Intro"></a>Docker Intro</h2><p>Docker provides the ability to package and run an application in a loosely isolated environment called a <strong><code>container</code></strong>, which <strong>separate your applications from your infrastructure</strong>. The <strong>isolation and security</strong> allow you to run many containers simultaneously on a given host.</p>
+<p>The use of <code>container</code>s to deploy applications is called containerization. Containers are not new, but their use for easily deploying applications is.</p>
+<p>Docker provides tooling and a platform to manage the lifecycle of your <code>container</code>s:</p>
+<ul>
+<li>Develop your application and its supporting components using <code>container</code>s.</li>
+<li>The <code>container</code> becomes the unit for distributing and testing your application.</li>
+<li>When you’re ready, deploy your application into your production environment, as a <code>container</code> or an orchestrated service. This works the same whether your production environment is a local data center, a cloud provider, or a hybrid of the two.</li>
+</ul>
+<h2 id="Docker-Basics"><a href="#Docker-Basics" class="headerlink" title="Docker Basics"></a>Docker Basics</h2><p><strong>Docker is mainly composed of the following elements</strong> (the first three is referred as Docker Engine by the official site): </p>
+<ul>
+<li><strong>A server</strong> (<code>docker daemon</code>) which is a type of long-running program called a daemon process (the <code>dockerd</code>command).</li>
+<li><strong>A command line interface (CLI)</strong> client that is used by most users (the <code>docker</code>command).</li>
+<li><strong>A REST API</strong> which specifies interfaces that <strong>CLI</strong> programs can use to <strong>talk to the daemon</strong> and <strong>instruct it what to do</strong>.</li>
+<li><strong>A Docker registry</strong>, which stores Docker images. Docker Hub is a public registry that anyone can use, and Docker is configured to look for images on Docker Hub by default.</li>
+</ul>
+<p>So we see that Docker uses a client-server architecture. The <strong><code>docker client</code> talks to the <code>docker daemon</code></strong>, which does the heavy lifting of building, running, and distributing your Docker containers. The Docker <code>client</code> and <code>daemon</code> can run on the same system, or you can connect a Docker client to a remote Docker daemon.</p>
+<h2 id="Docker-Architecture"><a href="#Docker-Architecture" class="headerlink" title="Docker Architecture"></a>Docker Architecture</h2><ul>
+<li><p>The <strong>Docker <code>daemon</code></strong></p>
+<ul>
+<li>The Docker <code>daemon</code> (<code>dockerd</code>) listens for Docker API requests and manages Docker objects such as <code>images</code>, <code>container</code>s, networks, and volumes. A daemon can also communicate with other daemons to manage Docker services.</li>
+</ul>
+</li>
+<li><p><strong>The Docker <code>client</code></strong></p>
+<ul>
+<li>The Docker <code>client</code> (<code>docker</code>) is the primary way that many Docker users interact with Docker. When you use commands such as <code>docker run</code>, the client sends these commands to <code>dockerd</code>, which carries them out. The docker command uses the Docker API. The Docker client can communicate with more than one daemon.</li>
+</ul>
+</li>
+<li><p><strong>Docker registries</strong></p>
+<ul>
+<li>A Docker registry stores Docker <code>image</code>s. Docker Hub is a public registry that anyone can use, and Docker is configured to look for images on Docker Hub by default. You can even run your own private registry. If you use Docker Datacenter (DDC), it includes Docker Trusted Registry (DTR).</li>
+</ul>
+</li>
+<li><p><strong>Docker objects</strong></p>
+<ul>
+<li>When you use Docker, you are creating and using <code>images</code>, <code>container</code>s, networks, volumes, plugins, and other objects. The section below is a brief overview of some of those objects.</li>
+</ul>
+</li>
+</ul>
+<h2 id="Docker-Objects"><a href="#Docker-Objects" class="headerlink" title="Docker Objects"></a>Docker Objects</h2><ul>
+<li><code>IMAGE</code><ul>
+<li>An <code>image</code> is a <strong>read-only template</strong> with <strong>instructions for creating a Docker <code>container</code></strong>. Often, an <code>image</code> is based on another <code>image</code>, with some additional customization. For example, you may build an image which is based on the ubuntu image, but installs the Apache web server and your application, as well as the configuration details needed to make your application run.</li>
+</ul>
+</li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/05/25/Docker-Manual/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
       
   
   
@@ -429,114 +551,10 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://jasonyux.github.io/2020/05/19/MarkDown-Summary/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Xiao Yu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="From a Beginner to a Disaster">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/05/19/MarkDown-Summary/" class="post-title-link" itemprop="url">MarkDown Manual</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-05-19 20:46:25" itemprop="dateCreated datePublished" datetime="2020-05-19T20:46:25+08:00">2020-05-19</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-06-22 17:45:24" itemprop="dateModified" datetime="2020-06-22T17:45:24+08:00">2020-06-22</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="Line-Breaks-and-Indentation"><a href="#Line-Breaks-and-Indentation" class="headerlink" title="Line Breaks and Indentation"></a>Line Breaks and Indentation</h3><p>The content is basically the same as that of the Jupyter notebook</p>
-<p>There will be a space between the previous line</p>
-<p>This will be no space if I add two or more spaces at the end of this line<br>see, no space between a new line</p>
-<p>This is is how to do block quotes</p>
-<blockquote>
-<p>A: quote 1<br>You could also have paragraphs in a block quote if you add the symbol &gt; in front</p>
-<p>Here is a new line</p>
-</blockquote>
-<h3 id="Links-and-Images"><a href="#Links-and-Images" class="headerlink" title="Links and Images"></a>Links and Images</h3><p>This is how you add and image (the label will show if the image is not properly loaded): </p>
-<p><img src="dio.jpg" alt="" title="This is an example image"></p>
-<p>This is how you create a link:<br><a href="http://jasonyux.github.io">My Blog</a></p>
-<h3 id="Code-Snippets"><a href="#Code-Snippets" class="headerlink" title="Code Snippets"></a>Code Snippets</h3><h5 id="From-now-on-it-is-only-supported-in-Github-Flavored-Markdown"><a href="#From-now-on-it-is-only-supported-in-Github-Flavored-Markdown" class="headerlink" title="From now on it is only supported in Github Flavored Markdown"></a>From now on it is only supported in Github Flavored Markdown</h5><p>This is how you create a code snippet:<br><code>main()</code></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> i = <span class="number">0</span>;</span><br></pre></td></tr></table></figure>
-
-<h3 id="Strike-Through-text"><a href="#Strike-Through-text" class="headerlink" title="Strike-Through text"></a>Strike-Through text</h3><p><del>this</del></p>
-<p><a href="https://github.com/jlord/sheetsee.js/issues/26" target="_blank" rel="noopener">https://github.com/jlord/sheetsee.js/issues/26</a></p>
-<h3 id="Tables"><a href="#Tables" class="headerlink" title="Tables"></a>Tables</h3><p>A standard table:</p>
-<table>
-<thead>
-<tr>
-<th>First Header</th>
-<th>Second Header</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>Content cell 1</td>
-<td>Content cell 2</td>
-</tr>
-<tr>
-<td>Content column 1</td>
-<td>Content column 2</td>
-</tr>
-</tbody></table>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/05/19/MarkDown-Summary/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 

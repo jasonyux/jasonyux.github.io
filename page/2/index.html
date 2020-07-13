@@ -167,12 +167,16 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-count">10</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
   </nav>
 </div>
+  <div class="sidebar-button motion-element"><i class="fa fa-comment"></i>
+    Chat
+  </a>
+  </div>
 
 
 
@@ -197,6 +201,137 @@
 
         <div class="content index posts-expand">
           
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://jasonyux.github.io/2020/06/09/Spring-Framework-Guide/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Xiao Yu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="From a Beginner to a Disaster">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/06/09/Spring-Framework-Guide/" class="post-title-link" itemprop="url">Spring Framework Guide</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-06-09 15:25:30" itemprop="dateCreated datePublished" datetime="2020-06-09T15:25:30+08:00">2020-06-09</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-07-07 17:41:51" itemprop="dateModified" datetime="2020-07-07T17:41:51+08:00">2020-07-07</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <hr>
+<p><strong>IMPORTANT</strong>:<br>Much of the content here is a personal summary/abbreviation of contents on the <a href="https://docs.spring.io/spring/docs/5.3.0-SNAPSHOT/spring-framework-reference/index.html" target="_blank" rel="noopener">Offical Spring Framework Documentation</a>. For more complete information, please refer to the official site.</p>
+<hr>
+<p>This is a <strong>Guide</strong>, since it is mostly <strong>conceptual</strong> and does not include much actual coding (except for examples illustrating those concepts). For more practical uses/examples, please refer to the <a href="https://jasonyux.github.io/2020/06/09/SpringBoot-Manual/">Spring Boot Manual</a> or the <a href="">Spring Cloud Manual</a>.</p>
+<h2 id="Spring-Intro"><a href="#Spring-Intro" class="headerlink" title="Spring Intro"></a>Spring Intro</h2><p>The term “Spring” means different things in different contexts. It can be used to refer to the Spring Framework project itself, which is where it all started. Over time, other Spring projects have been built on top of the Spring Framework. Most often, when people say “Spring”, they mean the entire family of projects. This reference documentation focuses on the foundation: the Spring Framework itself.</p>
+<p>When you learn about a framework, it’s important to know not only what it does but <strong>what principles it follows</strong>. Here are the guiding principles of the Spring Framework:</p>
+<ul>
+<li>Provide choice at every level. Spring lets you <strong>defer design decisions as late as possible</strong>. For example, you can switch persistence providers through configuration without changing your code. </li>
+<li>Accommodate diverse perspectives. Spring embraces flexibility and is not opinionated about how things should be done. It <strong>supports a wide range of application needs with different perspectives</strong>.</li>
+<li>Maintain strong backward compatibility. Spring’s evolution has been carefully managed to force <strong>few breaking changes between versions.</strong> Spring supports a carefully chosen range of JDK versions and third-party libraries to facilitate maintenance of applications and libraries that depend on Spring.</li>
+<li>Care about API design. The Spring team puts a lot of thought and time into <strong>making APIs that are intuitive and that hold up across many versions and many years.</strong></li>
+<li>Set high standards for code quality. The Spring Framework puts a strong emphasis on meaningful, current, and accurate javadoc. It is one of very few projects that can claim <strong>clean code structure with no circular dependencies between packages.</strong></li>
+</ul>
+<h2 id="IoC-Inversion-of-Control"><a href="#IoC-Inversion-of-Control" class="headerlink" title="IoC - Inversion of Control"></a>IoC - Inversion of Control</h2><p>IoC is also known as <strong>dependency injection (DI)</strong>. It is a process whereby <strong>objects define their dependencies</strong> (that is, the other objects they work with) <strong><em>only</em></strong> <strong>through constructor arguments</strong>, arguments to a factory method, or properties that are set on the object instance after it is constructed or returned from a factory method. The <strong>container then injects those dependencies when it creates the bean.</strong> This process is fundamentally the inverse (hence the name, Inversion of Control) of the bean itself controlling the instantiation or location of its dependencies by using direct construction of classes or a mechanism such as the Service Locator pattern.</p>
+<p>In Spring, the <strong>objects that form the backbone of your application and that are managed by the Spring IoC container</strong> are called <strong>beans</strong>. A bean is an object that is instantiated, assembled, and otherwise managed by a Spring IoC container. Otherwise, a bean is simply one of many objects in your application. Beans, and the dependencies among them, are <strong>reflected in the configuration metadata used by a container.</strong></p>
+<p>The <strong>main tasks performed by IoC container</strong> are:</p>
+<ul>
+<li>to instantiate the application class</li>
+<li>to configure the object</li>
+<li>to assemble the dependencies between the objects</li>
+</ul>
+<p>And there are <strong>two types of IoC containers</strong>. They are:</p>
+<ul>
+<li>BeanFactory (<code>org.springframework.beans</code>)</li>
+<li>ApplicationContext (<code>org.springframework.context</code>)</li>
+</ul>
+<p>In short, the <code>BeanFactory</code> provides the <strong>configuration framework and basic functionality</strong>, and the <code>ApplicationContext</code> <strong>adds more enterprise-specific functionality</strong>. The <code>ApplicationContext</code> is a complete superset of the <code>BeanFactory</code> and is used exclusively in this chapter in descriptions of Spring’s IoC container. For more information on using the <code>BeanFactory</code> instead of the <code>ApplicationContext</code>, see <a href="https://docs.spring.io/spring/docs/5.3.0-SNAPSHOT/spring-framework-reference/core.html#beans-beanfactory" target="_blank" rel="noopener">The BeanFactory</a>.</p>
+<h3 id="Java-Beans-vs-Spring-Beans-vs-POJOs"><a href="#Java-Beans-vs-Spring-Beans-vs-POJOs" class="headerlink" title="Java Beans vs Spring Beans vs POJOs"></a>Java Beans vs Spring Beans vs POJOs</h3><p>(additional reference: <a href="http://www.shaunabram.com/beans-vs-pojos/" target="_blank" rel="noopener">http://www.shaunabram.com/beans-vs-pojos/</a>)</p>
+<ul>
+<li><p>JavaBeans are classes that <strong>encapsulate many objects into a single object (the bean)</strong>. It is a java class that should <strong>follow following conventions</strong>:</p>
+<ul>
+<li><p>Must implement <code>Serializable.</code></p>
+</li>
+<li><p>It should have a public <code>no-arg</code> constructor.</p>
+</li>
+<li><p>All properties in java bean must be <code>private</code> with <code>public getters()</code> and <code>public setter()</code> methods.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestBean</span> </span>&#123; </span><br><span class="line">	<span class="keyword">private</span> String name; </span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span></span>&#123; </span><br><span class="line">	        <span class="keyword">this</span>.name = name; </span><br><span class="line">    &#125; </span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span></span>&#123; </span><br><span class="line">	        <span class="keyword">return</span> name; </span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>  <strong>setter methods</strong>:</p>
+<ul>
+<li>It should be <code>public</code> in nature.</li>
+<li>The return-type should be <code>void</code>.</li>
+<li>The setter method should be prefixed with <code>set</code>.</li>
+<li>It should take some argument i.e. it should not be no-arg method.</li>
+</ul>
+<p>  <strong>getter methods</strong></p>
+<ul>
+<li>It should be <code>public</code> in nature.</li>
+<li>The return-type should <strong>not be <code>void</code></strong> i.e. according to our requirement we have to give return-type.</li>
+<li>The getter method should be prefixed with <code>get</code>.</li>
+<li>It should not take any argument.</li>
+</ul>
+<p>  <strong>Boolean properties getter method</strong></p>
+<ul>
+<li>name can be prefixed with either “<code>get</code>” or “<code>is</code>”. But recommended to use “<code>is</code>”.</li>
+<li>returns a <code>boolean</code></li>
+</ul>
+</li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/06/09/Spring-Framework-Guide/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
       
   
   
@@ -428,128 +563,10 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://jasonyux.github.io/2020/05/25/Docker-Manual/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Xiao Yu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="From a Beginner to a Disaster">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/05/25/Docker-Manual/" class="post-title-link" itemprop="url">Docker Manual</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-05-25 15:18:39" itemprop="dateCreated datePublished" datetime="2020-05-25T15:18:39+08:00">2020-05-25</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-07-07 17:42:29" itemprop="dateModified" datetime="2020-07-07T17:42:29+08:00">2020-07-07</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <hr>
-<p><strong>IMPORTANT</strong>:<br>Much of the content here is a personal summary/abbreviation of contents on the <a href="https://docs.docker.com/get-started/" target="_blank" rel="noopener">Offical Docker Guide</a>. For more complete information, please refer to the official site.</p>
-<hr>
-<h2 id="Docker-Intro"><a href="#Docker-Intro" class="headerlink" title="Docker Intro"></a>Docker Intro</h2><p>Docker provides the ability to package and run an application in a loosely isolated environment called a <strong><code>container</code></strong>, which <strong>separate your applications from your infrastructure</strong>. The <strong>isolation and security</strong> allow you to run many containers simultaneously on a given host.</p>
-<p>The use of <code>container</code>s to deploy applications is called containerization. Containers are not new, but their use for easily deploying applications is.</p>
-<p>Docker provides tooling and a platform to manage the lifecycle of your <code>container</code>s:</p>
-<ul>
-<li>Develop your application and its supporting components using <code>container</code>s.</li>
-<li>The <code>container</code> becomes the unit for distributing and testing your application.</li>
-<li>When you’re ready, deploy your application into your production environment, as a <code>container</code> or an orchestrated service. This works the same whether your production environment is a local data center, a cloud provider, or a hybrid of the two.</li>
-</ul>
-<h2 id="Docker-Basics"><a href="#Docker-Basics" class="headerlink" title="Docker Basics"></a>Docker Basics</h2><p><strong>Docker is mainly composed of the following elements</strong> (the first three is referred as Docker Engine by the official site): </p>
-<ul>
-<li><strong>A server</strong> (<code>docker daemon</code>) which is a type of long-running program called a daemon process (the <code>dockerd</code>command).</li>
-<li><strong>A command line interface (CLI)</strong> client that is used by most users (the <code>docker</code>command).</li>
-<li><strong>A REST API</strong> which specifies interfaces that <strong>CLI</strong> programs can use to <strong>talk to the daemon</strong> and <strong>instruct it what to do</strong>.</li>
-<li><strong>A Docker registry</strong>, which stores Docker images. Docker Hub is a public registry that anyone can use, and Docker is configured to look for images on Docker Hub by default.</li>
-</ul>
-<p>So we see that Docker uses a client-server architecture. The <strong><code>docker client</code> talks to the <code>docker daemon</code></strong>, which does the heavy lifting of building, running, and distributing your Docker containers. The Docker <code>client</code> and <code>daemon</code> can run on the same system, or you can connect a Docker client to a remote Docker daemon.</p>
-<h2 id="Docker-Architecture"><a href="#Docker-Architecture" class="headerlink" title="Docker Architecture"></a>Docker Architecture</h2><ul>
-<li><p>The <strong>Docker <code>daemon</code></strong></p>
-<ul>
-<li>The Docker <code>daemon</code> (<code>dockerd</code>) listens for Docker API requests and manages Docker objects such as <code>images</code>, <code>container</code>s, networks, and volumes. A daemon can also communicate with other daemons to manage Docker services.</li>
-</ul>
-</li>
-<li><p><strong>The Docker <code>client</code></strong></p>
-<ul>
-<li>The Docker <code>client</code> (<code>docker</code>) is the primary way that many Docker users interact with Docker. When you use commands such as <code>docker run</code>, the client sends these commands to <code>dockerd</code>, which carries them out. The docker command uses the Docker API. The Docker client can communicate with more than one daemon.</li>
-</ul>
-</li>
-<li><p><strong>Docker registries</strong></p>
-<ul>
-<li>A Docker registry stores Docker <code>image</code>s. Docker Hub is a public registry that anyone can use, and Docker is configured to look for images on Docker Hub by default. You can even run your own private registry. If you use Docker Datacenter (DDC), it includes Docker Trusted Registry (DTR).</li>
-</ul>
-</li>
-<li><p><strong>Docker objects</strong></p>
-<ul>
-<li>When you use Docker, you are creating and using <code>images</code>, <code>container</code>s, networks, volumes, plugins, and other objects. The section below is a brief overview of some of those objects.</li>
-</ul>
-</li>
-</ul>
-<h2 id="Docker-Objects"><a href="#Docker-Objects" class="headerlink" title="Docker Objects"></a>Docker Objects</h2><ul>
-<li><code>IMAGE</code><ul>
-<li>An <code>image</code> is a <strong>read-only template</strong> with <strong>instructions for creating a Docker <code>container</code></strong>. Often, an <code>image</code> is based on another <code>image</code>, with some additional customization. For example, you may build an image which is based on the ubuntu image, but installs the Apache web server and your application, as well as the configuration details needed to make your application run.</li>
-</ul>
-</li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/05/25/Docker-Manual/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
