@@ -167,7 +167,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">10</span>
+          <span class="site-state-item-count">11</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -201,6 +201,282 @@
 
         <div class="content index posts-expand">
           
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://jasonyux.github.io/2020/07/23/Spring-Security-Manual/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Xiao Yu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="From a Beginner to a Disaster">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/07/23/Spring-Security-Manual/" class="post-title-link" itemprop="url">Spring Security (OAuth2) Manual</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-07-23 10:36:09 / Modified: 17:25:09" itemprop="dateCreated datePublished" datetime="2020-07-23T10:36:09+08:00">2020-07-23</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <hr>
+<p><strong>IMPORTANT</strong>:<br>Much of the content here is a personal summary/abbreviation of contents on the <a href="https://docs.spring.io/spring-security/site/docs/5.3.3.BUILD-SNAPSHOT/reference/html5/" target="_blank" rel="noopener">Offical Spring Security Documentation</a>. For more complete information, please refer to the official site.</p>
+<hr>
+<h1 id="Spring-Security-Intro"><a href="#Spring-Security-Intro" class="headerlink" title="Spring Security Intro"></a>Spring Security Intro</h1><p>Spring security is very useful for dealing with authorization, authentication, and protection against common attacks. It provides support for OAuth2, SAML2, and etc. Yet, as the title of this manual suggests, <strong>the following sections will focus on using OAuth2</strong> for authentication/authorization. </p>
+<p>Technically, you do not necessarily need to use Spring Boot for using Spring Security. However, the sections below do <strong>assume that you are having a Spring Boot project</strong> to provide the backend services.</p>
+<p>If you want more information on using tools other than OAuth2, or that you are not using Spring Boot as the backend API implementations, please visit the <a href="https://docs.spring.io/spring-security/site/docs/5.3.3.BUILD-SNAPSHOT/reference/html5/" target="_blank" rel="noopener">Official Reference</a>.</p>
+<h1 id="Getting-Spring-Security"><a href="#Getting-Spring-Security" class="headerlink" title="Getting Spring Security"></a>Getting Spring Security</h1><p>If you are using Spring Security with Spring Boot, getting Spring Security playing in your application is simple.</p>
+<p><strong>In summary</strong>, all you need to do is </p>
+<ol>
+<li>Import the <code>spring-boot-starter-security</code> in your <code>pom.xml</code><ul>
+<li>You can either manually import the dependency, or select the <code>Spring Security</code> dependency in the Spring Initialzr</li>
+<li>At this point, we are not yet using the <code>OAuth2 Resource Server</code> and <code>OAuth2 Client</code> yet. If you want, feel free to include those in your <code>pom.xml</code> as well.</li>
+</ul>
+</li>
+</ol>
+<p>The necessary dependency looks like:</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- ... other dependency elements ... --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-security<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>Again, its version has been already specified in the parent:</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">parent</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-parent<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.3.1.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">relativePath</span>/&gt;</span> <span class="comment">&lt;!-- lookup parent from repository --&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">parent</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>If you want to use a specific version, you can specify it as well:</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">properties</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- ... --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">spring-security.version</span>&gt;</span>WHATEVER-VERSION-YOU-WANT-HERE<span class="tag">&lt;/<span class="name">spring-security.version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">properties</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>Note:</p>
+<ul>
+<li><input disabled="" type="checkbox"> <p><strong>If you use a SNAPSHOT version</strong>, you need to ensure that you have the Spring Snapshot repository defined, as the following example shows:</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">repositories</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- ... possibly other repository elements ... --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">repository</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">id</span>&gt;</span>spring-snapshot<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>Spring Snapshot Repository<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">url</span>&gt;</span>https://repo.spring.io/snapshot<span class="tag">&lt;/<span class="name">url</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">repository</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">repositories</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</blockquote>
+<h1 id="Spring-Security-Features"><a href="#Spring-Security-Features" class="headerlink" title="Spring Security Features"></a>Spring Security Features</h1><p>Spring Security provides comprehensive support for <a href="#Authentication">authentication</a>, authorization, and protection against <a href="https://docs.spring.io/spring-security/site/docs/5.3.3.BUILD-SNAPSHOT/reference/html5/#exploits" target="_blank" rel="noopener">common exploits</a>. It also provides integration with other libraries to simplify its usage.</p>
+<h2 id="Authentication-Support"><a href="#Authentication-Support" class="headerlink" title="Authentication Support"></a>Authentication Support</h2><p>Authentication is how we <strong>verify the identity of who is trying to access a particular resource</strong>. A common way to authenticate users is by requiring the user to enter a username and password. Once authentication is performed we know the identity and can perform authorization.</p>
+<p>Spring Security provides built in support for authenticating users. Refer to the sections on <a href="#authentication">authentication</a> for details on what is supported for each stack.</p>
+<h2 id="Password-Storage-and-Encoding"><a href="#Password-Storage-and-Encoding" class="headerlink" title="Password Storage and Encoding"></a>Password Storage and Encoding</h2><p>Spring Security’s <code>PasswordEncoder</code> interface is used to perform a <strong>one way transformation of a password to allow the password to be stored securely</strong>. Given <code>PasswordEncoder</code> is a one way transformation, it is not intended when the password transformation needs to be two way (i.e. storing credentials used to authenticate to a database). </p>
+<p>Typically <code>PasswordEncoder</code> is used for <strong>storing a password that needs to be compared to a user provided password at the time of authentication</strong>.</p>
+<h3 id="Password-Storage-History"><a href="#Password-Storage-History" class="headerlink" title="Password Storage History"></a>Password Storage History</h3><p>This section discusses a brief history of password storage: <strong>how attackers were able to crack the past systems, and what current strategies are</strong>.</p>
+<blockquote>
+<p>Throughout the years the standard mechanism for storing passwords has evolved. In the beginning passwords were stored in plain text. The passwords were assumed to be safe because the data store the passwords were saved in required credentials to access it. However, malicious users were able to find ways to get large “data dumps” of usernames and passwords using attacks like SQL Injection. As more and more user credentials became public security experts realized we needed to do more to protect users’ passwords.</p>
+<p><strong>Developers were then encouraged to store passwords after running them through a one way hash such as SHA-256.</strong> When a user tried to authenticate, the hashed password would be compared to the hash of the password that they typed. This meant that the system only needed to store the one way hash of the password. If a breach occurred, then only the one way hashes of the passwords were exposed. Since the hashes were one way and it was computationally difficult to guess the passwords given the hash, it would not be worth the effort to figure out each password in the system. <strong>To defeat this new system malicious users decided to create lookup tables known as <a href="https://en.wikipedia.org/wiki/Rainbow_table" target="_blank" rel="noopener">Rainbow Tables</a>.</strong> Rather than doing the work of guessing each password every time, they computed the password once and stored it in a lookup table.</p>
+<p><strong>To mitigate the effectiveness of Rainbow Tables, developers were encouraged to use salted passwords.</strong> Instead of using just the password as input to the hash function, random bytes (known as salt) would be generated for every users’ password. The salt and the user’s password would be ran through the hash function which produced a unique hash. The salt would be stored alongside the user’s password in clear text. Then when a user tried to authenticate, the hashed password would be compared to the hash of the stored salt and the password that they typed. The unique salt meant that Rainbow Tables were no longer effective because the hash was different for every salt and password combination.</p>
+<p><strong>In modern times we realize that cryptographic hashes (like SHA-256) are no longer secure.</strong> The reason is that with modern hardware we can perform billions of hash calculations a second. This means that we can crack each password individually with ease.</p>
+<p><strong>Developers are now encouraged to leverage adaptive one-way functions to store a password (e.g. feeding its output as input and adjust how many iterations to occur).</strong> Validation of passwords with adaptive one-way functions are intentionally resource (i.e. CPU, memory, etc) intensive. An adaptive one-way function allows configuring a “work factor” which can grow as hardware gets better. It is recommended that the “work factor” be tuned to take about 1 second to verify a password on your system. This trade off is to make it difficult for attackers to crack the password, but not so costly it puts excessive burden on your own system. Spring Security has attempted to provide a good starting point for the “work factor”, but users are encouraged to customize the “work factor” for their own system since the performance will vary drastically from system to system. Examples of adaptive one-way functions that should be used include <a href="https://docs.spring.io/spring-security/site/docs/5.3.3.BUILD-SNAPSHOT/reference/html5/#authentication-password-storage-bcrypt" target="_blank" rel="noopener">bcrypt</a>, <a href="https://docs.spring.io/spring-security/site/docs/5.3.3.BUILD-SNAPSHOT/reference/html5/#authentication-password-storage-pbkdf2" target="_blank" rel="noopener">PBKDF2</a>, <a href="https://docs.spring.io/spring-security/site/docs/5.3.3.BUILD-SNAPSHOT/reference/html5/#authentication-password-storage-scrypt" target="_blank" rel="noopener">scrypt</a>, and <a href="https://docs.spring.io/spring-security/site/docs/5.3.3.BUILD-SNAPSHOT/reference/html5/#authentication-password-storage-argon2" target="_blank" rel="noopener">argon2</a>.</p>
+<p>Because adaptive one-way functions are intentionally resource intensive, validating a username and password for every request will degrade performance of an application significantly. There is nothing Spring Security (or any other library) can do to speed up the validation of the password since security is gained by making the validation resource intensive. Users are encouraged to exchange the long term credentials (i.e. username and password) for a short term credential (i.e. session, OAuth Token, etc). The short term credential can be validated quickly without any loss in security.</p>
+<p>Source: <a href="https://docs.spring.io/spring-security/site/docs/5.3.3.BUILD-SNAPSHOT/reference/html5/#authentication-password-storage-history" target="_blank" rel="noopener">https://docs.spring.io/spring-security/site/docs/5.3.3.BUILD-SNAPSHOT/reference/html5/#authentication-password-storage-history</a></p>
+</blockquote>
+<h3 id="DelegatingPasswordEncoder"><a href="#DelegatingPasswordEncoder" class="headerlink" title="DelegatingPasswordEncoder"></a><code>DelegatingPasswordEncoder</code></h3><p>Prior to Spring Security 5.0 the default <code>PasswordEncoder</code> was <code>NoOpPasswordEncoder</code> which required plain text passwords. Based upon the <a href="#Password-Storage-History">Password Storage History</a> section you might expect that the default <code>PasswordEncoder</code> is now something like <code>BCryptPasswordEncoder</code>. However, this ignores three real world problems:</p>
+<ul>
+<li>There are many applications using old password encodings that cannot easily migrate</li>
+<li>The best practice for password storage will change again.</li>
+<li>As a framework Spring Security cannot make breaking changes frequently</li>
+</ul>
+<p>Instead Spring Security introduces <code>DelegatingPasswordEncoder</code> which solves all of the problems by:</p>
+<ul>
+<li>Ensuring that passwords are encoded using the current password storage recommendations</li>
+<li><strong>Allowing for validating passwords in modern and legacy formats</strong></li>
+<li>Allowing for upgrading the encoding in the future</li>
+</ul>
+<p>You can easily construct an instance of <code>DelegatingPasswordEncoder</code> using <code>PasswordEncoderFactories</code>.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">PasswordEncoder passwordEncoder =</span><br><span class="line">    PasswordEncoderFactories.createDelegatingPasswordEncoder();</span><br></pre></td></tr></table></figure>
+
+<p><strong>Alternatively, you may create your own custom instance:</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">String idForEncode = <span class="string">"bcrypt"</span>;</span><br><span class="line">Map encoders = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">encoders.put(idForEncode, <span class="keyword">new</span> BCryptPasswordEncoder());</span><br><span class="line">encoders.put(<span class="string">"noop"</span>, NoOpPasswordEncoder.getInstance());</span><br><span class="line">encoders.put(<span class="string">"pbkdf2"</span>, <span class="keyword">new</span> Pbkdf2PasswordEncoder());</span><br><span class="line">encoders.put(<span class="string">"scrypt"</span>, <span class="keyword">new</span> SCryptPasswordEncoder());</span><br><span class="line">encoders.put(<span class="string">"sha256"</span>, <span class="keyword">new</span> StandardPasswordEncoder());</span><br><span class="line"></span><br><span class="line">PasswordEncoder passwordEncoder = <span class="keyword">new</span> DelegatingPasswordEncoder(idForEncode, encoders);</span><br></pre></td></tr></table></figure>
+
+<h3 id="Encode-with-Spring-Boot-CLI"><a href="#Encode-with-Spring-Boot-CLI" class="headerlink" title="Encode with Spring Boot CLI"></a>Encode with Spring Boot CLI</h3><p>This can be useful sometimes when you are testing some features of your application and needs a certain password to be encoded without running the entire application. This can be achieved in Spring Boot CLI:</p>
+<p>For example:</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">spring encodepassword password</span><br><span class="line">&#123;bcrypt&#125;$<span class="number">2</span>a$<span class="number">10</span>$X5wFBtLrL/kHcmrOGGTrGufsBX8CJ0WpQpF3pgeuxBB/H73BK1DW6</span><br></pre></td></tr></table></figure>
+
+<p>However, this seems to only be able to provide hashes of type <code>bcrypt</code>.</p>
+<h3 id="Password-Storage-Format"><a href="#Password-Storage-Format" class="headerlink" title="Password Storage Format"></a>Password Storage Format</h3><p>If you run the <code>passwordEncoder(&quot;password&quot;)</code> for each of the <code>PasswordEncoder</code> above, you will see the following output format:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;id&#125;encodedPassword</span><br></pre></td></tr></table></figure>
+
+<p>For example, encoding the word <code>password</code> would give:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;bcrypt&#125;$2a$10$dXJ3SW6G7P50lGmMkkmwe.20cQQubK3.HZWzG3YB1tlRy.fqvM&#x2F;BG </span><br><span class="line">&#123;noop&#125;password </span><br><span class="line">&#123;pbkdf2&#125;5d923b44a6d129f3ddf3e3c8d29412723dcbde72445e8ef6bf3b508fbf17fa4ed4d6b99ca763d8dc </span><br><span class="line">&#123;scrypt&#125;$e0801$8bWJaSu2IKSn9Z9kM+TPXfOc&#x2F;9bdYSrN1oD9qfVThWEwdRTnO7re7Ei+fUZRJ68k9lTyuTeUp4of4g24hHnazw&#x3D;&#x3D;$OAOec05+bXxvuu&#x2F;1qZ6NUR+xQYvYv7BeL1QxwRpY5Pc&#x3D;  </span><br><span class="line">&#123;sha256&#125;97cde38028ad898ebc02e690819fa220e88c62e0699403e94fff291cfffaf8410849f27605abcbc0</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>Note:</p>
+<ul>
+<li><input disabled="" type="checkbox"> Some users might be <strong>concerned that the storage format is provided for a potential hacker</strong>. This is not a concern because the storage of the password does not rely on the algorithm being a secret. Additionally, most formats are easy for an attacker to figure out without the prefix. For example, BCrypt passwords often start with <code>$2a$</code>.</li>
+</ul>
+</blockquote>
+<h3 id="Password-Matching"><a href="#Password-Matching" class="headerlink" title="Password Matching"></a>Password Matching</h3><p>The <code>match()</code> method of the <code>PasswordEncoder</code> takes two arguements: the raw password, and the encoded password (in the format <code>{id}encodedPassword</code>).</p>
+<p>For example, if you have the password <code>jason</code>, and the encoded hash of it is <code>{bcrypt}$2a$10$ZBDPr38ZlwyPGe/YNsOSHuBEU5TDeNisCds6zJolVW1pN4YEHb3YS</code> , then you do:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">passwordEncoder.matches(<span class="string">"jason"</span>,<span class="string">"&#123;bcrypt&#125;$2a$10$ZBDPr38ZlwyPGe/YNsOSHuBEU5TDeNisCds6zJolVW1pN4YEHb3YS"</span>));</span><br></pre></td></tr></table></figure>
+
+<p>This behavior can be customized using <code>DelegatingPasswordEncoder.setDefaultPasswordEncoderForMatches(PasswordEncoder)</code>.</p>
+<blockquote>
+<p>Note:</p>
+<ul>
+<li><input disabled="" type="checkbox"> However, if the <code>{id}</code> you put in as part of the argument does not exist in the list of encoders that you specified in the example above, it will throw an <code>IllegalArgumentException</code>. This behavior can be customized using <code>DelegatingPasswordEncoder.setDefaultPasswordEncoderForMatches(PasswordEncoder)</code>.</li>
+</ul>
+</blockquote>
+<p>However, if you look into the <code>match()</code> method, you will realize that it checks whether if the password is a match for the hash by first looking at the <code>{id}</code> to determine which encoder to use. This means that <strong>if you hashed it with <code>bcrypt</code> somewhere in your code</strong>, come back here and <strong>put a hash of the same password with the <code>pbkdf2</code> encoder</strong>, it will <strong>still give a match</strong>.</p>
+<h2 id="Password-Encoders"><a href="#Password-Encoders" class="headerlink" title="Password Encoders"></a>Password Encoders</h2><h3 id="BCryptPasswordEncoder"><a href="#BCryptPasswordEncoder" class="headerlink" title="BCryptPasswordEncoder"></a>BCryptPasswordEncoder</h3><p>The <code>BCryptPasswordEncoder</code> implementation uses the widely supported <a href="https://en.wikipedia.org/wiki/Bcrypt" target="_blank" rel="noopener">bcrypt</a> algorithm to hash the passwords. In order to make it more resistent to password cracking, <strong>bcrypt is deliberately slow</strong>. Like other adaptive one-way functions, it should be tuned to take about 1 second to verify a password on your system. </p>
+<p><strong>The default implementation of <code>BCryptPasswordEncoder</code> uses strength 10</strong> as mentioned in the Javadoc of <a href="https://docs.spring.io/spring-security/site/docs/current/api/org/springframework/security/crypto/bcrypt/BCryptPasswordEncoder.html" target="_blank" rel="noopener">BCryptPasswordEncoder</a>. You are encouraged to tune and test the strength parameter on your own system so that it takes roughly 1 second to verify a password.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Create an encoder with strength 16</span></span><br><span class="line">BCryptPasswordEncoder encoder = <span class="keyword">new</span> BCryptPasswordEncoder(<span class="number">16</span>);</span><br><span class="line">String result = encoder.encode(<span class="string">"myPassword"</span>);</span><br><span class="line">assertTrue(encoder.matches(<span class="string">"myPassword"</span>, result));</span><br></pre></td></tr></table></figure>
+
+<h3 id="Argon2PasswordEncoder"><a href="#Argon2PasswordEncoder" class="headerlink" title="Argon2PasswordEncoder"></a>Argon2PasswordEncoder</h3><p>The <code>Argon2PasswordEncoder</code> implementation uses the <a href="https://en.wikipedia.org/wiki/Argon2" target="_blank" rel="noopener">Argon2</a> algorithm to hash the passwords. <strong>Argon2 is the winner of the <a href="https://en.wikipedia.org/wiki/Password_Hashing_Competition" target="_blank" rel="noopener">Password Hashing Competition</a></strong>. In order to defeat password cracking on custom hardware, Argon2 is a deliberately slow algorithm that requires large amounts of memory. Like other adaptive one-way functions, it should be tuned to take about 1 second to verify a password on your system. The current implementation if the <code>Argon2PasswordEncoder</code> requires BouncyCastle.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Create an encoder with all the defaults</span></span><br><span class="line">Argon2PasswordEncoder encoder = <span class="keyword">new</span> Argon2PasswordEncoder();</span><br><span class="line">String result = encoder.encode(<span class="string">"myPassword"</span>);</span><br><span class="line">assertTrue(encoder.matches(<span class="string">"myPassword"</span>, result));</span><br></pre></td></tr></table></figure>
+
+<h3 id="Pbkdf2PasswordEncoder"><a href="#Pbkdf2PasswordEncoder" class="headerlink" title="Pbkdf2PasswordEncoder"></a>Pbkdf2PasswordEncoder</h3><p>The <code>Pbkdf2PasswordEncoder</code> implementation uses the <a href="https://en.wikipedia.org/wiki/PBKDF2" target="_blank" rel="noopener">PBKDF2</a> algorithm to hash the passwords. In order to defeat password cracking PBKDF2 is a deliberately slow algorithm. Like other adaptive one-way functions, it should be tuned to take about 1 second to verify a password on your system. This algorithm is a good choice when FIPS certification is required.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Create an encoder with all the defaults</span></span><br><span class="line">Pbkdf2PasswordEncoder encoder = <span class="keyword">new</span> Pbkdf2PasswordEncoder();</span><br><span class="line">String result = encoder.encode(<span class="string">"myPassword"</span>);</span><br><span class="line">assertTrue(encoder.matches(<span class="string">"myPassword"</span>, result));</span><br></pre></td></tr></table></figure>
+
+<h3 id="SCryptPasswordEncoder"><a href="#SCryptPasswordEncoder" class="headerlink" title="SCryptPasswordEncoder"></a>SCryptPasswordEncoder</h3><p>The <code>SCryptPasswordEncoder</code> implementation uses <a href="https://en.wikipedia.org/wiki/Scrypt" target="_blank" rel="noopener">scrypt</a> algorithm to hash the passwords. In order to defeat password cracking on custom hardware scrypt is a deliberately slow algorithm that requires large amounts of memory. Like other adaptive one-way functions, it should be tuned to take about 1 second to verify a password on your system.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Create an encoder with all the defaults</span></span><br><span class="line">SCryptPasswordEncoder encoder = <span class="keyword">new</span> SCryptPasswordEncoder();</span><br><span class="line">String result = encoder.encode(<span class="string">"myPassword"</span>);</span><br><span class="line">assertTrue(encoder.matches(<span class="string">"myPassword"</span>, result));</span><br></pre></td></tr></table></figure>
+
+<h3 id="Other-PasswordEncoders"><a href="#Other-PasswordEncoders" class="headerlink" title="Other PasswordEncoders"></a>Other PasswordEncoders</h3><p>There are a significant number of other <code>PasswordEncoder</code> implementations that exist entirely for backward compatibility. They are all deprecated to indicate that they are no longer considered secure. However, there are no plans to remove them since it is difficult to migrate existing legacy systems.</p>
+<h2 id="Protection-Against-Exploits"><a href="#Protection-Against-Exploits" class="headerlink" title="Protection Against Exploits"></a>Protection Against Exploits</h2><p>Spring Security provides protection against common exploits. Whenever possible, the protection is enabled by default. Below you will find high level description of the various exploits that Spring Security protects against.</p>
+<p>The following sections discuss:</p>
+<ul>
+<li>Cross Site Request Forgery (CSRF)</li>
+<li>Security HTTP Response Headers</li>
+<li>HTTP</li>
+</ul>
+<h3 id="Cross-Site-Request-Forgery"><a href="#Cross-Site-Request-Forgery" class="headerlink" title="Cross Site Request Forgery"></a>Cross Site Request Forgery</h3><p>This is caused by the fact that authentication cookies associated with a site gets passed along in your request if you did not logout. This means that a website can forge an identical evil request using the authentication cookie passed along.</p>
+<p>For example:</p>
+<p>Consider that you are on a banking website, where you submitted a request of transferring money that looks like this:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">method</span>=<span class="string">"post"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">action</span>=<span class="string">"/transfer"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">name</span>=<span class="string">"amount"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">name</span>=<span class="string">"routingNumber"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">name</span>=<span class="string">"account"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">value</span>=<span class="string">"Transfer"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>Then the request would look like:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">POST &#x2F;transfer HTTP&#x2F;1.1</span><br><span class="line">Host: bank.example.com</span><br><span class="line">Cookie: JSESSIONID&#x3D;randomid</span><br><span class="line">Content-Type: application&#x2F;x-www-form-urlencoded</span><br><span class="line"></span><br><span class="line">amount&#x3D;100.00&amp;routingNumber&#x3D;1234&amp;account&#x3D;9876</span><br></pre></td></tr></table></figure>
+
+<p>Now pretend you authenticate to your bank’s website and then, <strong>without logging out, visit an evil website</strong>. The evil website contains an HTML page with the following form:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">method</span>=<span class="string">"post"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">action</span>=<span class="string">"https://bank.example.com/transfer"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"hidden"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">name</span>=<span class="string">"amount"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">value</span>=<span class="string">"100.00"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"hidden"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">name</span>=<span class="string">"routingNumber"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">value</span>=<span class="string">"evilsRoutingNumber"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"hidden"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">name</span>=<span class="string">"account"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">value</span>=<span class="string">"evilsAccountNumber"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">value</span>=<span class="string">"Win Money!"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>As a result, <strong>the same request would be generated, with the same cookie but destination account forged</strong>.</p>
+<p>Worst yet, this whole process could have been automated using JavaScript. This means you didn’t even need to click on the button. Furthermore, it could just as easily happen when visiting an honest site that is a victim of a <a href="https://www.owasp.org/index.php/Cross-site_Scripting_(XSS)" target="_blank" rel="noopener">XSS attack</a>. So how do we protect our users from such attacks?</p>
+<h4 id="Protecting-Against-CSRF-Attacks"><a href="#Protecting-Against-CSRF-Attacks" class="headerlink" title="Protecting Against CSRF Attacks"></a>Protecting Against CSRF Attacks</h4><p>The reason that a CSRF attack is possible is that the HTTP request from the victim’s website and the request from the attacker’s website are exactly the same. This means there is no way to reject requests coming from the evil website and allow requests coming from the bank’s website. </p>
+<p>To protect against CSRF attacks we need to <strong>ensure there is something in the request that the evil site is unable to provide so we can differentiate the two requests</strong>.</p>
+<p>Spring provides two mechanisms to protect against CSRF attacks:</p>
+<ul>
+<li>The <a href="https://docs.spring.io/spring-security/site/docs/5.3.3.BUILD-SNAPSHOT/reference/html5/#csrf-protection-stp" target="_blank" rel="noopener">Synchronizer Token Pattern</a></li>
+<li>Specifying the <a href="https://docs.spring.io/spring-security/site/docs/5.3.3.BUILD-SNAPSHOT/reference/html5/#csrf-protection-ssa" target="_blank" rel="noopener">SameSite Attribute</a> on your session cookie</li>
+</ul>
+<blockquote>
+<p>Note:</p>
+<ul>
+<li><input disabled="" type="checkbox"> Both protections require that <strong>Safe Methods Must be Idempotent</strong>:<ul>
+<li>In order for either protection against CSRF (mentioned above) to work, the application must ensure that <a href="https://tools.ietf.org/html/rfc7231#section-4.2.1" target="_blank" rel="noopener">“safe” HTTP methods are idempotent</a>. This means that requests with the HTTP method <code>GET</code>, <code>HEAD</code>, <code>OPTIONS</code>, and <code>TRACE</code> should not change the state of the application.</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<h5 id="Synchronizer-Token-Pattern"><a href="#Synchronizer-Token-Pattern" class="headerlink" title="Synchronizer Token Pattern"></a>Synchronizer Token Pattern</h5><p>The predominant and most comprehensive way to protect against CSRF attacks is to use the <a href="https://www.owasp.org/index.php/Cross-Site_Request_Forgery_(CSRF)_Prevention_Cheat_Sheet#General_Recommendation:_Synchronizer_Token_Pattern" target="_blank" rel="noopener">Synchronizer Token Pattern</a>. This solution is to ensure that each HTTP request requires, in addition to our session cookie, <strong>a secure random generated value called a CSRF token must be present in the HTTP request</strong>.</p>
+<p>In summary, it works like this:</p>
+<ol>
+<li>When a user logged in, <strong>the server should generate a unique CSRF token</strong> associated with the user</li>
+<li>When an HTTP request is submitted, it should also <strong>send the CSRF token</strong> that along with the request<ul>
+<li><strong>The token should NOT be included in your cookie, or anything that will be automatically included in your browser</strong></li>
+<li>You can, for example, include the token in your request header or parameter</li>
+</ul>
+</li>
+<li>The server receiving the request will now check that CSRF token against the expected CSRF token. If the value does not match, reject the request.</li>
+</ol>
+<p>Just to state the take away message again: the key to this working is that <strong>the actual CSRF token should be in a part of the HTTP request that is not automatically included by the browser</strong>. For example, requiring the actual CSRF token in an HTTP parameter or an HTTP header will protect against CSRF attacks. Requiring the actual CSRF token in a cookie does not work because cookies are automatically included in the HTTP request by the browser.</p>
+<p>For example, the request sent with CSRF token now will look like:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">POST &#x2F;transfer HTTP&#x2F;1.1</span><br><span class="line">Host: bank.example.com</span><br><span class="line">Cookie: JSESSIONID&#x3D;randomid</span><br><span class="line">Content-Type: application&#x2F;x-www-form-urlencoded</span><br><span class="line"></span><br><span class="line">amount&#x3D;100.00&amp;routingNumber&#x3D;1234&amp;account&#x3D;9876&amp;_csrf&#x3D;4bfd1575-3ad1-4d21-96c7-4ef2d9f86721</span><br></pre></td></tr></table></figure>
+
+<p>where:</p>
+<ul>
+<li><code>4bfd1575-3ad1-4d21-96c7-4ef2d9f86721</code> is the CSRF token</li>
+</ul>
+<h5 id="Same-Site-Attribute"><a href="#Same-Site-Attribute" class="headerlink" title="Same Site Attribute"></a>Same Site Attribute</h5><p>An emerging way to protect against CSRF attack is to <strong>specify the <a href="https://tools.ietf.org/html/draft-west-first-party-cookies" target="_blank" rel="noopener">SameSite Attribute</a> on cookies</strong>. A server can specify the <code>SameSite</code> attribute when setting a cookie to indicate that the cookie should not be sent when coming from external sites.</p>
+<p>However, since <strong>Spring Security does not directly control the creation of the session cookie, it does not provide support for the <code>SameSite</code> attribute</strong>. <a href="https://spring.io/projects/spring-session" target="_blank" rel="noopener">Spring Session</a> provides support for the <code>SameSite</code> attribute in servlet based applications. Spring Framework’s <a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/server/session/CookieWebSessionIdResolver.html" target="_blank" rel="noopener">CookieWebSessionIdResolver</a> provides out of the box support for the <code>SameSite</code> attribute in WebFlux based applications.</p>
+<p>In summary, this works by:</p>
+<ol>
+<li>When the user logged in/get authenticated, the cookie comes along with the authentication specifies where the cookies get sent<ul>
+<li>For example, <strong>if specified <code>SameSite=Strict</code></strong>, then the <strong>cookie will NOT be passed along to different site/request coming from a different site</strong></li>
+</ul>
+</li>
+</ol>
+<p>An example, HTTP response header with the <code>SameSite</code> attribute might look like:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Set-Cookie: JSESSIONID&#x3D;randomid; Domain&#x3D;bank.example.com; Secure; HttpOnly; SameSite&#x3D;Lax</span><br></pre></td></tr></table></figure>
+
+<p>Valid values for the <code>SameSite</code> attribute are:</p>
+<ul>
+<li><code>Strict</code> - when specified any request coming from the <a href="https://tools.ietf.org/html/draft-west-first-party-cookies-07#section-2.1" target="_blank" rel="noopener">same-site</a> will include the cookie. Otherwise, the cookie will not be included in the HTTP request.</li>
+<li><code>Lax</code> - when specified cookies will be sent when coming from the <a href="https://tools.ietf.org/html/draft-west-first-party-cookies-07#section-2.1" target="_blank" rel="noopener">same-site</a> or when the request comes from top-level navigations and the <a href="https://docs.spring.io/spring-security/site/docs/5.3.3.BUILD-SNAPSHOT/reference/html5/#csrf-protection-idempotent" target="_blank" rel="noopener">method is idempotent</a>. Otherwise, the cookie will not be included in the HTTP request.</li>
+</ul>
+<blockquote>
+<p>Note:</p>
+<ul>
+<li><input disabled="" type="checkbox"> <strong>Setting the <code>SameSite</code> attribute to <code>Strict</code> provides a stronger defense but can confuse users</strong>. Consider <strong>a user that stays logged into a social media site hosted at <a href="https://social.example.com/" target="_blank" rel="noopener">https://social.example.com</a></strong>. The user receives <strong>an email at <a href="https://email.example.org/" target="_blank" rel="noopener">https://email.example.org</a> that includes a link to the social media site</strong>. If the user clicks on the link, they would rightfully expect to be authenticated to the social media site. However, <strong>if the <code>SameSite</code> attribute is <code>Strict</code> the cookie would not be sent and so the user would not be authenticated.</strong></li>
+</ul>
+</blockquote>
+<p><strong>There are some important <a href="https://tools.ietf.org/html/draft-west-first-party-cookies-07#section-5" target="_blank" rel="noopener">considerations</a> that one should be aware about when using <code>SameSite</code> attribute</strong> to protect against CSRF attacks.</p>
+<p>One obvious consideration is that in order for the <code>SameSite</code> attribute to protect users, <strong>the browser must support the <code>SameSite</code> attribute</strong>. Most modern browsers do <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/headers/Set-Cookie#Browser_compatibility" target="_blank" rel="noopener">support the SameSite attribute</a>. However, older browsers that are still in use may not.</p>
+<p>For this reason, it is generally recommended to use the <code>SameSite</code> attribute as a defense in depth rather than the sole protection against CSRF attacks.</p>
+<h4 id="When-to-use-CSRF-Protection"><a href="#When-to-use-CSRF-Protection" class="headerlink" title="When to use CSRF Protection"></a>When to use CSRF Protection</h4><p>When should you use CSRF protection? It is recommended to <strong>use CSRF protection for any request that could be processed by a browser by normal/authenticated users</strong>. If you are only creating <strong>a service that is used by non-browser clients</strong>, you will likely want to <strong>disable CSRF protection</strong>.</p>
+<h4 id="CSRF-Considerations"><a href="#CSRF-Considerations" class="headerlink" title="CSRF Considerations"></a>CSRF Considerations</h4><p>There are a few special considerations to consider when implementing protection against CSRF attacks.</p>
+<h5 id="Logging-in"><a href="#Logging-in" class="headerlink" title="Logging in"></a>Logging in</h5><p>In order to protect against <a href="https://en.wikipedia.org/wiki/Cross-site_request_forgery#Forging_login_requests" target="_blank" rel="noopener">forging log in requests</a> <strong>the log in HTTP request should be protected against CSRF attacks</strong>. Protecting against forging log in requests is necessary <strong>so that a malicious user cannot read a victim’s sensitive information</strong>. The attack is executed by:</p>
+<ul>
+<li>A malicious user performs a CSRF login using the malicious user’s credentials. The victim is now authenticated as the malicious user.</li>
+<li>The malicious user then tricks the victim to visit the compromised website and enter sensitive information</li>
+<li><strong>The information is now associated to the malicious user’s account so the malicious user can login with their own credentials and view the victim’s sensitive information</strong></li>
+</ul>
+<p>A possible complication to ensuring login HTTP requests are protected against CSRF attacks is that the <strong>user might experience a session timeout that causes the request to be rejected.</strong> A session timeout is surprising to users who do not expect to need to have a session in order to log in. For more information refer to <a href="#CSRF-and-Session-Timeouts">CSRF and Session Timeouts</a>.</p>
+<h5 id="Logging-Out"><a href="#Logging-Out" class="headerlink" title="Logging Out"></a>Logging Out</h5><p>In order to protect against forging log out requests, the log out HTTP request should be protected against CSRF attacks. Protecting against forging log out requests is necessary so a malicious user cannot read a victim’s sensitive information. For details on the attack refer to <a href="https://labs.detectify.com/2017/03/15/loginlogout-csrf-time-to-reconsider/" target="_blank" rel="noopener">this blog post</a>.</p>
+<p>A possible complication to ensuring log out HTTP requests are protected against CSRF attacks is that the user might experience a session timeout that causes the request to be rejected. Please read on to the next section for more details.</p>
+<h5 id="CSRF-and-Session-Timeouts"><a href="#CSRF-and-Session-Timeouts" class="headerlink" title="CSRF and Session Timeouts"></a>CSRF and Session Timeouts</h5><p><strong>More often than not, the expected CSRF token is stored in the session</strong>. This means that as soon as the session expires the server will not find an expected CSRF token and reject the HTTP request. There are a number of options to solve timeouts each of which come with trade offs.</p>
+<ul>
+<li><p>The best way to mitigate the timeout is by using JavaScript to <strong>request a CSRF token on form submission. The form is then updated with the CSRF token and submitted</strong>.</p>
+</li>
+<li><p>Another option is to have some JavaScript that lets the user know their session is about to expire. The user can click a button to continue and refresh the session.</p>
+</li>
+<li><p>Finally, the expected CSRF token could be stored in a cookie. This allows the expected CSRF token to outlive the session.</p>
+<p>One might ask why the expected CSRF token isn’t stored in a cookie by default. This is because there are known exploits in which headers (i.e. specify the cookies) can be set by another domain. This is the same reason Ruby on Rails <a href="https://weblog.rubyonrails.org/2011/2/8/csrf-protection-bypass-in-ruby-on-rails/" target="_blank" rel="noopener">no longer skips CSRF checks when the header X-Requested-With is present</a>. See <a href="http://lists.webappsec.org/pipermail/websecurity_lists.webappsec.org/2011-February/007533.html" target="_blank" rel="noopener">this webappsec.org thread</a> for details on how to perform the exploit. Another disadvantage is that by removing the state (i.e. the timeout) you lose the ability to forcibly terminate the token if it is compromised.</p>
+</li>
+</ul>
+<h5 id="Multipart-File-Upload"><a href="#Multipart-File-Upload" class="headerlink" title="Multipart (File Upload)"></a>Multipart (File Upload)</h5><p>This is a concern mainly caused by <strong>storing your CSRF token in the request body</strong>.</p>
+<p>For example, if one of your request is uploading a file, the body of the HTTP request will be read (e.g. the file). However, since request body is also the place you store your <strong>CSRF token</strong>, this means that <strong>your body must be read to obtain actual CSRF token. However, reading the body means that the file will be uploaded which means an external site can upload a file.</strong></p>
+<p>However, this is not too bad, as you can configure your program to delete that file once the request is rejected (that you found the CSRF token is invalid).</p>
+<p>Yet, <strong>one approach is to Include CSRF Token in URL:</strong></p>
+<ul>
+<li>If allowing unauthorized users to upload temporary files is not acceptable, an alternative is to include the expected CSRF token as a query parameter in the action attribute of the form. <strong>The disadvantage to this approach is that query parameters can be leaked</strong>. <strong>More generally, it is considered best practice to place sensitive data within the body or headers to ensure it is not leaked</strong>. Additional information can be found in <a href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec15.html#sec15.1.3" target="_blank" rel="noopener">RFC 2616 Section 15.1.3 Encoding Sensitive Information in URI’s</a>.</li>
+</ul>
+<h3 id="Security-HTTP-Headers"><a href="#Security-HTTP-Headers" class="headerlink" title="Security HTTP Headers"></a>Security HTTP Headers</h3><p>There are many <a href="https://www.owasp.org/index.php/OWASP_Secure_Headers_Project#tab=Headers" target="_blank" rel="noopener">HTTP response headers</a> that can be used to increase the security of web applications. This section is dedicated to the various HTTP response headers that Spring Security provides explicit support for. <strong>If necessary, Spring Security can also be configured to provide <a href="#Custom-Headers">custom headers</a></strong>.</p>
+<h4 id="Custom-Headers"><a href="#Custom-Headers" class="headerlink" title="Custom Headers"></a>Custom Headers</h4><h1 id="Authentication"><a href="#Authentication" class="headerlink" title="Authentication"></a>Authentication</h1>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
       
   
   
@@ -2215,100 +2491,6 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2020/06/29/SpringBoot-Manual/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://jasonyux.github.io/2020/06/15/Go-Manual/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Xiao Yu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="From a Beginner to a Disaster">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/06/15/Go-Manual/" class="post-title-link" itemprop="url">Go Manual</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-06-15 10:57:30" itemprop="dateCreated datePublished" datetime="2020-06-15T10:57:30+08:00">2020-06-15</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-07-07 17:42:42" itemprop="dateModified" datetime="2020-07-07T17:42:42+08:00">2020-07-07</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <hr>
-<p><strong>IMPORTANT</strong>:<br>Much of the content here is a personal summary/abbreviation of contents on the <a href="https://golang.org/doc/" target="_blank" rel="noopener">Offical Go Documentation</a>. For more complete information, please refer to the official site.</p>
-<hr>
-<h2 id="Installing-Go"><a href="#Installing-Go" class="headerlink" title="Installing Go"></a>Installing Go</h2><p>Please follow the <a href="https://golang.org/doc/install" target="_blank" rel="noopener">Offical Guide on Installing Go</a>.</p>
-<h2 id="Packages"><a href="#Packages" class="headerlink" title="Packages"></a>Packages</h2><p>(additional reference: <a href="https://www.callicoder.com/golang-packages/#:~:text=Go%20Package,following%20syntax%20%2D%20package" target="_blank" rel="noopener">https://www.callicoder.com/golang-packages/#:~:text=Go%20Package,following%20syntax%20%2D%20package</a>)</p>
-<p>Every <strong>Go program is made up of packages</strong>, and every <strong>Go source file belongs to a package</strong>. To declare a source file to be part of a package, we use the following syntax -</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> &lt;packagename&gt;</span><br></pre></td></tr></table></figure>
-
-<p>The above package declaration must be the first line of code in your Go source file. All the functions, types, and variables defined in your Go source file become part of the declared package.</p>
-<p>You can <strong>choose to export a member defined in your package to outside packages</strong>, or keep them private to the same package. Other packages can <strong>import and reuse the functions or types that are exported from your package</strong>.</p>
-<p>Let’s see an example</p>
-<p>Almost all the code that we will see in this tutorial series include the following line -</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">"fmt"</span></span><br></pre></td></tr></table></figure>
-
-<p><code>fmt</code> is a core library package that contains functionalities related to formatting and printing output or reading input from various I/O sources. It exports functions like <code>Println()</code>, <code>Printf()</code>, <code>Scanf()</code> etc, for other packages to reuse.</p>
-<blockquote>
-<p>Note:</p>
-<ul>
-<li><input disabled="" type="checkbox"> By convention, the <strong>package name is</strong> the same as the <strong>last element of the import path</strong>. For instance, the <code>&quot;math/rand&quot;</code> package comprises files that begin with the statement <code>package rand</code>.</li>
-</ul>
-</blockquote>
-<h3 id="The-main-package-and-main-function"><a href="#The-main-package-and-main-function" class="headerlink" title="The main package and main() function"></a>The <code>main</code> package and <code>main()</code> function</h3><p>Go programs start running in the <code>main</code> package. It is a <strong>special package that is used with programs that are meant to be executable</strong>. The <strong><code>main()</code> function is a special function that is the entry point of an executable program</strong>.</p>
-<p>By convention, Executable programs (the ones with the main package) are called Commands. Others are called simply Packages.</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/06/15/Go-Manual/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
