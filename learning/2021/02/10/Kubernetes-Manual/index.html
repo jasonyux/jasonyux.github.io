@@ -1,0 +1,1069 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/learning/images/logo-180x180.jpg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/learning/images/logo-32x32.jpg">
+  <link rel="icon" type="image/png" sizes="16x16" href="/learning/images/logo-16x16.jpg">
+
+<link rel="stylesheet" href="/learning/css/main.css">
+
+
+<link rel="stylesheet" href="/learning/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"jasonyux.github.io","root":"/learning/","scheme":"Pisces","version":"8.0.0-rc.3","exturl":false,"sidebar":{"position":"left","width":350,"display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="IMPORTANT:Some of the content here is a personal summary&#x2F;abbreviation of contents on the Official Kubernetes Guide. Feel free to refer to that site if you think some of the sections written here are">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Kubernetes_Manual">
+<meta property="og:url" content="https://jasonyux.github.io/2021/02/10/Kubernetes-Manual/index.html">
+<meta property="og:site_name" content="From a Beginner to a Disaster">
+<meta property="og:description" content="IMPORTANT:Some of the content here is a personal summary&#x2F;abbreviation of contents on the Official Kubernetes Guide. Feel free to refer to that site if you think some of the sections written here are">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://d33wubrfki0l68.cloudfront.net/99d9808dcbf2880a996ed50d308a186b5900cec9/40b94/docs/tutorials/kubernetes-basics/public/images/module_01_cluster.svg">
+<meta property="og:image" content="https://d33wubrfki0l68.cloudfront.net/99d9808dcbf2880a996ed50d308a186b5900cec9/40b94/docs/tutorials/kubernetes-basics/public/images/module_01_cluster.svg">
+<meta property="og:image" content="d:/jasonyux-Blog/Hexo/source/_posts/Kubernetes-Manual/Snipaste_2021-02-13_22-04-07.png">
+<meta property="og:image" content="https://d33wubrfki0l68.cloudfront.net/152c845f25df8e69dd24dd7b0836a289747e258a/4a1d2/docs/tutorials/kubernetes-basics/public/images/module_02_first_app.svg">
+<meta property="og:image" content="d:/jasonyux-Blog/Hexo/source/_posts/Kubernetes-Manual/Snipaste_2021-02-13_22-04-07.png">
+<meta property="og:image" content="d:/jasonyux-Blog/Hexo/source/_posts/Kubernetes-Manual/Snipaste_2021-02-22_20-24-37.png">
+<meta property="og:image" content="d:/jasonyux-Blog/Hexo/source/_posts/Kubernetes-Manual/Snipaste_2021-02-28_22-41-15.png">
+<meta property="og:image" content="d:%5Cjasonyux-Blog%5CHexo%5Csource_posts%5CKubernetes-Manual%5CSnipaste_2021-02-28_23-12-57.png">
+<meta property="article:published_time" content="2021-02-10T15:43:44.000Z">
+<meta property="article:modified_time" content="2021-02-28T15:39:32.404Z">
+<meta property="article:author" content="Xiao Yu">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://d33wubrfki0l68.cloudfront.net/99d9808dcbf2880a996ed50d308a186b5900cec9/40b94/docs/tutorials/kubernetes-basics/public/images/module_01_cluster.svg">
+
+<link rel="canonical" href="https://jasonyux.github.io/2021/02/10/Kubernetes-Manual/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>Kubernetes_Manual | From a Beginner to a Disaster</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before, .use-motion .logo-line-after {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+  <div id="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <main class="main">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+        <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+        <span class="toggle-line toggle-line-first"></span>
+        <span class="toggle-line toggle-line-middle"></span>
+        <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/learning/" class="brand" rel="start">
+      <i class="logo-line-before"></i>
+      <h1 class="site-title">From a Beginner to a Disaster</h1>
+      <i class="logo-line-after"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Xiao.Y</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/learning/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/learning/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Installation"><span class="nav-number">1.</span> <span class="nav-text">Installation</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Kubernetes-Basics"><span class="nav-number">2.</span> <span class="nav-text">Kubernetes Basics</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Starting-with-Minikube"><span class="nav-number">2.1.</span> <span class="nav-text">Starting with Minikube</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create-a-Deployment"><span class="nav-number">2.1.1.</span> <span class="nav-text">Create a Deployment</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Create-a-Service"><span class="nav-number">2.1.2.</span> <span class="nav-text">Create a Service</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Enabling-Addons"><span class="nav-number">2.1.3.</span> <span class="nav-text">Enabling Addons</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Clean-Up"><span class="nav-number">2.1.4.</span> <span class="nav-text">Clean Up</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Minikube-to-Kubernetes"><span class="nav-number">2.2.</span> <span class="nav-text">Minikube to Kubernetes</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create-a-Cluster"><span class="nav-number">2.2.1.</span> <span class="nav-text">Create a Cluster</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deploy-an-App"><span class="nav-number">2.2.2.</span> <span class="nav-text">Deploy an App</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Exploring-Your-App"><span class="nav-number">2.2.3.</span> <span class="nav-text">Exploring Your App</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Expose-Your-App"><span class="nav-number">2.2.4.</span> <span class="nav-text">Expose Your App</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Scaling-an-Application"><span class="nav-number">2.2.5.</span> <span class="nav-text">Scaling an Application</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Performing-a-Rolling-Update"><span class="nav-number">2.2.6.</span> <span class="nav-text">Performing a Rolling Update</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Xiao Yu</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/learning/archives/">
+        
+          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+  </nav>
+</div>
+  <div class="sidebar-button motion-element"><i class="fa fa-comment"></i>
+    Chat
+  </a>
+  </div>
+
+
+
+      </div>
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </header>
+
+      
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+      <div class="main-inner">
+        
+
+        <div class="content post posts-expand">
+          
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://jasonyux.github.io/2021/02/10/Kubernetes-Manual/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/learning/images/avatar.gif">
+      <meta itemprop="name" content="Xiao Yu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="From a Beginner to a Disaster">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Kubernetes_Manual
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2021-02-10 23:43:44" itemprop="dateCreated datePublished" datetime="2021-02-10T23:43:44+08:00">2021-02-10</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-02-28 23:39:32" itemprop="dateModified" datetime="2021-02-28T23:39:32+08:00">2021-02-28</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <hr>
+<p><strong>IMPORTANT</strong>:<br>Some of the content here is a personal summary/abbreviation of contents on the <a href="https://kubernetes.io/docs/tutorials/kubernetes-basics/" target="_blank" rel="noopener">Official Kubernetes Guide</a>. Feel free to refer to that site if you think some of the sections written here are not clear.</p>
+<hr>
+<blockquote>
+<p><strong>Note</strong></p>
+<ul>
+<li>this content assumes some prior knowledge on <strong>Docker</strong>, including <strong>Docker Compose</strong>.</li>
+</ul>
+</blockquote>
+<h1 id="Installation"><a href="#Installation" class="headerlink" title="Installation"></a>Installation</h1><p>Please follow this link: <a href="https://kubernetes.io/docs/tasks/tools/" target="_blank" rel="noopener">https://kubernetes.io/docs/tasks/tools/</a></p>
+<ul>
+<li>it is recommended that you install <a href="https://kubernetes.io/docs/reference/kubectl/kubectl/" target="_blank" rel="noopener">kubectl</a>, which allows you to run commands against Kubernetes clusters. </li>
+</ul>
+<h1 id="Kubernetes-Basics"><a href="#Kubernetes-Basics" class="headerlink" title="Kubernetes Basics"></a>Kubernetes Basics</h1><blockquote>
+<p><strong>Kubernetes Clusters</strong></p>
+<ul>
+<li>Kubernetes coordinates a highly available <em>cluster of computers that are connected to work as a single unit</em>. </li>
+</ul>
+</blockquote>
+<p>A Kubernetes cluster consists of two types of resources:</p>
+<ul>
+<li>The <strong>Master</strong> coordinates the cluster</li>
+<li><strong>Nodes</strong> are the workers that run applications<ul>
+<li>A node is a <em>VM</em> or a <em>physical computer</em> that serves as a worker machine in a Kubernetes cluster</li>
+<li>Each node has a <code>Kubelet</code>, which is an agent for <em>managing</em> the node and <em>communicating with the Kubernetes master</em>. </li>
+</ul>
+</li>
+</ul>
+<img src="https://d33wubrfki0l68.cloudfront.net/99d9808dcbf2880a996ed50d308a186b5900cec9/40b94/docs/tutorials/kubernetes-basics/public/images/module_01_cluster.svg" alt="https://d33wubrfki0l68.cloudfront.net/99d9808dcbf2880a996ed50d308a186b5900cec9/40b94/docs/tutorials/kubernetes-basics/public/images/module_01_cluster.svg" style="zoom: 80%;" />
+
+<h2 id="Starting-with-Minikube"><a href="#Starting-with-Minikube" class="headerlink" title="Starting with Minikube"></a>Starting with Minikube</h2><p>This tutorial shows you how to run a sample app on Kubernetes using <code>minikube</code> and <code>Katacod</code>.</p>
+<p><strong>Objectives</strong></p>
+<ul>
+<li>Deploy a sample application to <code>minikube</code>.</li>
+<li>Run the app.</li>
+<li>View application logs.</li>
+</ul>
+<a id="more"></a>
+
+<p><strong>Guide</strong></p>
+<ol>
+<li>start minikube with <code>minikube start</code><ul>
+<li>this will create and run a <strong>docker container</strong> called <code>minikube</code></li>
+</ul>
+</li>
+<li><code>minikube dashboard</code></li>
+</ol>
+<h3 id="Create-a-Deployment"><a href="#Create-a-Deployment" class="headerlink" title="Create a Deployment"></a>Create a Deployment</h3><blockquote>
+<p><strong>Pod</strong></p>
+<ul>
+<li>A Kubernetes Pod is a <em>group of one or more Containers</em>, tied together for the purposes of administration and networking.<ul>
+<li>each container is basically based on an <em>image</em></li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<blockquote>
+<p><strong>Deployment</strong></p>
+<ul>
+<li>A Kubernetes Deployment <em>checks on the health of your Pod</em> and restarts the Pod’s Container if it terminates.</li>
+<li>You describe a <em>desired state</em> in a Deployment, and the Deployment Controller <em>changes the actual state to the desired state</em> at a controlled rate.</li>
+<li>Deployments are the recommended way to <em>manage the creation and scaling of Pods</em></li>
+</ul>
+</blockquote>
+<p><strong>Objective</strong></p>
+<ol>
+<li><p>Create a deployment for a pod</p>
+</li>
+<li><p>use <code>kubectl</code> to look around the setup</p>
+</li>
+</ol>
+<p><strong>Guide</strong></p>
+<ol>
+<li><p>Use the <code>kubectl create</code> command to <em>create a Deployment that manages a Pod</em>. </p>
+<ul>
+<li>The Pod runs a Container based on the provided Docker image.</li>
+<li>in this example, a pod has <em>only one</em> container</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl create deployment hello-node --image=k8s.gcr.io/echoserver:1.4</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>View the Deployment:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl get deployments</span><br></pre></td></tr></table></figure>
+
+<p>The output is similar to:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">NAME         READY   UP-TO-DATE   AVAILABLE   AGE</span><br><span class="line">hello-node   1&#x2F;1     1            1           1m</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>View the Pod:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl get pods</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>which you will see the <em>containers in the pod</em></li>
+</ul>
+</li>
+<li><p>View cluster events:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl get events</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>View the <code>kubectl</code> configuration:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl config view</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h3 id="Create-a-Service"><a href="#Create-a-Service" class="headerlink" title="Create a Service"></a>Create a Service</h3><blockquote>
+<p><strong>Service</strong></p>
+<ul>
+<li><p>An abstract way to <em>expose</em> an application <em>running on a set of Pods</em> as a network service.</p>
+</li>
+<li><p>Kubernetes gives Pods their own IP addresses and a single DNS name for a set of Pods, and can <em>load-balance across them</em></p>
+</li>
+</ul>
+</blockquote>
+<blockquote>
+<p><strong>Note</strong></p>
+<ul>
+<li><strong>By default</strong>, the <strong>Pod</strong> is only accessible by its <strong>internal IP address</strong> within the Kubernetes cluster. To make the <code>hello-node</code> Container accessible from outside the Kubernetes virtual network, you have to <strong>expose the Pod as a Kubernetes Service.</strong></li>
+<li>this is similar to docker containers</li>
+</ul>
+</blockquote>
+<p><strong>Objective</strong></p>
+<ol>
+<li>Create a <em>service</em> from a Deployment (which contains Pods)</li>
+<li>Use the <em>service</em></li>
+</ol>
+<p><strong>Guide</strong></p>
+<ol>
+<li><p>Expose the Pod by exposing its <em>Deployment</em></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl expose deployment hello-node --<span class="built_in">type</span>=LoadBalancer --port=8080</span><br></pre></td></tr></table></figure>
+
+<p>where:</p>
+<ul>
+<li><p>exposing the deployment makes it a <em>network service</em></p>
+</li>
+<li><p><code>--type=LoadBalancer</code>. On minikube, the <code>LoadBalancer</code> type makes the Service accessible through the <code>minikube service</code> command.</p>
+<ul>
+<li>On cloud providers that support load balancers, an external IP address would be provisioned to access the Service.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>View the <em>Service</em> you just created</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl get services</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Run the following command to use the service</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">minikube service hello-node</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h3 id="Enabling-Addons"><a href="#Enabling-Addons" class="headerlink" title="Enabling Addons"></a>Enabling Addons</h3><blockquote>
+<p><strong>Addons</strong></p>
+<ul>
+<li>Add-ons extend the functionality of Kubernetes.</li>
+<li>Some of them are <em>third party projects</em> that provide functionality required by Kubernetes.</li>
+</ul>
+</blockquote>
+<p><strong>Objective</strong></p>
+<ol>
+<li>View currently available add-ons</li>
+<li>Enable an add-on</li>
+<li>Disable an add-on</li>
+</ol>
+<p><strong>Guide</strong></p>
+<ol>
+<li><p><em>List</em> the currently supported addons:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">minikube addons list</span><br></pre></td></tr></table></figure>
+
+<p>The output is similar to:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">addon-manager: enabled</span><br><span class="line">dashboard: enabled</span><br><span class="line">default-storageclass: enabled</span><br><span class="line">efk: disabled</span><br><span class="line">freshpod: disabled</span><br><span class="line">gvisor: disabled</span><br><span class="line">helm-tiller: disabled</span><br><span class="line">ingress: disabled</span><br><span class="line">ingress-dns: disabled</span><br><span class="line">logviewer: disabled</span><br><span class="line">metrics-server: disabled</span><br><span class="line">nvidia-driver-installer: disabled</span><br><span class="line">nvidia-gpu-device-plugin: disabled</span><br><span class="line">registry: disabled</span><br><span class="line">registry-creds: disabled</span><br><span class="line">storage-provisioner: enabled</span><br><span class="line">storage-provisioner-gluster: disabled</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><em>Enable</em> an addon, for example, <code>metrics-server</code>:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">minikube addons enable metrics-server</span><br></pre></td></tr></table></figure>
+
+<p>The output is similar to:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">metrics-server was successfully enabled</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>View the Pod and Service you just created:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl get pod,svc -n kube-system</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><em>Disable</em> <code>metrics-server</code>:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">minikube addons disable metrics-server</span><br></pre></td></tr></table></figure>
+
+<p>The output is similar to:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">metrics-server was successfully disabled</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h3 id="Clean-Up"><a href="#Clean-Up" class="headerlink" title="Clean Up"></a>Clean Up</h3><p><strong>Objective</strong></p>
+<ol>
+<li><p>remove the <code>Service</code> you created</p>
+</li>
+<li><p>remove the <code>Deployment</code> you created</p>
+<ul>
+<li>this will also remove the <code>Pods</code> under that deployment</li>
+</ul>
+</li>
+<li><p><em>optionally</em>, stop and remove minikube VM</p>
+</li>
+</ol>
+<p><strong>Guide</strong></p>
+<ol>
+<li><p>Clean up the resources you created in your cluster:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">kubectl delete service hello-node</span><br><span class="line">kubectl delete deployment hello-node</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Optionally, stop the Minikube virtual machine (docker container)</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">minikube stop</span><br></pre></td></tr></table></figure>
+
+<p>Optionally, delete the Minikube VM (docker container):</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">minikube delete</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h2 id="Minikube-to-Kubernetes"><a href="#Minikube-to-Kubernetes" class="headerlink" title="Minikube to Kubernetes"></a>Minikube to Kubernetes</h2><blockquote>
+<p><em>Reminder</em></p>
+<ul>
+<li><p>Recall that a <strong>cluster</strong> contains the following:</p>
+<img src="https://d33wubrfki0l68.cloudfront.net/99d9808dcbf2880a996ed50d308a186b5900cec9/40b94/docs/tutorials/kubernetes-basics/public/images/module_01_cluster.svg" alt="https://d33wubrfki0l68.cloudfront.net/99d9808dcbf2880a996ed50d308a186b5900cec9/40b94/docs/tutorials/kubernetes-basics/public/images/module_01_cluster.svg" style="zoom: 80%;" />
+
+<p>where:</p>
+<ul>
+<li>The <strong>Master</strong> is responsible for managing the cluster. </li>
+<li>A <strong>Node</strong> is a VM or a physical computer that serves as a worker machine in a Kubernetes cluster (e.g. <em>a running docker container</em>)<ul>
+<li>The nodes communicate with the master using the <em>Kubernetes API</em></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<blockquote>
+<p><strong>Pod vs Node</strong></p>
+<ul>
+<li><img src="D:\jasonyux-Blog\Hexo\source\_posts\Kubernetes-Manual\Snipaste_2021-02-13_22-04-07.png" style="zoom: 80%;" />
+
+<p>where:</p>
+<ul>
+<li>A <strong>Pod</strong> always runs on a <strong>Node</strong>.</li>
+<li>Pods are the <em>atomic unit</em> on the Kubernetes platform</li>
+<li>A <strong>Node</strong> can have multiple <strong>pods</strong>, and the Kubernetes master automatically handles scheduling the pods across the Nodes in the cluster. </li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<h3 id="Create-a-Cluster"><a href="#Create-a-Cluster" class="headerlink" title="Create a Cluster"></a>Create a Cluster</h3><p>Basically, we have done this with the minikube part - minikube itself is a <strong>node</strong> (since it is a docker container)!</p>
+<p><em>For Example</em></p>
+<ol>
+<li><p>Start minikube:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">minikube start</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>View it as a node:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl get nodes</span><br></pre></td></tr></table></figure>
+
+<p>gives you:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">NAME       STATUS   ROLES                  AGE    VERSION</span><br><span class="line">minikube   Ready    control-plane,master   3m1s   v1.20.2</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h3 id="Deploy-an-App"><a href="#Deploy-an-App" class="headerlink" title="Deploy an App"></a>Deploy an App</h3><p>Once you have a <em>running Kubernetes cluster</em> (at least one <em>node</em>), you can <strong>deploy your containerized applications</strong> on top of it. </p>
+<p>To do so, you create a Kubernetes <strong>Deployment</strong> configuration.</p>
+<blockquote>
+<p><em>Reminder</em></p>
+<ul>
+<li>The Deployment instructs Kubernetes how to create and update instances of your application. </li>
+<li>You can create and manage a Deployment by <strong>using the Kubernetes command line interface</strong>, <code>kubectl</code></li>
+<li>When you created a <em>Deployment</em>, Kubernetes created a automatically <strong>Pod</strong> to host your application instance. </li>
+</ul>
+</blockquote>
+<p><strong>Deploying an App Basically does this</strong></p>
+<img src="https://d33wubrfki0l68.cloudfront.net/152c845f25df8e69dd24dd7b0836a289747e258a/4a1d2/docs/tutorials/kubernetes-basics/public/images/module_02_first_app.svg" alt="https://d33wubrfki0l68.cloudfront.net/152c845f25df8e69dd24dd7b0836a289747e258a/4a1d2/docs/tutorials/kubernetes-basics/public/images/module_02_first_app.svg" style="zoom:80%;" />
+
+<p>where:</p>
+<ul>
+<li>when you create a Deployment, you’ll need to <em>specify the container image</em> for your <strong>application</strong> and the <strong>number of replicas</strong> that you want to run.</li>
+</ul>
+<p><strong>Objective</strong></p>
+<ul>
+<li>Deploy an app based on the <code>minikube</code> node<ul>
+<li>the app is created using a <em>container image</em></li>
+</ul>
+</li>
+</ul>
+<p><strong>Guide</strong></p>
+<ol>
+<li><p>.Make sure you have at least one node running. For example,</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">minikube start</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Deploy the app with the image <code>gcr.io/google-samples/kubernetes-bootcamp:v1</code> into the cluster</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl create deployment kubernetes-bootcamp --image=gcr.io/google-samples/kubernetes-bootcamp:v1</span><br></pre></td></tr></table></figure>
+
+<p>where:</p>
+<ul>
+<li>if it is a <em>docker image</em>, you can just specify the name without the URL</li>
+<li>When you created a Deployment, Kubernetes created a <strong>Pod</strong> to host your application instance. </li>
+</ul>
+</li>
+<li><p>To see the state of the deployment, use</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl get deployments</span><br></pre></td></tr></table></figure>
+</li>
+<li><blockquote>
+<p><em>Reminder</em></p>
+<ul>
+<li>Pods that are running inside Kubernetes are running on a private, isolated network. <strong>By default</strong> they are visible from other pods and services within the same kubernetes cluster, but <strong>not outside that network.</strong> </li>
+<li>When we use <code>kubectl</code>, we’re interacting through an API endpoint to communicate with our application.</li>
+</ul>
+</blockquote>
+<p>Therefore, to interact with Pods through <code>kubectl</code> API, <em>one way to do it will be</em>:</p>
+<ol>
+<li>Create a <code>Proxy</code> with <code>kubectl proxy</code></li>
+</ol>
+</li>
+</ol>
+<ul>
+<li>this will basically start listening on port <code>8001</code></li>
+</ul>
+<ol start="2">
+<li><p>Use <code>Http</code> request to <em>use/interact</em> the service listening on <code>8001</code>:</p>
+   <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl http://localhost:8001/version</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<blockquote>
+<p><strong>Note</strong></p>
+<ul>
+<li>In order for the new deployment to be accessible without using the Proxy, a <em>Service</em> is required which will be explained in the next modules.</li>
+</ul>
+</blockquote>
+<h3 id="Exploring-Your-App"><a href="#Exploring-Your-App" class="headerlink" title="Exploring Your App"></a>Exploring Your App</h3><p>First, get the main concepts out of the way. The main picture in mind will be:</p>
+<p>The picture in mind will be:</p>
+<img src="D:\jasonyux-Blog\Hexo\source\_posts\Kubernetes-Manual\Snipaste_2021-02-13_22-04-07.png" style="zoom: 80%;" />
+
+<blockquote>
+<p><strong>Kubernetes Pods</strong></p>
+<ul>
+<li><p>A Pod is a Kubernetes abstraction that represents <em>a group of one or more application containers</em> (such as Docker), and some <em>shared resources</em> for those containers.</p>
+<ul>
+<li><em>For example</em>, a Pod might include both the container with your Node.js app as well as a different container that feeds the data to be published by the Node.js webserver. </li>
+</ul>
+</li>
+<li><p><strong>Pods</strong> are the <strong>atomic unit on the Kubernetes</strong> platform. When we create a Deployment on Kubernetes, that Deployment:</p>
+<ol>
+<li><em>creates Pods</em></li>
+<li>create containers inside Pods</li>
+</ol>
+<p>(as opposed to creating containers directly). </p>
+</li>
+<li><p>Each Pod is tied to the Node where it is scheduled, and remains there until termination (according to restart policy) or deletion. In case of a Node failure, identical Pods are scheduled <em>on other available Nodes in the cluster.</em></p>
+</li>
+</ul>
+</blockquote>
+<blockquote>
+<p><strong>Node</strong></p>
+<ul>
+<li>A Pod always runs on a <strong>Node</strong>. </li>
+<li>A Node is a worker machine in Kubernetes and may be either a virtual or a physical machine.</li>
+<li>Each Node is managed by the <strong>Master</strong>.<ul>
+<li>the Kubernetes master automatically handles scheduling the pods across the Nodes in the cluster</li>
+</ul>
+</li>
+<li>Every Kubernetes Node runs at least:<ul>
+<li><code>Kubelet</code>, a process responsible for <em>communication between the Kubernetes Master and the Node.</em></li>
+<li>A container runtime (like <code>Docker</code>) responsible for <em>pulling the container image</em> from a registry (for Pods), unpacking the container, and running the application.</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<p><strong>Objective</strong></p>
+<ol>
+<li>Look at the configuration of <code>pods</code></li>
+<li><em>Interact</em> with containers inside a pod</li>
+</ol>
+<p><strong>Guide</strong></p>
+<ol>
+<li><p>We’ll use the <code>kubectl get</code> command and look for existing Pods</p>
+</li>
+<li><p>view what containers are inside that Pod with <code>kubectl describe pods</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">Name:         kubernetes-bootcamp-57978f5f5d-5j5rg</span><br><span class="line">Namespace:    default</span><br><span class="line">Priority:     0</span><br><span class="line">Node:         minikube/192.168.49.2</span><br><span class="line">Start Time:   Sat, 13 Feb 2021 19:25:10 +0800</span><br><span class="line">Labels:       app=kubernetes-bootcamp</span><br><span class="line">              pod-template-hash=57978f5f5d</span><br><span class="line">Annotations:  &lt;none&gt;</span><br><span class="line">Status:       Running</span><br><span class="line">IP:           172.17.0.2</span><br><span class="line">IPs:</span><br><span class="line">  IP:           172.17.0.2</span><br><span class="line">Controlled By:  ReplicaSet/kubernetes-bootcamp-57978f5f5d</span><br><span class="line">Containers:</span><br><span class="line">  kubernetes-bootcamp:</span><br><span class="line">    Container ID:   docker://72b74c5cfa8e21a4cf996c8c6caa4a32b27d2749adc4a66f803d2d0af99163ea</span><br><span class="line">    Image:          gcr.io/google-samples/kubernetes-bootcamp:v1</span><br><span class="line">    Image ID:       docker-pullable://gcr.io/google-samples/kubernetes-</span><br><span class="line">    // other logs omitted</span><br></pre></td></tr></table></figure>
+
+<p>we see that it shows information such as:</p>
+<ul>
+<li>address, the ports used</li>
+<li>a list of events related to the lifecycle of the Pod.</li>
+<li>etc.</li>
+</ul>
+<blockquote>
+<p><strong>Note</strong></p>
+<ul>
+<li><p>the <code>describe</code> command can be used to get detailed information about most of the kubernetes primitives: <em>node, pods, deployments.</em></p>
+</li>
+<li><p>for example: <code>kubectl describe deployments</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">Name:                   kubernetes-bootcamp</span><br><span class="line">Namespace:              default</span><br><span class="line">CreationTimestamp:      Sat, 13 Feb 2021 19:25:10 +0800</span><br><span class="line">Labels:                 app=kubernetes-bootcamp</span><br><span class="line">Annotations:            deployment.kubernetes.io/revision: 1</span><br><span class="line">Selector:               app=kubernetes-bootcamp</span><br><span class="line">Replicas:               1 desired | 1 updated | 1 total | 1 available | 0 unavailable</span><br><span class="line">StrategyType:           RollingUpdate</span><br><span class="line">MinReadySeconds:        0</span><br><span class="line">RollingUpdateStrategy:  25% max unavailable, 25% max surge</span><br><span class="line">Pod Template:</span><br><span class="line">  Labels:  app=kubernetes-bootcamp</span><br><span class="line">  Containers:</span><br><span class="line">   kubernetes-bootcamp:</span><br><span class="line">    Image:        gcr.io/google-samples/kubernetes-bootcamp:v1</span><br><span class="line">    Port:         &lt;none&gt;</span><br><span class="line">    Host Port:    &lt;none&gt;</span><br><span class="line">    Environment:  &lt;none&gt;</span><br><span class="line">    Mounts:       &lt;none&gt;</span><br><span class="line">  Volumes:        &lt;none&gt;</span><br><span class="line">Conditions:</span><br><span class="line">  Type           Status  Reason</span><br><span class="line">  ----           ------  ------</span><br><span class="line">  Available      True    MinimumReplicasAvailable</span><br><span class="line">  Progressing    True    NewReplicaSetAvailable</span><br><span class="line">OldReplicaSets:  &lt;none&gt;</span><br><span class="line">NewReplicaSet:   kubernetes-bootcamp-57978f5f5d (1/1 replicas created)</span><br><span class="line">Events:          &lt;none&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</blockquote>
+</li>
+<li><p>Now, to <strong>expose</strong> the container/app, you need to create a <code>proxy</code>, since Pods are isolated:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl proxy</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>which will start listening on <code>8001</code></li>
+</ul>
+<p>then, in a new terminal, use <code>kubectl</code> as the <em>interface</em> to communicate with the <code>Pod</code>:</p>
+<ol>
+<li><p>first, you need to get the name of pod:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> POD_NAME=$(kubectl get pods -o go-template --template <span class="string">'&#123;&#123;range .items&#125;&#125;&#123;&#123;.metadata.name&#125;&#125;&#123;&#123;"\n"&#125;&#125;&#123;&#123;end&#125;&#125;'</span>)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>then, you can use it:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl http://localhost:8001/api/v1/namespaces/default/pods/<span class="variable">$POD_NAME</span>/proxy/</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+<li><p>Anything that the application would normally <strong>send to <code>STDOUT</code> becomes logs for the container within the Pod</strong>.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl logs <span class="variable">$POD_NAME</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Lastly, we can <strong>execute commands directly on the container</strong> once the Pod is up and running with the <code>exec</code> command with n<strong>ame of the Pod as a parameter.</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl <span class="built_in">exec</span> <span class="variable">$POD_NAME</span> -- env</span><br></pre></td></tr></table></figure>
+
+<p>to do this <strong>interactively</strong>, use:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl <span class="built_in">exec</span> -ti <span class="variable">$POD_NAME</span> -- bash</span><br></pre></td></tr></table></figure>
+
+<p>and now we are inside the container/Pod!</p>
+<blockquote>
+<p><strong>Note</strong></p>
+<ul>
+<li>this step does <strong>not</strong> technically need a <code>proxy</code> running</li>
+</ul>
+</blockquote>
+</li>
+<li><p>To exit, use <code>exit</code></p>
+</li>
+</ol>
+<h3 id="Expose-Your-App"><a href="#Expose-Your-App" class="headerlink" title="Expose Your App"></a>Expose Your App</h3><blockquote>
+<p><strong>Services and Labels</strong></p>
+<ul>
+<li>A <code>Service</code> routes traffic across a set of Pods. Services are the abstraction that <em>allow pods to die and replicate in Kubernetes</em> without impacting your application.<ul>
+<li>remember, each Pod in a Kubernetes cluster has a unique IP address. So this <code>Service</code> abstraction can be used to reconcile that</li>
+</ul>
+</li>
+<li>A <code>Service</code> is defined using YAML or JSON, and it targets a set of Pods by <em>matching them using labels and selectors</em>, a grouping primitive that allows logical operation on objects in Kubernetes. </li>
+</ul>
+<img src="D:\jasonyux-Blog\Hexo\source\_posts\Kubernetes-Manual\Snipaste_2021-02-22_20-24-37.png" style="zoom:80%;" />
+
+
+</blockquote>
+<blockquote>
+<p><strong>Overview of Services/Replica Set</strong></p>
+<ul>
+<li>When a worker node dies, the Pods running on the Node are also lost. <em>A <code>ReplicaSet</code> might then dynamically drive the cluster back to desired state</em> via creation of new Pods to keep your application running.</li>
+<li>In genera; <code>Services</code> allow your applications to <em>receive traffic.</em> Services can be exposed in different ways by specifying a <code>type</code> in the <code>ServiceSpec</code>:<ul>
+<li><code>ClusterIP</code> (default) - Exposes the Service on an <em>internal IP</em> in the cluster. This type makes the Service only reachable from within the cluster.</li>
+<li><code>NodePort</code> - Exposes the Service on the same port of each selected Node in the cluster using NAT. Makes a Service accessible from outside the cluster using <code>&lt;NodeIP&gt;:&lt;NodePort&gt;</code>. Superset of ClusterIP.</li>
+<li><code>LoadBalancer</code> - Creates an <em>external load balancer in the current cloud</em> (if supported) and assigns a fixed, external IP to the Service. Superset of NodePort.</li>
+<li><code>ExternalName</code> - Exposes the Service using an arbitrary name (specified by <code>externalName</code> in the spec) by returning a CNAME record with the name. No proxy is used. This type requires v1.7 or higher of <code>kube-dns</code>.</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<p><strong>Objectives</strong></p>
+<ol>
+<li>Expose a deployment to <em>become a <code>Service</code></em></li>
+<li>View and change the <code>labels</code> of a Pod</li>
+<li>Delete a <code>Service</code></li>
+</ol>
+<p><strong>Guides</strong></p>
+<ol>
+<li><p>First,we can see what services we have already:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">jasonyux@XY-Laptop /code $ kubectl get services</span><br><span class="line">NAME         TYPE        CLUSTER-IP   EXTERNAL-IP   PORT(S)   AGE</span><br><span class="line">kubernetes   ClusterIP   10.96.0.1    &lt;none&gt;        443/TCP   9d</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Then, we want to <em>create a Service and expose it to traffic</em> with <code>kubectl expose</code>:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">jasonyux@XY-Laptop /code $ kubectl expose deployment/kubernetes-bootcamp --<span class="built_in">type</span>=<span class="string">"NodePort"</span> --port 8080</span><br><span class="line">service/kubernetes-bootcamp exposed</span><br><span class="line">jasonyux@XY-Laptop /code $ kubectl get services</span><br><span class="line">NAME                  TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)          AGE</span><br><span class="line">kubernetes            ClusterIP   10.96.0.1        &lt;none&gt;        443/TCP          9d</span><br><span class="line">kubernetes-bootcamp   NodePort    10.105.181.115   &lt;none&gt;        8080:31364/TCP   6s</span><br></pre></td></tr></table></figure>
+
+<p>where:</p>
+<ul>
+<li>external-IP of the node would be the <em>IP of the Node itself.</em> (which you can find out with <code>kubectl describe nodes</code>)</li>
+<li>the <code>Deployment</code> also <em>created automatically a label</em> for our Pod. </li>
+</ul>
+</li>
+<li><p>Now, to see the labels of the Pod, use <code>describe</code>:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">jasonyux@XY-Laptop /code :( $ kubectl describe deployment</span><br><span class="line">Name:                   kubernetes-bootcamp</span><br><span class="line">Namespace:              default</span><br><span class="line">CreationTimestamp:      Sat, 13 Feb 2021 19:25:10 +0800</span><br><span class="line">Labels:                 app=kubernetes-bootcamp</span><br><span class="line">// other logs omitted</span><br></pre></td></tr></table></figure>
+
+<p>then, we can get the <code>Pod</code> <em>by its label</em></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl get pods -l run=kubernetes-bootcamp</span><br></pre></td></tr></table></figure>
+
+<p>and get the <em>selected <code>Pods</code> of a service by label</em>:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl get services -l run=kubernetes-bootcamp</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>To <em>change the label of a pod</em>, use <code>label pod</code>.</p>
+<ol>
+<li><p>first, get the Pod’s name:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">jasonyux@XY-Laptop /code :( $ <span class="built_in">export</span> POD_NAME=$(kubectl get pods -o go-template --template <span class="string">'&#123;&#123;range .items&#125;&#125;&#123;&#123;.metadata.name&#125;&#125;&#123;&#123;"\n"&#125;&#125;&#123;&#123;end&#125;&#125;'</span>)</span><br><span class="line">jasonyux@XY-Laptop /code $ <span class="built_in">echo</span> Name of the Pod: <span class="variable">$POD_NAME</span></span><br><span class="line">Name of the Pod: kubernetes-bootcamp-57978f5f5d-5j5rg</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>change the <code>Pod</code>‘s name</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">jasonyux@XY-Laptop /code $ kubectl describe pods</span><br><span class="line">Name:         kubernetes-bootcamp-57978f5f5d-5j5rg</span><br><span class="line">Namespace:    default</span><br><span class="line">Priority:     0</span><br><span class="line">Node:         minikube/192.168.49.2</span><br><span class="line">Start Time:   Sat, 13 Feb 2021 19:25:10 +0800</span><br><span class="line">Labels:       app=v1</span><br><span class="line">              pod-template-hash=57978f5f5d</span><br><span class="line">              // other logs omitted</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Now, you can get the information by the new label:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">jasonyux@XY-Laptop /code $ kubectl get pods -l app=v1</span><br><span class="line">NAME                                   READY   STATUS    RESTARTS   AGE</span><br><span class="line">kubernetes-bootcamp-57978f5f5d-5j5rg   1/1     Running   1          9d</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+<li><p>To <em>delete services</em>, you can also use its <em>label/selector</em>:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl delete service -l run=kubernetes-bootcamp</span><br></pre></td></tr></table></figure>
+
+<p>then, it is <em>no longer exposed</em>, but it is <em>still running</em>. This means you can still do:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl <span class="built_in">exec</span> -ti <span class="variable">$POD_NAME</span> curl localhost:8080</span><br></pre></td></tr></table></figure>
+
+
+</li>
+</ol>
+<h3 id="Scaling-an-Application"><a href="#Scaling-an-Application" class="headerlink" title="Scaling an Application"></a>Scaling an Application</h3><blockquote>
+<p><strong>Scaling</strong></p>
+<ul>
+<li><p><strong>Scaling</strong> is accomplished by changing the <em>number of replicas</em> in a <em>Deployment</em>.</p>
+</li>
+<li><p>Scaling out a Deployment will:</p>
+<ol>
+<li>ensure <em>new Pods are created and scheduled</em> to Nodes with available resources. </li>
+<li><em>increase the number of Pods</em> to the new desired state. </li>
+</ol>
+<img src="D:\jasonyux-Blog\Hexo\source\_posts\Kubernetes-Manual\Snipaste_2021-02-28_22-41-15.png" style="zoom: 50%;" />
+</li>
+</ul>
+</blockquote>
+<blockquote>
+<p><em>Reminder: Replica Set</em></p>
+<ul>
+<li>When a worker node dies, the Pods running on the Node are also lost. <em>A <code>ReplicaSet</code> might then dynamically drive the cluster back to desired state</em> via creation of new Pods to keep your application running.</li>
+<li>A <code>ReplicaSet</code> is <em>defined</em> with fields, including a selector that specifies how to identify Pods it can acquire, a number of replicas indicating how many Pods it should be maintaining, and a pod template specifying the data of new Pods it should create to meet the number of replicas criteria.<ul>
+<li>then, a <code>ReplicaSet</code> then fulfills its purpose by creating and deleting Pods as needed to reach the desired number.</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<blockquote>
+<p><strong>Note</strong></p>
+<ul>
+<li>Running multiple instances of an application will r<strong>equire a way to distribute the traffic</strong> to all of them. <code>Services</code> have an <em>integrated load-balancer</em> that will distribute network traffic to all Pods of an exposed Deployment. </li>
+</ul>
+</blockquote>
+<p><strong>Objective</strong></p>
+<ol>
+<li>Scale your application/deployment using <code>kubectl scale</code></li>
+<li>Verify that the load-balancer is working automatically by <em>communicating with the <code>Service</code></em></li>
+</ol>
+<p><strong>Guide</strong></p>
+<ol>
+<li><p>First, inspect the current state (deployments/replica set). You will see that:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">jasonyux@XY-Laptop /code $ kubectl get deployments</span><br><span class="line">NAME                  READY   UP-TO-DATE   AVAILABLE   AGE</span><br><span class="line">kubernetes-bootcamp   1/1     1            1           15d</span><br><span class="line">jasonyux@XY-Laptop /code $ kubectl get rs</span><br><span class="line">NAME                             DESIRED   CURRENT   READY   AGE</span><br><span class="line">kubernetes-bootcamp-57978f5f5d   1         1         1       15d</span><br></pre></td></tr></table></figure>
+
+<p>where, for <code>deployments</code>:</p>
+<ul>
+<li><em>NAME</em> lists the names of the Deployments in the cluster.</li>
+<li><em>READY</em> shows the ratio of CURRENT/DESIRED replicas</li>
+<li><em>UP-TO-DATE</em> displays the number of replicas that have been updated to achieve the desired state.</li>
+<li><em>AVAILABLE</em> displays how many replicas of the application are available to your users.</li>
+<li><em>AGE</em> displays the amount of time that the application has been running.</li>
+</ul>
+<p>for <code>replica-set</code>:</p>
+<ul>
+<li><em>DESIRED</em> displays the <strong>desired</strong> number of replicas of the application, which you define when you create the Deployment. This is the desired state.</li>
+<li><em>CURRENT</em> displays how many replicas are currently running.</li>
+</ul>
+</li>
+<li><p>Now, you can <strong>scale your deployment to <code>4</code> replicas</strong>:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">jasonyux@XY-Laptop /code $ kubectl scale deployment/kubernetes-bootcamp --replicas=4</span><br><span class="line">deployment.apps/kubernetes-bootcamp scaled</span><br><span class="line">jasonyux@XY-Laptop /code $ kubectl get deployments</span><br><span class="line">NAME                  READY   UP-TO-DATE   AVAILABLE   AGE</span><br><span class="line">kubernetes-bootcamp   4/4     4            4           15d</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Inspect the <strong>scaled Pods</strong> in your deployment:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">jasonyux@XY-Laptop /code $ kubectl get pods</span><br><span class="line">NAME                                   READY   STATUS    RESTARTS   AGE</span><br><span class="line">kubernetes-bootcamp-57978f5f5d-9vtkx   1/1     Running   0          2m37s</span><br><span class="line">kubernetes-bootcamp-57978f5f5d-jgqnt   1/1     Running   0          2m37s</span><br><span class="line">kubernetes-bootcamp-57978f5f5d-lcg4t   1/1     Running   0          2m38s</span><br><span class="line">kubernetes-bootcamp-57978f5f5d-tg497   1/1     Running   1          6d1h</span><br></pre></td></tr></table></figure>
+
+<p>where you see that there are 4 Pods now, <em>with different IP addresses</em>.</p>
+<p>You can also see <strong>all changes in the <code>deployment</code> log</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">jasonyux@XY-Laptop /code $ kubectl describe deployments/kubernetes-bootcamp</span><br><span class="line">Name:                   kubernetes-bootcamp</span><br><span class="line">Namespace:              default</span><br><span class="line">CreationTimestamp:      Sat, 13 Feb 2021 19:25:10 +0800</span><br><span class="line">Labels:                 app=kubernetes-bootcamp</span><br><span class="line">Annotations:            deployment.kubernetes.io/revision: 1</span><br><span class="line">Selector:               app=kubernetes-bootcamp</span><br><span class="line">Replicas:               4 desired | 4 updated | 4 total | 4 available | 0 unavailable</span><br><span class="line">// some <span class="built_in">log</span> omitted here</span><br><span class="line">Events:</span><br><span class="line">  Type    Reason             Age    From                   Message</span><br><span class="line">  ----    ------             ----   ----                   -------</span><br><span class="line">  Normal  ScalingReplicaSet  3m5s   deployment-controller  Scaled up replica <span class="built_in">set</span> kubernetes-bootcamp-57978f5f5d to 4</span><br><span class="line">  Normal  ScalingReplicaSet  2m17s  deployment-controller  Scaled up replica <span class="built_in">set</span> kubernetes-bootcamp-57978f5f5d to 6</span><br><span class="line">  Normal  ScalingReplicaSet  2m13s  deployment-controller  Scaled down replica <span class="built_in">set</span> kubernetes-bootcamp-57978f5f5d to 4</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>To find out the exposed IP and Port we can use the <code>describe service</code>, and then <strong>communicate with the deployments</strong> using the IP/Port.</p>
+<ul>
+<li><p>first, we look at the <code>Service</code>:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">jasonyux@XY-Laptop /code $ kubectl describe services/kubernetes-bootcamp</span><br><span class="line">Name:                     kubernetes-bootcamp</span><br><span class="line">Namespace:                default</span><br><span class="line">Labels:                   app=kubernetes-bootcamp</span><br><span class="line">Annotations:              &lt;none&gt;</span><br><span class="line">Selector:                 app=kubernetes-bootcamp</span><br><span class="line">Type:                     NodePort</span><br><span class="line">IP Families:              &lt;none&gt;</span><br><span class="line">IP:                       10.105.181.115</span><br><span class="line">IPs:                      10.105.181.115</span><br><span class="line">Port:                     &lt;<span class="built_in">unset</span>&gt;  8080/TCP</span><br><span class="line">TargetPort:               8080/TCP</span><br><span class="line">NodePort:                 &lt;<span class="built_in">unset</span>&gt;  31364/TCP</span><br><span class="line">Endpoints:                172.17.0.3:8080,172.17.0.5:8080,172.17.0.6:8080 + 1 more...</span><br><span class="line">Session Affinity:         None</span><br><span class="line">External Traffic Policy:  Cluster</span><br><span class="line">Events:                   &lt;none&gt;</span><br></pre></td></tr></table></figure>
+
+<p>which is <em>specified the IP and (Node) Port</em></p>
+</li>
+<li><p>now, again some <em>handy renaming to environment variable</em></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> NODE_PORT=$(kubectl get services/kubernetes-bootcamp -o go-template=<span class="string">'&#123;&#123;(index .spec.ports 0).nodePort&#125;&#125;'</span>)</span><br><span class="line"><span class="built_in">echo</span> NODE_PORT=<span class="variable">$NODE_PORT</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>lastly, communicate:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl $(minikube ip):<span class="variable">$NODE_PORT</span></span><br></pre></td></tr></table></figure>
+
+<p>where:</p>
+<ul>
+<li><em>We hit a different Pod with every request.</em> This demonstrates that the load-balancing is working.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>To scale down, use the same command:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl scale deployments/kubernetes-bootcamp --replicas=2</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h3 id="Performing-a-Rolling-Update"><a href="#Performing-a-Rolling-Update" class="headerlink" title="Performing a Rolling Update"></a>Performing a Rolling Update</h3><p>Users expect applications to be <em>available all the time</em> and developers are expected to <em>deploy new versions of them</em> several times a day. In Kubernetes this is done with rolling updates.</p>
+<blockquote>
+<p><strong>Rolling Update</strong></p>
+<ul>
+<li><strong>Rolling updates</strong> allow Deployments’ update to take place with zero downtime by <em>incrementally updating Pods instances with new ones</em>. The new Pods will be scheduled on Nodes with available resources.</li>
+<li><em>By default</em>, the maximum number of Pods that can be unavailable during the update and the maximum number of new Pods that can be created, is <em>one</em>. <ul>
+<li>Both options can be <em>configured</em> to either numbers or percentages (of Pods). </li>
+</ul>
+</li>
+</ul>
+<p><img src="D:%5Cjasonyux-Blog%5CHexo%5Csource_posts%5CKubernetes-Manual%5CSnipaste_2021-02-28_23-12-57.png" alt=""></p>
+</blockquote>
+<blockquote>
+<p><strong>Note</strong></p>
+<ul>
+<li>In Kubernetes, <em>updates are versioned</em> and any Deployment update can be reverted to a previous (stable) version.</li>
+<li>Of course, in order to ensure high availability, you <em>need more than one running Pods.</em></li>
+</ul>
+</blockquote>
+<p><strong>Objective</strong></p>
+<ol>
+<li>Perform an update to your <code>deployment</code> by <strong>changing the application image</strong></li>
+<li>Check the rolling update status</li>
+<li><strong>Revert back</strong> to previous update</li>
+</ol>
+<p><strong>Goal</strong></p>
+<ol>
+<li><p>Let’s begin with a <code>deployment</code> of 4 Pods</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">jasonyux@XY-Laptop /code $ kubectl get deployments</span><br><span class="line">NAME                  READY   UP-TO-DATE   AVAILABLE   AGE</span><br><span class="line">kubernetes-bootcamp   4/4     4            4           15d</span><br><span class="line">jasonyux@XY-Laptop /code $ kubectl get pods</span><br><span class="line">NAME                                   READY   STATUS        RESTARTS   AGE</span><br><span class="line">kubernetes-bootcamp-57978f5f5d-9vtkx   1/1     Running       0          25m</span><br><span class="line">kubernetes-bootcamp-57978f5f5d-jgqnt   1/1     Running       0          25m</span><br><span class="line">kubernetes-bootcamp-57978f5f5d-lcg4t   1/1     Running       0          25m</span><br><span class="line">kubernetes-bootcamp-57978f5f5d-vg7dt   1/1     Running       0          41s</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>To <strong>update the image of the application</strong> to version 2, use the <code>set image</code> command, followed by the <code>kubectl set image &lt;deployment_name&gt; &lt;container_name&gt;:&lt;image_name&gt;</code>:</p>
+<ul>
+<li><p>first to see <em>current image</em>:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">jasonyux@XY-Laptop /code $ kubectl describe pods</span><br><span class="line">Name:         kubernetes-bootcamp-57978f5f5d-vg7dt</span><br><span class="line">Namespace:    default</span><br><span class="line">Priority:     0</span><br><span class="line">Node:         minikube/192.168.49.2</span><br><span class="line">Start Time:   Sun, 28 Feb 2021 23:21:05 +0800</span><br><span class="line">Labels:       app=kubernetes-bootcamp</span><br><span class="line">              pod-template-hash=57978f5f5d</span><br><span class="line">// some logs omitted</span><br><span class="line">    Image:          gcr.io/google-samples/kubernetes-bootcamp:v1</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>then, to set the new state:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">jasonyux@XY-Laptop /code $ kubectl <span class="built_in">set</span> image deployments/kubernetes-bootcamp kubernetes-bootcamp=jocatalin/kubernetes-bootcamp</span><br><span class="line">:v2</span><br><span class="line">deployment.apps/kubernetes-bootcamp image updated</span><br><span class="line">jasonyux@XY-Laptop /code $</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>Now, as an intermediate state, you might see:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">jasonyux@XY-Laptop /code $ kubectl get pods</span><br><span class="line">NAME                                   READY   STATUS        RESTARTS   AGE</span><br><span class="line">kubernetes-bootcamp-57978f5f5d-lcg4t   0/1     Terminating   0          31m</span><br><span class="line">kubernetes-bootcamp-769746fd4-bgt2r    1/1     Running       0          50s</span><br><span class="line">kubernetes-bootcamp-769746fd4-dggf8    1/1     Running       0          49s</span><br><span class="line">kubernetes-bootcamp-769746fd4-g4k4f    1/1     Running       0          64s</span><br><span class="line">kubernetes-bootcamp-769746fd4-l5mb4    1/1     Running       0          64s</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Again, to <em>verify</em> that it is working, you can find out the exposed IP and Port we can use <code>describe service</code>, then get the <code>node-port</code> and <code>ip</code> and try to communicate using <code>curl</code> </p>
+<ul>
+<li>this is basically the same procedure as previous section</li>
+</ul>
+</li>
+<li><p>Additionally, <strong>updates can be confirmed with</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">jasonyux@XY-Laptop /code $ kubectl rollout status deployments/kubernetes-bootcamp</span><br><span class="line">deployment <span class="string">"kubernetes-bootcamp"</span> successfully rolled out</span><br></pre></td></tr></table></figure>
+
+<p>so that now, the <code>image</code> field will be updated:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">jasonyux@XY-Laptop /code $ kubectl describe pods</span><br><span class="line">Name:         kubernetes-bootcamp-769746fd4-bgt2r</span><br><span class="line">Namespace:    default</span><br><span class="line">Priority:     0</span><br><span class="line">Node:         minikube/192.168.49.2</span><br><span class="line">Start Time:   Sun, 28 Feb 2021 23:27:35 +0800</span><br><span class="line">Labels:       app=kubernetes-bootcamp</span><br><span class="line">              pod-template-hash=769746fd4</span><br><span class="line">Annotations:  &lt;none&gt;</span><br><span class="line">Status:       Running</span><br><span class="line">IP:           172.17.0.9</span><br><span class="line">IPs:</span><br><span class="line">  IP:           172.17.0.9</span><br><span class="line">Controlled By:  ReplicaSet/kubernetes-bootcamp-769746fd4</span><br><span class="line">Containers:</span><br><span class="line">// some logs omitted</span><br><span class="line">    Image:          jocatalin/kubernetes-bootcamp:v2</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>However, if we have <strong>performed a wrong update</strong>, for example setting the <code>image</code> version to <code>v10</code> which <em>does not exist</em></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">jasonyux@XY-Laptop /code $ kubectl <span class="built_in">set</span> image deployments/kubernetes-bootcamp kubernetes-bootcamp=gcr.io/google-samples/kubernetes-bootcamp:v10</span><br><span class="line">deployment.apps/kubernetes-bootcamp image updated</span><br></pre></td></tr></table></figure>
+
+<p>then:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">jasonyux@XY-Laptop /code $ kubectl get deployments</span><br><span class="line">NAME                  READY   UP-TO-DATE   AVAILABLE   AGE</span><br><span class="line">kubernetes-bootcamp   3/4     2            3           15d</span><br></pre></td></tr></table></figure>
+
+<p>where:</p>
+<ul>
+<li>basically <em>one Pod is down</em> because it has the wrong image/update</li>
+</ul>
+<p>A <code>describe</code> command on the Pods should give more insights:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl describe pods</span><br></pre></td></tr></table></figure>
+
+<p>in this case:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">jasonyux@XY-Laptop /code $ kubectl describe pods</span><br><span class="line">Name:         kubernetes-bootcamp-597654dbd-b7p2c</span><br><span class="line">Namespace:    default</span><br><span class="line">Priority:     0</span><br><span class="line">Node:         minikube/192.168.49.2</span><br><span class="line">Start Time:   Sun, 28 Feb 2021 23:32:52 +0800</span><br><span class="line">Labels:       app=kubernetes-bootcamp</span><br><span class="line">              pod-template-hash=597654dbd</span><br><span class="line">Annotations:  &lt;none&gt;</span><br><span class="line">Status:       Pending</span><br><span class="line">IP:           172.17.0.5</span><br><span class="line">IPs:</span><br><span class="line">  IP:           172.17.0.5</span><br><span class="line">Controlled By:  ReplicaSet/kubernetes-bootcamp-597654dbd</span><br><span class="line">Containers:</span><br><span class="line">  kubernetes-bootcamp:</span><br><span class="line">    Container ID:</span><br><span class="line">    Image:          gcr.io/google-samples/kubernetes-bootcamp:v10</span><br><span class="line">   // some logs omitted</span><br><span class="line">Events:</span><br><span class="line">  Type     Reason     Age                From               Message</span><br><span class="line">  ----     ------     ----               ----               -------</span><br><span class="line">  Normal   Scheduled  82s                default-scheduler  Successfully assigned default/kubernetes-bootcamp-597654dbd-b7p2c to minikube</span><br><span class="line">  Warning  Failed     36s (x2 over 66s)  kubelet            Failed to pull image <span class="string">"gcr.io/google-samples/kubernetes-bootcamp:v10"</span>: rpc error: code = Unknown desc = Error response from daemon: Get https://gcr.io/v2/: net/http: request canceled <span class="keyword">while</span> waiting <span class="keyword">for</span> connection (Client.Timeout exceeded <span class="keyword">while</span> awaiting headers)</span><br><span class="line">  Warning  Failed     36s (x2 over 66s)  kubelet            Error: ErrImagePull</span><br><span class="line">  Normal   BackOff    21s (x2 over 66s)  kubelet            Back-off pulling image <span class="string">"gcr.io/google-samples/kubernetes-bootcamp:v10"</span></span><br><span class="line">  Warning  Failed     21s (x2 over 66s)  kubelet            Error: ImagePullBackOff</span><br><span class="line">  Normal   Pulling    8s (x3 over 81s)   kubelet            Pulling image <span class="string">"gcr.io/google-samples/kubernetes-bootcamp:v10"</span></span><br></pre></td></tr></table></figure>
+
+<p>where we see that <em>error</em> in the <code>Events:</code> tag:</p>
+<ul>
+<li><pre><code class="bash">Failed to pull image <span class="string">"gcr.io/google-samples/kubernetes-bootcamp:v10"</span>: rpc error: code = Unknown desc = Error response from daemon: Get https://gcr.io/v2/: net/http: request canceled <span class="keyword">while</span> waiting <span class="keyword">for</span> connection (Client.Timeout exceeded <span class="keyword">while</span> awaiting headers)
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">7. To **revert&#x2F;undo** the last update, you can do:</span><br><span class="line"></span><br><span class="line">   &#96;&#96;&#96;bash</span><br><span class="line">   jasonyux@XY-Laptop &#x2F;code $ kubectl rollout undo deployments&#x2F;kubernetes-bootcamp</span><br><span class="line">   deployment.apps&#x2F;kubernetes-bootcamp rolled back</span><br></pre></td></tr></table></figure>
+</code></pre>
+</li>
+</ul>
+<p>where:</p>
+<ul>
+<li>technically, updates are <em>versioned</em> and you can revert to any previously know state of a Deployment. </li>
+</ul>
+<p>List again the Pods to confirm:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">jasonyux@XY-Laptop /code $ kubectl get pods</span><br><span class="line">NAME                                  READY   STATUS    RESTARTS   AGE</span><br><span class="line">kubernetes-bootcamp-769746fd4-4sllf   1/1     Running   0          89s</span><br><span class="line">kubernetes-bootcamp-769746fd4-bgt2r   1/1     Running   0          10m</span><br><span class="line">kubernetes-bootcamp-769746fd4-dggf8   1/1     Running   0          10m</span><br><span class="line">kubernetes-bootcamp-769746fd4-l5mb4   1/1     Running   0          11m</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/learning/2020/11/16/JavaScript-Summary/" rel="prev" title="JavaScript Summary">
+      <i class="fa fa-chevron-left"></i> JavaScript Summary
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/learning/2021/03/11/SpringBoot-Projects/" rel="next" title="SpringBoot Projects">
+      SpringBoot Projects <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+        </div>
+        
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Xiao Yu</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/learning/lib/anime.min.js"></script>
+  <script src="/learning/lib/velocity/velocity.min.js"></script>
+  <script src="/learning/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/learning/js/utils.js"></script>
+
+<script src="/learning/js/motion.js"></script>
+
+
+<script src="/learning/js/next-boot.js"></script>
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

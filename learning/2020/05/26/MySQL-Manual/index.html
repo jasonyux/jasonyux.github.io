@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/learning/images/logo-180x180.jpg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/learning/images/logo-32x32.jpg">
+  <link rel="icon" type="image/png" sizes="16x16" href="/learning/images/logo-16x16.jpg">
+
+<link rel="stylesheet" href="/learning/css/main.css">
+
+
+<link rel="stylesheet" href="/learning/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"jasonyux.github.io","root":"/learning/","scheme":"Pisces","version":"8.0.0-rc.3","exturl":false,"sidebar":{"position":"left","width":350,"display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="IMPORTANT:Some of the content here is a personal summary&#x2F;abbreviation of contents on the Offical MySQL Guide. Feel free to refer to the official site if you think some of the sections written here ar">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySQL Manual">
+<meta property="og:url" content="https://jasonyux.github.io/2020/05/26/MySQL-Manual/index.html">
+<meta property="og:site_name" content="From a Beginner to a Disaster">
+<meta property="og:description" content="IMPORTANT:Some of the content here is a personal summary&#x2F;abbreviation of contents on the Offical MySQL Guide. Feel free to refer to the official site if you think some of the sections written here ar">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://jasonyux.github.io/2020/05/26/MySQL-Manual/pet-data.png">
+<meta property="og:image" content="https://jasonyux.github.io/2020/05/26/MySQL-Manual/pet-events.png">
+<meta property="article:published_time" content="2020-05-26T02:34:48.000Z">
+<meta property="article:modified_time" content="2020-07-29T07:30:17.295Z">
+<meta property="article:author" content="Xiao Yu">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://jasonyux.github.io/2020/05/26/MySQL-Manual/pet-data.png">
+
+<link rel="canonical" href="https://jasonyux.github.io/2020/05/26/MySQL-Manual/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>MySQL Manual | From a Beginner to a Disaster</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before, .use-motion .logo-line-after {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+  <div id="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <main class="main">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+        <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+        <span class="toggle-line toggle-line-first"></span>
+        <span class="toggle-line toggle-line-middle"></span>
+        <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/learning/" class="brand" rel="start">
+      <i class="logo-line-before"></i>
+      <h1 class="site-title">From a Beginner to a Disaster</h1>
+      <i class="logo-line-after"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Xiao.Y</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/learning/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/learning/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#MySQL-Intro"><span class="nav-number">1.</span> <span class="nav-text">MySQL Intro</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Connecting-to-a-MySQL-Server"><span class="nav-number">2.</span> <span class="nav-text">Connecting to a MySQL Server</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Basic-Queries-in-MySQL-Client"><span class="nav-number">3.</span> <span class="nav-text">Basic Queries in MySQL Client</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Viewing-and-Creating-a-Database"><span class="nav-number">4.</span> <span class="nav-text">Viewing and Creating a Database</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Viewing-and-Creating-a-Table"><span class="nav-number">5.</span> <span class="nav-text">Viewing and Creating a Table</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Loading-and-Inserting-Data-into-a-Table"><span class="nav-number">6.</span> <span class="nav-text">Loading and Inserting Data into a Table</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Retrieving-Selecting-All-Information-from-a-Table"><span class="nav-number">7.</span> <span class="nav-text">Retrieving&#x2F;Selecting All Information from a Table</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Selecting-a-Particular-Row"><span class="nav-number">8.</span> <span class="nav-text">Selecting a Particular Row</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Selecting-Particular-Columns"><span class="nav-number">9.</span> <span class="nav-text">Selecting Particular Columns</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Sorting-the-Table-by-Rows"><span class="nav-number">10.</span> <span class="nav-text">Sorting the Table by Rows</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Data-Calculations"><span class="nav-number">11.</span> <span class="nav-text">Data Calculations</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Working-with-NULL-Values"><span class="nav-number">12.</span> <span class="nav-text">Working with NULL Values</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Pattern-Matching"><span class="nav-number">13.</span> <span class="nav-text">Pattern Matching</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Counting-Rows-and-Grouping-Frequencies"><span class="nav-number">14.</span> <span class="nav-text">Counting Rows and Grouping Frequencies</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Using-Multiple-Tables"><span class="nav-number">15.</span> <span class="nav-text">Using Multiple Tables</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Using-MySQL-in-Batch-Mode"><span class="nav-number">16.</span> <span class="nav-text">Using MySQL in Batch Mode</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Examples-of-Common-Query"><span class="nav-number">17.</span> <span class="nav-text">Examples of Common Query</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Auto-Increment-in-MyISAM-Tables"><span class="nav-number">18.</span> <span class="nav-text">Auto-Increment in MyISAM Tables</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Xiao Yu</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/learning/archives/">
+        
+          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+  </nav>
+</div>
+  <div class="sidebar-button motion-element"><i class="fa fa-comment"></i>
+    Chat
+  </a>
+  </div>
+
+
+
+      </div>
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </header>
+
+      
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+      <div class="main-inner">
+        
+
+        <div class="content post posts-expand">
+          
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://jasonyux.github.io/2020/05/26/MySQL-Manual/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/learning/images/avatar.gif">
+      <meta itemprop="name" content="Xiao Yu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="From a Beginner to a Disaster">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          MySQL Manual
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-05-26 10:34:48" itemprop="dateCreated datePublished" datetime="2020-05-26T10:34:48+08:00">2020-05-26</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-07-29 15:30:17" itemprop="dateModified" datetime="2020-07-29T15:30:17+08:00">2020-07-29</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <hr>
+<p><strong>IMPORTANT</strong>:<br>Some of the content here is a personal summary/abbreviation of contents on the <a href="https://dev.mysql.com/doc/refman/8.0/en/tutorial.html" target="_blank" rel="noopener">Offical MySQL Guide</a>. Feel free to refer to the official site if you think some of the sections written here are not clear.</p>
+<hr>
+<h2 id="MySQL-Intro"><a href="#MySQL-Intro" class="headerlink" title="MySQL Intro"></a>MySQL Intro</h2><p>The <strong>MySQL client program</strong> can be used to create and use a simple database. MySQL (sometimes referred to as the “terminal monitor” or just “monitor”) is an interactive program that enables you to <strong>connect to a MySQL server</strong>, run queries, and view the results.</p>
+<p>The MySQL server package will install the <strong>MySQL database server</strong> which you can <strong>interact with using a MySQL client</strong>. You can use the MySQL client to send commands to any MySQL server; on a remote computer or your own.</p>
+<p>The <strong>MySQL server is used to persist the data and provide a query interface for it (SQL)</strong>. The MySQL clients purpose is to allow you to use that query interface.</p>
+<p>On how to setup your MySQL Server, please refer to <a href="https://jasonyux.github.io/2020/05/25/Docker-Manual/#MySQL-in-Docker">here</a></p>
+<h2 id="Connecting-to-a-MySQL-Server"><a href="#Connecting-to-a-MySQL-Server" class="headerlink" title="Connecting to a MySQL Server"></a>Connecting to a MySQL Server</h2><ul>
+<li><p>If you have installed the MySQL server on Docker using the guide <a href="https://jasonyux.github.io/2020/05/25/Docker-Manual/#MySQL-in-Docker">here</a>, then you should be already connected to your local SQL server. If not, try to run (assuming you have the container running):</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker exec -it &lt;yourSQLServerName&gt; mysql -u root -p</span><br></pre></td></tr></table></figure>
+<p>  This will prompt to enter the password.</p>
+<p>  If you entered successfully, you will see:</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt;</span><br></pre></td></tr></table></figure></li>
+<li><p>If you want to connect to a remote SQL server, then you need to specify a <code>host</code> name. Contact your administrator to find out what connection parameters you should use to connect (that is, what <code>host</code>, <code>user</code> name, and <code>password</code> to use). Then, you would run:</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">shell&gt; mysql -h &lt;hostName&gt; -u &lt;userName&gt; -p</span><br><span class="line">Enter password: &lt;yourPasswordHere&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>To disconnect from that SQL server, simply run:</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">QUIT</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="Basic-Queries-in-MySQL-Client"><a href="#Basic-Queries-in-MySQL-Client" class="headerlink" title="Basic Queries in MySQL Client"></a>Basic Queries in MySQL Client</h2><p>Make sure that you are <strong>connected to the server</strong>, as discussed in the previous section. Doing so <strong>does not in itself select any database to work with</strong>, but that is okay. There are still several queries you can do to have a basic sense of how MySQL works:</p>
+<a id="more"></a>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT VERSION(), CURRENT_DATE;</span><br><span class="line">+-----------+--------------+</span><br><span class="line">| VERSION() | CURRENT_DATE |</span><br><span class="line">+-----------+--------------+</span><br><span class="line">| 8.0.20    | 2020-05-26   |</span><br><span class="line">+-----------+--------------+</span><br><span class="line">1 row in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Note:</p>
+<ul>
+<li><input disabled="" type="checkbox"> You <strong>need to have the semi-colon “<code>;</code>“ for ending your query</strong>, before pressing <code>enter</code>. If not, you will automatically goes to the next line to continue input. However, there are <strong>some exceptions where a semicolon may be omitted</strong>. <code>QUIT</code>, mentioned earlier, is one of them. We’ll get to others later.)</li>
+<li><input disabled="" type="checkbox"> The query may be entered in any lettered case. The following queries are equivalent: <code>mysql&gt; SELECT VERSION(), CURRENT_DATE;</code> <code>mysql&gt; select version(), current_date;</code> <code>mysql&gt; SeLeCt vErSiOn(), current_DATE;</code> </li>
+</ul>
+</blockquote>
+<p>From the simple command, you can see several things about a query:</p>
+<ul>
+<li><p>When you issue a query, MySQL <strong>sends it to the server</strong> for execution and displays the results, then prints another <code>mysql&gt;</code> prompt to indicate that it is ready for another query.</p>
+</li>
+<li><p>MySQL <strong>displays query output in tabular form (rows and columns)</strong>. The <strong>first row contains labels/titles</strong> for the columns. The <strong>rows following are the query results</strong>. Normally, column labels are the names of the columns you fetch from database tables. If you’re retrieving the value of <strong>an expression rather than an actual label/title</strong>, mysql labels the column <strong>using the expression itself</strong>.</p>
+</li>
+<li><p>MySQL shows, in the end, <strong>how many rows were returned and how long the query took to execute</strong>, which gives you a rough idea of <strong>server performance</strong>. These values are imprecise because they represent wall clock time (not CPU or machine time), and because they are affected by factors such as server load and network latency.</p>
+</li>
+</ul>
+<p>Other examples of a query include:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">select cos(pi()&#x2F;2), (4+1)*2;</span><br><span class="line">+-----------------------+---------+</span><br><span class="line">| cos(pi()&#x2F;2)           | (4+1)*2 |</span><br><span class="line">+-----------------------+---------+</span><br><span class="line">| 6.123233995736766e-17 |      10 |</span><br><span class="line">+-----------------------+---------+</span><br><span class="line">1 row in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<p>and you can make <strong>two or more queries simultaneouly by using the delimiter “<code>;</code>“</strong>, for example to seperate the above query into two:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select cos(pi()&#x2F;2);select (4+1)*2;</span><br><span class="line">+-----------------------+</span><br><span class="line">| cos(pi()&#x2F;2)           |</span><br><span class="line">+-----------------------+</span><br><span class="line">| 6.123233995736766e-17 |</span><br><span class="line">+-----------------------+</span><br><span class="line">1 row in set (0.00 sec)</span><br><span class="line"></span><br><span class="line">+---------+</span><br><span class="line">| (4+1)*2 |</span><br><span class="line">+---------+</span><br><span class="line">|      10 |</span><br><span class="line">+---------+</span><br><span class="line">1 row in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<p>finally, you can also use a multiline query as well, given that you had the correct punctuations in place :</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select</span><br><span class="line">    -&gt; cos(pi()&#x2F;2)</span><br><span class="line">    -&gt; , (4+1)*2</span><br><span class="line">    -&gt; ;</span><br><span class="line">+-----------------------+---------+</span><br><span class="line">| cos(pi()&#x2F;2)           | (4+1)*2 |</span><br><span class="line">+-----------------------+---------+</span><br><span class="line">| 6.123233995736766e-17 |      10 |</span><br><span class="line">+-----------------------+---------+</span><br><span class="line">1 row in set (0.01 sec)</span><br></pre></td></tr></table></figure>
+<p>or</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select cos(pi()&#x2F;2); select</span><br><span class="line">+-----------------------+</span><br><span class="line">| cos(pi()&#x2F;2)           |</span><br><span class="line">+-----------------------+</span><br><span class="line">| 6.123233995736766e-17 |</span><br><span class="line">+-----------------------+</span><br><span class="line">1 row in set (0.00 sec)</span><br><span class="line"></span><br><span class="line">    -&gt; (4+1)*2;</span><br><span class="line">+---------+</span><br><span class="line">| (4+1)*2 |</span><br><span class="line">+---------+</span><br><span class="line">|      10 |</span><br><span class="line">+---------+</span><br><span class="line">1 row in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Note </p>
+<ul>
+<li><input disabled="" type="checkbox"> <strong>If your line ended with a “<code>;</code>“</strong>, you cannot enter further input but to start another new command. In the above examples, notice how the prompt changes from <code>mysql&gt;</code> to <code>-&gt;</code>, which indicates you are at a line of a <strong>multiple-line query</strong>.</li>
+</ul>
+</blockquote>
+<ul>
+<li>To cancel the multiline query, you could use <code>\c</code>:</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select user()</span><br><span class="line">    -&gt; \c</span><br><span class="line">\c</span><br><span class="line">^C</span><br><span class="line">mysql&gt;</span><br></pre></td></tr></table></figure>
+
+<p>Here is a table summarizing the prompts you will see in MySQL:</p>
+<table>
+<thead>
+<tr>
+<th>Prompt</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>mysql&gt;</code></td>
+<td>Ready for new query</td>
+</tr>
+<tr>
+<td><code>-&gt;</code></td>
+<td>Waiting for next line of multiple-line query</td>
+</tr>
+<tr>
+<td><code>&#39;&gt;</code></td>
+<td>Waiting for next line, waiting for completion of a string that began with a single quote (<code>&#39;</code>)</td>
+</tr>
+<tr>
+<td><code>&quot;&gt;</code></td>
+<td>Waiting for next line, waiting for completion of a string that began with a double quote (<code>&quot;</code>)</td>
+</tr>
+<tr>
+<td>``&gt;    `</td>
+<td>Waiting for next line, waiting for completion of an identifier that began with a backtick (<code>`</code>)</td>
+</tr>
+<tr>
+<td><code>/*&gt;</code></td>
+<td>Waiting for next line, waiting for completion of a comment that began with <code>/*</code></td>
+</tr>
+</tbody></table>
+<p>For example, if you have missed a <code>&#39;</code> at the end of the line:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT * FROM my_table WHERE name &#x3D; &#39;Smith AND age &lt; 30;</span><br><span class="line">    &#39;&gt;</span><br></pre></td></tr></table></figure>
+<p>This means that <code>mysql</code> is <strong>expecting another <code>&#39;</code> at the end</strong>, which you have missed in this case.</p>
+<p>The solution, sadly, is to <strong>cancel the input</strong> and do it corretcly the <strong>next time</strong>:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT * FROM my_table WHERE name &#x3D; &#39;Smith AND age &lt; 30;</span><br><span class="line">    &#39;&gt; \c</span><br><span class="line">mysql&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Viewing-and-Creating-a-Database"><a href="#Viewing-and-Creating-a-Database" class="headerlink" title="Viewing and Creating a Database"></a>Viewing and Creating a Database</h2><ul>
+<li><p>To first <strong>see what databases you have access to</strong>, you can use the command:</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; show databases;</span><br><span class="line">+--------------------+</span><br><span class="line">| Database           |</span><br><span class="line">+--------------------+</span><br><span class="line">| information_schema |</span><br><span class="line">| mysql              |</span><br><span class="line">| performance_schema |</span><br><span class="line">| sys                |</span><br><span class="line">+--------------------+</span><br></pre></td></tr></table></figure>
+<p>  These databases are the ones that <strong>you have access to</strong>. If you don’t have access to a database, you will not see it here.</p>
+<p>  Then, to switch to use a database (for example, <code>sys</code>), you can run the command:</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; use sys</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>Note:</p>
+<ul>
+<li><input disabled="" type="checkbox"> The <code>use</code> command is another command (exception) that does not require a semi-colon to end. However, it does no harm to put one in the end anyway.</li>
+<li><input disabled="" type="checkbox"> Having access to a database means a lot. It means that you could insert or delete anything in that database. So usually to have an access to a database you would need to ask your administrator.</li>
+</ul>
+</blockquote>
+</li>
+<li><p>Now, to <strong>create a database</strong>, say you call it <code>test</code>, you could run:</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; create database test;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>Note:</p>
+<ul>
+<li><input disabled="" type="checkbox"> Under Unix, <strong>database names are case-sensitive</strong> (<strong>unlike SQL keywords</strong>), so you must always refer to your database as test, not as Test, TEST, or some other variant. </li>
+</ul>
+</blockquote>
+<p>However, at this point you have only created a database, and you are still in the database <code>sys</code> (follows from the previous example). To switch to the database <code>test</code> you created, you need to explicitly call again:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; use test;</span><br><span class="line">Database changed</span><br></pre></td></tr></table></figure>
+
+<p>Now, the next time you want to connect to the database <code>test</code>, you could directly run:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">shell&gt; mysql -u root -p test</span><br><span class="line">Enter password: ********</span><br></pre></td></tr></table></figure>
+
+<p>and in general, to connect to a database <code>databaseName</code> from start up, you could do:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">shell&gt; mysql -h &lt;hostName&gt; -u &lt;userName&gt; -p &lt;databaseName&gt;</span><br><span class="line">Enter password: ********</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>Note:</p>
+<ul>
+<li><input disabled="" type="checkbox"> <code>&lt;databaseName&gt;</code> in the command just shown is <strong>not your password</strong>. If you want to supply your password on the <strong>command line after the <code>-p</code> option</strong>, you must <strong>do so with no intervening space (for example, as -p<password>, not as -p <password>)</strong>. However, putting your password on the command line is <strong>not recommended</strong>, because doing so exposes it to snooping by other users logged in on your machine.</li>
+</ul>
+</blockquote>
+</li>
+<li><p>To see <strong>which database you are currently in</strong>, you could use the query:</p>
+  <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; select database();</span><br><span class="line">+<span class="comment">------------+</span></span><br><span class="line">| database() |</span><br><span class="line">+<span class="comment">------------+</span></span><br><span class="line">| test       |</span><br><span class="line">+<span class="comment">------------+</span></span><br><span class="line">1 row in <span class="keyword">set</span> (<span class="number">0.00</span> sec)</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="Viewing-and-Creating-a-Table"><a href="#Viewing-and-Creating-a-Table" class="headerlink" title="Viewing and Creating a Table"></a>Viewing and Creating a Table</h2><ul>
+<li><p>To see what tables you have in a database you are currently in, you can use:</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; show tables;</span><br><span class="line">Empty set (0.00 sec)</span><br></pre></td></tr></table></figure>
+
+<p>  In this case, we are in the <code>test</code> database that we just created so there is nothing.</p>
+</li>
+<li><p>Now, consider the example on the <a href="#https://dev.mysql.com/doc/refman/8.0/en/creating-tables.html">MySQL site</a>, where you would like to record information for <strong>each of your pets</strong> (if you don’t have many, imagine you do). Then this can be called the <code>pet</code> <strong>table</strong>, and it should contain, as a bare minimum, <strong>each animal’s name</strong> (as an entry). Then, you could <strong>add other information</strong> about each of your pet in the table. For example, if more than one person in your family keeps pets, you might want to list each animal’s owner. You might also want to record some basic descriptive information such as species and sex.</p>
+<p>  How about age? That might be of interest, but it is not a good thing to store in a database. <strong>Age changes as time passes</strong>, which means you’d have to update your records often. Instead, it is <strong>better</strong> to <strong>store a fixed value such as date of birth</strong>. Then, whenever you need age, you can calculate it as the difference between the current date and the birth date. MySQL provides functions for doing date arithmetic (as you saw before), so this is not difficult.</p>
+<p>  You can probably think of other types of information that would be useful in the pet table, but the ones identified so far are sufficient and will be used in this example: <code>name</code>, <code>owner</code>, <code>species</code>, <code>sex</code>, <code>birth</code>, and <code>death</code>:</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; create table pet (name varchar(20), owner varchar(20), species varchar(20), sex char(1), birth date, death date);</span><br><span class="line">Query OK, 0 rows affected (0.03 sec)</span><br></pre></td></tr></table></figure>
+
+<p>  Notice that we use <code>char()</code> and <code>varchar()</code>:</p>
+<ul>
+<li><p>The length of a <code>CHAR</code>/<code>char</code> column is <strong>fixed to the length that you declare when you create the table</strong>. For example, <strong><code>char(1)</code></strong> means it can <strong>hold up to 1 character</strong>. The length can be any value from 0 to 255. When <strong>CHAR values are stored</strong>, they are <strong>right-padded with spaces</strong> to the specified length. When CHAR values are <strong>retrieved</strong>, 8<em>trailing spaces are removed*</em> unless the <code>PAD_CHAR_TO_FULL_LENGTH</code> SQL mode is enabled.</p>
+</li>
+<li><p>Values in <code>VARCHAR</code> columns are <strong>variable-length strings</strong>.??? The length can be specified as a value from 0 to 65,535. The effective maximum length of a VARCHAR is subject to the maximum row size (65,535 bytes, which is shared among all columns) and the character set used. In contrast to <code>CHAR</code>, <code>VARCHAR</code> values are stored as a <strong>1-byte or 2-byte length prefix</strong> plus data. The <strong>length prefix indicates the number of bytes in the value</strong>. A column uses <strong>one length byte if values require no more than 255 bytes</strong>, <strong>two length bytes if values may require more than 255 bytes</strong>.</p>
+<p>To make sure you have your table <code>pet</code> created as the way you wanted, you can run:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; describe pet;</span><br><span class="line">+---------+-------------+------+-----+---------+-------+</span><br><span class="line">| Field   | Type        | Null | Key | Default | Extra |</span><br><span class="line">+---------+-------------+------+-----+---------+-------+</span><br><span class="line">| name    | varchar(20) | YES  |     | NULL    |       |</span><br><span class="line">| owner   | varchar(20) | YES  |     | NULL    |       |</span><br><span class="line">| species | varchar(20) | YES  |     | NULL    |       |</span><br><span class="line">| sex     | char(1)     | YES  |     | NULL    |       |</span><br><span class="line">| birth   | date        | YES  |     | NULL    |       |</span><br><span class="line">| death   | date        | YES  |     | NULL    |       |</span><br><span class="line">+---------+-------------+------+-----+---------+-------+</span><br><span class="line">6 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+<p>If you have made a mistake somewhere, and you want to change the <code>type</code> or the <code>field</code> name, you could use:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; ALTER TABLE pet CHANGE &lt;fromFieldName&gt; &lt;toFieldName&gt; &lt;Type&gt;</span><br></pre></td></tr></table></figure>
+
+<p>or if you only want to change the <code>type</code>, you can use:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; ALTER TABLE pet MODIFY &lt;fieldName&gt; &lt;newType&gt;</span><br></pre></td></tr></table></figure>
+<p>(you <strong>cannot only modify the <code>field</code> name</strong>) More examples on modifying the table please refer to <a href="#https://dev.mysql.com/doc/refman/8.0/en/alter-table-examples.html">here</a>.</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="Loading-and-Inserting-Data-into-a-Table"><a href="#Loading-and-Inserting-Data-into-a-Table" class="headerlink" title="Loading and Inserting Data into a Table"></a>Loading and Inserting Data into a Table</h2><p>After creating a table, you need to populate it. The <code>LOAD DATA</code> and <code>INSERT</code> statements are useful for this.</p>
+<p>Suppose you have the following data as shown below (notice that MySQL expects <strong>dates in <code>YYYY-MM-DD</code> format</strong>):</p>
+<img src="/2020/05/26/MySQL-Manual/pet-data.png" class="" title="https:&#x2F;&#x2F;dev.mysql.com&#x2F;doc&#x2F;refman&#x2F;8.0&#x2F;en&#x2F;loading-tables.html">
+
+<p>Because you are beginning with an empty table, an easy way to populate it is to create a <strong>text file containing a row for each of your animals</strong>, then <code>load</code> the contents of the file into the table.</p>
+<p>For exapmle, create a text file <code>pet.txt</code> containing <strong>one record per line</strong>, with values <strong>separated by tabs</strong>, (for <code>csv</code> files, refer to <a href="https://dev.mysql.com/doc/refman/8.0/en/load-data.html" target="_blank" rel="noopener">this</a>) and given <strong>in the order in which the columns were listed</strong> in the table. For <strong>missing values</strong> (such as unknown sexes or death dates for animals that are still living), you can <strong>use <code>\N</code></strong>, which represent null values:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Whistler        Gwen    bird    \N      1997-12-09      \N</span><br></pre></td></tr></table></figure>
+
+<p>Then, you can import by:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; LOAD DATA LOCAL INFILE &#39;&#x2F;path&#x2F;pet.txt&#39; INTO TABLE pet;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>Note:</p>
+<ul>
+<li><input disabled="" type="checkbox"> If you run into problems with importing a file, then probably you need to <strong>configure your SQL server</strong> for permission with file import. By default, this is <strong>disabled due to safety concerns</strong>. To configure this, please follow the guide <a href="#https://dev.mysql.com/doc/mysql-secure-deployment-guide/5.7/en/secure-deployment-post-install.html">here</a></li>
+</ul>
+</blockquote>
+<p>When you want to <strong>add new records one at a time</strong>, the <code>INSERT</code> statement is useful. In its simplest form, you <strong>supply values for each column</strong>, <strong>in the order in which the columns were listed</strong> in the CREATE TABLE statement. </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; INSERT INTO pet VALUES (&#39;Fluffy&#39;,&#39;Harold&#39;,&#39;cat&#39;,&#39;f&#39;,&#39;1993-02-04&#39;,NULL);</span><br><span class="line">Query OK, 1 row affected (0.02 sec)</span><br></pre></td></tr></table></figure>
+<p>Notice that <strong>String and date values are specified as quoted strings</strong> here. Also, with <code>INSERT</code>, you can <strong>insert <code>NULL</code> directly to represent a missing value</strong>. You <strong>do not use <code>\N</code></strong> like you do with <code>LOAD DATA</code>.</p>
+<blockquote>
+<p>Note:</p>
+<ul>
+<li><input disabled="" type="checkbox"> The values in the table <strong>does not have to be distinct</strong>. This means that you can <code>INSERT</code> two same rows into the table without any trouble. However, to delete the non-distinct rows, you might need to do some <a href="https://www.sqlservertutorial.net/sql-server-basics/delete-duplicates-sql-server/" target="_blank" rel="noopener">work</a>.</li>
+</ul>
+</blockquote>
+<h2 id="Retrieving-Selecting-All-Information-from-a-Table"><a href="#Retrieving-Selecting-All-Information-from-a-Table" class="headerlink" title="Retrieving/Selecting All Information from a Table"></a>Retrieving/Selecting All Information from a Table</h2><p>The <code>SELECT</code> statement is used to pull information from a table. The <strong>general form of the statement</strong> is:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SELECT &lt;what_to_select&gt;</span><br><span class="line">FROM &lt;which_table&gt;</span><br><span class="line">WHERE &lt;conditions_to_satisfy&gt;;</span><br></pre></td></tr></table></figure>
+<p>where</p>
+<ul>
+<li><code>&lt;what_to_select&gt;</code> indicates <strong>what you want to see</strong>. This can be a <strong>list of columns</strong>, or * to indicate “all columns.” </li>
+<li><code>&lt;which_table&gt;</code> indicates the <strong>table from which you want to retrieve data</strong>. The WHERE clause is optional. </li>
+<li><code>&lt;conditions_to_satisfy&gt;</code> specifies one or more <strong>conditions that rows must satisfy</strong> to qualify for retrieval, <strong>if it is present</strong>.</li>
+</ul>
+<p>This means you can select all data by simply running:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT * FROM pet;</span><br><span class="line">+----------+--------+---------+------+------------+------------+</span><br><span class="line">| name     | owner  | species | sex  | birth      | death      |</span><br><span class="line">+----------+--------+---------+------+------------+------------+</span><br><span class="line">| Fluffy   | Harold | cat     | f    | 1993-02-04 | NULL       |</span><br><span class="line">| Claws    | Gwen   | cat     | m    | 1994-03-17 | NULL       |</span><br><span class="line">| Buffy    | Harold | dog     | f    | 1989-05-13 | NULL       |</span><br><span class="line">| Fang     | Benny  | dog     | m    | 1990-08-27 | NULL       |</span><br><span class="line">| Bowser   | Diane  | dog     | m    | 1979-08-31 | 1995-07-29 |</span><br><span class="line">| Chirpy   | Gwen   | bird    | f    | 1998-09-11 | NULL       |</span><br><span class="line">| Whistler | Gwen   | bird    | NULL | 1997-12-09 | NULL       |</span><br><span class="line">| Slim     | Benny  | snake   | m    | 1996-04-29 | NULL       |</span><br><span class="line">| Puffball | Diane  | hamster | f    | 1999-03-30 | NULL       |</span><br><span class="line">+----------+--------+---------+------+------------+------------+</span><br></pre></td></tr></table></figure>
+<p>However, if at this point, you have found that some values are wrong in a specific row, perhaps you miss-typed in your <code>txt</code> file, then you could either <strong>delete the entire table and re-insert the correct <code>txt</code></strong>, or <strong>updating that specific value</strong>:</p>
+<ol>
+<li><p>You can first fix your <code>txt</code> file and then run this:</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; DELETE FROM pet;</span><br><span class="line">mysql&gt; LOAD DATA LOCAL INFILE &#39;pet.txt&#39; INTO TABLE pet;</span><br></pre></td></tr></table></figure></li>
+<li><p>You could also only fix the wrong one (<code>Bowser</code>‘s <code>birth</code>, for example) by:</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; UPDATE pet SET birth &#x3D; &#39;1989-08-31&#39; WHERE name &#x3D; &#39;Bowser&#39;;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h2 id="Selecting-a-Particular-Row"><a href="#Selecting-a-Particular-Row" class="headerlink" title="Selecting a Particular Row"></a>Selecting a Particular Row</h2><p>You can select only particular rows from your table, by <strong>specifying the <code>WHERE</code> option</strong>. For example, if you want to verify the change that you made to Bowser’s birth date, select Bowser’s record like this:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT * FROM pet WHERE name &#x3D; &#39;Bowser&#39;;</span><br><span class="line">+--------+-------+---------+------+------------+------------+</span><br><span class="line">| name   | owner | species | sex  | birth      | death      |</span><br><span class="line">+--------+-------+---------+------+------------+------------+</span><br><span class="line">| Bowser | Diane | dog     | m    | 1989-08-31 | 1995-07-29 |</span><br><span class="line">+--------+-------+---------+------+------------+------------+</span><br></pre></td></tr></table></figure>
+<p>or </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT birth FROM pet WHERE name &#x3D; &#39;Bowser&#39;;</span><br><span class="line">+------------+</span><br><span class="line">| birth      |</span><br><span class="line">+------------+</span><br><span class="line">| 1989-08-31 |</span><br><span class="line">+------------+</span><br></pre></td></tr></table></figure>
+
+<p>In general, you can specify <strong>any expression for the <code>WHERE</code> option as long as it can be evaluted to either <code>true</code> or <code>false</code></strong>. This means, for example, you can <strong>specify inequality</strong>:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT * FROM pet WHERE birth &gt;&#x3D; &#39;1998-1-1&#39;;</span><br><span class="line">+----------+-------+---------+------+------------+-------+</span><br><span class="line">| name     | owner | species | sex  | birth      | death |</span><br><span class="line">+----------+-------+---------+------+------------+-------+</span><br><span class="line">| Chirpy   | Gwen  | bird    | f    | 1998-09-11 | NULL  |</span><br><span class="line">| Puffball | Diane | hamster | f    | 1999-03-30 | NULL  |</span><br><span class="line">+----------+-------+---------+------+------------+-------+</span><br></pre></td></tr></table></figure>
+<p>and you can use <strong>logical operators</strong> such as <strong>AND</strong> and <strong>OR</strong>:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT * FROM pet WHERE species &#x3D; &#39;dog&#39; AND sex &#x3D; &#39;f&#39;;</span><br><span class="line">+-------+--------+---------+------+------------+-------+</span><br><span class="line">| name  | owner  | species | sex  | birth      | death |</span><br><span class="line">+-------+--------+---------+------+------------+-------+</span><br><span class="line">| Buffy | Harold | dog     | f    | 1989-05-13 | NULL  |</span><br><span class="line">+-------+--------+---------+------+------------+-------+</span><br></pre></td></tr></table></figure>
+<p>You can even combine the operators like this:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT * FROM pet WHERE (species &#x3D; &#39;cat&#39; AND sex &#x3D; &#39;m&#39;)</span><br><span class="line">       OR (species &#x3D; &#39;dog&#39; AND sex &#x3D; &#39;f&#39;);</span><br><span class="line">+-------+--------+---------+------+------------+-------+</span><br><span class="line">| name  | owner  | species | sex  | birth      | death |</span><br><span class="line">+-------+--------+---------+------+------------+-------+</span><br><span class="line">| Claws | Gwen   | cat     | m    | 1994-03-17 | NULL  |</span><br><span class="line">| Buffy | Harold | dog     | f    | 1989-05-13 | NULL  |</span><br><span class="line">+-------+--------+---------+------+------------+-------+</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Note:</p>
+<ul>
+<li><input disabled="" type="checkbox"> <code>AND</code> and <code>OR</code> may be intermixed, although <strong><code>AND</code> has higher precedence than <code>OR</code></strong>. If you use both operators, it is a good idea to <strong>use parentheses to indicate explicitly how conditions should be grouped.</strong></li>
+<li><input disabled="" type="checkbox"> If you want querey for pets that are <code>not dead</code>, then you should use <code>death IS NOT NULL</code> rather than <code>death&lt;&gt;NULL</code> (yes, <code>&lt;&gt;</code> means not equal to) <strong>because NULL is a special value that cannot be compared</strong> using the usual comparison operators. This is discussed later. </li>
+</ul>
+</blockquote>
+<h2 id="Selecting-Particular-Columns"><a href="#Selecting-Particular-Columns" class="headerlink" title="Selecting Particular Columns"></a>Selecting Particular Columns</h2><p>You can select a particular column by:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT owner FROM pet;</span><br><span class="line">+--------+</span><br><span class="line">| owner  |</span><br><span class="line">+--------+</span><br><span class="line">| Harold |</span><br><span class="line">| Gwen   |</span><br><span class="line">| Harold |</span><br><span class="line">| Benny  |</span><br><span class="line">| Diane  |</span><br><span class="line">| Gwen   |</span><br><span class="line">| Gwen   |</span><br><span class="line">| Benny  |</span><br><span class="line">| Diane  |</span><br><span class="line">+--------+</span><br></pre></td></tr></table></figure>
+<p>If you want to see more than one column, use thet “<code>,</code>“ as the delimiter:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT name, birth FROM pet;</span><br><span class="line">+----------+------------+</span><br><span class="line">| name     | birth      |</span><br><span class="line">+----------+------------+</span><br><span class="line">| Fluffy   | 1993-02-04 |</span><br><span class="line">| Claws    | 1994-03-17 |</span><br><span class="line">| Buffy    | 1989-05-13 |</span><br><span class="line">| Fang     | 1990-08-27 |</span><br><span class="line">| Bowser   | 1989-08-31 |</span><br><span class="line">| Chirpy   | 1998-09-11 |</span><br><span class="line">| Whistler | 1997-12-09 |</span><br><span class="line">| Slim     | 1996-04-29 |</span><br><span class="line">| Puffball | 1999-03-30 |</span><br><span class="line">+----------+------------+</span><br></pre></td></tr></table></figure>
+<p>You can combine <strong><code>WHERE</code> clause (row selection)</strong> with <strong>column selection</strong>. For example, to get <code>birth</code> dates for dogs and cats only, use this query:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT name, species, birth FROM pet</span><br><span class="line">       WHERE species &#x3D; &#39;dog&#39; OR species &#x3D; &#39;cat&#39;;</span><br><span class="line">+--------+---------+------------+</span><br><span class="line">| name   | species | birth      |</span><br><span class="line">+--------+---------+------------+</span><br><span class="line">| Fluffy | cat     | 1993-02-04 |</span><br><span class="line">| Claws  | cat     | 1994-03-17 |</span><br><span class="line">| Buffy  | dog     | 1989-05-13 |</span><br><span class="line">| Fang   | dog     | 1990-08-27 |</span><br><span class="line">| Bowser | dog     | 1989-08-31 |</span><br><span class="line">+--------+---------+------------+</span><br></pre></td></tr></table></figure>
+
+<h2 id="Sorting-the-Table-by-Rows"><a href="#Sorting-the-Table-by-Rows" class="headerlink" title="Sorting the Table by Rows"></a>Sorting the Table by Rows</h2><ul>
+<li><p>To sort a table (which is only <strong>meaningful w.r.t a particular row</strong>), use an <code>ORDER BY</code> clause, which by default sorts a <strong>comparable entry in a ascending order</strong>.</p>
+<p>  For example, we could sort the animals by their <code>birth</code> date:</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT name, birth FROM pet ORDER BY birth;</span><br><span class="line">+----------+------------+</span><br><span class="line">| name     | birth      |</span><br><span class="line">+----------+------------+</span><br><span class="line">| Buffy    | 1989-05-13 |</span><br><span class="line">| Bowser   | 1989-08-31 |</span><br><span class="line">| Fang     | 1990-08-27 |</span><br><span class="line">| Fluffy   | 1993-02-04 |</span><br><span class="line">| Claws    | 1994-03-17 |</span><br><span class="line">| Slim     | 1996-04-29 |</span><br><span class="line">| Whistler | 1997-12-09 |</span><br><span class="line">| Chirpy   | 1998-09-11 |</span><br><span class="line">| Puffball | 1999-03-30 |</span><br><span class="line">+----------+------------+</span><br></pre></td></tr></table></figure>
+
+<p>  You can also sort by <code>name</code>, which would mean invoking <strong>comparison on character type</strong> entries. In this case, sorting — like all other comparison operations — <strong>is normally performed in a case-insensitive</strong> fashion. However, you can <strong>force a case-sensitive sort</strong> for a column by using <code>BINARY</code> like so: <code>ORDER BY BINARY &lt;col_name&gt;</code>.</p>
+</li>
+<li><p>To sort in a <strong>descending order</strong>, you need to add the option <strong><code>DESC</code> to the <code>&lt;col_name&gt;</code></strong> you are sorting:</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT name, birth FROM pet ORDER BY birth DESC;</span><br><span class="line">+----------+------------+</span><br><span class="line">| name     | birth      |</span><br><span class="line">+----------+------------+</span><br><span class="line">| Puffball | 1999-03-30 |</span><br><span class="line">| Chirpy   | 1998-09-11 |</span><br><span class="line">| Whistler | 1997-12-09 |</span><br><span class="line">| Slim     | 1996-04-29 |</span><br><span class="line">| Claws    | 1994-03-17 |</span><br><span class="line">| Fluffy   | 1993-02-04 |</span><br><span class="line">| Fang     | 1990-08-27 |</span><br><span class="line">| Bowser   | 1989-08-31 |</span><br><span class="line">| Buffy    | 1989-05-13 |</span><br><span class="line">+----------+------------+</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>You can also perform <strong>multiple sortings</strong>. This works by <strong>first sorting by the first criteria</strong> you specified. Then, <strong>within rows of the same first criteria, sort by the second criteria</strong>. This can propagate depending on your data.</p>
+<p>  For example, to sort <strong>first by <code>type</code> of animal in ascending order</strong>, <strong>then by <code>birth</code> date within the same animal type in descending order</strong> (youngest animals first):</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT name, species, birth FROM pet</span><br><span class="line">       ORDER BY species, birth DESC;</span><br><span class="line">+----------+---------+------------+</span><br><span class="line">| name     | species | birth      |</span><br><span class="line">+----------+---------+------------+</span><br><span class="line">| Chirpy   | bird    | 1998-09-11 |</span><br><span class="line">| Whistler | bird    | 1997-12-09 |</span><br><span class="line">| Claws    | cat     | 1994-03-17 |</span><br><span class="line">| Fluffy   | cat     | 1993-02-04 |</span><br><span class="line">| Fang     | dog     | 1990-08-27 |</span><br><span class="line">| Bowser   | dog     | 1989-08-31 |</span><br><span class="line">| Buffy    | dog     | 1989-05-13 |</span><br><span class="line">| Puffball | hamster | 1999-03-30 |</span><br><span class="line">| Slim     | snake   | 1996-04-29 |</span><br><span class="line">+----------+---------+------------+</span><br></pre></td></tr></table></figure>
+
+<p>  However, <strong>if all data are distinct</strong>, for example, then <strong>sorting by two criterias would be meaningless</strong>, as the result would be the <strong>same if you only sorted it by the first criteria</strong> you specified (you can try this yourself).</p>
+</li>
+<li><p>Lastly, you could combine <strong>row selections</strong> as well. However, here you need to specify <code>WHERE</code> before you specify <code>ORDER BY</code>, which makes sense because this can save computation time.</p>
+<p>  For example, in the above sorting, I would only want to see <code>cat</code> and <code>dog</code>s, I could do:</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT name, species, birth FROM pet</span><br><span class="line">       WHERE species&#x3D;&#39;cat&#39; OR species&#x3D;&#39;DOG&#39; ORDER BY species, birth DESC;</span><br><span class="line">+----------+---------+------------+</span><br><span class="line">| name     | species | birth      |</span><br><span class="line">+----------+---------+------------+</span><br><span class="line">| Claws    | cat     | 1994-03-17 |</span><br><span class="line">| Fluffy   | cat     | 1993-02-04 |</span><br><span class="line">| Fang     | dog     | 1990-08-27 |</span><br><span class="line">| Bowser   | dog     | 1989-08-31 |</span><br><span class="line">| Buffy    | dog     | 1989-05-13 |</span><br><span class="line">+----------+---------+------------+</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="Data-Calculations"><a href="#Data-Calculations" class="headerlink" title="Data Calculations"></a>Data Calculations</h2><p><strong>MySQL provides several functions</strong> that you can use to perform calculations. In this case, if we want to do calculations on dates, for example, to calculate ages or extract parts of dates, we could use <code>TIMESTAMPDIFF(unit,datetime_expr1,datetime_expr2)</code> function:</p>
+<ul>
+<li><code>Argument</code><ul>
+<li><code>unit</code>, which will be the format of the result, has the following legal values: <code>MICROSECOND</code>(microseconds), <code>SECOND</code>, <code>MINUTE</code>, <code>HOUR</code>, <code>DAY</code>, <code>WEEK</code>, <code>MONTH</code>, <code>QUARTER</code>, or <code>YEAR</code>.</li>
+<li><code>datetime_expr1</code> and <code>datetime_expr2</code> are date or datetime expressions.</li>
+</ul>
+</li>
+<li><code>Returns</code><ul>
+<li><code>datetime_expr2 − datetime_expr1</code> in the unit specified by <code>unit</code>. However, one expression may be a date and the other a datetime; in that case, a date value is treated as a datetime having the time part <code>&#39;00:00:00&#39;</code> where necessary. The unit for the result (an integer) is given by the unit argument. </li>
+</ul>
+</li>
+</ul>
+<p>Also, an alias (<code>AS age</code>) is used to make the final output column label more meaningful:</p>
+<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT name, birth, CURDATE(),</span><br><span class="line">       TIMESTAMPDIFF(YEAR,birth,CURDATE()) AS age</span><br><span class="line">       FROM pet;</span><br><span class="line">+----------+------------+------------+------+</span><br><span class="line">| name     | birth      | CURDATE()  | age  |</span><br><span class="line">+----------+------------+------------+------+</span><br><span class="line">| Fluffy   | 1993-02-04 | 2003-08-19 |   10 |</span><br><span class="line">| Claws    | 1994-03-17 | 2003-08-19 |    9 |</span><br><span class="line">| Buffy    | 1989-05-13 | 2003-08-19 |   14 |</span><br><span class="line">| Fang     | 1990-08-27 | 2003-08-19 |   12 |</span><br><span class="line">| Bowser   | 1989-08-31 | 2003-08-19 |   13 |</span><br><span class="line">| Chirpy   | 1998-09-11 | 2003-08-19 |    4 |</span><br><span class="line">| Whistler | 1997-12-09 | 2003-08-19 |    5 |</span><br><span class="line">| Slim     | 1996-04-29 | 2003-08-19 |    7 |</span><br><span class="line">| Puffball | 1999-03-30 | 2003-08-19 |    4 |</span><br><span class="line">+----------+------------+------------+------+</span><br></pre></td></tr></table></figure></code></pre><p>You can then order it by <code>age</code>:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT name, birth, CURDATE(),</span><br><span class="line">       TIMESTAMPDIFF(YEAR,birth,CURDATE()) AS age</span><br><span class="line">       FROM pet ORDER BY age;</span><br><span class="line">+----------+------------+------------+------+</span><br><span class="line">| name     | birth      | CURDATE()  | age  |</span><br><span class="line">+----------+------------+------------+------+</span><br><span class="line">| Chirpy   | 1998-09-11 | 2003-08-19 |    4 |</span><br><span class="line">| Puffball | 1999-03-30 | 2003-08-19 |    4 |</span><br><span class="line">| Whistler | 1997-12-09 | 2003-08-19 |    5 |</span><br><span class="line">| Slim     | 1996-04-29 | 2003-08-19 |    7 |</span><br><span class="line">| Claws    | 1994-03-17 | 2003-08-19 |    9 |</span><br><span class="line">| Fluffy   | 1993-02-04 | 2003-08-19 |   10 |</span><br><span class="line">| Fang     | 1990-08-27 | 2003-08-19 |   12 |</span><br><span class="line">| Bowser   | 1989-08-31 | 2003-08-19 |   13 |</span><br><span class="line">| Buffy    | 1989-05-13 | 2003-08-19 |   14 |</span><br><span class="line">+----------+------------+------------+------+</span><br></pre></td></tr></table></figure>
+
+<p>But what if you want to know which animals have <strong>birthdays next mont</strong>h? For this type of calculation, year and day are irrelevant; you simply want to <strong>extract the month part of the <code>birth</code></strong> column. MySQL provides several functions for extracting parts of dates, such as <code>YEAR()</code>, <code>MONTH()</code>, and <code>DAYOFMONTH()</code>. <code>MONTH()</code> is the appropriate function here. To see how it works, run a simple query that displays the value of both birth and <code>MONTH(date)</code>:</p>
+<ul>
+<li><code>Argument</code><ul>
+<li><code>date</code>, for example <code>&#39;2008-02-03&#39;</code></li>
+</ul>
+</li>
+<li><code>Returns</code> <ul>
+<li>the month for <code>date</code>, <strong>in the range 1 to 12 for January to December</strong>, or <strong>0 for dates such as ‘0000-00-00’ or ‘2008-00-00’ that have a zero month part</strong>.</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT name, birth, MONTH(birth) FROM pet;</span><br><span class="line">+----------+------------+--------------+</span><br><span class="line">| name     | birth      | MONTH(birth) |</span><br><span class="line">+----------+------------+--------------+</span><br><span class="line">| Fluffy   | 1993-02-04 |            2 |</span><br><span class="line">| Claws    | 1994-03-17 |            3 |</span><br><span class="line">| Buffy    | 1989-05-13 |            5 |</span><br><span class="line">| Fang     | 1990-08-27 |            8 |</span><br><span class="line">| Bowser   | 1989-08-31 |            8 |</span><br><span class="line">| Chirpy   | 1998-09-11 |            9 |</span><br><span class="line">| Whistler | 1997-12-09 |           12 |</span><br><span class="line">| Slim     | 1996-04-29 |            4 |</span><br><span class="line">| Puffball | 1999-03-30 |            3 |</span><br><span class="line">+----------+------------+--------------+</span><br></pre></td></tr></table></figure>
+
+<p>and if you want to see pets that have birthday the <strong>current month</strong> (<strong>suppose it is May now</strong>), then you can do:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT name, birth FROM pet WHERE MONTH(birth) &#x3D; 5;</span><br><span class="line">+-------+------------+</span><br><span class="line">| name  | birth      |</span><br><span class="line">+-------+------------+</span><br><span class="line">| Buffy | 1989-05-13 |</span><br><span class="line">+-------+------------+</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>Note:</p>
+<ul>
+<li><input disabled="" type="checkbox"> You might think that you could write <code>SELECT name, birth, MONTH(birth) as month FROM pet WHERE month= 5;</code> would be another option, as it works for sorting. Unfortunately, <strong>this would not work</strong> because standard SQL <strong>disallows references to column aliases</strong> in a <strong><code>WHERE</code> clause</strong>.</li>
+</ul>
+</blockquote>
+<p>To see pets that have birthday the <strong>next month</strong>, you can use either the <code>DATE_ADD()</code> function or the <code>MOD()</code> function. For saving space, details for their arguments and return values are not explained here.</p>
+<ol>
+<li><p>To use the <code>DATE_ADD()</code> function to add a month to the current date:</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT name, birth FROM pet</span><br><span class="line">       WHERE MONTH(birth) &#x3D; MONTH(DATE_ADD(CURDATE(),INTERVAL 1 MONTH));</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>To use the <code>MOD()</code> function to calculate the value of the next month:</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT name, birth FROM pet</span><br><span class="line">       WHERE MONTH(birth) &#x3D; MOD(MONTH(CURDATE())+1, 12);</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<p>If a calculation <strong>fails</strong>, it will produce <code>warning</code>s:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT &#39;2018-10-32&#39; + INTERVAL 1 DAY;</span><br><span class="line">+-------------------------------+</span><br><span class="line">| &#39;2018-10-32&#39; + INTERVAL 1 DAY |</span><br><span class="line">+-------------------------------+</span><br><span class="line">| NULL                          |</span><br><span class="line">+-------------------------------+</span><br><span class="line">1 row in set, 1 warning (0.00 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; SHOW WARNINGS;</span><br><span class="line">+---------+------+----------------------------------------+</span><br><span class="line">| Level   | Code | Message                                |</span><br><span class="line">+---------+------+----------------------------------------+</span><br><span class="line">| Warning | 1292 | Incorrect datetime value: &#39;2018-10-32&#39; |</span><br><span class="line">+---------+------+----------------------------------------+</span><br></pre></td></tr></table></figure>
+
+<h2 id="Working-with-NULL-Values"><a href="#Working-with-NULL-Values" class="headerlink" title="Working with NULL Values"></a>Working with <code>NULL</code> Values</h2><p>The NULL value can be surprising until you get used to it. Conceptually, NULL means “a missing unknown value” and it is treated somewhat differently from other values.</p>
+<p>To test for NULL, use the <code>IS NULL</code> and <code>IS NOT NULL</code> operators, as shown here:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT 1 IS NULL, 1 IS NOT NULL;</span><br><span class="line">+-----------+---------------+</span><br><span class="line">| 1 IS NULL | 1 IS NOT NULL |</span><br><span class="line">+-----------+---------------+</span><br><span class="line">|         0 |             1 |</span><br><span class="line">+-----------+---------------+</span><br></pre></td></tr></table></figure>
+<p>where you can think of <code>0</code> meaning <code>false</code> and <code>1</code> meaning <code>true</code>.</p>
+<p>If you use arithmetic comparison operators such as <code>=</code>, <code>&lt;</code>, or <code>&lt;&gt;</code> to test for <code>NULL</code>, you will get the following result:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT 1 &#x3D; NULL, 1 &lt;&gt; NULL, 1 &lt; NULL, 1 &gt; NULL;</span><br><span class="line">+----------+-----------+----------+----------+</span><br><span class="line">| 1 &#x3D; NULL | 1 &lt;&gt; NULL | 1 &lt; NULL | 1 &gt; NULL |</span><br><span class="line">+----------+-----------+----------+----------+</span><br><span class="line">|     NULL |      NULL |     NULL |     NULL |</span><br><span class="line">+----------+-----------+----------+----------+</span><br></pre></td></tr></table></figure>
+<p>This is because the result of <strong>any arithmetic comparison with <code>NULL</code> is also <code>NULL</code></strong>, so you cannot obtain any meaningful results from such comparisons.</p>
+<blockquote>
+<p>Note:</p>
+<ul>
+<li><input disabled="" type="checkbox"> In <strong>MySQL</strong>, <code>0</code> or <code>NULL</code> means <code>false</code> and anything else means <code>true</code>. The <strong>default <code>true</code> value</strong> from a boolean operation is <code>1</code>.</li>
+<li><input disabled="" type="checkbox"> Also, when doing an <code>ORDER BY</code>, <strong><code>NULL</code> values are presented first if you do <code>ORDER BY ... ASC</code></strong> and last if you do <code>ORDER BY ... DESC</code>.</li>
+</ul>
+</blockquote>
+<h2 id="Pattern-Matching"><a href="#Pattern-Matching" class="headerlink" title="Pattern Matching"></a>Pattern Matching</h2><p>MySQL provides standard SQL pattern matching as well as a form of pattern matching based on <strong>extended regular expressions</strong> similar to those used by Unix utilities such as <strong>vi</strong>, <strong>grep</strong>, and <strong>sed</strong>.</p>
+<ul>
+<li><code>_</code> can be used to match/replace any single character </li>
+<li><code>%</code> to match/replace an arbitrary number of characters (including zero characters). </li>
+</ul>
+<blockquote>
+<p>Note:</p>
+<ul>
+<li><input disabled="" type="checkbox"> In MySQL, SQL patterns are <strong>case-insensitive by default</strong>. </li>
+</ul>
+</blockquote>
+<p>Some examples are shown here. <strong>Do not use <code>=</code> or <code>&lt;&gt;</code> when you use SQL patterns</strong>. Use the <strong><code>LIKE</code> or <code>NOT LIKE</code> comparison operators</strong> instead.</p>
+<ul>
+<li><p>To find names beginning with <code>b</code> or <code>B</code> (because it is case-insensitive):</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT * FROM pet WHERE name LIKE &#39;b%&#39;;</span><br><span class="line">+--------+--------+---------+------+------------+------------+</span><br><span class="line">| name   | owner  | species | sex  | birth      | death      |</span><br><span class="line">+--------+--------+---------+------+------------+------------+</span><br><span class="line">| Buffy  | Harold | dog     | f    | 1989-05-13 | NULL       |</span><br><span class="line">| Bowser | Diane  | dog     | m    | 1989-08-31 | 1995-07-29 |</span><br><span class="line">+--------+--------+---------+------+------------+------------+</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>To find names ending with <code>fy</code>:</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT * FROM pet WHERE name LIKE &#39;%fy&#39;;</span><br><span class="line">+--------+--------+---------+------+------------+-------+</span><br><span class="line">| name   | owner  | species | sex  | birth      | death |</span><br><span class="line">+--------+--------+---------+------+------------+-------+</span><br><span class="line">| Fluffy | Harold | cat     | f    | 1993-02-04 | NULL  |</span><br><span class="line">| Buffy  | Harold | dog     | f    | 1989-05-13 | NULL  |</span><br><span class="line">+--------+--------+---------+------+------------+-------+</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>To find names containing a <code>w</code>:</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT * FROM pet WHERE name LIKE &#39;%w%&#39;;</span><br><span class="line">+----------+-------+---------+------+------------+------------+</span><br><span class="line">| name     | owner | species | sex  | birth      | death      |</span><br><span class="line">+----------+-------+---------+------+------------+------------+</span><br><span class="line">| Claws    | Gwen  | cat     | m    | 1994-03-17 | NULL       |</span><br><span class="line">| Bowser   | Diane | dog     | m    | 1989-08-31 | 1995-07-29 |</span><br><span class="line">| Whistler | Gwen  | bird    | NULL | 1997-12-09 | NULL       |</span><br><span class="line">+----------+-------+---------+------+------------+------------+</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>To find names containing exactly five characters, use five instances of the <code>_</code> pattern character:</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT * FROM pet WHERE name LIKE &#39;_____&#39;;</span><br><span class="line">+-------+--------+---------+------+------------+-------+</span><br><span class="line">| name  | owner  | species | sex  | birth      | death |</span><br><span class="line">+-------+--------+---------+------+------------+-------+</span><br><span class="line">| Claws | Gwen   | cat     | m    | 1994-03-17 | NULL  |</span><br><span class="line">| Buffy | Harold | dog     | f    | 1989-05-13 | NULL  |</span><br><span class="line">+-------+--------+---------+------+------------+-------+</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>The other type of pattern matching provided by MySQL uses <strong>extended regular expressions</strong>. Those will be much more extensive and enables you to do much more. When you test for a match for this type of pattern, <strong>use the <code>REGEXP_LIKE(expr, pat[, match_type])</code></strong> function (or the <code>REGEXP</code> or <code>RLIKE</code> operators, which are synonyms for <code>REGEXP_LIKE()</code>).</p>
+<ul>
+<li><code>Arguement</code><ul>
+<li><code>expr</code> a string of input</li>
+<li><code>pat</code> a <strong>regular expression</strong> for matching the input. Examples of common <strong>regular expressions</strong> include:<ul>
+<li><code>.</code> matches any single character.</li>
+<li>A character class <code>[...]</code> matches <strong>any character for once within the brackets</strong>. For example, [abc] matches a, b, or c. To name a <strong>range of characters</strong>, use a dash. [a-z] matches any letter, whereas [0-9] matches any digit. Use <code>+</code> to match a character more than once. For example, <code>[a-z]+</code> would match any word.</li>
+<li><code>*</code> matches <strong>zero or more instances of the thing preceding it</strong>. For example, <code>x*</code> matches any number of x characters, <strong>[0-9]* matches any number of digits</strong>, and <code>.*</code> matches <strong>any number of anything</strong>.</li>
+<li>Use <code>^</code> at the beginning or <code>$</code> at the end of the pattern to <strong>anchor a pattern so that it must match the beginning or end of the value being tested, respectively.</strong></li>
+<li>A regular expression pattern match succeeds <strong>if the pattern matches anywhere in the value being tested</strong>. (This differs from a <strong><code>LIKE</code> pattern match, which succeeds only if the pattern matches the entire value.</strong>)</li>
+<li>for a complete reference, visit <a href="https://dev.mysql.com/doc/refman/8.0/en/regexp.html#regexp-syntax" target="_blank" rel="noopener">Regexp Syntax by MySQL</a></li>
+</ul>
+</li>
+<li>optional <code>match_type</code> is a string that may contain any or all the following characters specifying how to perform matching:<ul>
+<li><code>c</code>: <strong>Case sensitive matching</strong>.</li>
+<li><code>i</code>: Case-insensitive matching.</li>
+<li><code>m</code>: Multiple-line mode. Recognize line terminators within the string. The default behavior is to match line terminators only at the start and end of the string expression.</li>
+<li><code>n</code>: The . character matches line terminators. The default is for . matching to stop at the end of a line.</li>
+<li><code>u</code>: Unix-only line endings. Only the newline character is recognized as a line ending by the ., ^, and $ match operators.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><code>Returns</code><ul>
+<li>Returns <strong><code>1</code> if the string expr matches the regular expression</strong> specified by the pattern pat, <code>0</code> otherwise. If expr or pat is <code>NULL</code>, the return value is <code>NULL</code>.</li>
+</ul>
+</li>
+</ul>
+<p>For example, to find names beginning with b, use <code>^</code> to match the beginning of the name:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT * FROM pet WHERE REGEXP_LIKE(name, &#39;^b&#39;);</span><br><span class="line">+--------+--------+---------+------+------------+------------+</span><br><span class="line">| name   | owner  | species | sex  | birth      | death      |</span><br><span class="line">+--------+--------+---------+------+------------+------------+</span><br><span class="line">| Buffy  | Harold | dog     | f    | 1989-05-13 | NULL       |</span><br><span class="line">| Bowser | Diane  | dog     | m    | 1979-08-31 | 1995-07-29 |</span><br><span class="line">+--------+--------+---------+------+------------+------------+</span><br></pre></td></tr></table></figure>
+<p>To find names ending with <code>fy</code>, use <code>$</code> to match the end of the name:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT * FROM pet WHERE REGEXP_LIKE(name, &#39;fy$&#39;);</span><br><span class="line">+--------+--------+---------+------+------------+-------+</span><br><span class="line">| name   | owner  | species | sex  | birth      | death |</span><br><span class="line">+--------+--------+---------+------+------------+-------+</span><br><span class="line">| Fluffy | Harold | cat     | f    | 1993-02-04 | NULL  |</span><br><span class="line">| Buffy  | Harold | dog     | f    | 1989-05-13 | NULL  |</span><br><span class="line">+--------+--------+---------+------+------------+-------+</span><br></pre></td></tr></table></figure>
+
+<p>To force a regular expression comparison to be <strong>case sensitive</strong>, use a case-sensitive collation, or use the BINARY keyword to make one of the strings a binary string, or specify the <code>c</code> match-control character (as mentioend above). Each of these queries matches only lowercase b at the beginning of a name:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM pet WHERE REGEXP_LIKE(name, &#39;^b&#39; COLLATE utf8mb4_0900_as_cs);</span><br><span class="line">SELECT * FROM pet WHERE REGEXP_LIKE(name, BINARY &#39;^b&#39;);</span><br><span class="line">SELECT * FROM pet WHERE REGEXP_LIKE(name, &#39;^b&#39;, &#39;c&#39;);</span><br></pre></td></tr></table></figure>
+
+<p>To find names containing a <code>w</code>, use this query:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT * FROM pet WHERE REGEXP_LIKE(name, &#39;w&#39;);</span><br><span class="line">+----------+-------+---------+------+------------+------------+</span><br><span class="line">| name     | owner | species | sex  | birth      | death      |</span><br><span class="line">+----------+-------+---------+------+------------+------------+</span><br><span class="line">| Claws    | Gwen  | cat     | m    | 1994-03-17 | NULL       |</span><br><span class="line">| Bowser   | Diane | dog     | m    | 1989-08-31 | 1995-07-29 |</span><br><span class="line">| Whistler | Gwen  | bird    | NULL | 1997-12-09 | NULL       |</span><br><span class="line">+----------+-------+---------+------+------------+------------+</span><br></pre></td></tr></table></figure>
+<p>Because a regular expression pattern <strong>matches if it occurs anywhere in the value</strong>, it is <strong>not necessary in the previous query to put a wildcard on either side of the pattern</strong> to get it to match the entire value as would be true with an SQL pattern.</p>
+<p>To find names containing <strong>exactly five characters</strong>, use <code>^</code> and <code>$</code> to match the beginning and end of the name, and five instances of <code>.</code> in between (simply <code>.....</code> would not work due to the fact that <strong>REGEXP() matches if it occurs anywhere in the value</strong>):</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT * FROM pet WHERE REGEXP_LIKE(name, &#39;^.....$&#39;);</span><br><span class="line">+-------+--------+---------+------+------------+-------+</span><br><span class="line">| name  | owner  | species | sex  | birth      | death |</span><br><span class="line">+-------+--------+---------+------+------------+-------+</span><br><span class="line">| Claws | Gwen   | cat     | m    | 1994-03-17 | NULL  |</span><br><span class="line">| Buffy | Harold | dog     | f    | 1989-05-13 | NULL  |</span><br><span class="line">+-------+--------+---------+------+------------+-------+</span><br></pre></td></tr></table></figure>
+
+<h2 id="Counting-Rows-and-Grouping-Frequencies"><a href="#Counting-Rows-and-Grouping-Frequencies" class="headerlink" title="Counting Rows and Grouping Frequencies"></a>Counting Rows and Grouping Frequencies</h2><p>Databases are often used to answer the question, “<strong>How often does a certain type of data occur</strong> in a table?” For example, you might want to know how many pets you have, or how many pets each owner has, or you might want to perform various kinds of census operations on your animals.</p>
+<ul>
+<li><p>Counting the <strong>total number of animals you have</strong> is the same question as “How many rows are in the pet table?” because there is one record per pet. <code>COUNT(*)</code> counts the number of rows, so the query to count your animals looks like this:</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT COUNT(*) FROM pet;</span><br><span class="line">+----------+</span><br><span class="line">| COUNT(*) |</span><br><span class="line">+----------+</span><br><span class="line">|        9 |</span><br><span class="line">+----------+</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>The more useful case come when you use <code>COUNT()</code> in conjunction with <code>GROUP BY</code> for characterizing your data under various groupings. </p>
+<ul>
+<li><p>For example, if you want to find out how many pets each owner has:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT owner, COUNT(*) FROM pet GROUP BY owner;</span><br><span class="line">+--------+----------+</span><br><span class="line">| owner  | COUNT(*) |</span><br><span class="line">+--------+----------+</span><br><span class="line">| Benny  |        2 |</span><br><span class="line">| Diane  |        2 |</span><br><span class="line">| Gwen   |        3 |</span><br><span class="line">| Harold |        2 |</span><br><span class="line">+--------+----------+</span><br></pre></td></tr></table></figure>
+
+<p>This works because <code>COUNT()</code> is a <strong>window function</strong>, whose result rows are determined from the <code>FROM</code> clause, <strong>after <code>WHERE</code>, <code>GROUP BY</code>, and <code>HAVING</code> processing</strong>, and windowing execution occurs before <code>ORDER BY</code>, <code>LIMIT</code>, and <code>SELECT DISTINCT</code>.</p>
+<p>This means that it <strong>first <code>GROUP BY owner</code></strong>, and then shows <code>owner</code> and <code>COUNT(*)</code>. For a complete guide of how to use a <code>COUNT()</code>, please follow <a href="https://dev.mysql.com/doc/refman/8.0/en/group-by-functions.html#function_count" target="_blank" rel="noopener">this link</a>. For now, you just need to know that <code>COUNT()</code>:</p>
+<ul>
+<li><code>Return</code><ul>
+<li>Returns a count of the number of non-NULL <strong>values of <code>expr</code> in the rows retrieved by a <code>SELECT</code></strong> statement</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Similarly, you can also <code>GROUP BY species</code>:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT species, COUNT(*) FROM pet GROUP BY species;</span><br><span class="line">+---------+----------+</span><br><span class="line">| species | COUNT(*) |</span><br><span class="line">+---------+----------+</span><br><span class="line">| bird    |        2 |</span><br><span class="line">| cat     |        2 |</span><br><span class="line">| dog     |        3 |</span><br><span class="line">| hamster |        1 |</span><br><span class="line">| snake   |        1 |</span><br><span class="line">+---------+----------+</span><br></pre></td></tr></table></figure></li>
+<li><p>And number of animals per sex:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT sex, COUNT(*) FROM pet GROUP BY sex;</span><br><span class="line">+------+----------+</span><br><span class="line">| sex  | COUNT(*) |</span><br><span class="line">+------+----------+</span><br><span class="line">| NULL |        1 |</span><br><span class="line">| f    |        4 |</span><br><span class="line">| m    |        4 |</span><br><span class="line">+------+----------+</span><br></pre></td></tr></table></figure>
+<p>where <code>NULL</code> means the sex is unknown.</p>
+</li>
+<li><p>You could also <strong>group by one than one categories</strong>. For example, you can group by <code>species</code> first and then <code>sex</code>:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT species, sex, COUNT(*) FROM pet GROUP BY species, sex;</span><br><span class="line">+---------+------+----------+</span><br><span class="line">| species | sex  | COUNT(*) |</span><br><span class="line">+---------+------+----------+</span><br><span class="line">| bird    | NULL |        1 |</span><br><span class="line">| bird    | f    |        1 |</span><br><span class="line">| cat     | f    |        1 |</span><br><span class="line">| cat     | m    |        1 |</span><br><span class="line">| dog     | f    |        1 |</span><br><span class="line">| dog     | m    |        2 |</span><br><span class="line">| hamster | f    |        1 |</span><br><span class="line">| snake   | m    |        1 |</span><br><span class="line">+---------+------+----------+</span><br></pre></td></tr></table></figure></li>
+<li><p>and finally, you can also use the <code>WHERE</code> clause to select only a proportion of data you want (<code>WHERE</code> executes before <code>GROUP BY</code>). For example, if you only want to see <code>cat</code> and <code>dog</code> data:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT species, sex, COUNT(*) FROM pet</span><br><span class="line">       WHERE species &#x3D; &#39;dog&#39; OR species &#x3D; &#39;cat&#39;</span><br><span class="line">       GROUP BY species, sex;</span><br><span class="line">+---------+------+----------+</span><br><span class="line">| species | sex  | COUNT(*) |</span><br><span class="line">+---------+------+----------+</span><br><span class="line">| cat     | f    |        1 |</span><br><span class="line">| cat     | m    |        1 |</span><br><span class="line">| dog     | f    |        1 |</span><br><span class="line">| dog     | m    |        2 |</span><br><span class="line">+---------+------+----------+</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="Using-Multiple-Tables"><a href="#Using-Multiple-Tables" class="headerlink" title="Using Multiple Tables"></a>Using Multiple Tables</h2><p>Suppose you have another table. Then a problem arise when you need to deal with data on both tables, namely, how do you <strong>combine and operate on data from multiple tables</strong>?</p>
+<p>Now suppose you created another table to <strong>record other information about them</strong>, such as events in their lives like visits to the vet or when litters are born, and you put the following information in a <code>event</code> table:</p>
+<img src="/2020/05/26/MySQL-Manual/pet-events.png" class="" title="Table from https:&#x2F;&#x2F;dev.mysql.com&#x2F;doc&#x2F;refman&#x2F;8.0&#x2F;en&#x2F;multiple-tables.html">
+
+<p>Suppose that you want to find out the <strong>ages at which each pet had its litters</strong>. We saw earlier how to calculate ages from two dates. The <code>litter</code> date of the mother is in the <code>event</code> table, but to calculate her age on that date you need her <code>birth</code> date, <strong>which is stored in the <code>pet</code> table</strong>. This means the query requires both tables:</p>
+<ul>
+<li><p>First, you need to know that <strong>tables are distinct in a database</strong>. This means that <strong>any column in a specific table in a database</strong> can be referred as: <code>&lt;tableName&gt;.&lt;colName&gt;</code>.</p>
+</li>
+<li><p>Now, to combine data from multiple tables, you can use <code>INNER JOIN</code> (for more details on <code>JOIN</code> clause, see <a href="https://dev.mysql.com/doc/refman/8.0/en/join.html" target="_blank" rel="noopener">here</a>), which can be used to <strong>combine the tables by permitsting rows from either table to appear</strong> in the result <strong>if and only if both tables meet the conditions specified in the <code>ON</code> clause</strong>. For example:</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT pet.name,</span><br><span class="line">       TIMESTAMPDIFF(YEAR,birth,date) AS age,</span><br><span class="line">       remark</span><br><span class="line">       FROM pet INNER JOIN event</span><br><span class="line">         ON pet.name &#x3D; event.name</span><br><span class="line">       WHERE event.type &#x3D; &#39;litter&#39;;</span><br><span class="line">+--------+------+-----------------------------+</span><br><span class="line">| name   | age  | remark                      |</span><br><span class="line">+--------+------+-----------------------------+</span><br><span class="line">| Fluffy |    2 | 4 kittens, 3 female, 1 male |</span><br><span class="line">| Buffy  |    4 | 5 puppies, 2 female, 3 male |</span><br><span class="line">| Buffy  |    5 | 3 puppies, 3 female         |</span><br><span class="line">+--------+------+-----------------------------+</span><br></pre></td></tr></table></figure>
+<p>where you see in this example:</p>
+<ul>
+<li>When combining (joining) information from multiple tables, you need to specify how records in one table can be matched to records in the other (e.g. using the <code>ON</code> clause). This is easy because they both have a <code>name</code> column. The query uses an <code>ON pet.name=event.name</code> to match up records in the two tables <strong>if they have the same name value</strong>.</li>
+</ul>
+<p>However, you <strong>do not need to have two different tables</strong> to use the <code>INNER JOIN ... ON</code> functionality. You can <strong>use alias `AS</strong><code>. For example, to find possible **breeding pairs among your pets**, you can join the</code>pet` table with itself to produce candidate pairs of live <strong>males and females of like species</strong>:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT p1.name, p1.sex, p2.name, p2.sex, p1.species</span><br><span class="line">       FROM pet AS p1 INNER JOIN pet AS p2</span><br><span class="line">         ON p1.species &#x3D; p2.species</span><br><span class="line">         AND p1.sex &#x3D; &#39;f&#39; AND p1.death IS NULL</span><br><span class="line">         AND p2.sex &#x3D; &#39;m&#39; AND p2.death IS NULL;</span><br><span class="line">+--------+------+-------+------+---------+</span><br><span class="line">| name   | sex  | name  | sex  | species |</span><br><span class="line">+--------+------+-------+------+---------+</span><br><span class="line">| Fluffy | f    | Claws | m    | cat     |</span><br><span class="line">| Buffy  | f    | Fang  | m    | dog     |</span><br><span class="line">+--------+------+-------+------+---------+</span><br></pre></td></tr></table></figure>
+
+<h2 id="Using-MySQL-in-Batch-Mode"><a href="#Using-MySQL-in-Batch-Mode" class="headerlink" title="Using MySQL in Batch Mode"></a>Using MySQL in Batch Mode</h2><p>Sometimes, if you have a <code>batch file</code> that you would like MySQL to execute, you can run <code>mysql</code> in <strong>batch mode</strong>. To do this, put the statements you want to run in a batch file (<strong>with <code>.sql</code> ending</strong>), then <strong>tell <code>mysql</code> to read its input from the file</strong>.</p>
+<ul>
+<li><p><strong>Outside of <code>mysql</code></strong>:</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">shell&gt; mysql &lt; &lt;your-batch-file&gt;</span><br></pre></td></tr></table></figure>
+
+<p>  If you are running <code>mysql</code> under Windows and have some special characters in the file that cause problems, you can do this:</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:\&gt; mysql -e &quot;source &lt;your-batch-file&gt;&quot;</span><br></pre></td></tr></table></figure>
+
+<p>  If you need to specify connection parameters on the command line, the command might look like this:</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">shell&gt; mysql -h host -u user -p &lt; &lt;your-batch-file&gt;</span><br><span class="line">Enter password: ********</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>You can also use scripts from <strong>inside the <code>mysql</code> prompt</strong> by using the <code>source</code> command or <code>\.</code> command:</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; source filename;</span><br><span class="line">mysql&gt; \. filename</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<blockquote>
+<p>Note:</p>
+<ul>
+<li><input disabled="" type="checkbox"> If you want the script to continue <strong>even if some of the statements in it produce errors</strong>, you should use the <code>--force</code> command-line option.  </li>
+</ul>
+</blockquote>
+<p>In general, you would use scriptings in a batch mode if you need to:</p>
+<ul>
+<li>run a query <strong>repeatedly</strong> (say, every day or every week), making it a script enables you to avoid retyping it each time you execute it.</li>
+<li>generate new queries from existing ones that are similar by copying and editing script files.</li>
+<li><strong>distribute</strong> your script to other people so that they can also run the statements</li>
+</ul>
+<p>You have several <strong>options</strong> when using the batch mode as well. For example:</p>
+<ul>
+<li><p>if you have a query that <strong>produces a lot of output</strong>, you can run the output through a <strong>pager rather than watching it scroll off the top of your screen</strong>:</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">shell&gt; mysql &lt; batch-file | more</span><br></pre></td></tr></table></figure></li>
+<li><p>You can catch the output in a file for further processing:</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">shell&gt; mysql &lt; batch-file &gt; mysql.out</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<blockquote>
+<p>Note:</p>
+<ul>
+<li><input disabled="" type="checkbox"> The output of <code>mysql</code> in batch mode is more concise than the output in a normal interative <code>mysql</code> prompt. For example, output of <code>SELECT DISTINCT species FROM pet</code> looks like this when <code>mysql</code> is run <code>interactively</code>:</li>
+</ul>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">+---------+</span><br><span class="line">| species |</span><br><span class="line">+---------+</span><br><span class="line">| bird    |</span><br><span class="line">| cat     |</span><br><span class="line">| dog     |</span><br><span class="line">| hamster |</span><br><span class="line">| snake   |</span><br><span class="line">+---------+</span><br></pre></td></tr></table></figure>
+<p>In batch mode, the output looks like this instead:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">species</span><br><span class="line">bird</span><br><span class="line">cat</span><br><span class="line">dog</span><br><span class="line">hamster</span><br><span class="line">snake</span><br></pre></td></tr></table></figure>
+
+<h2 id="Examples-of-Common-Query"><a href="#Examples-of-Common-Query" class="headerlink" title="Examples of Common Query"></a>Examples of Common Query</h2><p>Here, I only list some that I think are relatively less-straightforward than thought. For more examples, please refer to <a href="https://dev.mysql.com/doc/refman/8.0/en/examples.html" target="_blank" rel="noopener">the MySQL documentation</a>.</p>
+<p>All examples are based on this table:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; CREATE TABLE shop (</span><br><span class="line">    article INT UNSIGNED  DEFAULT &#39;0000&#39; NOT NULL,</span><br><span class="line">    dealer  CHAR(20)      DEFAULT &#39;&#39;     NOT NULL,</span><br><span class="line">    price   DECIMAL(16,2) DEFAULT &#39;0.00&#39; NOT NULL,</span><br><span class="line">    PRIMARY KEY(article, dealer));</span><br><span class="line">mysql&gt; INSERT INTO shop VALUES</span><br><span class="line">    (1,&#39;A&#39;,3.45),(1,&#39;B&#39;,3.99),(2,&#39;A&#39;,10.99),(3,&#39;B&#39;,1.45),</span><br><span class="line">    (3,&#39;C&#39;,1.69),(3,&#39;D&#39;,1.25),(4,&#39;D&#39;,19.95);</span><br></pre></td></tr></table></figure>
+
+<p>After issuing the statements, the table should have the following contents:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM shop ORDER BY article;</span><br><span class="line"></span><br><span class="line">+---------+--------+-------+</span><br><span class="line">| article | dealer | price |</span><br><span class="line">+---------+--------+-------+</span><br><span class="line">|       1 | A      |  3.45 |</span><br><span class="line">|       1 | B      |  3.99 |</span><br><span class="line">|       2 | A      | 10.99 |</span><br><span class="line">|       3 | B      |  1.45 |</span><br><span class="line">|       3 | C      |  1.69 |</span><br><span class="line">|       3 | D      |  1.25 |</span><br><span class="line">|       4 | D      | 19.95 |</span><br><span class="line">+---------+--------+-------+</span><br></pre></td></tr></table></figure>
+
+<p>Notice: for each example, there are more than one solution. Here I only picked the ones that <strong>I think are easier to understand and remember</strong>:</p>
+<ul>
+<li><p>For each article, find the dealer or dealers with the most expensive price.</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">SELECT s1.article, dealer, s1.price</span><br><span class="line">FROM shop s1</span><br><span class="line">JOIN (</span><br><span class="line">  SELECT article, MAX(price) AS price</span><br><span class="line">  FROM shop</span><br><span class="line">  GROUP BY article) AS s2</span><br><span class="line">  ON s1.article &#x3D; s2.article AND s1.price &#x3D; s2.price</span><br><span class="line">ORDER BY article;</span><br></pre></td></tr></table></figure>
+<p>  This basically works by <strong>first finding the simple <code>MAX(price)</code></strong> for each article in one table, and then <code>JOIN</code> it with the <strong>other table</strong> (the same table but aliased differently) to display other data such as <code>dealer</code>.</p>
+</li>
+<li><p>Storing Data in a <strong>User-Defined Variable</strong></p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT @min_price:&#x3D;MIN(price),@max_price:&#x3D;MAX(price) FROM shop;</span><br><span class="line">mysql&gt; SELECT * FROM shop WHERE price&#x3D;@min_price OR price&#x3D;@max_price;</span><br><span class="line">+---------+--------+-------+</span><br><span class="line">| article | dealer | price |</span><br><span class="line">+---------+--------+-------+</span><br><span class="line">|    0003 | D      |  1.25 |</span><br><span class="line">|    0004 | D      | 19.95 |</span><br><span class="line">+---------+--------+-------+</span><br></pre></td></tr></table></figure>
+
+<p>  <strong>Properly</strong>, the variables would be written in the below format:</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SET @&lt;var_name&gt; &#x3D; &lt;expr [, @var_name &#x3D; expr] ...&gt;</span><br></pre></td></tr></table></figure>
+
+<p>  For example, you would properly write:</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SET @min_price&#x3D;(SELECT MIN(price) FROM shop), @max_price&#x3D;(SELECT MAX(price) FROM shop);</span><br></pre></td></tr></table></figure>
+<p>  But as seen in the above example, there is also a shortcut of writting it as:</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT @min_price:&#x3D;MIN(price),@max_price:&#x3D;MAX(price) FROM shop;</span><br></pre></td></tr></table></figure>
+<p>  (for more details on user-defined variables, refer to <a href="https://dev.mysql.com/doc/refman/8.0/en/user-variables.html" target="_blank" rel="noopener">here</a>.)</p>
+</li>
+<li><p>Searching Two Keys in a table</p>
+<p>  This mostly happens when you use the keyword <code>OR</code>. And you might use the following to search for two keys:</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SELECT field1_index, field2_index FROM test_table</span><br><span class="line">WHERE field1_index &#x3D; &#39;1&#39; OR  field2_index &#x3D; &#39;1&#39;</span><br></pre></td></tr></table></figure>
+
+<p>  However, it is clearer and efficient by using a <code>UNION</code> that <strong>combines the output of two separate <code>SELECT</code> statements</strong>. See Section <a href="https://dev.mysql.com/doc/refman/8.0/en/union.html" target="_blank" rel="noopener">MySQL <code>UNION</code> Clause</a> for more details.</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">SELECT field1_index, field2_index</span><br><span class="line">    FROM test_table WHERE field1_index &#x3D; &#39;1&#39;</span><br><span class="line">UNION</span><br><span class="line">SELECT field1_index, field2_index</span><br><span class="line">FROM test_table WHERE field2_index &#x3D; &#39;1&#39;;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Counting Frequencies of a Distinct Number in a Table</p>
+<p>  This can be done beautifully using the <code>BIT-WISE</code> operators (in this example, using the keyword <code>DISTINCT</code> would not work.)</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">SELECT year,month,BIT_COUNT(BIT_OR(1&lt;&lt;day)) AS days FROM t1</span><br><span class="line">       GROUP BY year,month;</span><br><span class="line">+------+-------+------+</span><br><span class="line">| year | month | days |</span><br><span class="line">+------+-------+------+</span><br><span class="line">| 2000 |     1 |    3 |</span><br><span class="line">| 2000 |     2 |    2 |</span><br><span class="line">+------+-------+------+</span><br><span class="line">2 rows in set (0.00 sec)</span><br></pre></td></tr></table></figure>
+
+<p>  This would:</p>
+<ul>
+<li><p>First left shift the binary <code>1</code> for <code>number of day</code> times (<code>1&lt;&lt;day</code>). For example, <code>1&lt;&lt;3</code> means you get <code>1000</code>. This means that <strong>each day would have <code>1</code> at a distinct position</strong>. </p>
+</li>
+<li><p>Then, it does a <code>BIT_OR()</code>, which returns a binary number where each position would be <code>1</code> <strong>if one of the number had a <code>1</code> at that position</strong>,<code>0</code> otherwise. For instance, <code>1000</code> and <code>1</code> would give <code>1001</code>.</p>
+</li>
+<li><p>Lastly, it counts how many <code>1</code> there are in the number with the <code>BIT_COUNT()</code> function. At this point, this would only return the number of <strong>distinct days</strong>.</p>
+<p>As a result, the query calculates how many different days appear in the table for each year/month combination, with automatic removal of duplicate entries.</p>
+</li>
+</ul>
+</li>
+<li><p>Auto-Increment</p>
+<p>  The <code>AUTO_INCREMENT</code> attribute can be used to generate a unique identity for new rows:</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; CREATE TABLE animals (</span><br><span class="line">     id MEDIUMINT NOT NULL AUTO_INCREMENT,</span><br><span class="line">     name CHAR(30) NOT NULL,</span><br><span class="line">     PRIMARY KEY (id));</span><br><span class="line"></span><br><span class="line">mysql&gt; INSERT INTO animals (name) VALUES</span><br><span class="line">    (&#39;dog&#39;),(&#39;cat&#39;),(&#39;penguin&#39;),</span><br><span class="line">    (&#39;lax&#39;),(&#39;whale&#39;),(&#39;ostrich&#39;);</span><br></pre></td></tr></table></figure>
+<p>  Then if you run:</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT * FROM animals;</span><br><span class="line">+----+---------+</span><br><span class="line">| id | name    |</span><br><span class="line">+----+---------+</span><br><span class="line">|  1 | dog     |</span><br><span class="line">|  2 | cat     |</span><br><span class="line">|  3 | penguin |</span><br><span class="line">|  4 | lax     |</span><br><span class="line">|  5 | whale   |</span><br><span class="line">|  6 | ostrich |</span><br><span class="line">+----+---------+</span><br></pre></td></tr></table></figure>
+<p>where </p>
+<ul>
+<li><p>you see <strong>other ways of <code>INSERT INTO</code></strong>:</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">INSERT INTO table_name (column1, column2, column3, ...)</span><br><span class="line">VALUES (value1, value2, value3, ...);</span><br></pre></td></tr></table></figure>
+
+<p>so that you speicify which columns to insert into with the <code>(column1, column2, column3, ...)</code>, meaning that you no longer have to insert into the table sequencially as the original label suggests.</p>
+</li>
+<li><p>a <code>PRIMARY KEY ()</code> is used. A primary key is used as a <strong>unique identifier to quickly parse data within the database</strong> and find the relation between different tables. A relational database cannot have more than one primary key, but it can be based on more than one field (for example, <code>PRIMARY KEY(id, name)</code>).</p>
+<p>A <strong>primary key’s main features</strong> are:</p>
+<ul>
+<li>It must contain a <strong>unique value for each row of data</strong>.</li>
+<li>It <strong>cannot contain null values</strong>.</li>
+<li><strong>Every row must have a primary key value</strong>.</li>
+</ul>
+<p>A primary key is either an existing table column or a column that is specifically generated by the database according to a defined sequence</p>
+</li>
+<li><p>No value was specified for the <strong><code>AUTO_INCREMENT</code> column</strong></p>
+<ul>
+<li>so MySQL assigned sequence numbers automatically starting from <code>1</code>. You can only <strong>change it after creation</strong> with <code>ALTER TABLE animals AUTO_INCREMENT=10;</code>, for example.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>When you have <code>AUTO_INCREMENT</code> enabled, you still can <strong>explicitly assign other values to the column</strong> to generate sequence numbers. However, this will <strong>affect future data as well so they also start from that number</strong>. For example:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">INSERT INTO animals (id,name) VALUES(100,&#39;rabbit&#39;);</span><br><span class="line">INSERT INTO animals (id,name) VALUES(NULL,&#39;mouse&#39;);</span><br><span class="line">SELECT * FROM animals;</span><br><span class="line">+-----+-----------+</span><br><span class="line">| id  | name      |</span><br><span class="line">+-----+-----------+</span><br><span class="line">|   1 | dog       |</span><br><span class="line">|   2 | cat       |</span><br><span class="line">|   3 | penguin   |</span><br><span class="line">|   4 | lax       |</span><br><span class="line">|   5 | whale     |</span><br><span class="line">|   6 | ostrich   |</span><br><span class="line">| 100 | rabbit    |</span><br><span class="line">| 101 | mouse     |</span><br><span class="line">+-----+-----------+</span><br></pre></td></tr></table></figure>
+
+<p>Also if you <strong>try to explicitly assign <code>0</code> or <code>NULL</code> to the column to generate sequence numbers</strong>, unless the <code>NO_AUTO_VALUE_ON_ZERO</code> SQL mode is enabled. For example:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">INSERT INTO animals (id,name) VALUES(0,&#39;groundhog&#39;);</span><br></pre></td></tr></table></figure>
+<p>or </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">INSERT INTO animals (id,name) VALUES(NULL,&#39;squirrel&#39;);</span><br></pre></td></tr></table></figure>
+
+<p>You will obtain:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM animals;</span><br><span class="line">+-----+-----------+</span><br><span class="line">| id  | name      |</span><br><span class="line">+-----+-----------+</span><br><span class="line">|   1 | dog       |</span><br><span class="line">|   2 | cat       |</span><br><span class="line">|   3 | penguin   |</span><br><span class="line">|   4 | lax       |</span><br><span class="line">|   5 | whale     |</span><br><span class="line">|   6 | ostrich   |</span><br><span class="line">| 100 | rabbit    |</span><br><span class="line">| 101 | mouse     |</span><br><span class="line">| 102 | groundhog |</span><br><span class="line">| 103 | squirrel  |</span><br><span class="line">+-----+-----------+</span><br></pre></td></tr></table></figure>
+
+<h2 id="Auto-Increment-in-MyISAM-Tables"><a href="#Auto-Increment-in-MyISAM-Tables" class="headerlink" title="Auto-Increment in MyISAM Tables"></a>Auto-Increment in MyISAM Tables</h2><p>For <code>MyISAM</code> tables, <strong>you can specify <code>AUTO_INCREMENT</code> on a secondary column</strong> in a <strong>multiple-column index</strong>. In this case, the generated value for the <code>AUTO_INCREMENT</code> column is calculated as <code>MAX(auto_increment_column) + 1</code> WHERE <code>prefix=given-prefix</code>. This is useful when you want to put data into ordered groups.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; CREATE TABLE animals (</span><br><span class="line">    grp ENUM(&#39;fish&#39;,&#39;mammal&#39;,&#39;bird&#39;) NOT NULL,</span><br><span class="line">    id MEDIUMINT NOT NULL AUTO_INCREMENT,</span><br><span class="line">    name CHAR(30) NOT NULL,</span><br><span class="line">    PRIMARY KEY (grp,id)</span><br><span class="line">) ENGINE&#x3D;MyISAM;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; INSERT INTO animals (grp,name) VALUES</span><br><span class="line">    (&#39;mammal&#39;,&#39;dog&#39;),(&#39;mammal&#39;,&#39;cat&#39;),</span><br><span class="line">    (&#39;bird&#39;,&#39;penguin&#39;),(&#39;fish&#39;,&#39;lax&#39;),(&#39;mammal&#39;,&#39;whale&#39;),</span><br><span class="line">    (&#39;bird&#39;,&#39;ostrich&#39;);</span><br></pre></td></tr></table></figure>
+
+<p>Now, if you look at the table:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SELECT * FROM animals ORDER BY grp,id;</span><br><span class="line"></span><br><span class="line">+--------+----+---------+</span><br><span class="line">| grp    | id | name    |</span><br><span class="line">+--------+----+---------+</span><br><span class="line">| fish   |  1 | lax     |</span><br><span class="line">| mammal |  1 | dog     |</span><br><span class="line">| mammal |  2 | cat     |</span><br><span class="line">| mammal |  3 | whale   |</span><br><span class="line">| bird   |  1 | penguin |</span><br><span class="line">| bird   |  2 | ostrich |</span><br><span class="line">+--------+----+---------+</span><br></pre></td></tr></table></figure>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/learning/2020/05/25/Docker-Manual/" rel="prev" title="Docker Manual">
+      <i class="fa fa-chevron-left"></i> Docker Manual
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/learning/2020/06/02/Redis-Manual/" rel="next" title="Redis Manual">
+      Redis Manual <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+        </div>
+        
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Xiao Yu</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/learning/lib/anime.min.js"></script>
+  <script src="/learning/lib/velocity/velocity.min.js"></script>
+  <script src="/learning/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/learning/js/utils.js"></script>
+
+<script src="/learning/js/motion.js"></script>
+
+
+<script src="/learning/js/next-boot.js"></script>
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
