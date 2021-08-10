@@ -167,7 +167,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/learning/archives/">
         
-          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-count">13</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -201,110 +201,6 @@
 
         <div class="content index posts-expand">
           
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://jasonyux.github.io/2020/07/23/Spring-Security-Manual/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/learning/images/avatar.gif">
-      <meta itemprop="name" content="Xiao Yu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="From a Beginner to a Disaster">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/learning/2020/07/23/Spring-Security-Manual/" class="post-title-link" itemprop="url">Spring Security (OAuth2) Manual</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-07-23 10:36:09" itemprop="dateCreated datePublished" datetime="2020-07-23T10:36:09+08:00">2020-07-23</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-11-03 21:12:10" itemprop="dateModified" datetime="2020-11-03T21:12:10+08:00">2020-11-03</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <hr>
-<p><strong>IMPORTANT</strong>:<br>Some of the content here is a personal summary/abbreviation of contents on the <a href="https://docs.spring.io/spring-security/site/docs/5.3.3.BUILD-SNAPSHOT/reference/html5/" target="_blank" rel="noopener">Offical Spring Security Documentation</a>. Feel free to refer to the official site if you think some of the sections written here are not clear.</p>
-<hr>
-<h1 id="Spring-Security-Intro"><a href="#Spring-Security-Intro" class="headerlink" title="Spring Security Intro"></a>Spring Security Intro</h1><p>Spring security is very useful for dealing with authorization, authentication, and protection against common attacks. It provides support for OAuth2, SAML2, and etc. Yet, as the title of this manual suggests, <strong>the following sections will focus on using OAuth2</strong> for authentication/authorization. </p>
-<p>Technically, you do not necessarily need to use Spring Boot for using Spring Security. However, the sections below do <strong>assume that you are having a Spring Boot project</strong> to provide the backend services.</p>
-<p>If you want more information on using tools other than OAuth2, or that you are not using Spring Boot as the backend API implementations, please visit the <a href="https://docs.spring.io/spring-security/site/docs/5.3.3.BUILD-SNAPSHOT/reference/html5/" target="_blank" rel="noopener">Official Reference</a>.</p>
-<h1 id="Getting-Spring-Security"><a href="#Getting-Spring-Security" class="headerlink" title="Getting Spring Security"></a>Getting Spring Security</h1><p>If you are using Spring Security with Spring Boot, getting Spring Security playing in your application is simple.</p>
-<p><strong>In summary</strong>, all you need to do is </p>
-<ol>
-<li>Import the <code>spring-boot-starter-security</code> in your <code>pom.xml</code><ul>
-<li>You can either manually import the dependency, or select the <code>Spring Security</code> dependency in the Spring Initialzr</li>
-<li>At this point, we are not yet using the <code>OAuth2 Resource Server</code> and <code>OAuth2 Client</code> yet. If you want, feel free to include those in your <code>pom.xml</code> as well.</li>
-</ul>
-</li>
-</ol>
-<p>The necessary dependency looks like:</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- ... other dependency elements ... --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-security<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>Again, its version has been already specified in the parent:</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">parent</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-parent<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.3.1.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">relativePath</span>/&gt;</span> <span class="comment">&lt;!-- lookup parent from repository --&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">parent</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>If you want to use a specific version, you can specify it as well:</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">properties</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- ... --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">spring-security.version</span>&gt;</span>WHATEVER-VERSION-YOU-WANT-HERE<span class="tag">&lt;/<span class="name">spring-security.version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">properties</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>Note:</p>
-<ul>
-<li><input disabled="" type="checkbox"> <p><strong>If you use a SNAPSHOT version</strong>, you need to ensure that you have the Spring Snapshot repository defined, as the following example shows:</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">repositories</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- ... possibly other repository elements ... --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">repository</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">id</span>&gt;</span>spring-snapshot<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>Spring Snapshot Repository<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">url</span>&gt;</span>https://repo.spring.io/snapshot<span class="tag">&lt;/<span class="name">url</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">repository</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">repositories</span>&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</blockquote>
-<h1 id="Spring-Security-Features"><a href="#Spring-Security-Features" class="headerlink" title="Spring Security Features"></a>Spring Security Features</h1><p>Spring Security provides comprehensive support for <a href="#Authentication">authentication</a>, authorization, and protection against <a href="https://docs.spring.io/spring-security/site/docs/5.3.3.BUILD-SNAPSHOT/reference/html5/#exploits" target="_blank" rel="noopener">common exploits</a>. It also provides integration with other libraries to simplify its usage.</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/learning/2020/07/23/Spring-Security-Manual/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
       
   
   
@@ -528,6 +424,100 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/learning/2020/06/29/SpringBoot-Manual/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://jasonyux.github.io/2020/06/15/Go-Manual/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/learning/images/avatar.gif">
+      <meta itemprop="name" content="Xiao Yu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="From a Beginner to a Disaster">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/learning/2020/06/15/Go-Manual/" class="post-title-link" itemprop="url">Go Manual</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-06-15 10:57:30" itemprop="dateCreated datePublished" datetime="2020-06-15T10:57:30+08:00">2020-06-15</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-07-29 15:29:06" itemprop="dateModified" datetime="2020-07-29T15:29:06+08:00">2020-07-29</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <hr>
+<p><strong>IMPORTANT</strong>:<br>Some of the content here is a personal summary/abbreviation of contents on the <a href="https://golang.org/doc/" target="_blank" rel="noopener">Offical Go Documentation</a>. Feel free to refer to the official site if you think some of the sections written here are not clear.</p>
+<hr>
+<h2 id="Installing-Go"><a href="#Installing-Go" class="headerlink" title="Installing Go"></a>Installing Go</h2><p>Please follow the <a href="https://golang.org/doc/install" target="_blank" rel="noopener">Offical Guide on Installing Go</a>.</p>
+<h2 id="Packages"><a href="#Packages" class="headerlink" title="Packages"></a>Packages</h2><p>(additional reference: <a href="https://www.callicoder.com/golang-packages/#:~:text=Go%20Package,following%20syntax%20%2D%20package" target="_blank" rel="noopener">https://www.callicoder.com/golang-packages/#:~:text=Go%20Package,following%20syntax%20%2D%20package</a>)</p>
+<p>Every <strong>Go program is made up of packages</strong>, and every <strong>Go source file belongs to a package</strong>. To declare a source file to be part of a package, we use the following syntax -</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> &lt;packagename&gt;</span><br></pre></td></tr></table></figure>
+
+<p>The above package declaration must be the first line of code in your Go source file. All the functions, types, and variables defined in your Go source file become part of the declared package.</p>
+<p>You can <strong>choose to export a member defined in your package to outside packages</strong>, or keep them private to the same package. Other packages can <strong>import and reuse the functions or types that are exported from your package</strong>.</p>
+<p>Let’s see an example</p>
+<p>Almost all the code that we will see in this tutorial series include the following line -</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">"fmt"</span></span><br></pre></td></tr></table></figure>
+
+<p><code>fmt</code> is a core library package that contains functionalities related to formatting and printing output or reading input from various I/O sources. It exports functions like <code>Println()</code>, <code>Printf()</code>, <code>Scanf()</code> etc, for other packages to reuse.</p>
+<blockquote>
+<p>Note:</p>
+<ul>
+<li><input disabled="" type="checkbox"> By convention, the <strong>package name is</strong> the same as the <strong>last element of the import path</strong>. For instance, the <code>&quot;math/rand&quot;</code> package comprises files that begin with the statement <code>package rand</code>.</li>
+</ul>
+</blockquote>
+<h3 id="The-main-package-and-main-function"><a href="#The-main-package-and-main-function" class="headerlink" title="The main package and main() function"></a>The <code>main</code> package and <code>main()</code> function</h3><p>Go programs start running in the <code>main</code> package. It is a <strong>special package that is used with programs that are meant to be executable</strong>. The <strong><code>main()</code> function is a special function that is the entry point of an executable program</strong>.</p>
+<p>By convention, Executable programs (the ones with the main package) are called Commands. Others are called simply Packages.</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/learning/2020/06/15/Go-Manual/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
