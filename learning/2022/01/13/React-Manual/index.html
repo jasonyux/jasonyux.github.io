@@ -19,28 +19,38 @@
     var CONFIG = {"hostname":"jasonyux.github.io","root":"/learning/","scheme":"Pisces","version":"8.0.0-rc.3","exturl":false,"sidebar":{"position":"left","width":350,"display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="From a Beginner to a Disaster">
-<meta property="og:url" content="https://jasonyux.github.io/index.html">
+  <meta name="description" content="IMPORTANT:Some of the content here is a personal summary&#x2F;abbreviation of contents on the tutorial at https:&#x2F;&#x2F;fullstackopen.com&#x2F;en&#x2F;part0. It seems to also teaches a bit on Node.js and GraphQL, both of">
+<meta property="og:type" content="article">
+<meta property="og:title" content="React Manual">
+<meta property="og:url" content="https://jasonyux.github.io/2022/01/13/React-Manual/index.html">
 <meta property="og:site_name" content="From a Beginner to a Disaster">
+<meta property="og:description" content="IMPORTANT:Some of the content here is a personal summary&#x2F;abbreviation of contents on the tutorial at https:&#x2F;&#x2F;fullstackopen.com&#x2F;en&#x2F;part0. It seems to also teaches a bit on Node.js and GraphQL, both of">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://fullstackopen.com/static/081eb2d1f52d2536382d5d3efe0bc87f/5a190/14e.png">
+<meta property="og:image" content="https://fullstackopen.com/static/ac9364f4d597d187d271a1628a332e7d/5a190/15e.png">
+<meta property="og:image" content="https://fullstackopen.com/static/2dbe9f6d3c9999766d2cbad6200fea40/5a190/20e.png">
+<meta property="og:image" content="https://fullstackopen.com/static/ac09c143991ad160bdaa1c1381d93f7b/5a190/22e.png">
+<meta property="og:image" content="https://fullstackopen.com/static/cb1893b2f18168168b3337ef994f0347/5a190/25e.png">
+<meta property="article:published_time" content="2022-01-13T20:04:41.000Z">
+<meta property="article:modified_time" content="2022-01-16T22:17:38.306Z">
 <meta property="article:author" content="Xiao Yu">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://fullstackopen.com/static/081eb2d1f52d2536382d5d3efe0bc87f/5a190/14e.png">
 
-<link rel="canonical" href="https://jasonyux.github.io/">
+<link rel="canonical" href="https://jasonyux.github.io/2022/01/13/React-Manual/">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome : true,
-    isPost : false,
+    isHome : false,
+    isPost : true,
     lang   : 'en'
   };
 </script>
 
-  <title>From a Beginner to a Disaster</title>
+  <title>React Manual | From a Beginner to a Disaster</title>
   
 
 
@@ -154,6 +164,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Intro"><span class="nav-number">1.</span> <span class="nav-text">Intro</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#DOM"><span class="nav-number">1.1.</span> <span class="nav-text">DOM</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Forms-and-POST"><span class="nav-number">1.2.</span> <span class="nav-text">Forms and POST</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Single-Page-APP"><span class="nav-number">1.3.</span> <span class="nav-text">Single Page APP</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Intro-to-React"><span class="nav-number">2.</span> <span class="nav-text">Intro to React</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Component"><span class="nav-number">2.1.</span> <span class="nav-text">Component</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JSX"><span class="nav-number">2.2.</span> <span class="nav-text">JSX</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Multiple-Components"><span class="nav-number">2.3.</span> <span class="nav-text">Multiple Components</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Props-Passing-data-to-components"><span class="nav-number">2.4.</span> <span class="nav-text">Props: Passing data to components</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Some-Notes"><span class="nav-number">2.5.</span> <span class="nav-text">Some Notes</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -199,9 +210,10 @@
       <div class="main-inner">
         
 
-        <div class="content index posts-expand">
+        <div class="content post posts-expand">
           
-      
+
+    
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
@@ -217,10 +229,9 @@
       <meta itemprop="name" content="From a Beginner to a Disaster">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/learning/2022/01/13/React-Manual/" class="post-title-link" itemprop="url">React Manual</a>
-        </h2>
+        <h1 class="post-title" itemprop="name headline">
+          React Manual
+        </h1>
 
         <div class="post-meta">
             <span class="post-meta-item">
@@ -250,7 +261,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <hr>
+        <hr>
 <p><strong>IMPORTANT</strong>:<br>Some of the content here is a personal summary/abbreviation of contents on the tutorial at <a href="https://fullstackopen.com/en/part0" target="_blank" rel="noopener">https://fullstackopen.com/en/part0</a>. It seems to also teaches a bit on Node.js and GraphQL, both of which I think are useful.</p>
 <p>Feel free to refer to the official site if you think some of the sections written here are not clear.</p>
 <hr>
@@ -406,240 +417,31 @@
 
 <p>where we used <a href="https://reactjs.org/docs/fragments.html#short-syntax" target="_blank" rel="noopener">fragments</a>, i.e. by wrapping the elements to be returned by the component with an empty element <code>&lt;&gt;</code></p>
 
-      
     </div>
 
     
     
     
+
       <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://jasonyux.github.io/2021/02/10/Kubernetes-Manual/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/learning/images/avatar.gif">
-      <meta itemprop="name" content="Xiao Yu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="From a Beginner to a Disaster">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/learning/2021/02/10/Kubernetes-Manual/" class="post-title-link" itemprop="url">Kubernetes Manual</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2021-02-10 10:43:44" itemprop="dateCreated datePublished" datetime="2021-02-10T10:43:44-05:00">2021-02-10</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-08-10 05:20:02" itemprop="dateModified" datetime="2021-08-10T05:20:02-04:00">2021-08-10</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <hr>
-<p><strong>IMPORTANT</strong>:<br>Some of the content here is a personal summary/abbreviation of contents on the <a href="https://kubernetes.io/docs/tutorials/kubernetes-basics/" target="_blank" rel="noopener">Official Kubernetes Guide</a>. Feel free to refer to that site if you think some of the sections written here are not clear.</p>
-<hr>
-<blockquote>
-<p><strong>Note</strong></p>
-<ul>
-<li>this content assumes some prior knowledge on <strong>Docker</strong>, including <strong>Docker Compose</strong>.</li>
-</ul>
-</blockquote>
-<h1 id="Installation"><a href="#Installation" class="headerlink" title="Installation"></a>Installation</h1><p>Please follow this link: <a href="https://kubernetes.io/docs/tasks/tools/" target="_blank" rel="noopener">https://kubernetes.io/docs/tasks/tools/</a></p>
-<ul>
-<li>it is recommended that you install <a href="https://kubernetes.io/docs/reference/kubectl/kubectl/" target="_blank" rel="noopener">kubectl</a>, which allows you to run commands against Kubernetes clusters. </li>
-</ul>
-<h1 id="Kubernetes-Basics"><a href="#Kubernetes-Basics" class="headerlink" title="Kubernetes Basics"></a>Kubernetes Basics</h1><blockquote>
-<p><strong>Kubernetes Clusters</strong></p>
-<ul>
-<li>Kubernetes coordinates a highly available <em>cluster of computers that are connected to work as a single unit</em>. </li>
-</ul>
-</blockquote>
-<p>A Kubernetes cluster consists of two types of resources:</p>
-<ul>
-<li>The <strong>Master</strong> coordinates the cluster</li>
-<li><strong>Nodes</strong> are the workers that run applications<ul>
-<li>A node is a <em>VM</em> or a <em>physical computer</em> that serves as a worker machine in a Kubernetes cluster</li>
-<li>Each node has a <code>Kubelet</code>, which is an agent for <em>managing</em> the node and <em>communicating with the Kubernetes master</em>. </li>
-</ul>
-</li>
-</ul>
-<img src="https://d33wubrfki0l68.cloudfront.net/99d9808dcbf2880a996ed50d308a186b5900cec9/40b94/docs/tutorials/kubernetes-basics/public/images/module_01_cluster.svg" alt="https://d33wubrfki0l68.cloudfront.net/99d9808dcbf2880a996ed50d308a186b5900cec9/40b94/docs/tutorials/kubernetes-basics/public/images/module_01_cluster.svg" style="zoom: 80%;" />
-
-<h2 id="Starting-with-Minikube"><a href="#Starting-with-Minikube" class="headerlink" title="Starting with Minikube"></a>Starting with Minikube</h2><p>This tutorial shows you how to run a sample app on Kubernetes using <code>minikube</code> and <code>Katacod</code>.</p>
-<p><strong>Objectives</strong></p>
-<ul>
-<li>Deploy a sample application to <code>minikube</code>.</li>
-<li>Run the app.</li>
-<li>View application logs.</li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/learning/2021/02/10/Kubernetes-Manual/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
         
-      
-    </div>
 
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://jasonyux.github.io/2020/11/16/JavaScript-Summary/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/learning/images/avatar.gif">
-      <meta itemprop="name" content="Xiao Yu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="From a Beginner to a Disaster">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/learning/2020/11/16/JavaScript-Summary/" class="post-title-link" itemprop="url">JavaScript Summary</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-11-16 08:24:03" itemprop="dateCreated datePublished" datetime="2020-11-16T08:24:03-05:00">2020-11-16</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-01-06 22:17:47" itemprop="dateModified" datetime="2021-01-06T22:17:47-05:00">2021-01-06</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <hr>
-<p><strong>IMPORTANT</strong>:<br>Some of the content here is a personal summary/abbreviation of contents on the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide" target="_blank" rel="noopener">Mozilla JavaScript Guide</a> and <a href="https://www.runoob.com/js/js-howto.html" target="_blank" rel="noopener">Runoob JavaScript Guide</a>. Feel free to refer to that site if you think some of the sections written here are not clear.</p>
-<hr>
-<h1 id="Introduction-to-JavaScript"><a href="#Introduction-to-JavaScript" class="headerlink" title="Introduction to JavaScript"></a>Introduction to JavaScript</h1><p>A brief history of JavaScript is omitted, but some key points are listed here.</p>
-<ul>
-<li><p><strong>ECMAScript</strong></p>
-<p>ECMAScript (ES) is a standard defined for scripting languages, and JavaScript is an implementation of it.</p>
-<ul>
-<li>so this means that JavaScript is like Python, it does not need a compiler</li>
-</ul>
-</li>
-<li><p><strong>Browser Engines</strong></p>
-<p>Here I refer to engines for executing JavaScript. Different browsers execute JavaScript differently, if they have a different engine. For example:</p>
-<ul>
-<li>Chrome uses v8 (currently the fastest)</li>
-<li>Firefox uses SpiderMonkey</li>
-<li>…</li>
-</ul>
-</li>
-<li><p><strong>Components of JavaScript</strong></p>
-<p>On a high level, JavaScript implements the following three components:</p>
-<img src="C:\Users\26238\AppData\Roaming\Typora\typora-user-images\image-20201116213455863.png" alt="image-20201116213455863" style="zoom: 80%;" />
-
-<p>where:</p>
-<ul>
-<li><strong>ECMAScript</strong> - the standard of scripting languages</li>
-<li><strong>DOM</strong> - controls webpage activities</li>
-<li><strong>BOM</strong> - controls browser activities</li>
-</ul>
-</li>
-<li><p><strong>Object Oriented Programming</strong></p>
-<p>Similar to programs such as Java, it is a OOP.</p>
-</li>
-</ul>
-<h1 id="Basics"><a href="#Basics" class="headerlink" title="Basics"></a>Basics</h1><p>This guide assumes some prior knowledge of HTML and CSS, as well as any another programming language, and it will only lists <strong>summaries</strong>/<strong>key points</strong> of what <strong>I have learnt</strong>.</p>
-<h2 id="Basic-Usages"><a href="#Basic-Usages" class="headerlink" title="Basic Usages"></a>Basic Usages</h2><p>For controlling website related events/content, JavaScript <strong>manipulates the <code>document</code> object:</strong></p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/learning/2020/11/16/JavaScript-Summary/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
         
-      
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/learning/2021/02/10/Kubernetes-Manual/" rel="prev" title="Kubernetes Manual">
+      <i class="fa fa-chevron-left"></i> Kubernetes Manual
+    </a></div>
+      <div class="post-nav-item"></div>
     </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
       </footer>
+    
   </article>
   
   
   
-
-
-  
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/learning/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/learning/page/5/">5</a><a class="extend next" rel="next" href="/learning/page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
-  </nav>
 
 
 

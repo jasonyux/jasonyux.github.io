@@ -167,7 +167,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/learning/archives/">
         
-          <span class="site-state-item-count">13</span>
+          <span class="site-state-item-count">14</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -205,6 +205,100 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://jasonyux.github.io/2020/06/14/Go-Manual/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/learning/images/avatar.gif">
+      <meta itemprop="name" content="Xiao Yu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="From a Beginner to a Disaster">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/learning/2020/06/14/Go-Manual/" class="post-title-link" itemprop="url">Go Manual</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-06-14 22:57:30" itemprop="dateCreated datePublished" datetime="2020-06-14T22:57:30-04:00">2020-06-14</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-07-29 03:29:06" itemprop="dateModified" datetime="2020-07-29T03:29:06-04:00">2020-07-29</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <hr>
+<p><strong>IMPORTANT</strong>:<br>Some of the content here is a personal summary/abbreviation of contents on the <a href="https://golang.org/doc/" target="_blank" rel="noopener">Offical Go Documentation</a>. Feel free to refer to the official site if you think some of the sections written here are not clear.</p>
+<hr>
+<h2 id="Installing-Go"><a href="#Installing-Go" class="headerlink" title="Installing Go"></a>Installing Go</h2><p>Please follow the <a href="https://golang.org/doc/install" target="_blank" rel="noopener">Offical Guide on Installing Go</a>.</p>
+<h2 id="Packages"><a href="#Packages" class="headerlink" title="Packages"></a>Packages</h2><p>(additional reference: <a href="https://www.callicoder.com/golang-packages/#:~:text=Go%20Package,following%20syntax%20%2D%20package" target="_blank" rel="noopener">https://www.callicoder.com/golang-packages/#:~:text=Go%20Package,following%20syntax%20%2D%20package</a>)</p>
+<p>Every <strong>Go program is made up of packages</strong>, and every <strong>Go source file belongs to a package</strong>. To declare a source file to be part of a package, we use the following syntax -</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> &lt;packagename&gt;</span><br></pre></td></tr></table></figure>
+
+<p>The above package declaration must be the first line of code in your Go source file. All the functions, types, and variables defined in your Go source file become part of the declared package.</p>
+<p>You can <strong>choose to export a member defined in your package to outside packages</strong>, or keep them private to the same package. Other packages can <strong>import and reuse the functions or types that are exported from your package</strong>.</p>
+<p>Let’s see an example</p>
+<p>Almost all the code that we will see in this tutorial series include the following line -</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">"fmt"</span></span><br></pre></td></tr></table></figure>
+
+<p><code>fmt</code> is a core library package that contains functionalities related to formatting and printing output or reading input from various I/O sources. It exports functions like <code>Println()</code>, <code>Printf()</code>, <code>Scanf()</code> etc, for other packages to reuse.</p>
+<blockquote>
+<p>Note:</p>
+<ul>
+<li><input disabled="" type="checkbox"> By convention, the <strong>package name is</strong> the same as the <strong>last element of the import path</strong>. For instance, the <code>&quot;math/rand&quot;</code> package comprises files that begin with the statement <code>package rand</code>.</li>
+</ul>
+</blockquote>
+<h3 id="The-main-package-and-main-function"><a href="#The-main-package-and-main-function" class="headerlink" title="The main package and main() function"></a>The <code>main</code> package and <code>main()</code> function</h3><p>Go programs start running in the <code>main</code> package. It is a <strong>special package that is used with programs that are meant to be executable</strong>. The <strong><code>main()</code> function is a special function that is the entry point of an executable program</strong>.</p>
+<p>By convention, Executable programs (the ones with the main package) are called Commands. Others are called simply Packages.</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/learning/2020/06/14/Go-Manual/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://jasonyux.github.io/2020/06/09/Spring-Framework-Guide/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -229,14 +323,14 @@
               </span>
               <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2020-06-09 15:25:30" itemprop="dateCreated datePublished" datetime="2020-06-09T15:25:30+08:00">2020-06-09</time>
+              <time title="Created: 2020-06-09 03:25:30" itemprop="dateCreated datePublished" datetime="2020-06-09T03:25:30-04:00">2020-06-09</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-07-29 15:29:34" itemprop="dateModified" datetime="2020-07-29T15:29:34+08:00">2020-07-29</time>
+                <time title="Modified: 2020-07-29 03:29:34" itemprop="dateModified" datetime="2020-07-29T03:29:34-04:00">2020-07-29</time>
               </span>
 
           
@@ -336,7 +430,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://jasonyux.github.io/2020/06/02/Redis-Manual/">
+    <link itemprop="mainEntityOfPage" href="https://jasonyux.github.io/2020/06/01/Redis-Manual/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/learning/images/avatar.gif">
@@ -350,7 +444,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/learning/2020/06/02/Redis-Manual/" class="post-title-link" itemprop="url">Redis Manual</a>
+            <a href="/learning/2020/06/01/Redis-Manual/" class="post-title-link" itemprop="url">Redis Manual</a>
         </h2>
 
         <div class="post-meta">
@@ -360,14 +454,14 @@
               </span>
               <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2020-06-02 09:10:15" itemprop="dateCreated datePublished" datetime="2020-06-02T09:10:15+08:00">2020-06-02</time>
+              <time title="Created: 2020-06-01 21:10:15" itemprop="dateCreated datePublished" datetime="2020-06-01T21:10:15-04:00">2020-06-01</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-07-29 15:29:25" itemprop="dateModified" datetime="2020-07-29T15:29:25+08:00">2020-07-29</time>
+                <time title="Modified: 2020-07-29 03:29:25" itemprop="dateModified" datetime="2020-07-29T03:29:25-04:00">2020-07-29</time>
               </span>
 
           
@@ -451,100 +545,7 @@
 </tbody></table>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/learning/2020/06/02/Redis-Manual/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://jasonyux.github.io/2020/05/26/MySQL-Manual/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/learning/images/avatar.gif">
-      <meta itemprop="name" content="Xiao Yu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="From a Beginner to a Disaster">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/learning/2020/05/26/MySQL-Manual/" class="post-title-link" itemprop="url">MySQL Manual</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-05-26 10:34:48" itemprop="dateCreated datePublished" datetime="2020-05-26T10:34:48+08:00">2020-05-26</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-07-29 15:30:17" itemprop="dateModified" datetime="2020-07-29T15:30:17+08:00">2020-07-29</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <hr>
-<p><strong>IMPORTANT</strong>:<br>Some of the content here is a personal summary/abbreviation of contents on the <a href="https://dev.mysql.com/doc/refman/8.0/en/tutorial.html" target="_blank" rel="noopener">Offical MySQL Guide</a>. Feel free to refer to the official site if you think some of the sections written here are not clear.</p>
-<hr>
-<h2 id="MySQL-Intro"><a href="#MySQL-Intro" class="headerlink" title="MySQL Intro"></a>MySQL Intro</h2><p>The <strong>MySQL client program</strong> can be used to create and use a simple database. MySQL (sometimes referred to as the “terminal monitor” or just “monitor”) is an interactive program that enables you to <strong>connect to a MySQL server</strong>, run queries, and view the results.</p>
-<p>The MySQL server package will install the <strong>MySQL database server</strong> which you can <strong>interact with using a MySQL client</strong>. You can use the MySQL client to send commands to any MySQL server; on a remote computer or your own.</p>
-<p>The <strong>MySQL server is used to persist the data and provide a query interface for it (SQL)</strong>. The MySQL clients purpose is to allow you to use that query interface.</p>
-<p>On how to setup your MySQL Server, please refer to <a href="https://jasonyux.github.io/2020/05/25/Docker-Manual/#MySQL-in-Docker">here</a></p>
-<h2 id="Connecting-to-a-MySQL-Server"><a href="#Connecting-to-a-MySQL-Server" class="headerlink" title="Connecting to a MySQL Server"></a>Connecting to a MySQL Server</h2><ul>
-<li><p>If you have installed the MySQL server on Docker using the guide <a href="https://jasonyux.github.io/2020/05/25/Docker-Manual/#MySQL-in-Docker">here</a>, then you should be already connected to your local SQL server. If not, try to run (assuming you have the container running):</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker exec -it &lt;yourSQLServerName&gt; mysql -u root -p</span><br></pre></td></tr></table></figure>
-<p>  This will prompt to enter the password.</p>
-<p>  If you entered successfully, you will see:</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt;</span><br></pre></td></tr></table></figure></li>
-<li><p>If you want to connect to a remote SQL server, then you need to specify a <code>host</code> name. Contact your administrator to find out what connection parameters you should use to connect (that is, what <code>host</code>, <code>user</code> name, and <code>password</code> to use). Then, you would run:</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">shell&gt; mysql -h &lt;hostName&gt; -u &lt;userName&gt; -p</span><br><span class="line">Enter password: &lt;yourPasswordHere&gt;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>To disconnect from that SQL server, simply run:</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">QUIT</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<h2 id="Basic-Queries-in-MySQL-Client"><a href="#Basic-Queries-in-MySQL-Client" class="headerlink" title="Basic Queries in MySQL Client"></a>Basic Queries in MySQL Client</h2><p>Make sure that you are <strong>connected to the server</strong>, as discussed in the previous section. Doing so <strong>does not in itself select any database to work with</strong>, but that is okay. There are still several queries you can do to have a basic sense of how MySQL works:</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/learning/2020/05/26/MySQL-Manual/#more" rel="contents">
+              <a class="btn" href="/learning/2020/06/01/Redis-Manual/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -609,7 +610,7 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2021</span>
+  <span itemprop="copyrightYear">2022</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
