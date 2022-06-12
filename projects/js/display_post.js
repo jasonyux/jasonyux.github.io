@@ -4,6 +4,7 @@ let present = document.getElementById("present");
 let timeline = document.getElementById("timeline");
 let containers = document.getElementsByClassName("container");
 let styleElem = document.head.appendChild(document.createElement("style"));
+let present_mode = false;
 
 function change_alignments() {
     let cache = [];
@@ -12,13 +13,15 @@ function change_alignments() {
         cache.push(container);
     }
     right_containers = cache;
+    present_mode = true;
     return;
 }
 
-function restore_aligments() {
+function restore_alignments() {
     for (let container of right_containers) {
         container.className = "container right";
     }
+    present_mode = false;
     return;
 }
 
@@ -39,7 +42,7 @@ function __hide_present() {
 
 }
 
-function adjust_timline() {
+function adjust_timeline() {
     // necessary since we cannot select pseudo elements
     styleElem.innerHTML = `
         .timeline::after {
@@ -49,9 +52,19 @@ function adjust_timline() {
         .container {
             width: 90%;
         }
-		.container::after {
-			right: -14px;
-		}
+        .container::after {
+            right: -14px;
+        }
+        .project-title-div{
+            width: 50%;
+        }
+        .project-info-left {
+            width: 100%;
+        }
+        .project-info-right {
+            width: 100%;
+            left: auto;
+        }
         `
 }
 
@@ -68,6 +81,7 @@ function add_new_present(link) {
     curr_present.src = link;
     curr_present.id = "present-embed";
     curr_present.nodeType = "text/html";
+    curr_present.style.marginTop = "11em";
     present.appendChild(curr_present); // this has to be placed at the last
 }
 
@@ -75,11 +89,19 @@ function show_present(link) {
     change_alignments();
     __display_present();
     add_new_present(link);
-    adjust_timline();
+    adjust_timeline();
 }
 
 function hide_present() {
-    restore_aligments();
+    restore_alignments();
     __hide_present();
     restore_timeline();
+}
+
+function toggle_present(link){
+    if (present_mode) {
+        hide_present();
+    } else {
+        show_present(link);
+    }
 }

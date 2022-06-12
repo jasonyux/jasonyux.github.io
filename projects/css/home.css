@@ -3,7 +3,7 @@
 }
 
 body {
-    background-color: #ffffff;
+    background-color: #DDDDDD;
     font-family: Helvetica, sans-serif;
     color: white;
     background-repeat: no-repeat;
@@ -22,15 +22,36 @@ p {
     color: rgb(255, 250, 250);
 }
 
+.menu-bar {
+    background-color: #171417;
+    height: 2em;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.title-div{
+    background-color: #231E1F;
+    position: fixed;
+    width: 100%;
+    left: 0;
+    right: 0;
+    height: 10em;
+}
+
 .title {
     text-align: center;
-    margin: 5vh;
-    color: #222222;
+    margin: 3em;
+    color: #ffffff;
 }
 
 #wrapper {
-    /* display: flex;
-    flex-direction: row; */
+    display: flex;
+    flex-direction: column;
 }
 
 #present {
@@ -54,7 +75,7 @@ p {
 .timeline {
     position: relative;
     max-width: 1200px;
-    margin: 0 auto;
+    margin: 10em auto;
     /* width: 100%; */
 }
 
@@ -158,13 +179,76 @@ p {
 /* The actual content */
 
 .content {
-    padding: 20px 30px;
+    /* height: 3em; */
     background-color: white;
     position: relative;
     border-radius: 6px;
     background-color: rgba(0, 0, 0, 0.6);
 }
 
+.year-text {
+    height: 1em;
+    position: relative;
+    bottom: 0.1em;
+}
+
+.project-info-left {
+    height: 7em;
+    width: 70em;
+    z-index: 1;
+    position: relative;
+}
+
+.project-info-right {
+    height: 7em;
+    width: 70em;
+    z-index: 1;
+    position: relative;
+    left: -37.5em;
+}
+
+.project-title{
+    font-size: 1em;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+    padding-top: 0.4em;
+}
+
+.project-title-div {
+    position: relative;
+    width: 25%;
+    height: 2em;
+    margin: auto;
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 2em;
+    top: 1em;
+}
+
+.project-details-div {
+    background-color:white;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+    position: inherit;
+    height: 3em;
+    top: 1.2em;
+}
+
+.project-details-text{
+    font-size: 1em;
+    color: black;
+    text-align: left;
+    padding-left: 1em;
+    padding-top: 0.6em;
+    line-height: 0.2em;
+}
+
+.project-details-more{
+    font-size: 1em;
+    color: grey;
+    text-align: right;
+    padding-right: 1em;
+}
 
 /* Media queries - Responsive timeline on screens less than 600px wide */
 
