@@ -1,8 +1,8 @@
 <html>
 
-<head>
+<header>
     <link rel="stylesheet" href="css/home.css">
-</head>
+</header>
 
 <body>
     <div class="menu-bar no-select">
@@ -44,5 +44,24 @@
     </div>
 
 </body>
+<script>
+    function changeCSS(cssFile, cssLinkIndex) {
+        var oldlink = document.getElementsByTagName("link").item(cssLinkIndex);
 
+        var newlink = document.createElement("link");
+        newlink.setAttribute("rel", "stylesheet");
+        newlink.setAttribute("type", "text/css");
+        newlink.setAttribute("href", cssFile);
+
+        document.getElementsByTagName("header").item(0).replaceChild(newlink, oldlink);
+    }
+
+    window.mobileCheck = function() {
+        return screen.width <= 480;
+    };
+
+    if (window.mobileCheck()) {
+        changeCSS("css/home_mobile.css", 0)
+    }
+</script>
 </html>
