@@ -1,0 +1,2032 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>ELEN6885 Reinforcement Learning part2 | Lecture Notes</title>
+<meta name="generator" content="Jekyll v4.3.1" />
+<meta property="og:title" content="ELEN6885 Reinforcement Learning part2" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="RL packages" />
+<meta property="og:description" content="RL packages" />
+<link rel="canonical" href="/lectures/2022@columbia/ELEN6885_Reinforcement_Learning_part2.html/" />
+<meta property="og:url" content="/lectures/2022@columbia/ELEN6885_Reinforcement_Learning_part2.html/" />
+<meta property="og:site_name" content="Lecture Notes" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-12-20T00:00:00-05:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="ELEN6885 Reinforcement Learning part2" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2022-12-20T00:00:00-05:00","datePublished":"2022-12-20T00:00:00-05:00","description":"RL packages","headline":"ELEN6885 Reinforcement Learning part2","mainEntityOfPage":{"@type":"WebPage","@id":"/lectures/2022@columbia/ELEN6885_Reinforcement_Learning_part2.html/"},"url":"/lectures/2022@columbia/ELEN6885_Reinforcement_Learning_part2.html/"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/lectures/assets/main.css"><link type="application/atom+xml" rel="alternate" href="/lectures/feed.xml" title="Lecture Notes" /></head>
+<body><header class="site-header">
+
+	<div class="wrapper"><a class="site-title" rel="author" href="/lectures/">Lecture Notes</a>
+
+		<nav class="site-nav">
+			<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+			<label for="nav-trigger">
+			<span class="menu-icon">
+				<svg viewBox="0 0 18 15" width="18px" height="15px">
+				<path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+				</svg>
+			</span>
+			</label>
+
+			<div class="trigger">
+				<a class="page-link" href="/">Home</a>
+				<a class="page-link" href="/projects">Projects</a>
+				<a class="page-link" href="/learning">Blog</a>
+				<a class="page-link" href="/research">Research</a>
+				<span class="page-link" href="#">[Education]</span>
+			</div>
+		</nav>
+	</div>
+  </header><main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <head>
+	<script>
+		MathJax = {
+		  tex: {
+			inlineMath: [['$', '$'], ['\\(', '\\)']],
+			displayMath: [['$$', '$$'], ['\\[', '\\]']]
+		  }
+		};
+	</script>
+	<script id="MathJax-script" async
+		src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+	</script>
+  </head>
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">ELEN6885 Reinforcement Learning part2</h1>
+    <p class="post-meta"><time class="dt-published" datetime="2022-12-20T00:00:00-05:00" itemprop="datePublished">
+        Dec 20, 2022
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <h1 id="rl-packages">RL packages</h1>
+
+<p>Now we start to discuss using DL for modeling. Some commonly used packages include</p>
+
+<p><strong>Mainly for this course</strong></p>
+
+<ul>
+  <li>openAI <code class="language-plaintext highlighter-rouge">gym</code> mainly an online environment for bench-marking for algorithm performance</li>
+</ul>
+
+<p><strong>Other</strong></p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">stable-baselines3</code> implementations of many modern RL algorithms</li>
+  <li><code class="language-plaintext highlighter-rouge">rllib</code> includes ray tuning</li>
+</ul>
+
+<blockquote>
+  <p>Resources</p>
+
+  <ul>
+    <li>colab tutorial: https://colab.research.google.com/github/araffin/rl-tutorial-jnrr19/blob/sb3/1_getting_started.ipynb</li>
+    <li>openai doc: https://www.gymlibrary.dev/</li>
+    <li>stable-baselines3 doc: https://stable-baselines3.readthedocs.io/en/master/</li>
+  </ul>
+</blockquote>
+
+<h2 id="openai-gym">OpenAI Gym</h2>
+
+<blockquote>
+  <ul>
+    <li>Separate the ==implementation of the environment== from the implementation of the learning algorithm.</li>
+    <li>Make it easy to compare various RL algorithms on the same/standardized environment.</li>
+  </ul>
+</blockquote>
+
+<ul>
+  <li>
+    <p>installation, e.g. <code class="language-plaintext highlighter-rouge">gym[mujoco]</code></p>
+  </li>
+  <li>
+    <p>has many environments which can be treated as <strong>benchmark</strong> “datasets”</p>
+
+    <p>| <img src="rl/image-20221028153609045.png" alt="image-20221028153609045" style="zoom:33%;" /> | <img src="rl/image-20221028161012225.png" alt="image-20221028161012225" style="zoom: 33%;" /> | <img src="rl/image-20221028161048421.png" alt="image-20221028161048421" style="zoom:33%;" /> |
+| :———————————————————-: | :———————————————————-: | ———————————————————— |</p>
+
+    <p>and many more</p>
+  </li>
+</ul>
+
+<p>As basically they are interactive environments, the <code class="language-plaintext highlighter-rouge">environment</code> is what is implemented, meaning your job is to <strong>determine what action to take</strong> (i.e. your model) given your state (e.g. history of rgb pixels of the game), and <strong>environment gives you a reward and next state</strong></p>
+
+<p><img src="rl/image-20221028161310313.png" alt="image-20221028161310313" style="zoom:50%;" /></p>
+
+<p>Specifically the <code class="language-plaintext highlighter-rouge">environment</code> will give you</p>
+
+<ul>
+  <li><strong>observation</strong>: the new state simulated by the environment</li>
+  <li><strong>reward</strong>: defined and computed by the environment</li>
+  <li><strong>done</strong>: A boolean indicating if episode has finished</li>
+  <li><strong>info</strong>: additional info used only for debugging</li>
+</ul>
+
+<p>And the most important is the ==observation &amp; action space== for each environment:</p>
+
+<ul>
+  <li>it will have an <code class="language-plaintext highlighter-rouge">action_space</code> specifying what are the legal actions
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">Discrete</code>: A discrete space where $a(s) \in {0,1,…,n}$</li>
+      <li><code class="language-plaintext highlighter-rouge">Box</code>: An n dimensional continuous space with optional bounds</li>
+      <li><code class="language-plaintext highlighter-rouge">Dict</code>: A dictionary of space instances such as <code class="language-plaintext highlighter-rouge">Dict({"position": Discrete(2), "velocity": Discrete(3)})</code></li>
+    </ul>
+  </li>
+  <li>it will have an <code class="language-plaintext highlighter-rouge">observation_space</code> specifying what will be returned
+    <ul>
+      <li>e.g. RGB pixel values of the screen</li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<p><em>Examples: Cliff Walking Environment</em></p>
+
+<p>The board is a 4x12 matrix, with (using NumPy matrix indexing):</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">[3, 0]</code> as the start at bottom-left</li>
+  <li><code class="language-plaintext highlighter-rouge">[3, 11]</code> as the goal at bottom-right</li>
+  <li><code class="language-plaintext highlighter-rouge">[3, 1..10]</code> as the cliff at bottom-center</li>
+</ul>
+
+<p>If the agent steps on the cliff, it returns to the start. An episode terminates when the agent reaches the goal.</p>
+
+<p><img src="rl/image-20221028161926749.png" alt="image-20221028161926749" style="zoom: 50%;" /></p>
+
+<p><strong>Reward</strong></p>
+
+<ul>
+  <li>Each time step incurs -1 reward, and stepping into the cliff incurs -100 reward.</li>
+</ul>
+
+<p><strong>Action Space</strong>: There are 4 discrete deterministic actions:</p>
+
+<ul>
+  <li>0: move up</li>
+  <li>1: move right</li>
+  <li>2: move down</li>
+  <li>3: move left</li>
+</ul>
+
+<p><strong>Observation Space</strong>: returned as a flattened index to represent the coordinate of the system</p>
+
+<ul>
+  <li>There are 3x12 + 1 possible states. In fact, the agent cannot be at the cliff, nor at the goal (as this results in the end of the episode). It remains all the positions of the first 3 rows plus the bottom-left cell.</li>
+  <li>The observation is simply the current position encoded as flattened index. You can easily convert back to coordinate system with <code class="language-plaintext highlighter-rouge">np.unravel_index</code></li>
+</ul>
+
+<hr />
+
+<p><em>Example: Mujoco Humanoid</em></p>
+
+<p>The 3D bipedal robot is designed to <strong>simulate a human</strong>. It has a torso (abdomen) with a pair of legs and arms. The legs each consist of two links, and so the arms (representing the knees and elbows respectively). The goal of the environment is to walk forward as fast as possible without falling over.</p>
+
+<p><img src="rl/image-20221028162424416.png" alt="image-20221028162424416" /></p>
+
+<p><strong>Action space</strong> is a <code class="language-plaintext highlighter-rouge">Box(-1, 1, (17,), float32)</code>. An action represents the <strong>torques</strong> applied at the hinge joints.</p>
+
+<ul>
+  <li>
+    <p>action is a box has 17 different joints, each controlling torque from <code class="language-plaintext highlighter-rouge">[-1.0,1.0]</code></p>
+  </li>
+  <li>
+    <p>example joints you can control: <code class="language-plaintext highlighter-rouge">hip_1 (front_left_leg), angle_1 (front_left_leg), hip_2 (front_right_leg), right_hip_x (right_thigh), right_hip_z (right_thigh), ...</code></p>
+  </li>
+</ul>
+
+<p><strong>Observation Space</strong></p>
+
+<ul>
+  <li>Observations consist of <strong>positional</strong> values of different body parts of the Humanoid, followed by the <strong>velocities</strong> of those individual parts (their derivatives) with all the positions ordered before all the velocities</li>
+</ul>
+
+<p><strong>Rewards</strong>: the reward consists of four parts:</p>
+
+<ul>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">healthy_reward</code>: Every timestep that the humanoid is alive</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">forward_reward</code>: A reward of walking forward</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">ctrl_cost</code>: A negative reward for penalizing the humanoid if it has too large of a control force.</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">contact_cost</code>: A negative reward for penalizing the humanoid if the external contact force is</p>
+  </li>
+</ul>
+
+<h2 id="using-openai-gym">Using OpenAI Gym</h2>
+
+<p>A minimal working example would be:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">gym</span>
+<span class="n">env</span> <span class="o">=</span> <span class="n">gym</span><span class="p">.</span><span class="n">make</span><span class="p">(</span><span class="s">"CartPole-v1"</span><span class="p">)</span> 
+<span class="n">state</span> <span class="o">=</span> <span class="n">env</span><span class="p">.</span><span class="n">reset</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1000</span><span class="p">):</span>
+    <span class="n">env</span><span class="p">.</span><span class="n">render</span><span class="p">()</span>  <span class="c1"># show a window on your screen. In colab notebook more needs to be done
+</span>    <span class="n">action</span> <span class="o">=</span> <span class="n">env</span><span class="p">.</span><span class="n">action_space</span><span class="p">.</span><span class="n">sample</span><span class="p">()</span>  <span class="c1"># random policy
+</span>    <span class="n">state</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="n">done</span><span class="p">,</span> <span class="n">info</span> <span class="o">=</span> <span class="n">env</span><span class="p">.</span><span class="n">step</span><span class="p">(</span><span class="n">action</span><span class="p">)</span> 
+    <span class="k">if</span> <span class="n">done</span><span class="p">:</span>
+        <span class="n">state</span> <span class="o">=</span> <span class="n">env</span><span class="p">.</span><span class="n">reset</span><span class="p">()</span> 
+<span class="n">env</span><span class="p">.</span><span class="n">close</span><span class="p">()</span>
+</code></pre></div></div>
+
+<h2 id="stable-baselines-3">Stable-Baselines-3</h2>
+
+<blockquote>
+  <p>Stable Baselines3 (SB3) is a set of reliable <strong>implementations of reinforcement learning algorithms</strong> in PyTorch.</p>
+</blockquote>
+
+<p>Where OpenAI gym focuses on the environment, stable-baselines-3 focuses on the learning. But of course it is easily integratable with OpenAI <code class="language-plaintext highlighter-rouge">gym</code>. Smoe additional features include</p>
+
+<ul>
+  <li>access to most popular deep reinforcement learning algorithms. Ex: DQN, PPO, A2C, DDPG</li>
+  <li>allow you to implement deep reinforcement learning solutions in just a few lines</li>
+  <li>==vectorized training in parallel== (e.g. instantiate parallel copies of agents)</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">gym</span>
+<span class="kn">from</span> <span class="nn">stable_baselines3</span> <span class="kn">import</span> <span class="n">PPO</span>
+
+<span class="n">env</span> <span class="o">=</span> <span class="n">gym</span><span class="p">.</span><span class="n">make</span><span class="p">(</span><span class="s">"CartPole-v1"</span><span class="p">)</span>  <span class="c1"># use mode='rgb_array' to return game image as state
+</span>
+<span class="c1"># training
+</span><span class="n">model</span> <span class="o">=</span> <span class="n">PPO</span><span class="p">(</span><span class="s">"MlpPolicy"</span><span class="p">,</span> <span class="n">env</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># multilayer perceptron + feedin environment
+</span><span class="n">model</span><span class="p">.</span><span class="n">learn</span><span class="p">(</span><span class="n">total_timesteps</span><span class="o">=</span><span class="mi">10_000</span><span class="p">)</span>
+
+<span class="c1"># testing
+</span><span class="n">obs</span> <span class="o">=</span> <span class="n">env</span><span class="p">.</span><span class="n">reset</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1000</span><span class="p">):</span>
+    <span class="n">action</span><span class="p">,</span> <span class="n">_states</span> <span class="o">=</span> <span class="n">model</span><span class="p">.</span><span class="n">predict</span><span class="p">(</span><span class="n">obs</span><span class="p">,</span> <span class="n">deterministic</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span> 
+    <span class="n">obs</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="n">done</span><span class="p">,</span> <span class="n">info</span> <span class="o">=</span> <span class="n">env</span><span class="p">.</span><span class="n">step</span><span class="p">(</span><span class="n">action</span><span class="p">)</span>
+    <span class="n">env</span><span class="p">.</span><span class="n">render</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">done</span><span class="p">:</span>
+        <span class="n">obs</span> <span class="o">=</span> <span class="n">env</span><span class="p">.</span><span class="n">reset</span><span class="p">()</span> 
+<span class="n">env</span><span class="p">.</span><span class="n">close</span><span class="p">()</span>
+</code></pre></div></div>
+
+<h1 id="function-approximation">Function Approximation</h1>
+
+<p>Recall that all evaluation and control algorithms we discussed are <strong>tabular methods</strong> (e.g. $Q(s,a)$)</p>
+
+<p><img src="https://miro.medium.com/max/622/1*fe1eyEAcfj6KHWFXHUNHbQ.png" style="zoom:50%;" /></p>
+
+<ul>
+  <li>Each update will only change the value of one state or one state-action pair, i.e., an entry in the lookup table</li>
+  <li>The lookup table <strong>may become unmanageable</strong> when the number of “states” or “state-action” pairs goes up. For instance, what if we have a <strong>continuous action space</strong>?</li>
+  <li>also needed a way to keep exploring, because we needed to estimate values of a lot of states to be accurate</li>
+</ul>
+
+<blockquote>
+  <p><strong>Use function approximation</strong> to treat $V(s)$ or $Q(s,a)$ as functions, i.e. we consider instead of tables, ==parameters of a function== such that:</p>
+
+  <ul>
+    <li>for $V$: $S\to \mathbb{R}$</li>
+    <li>for $Q: S,A \to \mathbb{R}$</li>
+  </ul>
+
+  <p>so we consider $V(s,w)$ and $Q(s,a,w)$ for $w$ being the weights/parameters of the function</p>
+</blockquote>
+
+<p>Function approximation methods has <strong>advantages</strong> for cases such as</p>
+
+<ul>
+  <li>evaluate/predict $v(s)$ and $q(s, a)$ for large or high-dimension state space</li>
+  <li>evaluate/predict $v(s)$ and $q(s, a)$ for continuing tasks (non-episodic)</li>
+  <li>evaluate/predict $v(s)$ and $q(s, a)$ for partially observable problems
+    <ul>
+      <li>because we can <strong>extrapolate</strong> from the experienced samples (e.g. states)</li>
+    </ul>
+  </li>
+</ul>
+
+<p>and is usally trained with ==supervised training==</p>
+
+<ul>
+  <li>e.g. given a $(s,G_t(s))$ pair, ask the model to do learn it</li>
+  <li>use SGD to minimize the objective function such as MSE between $\hat{V}(s,w)$ and $V(s)$</li>
+</ul>
+
+<h2 id="value-function-approximation">Value Function Approximation</h2>
+
+<p>We would like to consider $\hat{V}(s,w)$ and $\hat{Q}(s,a,w)$ parameterized by $w$:</p>
+
+<p><img src="rl/image-20221104083159491.png" alt="image-20221104083159491" style="zoom:33%;" /></p>
+
+<p>where the target $V_\pi(s)$ and $Q_\pi(s,a)$ are basically predefined by the specific algorithms we want to use and our model aims to model them.</p>
+<ul>
+  <li>In general we can have three types of modelling, where the last one modelling $Q$ from $V$ is not used often in practice</li>
+  <li>for MC methods, bascially $V_\pi(s) = G_t$ is used as target, and it differs if you do TD(0), for instance</li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td>since those are aimed to improve on tabular methods, dimensoinaltiy of $w$ is typically much smaller of states $</td>
+          <td>S</td>
+          <td>$, and highly related to how many features you want to encode in each state</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>finally, notice that updating one weight will influence value for all states (cf. tabular methods)</li>
+</ul>
+
+<p>There are <strong>many ways</strong> to construct your function approximator, e.g.:</p>
+
+<ul>
+  <li>
+    <p><strong>Linear:</strong> consider we having <em>three features</em> of a state $s=[s_1,s_2, s_3]^T$.  Then we can do:
+\(V(s,w) = s_1 w_w + s_2 w_2 + s_3 w_3 = [s_1, s_2,s_3]^T 
+\begin{bmatrix}w_1\\
+w_2\\
+w_3\end{bmatrix}\)
+or you can construct nonlinear features usch as $w_1*w_2$</p>
+  </li>
+  <li>
+    <p><strong>non-linear:</strong> using neural networks</p>
+  </li>
+  <li><strong>decision tree</strong></li>
+  <li>etc.</li>
+</ul>
+
+<blockquote>
+  <p>Here we consider ==differentiable== function approximation methods.</p>
+</blockquote>
+
+<p>For instance, let $w$ be a column vector. Then we can consider
+\(J(w) = \mathbb{E}[ (\hat{V}(s,w) - V_\pi(s) )^2 ]\)
+to minimize this loss using SGD (single sample per batch) type approach to consider
+\(\Delta w = - \frac{1}{2} \alpha \nabla_w J(w)\)
+if you perform the chain rule and take derivatives you get:
+\(\Delta w = \alpha \mathbb{E}_\pi [(v_\pi(s) - \hat{v}(s,w)) \nabla_w \hat{v}(s,w)]\)
+Finally, as we are doing SGD:
+\(\Delta w = \alpha  \underbrace{(v_\pi(s) - \hat{v}(s,w))}_{\text{prediction error}} \underbrace{\nabla_w \hat{v}(s,w)}_{\text{gradient}}\)
+note that</p>
+<ul>
+  <li>the above form is ==generic if you use MSE==</li>
+  <li>$v_\pi(s)$ depends on what algorithm you use, e.g. MC means $v_\pi(s) = G_t$ is calculated at the end of episode.</li>
+</ul>
+
+<hr />
+
+<p><em>Example: Simple SGD updates</em></p>
+
+<p>Let the target be $y$, and the input features are 1-D $x$. So that you get the following dataset
+\((x_1, y_1), (x_2, y_2), \dots, (x_n, y_n)\)</p>
+
+<p>Suppose your approximator has two parameters:
+\(\hat{V}(x) = w_1  + w_{2} x\)</p>
+
+<p>Then your MSE loss is simply:</p>
+
+\[J(w) = \sum\limits_{i=1}^{n} (\hat{V}(x_i) - y_i)^2 = \sum\limits_{i=1}^{n} (w_1 + w_2 x_i - y_i)^2\]
+
+<p>Therefore, in the case of SGD your per step weight update with learning rate $\eta$ is</p>
+
+\[\begin{bmatrix} 
+    w_1\\
+    w_2 
+\end{bmatrix} \gets
+\begin{bmatrix} 
+    w_1\\
+    w_2
+\end{bmatrix} - \eta \nabla_w J(w)
+= \begin{bmatrix} 
+    w_1\\
+    w_2
+\end{bmatrix} - \eta
+\begin{bmatrix} 
+    2(w_1 + w_2 x_i - y_i)\\
+    2x_i(w_1 + w_2 x_i - y_i)
+\end{bmatrix}\]
+
+<h2 id="rl-prediction-with-value-approximation">RL Prediction with Value Approximation</h2>
+
+<p>Now, we employ VFA  methods to perform RL. Recall that in general we need two things:</p>
+
+<ul>
+  <li><strong>evaluation/prediction</strong> of $v_\pi(s)$ and $q_\pi(s,a)$</li>
+  <li><strong>control/planning</strong> to find optimal policy (usually by using $q_\pi(s,a)$)</li>
+</ul>
+
+<p>Here, we first discuss the problem of prediction. As essentially it becomes supervised learning</p>
+<ol>
+  <li>agent interact using policy $\pi$ to collect experience/dataset</li>
+  <li>since the collected signals are only <strong>rewards</strong>, you usually need to then specify a <strong>target</strong> for the model to learn</li>
+  <li>now you have a supervised dataset, and you can use SGD to train your model</li>
+</ol>
+
+<p><em>For instance</em>:</p>
+
+<ul>
+  <li>if you are using MC methos, then your computed target is simply $G_t = \sum\limits_{k=t}^{T} \gamma^{k-t} r_k$ so that your weight updates become
+\(\nabla w = \alpha \underbrace{( \textcolor{red}{G_t} - \hat{v}(S_t,w) )}_{\text{prediction error}} \nabla_w \hat{v}(S_t,w)\)</li>
+  <li>if you are using TD methods, then ==technically your target is $R_{t+1}+\gamma V_\pi(S_{t+1})$==, but since you don’t know $V_\pi$, you consider:
+\(\nabla w = \alpha \underbrace{( \textcolor{red}{R_{t+1}+\gamma \hat{v}(S_{t+1},w)} - \hat{v}(S_t,w) )}_{\text{prediction error}} \nabla_w \hat{v}(S_t,w)\)
+note that as our target is technically also parametrized by $w$ but we did not take its gradient, it is also called <strong>semi-stochastic gradient descent</strong>. (e.g. in DQN, we would use old $\hat{v}(S_{t+1},w^-)$ as targets and update it over time)</li>
+  <li>for TD($\lambda$), the target is $G_t^\lambda$:
+\(\nabla w = \alpha \underbrace{( \textcolor{red}{G^{\lambda}_t} - \hat{v}(S_t,w) )}_{\text{prediction error}} \nabla_w \hat{v}(S_t,w)\)
+which is the forward-view. The <strong>backward-view</strong> update is shown in the section <a href="#TD($\lambda$)_with_Value_Function_Approximation">TD($\lambda$) with Value Function Approximation</a></li>
+</ul>
+
+<h3 id="linear-function-approximation">Linear Function Approximation</h3>
+
+<p>We can consider a simple case study of using linear function approximation to predict $v_\pi(s)$.</p>
+
+<p>Your general pipeline would be:</p>
+
+<ol>
+  <li>determine your feature representation $x(s)$ for each state $s \in S$:
+\(\bold{x}(S) = \begin{bmatrix} 
+   x_1(S)\\
+   \vdots\\
+   x_n(S) 
+  \end{bmatrix}\)</li>
+  <li>define your <strong>model</strong>. Here we consider a linear approximator, we consider:
+\(\hat{v}(S, w) = \bold{x}(S)^{T} \bold{w} = \sum\limits_{j=1}^{n} x_{j} (S)w_j\)</li>
+  <li>define your <strong>objective</strong>: consider given the true value $v_\pi(S)$:
+\(J(\bold{w}) = \mathbb{E}_\pi[(v_\pi(S) - \bold{x}(S)^{T} \bold{w} )^2]\)</li>
+  <li>perform gradient descent. Using SGD the update rule for weights become:
+\(\begin{align*}
+ \nabla_{w} \hat{v}(S, w) &amp;= \bold{x}(S)\\
+ \Delta w &amp;= \alpha \underbrace{(v_\pi(S) - \bold{x}(S)^{T} \bold{w} )}_{\text{prediction error}} \bold{x}(S)\\
+\end{align*}\)</li>
+</ol>
+
+<p>Note that in practice:</p>
+<ul>
+  <li>very important to choose the right features and the representations</li>
+  <li>for linear approximators, the gradient $\nabla_{w} \hat{v}(S, w) = \bold{x}(S)$ is just the feature vectors</li>
+</ul>
+
+<p><strong>Special Example: modelling table look up</strong></p>
+
+<p>We can actually use a linear approximator and ==get back tabular methods==.</p>
+<ul>
+  <li>we can make feature to be onehot of states</li>
+  <li>then weights are basically the values in the table lookup</li>
+</ul>
+
+\[\bold{x}(S) = \begin{bmatrix} 
+    1(S=s_1)\\
+    \vdots\\
+    1(S=s_n)
+\end{bmatrix}\]
+
+<p>Then a linear approximator gives</p>
+
+\[\hat{v}(S, w) = \bold{x}(S) = \begin{bmatrix} 
+    1(S=s_1)\\
+    \vdots\\
+    1(S=s_n)
+\end{bmatrix} \cdot  \begin{bmatrix} 
+    w_1\\
+    \vdots\\
+    w_n 
+\end{bmatrix}\]
+
+<p>so that essentially $\hat{v}(S_i) = w_i$ is like a table lookup.</p>
+
+<h3 id="mc-with-value-function-approximation">MC with Value Function Approximation</h3>
+
+<p>Recall that for MC methods, we consider a target of $G_t$. Therefore:</p>
+
+<ol>
+  <li>experiences $(S_i, A_i, R_i)$ and compute $(S_i, G_i)$ pairs to get training data
+\((S_1, G_1), (S_2, G_2), \dots, (S_T, G_T)\)</li>
+  <li>then just perform supervised learning to train your model</li>
+</ol>
+
+<p><img src="rl/image-20221104092845712.png" alt="image-20221104092845712" style="zoom: 50%;" /></p>
+
+<p>Note that</p>
+
+<ul>
+  <li><strong>theoretically</strong>, in order to guarantee convergence, $\alpha$ should be decreasing but needs infinite visit of all states (the usual stochastic assumption) $\sum \alpha = \infty, \sum \alpha^2 &lt; \infty$, for instance $\alpha = \frac{1}{t}$</li>
+  <li>but in reality people just use constant $\alpha$ and it works fine</li>
+</ul>
+
+<h3 id="td0-with-value-function-approximation">TD(0) with Value Function Approximation</h3>
+
+<p>Recall that the TD Target $R_{t+1} + \gamma \hat{v}(S_{t+1},w)$ is <strong>biased</strong> as we are using $\hat{v}(S_{t+1},w)$ to estimate $v\pi(S_{t+1})$.</p>
+
+<p>But you can still regardless compute the supervised signal as $(S_i, R_{i+1} + \gamma \hat{v}(S_{i+1},w))$ hence</p>
+
+<ol>
+  <li>collect experience hence a dataset of
+\((S_1, R_2 + \gamma \hat{v}(S_2,w)), (S_2, R_3 + \gamma \hat{v}(S_3,w)), \dots, (S_{T-1}, R_T + \gamma \hat{v}(S_T,w))\)</li>
+  <li>then again supervised training on your $\hat{v}(S,w)$ with SGD:
+\(\nabla \bold{w} = \alpha \underbrace{(R_{t+1} + \gamma \hat{v}(S_{t+1},w) - \hat{v}(S_t,w))}_{\text{prediction error}} \nabla \hat{v}(S_t,w)\)
+or sometimes people just write (as TD is used often)
+\(\nabla \bold{w} = \alpha \delta \nabla \hat{v}(S_t,w)\)</li>
+</ol>
+
+<p>Then the rest of the algorithm is basically the same as the MC version. Note that</p>
+<ul>
+  <li>again, this is not fully stochastic = semi-stochastic gradient as that target $R_{i+1} + \gamma \hat{v}(S_{i+1},w)$ is parameterized yet no gradient is taken</li>
+  <li>examples of this type of algorithm is DQN, and active research is on improving this semi-gradient algorithm</li>
+</ul>
+
+<h3 id="tdlambda-with-value-function-approximation">TD($\lambda$) with Value Function Approximation</h3>
+
+<p>The target for TD($\lambda$) is $G_t^\lambda$, which is a weighted sum of TD targets and is still biased of the true value $v_\pi(S_t)$.</p>
+
+<p>But regardless:</p>
+<ol>
+  <li>collect experience hence a dataset of
+\((S_1, G_1^\lambda), (S_2, G_2^\lambda), \dots, (S_T, G_T^\lambda)\)</li>
+  <li>then again supervised training on your $\hat{v}(S,w)$ with SGD. First the ==forward view== is simply:
+\(\nabla \bold{w} = \alpha \underbrace{(G_t^\lambda - \hat{v}(S_t,w))}_{\text{prediction error}} \nabla \hat{v}(S_t,w)\)</li>
+  <li>then we derive the update rule being the ==backward view==:
+\(\begin{align*}
+\delta_{t} &amp;= R_{t+1} + \gamma \hat{v}(S_{t+1},w) - \hat{v}(S_t,w)\\
+E_{t} &amp;= \gamma \lambda E_{t+1} + \nabla \hat{v}(S_t,w) \\
+\nabla \bold{w} &amp;= \alpha \delta_{t} E_{t}
+\end{align*}\)</li>
+</ol>
+
+<p>So we get the algorithm being:
+<img src="rl_p2/image-20221104155114.png" style="zoom:50%;" /></p>
+
+<h3 id="convergence-of-prediction-algorithms">Convergence of Prediction Algorithms</h3>
+
+<p>In general TD methods are fast to learn but are unstable.</p>
+
+<p><img src="rl_p2/image-20221104155252.png" style="zoom:50%;" /></p>
+
+<h2 id="rl-control-with-function-approximation">RL Control with Function Approximation</h2>
+
+<blockquote>
+  <p>How do we find the <strong>optimal policy</strong> once we estimated the value or action-value function using VFA?</p>
+</blockquote>
+
+<p>Recall that as we are in the case of model-free control, we generally consider:</p>
+<ul>
+  <li>estimate ==action-value== function $Q_\pi(S,A)$</li>
+  <li>policy improvement using $\epsilon$-greedy policy of $Q_\pi(S,A)$</li>
+</ul>
+
+<p>Hence the general policy iteration (still applies) basically looks like</p>
+
+<p><img src="rl/image-20221104093515112.png" alt="image-20221104093515112" style="zoom:50%;" /></p>
+
+<blockquote>
+  <p>As policy improvement is based on $Q_\pi(S,A)$, all we need to do is to <strong>estimate $Q_\pi(S,A)$ using VFA.</strong> This essentially is the same as fitting $V_\pi(S)$ but use $Q$ instead in formulas.</p>
+</blockquote>
+
+<p>Hence our model considers
+\(\hat{q}(S,A,w) \approx \hat{q}_\pi(S,A)\)</p>
+
+<p>then to fit it, we consider
+\(J(\bold{w}) = \mathbb{E}_{\pi}[(\hat{q}(S,A,w) - q_\pi(S,A))^2]\)</p>
+
+<p>and using SGD the gradient is</p>
+
+\[\nabla w = \alpha \underbrace{(q_\pi(S,A) - \hat{q}(S,A,w))}_{\text{prediction error}} \nabla \hat{q}(S,A,w)\]
+
+<p>and based on different algorithms you use different targets to compute $q_\pi(S,A)$</p>
+
+<p>As it is basically the same as the value function case, we will quickly show:</p>
+
+<ul>
+  <li>for MC methods, the target is $G_t$
+\(\nabla w = \alpha \underbrace{(\textcolor{red}{G_t} - \hat{q}(S_t,A_t,w))}_{\text{prediction error}} \nabla \hat{q}(S_t,A_t,w)\)</li>
+  <li>for TD(0), the target is the estimated TD target $R_{t+1} + \gamma \hat{q}(S_{t+1},A_{t+1},w)$
+\(\nabla w = \alpha \underbrace{(\textcolor{red}{R_{t+1} + \gamma \hat{q}(S_{t+1},A_{t+1},w)} - \hat{q}(S_t,A_t,w))}_{\text{prediction error}} \nabla \hat{q}(S_t,A_t,w)\)</li>
+  <li>for <em>forward-view</em> TD($\lambda$) the target is $G_t^\lambda$
+\(\nabla w = \alpha \underbrace{(\textcolor{red}{G_t^\lambda} - \hat{q}(S_t,A_t,w))}_{\text{prediction error}} \nabla \hat{q}(S_t,A_t,w)\)
+and the <strong>backward view update</strong> rule is
+\(\begin{align*}
+\delta_{t} &amp;= R_{t+1} + \gamma \hat{q}(S_{t+1},A_{t+1},w) - \hat{q}(S_t,A_t,w)\\
+E_{t} &amp;= \gamma \lambda E_{t+1} + \nabla \hat{q}(S_t,A_t,w) \\
+\nabla \bold{w} &amp;= \alpha \delta_{t} E_{t}
+\end{align*}\)</li>
+</ul>
+
+<p>the algorithms are again basically the same as the value function case.</p>
+
+<h3 id="convergence-of-control-algorithms">Convergence of Control Algorithms</h3>
+
+<p>Problem mostly occurs when you do TD and Non-linear function approximation.</p>
+
+<p><img src="rl_p2/image-20221104160154.png" style="zoom:40%;" /></p>
+
+<h2 id="batch-method-for-rl-applications">Batch Method for RL Applications</h2>
+
+<p>Before, we are talking about SGD which uses a sample and throw it away after updates.</p>
+
+<blockquote>
+  <p><strong>Aim</strong>: We can be more sample efficient by sampling a batch and perform updates. Additionally, it also provides a better estimate to solve the least square problem.</p>
+</blockquote>
+
+<p>Consider a given experience dataset $D$ consisting of state-value pairs provided:</p>
+
+\[\mathcal{D} = \{ (s_1, v_1^{\pi}), (s_2, v_2^{\pi}), ..., (s_T, v_T^{\pi}) \}\]
+
+<p>then the best parameter that ==best fits $v_\pi$== obviously needs to perform least square on ==all of them==
+\(LS(\bold{w}) = \sum_{t=1}^T (v_t^{\pi} - \hat{v}(s_t,w))^2
+= T \cdot  \mathbb{E}_{\pi}[(v^{\pi} - \hat{v}(s,w))^2]\)
+or $T$ times the average error you make. Naive SGD for each sample would not work as recall</p>
+<ul>
+  <li>each piece of experience would be correlate as they will come from real experience</li>
+  <li>but fitting VFA assumes that the samples are <strong>independent</strong></li>
+</ul>
+
+<p>therefore, they will be techniques such as experience replay to shuffle the order so data appears IID:</p>
+
+<ol>
+  <li>given an experience consisting of state value pairs
+\(\mathcal{D} = \{ (s_1, v_1^{\pi}), (s_2, v_2^{\pi}), ..., (s_T, v_T^{\pi}) \}\)</li>
+  <li>repeat
+    <ol>
+      <li>sample state, value for experience
+\((s_t, v_t^{\pi}) \sim \mathcal{D}\)</li>
+      <li>update the parameters using SGD
+\(\Delta w = \alpha (v_t^{\pi} - \hat{v}(s_t,w)) \nabla \hat{v}(s_t,w)\)</li>
+    </ol>
+  </li>
+  <li>converges to LS solution:
+\(\bold{w} = \arg\min_{w} LS(\bold{w})\)</li>
+</ol>
+
+<p>This basically is the SGD version of <strong>experience replay</strong> in DQN.</p>
+
+<hr />
+
+<p><em>Brief Introduction of DQN</em>:</p>
+
+<p>Here we will deal with non-linear function approximation and the problem of <strong>correlation</strong>.</p>
+
+<blockquote>
+  <p><strong>Non-linear neural networks</strong>: needs a static training set + uncorrelated IID data during training</p>
+</blockquote>
+
+<p><img src="rl/image-20221104090857675.png" alt="image-20221104090857675" style="zoom: 33%;" /></p>
+
+<p>DQN uses ==experience replay== to remove correlations between consecutive samples of data and ==fixed Q-target== to stabilize the learning process.</p>
+
+<p>The overall algorithm consists of:</p>
+
+<ol>
+  <li>take action $a_t$ in state $s_t$ and observe reward $r_t$ and next state $s_{t+1}$</li>
+  <li>store transition $(s_t, a_t, r_t, s_{t+1})$ in replay memory $D$</li>
+  <li><strong>sample random minibatch</strong> of transitions $(s_j, a_j, r_j, s_{j+1})$ from $D$</li>
+  <li>compute Q-learning targets w.r.t to <strong>old network $\bold{w}^-$</strong> and optimize MSE:
+\(L(\bold{w}) = \mathbb{E}_{(s_j, a_j, r_j, s_{j+1}) \sim D}[(r_j + \gamma \max_{a'} Q(s_{j+1}, a', \bold{w^{-}}) - Q(s_j, a_j, \bold{w}))^2]\)</li>
+  <li>batch gradient descent on $L(\bold{w})$ to update $\bold{w}$</li>
+</ol>
+
+<h1 id="policy-gradient">Policy Gradient</h1>
+
+<p>Recall that our task is to find the best policy given some environment that we can interact with:</p>
+
+<p><img src="rl_p2/image-20221112013422.png" style="zoom:30%;" /></p>
+
+<p>The environment transit and returns new $s_{t+1}, r_{t+1}$ to the agent, <strong>and agent needs to spit out a $a_t$ given a state $s_t$</strong>.</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>The previous section considers first learnig an action-value function $Q_\theta(s,a)$ and then using it to find the optimal policy $\pi_\theta(a</td>
+      <td>s)$, e.g. doing greedy/epsilon-greedy policy, e.g. learn a $Q$ using MC, TD, SARSA, etc.</td>
+    </tr>
+  </tbody>
+</table>
+
+<blockquote>
+  <p><strong>can we perhaps directly learn a policy $\pi(a|s)$?</strong></p>
+  <ul>
+    <li>though we often still need some estimate of $Q$ to do policy improvement, but we can ==avoid doing $\arg\max$ over all actions to get a policy==</li>
+  </ul>
+</blockquote>
+
+<p><strong>Advantages</strong></p>
+
+<ul>
+  <li>now action probability changes more smoothly, meaning better convergence</li>
+  <li>easly for encoding exploratoin</li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td>avoid the need of $\arg\max q(s,a)$ which can be costly if $</td>
+          <td>S</td>
+          <td>\times</td>
+          <td>A</td>
+          <td>$ is large</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+</ul>
+
+<p><strong>Disadvantages</strong></p>
+
+<ul>
+  <li>value-based could more efficient for a small number of states and actions</li>
+  <li>hard to get an unbiased estimate through sampling (you will see that the gradient has an expected value term)</li>
+  <li>many current approaches are still based on MC, hence many has high variance and could lower convergence speed</li>
+</ul>
+
+<h2 id="policy-objective-functions">Policy Objective Functions</h2>
+
+<blockquote>
+  <p>The first thing is to design an objective function to minimize. Note that we <strong>do not know a true policy</strong> but only an environment</p>
+
+  <ul>
+    <li>for $Q$/$V$ estimates, we can easily compute a loss from a target such as $r+\gamma Q$</li>
+  </ul>
+</blockquote>
+
+<p>Approaches: we need some measure ==(a single score $\in \mathbb{R}$)== of how good a policy then:</p>
+
+<ul>
+  <li>in episodic environments, we can use the <strong>value function of the start state</strong>
+ \(J_1(\theta) = V^{\pi_\theta}(s_0) = \mathbb{E}_{\pi_\theta}[v_1]\)</li>
+  <li>in continuing environments, we can use the <strong>expected return</strong> (which is the average of all possible returns)
+ \(J_{avV}(\theta) = \sum\limits_{s} d^{\pi_\theta} (s) V^{\pi_\theta}(s)\)
+ which is basically the average of all possible returns, where $d^{\pi_\theta}(s)$ is the state distribution of the states under the policy $\pi_\theta$</li>
+  <li>in general, we can also use an average reward per time-step:
+ \(J_{avR}(\theta) = \sum\limits_{s} d^{\pi_\theta} (s) \mathbb{E}_{\pi_\theta}[r]
+ = \sum\limits_{s} d^{\pi_\theta} (s) \sum\limits_{a} \pi_\theta(a|s) \mathcal{R}_s^{a}\)</li>
+</ul>
+
+<p>and our aim is to ==maximize them==. Given this, we now need to do gradient ascent:
+\(\Delta \theta = \alpha * \nabla_\theta J(\theta)\)
+and no minus sign in front. But what is this gradient?</p>
+
+<ul>
+  <li>to perform back-propagation, you need to have a derivative form of each operation = backed by math equation</li>
+  <li>but considering the gradient above it is unclear what to do with the <strong>distribution of states $d^{\pi_\theta}(s)$ is also parameterized by $\theta$</strong></li>
+</ul>
+
+<h2 id="policy-gradient-theorem">Policy Gradient Theorem</h2>
+
+<blockquote>
+  <p><strong>Aim</strong>: manipulate the expression of gradient so that it does not need to do the summations</p>
+</blockquote>
+
+<p>In a single step MDP problem we can fix the distribution of states:</p>
+
+\[\begin{align*}
+   \nabla J(\theta) 
+   &amp;= \nabla \sum\limits_{s} d^{\pi_\theta} (s) \sum\limits_{a} \pi_\theta(a|s) \mathcal{R}_s^{a} \\
+   &amp;= \sum\limits_{s} d^{\pi_\theta} (s) \nabla \sum\limits_{a} \pi_\theta(a|s) \mathcal{R}_s^{a} \\
+   &amp;= \sum\limits_{s} d^{\pi_\theta} (s) \sum\limits_{a} \nabla \pi_\theta(a|s) \mathcal{R}_s^{a} \\
+   &amp;= \sum\limits_{s} d^{\pi_\theta} (s) \sum\limits_{a} \pi_\theta(a|s) \frac{\nabla \pi_\theta(a|s) }{ \pi_\theta(a|s) } \mathcal{R}_s^{a}\\
+   &amp;= \sum\limits_{s} d^{\pi_\theta} (s) \sum\limits_{a} \pi_\theta(a|s) \underbrace{\nabla \ln \pi_\theta(a|s) }_{\text{score function} } \mathcal{R}_s^{a}\\
+   &amp;= \sum\limits_{s} d^{\pi_\theta} (s) \mathbb{E}_{\pi_\theta}[\nabla_\theta \ln \pi_\theta(a|s) \mathcal{R}_s^{a}]
+\end{align*}\]
+
+<p>Overall (proof in the book), the theorem looks like:</p>
+
+<blockquote>
+  <p><strong>Policy Gradient Theorem</strong>: we can estimate the gradient for any differentiable policy $\pi_\theta$ and for any policy objective functions $J=J_1, J_{avR}$ or $\frac{1}{1-\gamma} J_{avV}$
+\(\begin{align*}
+\nabla_\theta J(\theta)
+&amp;= \nabla_\theta \sum\limits_{s} d^{\pi_\theta} (s) \sum\limits_{a} \pi_\theta(a|s) Q^{\pi_\theta}(s,a) \\
+&amp;\propto \sum\limits_{s} d^{\pi_\theta} (s) \sum\limits_{a} Q^{\pi_\theta}(s,a) \nabla_\theta \ln \pi_\theta(a|s)
+=\mathbb{E}_{s \sim \pi_\theta} \left[ \sum\limits_{a} Q^{\pi_\theta}(s,a) \nabla_\theta \ln \pi_\theta(a|s) \right]
+\end{align*}\)
+so that ==gradient does not flow through distribution $d$==! note that the proportional up to a constant is fine because that can be absored into the learning rate $\alpha$</p>
+</blockquote>
+
+<hr />
+
+<p><em>Example</em>: gradient of Softmax policy using linear function approximation</p>
+
+<p>Consider an naive modelling of $\pi$:
+\(\pi_\theta(s,a) = x(s,a)^T \theta\)
+but recall that $\pi \in [0,1]$, yet this does not satisfy such a constraint. Hence we can consider
+\(\pi = \mathrm{softmax}(x(s,a)^T \theta)\)
+for $\theta$ is a vector here. In this specific case, the <strong>score function of this form</strong> can be further computed as</p>
+
+<p><img src="rl_p2/image-20221111085101851.png" alt="image-20221111085101851" style="zoom: 33%;" /></p>
+
+<p>and you can use it do the policy gradient.</p>
+
+<p>However, <strong>what if your action is continous?</strong> For a continous probability, prob is zero given a state/action. Therefore, we need to instead model a PDF:</p>
+
+\[a \sim \mathcal{N}(\mu(s), \sigma^2), \quad \mu(s) = x(s,a)^T \theta\]
+
+<p>essentially modelling the mean to be modelled using VFA, and variance can either be pre-defined or also parametrized.</p>
+
+<p><img src="rl_p2/image-20221112025330.png" style="zoom:40%;" /></p>
+
+<p>where each state has its own distribution, and the x-axis is the available actions you can take. Now, we can <strong>choose which action to take given a state we are at by sampling</strong> from the distribution.</p>
+
+<p>Finally, in this case the score function is:
+\(\nabla_\theta \ln \pi_\theta(a|s) = \frac{a-\mu(s)}{\sigma^2} x(s,a)\)</p>
+
+<h2 id="mc-policy-gradient-reinforce">MC Policy Gradient (REINFORCE)</h2>
+
+<p>Now we have already learned:</p>
+<ol>
+  <li>objective function for policy</li>
+  <li>gradient ascent methods</li>
+  <li>can compute gradient using gradient theorem
+    <ul>
+      <li>also specific forms if policy being softmax or Gaussian if continous</li>
+    </ul>
+  </li>
+</ol>
+
+<p>Recall that by policy gradient theorem:
+\(\nabla J(\theta) \propto \mathbb{E}_{s \sim \pi_\theta} \left[ \sum\limits_{a} Q^{\pi_\theta}(s,a) \nabla_\theta \ln \pi_\theta(a|s) \right]\)</p>
+
+<blockquote>
+  <p><strong>Reinforce</strong>: MC policy gradient method considers</p>
+  <ul>
+    <li>use return $G_t$ as an unbiased estimator of $Q^{\pi_\theta}(s,a)$</li>
+    <li>use one state $S_t$ and action $A_t$ to estimate the gradient</li>
+    <li>therefore stochastic gradient ascent and consider
+\(\Delta \theta_t = \alpha \nabla_\theta \ln \pi_\theta(A_t|S_t) G_t\)</li>
+  </ul>
+</blockquote>
+
+<p>and the algorithm looks like:</p>
+
+<p><img src="rl_p2/image-20221111090125607.png" alt="image-20221111090125607" style="zoom:33%;" /></p>
+
+<h2 id="actor-critic-methods">Actor-Critic Methods</h2>
+
+<blockquote>
+  <p><strong>Aim:</strong> as MC methods using $G_t$ have a high variance, we can perhaps directly estimate $Q^{\pi_\theta}(s,a)$ and use it to estimate the gradient</p>
+  <ul>
+    <li>this can also tell you how good is the new policy/improved</li>
+  </ul>
+</blockquote>
+
+<p>Use a ==critic== to estimate the action-value function:</p>
+
+\[Q_w(s,a) \approx Q^{\pi_\theta}(s,a)\]
+
+<p>So we can directly compute the policy gradient:</p>
+
+\[\nabla J(\theta) \propto \mathbb{E}_{s \sim \pi_\theta} \left[ \sum\limits_{a} Q_w(s,a) \nabla_\theta \ln \pi_\theta(a|s) \right]\]
+
+<blockquote>
+  <p>Therefore <strong>Actor-Critic methods</strong> are:</p>
+  <ol>
+    <li>Critic: update action-value function parameters $w$ (e.g. using TD(0) or TD($\lambda$), basically our previous section on VFA)</li>
+    <li>Actor: update policy parameters $\theta$ using policy gradient suggested by critic</li>
+  </ol>
+</blockquote>
+
+<p>Finally we approximate the policy gradient by stochastic sampling:
+\(\Delta \theta = \alpha \nabla_\theta \ln \pi_\theta(A_t|S_t) Q_w(S_t,A_t)\)</p>
+
+<p>An example using TD(0)-based estimate of Q, the Actor-Critic Algorithm looks like</p>
+
+<p><img src="rl_p2/image-20221111091952917.png" alt="image-20221111091952917" style="zoom:40%;" /></p>
+
+<p>where basically:</p>
+
+<ul>
+  <li>
+    <p>line 5, 6 is data collection through interaction</p>
+  </li>
+  <li>
+    <p>line 7 is TD error and with line 9 for improving the critic (derived from gradient descent of MSE objective)</p>
+  </li>
+  <li>
+    <p>line 8 is policy gradient update</p>
+  </li>
+</ul>
+
+<h3 id="compatible-function-approximation-theorem">Compatible Function Approximation Theorem</h3>
+
+<p>A problem with actor-critic methods above is that approximating the policy gradient could <strong>introduce bias</strong>.</p>
+
+<p>But it turns out that if we can choose VFA carefully, we can avoid introducing any bias</p>
+
+<p><img src="rl_p2/image-20221111092902627.png" alt="image-20221111092902627" style="zoom:40%;" /></p>
+
+<p>(proof skipped)</p>
+
+<h2 id="policy-gradient-with-advantage-function">Policy Gradient with Advantage Function</h2>
+
+<blockquote>
+  <p><strong>Aim:</strong> we can ==reduce the variance== of this existing policy gradient:
+\(\nabla_\theta J(\theta) \propto \mathbb{E}_{s \sim \pi_\theta} \left[ \sum\limits_{a} Q^{\pi_\theta}(s,a) \nabla_\theta \ln \pi_\theta(a|s) \right]\)
+because variance could come from how you estimate $Q^{\pi_\theta}(s,a)$, and the stochastic sampling of $S_t$ and $A_t$. This can be done by subtracting the baseline:
+\(Q^{\pi_\theta}(s,a) \to Q^{\pi_\theta}(s,a) - b(s)\)
+so that intuitively, picking $b(s)=V(s)$ can “re-center” all the $Q^{\pi_\theta}(s,a)$ and therefore reduce the variance</p>
+</blockquote>
+
+<p>However, we could like our performance to <strong>still be unbiased</strong>, and it can be shown that this holds as long as baseline <strong>$b(s)$ a function not of $a$.</strong></p>
+
+<p><em>Proof</em>: Consider the new gradient:</p>
+
+\[\nabla \ln \pi_\theta (s,a) * [Q_w(s,a) - B(s)]\]
+
+<p>we want to make sure the gradient is the same as the original one, therefore, $\mathbb{E}[\nabla \ln \pi * B(s)] = 0$ needs to be proved.</p>
+
+<p>By definitino of expectation
+\(\begin{align*}
+   \mathbb{E}_{s\sim \pi_\theta}[\nabla \ln \pi_\theta(s,a) * B(s)] 
+   &amp;= \sum\limits_{s} d(s) \sum\limits_{a} \pi_\theta(a|s) \nabla \ln \pi_\theta(s,a) * B(s) \\ 
+   &amp;= \sum\limits_{s} d(s) \sum\limits_{a} \pi_\theta(a|s) \frac{\nabla \pi_\theta(a|s)}{\pi_\theta(a|s)} B(s) \\
+   &amp;= \sum\limits_{s} d(s) \sum\limits_{a} \nabla \pi_\theta(a|s) B(s) \\
+   &amp;= \sum\limits_{s} d(s) B(s) \nabla \sum\limits_{a} \pi_\theta(a|s) \\
+   &amp;= 0
+\end{align*}\)</p>
+
+<p>since $\sum \pi = 1$ is constant, therefore the last $\nabla$ is zero. ==Notice that this worked because $B(s)$ does not depend on action==</p>
+
+<p>What is a good $B(s)$ to choose? One example is to use $V(s)$, hence the advantage funtion</p>
+
+<blockquote>
+  <p><strong>Policy Gradient with Advantage Function</strong>:
+the advantage function using $V(s)$ is:
+\(A^{\pi_\theta}(s,a) = Q^{\pi_\theta}(s,a) - V^{\pi_\theta}(s)\)
+then the policy gradient is:
+\(\nabla J(\theta) \propto \mathbb{E}_{s \sim \pi_\theta} \left[ \sum\limits_{a} A^{\pi_\theta}(s,a) \nabla_\theta \ln \pi_\theta(a|s) \right]\)</p>
+</blockquote>
+
+<p>So how do we estimate the advantage function?</p>
+
+<ul>
+  <li>
+    <p>estimate both $V$ and $Q$ separately, need two more set of paramters</p>
+  </li>
+  <li>
+    <p>or we can estimate only using one (i.e. the value function)</p>
+
+    <p><img src="rl_p2/image-20221111093932628.png" alt="image-20221111093932628" style="zoom:40%;" /></p>
+
+    <p>so you only need to estimate $V$</p>
+  </li>
+</ul>
+
+<h3 id="actor-and-critic-at-different-time-scales">Actor and Critic at Different Time Scales</h3>
+
+<p>A final nuiances is that the we can vary how <strong>far ahead we look ahead</strong> by changing the time scale of actor and critic.</p>
+<ul>
+  <li>critic: estimating the critic can use TD($0$) until $G_t$</li>
+  <li>actor: estimating  the actor can use different estiamte based on $V$</li>
+</ul>
+
+<p>When estimating $Q$, we can also have actor at different time scales</p>
+
+<p><img src="rl_p2/image-20221111094240856.png" alt="image-20221111094240856" style="zoom:40%;" /></p>
+
+<p>We estimating the policy gradient, if we have only a value estimate $V^{\pi_\theta}$:</p>
+
+<p><img src="rl_p2/image-20221112033819.png" style="zoom:38%;" /></p>
+
+<h2 id="summary-of-policy-gradient-algorithms">Summary of Policy Gradient Algorithms</h2>
+
+<p><img src="rl_p2/image-20221112033925.png" style="zoom:35%;" /></p>
+
+<h1 id="planning-and-learning">Planning and Learning</h1>
+
+<p>Here, we shift focus back to the problem of <strong>planning/control</strong>. We consider situations where:</p>
+
+<ul>
+  <li>
+    <p>if you have access to a model, but your state/action space is enormous (DP is not a good idea), what is a <strong>good planning algorithm</strong>?</p>
+  </li>
+  <li>
+    <p>if you have enough data and you can fit a model reasonably well, how do you use it to <strong>further improve your planning algorithms</strong> (such as SARSA)?</p>
+
+    <ul>
+      <li>
+        <p>in reality the convergence of model could be faster than fitting value/action function because the later needs information to propagate</p>
+      </li>
+      <li>
+        <p>but of course, fitting a model is not an easy task</p>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<blockquote>
+  <p><strong>Model-based</strong> methods rely on planning as their primary component, while <strong>model-free</strong> methods primarily rely on learning.</p>
+
+  <ul>
+    <li>Model-based: DP, and MCTS (this chapter). Also called the problem of <em>planning</em></li>
+    <li>Model-free: Q-learning, SARSA, etc. Also called the problem of <em>learning</em></li>
+  </ul>
+
+  <p>Of course, there are also hybrids, so that you can use a model/learned model to improve model-free algorithms, such as Dyna (this chapter)</p>
+</blockquote>
+
+<h2 id="rollout-algorithms-and-tree-search">Rollout Algorithms and Tree Search</h2>
+
+<p>First, we discuss the model-based planning where model of the world is given.</p>
+
+<p>For instance, consider the rule of Go game</p>
+
+<p><img src="rl_p2/image-20221118132038782.png" alt="image-20221118132038782" style="zoom:50%;" /></p>
+
+<p>so that to <strong>plan each step, we need to think ahead</strong>. Therefore, it might make sense to consider ==simulation as part of planning==: if I take this step here, what happens next and can I win? So rollout algorithms in general involve</p>
+
+<ul>
+  <li>try <strong>all</strong> potentially high reward possibilities/moves <strong>starting from the current position</strong></li>
+  <li><strong>estimate those moves=actions</strong> by simulation=rollout, and sometimes in combination with some value function estimate</li>
+  <li>pick the best move (e.g. UCB), and repeat</li>
+</ul>
+
+<blockquote>
+  <p>Rollout algorithms are ==decision-time planning algorithms== based on Monte Carlo control applied to simulated trajectories that all ==begin at the current environment state==.</p>
+
+  <ul>
+    <li>They estimate action values for a given policy by averaging the returns of many simulated trajectories that start with each possible action and then follow the given rollout policy.</li>
+    <li>When the action-value estimates are considered to be accurate enough, the action (or one of the actions) having the highest estimated value is executed, after which the process is carried out anew from the resulting next state.</li>
+  </ul>
+</blockquote>
+
+<p>This is also important as we talk about the details of an rollout algorithm: MCTS, which is that</p>
+
+<blockquote>
+  <p>It can be said the aim of a rollout algorithm (e.g. MCTS) is to ==improve upon the rollout policy; not to find an optimal policy==.</p>
+
+  <ul>
+    <li>In some applications, a rollout algorithm can produce good performance even if the rollout policy is completely random.</li>
+    <li>But the performance of the improved policy depends on properties of the rollout policy and the ranking of actions (e.g. Upper Confidence Bound) produced by the Monte Carlo value estimates.</li>
+    <li>Intuition suggests that the <strong>better the rollout policy and the more accurate the value estimates</strong>, the ==better the policy produced== by a rollout algorithm (e.g. MCTS) is likely be (but see Gelly and Silver, 2007, and in AlphaGo it more human-like policy instead of better policy may be better).</li>
+  </ul>
+</blockquote>
+
+<h3 id="upper-confidence-bounds">Upper Confidence Bounds</h3>
+
+<blockquote>
+  <p><strong>Upper Confidence Bound:</strong> get a <em>better</em> balance between exploration and exploitation, besides e-greedy and softmax approach we have seen before.</p>
+
+  <ul>
+    <li>e-greedy action selection forces the non-greedy actions to be tried, but indiscriminately, with no preference for those that are nearly greedy or particularly uncertain.</li>
+    <li>It would be better to select among the non-greedy actions <strong>according to their potential for actually being optimal</strong>, taking into account both how close their estimates are to being maximal and the uncertainties in those estimates.</li>
+  </ul>
+</blockquote>
+
+<p>The ultimate form of the simple version of UCB looks like, for a one-step MDP problem (i.e. without states)
+\(a_t = \arg\max_a \left[ Q_t(a) + c \sqrt{\frac{\ln n_t}{N_t(a)}} \right]\)
+where:</p>
+
+<ul>
+  <li>$n_t$ is the total number of actions you have taken until time $t$, and $N_t(a)$ is the total number of times an action $a$ is taken up to time $t$</li>
+  <li>
+    <p>$Q_t(a)$ is your current estimated return of action $a$</p>
+  </li>
+  <li>the $\arg\max$ is because we are doing the <em>upper confidence bound</em></li>
+  <li>essentially the left term is your <strong>exploitation</strong>, and right term is <strong>exploration</strong> trying to visit less-visited states</li>
+</ul>
+
+<p>This form is derived from modeling the regret of each action you made, and ==minimize your regret==.</p>
+
+<p><img src="rl_p2/image-20221118134055442.png" alt="image-20221118134055442" style="zoom: 50%;" /></p>
+
+<p>What does this have to do with UCB?</p>
+
+<ul>
+  <li>Lai and Robbins showed that the regret for the multi-armed bandit has to <strong>grow at least logarithmically w.r.t. the number of plays $n$</strong></li>
+  <li>UCB is proved to ==grow the regret logarithmically in that case== (by choosing actions from UCB), hence is optimal in that case</li>
+</ul>
+
+<p>We can visualize what UCB is doing to be first estimating the “confidence” of your current estimate, and then pick the ones that are most promising</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Confidence Bound</th>
+      <th style="text-align: center">Upper Confidence Bound Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><img src="rl_p2/image-20221118084108912.png" alt="image-20221118084108912" style="zoom:33%;" /></td>
+      <td style="text-align: center"><img src="rl_p2/image-20221118084255212.png" alt="image-20221118084255212" style="zoom:25%;" /></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>But in reality, UCB might not be easy to work with. Consider a realistic problem where you could have a large state space:
+\(a_t = \arg\max_a \left[ Q_t(s,a) + c \sqrt{\frac{\ln n_t}{N_t(s,a)}} \right]\)
+the $N_t(s,a)$ for many combinations will be zero until explored. Hence in those cases simple e-greedy of softmax could also work as well and is much simpler.</p>
+
+<h3 id="monte-carlo-tree-search">Monte Carlo Tree Search</h3>
+
+<p>Now we can talk about MCTS. The objective is to do planning given a model, and specifically to improve upon a rollout policy (by significant margin, e.g. improvement in computer Go from a weak amateur level in 2005 to a grandmaster level (6 dan or more) in 2015.)</p>
+
+<blockquote>
+  <p>At its base, <strong>MCTS is a rollout algorithm</strong> as described above, but enhanced by the addition of a means for accumulating value estimates obtained from the Monte Carlo simulations in order to successively <strong>direct simulations toward more highly-rewarding trajectories</strong>.</p>
+</blockquote>
+
+<p>At its core, on high level the following is happening</p>
+
+<ul>
+  <li>MCTS is executed after encountering <strong>each new state</strong> to select the agent’s action for that state; it is <strong>executed again to select the action for the next state, and so on</strong>.</li>
+  <li>MCTS incrementally extends the tree by <strong>adding nodes representing states that look promising</strong> based on the results of the simulated trajectories</li>
+  <li>Outside the tree and at the leaf nodes the rollout policy is used for action selections, but at the states inside the tree something better is possible. For these states we have value estimates for at least some of the actions, so we can <strong>pick among them using an informed policy, called the tree policy, that balances exploration (e.g. using UCB)</strong>.</li>
+</ul>
+
+<p><img src="rl_p2/image-20221118135457036.png" alt="image-20221118135457036" style="zoom: 50%;" /></p>
+
+<p>In more details and to explain what the above means, consider the overall algorithm iteratively performing</p>
+
+<ol>
+  <li>MCTS continues executing these four steps, starting each time at the tree’s root node, until no more time is left
+    <ol>
+      <li><strong>Selection</strong>. Starting at the root node, a ==tree policy (e.g. UCB) based on the action values== attached to the edges of the tree traverses the tree to ==select a leaf node==</li>
+      <li><strong>Expansion</strong>. The tree is expanded <strong>from the selected leaf node</strong> by ==adding one or more child nodes== reached from the selected node via unexplored actions</li>
+      <li><strong>Simulation</strong>. From the selected node, or from one of its newly-added child nodes (if any), ==simulation of a complete episode== is run with actions selected by the ==rollout policy==.
+        <ul>
+          <li>The result is a Monte Carlo trial with <strong>actions selected first by the tree policy and beyond the tree by the rollout policy</strong>.</li>
+        </ul>
+      </li>
+      <li><strong>Backup</strong>. The ==return== generated by the simulated episode is ==backed up to update, or to initialize, the action values== attached to the edges of the tree traversed by the tree policy in this iteration of MCTS. <strong>No values are saved for the states and actions visited by the rollout policy</strong> beyond the tree, as shown by the little triangle branch being dotted and discarded. Simulation result is only used to <strong>backup the existing tree</strong>
+        <ul>
+          <li>basically update my estimates of how good each action is based on simulation (+ value estimate in AlphaGO)</li>
+        </ul>
+      </li>
+    </ol>
+  </li>
+  <li>Then, finally, an <strong>action</strong> from the root node (=<strong>the current state</strong> of the environment) is <strong>selected</strong> according to some mechanism that depends on the accumulated statistics in the tree; for example, e.g. largest action value accumulated by UCB</li>
+  <li>After the environment transitions to a <strong>new state, MCTS is run again from the first step</strong> (often starting with a tree containing any descendants of this node left over from the tree constructed by the previous execution of MCTS)</li>
+</ol>
+
+<blockquote>
+  <p>What does the accumulated estimate $Q(s,a)$ at each action node correspond to? In rollout algorithms where $s$ is the current state and ==$\pi$ is the rollout policy==, averaging the returns of the simulated trajectories produces ==estimates of $q_\pi(s,a)$== for each action $a$.</p>
+
+  <p>Then the policy that selects an action in s that maximizes these estimates and thereafter follows $\pi$ (during simulation) is a good candidate for a policy that <strong>improves over $\pi$.</strong> The result is ==like one step of the policy-iteration algorithm of dynamic programming==</p>
+
+  <ul>
+    <li>you will see in AlphaGO we can potentially do better to estimate $q_*(s,a)$ hence choose the optimal action instead of just improvement</li>
+  </ul>
+</blockquote>
+
+<hr />
+
+<p><em>For example</em>: Let us be playing a game of GO. Let us say we have some tree already, and we would like to use UCB based on action value to be our <strong>tree policy</strong> to select a node</p>
+
+<ol>
+  <li>
+    <p>Selection:</p>
+
+    <p><img src="rl_p2/image-20221118145758200.png" alt="image-20221118145758200" style="zoom:33%;" /></p>
+
+    <p>where here, we have already made 7 simulations/rollouts hence the top node stores 7.</p>
+
+    <ul>
+      <li>
+        <p>the $2/3$ at black node (at second level) means it’s <strong>black’s turn to act</strong>, but after this white action <strong>white has won $2/3$ times</strong> in the simulation</p>
+      </li>
+      <li>
+        <p>if we are computing the UCB of each node for instance at the second level:
+\(\mathrm{UCB}(2/3) =\frac{2}{3} + \sqrt{2} \sqrt{\frac{\ln 7}{3}}\)
+for using $c=\sqrt{2}$.</p>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>Expansion: we have selected a node and we want to explore some actions by adding a child node:</p>
+
+    <p><img src="rl_p2/image-20221118150319119.png" alt="image-20221118150319119" style="zoom:33%;" /></p>
+  </li>
+  <li>
+    <p>Simulation: we simulate from the <strong>newly added node</strong> using a rollout policy (e.g. a <em>fast</em> agent trained supervised from online GO games)</p>
+
+    <p><img src="rl_p2/image-20221118150456863.png" alt="image-20221118150456863" style="zoom:33%;" /></p>
+  </li>
+  <li>
+    <p>Back-Propagation: we <strong>discard the simulation trajectory</strong> but utilize the results to update our existing tree</p>
+
+    <p><img src="rl_p2/image-20221118150603388.png" alt="image-20221118150603388" style="zoom:33%;" /></p>
+
+    <p>notice that all we need to update is the ==branch==. (Recall that the white $1/1$ means its white’s turn but black has won $1/1$, hence the previous black node becomes $1/2$ as there are now in total $1+1=2$ simulations done and white lost one of them)</p>
+  </li>
+</ol>
+
+<p>But of course, no algorithm is yet perfect:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Pros</th>
+      <th>Cons</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Tree growth focuses on more promising areas</td>
+      <td>Memory intensive: entire tree in memory</td>
+    </tr>
+    <tr>
+      <td>Can stop algorithm anytime to get search results</td>
+      <td>For complex problems, enhancement needed for good performance</td>
+    </tr>
+    <tr>
+      <td>Avoid the problem of globally approximating an action-value function (as in DP)</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Convergence to minimax solution</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><strong>High controllability = can insert your prior domain knowledge into tree policy, for instance</strong></td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="alphago">AlphaGO</h3>
+
+<p>The famous AlphaGO in essence is a MCTS algorithm, but <strong>enhanced by several changes</strong>, e.g. make the GO simulation computationally fast using value functions.</p>
+
+<p>The overall pipeline of AlphaGO involves:</p>
+
+<ol>
+  <li>
+    <p>train a <strong>supervised policy $p_\sigma$</strong> cloning the plays of experts.</p>
+  </li>
+  <li>
+    <p>use <strong>policy gradient</strong> to train another agent $p_\rho$, which can consistently beats (more than 80% of the time) $p_\sigma$</p>
+  </li>
+  <li>
+    <p>obtain <strong>value function $V_\rho$</strong> from the strongest player $p_\rho$, hoping that $V_\rho \approx V_*$ of the optimal play</p>
+  </li>
+  <li>
+    <p>use MCTS to play by</p>
+
+    <ul>
+      <li>
+        <p>tree policy is UCB</p>
+      </li>
+      <li>
+        <p>==expansion is done using the prior from $p_\sigma$==, which is found to perform better than $p_\rho$ as the former is more diverse and human-like</p>
+      </li>
+      <li>
+        <p>==backpropagation uses both simulation results and $V_\rho$==, so that the value for each leaf node is
+\(V(s_L) = (1-\lambda) v_\theta (s_L) + \lambda z_L\)
+and each edge/action is the mean evaluation of all simulations through that edge
+\(Q(s,a) = \frac{1}{N(s,a)}\sum_{i=1}^n \mathbb{1}(s,a,i)V(s_L^i)\)
+so that $\mathbb{1}(s,a,i)$ indicates if the edge $(s,a)$ was traversed during the $i$-th simulation.</p>
+      </li>
+      <li>
+        <p>at the end of simulation/MCTS, ==play policy== is to select action with most visited state:
+\(a = \arg\max_{a} N(s,a)\)</p>
+      </li>
+    </ul>
+  </li>
+</ol>
+
+<p><img src="rl_p2/image-20221118152145169.png" alt="image-20221118152145169" style="zoom:40%;" /></p>
+
+<p>more details see paper: https://www.nature.com/articles/nature16961</p>
+
+<h2 id="sample-based-planning">Sample-Based Planning</h2>
+
+<p>Now we have covered planning if given model: for small spaces DP can be gone, but more often MCTS which selectively expands search space is more tractable. However, what if we don’t know the model, i.e. model-free? Do we have to only use Q-learning/SARSA etc?</p>
+
+<blockquote>
+  <p>If model is unknown, we can <strong>first learn the model</strong> and then <strong>plan</strong>.</p>
+
+  <ul>
+    <li>once the model is fitted, we can do planning using DP, value iteration, policy iteration, MCTS, etc.</li>
+    <li>or, we can use the model to <strong>generate <em>more</em> samples</strong> to fit $Q$ functions</li>
+  </ul>
+</blockquote>
+
+<p><img src="rl_p2/image-20221118152715124.png" alt="image-20221118152715124" style="zoom:33%;" /></p>
+
+<p>Recall that for a model, we need to ==spit out next state and reward==:
+\(S_{t+1} \sim \mathcal{P}_\eta (S_{t+1}|S_t, A_t)\\
+R_{t+1} \sim \mathcal{R}_\eta (S_{t+1}|S_t, A_t)\\\)
+for a model parameterized by $\eta$, and we typically can assume independence so that:
+\(\mathbb{P}(S_{t+1},R_{t+1}|S_t, A_t) = \mathbb{P}(S_{t+1}|S_t, A_t)\mathbb{P}(R_{t+1}|S_t, A_t)\)
+This then would be useful when learning a distribution model.</p>
+
+<blockquote>
+  <p>Some models produce a description of all possibilities and their probabilities; these we call ==distribution models==. Other models produce just one of the possibilities, sampled according to the probabilities; these we call ==sample models==.</p>
+
+  <ul>
+    <li>e.g. consider modeling the sum of a dozen dice. A distribution model would produce all possible sums and their probabilities of occurring, whereas a sample model would produce an individual sum drawn according to this probability distribution.</li>
+  </ul>
+
+  <p>For algorithms such as Q-learning and SARSA, we just need a <strong>sample model</strong>. But for DP, we would need a <strong>distribution model</strong>.</p>
+</blockquote>
+
+<p>It is typically easier to learn a sample model, which can be done using <strong>supervised learning</strong></p>
+
+<p><img src="rl_p2/image-20221118092918058.png" alt="image-20221118092918058" style="zoom: 50%;" /></p>
+
+<hr />
+
+<p><em>For Example</em>: Small Table Lookup Example.</p>
+
+<p>For small state spaces, you can learn a <strong>distribution model</strong> by simply counting:</p>
+
+<p><img src="rl_p2/image-20221118153701401.png" alt="image-20221118153701401" style="zoom: 45%;" /></p>
+
+<p>So in the case of the following experience/data, you can easily fit a distribution model:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Experience</th>
+      <th style="text-align: center">Model Learned</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><img src="rl_p2/image-20221118093255770.png" alt="image-20221118093255770" style="zoom: 33%;" /></td>
+      <td style="text-align: center"><img src="rl_p2/image-20221118093308625.png" alt="image-20221118093308625" style="zoom: 33%;" /></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>in this case we calculated the model without supervised learning but directly computing, but the idea is the same.</p>
+
+<p>Then, once we have a model, we can <em>sample</em> from it to do MC control, for instance:</p>
+
+<p><img src="rl_p2/image-20221118153938347.png" alt="image-20221118153938347" style="zoom: 40%;" /></p>
+
+<p>Or of course, we can plan given a model directly by doing DP or MCTS.</p>
+
+<h2 id="integrating-learning-and-planning">Integrating Learning and Planning</h2>
+
+<p>There is also an approach to try to do <strong>learning and planning</strong>:</p>
+
+<p><img src="rl_p2/image-20221118154633165.png" alt="image-20221118154633165" style="zoom:33%;" /></p>
+
+<blockquote>
+  <p>Within a planning agent, there are at least two roles for real experience:</p>
+
+  <ul>
+    <li><strong>model-learning:</strong> it can be used to improve the model (to make it more accurately match the real environment)</li>
+    <li><strong>direct RL:</strong> it can be used to directly improve the value function and policy using the kinds of reinforcement learning methods we have discussed</li>
+  </ul>
+
+  <p>Note how experience can improve value functions and policies either directly or <strong>indirectly via the model</strong>. It is the latter, which is sometimes called ==indirect reinforcement learning==, that is involved in planning.</p>
+</blockquote>
+
+<p>An example algorithm is Dyna-Q: which combines Q-learning and model learning as shown below</p>
+
+<p><img src="rl_p2/image-20221118095038634.png" alt="image-20221118095038634" style="zoom: 45%;" /></p>
+
+<p>notice that step a)-d) is basically Q-learning, and step e)-f) further update your Q function using the model</p>
+
+<ul>
+  <li>
+    <p>the intuition is that if you can explore more from your previous $(S,A)$, you could <strong>make better decisions sooner</strong> in the future when you met similar states, whereas just doing Q-learning makes that part slower</p>
+  </li>
+  <li>
+    <p>For instance, as you can see here the more simulated experienced you gave to Q, it makes better decisions earlier and hence converge faster. i.e. <strong>While walking around the world according to the experience</strong>, I am changing dynamically/<strong>planning at each step as well</strong></p>
+
+    <p><img src="rl_p2/image-20221118095318251.png" alt="image-20221118095318251" style="zoom: 40%;" /></p>
+
+    <p>the idea of updating a bit sooner than until the end is like TD v.s. MC.</p>
+  </li>
+</ul>
+
+<h2 id="unified-view-of-planning-and-learning">Unified View of Planning and Learning</h2>
+
+<p>Just like how we Generalized Policy Iteration to contextualize model-free algorithms, the overall framework of planning and learning <strong>also shares high level similarity</strong>. The unified view we present in this chapter is that all state-space planning methods share a common structure</p>
+
+<p><img src="rl_p2/image-20221118155344361.png" alt="image-20221118155344361" style="zoom: 45%;" /></p>
+
+<ol>
+  <li>all state-space planning methods involve computing value functions as a key intermediate step toward improving the policy, and</li>
+  <li>they compute value functions by updates or backup operations applied to simulated experience.</li>
+</ol>
+
+<h1 id="deep-reinforcement-learning">Deep Reinforcement Learning</h1>
+
+<p>Deep L can model any components in RL such as policy, model, value function, but Deep L + RL is unstable and hard to get convergence</p>
+
+<p>Current approaches, modeling:</p>
+
+<ul>
+  <li>value-based RL
+    <ul>
+      <li>approximating value function $Q^<em>$ or $V^</em>$ using a NN with weight $w$ or $\theta$</li>
+      <li>e.g. Q-learning, SARSA, MC methods, TD methods, etc.</li>
+    </ul>
+  </li>
+  <li>policy-based RL
+    <ul>
+      <li>search for and approximate the optimal policy function $\pi^*$</li>
+      <li>stochastic policy = policy model outputs a distribution of actions (e.g. by Softmax, or Gaussian distribution), and then you sample from it</li>
+      <li>deterministic policy = find a function that gives the action directly</li>
+    </ul>
+  </li>
+  <li>model-based RL
+    <ul>
+      <li>build a model (transition function and reward) from samples</li>
+      <li>when obtained a model, do planning</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="dl-for-value-functions">DL for Value Functions</h2>
+
+<p>Here we will discuss on algorithm that has been successful and can be used for control (by simply taking $a = \arg\max_a Q(s,a)$)</p>
+
+<h3 id="deep-q-network-dqn">Deep Q-Network (DQN)</h3>
+
+<p>As we have mentioned before, this aims to model the Q network
+\(Q(s,a,w)\approx Q^\pi (s,a)\)
+and your target is simply based on the Q-learning target, which gives you a loss function:
+\(\mathcal{L}(w) = \mathbb{E}\left[ \left( \underbrace{r+\gamma \max_{a'} Q(s',a',w)}_{\text{target}} - Q(s,a,w)  \right)^2 \right]\)
+notice that you need to forward pass twice for $(s,a)$ and $(s’,a’)$.</p>
+
+<ul>
+  <li>
+    <p>Could there be some correlation there? Keep that in mind</p>
+  </li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td>note that $a’$ will be computed by the 1) can model $Q(s,a) \to \mathbb{R}^{</td>
+          <td>A</td>
+          <td>}$ and then <em>index into the action $a$ to get the $Q$ value</em>. 2) then in this method, picking $\arg\max Q$ can be one <strong>using only one forward pass</strong></td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+</ul>
+
+<p>then you perform gradient descent, which would look like the same descent in Q-learning
+\(\frac{\partial \mathcal{L}(w)}{\partial w} = \mathbb{E}\left[ \left( r+\gamma \max_{a'}Q(s',a',w)-Q(s,a,w) \right) \frac{\partial Q(s,a,w)}{\partial w} \right]\)</p>
+
+<blockquote>
+  <p>However, <strong>naive Q-learning oscillates or diverges with neural nets</strong></p>
+
+  <ul>
+    <li>data is sequential, hence there are correlations between successive samples</li>
+    <li>policy could change rapidly with slight change in $Q$-values</li>
+    <li>correlation between $Q$-value and target value during the loss computation</li>
+    <li>scale of rewards and $Q$-values could vary and hence gradient might be unstable</li>
+  </ul>
+</blockquote>
+
+<p>There are the core issues that DQN attempts to solve:</p>
+
+<blockquote>
+  <p>DQN provides a stable solution to deep value-based RL</p>
+
+  <ul>
+    <li>==experience replay== to break correlation in <em>data/experience</em></li>
+    <li>freeze ==target $Q$-network== (periodically, for example update only after 10k steps) to break correlations between $Q$-network and target, and avoid policy changes too rapidly</li>
+    <li>==clip or normalize reward== so network can work adaptively to ranges of Q-values = robust gradients</li>
+  </ul>
+</blockquote>
+
+<p>Therefore the algorithm below</p>
+
+<p><img src="rl_p2/image-20221202090538120.png" alt="image-20221202090538120" style="zoom:40%;" /></p>
+
+<h2 id="dl-for-policy-functions">DL for Policy Functions</h2>
+
+<p>Here we aim to directly learn a policy, and we will cover methods such as</p>
+
+<ul>
+  <li>Actor-critic methods: DDPG, A3C</li>
+  <li>Optimization methods: TRPO, GPS</li>
+</ul>
+
+<p>In general, policy gradient based methods are quite popular today, especially when continuous action spaces.</p>
+
+<h3 id="deterministic-policy-gradient">Deterministic Policy Gradient</h3>
+
+<p>Recall that during stochastic policy approximation, we considered modeling the (real) policy:
+\(\pi_\theta(a|s) \to \mathbb{P}[a|s;\theta]\)
+where we could do this by taking a Softmax of the output, or modeling parameters of a Gaussian distribution for continuous action space. But here, we might consider a ==deterministic policy==:
+\(\mu_\theta(s)\to a\)
+Why does this matter? As $\mu_\theta$ is the network, and it <strong>no longer models a probability</strong> the stochastic policy gradient theorem we had before (using probability):
+\(\nabla J(\theta) \propto \mathbb{E}_{s \sim \pi_\theta} \left[ \sum\limits_{a} Q^{\pi_\theta}(s,a) \nabla_\theta \ln \underbrace{\pi_\theta(a|s)}_{\text{prob.}} \right]\)
+<strong>no longer makes sense</strong> as using $\ln \mu_\theta(s)$ does not make sense any more. Therefore, people proved that there is a policy gradient for deterministic case:</p>
+
+<p><img src="rl_p2/image-20221202110405667.png" alt="image-20221202110405667" style="zoom:50%;" /></p>
+
+<p>where the objective function in this case would be:
+\(J(\theta) = \mathbb{E}[r_1 + \gamma r_2 + \gamma^2 r_3 + ....] = \mathbb{E}_{\mu_\theta}[G]\)
+basically the expected return if we follow policy $\mu_\theta$</p>
+
+<blockquote>
+  <p>But why use/prefer deterministic policy? Difference in practice?</p>
+
+  <ul>
+    <li>
+      <p>when the variance in stochastic tends to zero, it <strong>became the deterministic case</strong></p>
+    </li>
+    <li>stochastic needs gradient descent in $\mathbb{E} [\nabla \pi_\theta(s,a)*G_t ]$, meaning we for a single state we need action spaces combined for a good estimate v.s. deterministic case in practice <strong>needs only to scan over a much smaller actions</strong>
+      <ul>
+        <li>therefore can outperform significantly <strong>when action space is high dimensional</strong></li>
+      </ul>
+    </li>
+    <li>stochastic encourages more exploration as in the end you are sampling from the distribution v.s. deterministic policy <strong>might not explore other possibilities</strong>. For instance
+\(a = \mu_\theta(s) + \text{Noise}\)
+so then all your exploration is the noise term</li>
+  </ul>
+</blockquote>
+
+<h3 id="deep-deterministic-policy-gradient">Deep Deterministic Policy Gradient</h3>
+
+<p>The overall idea is basically <strong>combining DL + DPG + Actor Critic Method</strong> by:</p>
+
+<ul>
+  <li>use actor-critic method to compute DPG gradient</li>
+  <li>model your actor and critic using deep learning</li>
+  <li>(solve instability issues with soft updates)</li>
+</ul>
+
+<p>Therefore, first we consider modeling a policy/actor with DL:
+\(a = \pi(s,u)\)
+with weights $u$, and a critic network $Q(s,a,w)$ with weights $w$. Then the gradient updates are simply:</p>
+
+<p><img src="rl_p2/image-20221202093643427.png" alt="image-20221202093643427" style="zoom: 40%;" /></p>
+
+<p>so in total here we have two networks, where the critic update is basically no $\max$ version of DQN updates, then use that to calculate gradient for actor</p>
+
+<blockquote>
+  <p>Again, naive actor-critic method oscillates or diverges with neural network</p>
+</blockquote>
+
+<p>Then in DDPG, we use</p>
+
+<ul>
+  <li>
+    <p><strong>experience replay</strong> as in DQN for <strong>both actor and critic</strong></p>
+  </li>
+  <li>
+    <p>four networks where <strong>soft target update</strong> is used instead of freezing</p>
+  </li>
+</ul>
+
+<p><img src="rl_p2/image-20221202093702826.png" alt="image-20221202093702826" style="zoom:60%;" /></p>
+
+<h3 id="asynchronous-advantage-actor-critic-a3c">Asynchronous Advantage Actor-Critic (A3C)</h3>
+
+<p>Again, building on top of actor-critic method but being</p>
+
+<ul>
+  <li><strong>Asynchronous</strong>: initiate multiple agents, each interact with the environment independently, and report update back to global network</li>
+  <li><strong>Advantage</strong>: using advantage function instead of $Q$ to update policy</li>
+</ul>
+
+<p>Therefore overall it looks like:</p>
+
+<p><img src="rl_p2/image-20221202093940740.png" alt="image-20221202093940740" style="zoom: 40%;" /></p>
+
+<p>So in a sense data correlation is removed automatically because <strong>each agent has independent interactions</strong> = no need to maintain an experience buffer.</p>
+
+<p>The overall algorithm then looks like:</p>
+
+<p><img src="rl_p2/image-20221202094115629.png" alt="image-20221202094115629" style="zoom: 60%;" /></p>
+
+<p><strong>Why A3C over other actor-critic methods?</strong></p>
+
+<ul>
+  <li>naturally has <strong>decoupled</strong> correlation, v.s. in DQN and DDPG an experience buffer is used</li>
+  <li>runs many agents in parallel to collect samples for updates, hence <strong>fast</strong> in computing/updates as well</li>
+  <li>each agent can use <strong>different exploration policy</strong>, which can maximize diversity and further decorrelate</li>
+  <li>can run on multi-core CPU threads on a single machine to reduce communication overhead</li>
+</ul>
+
+<h3 id="trust-region-policy-optimization-trpo">Trust Region Policy Optimization (TRPO)</h3>
+
+<p>Basically a new form of loss function/objective, other than the simple ones such as $J(\theta)=\mathbb{E}<em>{\mu</em>\theta}[G]$</p>
+
+<p><img src="rl_p2/image-20221202102143093.png" alt="image-20221202102143093" style="zoom: 50%;" /></p>
+
+<h2 id="dl-for-model-functions">DL for Model Functions</h2>
+
+<p>Now, we can also use a model to learn the world model, i.e. the transition functions
+\(p(r,s'|s,a)\)
+so that after this, we can:</p>
+
+<ul>
+  <li>use it to collect more data and improve value function estimates</li>
+  <li>do planning directly, such as MCTS</li>
+</ul>
+
+<h3 id="alphago-zero">AlphaGo Zero</h3>
+
+<blockquote>
+  <p>Recall that the first version <a href="#AlphaGO">AlphaGO</a>, we used</p>
+
+  <ul>
+    <li>
+      <p>one network for roll-out policy, another for SL policy, both from <strong>human data</strong></p>
+    </li>
+    <li><strong>self-play to improve policy network</strong>: learn a RL policy network <em>and a value network</em> as well</li>
+    <li><strong>MCTS</strong> based on the tree policy (RL network) and UCB
+      <ul>
+        <li>expand using rollout policy and combine with value function</li>
+        <li>pick action based on UCB</li>
+      </ul>
+    </li>
+  </ul>
+</blockquote>
+
+<p>For AlphaGo Zero, the emphasis is to learn ==without human knowledge entirely==. The core idea is that it is solely based on reinforcement learning and MCTS to improve.</p>
+
+<ol>
+  <li>
+    <p>start with a <strong>single model</strong> producing both the move probability/policy and the value function
+\(f_\theta(s) = (p_\theta(a|s), V_\theta(s))\)</p>
+  </li>
+  <li>
+    <p>since the model does not care which player you are, it can self-play. But additionally, here we consider self-play using MCTS instead of just the policy $f_\theta$ because MCTS can usually result in selecting a much stronger move, hence an be treated as a <strong>policy improvement operator</strong></p>
+  </li>
+  <li>
+    <p>Then, we have effectively gathered $(\pi,z)$, where $\pi$ is the MCTS probability and $z$ is the game winner. This game winner $z$ can be seen as a <strong>policy evaluation operator</strong>, which we can use to improve $V_\theta(s)$ estimate as well.</p>
+
+    <p><img src="rl_p2/image-20221207111925758.png" alt="image-20221207111925758" style="zoom: 40%;" /></p>
+  </li>
+  <li>
+    <p>but how exactly do we model $\pi$ probabilities in the MCTS? AlphaGo Zero models this to be:
+\(\pi_a \propto N(s,a)^{1/ \tau}\)
+so that the more popular a move is the higher the probability. Then how does it select those moves?</p>
+
+    <p><img src="rl_p2/image-20221207112607316.png" alt="image-20221207112607316" style="zoom: 40%;" /></p>
+
+    <p>essentially it uses $f_\theta$ to help expand the tree so that each edge stores the $P(s,a),N(s,a),Q(s,a)$ where</p>
+
+    <ol>
+      <li>each simulation step ==selects== a move that maximizes upper confidence bound $Q(s,a)+U(s,a)$, where $U(s,a)\propto P(s,a)/(1+N(s,a))$ until a leaf node is encountered. This basic form is also used in Alpha Go</li>
+      <li>the leaf node is then evaluated and ==expanded== only once using the prior probability and value $(P(s’,\cdot), V(s’) = f_\theta(s’))$. Notice no rollout here!</li>
+      <li>each edge $(s,a)$ traversed is then ==updated== to increment its visit count $N(s,a)$ and its action value to be the mean evaluation $Q(s,a)=\sum V(s’)/N(s,a)$.</li>
+      <li>once done, a winner $z={+1,-1}$ is stored, and the MCTS probability $\pi_a$ is computed</li>
+    </ol>
+  </li>
+  <li>
+    <p>Finally, you have basically had a improved policy and value $(\pi,z)$, you <strong>update your network</strong> to match those parameters to achieve policy improvement and policy evaluation
+\(\mathcal{L}=(z-v_\theta)^2 - \pi^T \log p_\theta + c||\theta||^2\)
+where the last term is simply a regularization.</p>
+  </li>
+  <li>
+    <p>==Note== that at the end of training/during actually play, you ==also perform the same MCTS procedure above== and select move based on the play policy $\pi$</p>
+  </li>
+</ol>
+
+<blockquote>
+  <p><strong>Note that</strong> some key difference with Alpha Go include</p>
+
+  <ul>
+    <li>
+      <p>learn RL network + value network during <strong>self-play from scratch</strong> without human knowledge</p>
+    </li>
+    <li>
+      <p>modified MCTS to</p>
+
+      <ul>
+        <li>
+          <p>use value network <strong>without roll-out</strong></p>
+        </li>
+        <li>
+          <p>modified UCB $\mathrm{UCB}(s,a)=Q(s,a)+U(s,a)$, where $U(s,a)\propto P(s,a)/[1+N(s,a)]$</p>
+        </li>
+        <li>
+          <p>final play policy $\pi$ becomes <strong>stochastic</strong> (is <em>not</em> the tree policy which is UCB)
+\(\pi(a|s) = \frac{N(s,a)^{1/\tau}}{\sum_b N(s,b)^{1/\tau}}\)
+which is then used to instruct the model $p_\theta$ to achieve policy improvement.</p>
+        </li>
+      </ul>
+    </li>
+  </ul>
+
+</blockquote>
+
+<p>And just to re-iterate the key aspects in the paper (borrowing the author’s words)</p>
+
+<blockquote>
+  <p>The AlphaGo Zero self­play algorithm can similarly be understood as an <strong>approximate policy iteration</strong> scheme in which MCTS is used for both policy improvement and policy evaluation.</p>
+
+  <ul>
+    <li>Policy improvement starts with a neural network policy, executes an MCTS based on that policy’s recommendations, and then projects the (much stronger) search policy back into the function space of the neural network.</li>
+    <li>Policy evaluation is applied to the (much stronger) search policy: the outcomes of self­play games are also projected back into the function space of the neural network. These projection steps are achieved by training the neural network parameters to match the search probabilities and self­play game outcome respectively.</li>
+  </ul>
+</blockquote>
+
+<h1 id="other-rl-topics">Other RL Topics</h1>
+
+<p>There are many other topics of RL we haven’t discussed, including:</p>
+
+<ul>
+  <li>various other methods for <strong>balancing exploration and exploitation</strong></li>
+  <li>
+    <p><strong>Federated Reinforcement Learning</strong>, e.g. using edge devices</p>
+  </li>
+  <li><strong>Multi-agent Reinforcement Learning</strong>.
+    <ul>
+      <li>Recent breakthrough achieving human level performance in Stratego, “solving” incomplete information problem</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="more-on-exploration-and-exploitation">More on Exploration and Exploitation</h2>
+
+<p>Online decision has a fundamental trade-off between exploration and exploitation. Here we want to discuss various <strong>different schemes</strong> that you can use to balance such as trade-off</p>
+
+<ul>
+  <li>e.g. MCTS contains search using tree policy = exploitation, but expands using <strong>UCB</strong>, which helps exploration</li>
+</ul>
+
+<p>Some design principles for exploration include</p>
+
+<ul>
+  <li><strong>Naive Exploration</strong>. e.g. DDPG adding <strong>noise</strong> to a policy for exploration</li>
+  <li><strong>Optimistic Initialization:</strong> initialize $\hat{Q}$ to be larger than expected reward in the beginning</li>
+  <li><strong>Optimistic in the face of uncertainty</strong>: UCB as an example
+    <ul>
+      <li>compute uncertainty over time, and prefer actions with uncertain values for exploration</li>
+    </ul>
+  </li>
+  <li><strong>Probability Matching</strong>: choose action according to some “model” you have about the reward distribution</li>
+  <li><strong>Information state search</strong>: lookahead search</li>
+</ul>
+
+<blockquote>
+  <p>For many examples below, we will ==assume a Multi-arm Bandit== problem, meaning there will be no state for simplicity</p>
+</blockquote>
+
+<h3 id="optimistic-initialization">Optimistic Initialization</h3>
+
+<p>One very simple and practical idea to guarantee exploration is to <strong>initialize $Q(a)$ to be high</strong>(er than expected reward). So that:</p>
+
+<ul>
+  <li>for actions that perform lower than that, we <strong>automatically explore</strong> other actions</li>
+</ul>
+
+<p>In practice, we can do this by:</p>
+
+<ol>
+  <li>
+    <p>initialize high $Q$</p>
+  </li>
+  <li>
+    <p>Update action value by incremental MC evaluation
+\(\hat{Q}_t(a_t) = \hat{Q}_{t-1} + \frac{1}{N_t(a_t)}(r_t - \hat{Q}_{t-1})\)</p>
+  </li>
+</ol>
+
+<p>However, this can <strong>still lock onto sub-optimal actions over time</strong>, as you will see later that both greedy/$\epsilon$-greedy + optimistic initialization will have ==linear== total regret.</p>
+
+<h3 id="regret">Regret</h3>
+
+<blockquote>
+  <p>Recall that regret aims to measure the <strong>opportunity loss</strong>, which can be measured by the difference between the optimal and your chosen action. 
+\(l_t = \mathbb [ V^* - Q(a_t)]\)
+then the total regret over time is
+\(L_t = \mathbb{E} \left[ \sum_{\tau=1}^t V^* - Q(a_\tau) \right]\)
+so minimizing regret = maximize cumulative reward</p>
+</blockquote>
+
+<p>But regret can then be reformulated using the gap $\Delta_a = V^*-Q(a)$ for every action:
+\(\begin{align*}
+L_t 
+&amp;= \mathbb{E} \left[ \sum_{\tau=1}^t V^* - Q(a_\tau) \right]\\
+&amp;= \sum_{a \in \mathcal{A}} \mathbb{E}[N_t(a)] (V^* - Q(a)) \\
+&amp;= \sum_{a \in \mathcal{A}} \mathbb{E}[N_t(a)] \Delta_a
+\end{align*}\)
+So for a good algorithm, we want to</p>
+
+<ul>
+  <li><strong>have large $N$ for small $\Delta_a$, and vice versa</strong> to minimize this (of course you need to get an accurate measure of $\Delta_a$ first)</li>
+  <li>idea is so that you would want to choose that small $\Delta_a$ action over and over.</li>
+</ul>
+
+<p>How does some simple approach perform in this metric? For multi-arm bandit:</p>
+
+<p><img src="rl_p2/image-20221209083335260.png" alt="image-20221209083335260" style="zoom:50%;" /></p>
+
+<p>so that we would like to look for a way to get <strong>sub-linear total regret</strong>.</p>
+
+<ul>
+  <li>
+    <p>if you never explore, your regret will increase lienearly.</p>
+  </li>
+  <li>
+    <p>for epsilon greedy, similar but slightly better</p>
+  </li>
+  <li>
+    <p>sub-linear: We graduating decrease $\epsilon$ over time, having more exploitation over time.</p>
+
+    <ul>
+      <li>
+        <p>decaying needs some decaying schedule. An example would be</p>
+
+        <p><img src="rl_p2/image-20221209083723566.png" alt="image-20221209083723566" style="zoom:33%;" /></p>
+
+        <p>the longer time/steps we have sampled, the less exploration. Also if $d$ is big, meaning currently making <strong>big mistakes</strong>, we want to reduce exploration</p>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<p>But remember that $d$ or $\Delta_a$ is still hard to calculate in practice as we don’t know $V^*$</p>
+
+<h3 id="upper-confidence-bound">Upper Confidence Bound</h3>
+
+<blockquote>
+  <p>What is the lower bound on Multi-arm bandit in terms of regret? Maybe we can get an algorithm <strong>if we know the lower bound?</strong></p>
+</blockquote>
+
+<p><img src="rl_p2/image-20221209084140380.png" alt="image-20221209084140380" style="zoom: 40%;" /></p>
+
+<p>For instance, let us say we have three actions, and let us model $\hat{Q}(a)$ and we are <strong>unsure of our estimate</strong>:</p>
+
+<p><img src="rl_p2/image-20221209084355759.png" alt="image-20221209084355759" style="zoom:50%;" /></p>
+
+<p>so that uncertainty for each action would be this breadth. The idea is ==the more uncertain we are about an action, the more important it is to explore it==</p>
+
+<ul>
+  <li>
+    <p>action $a_1$ has the highest breadth/uncertainty, hence pick this first</p>
+  </li>
+  <li>
+    <p>after picking blue, we would be less uncertain as this <strong>distribution shifts</strong>, and more likely to pick other actions</p>
+
+    <p><img src="rl_p2/image-20221209084614203.png" alt="image-20221209084614203" style="zoom:33%;" /></p>
+  </li>
+</ul>
+
+<blockquote>
+  <p>Therefore, we are ==optimistic in the face of uncertainty== by hoping those highly uncertain actions to be potentially very beneficial</p>
+</blockquote>
+
+<p>An example algorithm to do this is UCB</p>
+
+<ul>
+  <li>$U_t(a)$, if you never tried an action $a$, then this will be very high/high uncertainty</li>
+  <li>combine with current estimate $Q$ to combine exploration and exploitation $\hat{Q}_t(a) + \hat{U}_t(a)$</li>
+</ul>
+
+<p>so we select action maximizing UCB
+\(a_t = \arg\max_{a \in \mathcal{A}} \hat{Q}_t(a) + \hat{U}_t(a)\)
+But what is $\hat{U}_t$? It is motivated by the Hoeffding’s Inequality</p>
+
+<p><img src="rl_p2/image-20221209085118183.png" alt="image-20221209085118183" style="zoom:40%;" /></p>
+
+<p>which makes sense in the context of MAB because if we have large uncertainty, then this probability is small. Then we can use this to solve for a form of $U$:</p>
+
+<p><img src="rl_p2/image-20221209114450959.png" alt="image-20221209114450959" style="zoom:40%;" /></p>
+
+<p>and we knw that this UCB1 achieves sublinear regret on on Multi-arm bandit</p>
+
+<h3 id="baysesian-bandits">Baysesian Bandits</h3>
+
+<p>So far made no assumptions about the reward distribution, and this methods basically <strong>exploit prior knowledge of rewards</strong> by specifying a prior distribution</p>
+
+<blockquote>
+  <p>Have a prior to shape the reward distribution, and use <strong>posterior</strong> to guide exploration</p>
+</blockquote>
+
+<p>So that we essentially estimate the posterior based on the (prior probability and the sample) you get:</p>
+
+<p><img src="rl_p2/image-20221209090030872.png" alt="image-20221209090030872" style="zoom:50%;" /></p>
+
+<p>where $\alpha$ is number of times the arm gives you success, $\beta$ number of times if failed. Consider $\theta$ modeling reward we will get form this action. Consider a “success” being a reward $+1$ is given, failure gives $0$ reward</p>
+
+<ul>
+  <li>in the begnning, no idea so $\alpha=\beta=1$ meaning the machine can give you any reward</li>
+  <li>if we lost, then the average value drifts to the left</li>
+  <li>in the end, you see the average reward is about $0.7$</li>
+</ul>
+
+<p>Once done, now we have a distribution an action. We can repeat this to get a <strong>distribution for each action</strong>.</p>
+
+<p>Then, how do we decide which action to pick? Since we are doing <strong>probability matching</strong>, we want take actions respecting those probability. For instance, say you have got three distribution with mean $0.1,0.7,1.0$</p>
+
+<p><img src="rl_p2/image-20221209115006625.png" alt="image-20221209115006625" style="zoom: 25%;" /></p>
+
+<ol>
+  <li><strong>sample</strong> a reward from each curve, say $r_1=0.1,r_2=0.9,r_3=0.7$</li>
+  <li>choose an action according to the <strong>biggest reward in the sample</strong>. Hence action $a_2$</li>
+</ol>
+
+<p>Other more well-fleshed idea is <strong>Thompson Sampling</strong>:</p>
+
+<p><img src="rl_p2/image-20221209115340909.png" alt="image-20221209115340909" style="zoom: 33%;" /></p>
+
+<p>which also achieves the lower bound!</p>
+
+<p>Intuitively, this way you can <strong>naturally achieve exploration</strong>.</p>
+
+<blockquote>
+  <p>This is also ==optimistic in the face of uncertainty==, because those uncertain actions could have higher probability being $\max$ during sampling</p>
+</blockquote>
+
+<h2 id="federated-reinforcement-learning">Federated Reinforcement Learning</h2>
+
+<blockquote>
+  <p>Federated reinforcement learning is a type of reinforcement learning in which multiple agents or agents <strong>across multiple devices</strong> learn to solve a common problem while maintaining the privacy and autonomy of their local data.</p>
+</blockquote>
+
+<p>This can be useful in situations where the data that is used to train the learning algorithm is distributed across multiple devices or agents, and where it is not feasible or desirable to centralize the data. (somewhat similar to A3C idea)</p>
+
+<p><img src="rl_p2/image-20221209092706109.png" alt="image-20221209092706109" style="zoom: 60%;" /></p>
+
+<ul>
+  <li><strong>Advantages</strong>: No need for centralized training data collection and centralized, data privacy, edge intelligence, learning quality</li>
+  <li><strong>Disadvantages</strong>: New threats and attacks to distributed participants (e.g., <strong>backdoor attack</strong>), <strong>communications overhead</strong>, varying data quality, selection of FL participant</li>
+  <li>to some extent this is similar to A3C</li>
+</ul>
+
+<p>Another approach is learning on the edge:</p>
+
+<p><img src="rl_p2/image-20221209093137300.png" alt="image-20221209093137300" style="zoom: 33%;" /></p>
+
+<p>Or you could also have a fully distributed workflow</p>
+
+<p><img src="rl_p2/image-20221209115720811.png" alt="image-20221209115720811" style="zoom:33%;" /></p>
+
+<h2 id="multi-agent-reinforcement-learning">Multi-Agent Reinforcement Learning</h2>
+
+<p>Categories in MARL:</p>
+
+<ul>
+  <li>agents are <strong>cooperative</strong></li>
+  <li>agents are <strong>competitive</strong></li>
+  <li><strong>hybrid</strong>, intra-group cooperation but inter-group competitive</li>
+</ul>
+
+<p>Architectures can look like:</p>
+
+<p><img src="rl_p2/image-20221209115820150.png" alt="image-20221209115820150" style="zoom:50%;" /></p>
+
+<p>An example success if DeepNash, where the there is <strong>incomplete information</strong> in the game as well</p>
+
+<p><img src="rl_p2/image-20221209093550846.png" alt="image-20221209093550846" style="zoom: 33%;" /></p>
+
+<blockquote>
+  <p>From the paper abstract:</p>
+
+  <ul>
+    <li>We introduce DeepNash, an autonomous agent that plays the imperfect information game Stratego at a human expert level.</li>
+    <li>Stratego requires long- term strategic thinking as in chess, but it also requires dealing with <strong>imperfect information</strong> as in poker.</li>
+    <li>The technique underpinning DeepNash uses a game-theoretic, model-free deep reinforcement learning method, <strong>without search</strong>, that learns to master Stratego through <strong>self-play from scratch</strong>.</li>
+  </ul>
+</blockquote>
+
+<h1 id="rl-part-2-review">RL Part 2 Review</h1>
+
+<ul>
+  <li>VFA: estimate $Q \gets \hat{Q}$
+    <ul>
+      <li>linear approach doing $\hat{Q}=x(s,a)W$</li>
+      <li>define loss function using MSE</li>
+      <li>gradient has the form $\mathbb{E}[2(\cdot ) \nabla x]$
+        <ul>
+          <li>if using Q-learning, then the omitted part will be $r+\max_a Q(s’,a’)-Q(s,a)$, etc</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Policy Gradient: score function that the gradient of the loss for improving policy is $Q\cdot\nabla \ln \pi / \mu$
+    <ul>
+      <li>probably a question on calculating this</li>
+    </ul>
+  </li>
+  <li>Planning and Learning: planning and learning loop, MCTS</li>
+  <li>DRL: differences between DPG and PG, the latter being stochastic policy. More efficient since the action space don’t need to integrated over</li>
+  <li>This chapter: trade off between exploration and exploitation, and different methods</li>
+</ul>
+
+  </div><a class="u-url" href="/lectures/2022@columbia/ELEN6885_Reinforcement_Learning_part2.html/" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/lectures/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Lecture Notes</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Lecture Notes</li><li><a class="u-email" href="mailto:jasonyux17@gmail.com">jasonyux17@gmail.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/jasonyux"><svg class="svg-icon"><use xlink:href="/lectures/assets/minima-social-icons.svg#github"></use></svg> <span class="username">jasonyux</span></a></li><li><a href="https://www.linkedin.com/in/xiao-yu2437"><svg class="svg-icon"><use xlink:href="/lectures/assets/minima-social-icons.svg#linkedin"></use></svg> <span class="username">xiao-yu2437</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>An inexhaustive collection of markdown/latex(PDF) notes that I took since college. </p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

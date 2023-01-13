@@ -1,0 +1,1869 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>COMS4995 Deep Learning part2 | Lecture Notes</title>
+<meta name="generator" content="Jekyll v4.3.1" />
+<meta property="og:title" content="COMS4995 Deep Learning part2" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Deep Learning Part 2" />
+<meta property="og:description" content="Deep Learning Part 2" />
+<link rel="canonical" href="/lectures/2021@columbia/COMS4995_Deep_Learning_part2.html/" />
+<meta property="og:url" content="/lectures/2021@columbia/COMS4995_Deep_Learning_part2.html/" />
+<meta property="og:site_name" content="Lecture Notes" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-04-21T00:00:00-04:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="COMS4995 Deep Learning part2" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2022-04-21T00:00:00-04:00","datePublished":"2022-04-21T00:00:00-04:00","description":"Deep Learning Part 2","headline":"COMS4995 Deep Learning part2","mainEntityOfPage":{"@type":"WebPage","@id":"/lectures/2021@columbia/COMS4995_Deep_Learning_part2.html/"},"url":"/lectures/2021@columbia/COMS4995_Deep_Learning_part2.html/"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/lectures/assets/main.css"><link type="application/atom+xml" rel="alternate" href="/lectures/feed.xml" title="Lecture Notes" /></head>
+<body><header class="site-header">
+
+	<div class="wrapper"><a class="site-title" rel="author" href="/lectures/">Lecture Notes</a>
+
+		<nav class="site-nav">
+			<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+			<label for="nav-trigger">
+			<span class="menu-icon">
+				<svg viewBox="0 0 18 15" width="18px" height="15px">
+				<path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+				</svg>
+			</span>
+			</label>
+
+			<div class="trigger">
+				<a class="page-link" href="/">Home</a>
+				<a class="page-link" href="/projects">Projects</a>
+				<a class="page-link" href="/learning">Blog</a>
+				<a class="page-link" href="/research">Research</a>
+				<span class="page-link" href="#">[Education]</span>
+			</div>
+		</nav>
+	</div>
+  </header><main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <head>
+	<script>
+		MathJax = {
+		  tex: {
+			inlineMath: [['$', '$'], ['\\(', '\\)']],
+			displayMath: [['$$', '$$'], ['\\[', '\\]']]
+		  }
+		};
+	</script>
+	<script id="MathJax-script" async
+		src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+	</script>
+  </head>
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">COMS4995 Deep Learning part2</h1>
+    <p class="post-meta"><time class="dt-published" datetime="2022-04-21T00:00:00-04:00" itemprop="datePublished">
+        Apr 21, 2022
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>Deep Learning Part 2</p>
+
+<h1 id="automated-machine-learning">Automated Machine Learning</h1>
+
+<p>The idea is to, given some task and its dataset, find a ML algorithm (including the five pieces shown below) that solves a problem</p>
+
+<p><img src="DL_notes_part2/image-20220322142544019.png" alt="image-20220322142544019" style="zoom:50%;" /></p>
+
+<p>where the training data/task/solution could come from Kaggle, as a label composed of the following 5 pieces:</p>
+
+<p><img src="DL_notes_part2/image-20220322142138049.png" alt="image-20220322142138049" style="zoom: 50%;" /></p>
+
+<ul>
+  <li><strong>pre-processing</strong>: which imputation method if needed?</li>
+  <li><strong>feature extraction</strong>: which encoding to use? backbone?</li>
+  <li><strong>feature selection</strong>: should we do dimensionality reduction?</li>
+  <li><strong>model/predictor</strong>: which classifier?</li>
+  <li><strong>post processing</strong></li>
+</ul>
+
+<p>Such an idea of ==automatically finding== best tools could be applied to a range of similar tasks such as:</p>
+
+<ul>
+  <li>
+    <p>automated <strong>activation function</strong> finding:</p>
+
+    <p><img src="DL_notes_part2/image-20220322152105804.png" alt="image-20220322152105804" style="zoom: 60%;" /></p>
+
+    <p>where essentially we given in <em>building blocks</em> to compose some activation function, and ask it to find a best one</p>
+  </li>
+  <li>
+    <p>automated <strong>optimizer</strong> finding, where again we feed in ==building blocks== for an optimizer</p>
+
+    <p><img src="DL_notes_part2/image-20220322152256184.png" alt="image-20220322152256184" style="zoom: 75%;" /></p>
+
+    <p>and under some tasks, the best solution could be:
+\(\text{PowerSign} = \alpha^{f(t)*\text{sign}(g)*\text{sign}(m)}*g\)
+for $g$ being gradient and $m$ being momentum.</p>
+  </li>
+  <li>
+    <p>automated <strong>data augmentation</strong> finding. Again, consider a space of possible actions:</p>
+
+    <p><img src="DL_notes_part2/image-20220322152536897.png" alt="image-20220322152536897" style="zoom:80%;" /></p>
+  </li>
+  <li>
+    <p>automated algorithm selection</p>
+  </li>
+  <li>
+    <p>automated <strong>hyperparameters</strong> finding: Grid Search v.s. Random Search</p>
+  </li>
+  <li>
+    <p>automated architecture finding</p>
+  </li>
+  <li>
+    <p>and etc.</p>
+  </li>
+</ul>
+
+<h2 id="automl">AutoML</h2>
+
+<p>The idea is to have:</p>
+
+<ul>
+  <li>input some task + data of a problem</li>
+  <li>output a ML system that you can use to do predictions</li>
+</ul>
+
+<p><img src="DL_notes_part2/image-20220322152751963.png" alt="image-20220322152751963" style="zoom: 50%;" /></p>
+
+<p>Some nowadays implemented ones look like:</p>
+
+<ul>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">autosklearn</code></p>
+
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">autosklearn.classification</span> <span class="c1"># classification task
+</span><span class="n">cls</span> <span class="o">=</span> <span class="n">autosklearn</span><span class="p">.</span><span class="n">classification</span><span class="p">.</span><span class="n">AutoSklearnClassifier</span><span class="p">()</span>
+<span class="n">cls</span><span class="p">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">Y_train</span><span class="p">)</span>
+<span class="n">predictions</span> <span class="o">=</span> <span class="n">cls</span><span class="p">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">flaml</code></p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">h20</code></p>
+  </li>
+  <li>
+    <p>etc.</p>
+  </li>
+</ul>
+
+<blockquote>
+  <p><strong>Note</strong> that this of course does not really find the best tuning of the model, it only finds some pipeline/architecture. To find the best hyperparameters, checkout the section on <a href="#Hyperparameters Finding">Automated Hyperparameter Finding</a></p>
+</blockquote>
+
+<h3 id="meta-data">Meta Data</h3>
+
+<p>How do we represent the task/dataset/solution as a feature in the AutoML system?</p>
+
+<blockquote>
+  <p>Instead of putting the entire task/dataset as it, consider computing some <strong>meta data</strong> about the task/dataset/solution.</p>
+</blockquote>
+
+<p>Hence we consider:</p>
+
+<p><img src="DL_notes_part2/image-20220322153446273.png" alt="image-20220322153446273" style="zoom: 50%;" /></p>
+
+<p>for instance, metadata features for dataset include:</p>
+
+<ul>
+  <li>number of data points</li>
+  <li>number of features</li>
+  <li>number of missing values</li>
+  <li>class entropy</li>
+  <li>etc.</li>
+</ul>
+
+<h2 id="hyperparameters-finding">Hyperparameters Finding</h2>
+
+<p>Certain hyperparameters we commonly care about are:</p>
+
+<ul>
+  <li>learning rate $\alpha$</li>
+  <li>momentum $\beta$</li>
+  <li>minibatch size</li>
+  <li>learning rate decay</li>
+  <li>etc.</li>
+</ul>
+
+<p>The easiest approach is to consider grid search. However, this is often inefficient as it <strong>assumes each parameter being equally important</strong>.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Grid Search</th>
+      <th style="text-align: center">Random Search</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><img src="DL_notes_part2/image-20220322153943284.png" alt="image-20220322153943284" style="zoom:50%;" /></td>
+      <td style="text-align: center"><img src="DL_notes_part2/image-20220322153946013.png" alt="image-20220322153946013" style="zoom:50%;" /></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>consider random search</p>
+
+<ul>
+  <li>
+    <p>not all hyperparameters are equally important. For example, <code class="language-plaintext highlighter-rouge">lr</code> might be more important than decay coefficient $\gamma$.</p>
+  </li>
+  <li>
+    <p>if you look at the range of values covered by important parameter, grid search only searched $3$ possible values, whereas random search searched $6\sim 7$ different values</p>
+  </li>
+</ul>
+
+<p>Several other ways include:</p>
+
+<ul>
+  <li>
+    <p><strong>adaptive</strong> search in certain regions where we found good candidates:</p>
+
+    <p><img src="DL_notes_part2/image-20220324131827277.png" alt="image-20220324131827277" style="zoom: 50%;" /></p>
+
+    <p>i.e. make the search more dense in that area</p>
+  </li>
+  <li>
+    <p>converting the problem to a <strong>RL task</strong>. Consider this as a multi-arm bandit: we pull an arm (sample in the hyperparameter space), the <strong>reward</strong> is the performance/training time, etc</p>
+  </li>
+  <li>
+    <p><strong>Bayesian optimization</strong>. see section <a href="#Bayesian Optimization">Bayesian Optimization</a>.</p>
+  </li>
+</ul>
+
+<h2 id="algorithm-and-hyperparameter-selection">Algorithm and Hyperparameter Selection</h2>
+
+<blockquote>
+  <p>Instead of finding the algorithm and the hyperparameters, consider <strong>finding them jointly</strong>.</p>
+</blockquote>
+
+<p>Given a dataset $D$, find the algorithm $A$ (e.g. linear regression, decision tree, etc) <strong>and</strong> a hyperparameter such that we <strong>minimize the loss of $A$ on $D_{test}$</strong> when trained on $D_{train}$:
+\(A^*_{\theta^*} = \arg\min_{A,\theta} \sum \mathcal{L}(A_\theta, D_{train}, D_{valid})\)
+The algorithms and hyperparameters you can search through could be:</p>
+
+<p><img src="DL_notes_part2/image-20220324133718072.png" alt="image-20220324133718072" style="zoom:50%;" /></p>
+
+<h2 id="ensemble-of-models">Ensemble of Models</h2>
+
+<blockquote>
+  <p><strong>Idea</strong>: When you have multiple potential models for a single task, instead of choosing one single model, we can keep all models.</p>
+</blockquote>
+
+<p>The simplest ensembling is the following: given a test sample point $x$:</p>
+
+<ul>
+  <li><strong>for each model $m$</strong>: perform prediction for probability of $x$ in the $j$-th class, i.e. $p^{(j)}$</li>
+  <li><strong>for each class $j$:</strong> do <strong>averages</strong> of probability for each model</li>
+  <li>take $\arg\max_j$ to split out the prediction</li>
+</ul>
+
+<p>\(y = \arg\max_j \frac{1}{m} \left( \sum_{i=1}^m p_i^{(j)} \right)\)
+This would be the <strong>simplest form</strong> of assembling. Other ways would be <strong>stacking</strong></p>
+
+<h3 id="model-stacking">Model Stacking</h3>
+
+<p>One problem with performing the simple ensemble above is that, for a new given test data $x$, you will need a <strong>central place to store all the models</strong>. This might not be efficient and desirable.</p>
+
+<blockquote>
+  <p><strong>Goal</strong>: is there a way to collaborate <strong>without sharing a central repo for code/models</strong>?</p>
+
+  <p><strong>Idea</strong>: consider building a super model that trains on <em>outputs of each model</em>.</p>
+</blockquote>
+
+<p>This means that, for each model $m$:</p>
+
+<ul>
+  <li>define the <strong>same CV folds</strong> for all models</li>
+  <li>ask each model to <strong>keep the predictions</strong> for each fold $i$.</li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">CV Fold 1</th>
+      <th style="text-align: center">CV Fold 2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><img src="DL_notes_part2/image-20220324154011972.png" alt="image-20220324154011972" /></td>
+      <td style="text-align: center"><img src="DL_notes_part2/image-20220324154344375.png" alt="image-20220324154344375" /></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Then the idea is to take the predictions from each model as a <strong>meta-feature</strong> that you can feed in to a super-model:</p>
+
+<p><img src="DL_notes_part2/image-20220324154645301.png" alt="image-20220324154645301" style="zoom: 67%;" /></p>
+
+<p>The key idea is so that:</p>
+
+<ul>
+  <li>we only need each team for model $m$ to work on their own</li>
+  <li>building a super model then is just build a model, we don’t need to look into codes of other teams</li>
+</ul>
+
+<h2 id="neural-architecture-search">Neural Architecture Search</h2>
+
+<p>Developing novel neural architectures manually is time consuming, error prone. Now you can use <strong>automatic methods for searching for neural network architectures</strong>: AutoKeras (CNN, RNN), AutoGAN, AutoGNN.</p>
+
+<blockquote>
+  <p><strong>For deep learning models</strong>, we might consider ==combining many different algorithms== in a pipeline such as CNN as backbone and then Transformers.</p>
+</blockquote>
+
+<p>Most packages cover two possible architecture shape:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Chain</th>
+      <th style="text-align: center">DAG</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><img src="DL_notes_part2/image-20220324155629798.png" alt="image-20220324155629798" /></td>
+      <td style="text-align: center"><img src="DL_notes_part2/image-20220324155651998.png" alt="image-20220324155651998" /></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>However, <strong>another approach</strong> would be a RL like task:</p>
+
+<ul>
+  <li>ask NN controller to generate an architecture (take action)</li>
+  <li>evaluate performance (get reward)</li>
+  <li>get feed back to NN controller (update)</li>
+</ul>
+
+<p><img src="DL_notes_part2/image-20220324134011709.png" alt="image-20220324134011709" style="zoom: 50%;" /></p>
+
+<h3 id="darpa">DARPA</h3>
+
+<blockquote>
+  <p>DARPA Data Driven Discovery of Models (D3M): solve any well defined ML task on any dataset specified by a user.</p>
+</blockquote>
+
+<ol>
+  <li>Broad set of computational <strong>primitives</strong> as machine learning building blocks.
+    <ul>
+      <li>e.g. implementing PCA, Linear layers, etc.</li>
+    </ul>
+  </li>
+  <li><strong>Automatic</strong> systems for machine learning, synthesize pipeline and hyperparameters to solve a previously unknown data and problem.
+    <ul>
+      <li>given a test dataset and task in a Docker image, ask your code to generate a model and predict</li>
+    </ul>
+  </li>
+  <li><strong>Human</strong> in the loop user interface that enables users to interact with and improve the automatically generated results.
+    <ul>
+      <li>maybe user only wants a subset of models to choose from, etc.</li>
+    </ul>
+  </li>
+</ol>
+
+<p>The outcome from such a project are two methods where you either:</p>
+
+<ul>
+  <li>
+    <p><strong>Gradient-based</strong>: have differentiable primitives, build a DAG, and optimize end-to-end using backprop:</p>
+
+    <p><img src="DL_notes_part2/image-20220324134352891.png" alt="image-20220324134352891" style="zoom:50%;" /></p>
+  </li>
+  <li>
+    <p><strong>Reinforcement-based</strong>: since essentially it is a search in high dimensional space,</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th style="text-align: center">Idea</th>
+          <th style="text-align: center">Parallel in RL</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="text-align: center"><img src="DL_notes_part2/image-20220324160954905.png" alt="image-20220324160954905" style="zoom: 80%;" /></td>
+          <td style="text-align: center"><img src="DL_notes_part2/image-20220324161009596.png" alt="image-20220324161009596" style="zoom:80%;" /></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>in this approach, the <strong>entire pipeline is a single state</strong>. Therefore we need some kind of encoding for the pipeline, which can be done by:</p>
+
+    <p><img src="DL_notes_part2/image-20220324134723681.png" alt="image-20220324134723681" style="zoom:50%;" /></p>
+  </li>
+</ul>
+
+<p>A brief comparison on performance</p>
+
+<p><img src="DL_notes_part2/image-20220324161321505.png" alt="image-20220324161321505" style="zoom: 67%;" /></p>
+
+<p>where the horizontal line is the gradient-based method, we see that RL-based in doing better.</p>
+
+<h3 id="rl-based-pipeline-synthesis">RL-based Pipeline Synthesis</h3>
+
+<p>Recall that</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Deep RL</th>
+      <th style="text-align: center">Pipeline Synthesis</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><img src="DL_notes_part2/image-20220324161652671.png" alt="image-20220324161652671" style="zoom:67%;" /></td>
+      <td style="text-align: center"><img src="DL_notes_part2/image-20220324161712502.png" alt="image-20220324161712502" style="zoom:67%;" /></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>where essentially:</p>
+
+<ul>
+  <li>DNN now receives an entire pipeline, meta features and task as input, and <strong>estimates action probabilities</strong> as well as <strong>rewards</strong>, i.e. performance</li>
+  <li>MCTS then receives the data from DNN and <strong>search for next action</strong></li>
+  <li>an <strong>action</strong> here would be modification/insertion/deletion of a certain primitive in the pipeline.</li>
+</ul>
+
+<p>However, this tree search by default could also hit on certain meaningless pipelines such as estimator and then preprocessing. Hence you can enforce a <strong>grammar</strong> to only accept valid ones, i.e. giving some prior knowledge.</p>
+
+<p>The performance becomes better</p>
+
+<p><img src="DL_notes_part2/image-20220324135000791.png" alt="image-20220324135000791" style="zoom: 80%;" /></p>
+
+<p>In the end, an ablation study is done on using the DNN or not. The result is similar but time performance is drastic</p>
+
+<p><img src="DL_notes_part2/image-20220324162040893.png" alt="image-20220324162040893" style="zoom:67%;" /></p>
+
+<p>basically just MCTS would be very slow.</p>
+
+<h2 id="matrix-completion-and-automl">Matrix Completion and AutoML</h2>
+
+<p>It turns out the idea behind AutoML can be extended to/related to many applications in real life.</p>
+
+<blockquote>
+  <p>Another task would be a <strong>recommendation system</strong>, where given some past user’s ratings/history, fill in how <strong>likely users will like a certain film</strong>.</p>
+</blockquote>
+
+<p>The problem can be setup as a matrix:</p>
+
+<ul>
+  <li>each user being $j=1,..,p$</li>
+  <li>each item, e.g. movie, being $i=1,…,n$</li>
+  <li>each cell represent rating $Y_{ij}$ a user $j$  gave to item $i$</li>
+</ul>
+
+<p><img src="DL_notes_part2/image-20220324162316215.png" alt="image-20220324162316215" style="zoom:67%;" /></p>
+
+<p>where this would be a sparse matrix in general as many users won’t see all contents.</p>
+
+<ul>
+  <li>the task is then to <strong>complete the matrix</strong>, so that we can perhaps <strong>recommend</strong> to users</li>
+</ul>
+
+<p>In terms of AutoML, we are basically doing:</p>
+
+<p><img src="DL_notes_part2/image-20220324162549833.png" alt="image-20220324162549833" style="zoom:67%;" /></p>
+
+<p>where if fully filled, we can find the best algorithms given a dataset.</p>
+
+<hr />
+
+<p><strong>Naive Solution of Filling Matrix:</strong></p>
+
+<p>Let each item have a ==known feature vector== $\vec{x}^{(i)}$. We want to learn some parameters $\theta^{(j)}$ of each user and assume that $\theta^{(j)^T}x^{i}$ would model their preference score. Then:
+\(\min_{\theta^{(j)}} \frac{1}{2} \sum_{i:M_{ij}=1} \left(\theta^{(j)^T}x^{i} - Y_{ij}\right)^2 + \text{Regularize}(\theta^{(j)})\)
+note that since we only know part of the matrix:</p>
+
+<ul>
+  <li>$i:M_{ij}=1$ means we are only fitting on the known parts</li>
+  <li>then we can predict once we learnt $\theta^{(j)}$ for each user $j$</li>
+</ul>
+
+<p>This model is actually the simple content-based recommendation system</p>
+
+<p><img src="DL_notes_part2/image-20220324163254898.png" alt="image-20220324163254898" style="zoom: 50%;" /></p>
+
+<p><strong>Problem</strong>: In tasks AutoML needs to solve, we are usually given a ==unknown/new dataset and task==. I.e. we are having a new item with unknown $\vec{x}^{i}$.</p>
+
+<p>Then, the idea is to do a EM-like approach:</p>
+
+<ul>
+  <li>assume you know $x^{(i)}$, fit $\theta^{(j)}$</li>
+  <li>then once you get $\theta^{(j)}$ fit $x^{(i)}$ back</li>
+</ul>
+
+<p>So the entire task can be seen as
+\(\min_{\theta^{(j)},x^{(i)}} \frac{1}{2} \sum_{i:M_{ij}=1} \left(\theta^{(j)^T}x^{i} - Y_{ij}\right)^2 + \text{Regularize}(x^{(i)}) + \text{Regularize}(\theta^{(j)})\)
+which then we can fill in all items in the matrix. Note that:</p>
+
+<ul>
+  <li>
+    <p>this model only using dot products can be rephrased into a <strong>lower rank decomposition</strong> and imputation</p>
+
+    <p><img src="DL_notes_part2/image-20220324135719482.png" alt="image-20220324135719482" style="zoom: 50%;" /></p>
+  </li>
+</ul>
+
+<blockquote>
+  <p>The upshot is that for AutoML, we can keep past experience with different dsets and architecture as elements in the matrix, and treat the matrix as a <strong>warm start for MCTS search.</strong> (i.e. use that as initialization)</p>
+</blockquote>
+
+<h2 id="using-meta-embeddings">Using Meta Embeddings</h2>
+
+<p>When approaching an ML or DS problem humans read the documentation</p>
+
+<ul>
+  <li>Description of data and task</li>
+  <li>Description of machine learning functions available for solution</li>
+  <li>How can we allow an <strong>AutoML method to “read the descriptions or manual”</strong>? (in addition of the actual datasets)</li>
+</ul>
+
+<blockquote>
+  <p>Use large scale transformer models to <strong>represent descriptions</strong> of the dataset, task, etc, in addition to the dataset itself.</p>
+</blockquote>
+
+<p>It turns out that just using the metadata could do equally well even if you haven’t seen the actual dataset</p>
+
+<p><img src="DL_notes_part2/image-20220324140307276.png" alt="image-20220324140307276" style="zoom:67%;" /></p>
+
+<p>One potential representation would be computing a <strong>graph embedding</strong>: embedding of dataset that are similar should be close.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Dataset Embedding</th>
+      <th style="text-align: center">AutoML Architecture with Meta data</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><img src="DL_notes_part2/image-20220324180536406.png" alt="image-20220324180536406" style="zoom:67%;" /></td>
+      <td style="text-align: center"><img src="DL_notes_part2/image-20220324140500517.png" alt="image-20220324140500517" style="zoom: 50%;" /></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>where:</p>
+
+<ul>
+  <li>nodes in a graph would represent a dataset</li>
+  <li>edge would be based on embedding of dataset descriptions and meta-features</li>
+  <li>this is bascially the approach now: using GNN combined into AutoML systems</li>
+</ul>
+
+<p>Then you use <strong>assembling</strong> to those AutoML systems as well</p>
+
+<p><img src="DL_notes_part2/image-20220324180807518.png" alt="image-20220324180807518" style="zoom:80%;" /></p>
+
+<h2 id="bayesian-optimization">Bayesian Optimization</h2>
+
+<p>Here we cover another popular technique other than random search and grid search for hyperparameter selection.</p>
+
+<blockquote>
+  <p><strong>Goal</strong>: Given some model and a loss function, <strong>select model hyperparameters</strong> such that the loss would be small.</p>
+</blockquote>
+
+<p>We would want:
+\(z^* = \arg\min \mathcal{L}(M_z)\)
+and we want to approximate best hyperparameter $z^*$ that minimizes the loss within only <strong>a few steps $z_1,…,z_n$</strong>.</p>
+
+<p>The idea is:</p>
+
+<ol>
+  <li>
+    <p>have some <strong>prior</strong> on the objective function, say $f$, which could be the loss/some performance metric</p>
+  </li>
+  <li>
+    <p>each time we evaluate $f$ at a new point $z_i\equiv x_i$, we update our model for $f(x)$</p>
+  </li>
+  <li>
+    <p>use posterior to derive/update <strong>acquisition function $\alpha(x)$</strong>
+\(\alpha(x) = \mu(x) - k \sigma(x)\)
+where $\mu(x),\sigma(x)$ are mean and std. of posterior at point $x$. Here $k$ controls the trade of between exploration and exploitation:</p>
+
+    <ul>
+      <li>if small $k$, then the $\arg\min$ in the next step favors small $\mu(x)$, o.e. <strong>exploitation</strong></li>
+      <li>if large $k$, then <strong>exploration</strong></li>
+    </ul>
+  </li>
+  <li>
+    <p>use the acquisition function to determine the next point
+\(x_{i+1} = \arg\min \alpha(x)\)
+and continue from step 2</p>
+  </li>
+</ol>
+
+<p>Graphically, suppose we have already sampled three points $x_1,x_2,x_3$, e.g. learning rate. We are interested in <strong>which point to sample next</strong>:</p>
+
+<p><img src="DL_notes_part2/image-20220324182138908.png" alt="image-20220324182138908" style="zoom:80%;" /></p>
+
+<p>where</p>
+
+<ul>
+  <li>the blue part would be the <strong>confidence intervals</strong></li>
+  <li>the black line would be the <strong>true function</strong> which we don’t know</li>
+</ul>
+
+<p>Now, depending how we choose $k$, the acquisition function could look differently:</p>
+
+<p><img src="DL_notes_part2/image-20220324182943833.png" alt="image-20220324182943833" style="zoom: 33%;" /></p>
+
+<p>For instance:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Exploitation</th>
+      <th style="text-align: center">In between</th>
+      <th style="text-align: center">Upper Confidence Bound</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><img src="DL_notes_part2/image-20220324182818062.png" alt="image-20220324182818062" /></td>
+      <td style="text-align: center"><img src="DL_notes_part2/image-20220324182751888.png" alt="image-20220324182751888" /></td>
+      <td style="text-align: center"><img src="DL_notes_part2/image-20220324182745786.png" alt="image-20220324182745786" /></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>where the</p>
+
+<ul>
+  <li>exploitation would result in $x_{i+1}$ in lower confidence bound</li>
+</ul>
+
+<p>The algorithm hence looks like</p>
+
+<p><img src="DL_notes_part2/image-20220324183029861.png" alt="image-20220324183029861" style="zoom: 50%;" /></p>
+
+<p>And in practice, <code class="language-plaintext highlighter-rouge">sklearn</code> already implemented such a search. It has a function which uses a flag to either do Grid Search, Random Search, or Bayesian Optimizations.</p>
+
+<h1 id="multi-task-learning">Multi-Task Learning</h1>
+
+<blockquote>
+  <p>In the real word, <strong>solving a problem = solving many tasks</strong> at the same time.</p>
+</blockquote>
+
+<p>For instance, consider self-driving cars</p>
+
+<p><img src="DL_notes_part2/image-20220324183210597.png" alt="image-20220324183210597" style="zoom:80%;" /></p>
+
+<p>where we need to do:</p>
+
+<ul>
+  <li>object detection for pedestrians, other cars, etc</li>
+  <li>RL learning driving</li>
+  <li>dehazing if needed</li>
+  <li>etc.</li>
+</ul>
+
+<p>Some questions we want to answer here include:</p>
+
+<ul>
+  <li>
+    <p>do we want to build predictors doing <strong>independent work for each task</strong>?</p>
+
+    <p><img src="DL_notes_part2/image-20220324183353600.png" alt="image-20220324183353600" style="zoom: 50%;" /></p>
+  </li>
+  <li>
+    <p>independent predictors but using the <strong>same backbone</strong>?</p>
+
+    <p><img src="DL_notes_part2/image-20220324183336235.png" alt="image-20220324183336235" style="zoom:50%;" /></p>
+  </li>
+  <li>
+    <p>or maybe <strong>one model for all tasks</strong>? i.e. one neural network for learning multiple tasks: all-in-one</p>
+  </li>
+</ul>
+
+<h2 id="independent-network">Independent Network</h2>
+
+<p>The simplest approach for solving $N$ different task would be to have the following architecture</p>
+
+<p><img src="DL_notes_part2/image-20220329150812694.png" alt="image-20220329150812694" style="zoom:50%;" /></p>
+
+<p>Some <strong>advantages</strong></p>
+
+<ul>
+  <li>simple to build</li>
+  <li>do not need to</li>
+</ul>
+
+<p>some <strong>disadvantages</strong></p>
+
+<ul>
+  <li>no sharing hence no positive transfers</li>
+  <li>not resource efficient</li>
+</ul>
+
+<blockquote>
+  <p><strong>Positive Transfer</strong> refers to the <strong>facilitation</strong>, in learning or performance, of a <strong>new/second task</strong> based on what has been learned during a previous one.</p>
+
+  <p><strong>Negative transfer</strong> refers to any <strong>decline</strong> in learning or performance of a <strong>second task</strong> due to learning a previous one.</p>
+</blockquote>
+
+<h2 id="multi-task-learning-questions">Multi-Task Learning Questions</h2>
+
+<blockquote>
+  <p>In reality, we have multiple heterogeneous tasks with different importance, difficulty, number of samples, noise level</p>
+</blockquote>
+
+<p>Some questions you might think about to develop an architecture:</p>
+
+<ul>
+  <li>How do <strong>tasks influence one another</strong>? Does each task help the other tasks? or is there negative transfer?
+    <ul>
+      <li>e.g. if we train backbone + detection head 1 on pedestrian detection, will it hurt the performance for same backbone + detection head 2 on car detection?</li>
+      <li>Are the tasks similar? Heterogeneous?</li>
+    </ul>
+  </li>
+  <li>How to share weights between different tasks?
+    <ul>
+      <li>e.g. shared backbone? <a href="#Layer Routing">Layer Routing</a>?</li>
+    </ul>
+  </li>
+  <li>How does network size influence MTL?</li>
+  <li>How does dataset size and distribution of number of samples per task influence MTL?</li>
+</ul>
+
+<h2 id="zeroonefew-shot-learning">Zero/One/Few Shot Learning</h2>
+
+<p>This is relevant in <strong>transfer learning</strong>. I.e. suppose you have fitted your model on some data from domain $D_A$. You want to see how well it can perform <strong>on a different domain $D_B$</strong>:</p>
+
+<blockquote>
+  <p><strong>Few-shot learning</strong> aims for ML models to predict the correct class of instances when <em>a small number of examples</em> are available in the $D_B$.</p>
+
+  <p><strong>$N$-shot learning</strong> aims to predict the correct class when $N$ examples for each class in the $D_B$.</p>
+
+  <p><strong>Zero-shot learning</strong> aims to predict the correct class <em>without being exposed to any instances belonging to that class</em> in $D_B$.</p>
+</blockquote>
+
+<p>In general you have $k$-shot $n$-ways, for $n$-ways being the number of classes.</p>
+
+<p>Why is this relevant? One way to see it is that if our <strong>model can perform well on few/one-shot</strong>, then:</p>
+
+<p><img src="DL_notes_part2/image-20220329132903813.png" alt="image-20220329132903813" style="zoom:50%;" /></p>
+
+<p>all we need is a <strong>single model</strong> with a few-shot examples to <strong>solve multiple tasks</strong>.</p>
+
+<ul>
+  <li><strong>Advantage</strong>: models trained on multiple tasks at once are more robust to adversarial attacks on individual tasks</li>
+  <li><strong>Disadvantage</strong>: hard to get it to work</li>
+</ul>
+
+<h2 id="shared-backbone">Shared Backbone</h2>
+
+<p>Consider the setup of:</p>
+
+<ul>
+  <li>input $x$</li>
+  <li>need to solve $T$ tasks, $t=1,…,T$</li>
+  <li>output of each task is $y_t$</li>
+</ul>
+
+<p>Suppose we are given $N$ training data, being ${x^{(i)}, y_1^{(i)},…, y_T^{(i)}}_{i=1}^T$. We consider the architecture of</p>
+
+<p><img src="DL_notes_part2/image-20220329151752499.png" alt="image-20220329151752499" style="zoom: 50%;" /></p>
+
+<p>where</p>
+
+<ul>
+  <li>again the backbone would take the role of feature extractor</li>
+  <li>
+    <p>we can also see this as the backbone being “encoder”, and the three tasks being three different “decoders”</p>
+  </li>
+  <li><strong>Advantages</strong>: efficient runtime</li>
+  <li><strong>Disadvantages</strong>: could be over-sharing, negative transfer</li>
+</ul>
+
+<p>Then specifically, we have:</p>
+
+<ul>
+  <li>
+    <p><strong>shared</strong> backbone network $f$ with parameter $\theta_s$</p>
+  </li>
+  <li>
+    <p>task-specific decoder network would be $g_t$ for each task $t$, with parameter $\theta_t$</p>
+  </li>
+  <li>
+    <p><strong>task-specific loss</strong> would be defined as
+\(\mathcal{L}_t(\theta_t, \theta_s)=\frac{1}{N}\sum_i \mathcal{L}_t(g_t(f(x;\theta_s);\theta_t),y_t)\)</p>
+  </li>
+</ul>
+
+<blockquote>
+  <p><strong>Note</strong> that though for each task you can define your own loss, ==what happens when we update $\theta_s$==? There will be $T$ different losses for a single $\theta_s$. How do we update that?</p>
+</blockquote>
+
+<h3 id="linear-scalarization-of-mtl">Linear Scalarization of MTL</h3>
+
+<blockquote>
+  <p><strong>Aim</strong>: we want to solve for the best combination of all parameters $\theta_s$ and $\theta_{t_1},…,\theta_{t_T}$.</p>
+</blockquote>
+
+<p>The problem we are considering is the following and we want to solve for the best $\theta$ set:
+\(\min_\theta \mathcal{L}(\theta)\equiv\min_{\theta_i} \mathcal{L}(\theta_s,\theta_{t_1},...,\theta_{t_T})\)
+But the key problem here is that <strong>solutions may not be comparable to begin with</strong>:</p>
+
+<ul>
+  <li>consider $\theta,\theta’$ being two sets of solution such that
+\(\mathcal{L}_{t_1}(\theta_s,\theta_{t_1})&lt;\mathcal{L}_{t_1}(\theta_s',\theta_{t_1}')\)
+so that this the $\theta$ set performs better in task 1, but
+\(\mathcal{L}_{t_2}(\theta_s,\theta_{t_2})&gt;\mathcal{L}_{t_2}(\theta_s',\theta_{t_2}')\)
+in task 2, the set $\theta’$ performs better.</li>
+</ul>
+
+<blockquote>
+  <p>Therefore, ==how do we define an ordering for the parameters to begin with==?</p>
+</blockquote>
+
+<p>One simple idea is to consider a <strong>linear combination</strong>
+\(\mathcal{L}(\theta)\equiv \mathcal{L}(\theta_s,\theta_1,...,\theta_T) \to \sum_t \alpha_t \mathcal{L}_t(\theta_t,\theta_s)\)
+which gives a <strong>well-defined ordering</strong>. Then we can update/solve by:
+\(\min_{\theta}\mathcal{L}(\theta) =\min_{\theta} \sum_t \alpha_t \mathcal{L}_t(\theta_t,\theta_s)\)
+but how do we find an $\alpha$?</p>
+
+<h3 id="multi-objective-optimization">Multi-Objective Optimization</h3>
+
+<p>Another formulation/view point of the task is to consider
+\(\min_{\theta_i} \mathcal{L}(\theta_s,\theta_{t_1},...,\theta_{t_T}) = \min_{\theta_i}(\mathcal{L}_{t_1}(\theta_s,\theta_{t_1}),...,\mathcal{L}_{t_T}(\theta_s,\theta_{t_T}))\)
+This can be generalized into the question that we have a <strong>system of $T$ functions $f_t(x) = \mathcal{L}(\theta)$</strong>, then we can define a partial ordering for $y \in \mathbb{R}^T = (f_1(x),…,f_T(x))$ such that:
+\(y \prec y' \iff f_i(x) &lt; f_i(x')\,\,\forall i\)
+in other words, $y$ wins/is smaller if it is smaller in all dimension. Then applied in our case, we essentially have “<strong>many optimal solutions</strong>” forming a ==Pareto frontier==.</p>
+
+<p><img src="DL_notes_part2/image-20220329155604002.png" alt="image-20220329155604002" style="zoom: 80%;" /></p>
+
+<p>where notice that:</p>
+
+<ul>
+  <li>$A,B$ are pareto frontiers since no other point can perform better than them in <strong>all dimension</strong>, $f_1, f_2$ in this case.</li>
+  <li>$C$ is not because it could be out-performed by $A,B$ in both dimensions.</li>
+</ul>
+
+<blockquote>
+  <p><strong>Theorem</strong>: All pareto optimal points are Pareto stationary.</p>
+</blockquote>
+
+<blockquote>
+  <p><strong>Theorem</strong>: A point $x$is pareto stationary if there exists $\alpha \in \mathbb{R}^T$ such that
+\(\sum_t \alpha_t \nabla f_t(x)=0,\quad \sum_t \alpha_t=1,\forall\alpha_t \ge 0\)</p>
+</blockquote>
+
+<p>Therefore, this gives us a way to <strong>define how to find a meaningful $\alpha$</strong>, which comes down to:
+\(\min_\alpha \left\|  \sum_t \alpha_t \nabla f_t(x)  \right\| \to \min_\alpha \left\|  \sum_t \alpha_t \nabla \mathcal{L}_t(\theta_s, \theta_t)  \right\|\)
+under the constraint that $\sum_t \alpha_t=1,\forall\alpha_t \ge 0$.</p>
+
+<h3 id="negative-transfer">Negative Transfer</h3>
+
+<blockquote>
+  <p>Up to today, individual networks are performing better than shared networks.</p>
+</blockquote>
+
+<p>The cause is mainly due to negative transfer happening:</p>
+
+<ul>
+  <li>One task may dominate training</li>
+  <li>Tasks may learn at different rates</li>
+  <li>Gradients may conflict</li>
+</ul>
+
+<p>So in general it is ==important== to determine the <strong>relationships between tasks</strong>, to tell if a shared architecture works</p>
+
+<h3 id="architectures-in-shared-networks">Architectures in Shared Networks</h3>
+
+<p>In general we have:</p>
+
+<ul>
+  <li>
+    <p><strong>Hard parameter sharing</strong>, which we have seen</p>
+
+    <p><img src="DL_notes_part2/image-20220329160407600.png" alt="image-20220329160407600" style="zoom:50%;" /></p>
+  </li>
+  <li>
+    <p><strong>Soft parameter sharing</strong></p>
+
+    <p>Instead we can imitate individual networks but allow sharing:</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th style="text-align: center">Hard Sharing</th>
+          <th style="text-align: center">Soft Sharing</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="text-align: center"><img src="DL_notes_part2/image-20220329160407600.png" alt="image-20220329160407600" style="zoom: 67%;" /></td>
+          <td style="text-align: center"><img src="DL_notes_part2/image-20220329160450920.png" alt="image-20220329160450920" style="zoom: 67%;" /></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>Does not scale well with number of tasks</p>
+  </li>
+  <li>
+    <p><strong>Ad-hoc sharing</strong></p>
+
+    <p><img src="DL_notes_part2/image-20220329160641830.png" alt="image-20220329160641830" style="zoom:50%;" /></p>
+
+    <p>so we compute task relatedness, then iteratively group network</p>
+
+    <p>This tend to have better performance than soft or hard sharing</p>
+  </li>
+  <li>
+    <p><strong>learning to route</strong></p>
+
+    <p><img src="DL_notes_part2/image-20220329160822139.png" alt="image-20220329160822139" style="zoom:67%;" /></p>
+
+    <p>where we learn separate execution paths for different tasks</p>
+  </li>
+</ul>
+
+<h2 id="combinatorial-optimization-problem">Combinatorial Optimization Problem</h2>
+
+<blockquote>
+  <p>Which Tasks Should Be Learned Together in Multi-task Learning? If we want <strong>one model doing more than one thing</strong>?</p>
+</blockquote>
+
+<p>Consider this problem as a <strong>bipartite matching</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Problem</th>
+      <th style="text-align: center">Approximate Solution</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><img src="DL_notes_part2/image-20220329135502879.png" alt="image-20220329135502879" style="zoom:33%;" /></td>
+      <td style="text-align: center"><img src="DL_notes_part2/image-20220329135538244.png" alt="image-20220329135538244" style="zoom: 33%;" /></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Then the question can be formulated as:</p>
+
+<ul>
+  <li><strong>Tasks</strong> being $t_1,…,t_T$ having $T$ nodes</li>
+  <li>NN Network having $n$ nodes, each would have a cost to use $c_n$ (e.g. inference time)</li>
+  <li>we have a budget $b$, which we do not want to exceed (e.g. should not take longer than $b$ seconds)</li>
+  <li>want to have a solution $S$ being a set of network using the $n$ nodes that <strong>solves all $T$ tasks within the budget</strong></li>
+</ul>
+
+<p>Then this problem is:</p>
+
+<p><img src="DL_notes_part2/image-20220329135838627.png" alt="image-20220329135838627" style="zoom: 50%;" /></p>
+
+<p>where of course this is still a NP-hard problem, so in reality we would use approximations. Some results look like</p>
+
+<p><img src="DL_notes_part2/image-20220329140020358.png" alt="image-20220329140020358" style="zoom:50%;" /></p>
+
+<p>where $S,D,N,K,E$ would be the tasks, and the circular nodes are the networks.</p>
+
+<h2 id="example-ravens-progressive-matrices">Example: Raven’s Progressive Matrices</h2>
+
+<p>The task of Raven’s Progressive Matrices is to <strong>fill in the missing patterns.</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Question</th>
+      <th style="text-align: center">Answers</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><img src="DL_notes_part2/image-20220329140327911.png" alt="image-20220329140327911" style="zoom:33%;" /></td>
+      <td style="text-align: center"><img src="DL_notes_part2/image-20220329140336981.png" alt="image-20220329140336981" style="zoom:33%;" /></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>notice that this is a multi-task question. We need to</p>
+
+<ul>
+  <li>
+    <p>infer hidden attributes and pattern</p>
+  </li>
+  <li>building blocks and transformations</li>
+  <li>infer Alphabet and composition rule</li>
+</ul>
+
+<p>In fact, how we solve this is:</p>
+
+<ol>
+  <li>
+    <p>find the building blocks</p>
+
+    <p><img src="DL_notes_part2/image-20220329140440942.png" alt="image-20220329140440942" style="zoom:33%;" /></p>
+  </li>
+  <li>
+    <p>pattern matching amongst the examples in the questoin</p>
+
+    <p><img src="DL_notes_part2/image-20220329140515145.png" alt="image-20220329140515145" style="zoom:33%;" /></p>
+  </li>
+</ol>
+
+<p>Hence to solve such problems, we need multi-task learning models.</p>
+
+<h1 id="meta-learning">Meta-Learning</h1>
+
+<blockquote>
+  <p><strong>Meta-learning</strong> is about <strong>learning to learn</strong> or learning something that you usually <strong>don’t directly learn</strong> (e.g. the hyperparameters),  here learning is roughly a synonym for optimization.</p>
+
+  <ul>
+    <li>hence, you can see this as normal learning algorithm, but the output is not <em>directly</em> the labels</li>
+  </ul>
+</blockquote>
+
+<p>An example would be that, suppose you have some task $T_1,T_2,T_3$ and $T_4$. You have some architecture beforehand with <strong>hyperparameters</strong> such as number of layers configured for $T_1, T_2,T_3$. You have also trained your network with data to solve $T_1,T_2,T_3$.</p>
+
+<p>Then, the question is, <strong>what is the suitable hyperparameter</strong> if we want to do $T_4$ given all your experience so far? This is answered by meta-learning algorithms.</p>
+
+<ul>
+  <li>in this sense it does have an analogy with <em>Transfer Learning</em>, as they also involve fine-tuning hyperparameters for another task</li>
+  <li>however, meta-learning can be broad, as you could also ask it to output some <strong>grammar/rules</strong> (see example below)</li>
+</ul>
+
+<blockquote>
+  <p>In fact, in this <a href="https://arxiv.org/pdf/1703.03400.pdf">paper</a> it mentioned that:</p>
+
+  <p>“<em>The goal of meta-learning is to train a model <strong>on a variety of learning tasks</strong>, such that it can <strong>solve new learning tasks</strong> using only a small number of training samples</em>”</p>
+</blockquote>
+
+<h2 id="example-learning-rule-system">Example: Learning Rule System</h2>
+
+<p>Consider the task of <strong>learning a language</strong> from a few examples</p>
+
+<p>| <img src="DL_notes_part2/image-20220331131451815.png" alt="image-20220331131451815" style="zoom:50%;" /> | <img src="DL_notes_part2/image-20220331131458719.png" alt="image-20220331131458719" style="zoom:50%;" /> | <img src="DL_notes_part2/image-20220331131505428.png" alt="image-20220331131505428" style="zoom:50%;" /> |
+| :———————————————————-: | :———————————————————-: | :———————————————————-: |</p>
+
+<p>As a human, you are expected to find from the above:</p>
+
+<ul>
+  <li>
+    <p><strong>primitives</strong></p>
+
+    <p><img src="DL_notes_part2/image-20220331131551153.png" alt="image-20220331131551153" style="zoom:50%;" /></p>
+  </li>
+  <li>
+    <p><strong>rules/function</strong></p>
+
+    <ul>
+      <li><em>fep</em> - three dots</li>
+      <li><em>blicket</em> - surrounding</li>
+      <li><em>kiki</em> - after</li>
+    </ul>
+  </li>
+</ul>
+
+<p>Then we can do inference:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Query</th>
+      <th style="text-align: center">Inference Result</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><img src="DL_notes_part2/image-20220331131825975.png" alt="image-20220331131825975" style="zoom:50%;" /></td>
+      <td style="text-align: center"><img src="DL_notes_part2/image-20220331131840229.png" alt="image-20220331131840229" style="zoom:50%;" /></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>note that this is <strong>meta-learning</strong>:</p>
+
+<ul>
+  <li>
+    <p>input data are not really “datasets”, as they have no input-label pairs. They are like data pairs <strong>chosen</strong> to <strong>reflect the task/language</strong>, hence <strong>meta-data</strong> about the language.</p>
+  </li>
+  <li>
+    <p>the output/we are learning the <strong>primitives and rules</strong> in this language. There is no directly “label” learnt.</p>
+  </li>
+</ul>
+
+<p>The following section talks about how we solve this by:</p>
+
+<ul>
+  <li>Meta learning</li>
+  <li>Self-supervised meta learning</li>
+  <li>Self-supervised meta learning with a meta-grammar</li>
+</ul>
+
+<h2 id="meta-learning-algorithm">Meta Learning Algorithm</h2>
+
+<p><em>Recall</em> that in supervised learning, we have:</p>
+
+<p><img src="DL_notes_part2/image-20220331173929736.png" alt="image-20220331173929736" style="zoom:50%;" /></p>
+
+<p>where</p>
+
+<ul>
+  <li>
+    <p>input <strong>data</strong> $X$ and <strong>labels</strong> $Y$ being $(X,Y)\sim D$</p>
+  </li>
+  <li>
+    <p>the <strong>learning algorithm</strong> specifies the architecture we use, e.g. SVM/k-NN/CNN/etc</p>
+  </li>
+  <li>
+    <p>during <strong>training</strong>, we find parameter for the <strong>predictor</strong>
+\(\theta^* = \arg\max_\theta p(\theta |D) = \arg\max_\theta p(D|\theta)p(\theta)\)</p>
+  </li>
+  <li>
+    <p>during <strong>testing</strong>/inference, we use $\theta^*$</p>
+  </li>
+</ul>
+
+<hr />
+
+<p>Suppose we have some model $f_\theta$ we want to use, for example a CNN.</p>
+
+<blockquote>
+  <p>The goal of few-shot meta-learning is to train a model $f_\theta$ that can quickly adapt to a new task using only a few datapoints and training update iterations to $\theta$.</p>
+
+  <ul>
+    <li>in other words, we want some ==good initialization of $\theta_0$== (learnt from other tasks as a “warm start”) such that in a new task it learns fast with only few samples</li>
+  </ul>
+</blockquote>
+
+<p>So how do we get such a handy $\theta_0$? In effect, the meta-learning problem <strong>treats entire tasks as training examples</strong>, i.e. we consider</p>
+
+<ul>
+  <li>==a distribution over tasks $p(T)$== that we want our model to adapt to</li>
+  <li>for each task $T_i$ could have its own loss $\mathcal{L}_{T_i}$ and its training data distribution $q_i(x)$</li>
+</ul>
+
+<p>Then, during <strong>meta-training</strong> (in a $K$-shot learning setting), the idea is, given a model $f_\theta$:</p>
+
+<ol>
+  <li>
+    <p>consider some random initialization of $\theta_0 \equiv \theta \equiv \phi$</p>
+  </li>
+  <li>
+    <p>while not done:</p>
+
+    <ol>
+      <li>
+        <p>sample a batch of tasks $T_{i}$s to train from $p(T_i)$:</p>
+
+        <ol>
+          <li>sample  a task $T_i$, e.g. compare “cat v.s. dog”</li>
+          <li>draw $K$ samples from $q_i(x)$ for training, known as ==support set==</li>
+          <li>compute its loss $L_{T_i}(f_\theta)$ using the $\theta$ initialization</li>
+          <li>update/see how well this initialization works by doing a few descents:</li>
+        </ol>
+
+\[\theta_i' = \theta - \alpha \nabla_\theta L_{T_i}(f_\theta)\]
+
+        <p>for that specific $T_i$.</p>
+      </li>
+      <li>
+        <p>update the <strong>initialization $\theta\equiv \phi$</strong> as how the <strong>total loss over all tasks can be decreased if I have a better $\theta$</strong> to begin with
+\(\theta \leftarrow \theta - \beta \nabla_\theta\sum_{T_i} L_{T_i}(f_{\theta_i'})\)
+where:</p>
+
+        <ul>
+          <li>
+            <p>$f_{\theta_i’}$ is like the same model “fine-tuned” on task $T_i$.</p>
+          </li>
+          <li>
+            <p>$L_{T_i}(f_{\theta_i’})$ will now be evaluated on the <strong>new samples</strong> from $q_i(x)$, known as the ==query set== to test its generalization ability as well</p>
+          </li>
+          <li>
+            <p>since we are taking derivative w.r.t $\theta$, and we know (if only doing a single iteration)
+\(\theta_i' = \theta - \alpha \nabla_\theta L_{T_i}(f_\theta)\)
+essentially this term include <strong>loss of losses</strong>.</p>
+          </li>
+        </ul>
+      </li>
+    </ol>
+  </li>
+  <li>
+    <p>output the learnt $\theta$ being the ==better “initialization” parameters for your model $f_\theta$ which is ready for other tasks==</p>
+  </li>
+</ol>
+
+<p>Hence the algorithm is</p>
+
+<p><img src="DL_notes_part2/image-20220331182301680.png" alt="image-20220331182301680" /></p>
+
+<p>which we know is agonistic of what model $f$ we picked.</p>
+
+<ul>
+  <li>resource https://arxiv.org/pdf/1703.03400.pdf</li>
+</ul>
+
+<p>Graphically:</p>
+
+<p><img src="DL_notes_part2/image-20220331183545995.png" alt="image-20220331183545995" style="zoom:50%;" /></p>
+
+<p>where the aim is to provide some good $\theta$ for your network $f_\theta$ such that it can get <strong>good performance on task $T_i$ with only a few updates</strong> on $\theta$.</p>
+
+<p>Other related meta-learning algorithms only vary in how they descent the $\theta_i’$ for each task:</p>
+
+<p><img src="DL_notes_part2/image-20220331183053756.png" alt="image-20220331183053756" style="zoom: 33%;" /></p>
+
+<hr />
+
+<p><em>Example</em>: K-shot learning for animal classifications:</p>
+
+<p><img src="DL_notes_part2/image-20220331183817789.png" alt="image-20220331183817789" style="zoom:67%;" /></p>
+
+<p>where essentially:</p>
+
+<ul>
+  <li>
+    <p>each task $T_i$ is classifying between two animals, i.e. a binary classification</p>
+  </li>
+  <li>
+    <p>we want to generalize well to $3$-shot $2$-way, so that our model performs well on</p>
+
+    <p><img src="DL_notes_part2/image-20220331184002413.png" alt="image-20220331184002413" style="zoom:67%;" /></p>
+
+    <p>with only a few updates from $\theta$, i.e. it is almost like fine-tuning it.</p>
+  </li>
+</ul>
+
+<h3 id="matching-network">Matching Network</h3>
+
+<p>This is essentially another approach at solving a new task $T_i$. Instead of finding a good $\theta$ for our network $f_\theta$ to start with, consider</p>
+
+<blockquote>
+  <p>Learning training the network $g_\theta$ to learn a <strong>good embedding network</strong> of the input such that, at test time with <strong>a new 1-shot learning task $T_i$</strong> a simple Nearest Neighbor would work.</p>
+</blockquote>
+
+<p>Specifically, consider:</p>
+
+<ul>
+  <li>learning input: all training data for all tasks at once</li>
+  <li>learning goal: learn <strong>embedding network</strong> $f_\theta, g_\theta$</li>
+</ul>
+
+<p><img src="DL_notes_part2/image-20220331135040507.png" alt="image-20220331135040507" style="zoom: 50%;" /></p>
+
+<p>where:</p>
+
+<ul>
+  <li>
+    <p>The key point is that when trained, Matching Networks are able to <strong>produce sensible test labels for unobserved classes</strong> without any changes to the network</p>
+  </li>
+  <li>
+    <p>reference: https://arxiv.org/pdf/1606.04080.pdf</p>
+  </li>
+</ul>
+
+<hr />
+
+<p><strong>For a simplified version</strong>, let us just say that $g_\theta = f_\theta$.</p>
+
+<p>Here the idea is that we consider
+\(\hat{y} = \sum_{i=1}^k a(x_q,x_i)y_i\)
+which is basically a <strong>weighted sum</strong></p>
+
+<ul>
+  <li>
+    <p>for $a(x_q,x_i)$ being an attention kernel. The simplest you can use is
+\(a(x_q,x_i) = \text{Softmax}(c(x_q,x_i))\)
+for $c(x_q,x_i)$ being a dot product</p>
+  </li>
+  <li>
+    <p>for simplicity, we assume we have $Q=1$ for training.</p>
+  </li>
+</ul>
+
+<p>Then the <strong>implementations</strong> look like</p>
+
+<ul>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">BaseNetwork</code> a backbone doing $f_\theta(x_i)$, which will be also used in <a href="#Prototypical Network">Prototypical Network</a></p>
+  </li>
+  <li>
+    <p>the predictor then does 
+\(\hat{y} = \sum_{i=1}^k a(x_q,x_i)y_i\)
+as specified above</p>
+  </li>
+</ul>
+
+<h3 id="prototypical-network">Prototypical Network</h3>
+
+<p>Here the idea is to consider predicting $\hat{y}$ of $x_q$ by <strong>nearest neighbor</strong> to ==prototypes $c_k$ of each class== (learnt from the few-shot training):
+\(c_ k = \frac{1}{|S_k|} \sum_{(x_i,y_i)\in S_k} f_\theta(x_i)\)
+basically is saying each class $K=k$ has a <strong>prototype being its centroid</strong>. Then, for a new query $x_q$ we can simply do:
+\(p(y=k|x) = \text{Softmax}(-d(f_\theta(x_q), c_k))= \frac{\exp(-d(f_\theta(x_q), c_k))}{\sum_{k'}\exp(-d(f_\theta(x_q), c_{k'}))}\)
+for $-d(f_\theta(x_q), c_k)$ basically is the <strong>distance</strong> between $f_\theta(x_q)$ and $c_k$.</p>
+
+<h3 id="relation-network">Relation Network</h3>
+
+<p>Instead of using Nearest Neighbor for classification, use a Neural network</p>
+
+<p><img src="DL_notes_part2/image-20220331135342524.png" alt="image-20220331135342524" style="zoom: 80%;" /></p>
+
+<h2 id="meta-learning-with-meta-grammar">Meta Learning with Meta Grammar</h2>
+
+<p>Instead of finding a $\theta$ as a “warm start” for the neural network $f_\theta$ on a new task, consider <strong>learning grammars</strong>.</p>
+
+<p>So the general idea is:</p>
+
+<p><img src="DL_notes_part2/image-20220331192923316.png" alt="image-20220331192923316" style="zoom:67%;" /></p>
+
+<p>The detailed architecture looks like:</p>
+
+<p><img src="DL_notes_part2/image-20220331193412508.png" alt="image-20220331193412508" /></p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>notice that essentially the entire neural model is on $p_\theta(G</td>
+      <td>X)$ is a distribution over grammar $G$ given the support set $X$. this works by</td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li>
+    <p>an <strong>encoder</strong> $\text{Enc}(\cdot)$, which encodes each support example $(x_i,y_i)$ into a vector $h_i$
+\(\text{Enc}(X) = \{h_i\}^n_{i=1}\)</p>
+  </li>
+  <li>
+    <p>a <strong>decoder</strong> $\text{Dec}(\cdot)$ which decodes the grammar while attending to the support example
+\(p_\theta(\cdot |X) = \text{Dec}(\{h_i\}_{i=1}^n)\)</p>
+  </li>
+  <li>
+    <p>decoder outputs a tokenized program, which is then parsed into an interpretation grammar</p>
+  </li>
+  <li>
+    <p>this is essentially the solution to the example in section <a href="#Example: Learning Rule System">Example: Learning Rule System</a>.</p>
+  </li>
+</ul>
+
+<h1 id="applications-of-dl">Applications of DL</h1>
+
+<p>Applications we will dicuss include:</p>
+
+<ul>
+  <li>Deep Learning for Protein Structure Prediction</li>
+  <li>Deep Learning for Combinatorial Optimization</li>
+</ul>
+
+<h2 id="dl-for-protein-structure-prediction">DL for Protein Structure Prediction</h2>
+
+<p>We know that proteins (a chain of amino acids) are the major building blocks of life. <strong>Structure</strong> of protein determines <strong>functions</strong>, and they are engines for your body.</p>
+
+<blockquote>
+  <p>There are millions of possible protein structures in nature, but only a few thousands was discovered. Hence we have the task:</p>
+
+  <ul>
+    <li>given a sequence of protein, <strong>predict the structure</strong> (i.e. average of a the moving system)</li>
+    <li>e.g. predict the structure of SARS-COV-2, so that we can develop antibodies</li>
+  </ul>
+</blockquote>
+
+<p>It is very applicable since in real word, the number of sequence discovered grows faster than structures:</p>
+
+<ul>
+  <li>350M sequences</li>
+  <li>but only had recorded 170K structures</li>
+</ul>
+
+<p><img src="DL_notes_part2/image-20220405164909069.png" alt="image-20220405164909069" style="zoom: 50%;" /></p>
+
+<p>we want to fill the gap using Deep Learning.</p>
+
+<blockquote>
+  <p><strong>Subtasks</strong> involved in structure prediction:</p>
+
+  <ul>
+    <li>
+      <p><strong>secondary structure</strong>: is this part a <em>$\alpha$-helix, or $\beta$-sheet, or a loop</em>, which is a labelling task</p>
+
+      <p><img src="DL_notes_part2/image-20220405165300853.png" alt="image-20220405165300853" style="zoom:50%;" /></p>
+    </li>
+    <li>
+      <p><strong>3D structure prediction</strong>: 3D position of each atom in the protein</p>
+
+      <p><img src="DL_notes_part2/image-20220405165157359.png" style="zoom: 67%;" /></p>
+    </li>
+    <li>
+      <p><strong>folding</strong>: essentially the quaternary structure, how they fold when placed into a solution (liquid)</p>
+    </li>
+    <li>
+      <p><strong>function prediction</strong>: once you have a structure, is this an enzyme? What does it do?</p>
+    </li>
+  </ul>
+</blockquote>
+
+<p><em>For Example</em>: SARS-COV-2 protein:</p>
+
+<p>SARS-CoV-2 proteins include</p>
+
+<ul>
+  <li>the <strong>Spikes</strong>, Envelope, and Membrane proteins that form the viral envelope</li>
+  <li>Nucleocapsid proteins that hold <strong>RNA</strong> (to infect other cells in your body)</li>
+</ul>
+
+<p><img src="DL_notes_part2/image-20220405132718808.png" alt="image-20220405132718808" style="zoom: 40%;" /></p>
+
+<p>where:</p>
+
+<ul>
+  <li>the role of spike is to be able to
+    <ul>
+      <li>use RBD (receptor binding domain) to bind to the receptor of your lung’s cell (key-lock mechanism)</li>
+      <li>pierce through the defense and inject RNA</li>
+      <li>hence we want to <strong>develop a drug/vaccine</strong> that can bind stronger to this than lung cells</li>
+    </ul>
+  </li>
+  <li>once it gets in, the RNA gets into your cell and you are infected</li>
+</ul>
+
+<p>Then, to predict the 3D structure of the RBD, we needed DL to generate the 3D shape.</p>
+
+<hr />
+
+<p><strong>Competitions</strong> related in this field</p>
+
+<ul>
+  <li><strong>CASP</strong>: Critical Assessment of Techniques for Protein Structure Prediction
+    <ul>
+      <li>Protein (3D) structure prediction
+        <ul>
+          <li>AlphaFold2 team won 2020 CASP14 competition</li>
+        </ul>
+      </li>
+      <li>Quality assessment, evaluation of model accuracy (EMA)</li>
+    </ul>
+  </li>
+  <li><strong>CAPRI</strong>: Critical Assessment of PRediction of Interactions
+    <ul>
+      <li>Protein-protein interaction, protein docking</li>
+      <li>COVID-19 Open Science Initiative</li>
+    </ul>
+  </li>
+  <li><strong>CAFA</strong>: Critical Assessment of Functional Annotation
+    <ul>
+      <li>Protein function prediction</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="secondary-structure-prediction">Secondary Structure Prediction</h3>
+
+<p>Here, essentially it is a Seq-2-Seq task, whether if each is a <em>$\alpha$-helix, or $\beta$-sheet, or a loop</em>:</p>
+
+<p><img src="DL_notes_part2/image-20220405170010835.png" alt="image-20220405170010835" style="zoom:67%;" /></p>
+
+<p>Once we have this structure, it can be served as “constraints/guidelines” for 3D and quatery structure:</p>
+
+<h3 id="3d-structure-prediction">3D Structure Prediction</h3>
+
+<p>First, how do we represent the 3D structure in numbers?</p>
+
+<blockquote>
+  <p>One way to do it is to consider <strong>sequence</strong> of amino acids <strong>to distance matrix</strong> and <strong>torsion angles</strong></p>
+</blockquote>
+
+<p>So that essentially you want to find out:</p>
+
+<ul>
+  <li><strong>pair-wise distance</strong> between each atom. Then we get $(n^2-n)/2$, hence $O(n^2)$</li>
+  <li><strong>torsion angles</strong> of each particle, $O(2n)=O(n)$ since you have two angles</li>
+</ul>
+
+<p>Then you can solve for the structure from the two above:</p>
+
+<p><img src="DL_notes_part2/image-20220405170309754.png" alt="image-20220405170309754" style="zoom: 33%;" /></p>
+
+<p>However, you could have also</p>
+
+<ul>
+  <li>output directly 3D position of each particle, $O(3n)=O(n)$</li>
+</ul>
+
+<p>So why was the distance matrix useful? One use was to enable the use of Resnet to process those matrix as images:</p>
+
+<p><img src="DL_notes_part2/image-20220405171147381.png" alt="image-20220405171147381" style="zoom: 33%;" /></p>
+
+<p>where the final atom graph is solved by:</p>
+
+<ul>
+  <li><strong>nodes</strong> being the 3D coordinates</li>
+  <li><strong>edges</strong> being the distance, and type of bond</li>
+</ul>
+
+<p><img src="DL_notes_part2/image-20220405171329672.png" alt="image-20220405171329672" style="zoom: 33%;" /></p>
+
+<h3 id="protein-structure-prediction-system">Protein Structure Prediction System</h3>
+
+<p>The final goal is to predict the 3D structure. From the discussion above, we essentially:</p>
+
+<ul>
+  <li>find/infer the secondary structures along with other features</li>
+  <li>find/infer the torsion angles/distances</li>
+  <li><strong>solve</strong> for 3D structure under some biological constrains</li>
+</ul>
+
+<p>Hence the pipeline looks like</p>
+
+<p><img src="DL_notes_part2/image-20220405170818185.png" alt="image-20220405170818185" style="zoom: 80%;" /></p>
+
+<p>which is trained end-to-end. Notice that, alike this, it is often the case you will get <strong>many data modalities</strong> for your task (e.g. amino acids, secondary structure, etc):</p>
+
+<ul>
+  <li>then <strong>fusion network</strong> is important: allows the feature to interact in a nonlinear fashion</li>
+  <li>then the final fused representation is fed into decoders for some prediction task, e.g. predict pair-wise distance.</li>
+</ul>
+
+<h3 id="predicted-structure-assessment">Predicted Structure Assessment</h3>
+
+<p>How do we measure the score of each prediction? In general it can be done in two ways</p>
+
+<ul>
+  <li>Model mapping from features of previous predictions to evaluation based on ground truth (<strong>RMSD</strong>, <strong>GDT_TS</strong>)</li>
+  <li><strong>Pairwise similarity</strong> between features of different predictions</li>
+</ul>
+
+<h3 id="alphafold2">AlphaFold2</h3>
+
+<p>Average RMSD under 1 Angstrom</p>
+
+<p><img src="DL_notes_part2/image-20220405135836364.png" alt="image-20220405135836364" style="zoom: 80%;" /></p>
+
+<h2 id="dl-for-combinatorial-optimization">DL for Combinatorial Optimization</h2>
+
+<blockquote>
+  <p><strong>Combinatorial optimization</strong> is the process of searching for maxima (or minima) of an objective function $F$ whose <strong>domain is a discrete</strong> but large configuration space (as opposed to an N-dimensional continuous space). i.e. <strong>finding an optimal object</strong> from a finite/discrete set of objects.</p>
+
+  <p>Some simple examples of typical combinatorial optimization problems are:</p>
+
+  <ul>
+    <li><em>Traveling Salesman Problem</em>: given the $(x, y)$ positions of $N$ different cities, find the shortest possible path that visits each city exactly once.</li>
+    <li><em>Minimum Spanning Tree</em>: find a tree in a graph that contains the least weight (from the edges)</li>
+  </ul>
+
+  <p>From a computer science perspective, combinatorial optimization seeks to <strong>improve an algorithm by using mathematical methods</strong> either to reduce the size of the set of possible solutions or to <strong>make the search itself faster.</strong></p>
+</blockquote>
+
+<p>First, some recap of typical problems:</p>
+
+<ul>
+  <li>
+    <p><strong>Minimum Spanning Tree</strong>: Prim, Kruskal algorithm etc. Can be solved in a polynomial time.</p>
+
+    <ul>
+      <li>Sort the graph edges with respect to their weights.</li>
+      <li>Start adding edges to the MST from the edge with the smallest weight until the edge of the largest weight.</li>
+      <li>Only add edges which doesn’t form a cycle , edges which connect only disconnected components (using <strong>disjoint sets</strong>)</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>Single Source Shorted Path</strong>: classical Dijkstra if non-negative weights. Can be solved in a polynomial time.</p>
+
+    <ul>
+      <li>Dijkstra for non-negative weights</li>
+      <li>general SSP include Bellman-Ford</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>Travelling Salesman Problem:</strong> NP hard</p>
+
+    <ul>
+      <li>if we randomly distribute notes, the TSP have a <strong>strong locality</strong>, hence there are approximations that can be done in polynomial time</li>
+    </ul>
+
+    <p><img src="DL_notes_part2/image-20220405140400090.png" alt="image-20220405140400090" style="zoom:50%;" /></p>
+
+    <ul>
+      <li>a one vehicle version of VRP</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>Vehicle Routing Problem</strong>: What is the optimal set of routes for a fleet of $N$ vehicles to traverse in order to deliver to a given set of $M$ customers? NP hard problems</p>
+  </li>
+</ul>
+
+<h3 id="solving-mst-with-dl">Solving MST with DL</h3>
+
+<p>The idea is ot <strong>represent the problem as a search tree</strong>. We already know that this problem can be solved by</p>
+
+<p><img src="DL_notes_part2/image-20220405173848697.png" alt="image-20220405173848697" /></p>
+
+<p>But visualizing the process:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Kruskal’s Algorithm</th>
+      <th style="text-align: center">To RL</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><img src="DL_notes_part2/image-20220405173917326.png" alt="image-20220405173917326" /></td>
+      <td style="text-align: center"><img src="DL_notes_part2/image-20220405174021385.png" alt="image-20220405174021385" /></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>where we can represent the problem as:</p>
+
+<ul>
+  <li><strong>state</strong> is the current graph</li>
+  <li><strong>action</strong> is selecting one of the edges</li>
+  <li><strong>reward</strong>: the value of the solution</li>
+</ul>
+
+<blockquote>
+  <p><strong>Note</strong> that this action of “<em>adding node</em>” is general, as you can switch the representation of node/edge if your task needs to find the edges instead.</p>
+
+  <p><img src="DL_notes_part2/image-20220405174423346.png" alt="image-20220405174423346" style="zoom: 33%;" /></p>
+
+  <p>where in the above</p>
+
+  <ul>
+    <li>both edges $E$ and nodes $V$ can be represented by nodes $V^*$ and $V$, respectively.</li>
+    <li>the final tree formed $T$ is highlighted in red (i.e. output of your algo)</li>
+  </ul>
+</blockquote>
+
+<h3 id="dl-formulation-of-combinatorial-optimization">DL Formulation of Combinatorial Optimization</h3>
+
+<p>Essentially you have</p>
+
+<p><img src="DL_notes_part2/image-20220405174809069.png" alt="image-20220405174809069" /></p>
+
+<p>where here we separated into two types because:</p>
+
+<ul>
+  <li>the P-problems are essentially <strong>graph problems</strong></li>
+  <li>the NP-problems are essentially becoming <strong>RL + MCTS search</strong></li>
+</ul>
+
+<h2 id="dl-for-autonomous-vehicles">DL for Autonomous Vehicles</h2>
+
+<p>General pippeline</p>
+
+<p><img src="DL_notes_part2/image-20220407131850363.png" alt="image-20220407131850363" /></p>
+
+<p>where:</p>
+
+<ul>
+  <li>for prediction, it will be a set of trajectories with probabilities</li>
+  <li>planning: is a hierarchical process depends on resolution (e.g. per second? per milisecond?)</li>
+</ul>
+
+<h3 id="localization-and-data-collection">Localization and Data Collection</h3>
+
+<p>The ability of self-driving is unrelated to <strong>current location</strong></p>
+
+<ul>
+  <li>though it is required for route planning, it is not relevant for driving ability</li>
+  <li>however, by just collecting what each car see, we can gain multiple perspectives and collect tons of data which we can use to reconstruct the world</li>
+</ul>
+
+<p>Once we reconstructed the 3D model, we can obtain <strong>semantic information</strong> such as where are the lanes, traffic lights, etc:</p>
+
+<p><img src="DL_notes_part2/image-20220407132758480.png" alt="image-20220407132758480" /></p>
+
+<p>and finally this gives</p>
+
+<p><img src="DL_notes_part2/image-20220407133336224.png" alt="image-20220407133336224" /></p>
+
+<h3 id="perception-and-detection">Perception and Detection</h3>
+
+<p>Now, we have all the sensory data as our perception. How do we <strong>extract entities</strong> (e.g. bboxes of pedestrain, cars, etc)?</p>
+
+<p>For instance, from video input, we might want to know <em>where is the traffic light</em>, <em>other cars</em>, <em>etc</em></p>
+
+<p><img src="DL_notes_part2/image-20220407133347088.png" alt="image-20220407133347088" /></p>
+
+<p>where the bottom is the input video, and the top portion is what we want.</p>
+
+<ul>
+  <li>
+    <p>in terms of deep learning outputs, typically we need segmentations:</p>
+
+    <p><img src="DL_notes_part2/image-20220407133548442.png" alt="image-20220407133548442" /></p>
+  </li>
+  <li>
+    <p>And again, as today we have tons of data from all kinds of sensors, it becomes learning from multi-modal data (e.g. from Radar, Lidar, etc, as oposed to only vision form humans)</p>
+  </li>
+</ul>
+
+<p><img src="DL_notes_part2/image-20220407133436845.png" alt="image-20220407133436845" /></p>
+
+<h3 id="self-driving-car-prediction">Self-Driving Car: Prediction</h3>
+
+<p>Now, given the surroundings, and <strong>before I plan what I do</strong>, I also need to ==predict what other dynamical objects will do==. i.e. I need trajectories from other dynamical objects as part of the <strong>environment</strong> as well!</p>
+
+<ul>
+  <li>
+    <p>therefore, we need to predict <strong>each dynamic objects we detected</strong>.</p>
+  </li>
+  <li>
+    <p>this can be estimated from current movement direction, speed, acceleration, etc</p>
+  </li>
+</ul>
+
+<p>Our aim is to be able to see future trajectories of other objects, which is necessary for planning our own movement.</p>
+
+<p><img src="DL_notes_part2/image-20220407133816295.png" alt="image-20220407133816295" /></p>
+
+<p>Then from all the above information, we would be able to make good plannings:</p>
+
+<p><img src="DL_notes_part2/image-20220407134132639.png" alt="image-20220407134132639" /></p>
+
+<h4 id="self-driving-vehicle-trajectory-prediction">Self-Driving: Vehicle Trajectory Prediction</h4>
+
+<p>Essentially you need to:</p>
+
+<ul>
+  <li>given what you observe on car $A$</li>
+  <li>predict trajectories of the car (e.g. from first predicting steering angle and speed)</li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Predict Speed and Steering</th>
+      <th style="text-align: center">Predict Trajectory</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><img src="DL_notes_part2/image-20220407154813207.png" alt="image-20220407154813207" style="zoom: 80%;" /></td>
+      <td style="text-align: center"><img src="DL_notes_part2/image-20220407154800380.png" alt="image-20220407154800380" style="zoom: 80%;" /></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>though the trajectory and steering angle + speed is probably a one-to-one mapping, in reality we would <strong>use the trajectories more often</strong> as it would be <strong>detached from the make of cars</strong>, and etc.</p>
+
+<h3 id="self-driving-car-planning">Self-Driving Car: Planning</h3>
+
+<p>Now, we want to plan our <strong>high level and low level actions based on our destination</strong>:</p>
+
+<p><img src="DL_notes_part2/image-20220407134324067.png" alt="image-20220407134324067" /></p>
+
+<p>where</p>
+
+<ul>
+  <li>
+    <p>the high level planning basically include knowing where to go, and low level includes when to use the breaks.</p>
+  </li>
+  <li>
+    <p>Finally, this can be send to <strong>simulation</strong> where we get feedbacks without harm.</p>
+  </li>
+</ul>
+
+<blockquote>
+  <p>What is the <strong>“requirement”</strong> for allowing autonomous cars on road? One reasonable threshold would be having 1000 times lower probability of fatality per hour vs real world cars, i.e. we would be on average 1000 times safer!</p>
+</blockquote>
+
+<h3 id="self-driving-backup">Self-Driving: Backup</h3>
+
+<p>However, there are many edge cases in real life. For example, sometimes we need to follow the person guiding the traffic instead of traffic lights. Or there are other emergencies cases.</p>
+
+<p>Therefore, we need a <strong>backup plan</strong> if the car does not know what to do. Currently it is done by having a <strong>tele-operator</strong> sitting in control centers, so that if something goes wrong they can opt-in.</p>
+
+<h3 id="self-driving-neural-network">Self-Driving: Neural Network</h3>
+
+<p>Our end-goal is to have a car that</p>
+
+<ul>
+  <li>stay on the roard</li>
+  <li>avoid collision</li>
+  <li>head to destination</li>
+</ul>
+
+<p>Then essentially it is a <strong>multi-task training</strong>:</p>
+
+<p><img src="DL_notes_part2/image-20220407155859481.png" alt="image-20220407155859481" /></p>
+
+<p>There are some paradigms:</p>
+
+<ul>
+  <li>
+    <p><strong>Imitation Learning</strong>: a RL algorithm used when training data is limited</p>
+
+    <ul>
+      <li>
+        <p>uses <strong>environmental loss</strong>: each of the map is turned into a loss equation</p>
+
+        <p><img src="DL_notes_part2/image-20220407135925499.png" alt="image-20220407135925499" /></p>
+      </li>
+      <li>
+        <p>with multiple losses, you can fuse those losses and get a set of trajectories each with some given score/probability</p>
+      </li>
+      <li>
+        <p>but again, if anything deviates from training data (i.e. action/state not seen before), then high chance it won’t work. For instance, if some car suddenly stopped and it was not experienced in training data, then you will crash</p>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>Data Augmentation</strong>: given some training trajectory (other cars and ground truth trajectory), augment the data by <em>perturbing the trajectory</em> so you end up having.</p>
+
+    <p>Some augmentation methods experimented and ablation studies:</p>
+
+    <ul>
+      <li>$M_1$: Imitation with past dropout</li>
+      <li>$M_2$: $M_1$ with trajectory pertubation</li>
+      <li>$M_3$: $M_2$ with environmental losses</li>
+      <li>$M_4$: $M_3$ with imitation dropout (for better OOV generalization)</li>
+    </ul>
+
+    <p>And the results</p>
+
+    <p><img src="DL_notes_part2/image-20220407140533101.png" alt="image-20220407140533101" /></p>
+  </li>
+</ul>
+
+
+  </div><a class="u-url" href="/lectures/2021@columbia/COMS4995_Deep_Learning_part2.html/" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/lectures/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Lecture Notes</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Lecture Notes</li><li><a class="u-email" href="mailto:jasonyux17@gmail.com">jasonyux17@gmail.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/jasonyux"><svg class="svg-icon"><use xlink:href="/lectures/assets/minima-social-icons.svg#github"></use></svg> <span class="username">jasonyux</span></a></li><li><a href="https://www.linkedin.com/in/xiao-yu2437"><svg class="svg-icon"><use xlink:href="/lectures/assets/minima-social-icons.svg#linkedin"></use></svg> <span class="username">xiao-yu2437</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>An inexhaustive collection of markdown/latex(PDF) notes that I took since college. </p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

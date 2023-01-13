@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>PHYS2801 Accelerated Physics | Lecture Notes</title>
+<meta name="generator" content="Jekyll v4.3.1" />
+<meta property="og:title" content="PHYS2801 Accelerated Physics" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Kinematics in 1-D" />
+<meta property="og:description" content="Kinematics in 1-D" />
+<link rel="canonical" href="/lectures/2019@columbia/PHYS2801_Accelerated_Physics.html/" />
+<meta property="og:url" content="/lectures/2019@columbia/PHYS2801_Accelerated_Physics.html/" />
+<meta property="og:site_name" content="Lecture Notes" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-08-10T00:00:00-04:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="PHYS2801 Accelerated Physics" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2020-08-10T00:00:00-04:00","datePublished":"2020-08-10T00:00:00-04:00","description":"Kinematics in 1-D","headline":"PHYS2801 Accelerated Physics","mainEntityOfPage":{"@type":"WebPage","@id":"/lectures/2019@columbia/PHYS2801_Accelerated_Physics.html/"},"url":"/lectures/2019@columbia/PHYS2801_Accelerated_Physics.html/"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/lectures/assets/main.css"><link type="application/atom+xml" rel="alternate" href="/lectures/feed.xml" title="Lecture Notes" /></head>
+<body><header class="site-header">
+
+	<div class="wrapper"><a class="site-title" rel="author" href="/lectures/">Lecture Notes</a>
+
+		<nav class="site-nav">
+			<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+			<label for="nav-trigger">
+			<span class="menu-icon">
+				<svg viewBox="0 0 18 15" width="18px" height="15px">
+				<path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+				</svg>
+			</span>
+			</label>
+
+			<div class="trigger">
+				<a class="page-link" href="/">Home</a>
+				<a class="page-link" href="/projects">Projects</a>
+				<a class="page-link" href="/learning">Blog</a>
+				<a class="page-link" href="/research">Research</a>
+				<span class="page-link" href="#">[Education]</span>
+			</div>
+		</nav>
+	</div>
+  </header><main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <head>
+	<script>
+		MathJax = {
+		  tex: {
+			inlineMath: [['$', '$'], ['\\(', '\\)']],
+			displayMath: [['$$', '$$'], ['\\[', '\\]']]
+		  }
+		};
+	</script>
+	<script id="MathJax-script" async
+		src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+	</script>
+  </head>
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">PHYS2801 Accelerated Physics</h1>
+    <p class="post-meta"><time class="dt-published" datetime="2020-08-10T00:00:00-04:00" itemprop="datePublished">
+        Aug 10, 2020
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <h1 id="kinematics-in-1-d">Kinematics in 1-D</h1>
+
+<h2 id="basic-integrals">Basic Integrals</h2>
+
+\[x(t) = x(t_0) + \int_{t_0}^{t} \frac{dx}{dt^\prime} dt^{\prime}	\\
+v(t) = v(t_0) + \int_{t_0}^{t} \frac{dv}{dt^\prime} dt^{\prime}\]
+
+<blockquote>
+  <p>Notice:</p>
+
+  <ul>
+    <li>the use of $t^\prime$ instead of $t$ in the integral is deliberate. While both are technically correct, using $t^\prime$ reduces ambiguity as it <strong>differentiates the $t$ in the integral’s bound and the entity $t^\prime$ to be integrated over</strong> (imagine the latter iterating from $t_0$ to $t$).</li>
+  </ul>
+</blockquote>
+
+<p>Now, consider <strong>functions such as $v(x)$ or $a(v)$</strong> instead of $v(t)$ or $a(t)$:
+\(\frac{dx}{dt} = v(x) \\
+\frac{dx}{v(x)} = dt	\\
+\int_{x_0}^{x(t)}\frac{1}{v(x)}dx**^{\prime}** = \int_{t_0}^{t} dt^{\prime}\)
+After solving this, you will get an expression of $x(t)$.</p>
+
+<hr />
+
+<p><em>Example:</em></p>
+
+<ul>
+  <li>
+    <p>Question: Consider Linear Drag: $a = -bv$, where $b$ is a constant. Solve for the expression of $v$ as a function of $t$. (take $t_0 = 0$)</p>
+  </li>
+  <li>
+    <p>Solution:
+\(\frac{dv}{dt} = -bv	\\
+\frac{1}{v}dv = -b\, dt	\\
+\int_{v_0}^{v(t)}\frac{1}{v^{\prime}}dv^{\prime} = \int_{t_0=0}^{t} -b\, dt^{\prime}	\\
+ln\left(\frac{v(t)}{v_0}\right) = -bt	\\
+v(t) = v_0e^{-bt}\)
+And here you see the exponential decaying velocity caused by the drag. As $t \rightarrow \infty$, $v \rightarrow 0$.</p>
+  </li>
+</ul>
+
+<hr />
+
+<h2 id="second-order-linear-differential-equations">Second Order (Linear) Differential Equations</h2>
+
+<p><strong>Non-Homogenous</strong> Second Order Linear Differential Equations: $ay’‘+by’+cy’=g(t)$ or $a(t)y’‘+b(t)y’+c(t)y’=g(t)$</p>
+
+<p><strong>Homogenous</strong> Second Order Linear Differential Equations: $ay’‘+by’+cy’=0$, basically when $g(t)=0$</p>
+
+<h3 id="homogenous-second-order-de">Homogenous Second Order DE</h3>
+
+<p>Common forms include:</p>
+
+<ol>
+  <li>
+    <p>$\ddot x +\omega x= 0$, or $\ddot x = -\omega x$</p>
+
+    <p><strong>general solution</strong>: $x = Asin(\omega t)+ Bcos(\omega t)$</p>
+  </li>
+</ol>
+
+<ul>
+  <li>
+    <p>$\ddot x -\frac{1}{\tau} x= 0$, or $\ddot x = \frac{1}{\tau} x$</p>
+
+    <p><strong>general solution</strong>: $x=Ae^{\frac{t}{\tau}} + Be^{-\frac{t}{\tau}}$</p>
+  </li>
+</ul>
+
+  </div><a class="u-url" href="/lectures/2019@columbia/PHYS2801_Accelerated_Physics.html/" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/lectures/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Lecture Notes</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Lecture Notes</li><li><a class="u-email" href="mailto:jasonyux17@gmail.com">jasonyux17@gmail.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/jasonyux"><svg class="svg-icon"><use xlink:href="/lectures/assets/minima-social-icons.svg#github"></use></svg> <span class="username">jasonyux</span></a></li><li><a href="https://www.linkedin.com/in/xiao-yu2437"><svg class="svg-icon"><use xlink:href="/lectures/assets/minima-social-icons.svg#linkedin"></use></svg> <span class="username">xiao-yu2437</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>An inexhaustive collection of markdown/latex(PDF) notes that I took since college. </p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

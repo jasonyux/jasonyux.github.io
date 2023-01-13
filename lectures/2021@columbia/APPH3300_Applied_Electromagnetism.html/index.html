@@ -1,0 +1,3347 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>APPH3300 Applied Electromagnetism | Lecture Notes</title>
+<meta name="generator" content="Jekyll v4.3.1" />
+<meta property="og:title" content="APPH3300 Applied Electromagnetism" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Applied EM Equations" />
+<meta property="og:description" content="Applied EM Equations" />
+<link rel="canonical" href="/lectures/2021@columbia/APPH3300_Applied_Electromagnetism.html/" />
+<meta property="og:url" content="/lectures/2021@columbia/APPH3300_Applied_Electromagnetism.html/" />
+<meta property="og:site_name" content="Lecture Notes" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-05-03T00:00:00-04:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="APPH3300 Applied Electromagnetism" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2022-05-03T00:00:00-04:00","datePublished":"2022-05-03T00:00:00-04:00","description":"Applied EM Equations","headline":"APPH3300 Applied Electromagnetism","mainEntityOfPage":{"@type":"WebPage","@id":"/lectures/2021@columbia/APPH3300_Applied_Electromagnetism.html/"},"url":"/lectures/2021@columbia/APPH3300_Applied_Electromagnetism.html/"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/lectures/assets/main.css"><link type="application/atom+xml" rel="alternate" href="/lectures/feed.xml" title="Lecture Notes" /></head>
+<body><header class="site-header">
+
+	<div class="wrapper"><a class="site-title" rel="author" href="/lectures/">Lecture Notes</a>
+
+		<nav class="site-nav">
+			<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+			<label for="nav-trigger">
+			<span class="menu-icon">
+				<svg viewBox="0 0 18 15" width="18px" height="15px">
+				<path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+				</svg>
+			</span>
+			</label>
+
+			<div class="trigger">
+				<a class="page-link" href="/">Home</a>
+				<a class="page-link" href="/projects">Projects</a>
+				<a class="page-link" href="/learning">Blog</a>
+				<a class="page-link" href="/research">Research</a>
+				<span class="page-link" href="#">[Education]</span>
+			</div>
+		</nav>
+	</div>
+  </header><main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <head>
+	<script>
+		MathJax = {
+		  tex: {
+			inlineMath: [['$', '$'], ['\\(', '\\)']],
+			displayMath: [['$$', '$$'], ['\\[', '\\]']]
+		  }
+		};
+	</script>
+	<script id="MathJax-script" async
+		src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+	</script>
+  </head>
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">APPH3300 Applied Electromagnetism</h1>
+    <p class="post-meta"><time class="dt-published" datetime="2022-05-03T00:00:00-04:00" itemprop="datePublished">
+        May 3, 2022
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>Applied EM Equations</p>
+
+<h1 id="chapter-2">Chapter 2</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Condition</th>
+      <th>Equation</th>
+      <th>Comments</th>
+      <th> </th>
+      <th> </th>
+      <th> </th>
+      <th> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Discrete Charges $q_j \neq Q$</td>
+      <td>$\vec{F} = Q\sum_{j} \frac{1}{4\pi \epsilon_0}\frac{q_j}{</td>
+      <td>\vec{r}-\vec{r}_j^{\prime}</td>
+      <td>^2} \frac{\vec{r}-\vec{r}^\prime}{</td>
+      <td>\vec{r}-\vec{r}_j^{\prime}</td>
+      <td>} =QE(\vec{r})$</td>
+      <td>Field comes from <strong>other charges only!</strong></td>
+    </tr>
+    <tr>
+      <td>Continuous Charge distribution $\rho(\vec{r}^\prime)$</td>
+      <td>$\vec{F} = Q\int \frac{1}{4\pi \epsilon_0}\frac{1}{</td>
+      <td>\vec{r}-\vec{r}^{\prime}</td>
+      <td>^2} \frac{\vec{r}-\vec{r}^\prime}{</td>
+      <td>\vec{r}-\vec{r}^{\prime}</td>
+      <td>}\rho dV’ =QE(\vec{r})$</td>
+      <td>Integrate over all space, so all $\rho(\vec{r}^\prime)$ is covered</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>$\oint \vec{E}\cdot d\vec{a} = \frac{Q_{enc}}{\epsilon_0}$</td>
+      <td>Useful when there is symmetry, so that $\oint \vec{E}\cdot d\vec{a} $ is easy to figure out</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>$\vec{\nabla } \cdot \vec{E} = \rho / \epsilon_0$</td>
+      <td>Proof from <strong>divergence theorem</strong>: $\oint \vec{E}\cdot d\vec{a} = \int (\vec{\nabla}\cdot \vec{E})dV$</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>$\vec{\nabla}\cdot\frac{\hat{r}}{r^2} = 4\pi \delta^3(r)$</td>
+      <td>Proven from trying to recover the above: $\nabla \cdot \vec{E} = \frac{1}{4\pi \epsilon_0}\int \vec{\nabla}\cdot \frac{\hat{r}}{r^2}p(r’)d^3r’ = \rho(r’)/\epsilon_0$</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>$\int_{a&lt;0}^{b&gt;0} \delta(x)dx = \int_{a}^b \frac{d}{dx}H(x)dx$</td>
+      <td>Useful for <strong>formally prove</strong> integral results with delta function</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>$\vec{\nabla}\times \vec{E}=\vec{0}$</td>
+      <td>Conservation of field/charge. Proven from showing that $\oint \vec{E}\cdot d\vec{l}=\int \vec{\nabla}\times \vec{E}\cdot d\vec{S}=0 $ for a single point charge, then superposition.</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>A common approach to <strong>prove starting from a single point charge</strong>, then just use superposition</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>$V(\vec{r}) = - \int_O^r \vec{E}\cdot d\vec{l}$</td>
+      <td>Useful when you <strong>already know $\vec{ E}$</strong></td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>Careful for regions when $\vec{E}$ is <strong>not continuous</strong>. Then you may need to split your integral.</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>$\vec{E}=-\vec{\nabla}V$</td>
+      <td>Useful for <strong>finding</strong> out $\vec{E}$, since $V$ is easier to compute</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>$\nabla^2 V = \rho / \epsilon_0$</td>
+      <td>Poisson’s equation. Useful to <strong>solve when inside vacuum region</strong> such that $\rho = 0$ globally in that region.</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>In side vacuum, $\nabla^2 V = 0$ is the Laplace Equation</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>$V(\vec{r}) = \frac{1}{4\pi \epsilon_0} \int \frac{\rho(r’)}{</td>
+      <td>\vec{r} - \vec{r}’</td>
+      <td>}d^3r’$</td>
+      <td>Useful to figure out potential hence the <strong>electric field</strong> when <strong>Gaussian surface</strong> <strong>cannot</strong> be used</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>derived from finding out the potential of a point charge using $V(\vec{r}) = - \int_O^r \vec{E}\cdot d\vec{l}$, then superposition.</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>When evaluated <strong>right above/below the surface</strong></td>
+      <td>$\vec{E}<em>{above}-\vec{E}</em>{below} = \frac{\sigma}{\epsilon_0}\hat{n}$</td>
+      <td>Useful to figure out <strong>surface charge</strong> when we know field</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>True for <strong>any surface charge</strong></td>
+      <td> </td>
+      <td>Field is discontinuous when we have <strong>surface charge</strong></td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>Proven from showing $(E^\perp_{above}-E^\perp_{below})A=\frac{Q_{enc}}{\epsilon_0}$ from Gaussian box near the surface, and $E^\parallel_{above}-E^\parallel_{below}=0$ from $ \oint \vec{E}\cdot d\vec{l}=0$</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>$V(b)-V(a) = W/Q$</td>
+      <td>Work done to move charge $Q$ from $a$ to $b$</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>proven from the definition $W = \int_a^b \vec{F}\cdot d\vec{l}=-Q\int_a^b \vec{E}\cdot d\vec{l}=Q[V(b)-V(a)]$</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>$W=\frac{1}{4\pi \epsilon_0}\sum_{i=1}^N\sum_{j &gt; i}^N \frac{q_iq_j}{r_{ij}}$</td>
+      <td>Work done to <strong>assemble already-made charges</strong></td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>$W=\frac{1}{2}\sum_{i=1}^Nq_i\left(\sum_{j\neq i}^N \frac{1}{4\pi \epsilon_0} \frac{q_j}{r_{ij}}\right) = \frac{1}{2}\sum_{i=1}^n q_i V(\vec{r}_i)$</td>
+      <td>$V(\vec{r}_i)$ is due to <strong>charges other than $q_i$</strong></td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>used when needed to compute energy of <strong>discrete charges</strong></td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>True for any space</td>
+      <td>$W=\frac{1}{2}\int V(\vec{r}’)\rho(\vec{r}’)d^3r’$</td>
+      <td>Continuous version of the above</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>used for energy contained in the <strong>entire distribution</strong>, not exactly the same as discrete case</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>True for any space</td>
+      <td>$W=\frac{\epsilon_0}{2}\left[\int</td>
+      <td>\vec{E}</td>
+      <td>^2d^3r’ + \oint V\vec{E}\cdot d\vec{A}\right]$</td>
+      <td>derived from above, using $\rho/\epsilon_0 = \vec{\nabla}\cdot \vec{E}$ and $\nabla{V}=-\vec{E}$</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Over <strong>all space</strong></td>
+      <td>$W=\frac{\epsilon}{2}\int</td>
+      <td>\vec{E}</td>
+      <td>^2d^3r’$</td>
+      <td><strong>Easier to compute</strong>, often used.</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Perfect Conductor</td>
+      <td>$\vec{E}<em>{meat}=0$, $\rho</em>{meat}=0$</td>
+      <td>Charges free to move, will redistribute until $\vec{E}_{meat}=0$. Hence all charges are <strong>on the surface</strong></td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>$V_{surf}=V_0$, $\vec{E}_{surf}={E}^\perp \hat{n}$</td>
+      <td>$V(b)-V(a)=-\int_a^b \vec{E}\cdot d\vec{l}=0$ if on the surface, since $\vec{E}=0$ inside</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>$V_{meat}=V_0$ as well since there is no field</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>Those conditions are often used as ==constraints== in a problem</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Capacitance</td>
+      <td>$C \equiv \frac{Q}{\Delta V}$</td>
+      <td>$Q=+Q$ of the <strong>two conductors,</strong> is the <strong>charge stored</strong></td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>$\Delta V =- \int_a^b \vec{E}\cdot d\vec{l}$ commonly used</td>
+      <td>$\Delta V$ is the potential difference across the two conductor = <strong>how much $\Delta V$</strong> needed to store $Q$</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>Should be purely <strong>geometric</strong>, in unit $\epsilon \cdot \text{Length}$</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Energy Stored in Conductor</td>
+      <td>$W=\frac{1}{2}\frac{Q^2}{C}=\frac{1}{2}CV^2$</td>
+      <td>Think of it being same as energy needed to <strong>charge up conductor</strong> = <strong>work done</strong> to move all the charges over</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>Proven because $dW = \Delta V(q)dq$ to move a charge $dq$ over, and then since $C=\frac{q}{\Delta V(q)}$ is geometric, perform $W=\int dW$</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>$W = \frac{\epsilon_0}{2}\int</td>
+      <td>\vec{E}</td>
+      <td>^2 d^3r’$ over all space</td>
+      <td>same result as above</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Current Density</td>
+      <td>$\rho(r)\cdot v_e(r)\equiv J(r)$</td>
+      <td>density times velocity</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>$\vec{\nabla}\cdot \vec{J}  =0$</td>
+      <td>at equilibrium, as otherwise charge accumulates</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>$\Delta U(x) = eV(x)=\frac{1}{2}m_e v_e(x)^2$</td>
+      <td>conservation of energy, and change in potential $\Delta U$ can be simply measured by $qV$</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<p><em>Electric Field from Coulomb’s Law:</em></p>
+
+<p>Using superposition we can show
+\(\vec{F} = Q\int \frac{1}{4\pi \epsilon_0}\frac{1}{|\vec{r}-\vec{r}^{\prime}|^2} \frac{\vec{r}-\vec{r}^\prime}{|\vec{r}-\vec{r}^{\prime}|}\rho dV' =QE(\vec{r})\)
+Then, if we have a <strong>line charge</strong>, and we are interested in $E(\vec{r})=E(z\hat{z})$ due to symmetry</p>
+
+<p><img src="em_equations/image-20220212154857740.png" alt="image-20220212154857740" style="zoom:50%;" /></p>
+
+<p>Since we only need $z$, consider $\bar{r}=\vec{r}-\vec{r}^{\prime}$ in the above figure (red box)
+\(\begin{align*}
+\vec{E}(\vec{r})
+&amp;= \frac{1}{4\pi \epsilon_0} \int \frac{1}{\bar{r}^2}\frac{\bar{r}}{\sqrt{\bar{r}^2}}\, \rho \, dV'\\
+&amp;=  \frac{1}{4\pi \epsilon_0} \int_{-L}^L \frac{1}{(z^2 + x'^2)}\frac{z\hat{z}-x'\hat{x}}{\sqrt{z^2 + x'^2}}\, \lambda \, dx'\\
+\end{align*}\)
+essentially consider $\rho = \lambda \delta(y)\delta(z)$ since it is only on $x$-axis.</p>
+
+<hr />
+
+<p><em>Potential when You Know $\vec{E}$</em></p>
+
+<p>Consider the potential for a <strong>shell charge</strong>, which you already know the field:
+\(\vec{E} = \begin{cases}
+\frac{Q}{4\pi \epsilon_0 r^2}, &amp; r &gt; R\\
+0, &amp; r &lt; R
+\end{cases}\)
+which can be proven from Gaussian surface. Then, we consider the harder potential, <strong>for $r &lt; R$</strong>:
+\(\begin{align*}
+V(r) 
+&amp;= -\int_O^r\vec{E}\cdot d\vec{l} \\
+&amp;= -\int_\infty^r \vec{E}\cdot d\vec{l}\\
+&amp;= -\int_\infty^R \vec{E}\cdot d\vec{l}-\int_R^r \vec{E}\cdot d\vec{l}
+\end{align*}\)
+then you substitute in the <strong>discontinuous field</strong>.</p>
+
+<hr />
+
+<p><em>Conversion between Potential, Field, and Charge</em></p>
+
+<p><img src="em_equations/image-20220212164103943.png" alt="image-20220212164103943" /></p>
+
+<p>where the highlighted ones are used most often.</p>
+
+<hr />
+
+<p><em>Induced Charges</em></p>
+
+<p>Consider a charge <strong>neutral</strong> conductor, with $+q$ inside a <strong>cavity</strong>:</p>
+
+<p><img src="em_equations/image-20220212175035891.png" alt="image-20220212175035891" /></p>
+
+<p>we want to show that (if the drawing above is a sphere)
+\(\vec{E}_{outside} = \frac{q}{4\pi \epsilon_0}\frac{1}{r^2}\hat{r}\)
+which can be argued by:</p>
+
+<ol>
+  <li>
+    <p>since $\vec{E}<em>{meat}=0$ for conductor, we draw the Gaussian surface around the cavity to show that:
+\(\oint \vec{E}\cdot d\vec{A} = 0 = \frac{Q_{enc}}{\epsilon_0}\)
+hence <strong>negative charges distribute at surface of cavity</strong>, such that $E</em>{meat}=0$ maintains</p>
+  </li>
+  <li>
+    <p>Then, since the negative charges effectively shielded off the $+q$, we can say that the remaining positive charge will have <strong>distributed uniformly</strong>. Hence outside the surface, we still have <strong>symmetry</strong>.</p>
+  </li>
+</ol>
+
+<hr />
+
+<p><em>Faraday Cage</em>:</p>
+
+<p>If the <strong>cavity contains no charge</strong> inside a perfect conductor, then $\vec{E}_{\text{in cavity}}=0$</p>
+
+<p><img src="em_equations/image-20220212175551629.png" alt="image-20220212175551629" /></p>
+
+<p>This can be shown by drawing a <strong>closed loop</strong>, so that:</p>
+
+<ul>
+  <li>$\oint \vec{E}\cdot d\vec{l}=0$ since it is closed</li>
+  <li>the part $\int \vec{E}\cdot d\vec{l}=0$ that covers path <strong>inside the conductor</strong> because $\vec{E}_{meat}=0$</li>
+  <li>hence, this means $\int \vec{E}\cdot d\vec{l}=0$ for <strong>any path inside the cavity</strong> as well.</li>
+</ul>
+
+<h1 id="chapter-3">Chapter 3</h1>
+
+<p>Here we are concerned with finding out $V$ (hence $\vec{E}$) when we technically don’t even know $\rho$ so that:
+\(V(\vec{r}) = \frac{1}{4\pi \epsilon_0} \int \frac{\rho(r')}{|\vec{r} - \vec{r}'|}d^3r'\)
+cannot be used.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Condition</th>
+      <th>Equation</th>
+      <th>Comment</th>
+      <th> </th>
+      <th> </th>
+      <th> </th>
+      <th> </th>
+      <th> </th>
+      <th> </th>
+      <th> </th>
+      <th> </th>
+      <th> </th>
+      <th> </th>
+      <th> </th>
+      <th> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>In vacuum region so that $\rho=0$ everywhere</td>
+      <td>$\nabla^2 V = 0$</td>
+      <td>essentially <strong>solving PDE</strong> to get $V$</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>using separation of variables</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Property for $V$ that solves $\nabla^2 V=0$</td>
+      <td>$V(\vec{r})=\frac{1}{4\pi R^2}\oint_{B_R}VdA$</td>
+      <td>Solution of $V$ value at $\vec{r}$ is the <strong>average of surrounding</strong> (mean value theorem)</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>(follows from the above) Extremum for $V$ only happens <strong>at the boundary</strong></td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Earnshaw’s Theorem</td>
+      <td>A charged particle cannot be held in stable equilibrium by electrostatic force</td>
+      <td>If stable equilibrium, $V(r_{eq}) &gt; V(r_{surface})$ for a ball of radius $R$ around it.</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>But since $\nabla^2V=0$ holds, then from MV theorem this cannot be true.</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Uniqueness Theorem</td>
+      <td>Solution to $\nabla^2V=0$ is unique</td>
+      <td>Proven by $V_3 = V_2 - V_1$, and showing that $V_3=0$ is a must if $V_1,V_2$ solves both PDE and boundary condition</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>Solution to $\nabla^2V = - \rho / \epsilon_0$ is also unique</td>
+      <td>same idea as above</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Method of Images</td>
+      <td> </td>
+      <td>Figuring out $V$ is the same as solving $\nabla^2V=0$ with boundary condition. Use method of images to satisfy B.C. while making sure $\rho = 0$ in the interested region.</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>Works because of uniqueness theorem</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>Useful when you <strong>don’t</strong> want to actually solve $\nabla^2V=0$</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>2D Cartesian Solution for Laplacian</td>
+      <td>$V(x,y)=(Ae^{kx}+Be^{-kx})(C\sin(ky)+D\cos(ky))=X(x)Y(y)$</td>
+      <td>General Solution, $k$ needs to be solved by looking at B.C.</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>$k=n \pi /a$, solution $V(x,y) = \sum_n V_n(x,y)$</td>
+      <td>sometimes you can tell what $n$ should be, e.g. $n=5$. Then solution is simply one term of the sum</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>2D Cylindrical Solution for Laplacian</td>
+      <td>$\nabla^2V = \frac{1}{r}\frac{\partial }{\partial r}(r \frac{\partial V}{\partial r})+\frac{1}{r^2}\frac{\partial^2 V}{\partial \phi^2}=0$</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>$V(r,\phi) = (Ar^m + Br^{-m})(C\sin(m\phi)+D\cos(m\phi))$</td>
+      <td>General solution, $m$ needs to be solved by looking at B.C.</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>3D Spherical Solution without horizontal $\phi$</td>
+      <td>$\nabla^2 V =  \frac{1}{r}\frac{\partial }{\partial r^2}(r^2 \frac{\partial V}{\partial r})+\frac{1}{r^2 \sin(\theta)}\frac{\partial^2 V}{\partial \theta^2}=0$</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>$V(r,\theta, \phi)=(Ar^l + \frac{B}{r^{l+1}})P_l[\cos(\theta)]$</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Legendre Polynomial</td>
+      <td>$P_0[\cos(\theta)]=1 \ P_1[\cos(\theta)]=\cos \theta \ P_2[\cos(\theta)]=(3\cos^2 \theta -1)/2$</td>
+      <td>Good to remember</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>$\int_0^\pi P_i[\cos(\theta)]P_j[\cos(\theta)]\sin(\theta) \, d\theta = \begin{cases} 0, &amp; i \neq j\ \frac{2}{2i+1}, &amp; i = j \end{cases}$</td>
+      <td>Orthogonality, use for non-homogenous boundary condition (if needed)</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Multipole Expansion</td>
+      <td>$V(\vec{r}) = \frac{1}{4 \pi \epsilon_0} \sum_{l=0}^\infty \frac{1}{r^{l+1}} \int (r’)^l P_l[\cos(\theta)] \rho(r’)d^3r’$</td>
+      <td>Approximation useful when we are far away. Proof from $V(\vec{r}) = \frac{1}{4 \pi \epsilon_0}\int \frac{\rho(r’)}{</td>
+      <td> </td>
+      <td>\vec{r}-\vec{r}’’</td>
+      <td> </td>
+      <td>} d^3r’$ and using result below</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>$\frac{1}{</td>
+      <td> </td>
+      <td>\vec{r}-\vec{r}’</td>
+      <td> </td>
+      <td>} = \frac{1}{r}\sum_l^\infty \left( \frac{r’}{r} \right)^l P_l[\cos(\theta)]$</td>
+      <td>for $r =</td>
+      <td> </td>
+      <td>\vec{r}</td>
+      <td> </td>
+      <td>, r’=</td>
+      <td> </td>
+      <td>\vec{r}’</td>
+      <td> </td>
+      <td>$, proven from binomial expansion of denominator taking out $R$.</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>$V(\vec{r}) = \frac{1}{4 \pi \epsilon_0}\sum_{l=0}^\infty \frac{M_l}{r^{l+1}}P_l[\cos\theta]$, $M_l \equiv \int (r’)^l \rho(r’)d^3r’$</td>
+      <td>assuming $P_l[\cos\theta]$ can be taken out from the integral</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>$V_l = \frac{1}{4\pi \epsilon_0} \frac{M_l P_l[\cos\theta]}{r^{l+1}} $, so $V(\vec{r}) = \sum_{l=0}^\infty V_l$</td>
+      <td>e.g. monopole potential take $l\to 0$, dipole potential take $l \to 1$, quadruple potential take $l\to 2$,…</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Multipole Terms</td>
+      <td>$M_l \equiv \int (r’)^l \rho(r’)d^3r’$</td>
+      <td>in continous case</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>$M_l \equiv \sum_i (r_i’)^l q_i$</td>
+      <td>in discrete case (both assume $\theta$ being a constant, otherwise $P_l[\cos \theta]$ will be included)</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>$V_l = \frac{1}{4\pi \epsilon_0} \frac{M_l P_l[\cos\theta]}{r^{l+1}} $</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Dipole Moment</td>
+      <td>$V_1(\vec{r}) = \frac{1}{4 \pi \epsilon_0} \frac{1}{r^{2}} \int r’ \cos(\theta )\rho(r’)d^3r’  = \frac{1}{4\pi \epsilon_0} \frac{1}{r^2} \int \hat{r}\cdot \vec{r}’ \rho(r’)d^3r’$</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>$V_1(\vec{r}) = \frac{1}{4\pi\epsilon_0}\frac{1}{r^2}\hat{r}\cdot \vec{p}$, with $\vec{p} \equiv \int \vec{r}’ \rho(r’)d^3r’ $</td>
+      <td>Dipole Moment $\vec{p}$ without any assumption</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>$\vec{p} = \sum_i \vec{r}’_i q_i$</td>
+      <td>Dipole Moment in discrete case</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<p><em>Method of Imaging</em></p>
+
+<p>Consider finding $V$ in the following region where $z &gt; 0$:</p>
+
+<p><img src="em_equations/image-20220212185301978.png" alt="image-20220212185301978" style="zoom:67%;" /></p>
+
+<p>Notice that finding out $V$ in that region is the same as:</p>
+
+<ul>
+  <li>solving $\nabla^2 V=0$</li>
+  <li>B.C.: $V=0$ when $z=0$ as it is <strong>grounded</strong></li>
+  <li>B.C.: $V(r)\to 0$ if $r^2 » d^2$, i.e. when far away</li>
+  <li>$\vec{E}$ is <strong>perpendicular to surface</strong> at $z=0$
+    <ul>
+      <li>good check to make sure ==if method of imaging setup is correct==</li>
+    </ul>
+  </li>
+</ul>
+
+<p>Then, realize that this is the same as <strong>solving for $V$ in Figure 3.11</strong>.</p>
+
+<ul>
+  <li>in the end we only take the solution for $z&gt;0$</li>
+</ul>
+
+<p>Since it is essentially two point charges, use <strong>superposition of potential from point charges</strong>:
+\(V(x,y,z) = \frac{1}{4\pi \epsilon_0} \left[ \frac{q}{\sqrt{x^2 + y^2 + (z-d)^2}} -\frac{q}{\sqrt{x^2 + y^2 + (z+d)^2}} \right]\)</p>
+
+<hr />
+
+<p><em>Multipole Expansion Derivation Sketch</em></p>
+
+<p>This comes from the motivation to <strong>approximate field</strong> when we are <strong>far from the charge density</strong>. Technically the approximation
+\(V(\vec{r}) \approx \frac{1}{4\pi \epsilon_0} \frac{Q_{total}}{r^2}\)
+could work in some cases, in other case you might have $Q_{total}=0$ then this is <strong>uninformative</strong>, i.e. we need higher order terms. Hence we first use binomial expansion to show that:
+\(\frac{1}{||\vec{r}-\vec{r}'||} = \frac{1}{r}\sum_l^\infty \left( \frac{r'}{r} \right)^l P_l[\cos(\theta)]\)
+from doing
+\(\frac{1}{||\vec{r}-\vec{r}'||} = \frac{1}{\sqrt{r^2 + r^{'2}-2rr'\cos \theta}} = \frac{1}{r}\frac{1}{\sqrt{1+\epsilon}}\)
+then expanding the $1/\sqrt{1+\epsilon}$ to get Legendre polynomial, which ==assumes small $\epsilon$== hence being far away from charges.</p>
+
+<hr />
+
+<p><em>Multipole Expansion Example</em></p>
+
+<p>Consider a vertical line charge $\lambda (z’)$, and we are interested in finding $V(\vec{r})$ far away from it.</p>
+
+<p><img src="em_equations/image-20220314110957682.png" alt="image-20220314110957682" style="zoom:80%;" /></p>
+
+<p>Using the formula for expansion, we know:
+\(V(\vec{r}) = \frac{1}{4 \pi \epsilon_0} \sum_{l=0}^\infty \frac{1}{r^{l+1}} \int (r')^l P_l[\cos(\theta)] \rho(r')d^3r'\)
+then since $\rho(r’) = \lambda(z’)\delta(x’)\delta(y’)$, and since $\vec{r}’ = z’\hat{z}$, meaning $r’=z’$, then we get:
+\(\begin{align*}
+V(\vec{r})
+&amp;= \frac{1}{4 \pi \epsilon_0} \sum_{l=0}^\infty \frac{1}{r^{l+1}} \int (z')^l P_l[\cos \theta] \lambda(z')\delta(x')\delta(y')\,d^3r'\\
+&amp;= \frac{1}{4 \pi \epsilon_0} \sum_{l=0}^\infty \frac{P_l[\cos\theta]}{r^{l+1}} \iiint (z')^l \lambda (z')\delta(x')\delta(y')\,dx'dy'dz'\\
+&amp;= \frac{1}{4 \pi \epsilon_0} \sum_{l=0}^\infty \frac{P_l[\cos\theta]}{r^{l+1}} \int (z')^l \lambda (z')dz'
+\end{align*}\)
+which is the furthest we can go, and the second equality comes from the fact that $\theta$ which is the <strong>angle between $\vec{r}$ and $\vec{r}’$</strong> is constant given a $\vec{r}$.</p>
+
+<hr />
+
+<p><em>Multipole Expansion Discrete case:</em></p>
+
+<p>If you are dealing with a <strong>discrete</strong> case, you can then either:</p>
+
+<ul>
+  <li>
+    <p>express $\rho(\vec{r}’)$ in terms of $\delta$ functions, hence point charges</p>
+  </li>
+  <li>
+    <p>use the discrete formula for $M$. Since we assumed to be far away from the charges, usually $\theta_i$ between $\vec{r}$ and $\vec{r}_i’$ can be assumed constant hence:
+\(V(\vec{r}) = \frac{1}{4 \pi \epsilon_0}\sum_{l=0}^\infty \frac{M_l}{r^{l+1}}P_l[\cos\theta], \quad M_l \equiv \sum_i (r_i')^l q_i\)
+otherwise you will need:
+\(V(\vec{r}) = \frac{1}{4 \pi \epsilon_0}\sum_{l=0}^\infty \frac{M_l}{r^{l+1}}, \quad M_l \equiv \sum_i (r_i')^l \, P_l[\cos\theta_i] \, q_i\)</p>
+  </li>
+</ul>
+
+<h1 id="chapter-4">Chapter 4</h1>
+
+<p>This chapter discuss <strong>electric fields in matter (e.g. dielectric)</strong>, which is what happens when an electric field $\vec{E}_{app}$ is applied on the matter.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Condition</th>
+      <th>Equation</th>
+      <th>Comment</th>
+      <th> </th>
+      <th> </th>
+      <th> </th>
+      <th> </th>
+      <th> </th>
+      <th> </th>
+      <th> </th>
+      <th> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Atomic Polarization</td>
+      <td>$\vec{p} = \alpha \vec{E}_{applied}$</td>
+      <td>For molecules, $\alpha$ would be a function of “direction” if molecule is asymmetric (e.g. $H_2O$)</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Polarization</td>
+      <td>$\vec{P}$=dipole moment per volume</td>
+      <td>describes polarization of material due to some externel field</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>$\vec{p} = \vec{P}\,dV’$</td>
+      <td>Want to find field <strong>results</strong> from polarization $\vec{P}$</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>$\vec{P}(\vec{r}’)=0$ if $\vec{r}’$ is vacuum, for example</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Potential due to Polarization $\vec{P}$</td>
+      <td>$V(\vec{r}) = \frac{1}{4\pi \epsilon_0} \oint_\Omega \frac{\sigma_b}{</td>
+      <td> </td>
+      <td>\vec{r} - \vec{r}’</td>
+      <td> </td>
+      <td>}dA’+ \frac{1}{4\pi \epsilon_0} \int_V \frac{\rho_b}{</td>
+      <td> </td>
+      <td>\vec{r} - \vec{r}’</td>
+      <td> </td>
+      <td>}dV’ $</td>
+      <td>derived from $V(\vec{r})$ ==only== consisting of dipole terms, which is defined by $\vec{P}(\vec{r})$</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>$V(\vec{r})=V(\text{from $\sigma_b, \rho_b$})$</td>
+      <td>i.e. you can <strong>treat</strong> the dielectric as having $\sigma_b$ on the surface and $\rho_b$ inside.</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>if $\rho_b = 0$, $V(\text{from $\sigma_b,\rho_b$})$ can be solved using <strong>Laplacian $\nabla^2 V = 0$</strong> with boundary of $\sigma_b$</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>$\sigma_b \equiv \vec{P}\cdot \hat{n}$</td>
+      <td>$\hat{n}$ points from the surface having dielectric to vaccum/non-dielectric place</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>$\rho_b\equiv - \nabla \cdot \vec{P}$</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Interpretation of Bound Charge due to $\vec{P}$</td>
+      <td>$\sigma_b \equiv \vec{P}\cdot \hat{n}$</td>
+      <td>$\sigma_b$ comes from lining up dipoles so that only ends matter</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>$\rho_b\equiv - \nabla \cdot \vec{P}$</td>
+      <td>$\rho_b$ considers if dipole in between is not cancelled out, then the flux of polarization would relate to charge: $-\oint \vec{P}\cdot d\vec{A} =\int_V \rho_b \,d^3r’$</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Electric Displacement Field</td>
+      <td>$\vec{\nabla} \cdot \vec{D}= \rho_{free}$, and $\vec{D} \equiv \epsilon_0 \vec{E}_{total} + \vec{P}$</td>
+      <td>differential form</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>$\vec{\nabla}\cdot \vec{E}<em>{tot} = \frac{\rho</em>{free}+\rho_b}{\epsilon_0}$</td>
+      <td>derivation, then using $\rho_b = -\vec{\nabla}\cdot \vec{P}$</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>$\oint \vec{D}\cdot d\vec{A} = Q_{free_{enc}}$</td>
+      <td>integral form</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>if have symmetry can use <strong>Gaussian surfaces</strong></td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>used for proving boundary conditions for $\vec{D}$</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>$\vec{\nabla} \times \vec{D} = \vec{\nabla} \times \vec{P}$</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>$\oint \vec{D}\cdot d\vec{r}=\oint \vec{P}\cdot d\vec{r}$</td>
+      <td>Stokes’ Theorem, derived from above</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>used for proving boundary conditions for $\vec{D}$</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>the above is <strong>true for any dielectric</strong></td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>$\vec{D}$ and $\vec{E}$ relation</td>
+      <td>$\vec{\nabla}\cdot \vec{E}<em>{tot} = \rho</em>{tot} / \epsilon_0 \to \vec{E}<em>{tot} = \frac{1}{4\pi \epsilon_0} \int \frac{\rho</em>{tot}}{\symscr{r}} \hat{\symscr{r}}\,d^3r’$</td>
+      <td>because $\vec{\nabla}\times \vec{E}_{tot} = 0$</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>$\vec{\nabla}\cdot \vec{D}= \rho_{free} \not\to \vec{D} = \frac{1}{4\pi } \int \frac{\rho_{free}}{\symscr{r}} \hat{\symscr{r}}\,d^3r’$</td>
+      <td>because $\vec{\nabla} \times \vec{D} \neq 0$ often, hence $\vec{D}$ might not have a potential</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Linear Dielectric</td>
+      <td>$\vec{P} = \epsilon_0 \chi_e \vec{E}_{tot}$</td>
+      <td>$\chi_e$ is electric susceptibility, $\epsilon_0$ is permittivity of free space</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>if $\vec{E}<em>{applied}$ is given, we are stuck because it will produce $\vec{P}$, which produces $\vec{E}</em>{resp}$ hence affects $\vec{E}_{tot}$, which relates to $\vec{P}$…</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>$\vec{D} = \epsilon_0(1+\chi_e)\vec{E}<em>{tot}\equiv \epsilon \vec{E}</em>{tot}$</td>
+      <td>$\epsilon$ is permittivity of material</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>can use this to <strong>break from the loop</strong> if we can find $\vec{D}$ from Gaussian surface</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>$\epsilon_r \equiv \epsilon / \epsilon_0 = 1+\chi_e$</td>
+      <td>relative permittivity, $\chi_e=0$ in free space.</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>also called <strong>dielectric constant</strong></td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>$\vec{\nabla}\times \vec{D} = \vec{\nabla} \times (\epsilon \vec{E}_{tot}) \neq 0$</td>
+      <td>because $\epsilon$ could vary in different position</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Space filled with homogenous Linear Dielectric $\chi_e$</td>
+      <td>$\vec{\nabla} \times \vec{D} = 0$, $\vec{\nabla} \cdot \vec{D}= \rho_{free}$</td>
+      <td>inside the homogenous linear dielectric, $\epsilon$ is constant</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>$\vec{D} = \epsilon_0 \vec{E}_{free}$</td>
+      <td>$\vec{E}_{free}$ is field produced by free charges</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>because now $\vec{\nabla}\cdot \vec{D}= \rho_{free} \to \vec{D} = \frac{1}{4\pi } \int \frac{\rho_{free}}{\symscr{r}} \hat{\symscr{r}}\,d^3r’$ holds</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Happens when $\vec{\nabla} \times\vec{D} = \vec{\nabla} \times\vec{P}= 0$, commonly with a capacitor</td>
+      <td>$\vec{E}<em>{tot} = \frac{1}{\epsilon_r}\vec{E}</em>{free}\equiv \frac{1}{\epsilon_r}\vec{E}_{vac}$</td>
+      <td>for capacitor: derived if $\vec{D}$ has the same shape as $ \vec{E}<em>{vac}$ , then use Gaussian to find $\vec{D}$ and use $\vec{D} = \epsilon \vec{E}</em>{tot}$</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>in general, $\vec{\nabla} \times\vec{D} = 0$ alone would work. See the relevant section below</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>note that this is a special case on top of having a linear dielectric</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Boundary Conditions for $\vec{D}$</td>
+      <td>$D_{abv}^\perp - D_{below}^\perp = \sigma_{free}$</td>
+      <td>derived from drawing Gaussian box just above/below the surface</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>$D_{abv}^\parallel - D_{below}^\parallel= P_{abv}^\parallel - P_{below}^\parallel$</td>
+      <td>derived from drawing loop just above/below the surface</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>True for any dielectric</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>$\vec{E}<em>{above}-\vec{E}</em>{below} = (\sigma_{total}/\epsilon_0) \hat{n}$</td>
+      <td>(note that those always/still hold)</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>$E_{abv}^\parallel - E_{below}^\parallel= 0$</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Dielectric inside Capacitor</td>
+      <td>$C = \epsilon_r C_{vac}$</td>
+      <td>$C_{vac}$ is capacitance without dielectric</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>holds whenever $\vec{E}<em>{tot} = \frac{1}{\epsilon_r}\vec{E}</em>{free}$ holds inside the capacitance. Hence $\Delta V = \Delta V_{vac}/\epsilon_r$ while $Q$ is the same.</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Energy of setup with a Dielectric</td>
+      <td>$W=\frac{1}{2}\int_{all\,space}\vec{D}\cdot\vec{E}\,d^3r$</td>
+      <td>holds if you have a linear dielectric so that $\vec{D}=\epsilon \vec{E}$</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>derived from assuming bound charges fixed in place, we are only moving free charges into position</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>$W = \frac{\epsilon_0}{2}\int</td>
+      <td>\vec{E}</td>
+      <td>^2 d^3r$</td>
+      <td>still holds if we are assembling <em>all charges</em> independently, i.e. we also bring in bound charges</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>this will be smaller than $W=\frac{1}{2}\int_{all\,space}\vec{D}\cdot\vec{E}\,d^3r$ as it does not include potential/spring energy within dipoles</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Force <em>on</em> Dielectric (due to capacitor)</td>
+      <td>$-F_{on\,diel}=\frac{dW}{dx}=-\frac{1}{2}V(x)^2\frac{dC(x)}{dx}$</td>
+      <td>True either fixing $Q$ or fixing $V$, in which case $V(x)=V_0$</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>sanity check: force should suck dielectric into capacitor</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>$dW = F_{me}dx=-F_{on\,diel}dx$, and $W=\frac{1}{2}\frac{Q^2}{C(x)}$</td>
+      <td>derivation. For $C(x)$ and $V=V(x)$ if fixed total charge $Q$</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>$dW=-F_{on\, diel}dx + VdQ$, and $W=\frac{1}{2}C(x)V_0^2$</td>
+      <td>derivation if fixing $V(x)=V_0$. Ended up the same formula for $W$ as above.</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>$\vec{\nabla} W = -\vec{F}_{on\, diel}$</td>
+      <td>If in problem we have some 3D movement. Then $W$ is still one of the two above cases.</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<p><em>Atomic Polarization</em></p>
+
+<p>This is derived/==approximated== by considering the nucleus with charge $+q$ sits in <strong>equilibrium</strong> due to cancellation of external field $\vec{E}_{app}$ and $\vec{E}_e$ with is field of electron cloud (volume):</p>
+
+<p><img src="em_equations/image-20220314161623445.png" alt="image-20220314161623445" /></p>
+
+<p>Then since field inside <em>uniform sphere of charge</em> is:
+\(\vec{E}_e = -\frac{q}{4\pi \epsilon_0} \frac{r}{a^3} \hat{r},\quad  r&lt;a\)
+hence if we obtained an equilibrium <em>at $r=d$</em>:
+\(\begin{align*}
+\vec{E}_{app}(d) 
+&amp;=\frac{q}{4\pi \epsilon_0} \frac{d}{a^3} \hat{r}\\
+qd \hat{r} \equiv \vec{p} &amp;= (4\pi \epsilon_0 a^3)\vec{E}_{app}(d) 
+\end{align*}\)
+hence the proportionality.</p>
+
+<hr />
+
+<p><em>Application of Bound Charges</em></p>
+
+<p>Consider a slab of dielectric with thickness $d$ carrying polarization $\vec{P} = k[1+(x/d)]\hat{x}$ :</p>
+
+<p><img src="em_equations/image-20220314163908686.png" alt="image-20220314163908686" /></p>
+
+<p>we do not care yet what external field is needed to produce this polarization. We want to know the electric field <strong>produced by</strong> this given polarization.</p>
+
+<p>First, we can find the bound charges to be:
+\(\sigma_b = \vec{P}\cdot \hat{n} = \begin{cases}
+2k, &amp; x =d\\
+-k, &amp; x=0
+\end{cases}\\
+\rho_b = -\nabla \cdot \vec{P} = -\frac{k}{d},\quad 0&lt;x&lt;d\)
+Then, we can <em>treat this as real charges</em> to compute $V(\vec{r})$ due to the correctness of:
+\(V(\vec{r}) = \frac{1}{4\pi \epsilon_0} \oint_\Omega \frac{\sigma_b}{||\vec{r} - \vec{r}'||}dA'+ \frac{1}{4\pi \epsilon_0} \int_V \frac{\rho_b}{||\vec{r} - \vec{r}'||}dV'\)
+Now, since we know the charge distribution, we can exploit the symmetry and save doing the above extra integrals:</p>
+
+<ul>
+  <li>
+    <p>drawing Gaussian surfaces inside/outside the slab gives:
+\(\vec{E}_&lt; = \vec{E}_&gt;\\
+(\vec{E}_{inside}-\vec{E}_{&lt;})\cdot \hat{x} = \frac{k}{\epsilon_0}\left(1+\frac{x}{d}\right)\)</p>
+  </li>
+  <li>
+    <p>but notice that the net charge is zero, hence:
+\(\vec{E}_&lt; = \vec{E}_&gt; = \vec{0}\\
+\vec{E}_{inside} = -\frac{k}{\epsilon_0}\left( 1+ \frac{x}{d} \right)\)</p>
+  </li>
+</ul>
+
+<p>the result is consistent if you compute from $\vec{D}$ and use $\vec{D}=\epsilon \vec{E}_{tot}$.</p>
+
+<hr />
+
+<p><em>Homogenous Linear Dielectric</em>:</p>
+
+<p>Find $\vec{E}_{tot}$ inside the dielectric with the following setup, $Q$ is free charge placed by us.</p>
+
+<p><img src="em_equations/image-20220314173419462.png" alt="image-20220314173419462" /></p>
+
+<p>First, a linear dieletric means $\vec{D} = \epsilon \vec{E}<em>{tot}$. Then, as $\epsilon$ is constant inside, we get $\vec{\nabla} \times\vec{D} = 0$. Then $\vec{\nabla}\cdot \vec{D}= \rho</em>{free}$ always hold, we <strong>can use</strong>:
+\(\vec{D} = \frac{1}{4\pi } \int \frac{\rho_{free}}{\symscr{r}} \hat{\symscr{r}}\,d^3r'\)
+meaning that:
+\(\vec{D} = \epsilon_0 \vec{E}_{free},\quad \vec{E}_{tot} = \frac{1}{\epsilon_r}\vec{E}_{free}\)
+since <em>inside the dielectric</em> we have $\vec{E}_{free} = q/(4\pi \epsilon_0 r^2) \hat{r}$, our final answer is:
+\(\vec{E}_{tot}^{inside} = \frac{1}{\epsilon_r} \left( \frac{q}{4\pi \epsilon_0 r^2} \right)\hat{r}\)
+which is intuitive because:</p>
+
+<ul>
+  <li>dielectric getting polarized = induced dipole opposes $\vec{E}<em>{app}$, hence $\vec{E}</em>{tot}^{inside}$ becomes smaller</li>
+  <li>if conductor, then $\epsilon_r \to \infty$ since $\chi_e \to \infty$. Then naturally $\vec{E}_{tot}^{inside}=0$ inside conductor</li>
+</ul>
+
+<p>(can <strong>verify this result by starting with drawing Gaussian</strong> surface for finding $\vec{D}$)</p>
+
+<hr />
+
+<p><em>Treating $\sigma_b,\rho_b$ as real charges</em>:</p>
+
+<p>Basically it works due to the proof that
+\(V(\vec{r}) = \frac{1}{4\pi \epsilon_0} \oint_\Omega \frac{\sigma_b}{||\vec{r} - \vec{r}'||}dA'+ \frac{1}{4\pi \epsilon_0} \int_V \frac{\rho_b}{||\vec{r} - \vec{r}'||}dV'\)
+Then, consider finding $V(r)$ for $r &lt; a$ in the setup below:</p>
+
+<p><img src="em_equations/image-20220314173419462.png" alt="image-20220314173419462" /></p>
+
+<p>where $Q$ is a point charge sitting at origin. Then, we first can easily figure out $\vec{D}$ by:
+\(\int \vec{D}\cdot d\vec{S} = Q_{free_{enc}} = Q,\quad \text{true for all space}\)
+hence we get:
+\(\vec{D} = \frac{Q}{4 \pi r^2}\hat{r}\to \vec{E}_{tot} = \frac{Q}{4\pi \epsilon r^2}\hat{r}\)
+for $\epsilon$ ==actually changes in regions==, so that:</p>
+
+<ul>
+  <li>$\epsilon=\epsilon_0$ in vacuum hence $r &lt; a$ or $r &gt; b$</li>
+  <li>$\epsilon =\epsilon_r \epsilon_0$  inside dielectric</li>
+</ul>
+
+<p>Though we can proceed easily to find $V(\vec{r})$ now, but we can show that we obtain the same result if we <strong>treating $\sigma_b,\rho_b$ as real charges</strong>:</p>
+
+<ul>
+  <li>
+    <p>to find $\sigma_b, \rho_b$, first we need to find $\vec{P}$:
+\(\vec{P} = \epsilon_0 \chi_e \vec{E}_{tot} = \frac{\epsilon_0 \chi_e  Q}{4\pi \epsilon r^2}\hat{r}\)</p>
+  </li>
+  <li>
+    <p>then find $\sigma_b, \rho_b$:
+\(\sigma_b =\vec{P}\cdot \hat{n} = \begin{cases}
+-\frac{\epsilon_0 \chi_e  Q}{4\pi \epsilon a^2} , &amp; x =a\\
+\frac{\epsilon_0 \chi_e  Q}{4\pi \epsilon b^2} , &amp; x =b
+\end{cases}\\
+\rho_b = -\nabla \cdot \vec{P} =0,\quad a&lt;x&lt;b\)</p>
+  </li>
+</ul>
+
+<p>Then we can consider $\vec{E}<em>{tot}$ from those charges while using symmetry:
+\(\begin{cases}
+\vec{E}_{&lt;} = \frac{Q}{4 \pi \epsilon_0 r^2} \hat{r}, &amp; r &lt; a\\
+\vec{E}_{inside} = \frac{Q+Q_b(a)}{4 \pi \epsilon_0 r^2} \hat{r}= \frac{Q}{4 \pi \epsilon_0(1+\chi_e) r^2} \hat{r}, &amp; a&lt;r &lt;b\\
+\vec{E}_{&gt;} = \frac{Q}{4 \pi \epsilon_0 r^2} \hat{r}, &amp; r &gt; b
+\end{cases}\)
+using $\oint \vec{E}\cdot d\vec{A} = Q</em>{enc}/\epsilon_0$, where:</p>
+
+<ul>
+  <li>$Q_b(a)$ is the bound charges at $r=a$, which is $4 \pi a^2 \sigma_b(a)$.</li>
+  <li>this is consistent with $\vec{E}_{tot} = \frac{Q}{4\pi \epsilon r^2}\hat{r}$.</li>
+</ul>
+
+<p>Finally, finding $V(\vec{r})$ for $r &lt; a$ is just doing the integral:
+\(V(\vec{r}) = -\int_\infty^r \vec{E}\cdot d\vec{r} = -\int_\infty^b \vec{E}_&lt;\cdot d\vec{r}-\int_b^a \vec{E}_{inside}\cdot d\vec{r}-\int_a^r \vec{E}_&gt;\cdot d\vec{r}\)
+for $d\vec{r}=dr \hat{r}+ rd\theta \hat{\theta}$.</p>
+
+<hr />
+
+<p><em>Application of Force on Dielectric</em></p>
+
+<p>In most cases the force is only in <strong>one direction</strong>, hence using this suffices:
+\(-F_{on\,diel}=\frac{dW}{dx}=-\frac{1}{2}V(x)^2\frac{dC(x)}{dx}\)
+Consider the setup of</p>
+
+<p><img src="em_equations/image-20220327142501464.png" alt="image-20220327142501464" style="zoom: 50%;" /></p>
+
+<p>where oil is the dielectric, with $\chi_e$ and $\rho_{oil}$. Here we assume the inner conductor is <strong>fixed on $V=V_0$</strong>, and the outer is grounded. We want to know the height of oil at equilibrium = at what $z$ we have $F_{on\,diel}$ cancels $F_{g}$</p>
+
+<p>No matter fixing $V$ or fixing $Q$, we still have
+\(-F_{on\,diel}=\frac{dW}{dz}=-\frac{1}{2}V(z)^2\frac{dC(z)}{dz}=-\frac{1}{2}V_0^2\frac{dC(z)}{dz}\)
+Hence we just need to find out $C(z)$. Since $\Delta V=V_0$ is fixed, hence we just need to find out $Q(z)$ as we know:
+\(C(z) = \frac{Q(z)}{\Delta V}=\frac{Q(z)}{V_0}\)
+If we consider charges as line density $\lambda \cdot l$, then we know
+\(Q(z) = \lambda_{diel}z + \lambda_{vac}(l-z)\)
+Then $\lambda_{vac}$ can be easily calculated from $E_{vac}=V_0/(b-a)$ and using a Gaussian surface. Finding $\lambda_{diel}$ is similarly doing
+\(\int \vec{D}\cdot d\vec{S}=2\pi r l D=\lambda_{diel}l\quad \to \quad \vec{D} = \frac{\lambda_{diel}}{2\pi r}=\epsilon \vec{E}_{diel}\)
+Since we need $V_0$ to hold everywhere, we then can solve $\lambda_{diel}$:
+\(|\vec{E}_{diel}|\cdot (b-a)=|\vec{E}_{vac}|\cdot (b-a)\quad \to \quad \lambda_{diel}=\epsilon_r \lambda_{vac}\)
+which is a common result as we always had $\sigma_{diel}=\epsilon_r \sigma_{vac}$ whenever $\vec{D}$ and $\vec{E}$ has a similar shape + symmetry.</p>
+
+<h1 id="chapter-5">Chapter 5</h1>
+
+<p>Electrostatics studies essentially the force on some test charge $Q$ due to some <strong>static source charges</strong> $\rho(\vec{r})$.</p>
+
+<p>Magnetostatics studies the force on some <strong>moving test charge</strong> $Q, v$, due to mangetic field produced by <strong>steady source current $J = \rho v$</strong>. The important difference between magnetostatics and electrostatics is:</p>
+
+<p><img src="em_equations/image-20220423154819325.png" alt="image-20220423154819325" style="zoom:50%;" /></p>
+
+<p>the wires are <strong>still charge neural</strong> hence no net electric field, but there is <strong>magnetric field</strong> due to moving charges and hence <strong>Lorentz force</strong> appears! Therefore, this chapter discusses</p>
+
+<ul>
+  <li>motion due to Lorentz force (e.g. cycltron motion)</li>
+  <li>how to compute $\vec{B}$ in different scenarios (e.g. using $\vec{\nabla} \times \vec{A} = \vec{B}$)</li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th>Condition</th>
+      <th>Equation</th>
+      <th>Comment</th>
+      <th> </th>
+      <th> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Force due to $B$</td>
+      <td>$\vec{F}_{mag}= Q(\vec{v}\times \vec{B})$</td>
+      <td>experienced by charge $Q$ moving with velocity $\vec{v}$</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>$\vec{F}_{total}=Q(\vec{E}+\vec{v}\times \vec{B})$</td>
+      <td>if there is also an electric field</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Current</td>
+      <td>$I = dq/dt$</td>
+      <td>Useful for deriving $I$ when given 3D shapes</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>$I = \lambda v$</td>
+      <td>for currents since $dq = \lambda dl$</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>for instance, $dq = \rho dV=\rho Adl$</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>assumes it is the direction of <strong>positive charges</strong> moving</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Force due to B <em>on</em> a current wire</td>
+      <td>$\vec{F}_{mag} = I \int d\vec{l}\times \vec{B}$</td>
+      <td>For wire essentially it is a collection of moving charges with $dq= \lambda dl$</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>$d\vec{F}_{mag} = dq(\vec{v}\times \vec{B}) = \lambda dl(\vec{v}\times \vec{B})=(\vec{I}\times \vec{B})dl$</td>
+      <td>derivation of the above</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>basically still Lorentz force</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Work done by $B$</td>
+      <td>$dW_{mag} = \vec{F}_{mag}\cdot{d\vec{l}}=0$</td>
+      <td>Because $\vec{F}_{mag}= Q(\vec{v}\times \vec{B})$ but $d\vec{l}= \vec{v}dt$</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>Therefore, it <strong>only changes direction</strong> of velocity</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Charge density</td>
+      <td>$J = \rho v = dI/da_{\perp}$</td>
+      <td>The parallel of $\rho$ in electrostatstics</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>Used for Biot-Savart Law</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>$I = \int \vec{J} \cdot d\vec{S}$</td>
+      <td>current in a wire with $\vec{J}$</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Force due to $B$ on a current density</td>
+      <td>$\vec{F}_{mag} = \int \vec{J}\times \vec{B}d\tau$</td>
+      <td>essentially it is a collection of moving charges with $dq= \rho d\tau$</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>$d\vec{F}_{mag} = \rho d\tau (\vec{v}\times \vec{B}) =(\vec{J}\times \vec{B})d\tau$</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Cycltron Drift Velocity</td>
+      <td>$\vec{v}_{drift} = \frac{\vec{E}\times \vec{B}}{B^2}$</td>
+      <td>a moving charge then there is both $E$ and $B$ field, it drifts in addition to looping</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>better to find this during solving ODEs</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Cycltron Rotation Frequency</td>
+      <td>$w_c =</td>
+      <td>qB/m</td>
+      <td>$</td>
+      <td>found by solving the ODE</td>
+    </tr>
+    <tr>
+      <td>Cycltron Radius</td>
+      <td>$R = (mv) / (qB)$</td>
+      <td>because $R = v/\omega_c$ for $v$ being the orbital speed</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>works if we are only rotating</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Biot-Savart Law Generic</td>
+      <td>$\vec{B}(\vec{r}) = \int \frac{\mu_0}{4\pi} \frac{\vec{J}(\vec{r}’)\times(\vec{r}-\vec{r’})}{</td>
+      <td>\vec{r}-\vec{r’}</td>
+      <td>^3}\,d^3r’$</td>
+      <td>True if $J$ is independent of time, i.e. steady</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>$\vec{E}(\vec{r}) = \int \frac{1}{4\pi \epsilon_0} \frac{\vec{\rho}(\vec{r}’)\cdot(\vec{r}-\vec{r’})}{</td>
+      <td>\vec{r}-\vec{r’}</td>
+      <td>^3}\,d^3r’$</td>
+      <td>parallel to the $\vec{E}$ field, basically $J \to \rho$</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>$\mu_0 = 1/(\epsilon_0 c^2)$</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Biot-Savart if Steady current</td>
+      <td>$\vec{B}(\vec{r}) = \frac{\mu_0 I}{4\pi} \int \frac{d\vec{l}(\vec{r}’)\times(\vec{r}-\vec{r}’)}{</td>
+      <td>\vec{r}-\vec{r}’</td>
+      <td>^3}$</td>
+      <td>basically we have here $\vec{J} = \vec{I}\delta^2(\vec{r}-\vec{r}’)$ and that $\vec{I}dl = Id\vec{l}$</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>works if constant current so $\vec{I}dl = Id\vec{l}$ holds</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td><img src="em_equations/image-20220423171201916.png" alt="image-20220423171201916" style="zoom: 67%;" /></td>
+      <td>Integrates $dl’$ ==only== over where $\vec{r}’ \neq 0$</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Magnetric Field of a Straight line wire</td>
+      <td>$\vec{B} = \frac{\mu_0 I}{2\pi r} \hat{e}_\phi$</td>
+      <td>Found either using Biot-Savart for current, or using the symmetry hence $\oint \vec{B}\cdot d\vec{l} = \mu_0 I_{enc}$</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td><img src="em_equations/image-20220423171528461.png" alt="image-20220423171528461" style="zoom: 67%;" /></td>
+      <td>Graphically it circulates the current</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Divregence of B</td>
+      <td>$\vec{\nabla}_{\vec{r}} \cdot \vec{B}(\vec{r})=0$</td>
+      <td>for E field we had $\vec{\nabla}\cdot \vec{E}= \rho/\epsilon_0$</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>$\oint \vec{B}\cdot d\vec{S}=0$</td>
+      <td>for E field we had Gaussian surface $\oint \vec{E}\cdot d\vec{S}=Q_{enc}/\epsilon_0$!</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>derived using $\int \vec{\nabla}\cdot\vec{B} d\tau = \oint \vec{B}\cdot d\vec{S}$</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>not very useful for B field calculation</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Curl of B</td>
+      <td>$\vec{\nabla}_{\vec{r}} \times \vec{B}(\vec{r})=\mu_0 \vec{J}(\vec{r})$</td>
+      <td>for E field we had this is 0</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>$\oint \vec{B}\cdot d\vec{l}=\mu_0 I_{enc}$</td>
+      <td>very useful for B field calculation if we have symmetry in $J$ or $I$ setup!</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>called <strong>Ampere Loops</strong></td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>derived using $\int \vec{\nabla}\times \vec{B}\cdot d\vec{S} = \oint \vec{B}\cdot d\vec{l}$</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Field of Solenoid with $n$ turns per unit legnth</td>
+      <td>$\vec{B} = \mu_0 n I \hat{e}_z$</td>
+      <td>if inside the solenoid</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>$\vec{B}=0$</td>
+      <td>if outside</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td><img src="em_equations/image-20220423174559253.png" alt="image-20220423174559253" style="zoom: 67%;" /></td>
+      <td>Essentially solved by drawing Amphere loops</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Magnetic Vector Potential</td>
+      <td>$\vec{\nabla}\times \vec{A} = \vec{B}$</td>
+      <td>so that $\vec{A}$ is easier to compute</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>from $\vec{E}= - \vec{\nabla}V$ for $V$ is easier to compute</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Gauges for $\vec{A}$ due to above definition</td>
+      <td>$\nabla(\nabla \cdot \vec{A})-\nabla^2\vec{A} = \mu_0 \vec{J}$</td>
+      <td>if $\vec{\nabla}\times \vec{A} = \vec{B}$, and we know $\nabla \times \vec{B} = \mu_0 \vec{J}$</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>if $\nabla \cdot \vec{A} = 0$</td>
+      <td>Colomb’s Gauge, used by this course</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>$\vec{A}’ = \vec{A}+ \nabla\lambda$ results in the same $B$ field</td>
+      <td>therefore we can always force $\nabla \cdot \vec{A} = 0$ by choosing $\lambda$</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Magnetic Vector Potential Definition</td>
+      <td>$\vec{A} = \frac{\mu_0}{4\pi}\int \frac{\vec{J}(\vec{r}’)}{</td>
+      <td>\vec{r}-\vec{r}’</td>
+      <td>}d^3r’ $</td>
+      <td>derived from the above with $\nabla^2 \vec{A}=-\mu_0 \vec{J}$, so that each compontent $A_x,A_y,A_z$ essentially is an analog version of $\nabla^2 V = - \rho / \epsilon_0$ and we know the solution $V$ from using $\rho$</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>this means that $\vec{A}$ is usually in the <strong>same direction</strong> as current!</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>Technically $\vec{A} = \frac{\mu_0}{4\pi}\int \frac{\vec{J}(\vec{r}’)}{</td>
+      <td>\vec{r}-\vec{r}’</td>
+      <td>}d^3r’ + \vec{A}(0)$</td>
+      <td>for $\vec{A}(0)$ is a reference point</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>usually use $\vec{A}(\infty)=0$</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Flux (open surface)</td>
+      <td>$\Phi \equiv \int \vec{B}\cdot d\vec{A} = \oint \vec{A}\cdot d\vec{l}$</td>
+      <td>non-zero because this is an open surface</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>don’t confuse against $\oint \vec{B}\cdot $</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>can be used to find $\vec{A}$ if we have symmetry and knows $\vec{B}$</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Multipole Expansion of $\vec{A}$</td>
+      <td>$\vec{A}(\vec{r}) = \frac{\mu_0}{4\pi}\sum_{n=0}^\infty \frac{1}{r^{n+1}}\int \vec{J}(\vec{r}’)(r’)^n P_n[\cos \theta^*]d^3r’$</td>
+      <td>we can no longer take $P_n[\cos \theta^<em>]$ for $\theta^</em>$ is the angle between $\vec{r}, \vec{r’}$ over any shaped wire!</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>derivation is simply the same as electrostatic case, taking $\frac{1}{</td>
+      <td>\vec{r}-\vec{r}’</td>
+      <td>}=\frac{1}{r}\sum_{n}^\infty (\frac{r’}{r})^n P_n[\cos \theta^*]$</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>$\vec{A}(\vec{r})=\frac{\mu_0}{4\pi}\sum_{n=0}^\infty \frac{M_n}{r^{n+1}}$, for $M_n=\int \vec{J}(\vec{r}’)(r’)^n P_n[\cos \theta^*]d^3r’$</td>
+      <td>$n$-th Moment term</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>$V(\vec{r}) = \frac{1}{4 \pi \epsilon_0}\sum_{l=0}^\infty \frac{M_l}{r^{l+1}}P_l[\cos\theta]$, $M_l \equiv \int (r’)^l \rho(r’)d^3r’$</td>
+      <td>electrostatic case where $\theta^*=\theta=\text{const}$</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td><img src="em_equations/image-20220423233826716.png" alt="image-20220423233826716" style="zoom: 67%;" /></td>
+      <td>Grahpically we we are doing</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>Generic and true if far away</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Multipole Expansion of $\vec{A}$ with a wire</td>
+      <td>$\vec{A}(\vec{r}) = \frac{\mu_0 I}{4\pi}\sum_{n=0}^\infty \frac{1}{r^{n+1}}\int (r’)^n P_n[\cos \theta^*]d\vec{l}’$</td>
+      <td>Using $\vec{J} = \vec{I}\delta^2(\vec{r}-\vec{r}’)$ and then $\vec{I}dl = Id\vec{l}$</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>$\vec{A}(\vec{r})=\frac{\mu_0}{4\pi}\sum_{n=0}^\infty \frac{M_n}{r^{n+1}}$, for $M_n=\int I(r’)^n P_n[\cos \theta^*]d\vec{l}’$</td>
+      <td>$n$-th Moment term</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>use this if we have a wire with current $I$</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Monopole of $\vec{A}$ with a wire</td>
+      <td>$\vec{A}_{mono} = \frac{\mu_0 I}{4 \pi}\frac{1}{r}\oint d\vec{l}=0$</td>
+      <td>using the expansion formula above and taking $n=0$</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>always true if a <strong>closed loop</strong></td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Dipole of $\vec{A}$ with a wire</td>
+      <td>$\vec{A}_{dip} = \frac{\mu_0 I}{4 \pi}\frac{1}{r}\oint r’ \cos(\theta^*) d\vec{l}$</td>
+      <td>using the above expansion with $n=1$</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>$\vec{A}_{dip} = \frac{\mu_0 I}{4 \pi}\frac{(\oint I d\vec{A}’)\times \hat{r}}{r}=\frac{\mu_0 I}{4 \pi}\frac{\vec{m}\times \hat{r}}{r}$</td>
+      <td>proven from $\hat{r}\cdot \vec{r}’ = r’ \cos(\theta^*)$</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>note that $\hat{r} = \vec{r}/</td>
+      <td>\vec{r}</td>
+      <td>^2$ is not a coordinate vector</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>$\vec{m}=\int I d\vec{A}’$</td>
+      <td>Dipole moment alternative version</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>A closed curve but open surface</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>Won’t work if $I$ is over an entire surface instead of a wire</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Dipole of $\vec{A}$ of a loop wire with radius $a$</td>
+      <td>$\vec{A}<em>{dip}(\vec{r}) = \frac{\mu_0 Ia^2}{4r^2}\sin \theta \hat{e}</em>\phi$</td>
+      <td>$\theta$ is a constant when given $\vec{r}$</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>either find with the generic formula for $\vec{A}<em>{dip}$, or use the short cut of $\vec{A}</em>{dip}=\frac{\mu_0 I}{4 \pi}\frac{\vec{m}\times \hat{r}}{r}$ for $\vec{m}$ is easy here</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>$\vec{A} \approx \vec{A}_{dip}$</td>
+      <td>higher order terms drops very fast</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td><img src="em_equations/image-20220423235902806.png" alt="image-20220423235902806" /></td>
+      <td>Graphical visualization</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>$\vec{A}$ and $\vec{B}$ when given a dipole</td>
+      <td>$\vec{A}(\vec{r}) = \frac{\mu_0}{4\pi} \frac{m_0 \sin\theta}{r^2}\hat{e}_\phi$</td>
+      <td>if dipole is at origin $\vec{m} = m_0 \hat{e}_z$</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>$\vec{B}(\vec{r}) = \frac{\mu_0 m_0}{4\pi r^2}(2 \cos \theta \hat{e}<em>\rho + \sin \theta \hat{e}</em>\phi) $</td>
+      <td>taking $\nabla \times \vec{A}$ with spherical coordinates</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td><img src="em_equations/image-20220424001736659.png" alt="image-20220424001736659" style="zoom:80%;" /></td>
+      <td>Visualizatoin of a “Dipole”</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>$\vec{A}_{dip}$ of rotating charges</td>
+      <td>$\vec{A}<em>{dip} = \int d\vec{A}</em>{dip}^{loop}$</td>
+      <td>for we know that $d\vec{A}<em>{dip}^{loop}=\frac{\mu_0 a^2}{4r^2}\sin( \theta) dI\hat{e}</em>\phi$ for a loop current</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>basically suming over loops of wires. e.g. works by finding $dI = d\lambda \cdot v$ for $v = R\Omega$</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>once we found $\vec{A}<em>{dip}$ recover $\vec{m}$ with $\vec{A}</em>{dip}(\vec{r}) = \frac{\mu_0}{4\pi} \frac{m_0 \sin\theta}{r^2}\hat{e}_\phi$</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td><img src="em_equations/image-20220424001530883.png" alt="image-20220424001530883" style="zoom: 67%;" /></td>
+      <td>cannot use $\vec{m}=\int I d\vec{A}’$ directly as we obviously don’t have a wire loop</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<p><em>Cycltron Motion</em></p>
+
+<p>In the generic case we have both $\vec{E}, \vec{B}$, we have both terms in the lorentz Force. 
+\(\vec{E} = E \hat{x}\\
+\vec{B} = B \hat{z}\)
+Since we know $\vec{B}$ only <strong>acts on $\vec{v}<em>{\perp}$** to the field itself, we decompose the EoM into velocity perpendicular to $B$ and parallel to $B$:
+\(m \frac{d\vec{v}_{\perp}}{dt} = q (E_x + \vec{v}_{\perp}\times \vec{B})\\
+m \frac{d\vec{v}_{\parallel}}{dt} = 0\)
+we notice that $\vec{E} \perp \vec{B}$ in this setup, hence $\vec{v}</em>{\parallel}$ is unaffected. Then we consider solving in **cartesian coordiantes</strong>:
+\(\frac{d\vec{v}_{\perp}}{dt} = \frac{q}{m} (E_x + \vec{v}_{\perp}\times \vec{B})\to 
+\begin{cases}
+\dot{v}_x = \frac{q}{m} (E_x + Bv_y)\\
+\dot{v}_y = -\frac{q}{m} (Bv_x)
+\end{cases}\)
+which is a coupled equation and <strong>unsymmetric</strong> we can solve by:</p>
+
+<ol>
+  <li>
+    <p>convert to symmetric equation with $v_y’ = v_y + (E_x/B)$, and $v_x’=v_x$ to get:
+\(\dot{v}_x' = \frac{q}{m} ( Bv_y')\\
+\dot{v}_y' = -\frac{q}{m} (Bv_x')\)
+essentially <strong>shifted a reference frame</strong> as if there is no more electric field. Then obviously the motion is a ==circular loop== in this frame.</p>
+  </li>
+  <li>
+    <p>Solve and found that
+\(\ddot{v}_x' = -\frac{q^2B^2}{m^2} v_x'\\
+\ddot{v}_y' = -\frac{q^2B^2}{m^2} v_y'\)
+hence we get $w_c = |qB/m|$ being the rotating frequency, and solution for $v$s are obviously sines and cosines so we are looping.</p>
+  </li>
+</ol>
+
+<p>Note that the drift velocity we fonud here is a specific case of:
+\(\vec{v}_{drift} = \frac{\vec{E}\times \vec{B}}{B^2}\)
+whenever we have both electric field and magnetic field for a moving charge.</p>
+
+<p>(a good exercise here is to a) solve the motion with initial velocity zero, and b) solve the velocity at the bottom of the curve)</p>
+
+<hr />
+
+<p><em>Using Biot-Savart Law for Current</em></p>
+
+<p>Consider using:
+\(\vec{B}(\vec{r}) = \frac{\mu_0 I}{4\pi} \int \frac{d\vec{l}(\vec{r}')\times(\vec{r}-\vec{r}')}{|\vec{r}-\vec{r}'|^3}\)
+to compute the magnetic field at $\vec{r}=(x,0,0)$ WLOG for this</p>
+
+<p><img src="em_equations/image-20220423172057492.png" alt="image-20220423172057492" style="zoom: 67%;" /></p>
+
+<p>Then:</p>
+
+<ol>
+  <li>
+    <p>this <strong>only integrates over wire</strong>, so $d\vec{l}’ = dz’\, \hat{e}_z$ and $\vec{r}’ = (0,0,z’)$</p>
+  </li>
+  <li>
+    <p>then you basically get
+\(\vec{B}(\vec{r}) = \frac{\mu_0 I}{4\pi} \int \frac{dz'\hat{e}_z\times(x\hat{e}_x - z'\hat{e}_z)}{[x^2+ z'^2]^{3/2}}\)
+and yuo will be done</p>
+  </li>
+</ol>
+
+<p>However, it would be wrong if you considered any of the following combination</p>
+
+<ul>
+  <li>$d\vec{l}’ = dz’\, \hat{e}_z$ and $\vec{r}’ = (x’,y’,z’)$</li>
+  <li>$d\vec{l}’ = \delta(x’)\delta(y’)dz’\, \hat{e}_z$ and  $\vec{r}’ = (0,0,z’)$, which technically works but is wierd</li>
+</ul>
+
+<p>If you are unsure you can always go back to the generic expressoin with $J$, and then</p>
+
+<ul>
+  <li>taking $\vec{J} = \vec{I}(z’)\delta(x’)\delta(y’)$ in our case, then $\vec{I}dl = Id\vec{l}$</li>
+  <li>since that is generic, use  $\vec{r}’ = (x’,y’,z’)$</li>
+</ul>
+
+<p>(as an exercise, find $B(z)$ for a loop current with radius $R$)</p>
+
+<hr />
+
+<p><em>Field of a Solenoid</em></p>
+
+<p>Due to symmetry we know we can use Ampere’s loops.</p>
+
+<p><img src="em_equations/image-20220423174841393.png" alt="image-20220423174841393" /></p>
+
+<p>But first we need to show that <strong>there is no $B_r, B_\phi$ component</strong>. How do we argue this? Consider viewing the setup as</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">$B_\phi=0$</th>
+      <th style="text-align: center">$B_r = 0$</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><img src="em_equations/image-20220423230418492.png" alt="image-20220423230418492" /></td>
+      <td style="text-align: center"><img src="em_equations/image-20220423230810409.png" alt="image-20220423230810409" /></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>where the arguments are simple:</p>
+
+<ul>
+  <li>
+    <p>for $B_\phi$, such a loop would have $2\pi B_\phi = 0$ using Ampere’s Law</p>
+  </li>
+  <li>
+    <p>for $B_r$, we can suppose there is in the figure image with $B = B\hat{e}_r$</p>
+
+    <ul>
+      <li>reverse the current, we would have $-B\hat{e}_r$</li>
+      <li>and then flip 180 degrees, still $- B\hat{e}_r$</li>
+    </ul>
+
+    <p>but the configuration is the same as the first image! Hence $B=0$</p>
+  </li>
+</ul>
+
+<p>Therefore, $B=B_z\hat{e}_z$. So all we need to do is to draw loops that have $z$ component:</p>
+
+<p><img src="em_equations/image-20220423231247879.png" alt="image-20220423231247879" style="zoom:67%;" /></p>
+
+<p>where</p>
+
+<ul>
+  <li>for the second loop we have $B_z(a)L - B_z(b)L = 0$. Hence $B_z(a)=B_z(b)$. But we konw the field is finite so that $B_z(\infty)=0$. Therefore $B_z(r)=0, r&gt;R$</li>
+  <li>then for the first lopo we get $B_z(r)L = \mu_0 (nL) I$, hence $B_z(r)=\mu_0 nL$ for $r &lt; R$</li>
+</ul>
+
+<hr />
+
+<p><em>Magnetic Dipole of a Surface</em></p>
+
+<p>Consider computing $\vec{m}$ of a rotating disk with charge density $\sigma$ and rotation speed $\Omega$:</p>
+
+<p><img src="em_equations/image-20220424002154551.png" alt="image-20220424002154551" style="zoom:80%;" /></p>
+
+<p>There are two ways to do it:</p>
+
+<ul>
+  <li>consider finding $A$ then match to find $\vec{m}$ (do it as an exercise)</li>
+  <li>consider $\vec{m} = \int d\vec{m}^{loop}$
+    <ul>
+      <li>we know for a loop $d\vec{m}^{loop} = (dI)A = \pi r^2 dI$</li>
+      <li>then we also know here that $dI = (d\lambda) v=(\sigma dr)(\Omega r)$</li>
+      <li>the integral becomes $\int_0^R \sigma \Omega \pi r^3 dr$</li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<p><em>B Field of a rotating shell of charge</em></p>
+
+<p>Essentially we integrate by summing over loop charges whose $\vec{A}_{dip}$ we already know</p>
+
+<p><img src="em_equations/image-20220424003406867.png" alt="image-20220424003406867" style="zoom:67%;" /></p>
+
+<p>so we consider
+\(\vec{A}_{dip} = \int d\vec{A}_{dip}^{loop}\)
+for which we know in this case the loop wires are the red ones highlighted:
+\(d\vec{A}_{dip}^{loop}=\frac{\mu_0 a^2}{4r^2}\sin( \theta) dI\hat{e}_\phi\)
+and</p>
+
+<ul>
+  <li>$a = R \sin(\theta’)$ in this case</li>
+  <li>$dI = (d\lambda )v = (\sigma Rd\theta’)(\Omega R\sin(\theta’))$</li>
+  <li>then just put everything together and find $\vec{A}_{dip}$</li>
+</ul>
+
+<p>Finally, we can use 
+\(\vec{A}_{dip}(\vec{r}) = \frac{\mu_0}{4\pi} \frac{m_0 \sin\theta}{r^2}\hat{e}_\phi\)
+for $\vec{m} = m_o \hat{e}<em>z$ to easily find $\vec{m}$ of this corresponding $\vec{A}</em>{dip}$</p>
+
+<hr />
+
+<p>Summary of generic formulas</p>
+
+<p><img src="em_equations/image-20220424003649546.png" alt="image-20220424003649546" style="zoom:67%;" /></p>
+
+<h1 id="chapter-6">Chapter 6</h1>
+
+<p>Magnetic fields in matter. Basically if we know a material is magnetized with $\vec{M}$ being the dipole per unit volume, what is the field $\vec{B}$ produced by such a magnetization.</p>
+
+<ul>
+  <li>remember that all magnetic effects are due to moving charges</li>
+  <li>in a small scale, it can be produced by electrons orbiting = electrons cloud spinning = spinning charged sphere; or it can be electrons self-spin. Both of which basicity create magnetic dipoles and hence $\vec{M}$</li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th>Condition</th>
+      <th>Equation</th>
+      <th>Comment</th>
+      <th> </th>
+      <th> </th>
+      <th> </th>
+      <th> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Paramagnetism due to uniform $\vec{B}$</td>
+      <td>$\vec{N} = \vec{m}\times \vec{B}$</td>
+      <td>dipole $\vec{m}$ not aligned with external field $\vec{B}$ will cause torque</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>consider electron self-spin as a dipole in this example</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Diamagnetism due to uniform $\vec{B}$</td>
+      <td>$\Delta \vec{m}=-\frac{1}{2}e\Delta v R\vec{e}_z = - \frac{e^2R^2}{4m_e}\vec{B}$</td>
+      <td>if $\vec{B}=B\hat{e}_z$ is perpendicular to orbit, then it affects centripetal force, hence changing speed</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>$\vec{m}=I\int d\vec{a}=-\frac{1}{2}evR\hat{e}_z$</td>
+      <td>without external field, $v$ solved from centripetal force being electrostatic attraction</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>$\frac{1}{4\pi \epsilon_0}\frac{e^2}{R^2}+ev’B = m_e\frac{v’^2}{R}$</td>
+      <td>new speed $v’$ for same radius $R$ (due to quantum effect)</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>$\Delta \vec{m}=-\frac{1}{2}e\Delta v R\vec{e}_z = - \frac{e^2R^2}{4m_e}\vec{B}$</td>
+      <td>opposes the applied field $\vec{B}$</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>Torque’s effect of aligning the dipole is little in this case.</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Magnetic Moment $\vec{M}(\vec{r})$</td>
+      <td>$\vec{M}(\vec{r})\approx \sum \vec{m}$</td>
+      <td>think of $\vec{M}$ as specifying a collection of tiny dipoles $\vec{m}$</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>$\vec{A}$ from $\vec{M}$</td>
+      <td>$\vec{A}=\frac{\mu_0}{4\pi} \sum_{i} \frac{\vec{m}\times \hat{r}}{</td>
+      <td>\vec{r}-\vec{r}_i’</td>
+      <td>}$</td>
+      <td>discrete case</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>$\vec{A}=\frac{\mu_0}{4\pi} \int \frac{\vec{m}\times \hat{r}}{</td>
+      <td>\vec{r}-\vec{r}’</td>
+      <td>}d^3r’$</td>
+      <td>continuous case</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>note that $\hat{r}=\vec{r}/</td>
+      <td>\vec{r}</td>
+      <td>$</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>$\vec{A}_{dip} = \frac{\mu_0}{4\pi} \frac{\vec{m}\times \hat{r}}{</td>
+      <td>\vec{r}-\vec{r}’</td>
+      <td>}$</td>
+      <td>derived because we know the field of a single dipole</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>Most generic form of finding $\vec{B}$ from given $\vec{M}$</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>$\vec{A}$ from $\vec{M}$ using bound currents</td>
+      <td>$\vec{A}=\frac{\mu_0}{4\pi} \int_{all} \frac{\vec{J}_{b}}{</td>
+      <td>\vec{r}-\vec{r}’</td>
+      <td>}d^3r’+\frac{\mu_0}{4\pi}\oint \frac{\vec{K}_b}{</td>
+      <td>\vec{r} - \vec{r}’</td>
+      <td>}dA’$</td>
+      <td>mathematically same as above</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>$\vec{J}<em>b \equiv \nabla \times \vec{M},\quad \vec{K}</em>{b} \equiv \vec{M}\times \hat{n}$</td>
+      <td>for $\hat{n}$ points from the magnetized material to vacuum</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Physical Interpretation of Bound Charges</td>
+      <td>$\vec{K}_b = \vec{M}\times \hat{n}$</td>
+      <td>imagine uniform magnetized material = uniform tiny current loops</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>Hence inner loops cancel, we only have net outer current</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>$\vec{J}_b = \nabla \times \vec{M}$</td>
+      <td>If non-uniform magnetized material, then net $\vec{J}_b$ comes from difference in current loops</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Auxiliary Field $\vec{H}$</td>
+      <td>$\vec{H}=\frac{1}{\mu_0}\vec{B}-\vec{M}$</td>
+      <td>more useful than $\vec{B}$ when we have magnetized material</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>$\vec{H}$ often in the <strong>same direction</strong> as $\vec{B}$ and $\vec{M}$</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>The magnetic parallel of $\vec{E}$ field. ($\vec{B}$ would be a parallel to $\vec{D}$ instead)</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>$\nabla \times \vec{B} = \mu_0 \vec{J}<em>{total} = \mu_0 (\vec{J}_b + \vec{J}</em>{free})$</td>
+      <td>derivation from Ampere’s Law, then use $\vec{J}_b = \nabla \times \vec{M}$</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>true in general</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Differential and Integral form of $\vec{H}$</td>
+      <td>$\nabla \times \vec{H} = \vec{J}_{free}$</td>
+      <td>follows from the above</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>$\oint \vec{H}\cdot d\vec{l} =\int \vec{J}<em>{free} \cdot d\vec{A}=I</em>{free_{enc}}$</td>
+      <td>very useful when we have symmetry</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Linear Material</td>
+      <td>$\vec{M} \equiv \chi_m \vec{H}$</td>
+      <td>$\vec{J}<em>{free} \to \vec{B}</em>{free}\to \vec{M}$ if material is magnetizable</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>$\vec{B}= \mu_0 (1+ \chi_m)\vec{H}=\mu \vec{H}$</td>
+      <td>derived from $\vec{H}=\frac{1}{\mu_0}\vec{B}-\vec{M}$</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>$\mu = \mu_r \mu_0 \equiv \mu_0(1 + \chi_m)$</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Boundary Conditions for $\vec{H}$</td>
+      <td>$H^\perp_{above}-H^\perp_{below}=-(M^\perp_{above}-M^\perp_{below})$</td>
+      <td>derived from Drawing a box on the surface and using $\oint \vec{H}\cdot d\vec{S}=-\int \vec{M}\cdot d\vec{S}$ (which comes from the definition of $\vec{H}$)</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>$H^\parallel_{above}-H^\parallel_{below}=K^{\perp}_{free}$</td>
+      <td>from below</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>$\vec{H}^\parallel_{above}-\vec{H}^\parallel_{below}=\vec{K}_{free}\times \hat{n}$</td>
+      <td>derived from Drawling a loop on the surface and using $\oint \vec{H}\cdot d\vec{l}=I_{free_{enc}}$. In this case we have two directions for $\vec{H}^\parallel$, hence the RHS.</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>Useful for solving Laplacian with $\vec{H}=-\nabla W$</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Magnetic Scale Potential $W$</td>
+      <td>$\vec{H}=-\nabla W$</td>
+      <td>if $\vec{J}_{free}=0$ so that $\nabla \times \vec{H}=\vec{0}$</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>$\nabla^2 W = \nabla \cdot \vec{M} = 0$</td>
+      <td>if $\vec{\nabla}\cdot \vec{M}=0$, then it is Laplacian. True automatically if linear material.</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>Combine with B.C.to solve Laplacian as in electrostatics</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>With very restrictive condition it holds</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Field of Solenoid + Linear Material</td>
+      <td>$\vec{B}<em>{in}=\mu_r \vec{B}</em>{vac_{in}}$</td>
+      <td>putting a linear material inside solenoid further increases the field produced</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>derived easily from drawing Ampere loops and using $\oint \vec{H}\cdot d\vec{l}=I_{free_{enc}}$</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<p><em>Calculate $\vec{B}$ from Bound Currents</em></p>
+
+<p>Suppose you are given a material with frozen in magnetization such that $\vec{M}=M\hat{e}_z$ inside the cylinder. The question is what is the magnetic field everywhere.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Setup</th>
+      <th style="text-align: center">Setup with Bound Currents</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><img src="em_equations/image-20220503001559272.png" alt="image-20220503001559272" /></td>
+      <td style="text-align: center"><img src="em_equations/image-20220503001603605.png" alt="image-20220503001603605" /></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>We know we can get $\vec{B}$ either:</p>
+
+<ul>
+  <li>calculate $\vec{A}$ then do $\vec{B}=\nabla \times \vec{A}$. You wil see that we have many ways to find $\vec{A}$
+    <ul>
+      <li>if finite currents to integrate through, consider treating them as rotating charge = current loops $\vec{A}<em>{dip} = \int d\vec{A}</em>{dip}^{loop}$</li>
+      <li>or compute $\vec{A}$ from the bound charges using the generic formula above (a lot of work)</li>
+    </ul>
+  </li>
+  <li>calculate $\vec{B}$ directly by treating bound currents as currents (faster here)</li>
+  <li>calculate using $\vec{H}$ if linear material (not applicable here)
+    <ul>
+      <li>if $\vec{J}_b=0$ and $\nabla \cdot \vec{M}=0$, then can use $\vec{H}=-\nabla W$ and solve laplacian</li>
+    </ul>
+  </li>
+</ul>
+
+<p>We first compute the bound currents and notice that:
+\(\begin{align*}
+\vec{J}_b &amp;= \nabla \times \vec{M} = \vec{0}\\
+\vec{K}_b &amp;= \vec{M}(\vec{r})|_{surf}\times \hat{n} = \begin{cases}
+0, &amp; \text{at top/bottom with }\hat{n} = \hat{e}_z\\
+M\hat{e}_\phi &amp; \text{at sides with }\hat{n} = \hat{e}_r
+\end{cases}
+\end{align*}\)
+With this we have the graph on the right, for currents going around the cylinder. In this case, we know that $\vec{B}=B_z\hat{e}_z$, which makes the computation straightforward.</p>
+
+<p>Then we can easily compute $\vec{B}$ given this current by drawing ampere loop:
+\(\oint \vec{B}\cdot d\vec{l} = \mu_0 I_{enc}\)
+Knowing that $\vec{B}_{outer}=\vec{0}$ from a solenoid, we have:
+\(B_z(r)L - 0 = \mu_0 L K_b = \mu_0LM\)
+Hence we obtain
+\(\vec{B}(\vec{r}) = \begin{cases}
+\mu_0 M \hat{e}_z, &amp; r &lt; a\\
+0, &amp; r &gt; a
+\end{cases}\)
+which makes sense by right hand rule.</p>
+
+<hr />
+
+<p><em>Computing $\vec{A}$ given $\vec{M}$</em></p>
+
+<p>Here we consider some finite bound currents with spherical symmetry, so that we have a spherical <strong>shell</strong> with given magnetization of $\vec{M}=M\hat{e}_z$:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Setup</th>
+      <th style="text-align: center">Parallel with Rotating Charges</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><img src="em_equations/image-20220503010500922.png" alt="image-20220503010500922" style="zoom:67%;" /></td>
+      <td style="text-align: center"><img src="em_equations/image-20220503010504464.png" alt="image-20220503010504464" style="zoom:67%;" /></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>First we compute the bound charges, and then decided what to do/which method to take:
+\(\begin{align*}
+\vec{J}_b &amp;= \nabla \times \vec{M} = \vec{0}\\
+\vec{K}_b &amp;= \vec{M}(\vec{r})|_{surf}\times \hat{n} = \vec{M}\times \hat{e}_\rho = M\sin \theta \hat{e}_\phi
+\end{align*}\)
+So that essentially we have currents on the surface with $M\sin \theta$ dependence. This forbids us to use approaches with Ampere loops, but we realize that this is essentially integrating over many current loops = dipoles:
+\(\vec{A}_{dip} = \int d\vec{A}_{dip}^{loop}\)
+would be usable from previous chapter, which we basically know
+\(d\vec{A}_{dip}^{loop}=\frac{\mu_0 a^2}{4r^2}\sin( \theta) dI\hat{e}_\phi\)
+with $dI = (d\lambda )v = (\sigma Rd\theta’)(\Omega R\sin(\theta’))$. Hence all we need to do is to convert <strong>our $K$ to terms in $dI$</strong>:
+\(\vec{K} = \sigma \vec{v} = \sigma(\Omega R \sin \theta) \hat{e}_\phi = \vec{K}_b = M \sin \theta \hat{e}_\phi\)
+Then we just basically can find $\vec{A}$, from which we can find $\vec{B}$.</p>
+
+<hr />
+
+<p><em>Calculate field using $\vec{H}$ from given $\vec{M}$</em>:</p>
+
+<p>Consider given that $\vec{M} = kr^2 \hat{e}_{\phi}$ inside a cynlinder</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Setup</th>
+      <th style="text-align: center">Ampere Loop</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><img src="em_equations/image-20220503012829874.png" alt="image-20220503012829874" style="zoom:50%;" /></td>
+      <td style="text-align: center"><img src="em_equations/image-20220503012834480.png" alt="image-20220503012834480" style="zoom:50%;" /></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Then we first know that the field $\vec{B},\vec{H}$ would therefore also be in $\hat{e}_{\phi}$ direction (do not confuse $\vec{M}$ with bound currents here). Hence drawing a Ampere loop inside:
+\(\oint \vec{H}\cdot d\vec{l} = 2\pi r H_\phi(r= I_{free_{enc}} = 0\)
+Hence we easily get $\vec{H}=0$ everywhere. Finally using $\vec{H}=\frac{1}{\mu_0}\vec{B}-\vec{M}$ we get back $\vec{B}$ field by:
+\(\vec{B} = \begin{cases}
+\mu_0 kr^2 \hat{e}_\phi, &amp; r &lt; a\\
+0, &amp; r &gt; a
+\end{cases}\)
+since we know $\vec{M}$ as they are given.</p>
+
+<ul>
+  <li>an exercise of this would be to compute using bound currents and arrive at the same solution here.</li>
+</ul>
+
+<hr />
+
+<p><em>When to use $\vec{H}$</em></p>
+
+<p>In general, we can do ampere loops with $\vec{B}$ if we are sure we know all contributions (e.g. from current and from $\vec{M}<em>{induced}$). But consider the case where you have a <strong>magnetizable cylinder</strong> with some external currents $\vec{J}</em>{free} = I/(\pi R^2)\hat{e}_z$ following through</p>
+
+<p><img src="em_equations/image-20220503013832964.png" alt="image-20220503013832964" style="zoom:67%;" /></p>
+
+<p>The finding $\vec{B}$ naively using the loop above would give wrong result:
+\(2\pi B_\phi(r) = \mu_0 I \pi \left( \frac{r}{R}\right)^2\)
+but then yuo have ignored $\vec{M}_{induced}$ which could cause other components in $\vec{B}$. Therefore, the correct way is to consider $\vec{H}$:
+\(2\pi H_\phi(r) = I \pi \left( \frac{r}{R}\right)^2\)
+then using $\vec{H}=\frac{1}{\mu_0}\vec{B}-\vec{M}$ we get $\vec{B}$ (assuming $\vec{M}$ is linear)</p>
+
+<hr />
+
+<p><em>Parallels of $\vec{H}$ in Electrostatics</em>:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th> </th>
+      <th>Electrostatics</th>
+      <th>Magnetostatics</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Linear Material</td>
+      <td>$\vec{P}=\epsilon_0 \chi_e \vec{E}_{total}$</td>
+      <td>$\vec{M} = \chi_m \vec{H}$</td>
+    </tr>
+    <tr>
+      <td>Linear Material</td>
+      <td>$\vec{D} = \epsilon \vec{E}_{total}$</td>
+      <td>$\vec{B} = \mu \vec{H}$</td>
+    </tr>
+    <tr>
+      <td>Generic</td>
+      <td>$\vec{D} = \epsilon\vec{E}_{total} + \vec{P}$</td>
+      <td>$\vec{B} = \mu_0 (\vec{H}+\vec{M})$</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>so you see that the parallel of $\vec{E}$ is actually $\vec{H}$</p>
+
+<hr />
+
+<p><em>Magnetic Scalar Potential $W$</em></p>
+
+<p>With very restrictive condition a problem can be formulated as a Laplacian. Consider the setup where you have an <strong>infinitely long</strong> cylinder with $\vec{M}=M\hat{e}_x$. We want to find $\vec{B}$ everywhere.</p>
+
+<p><img src="em_equations/image-20220503131136729.png" alt="image-20220503131136729" style="zoom:80%;" /></p>
+
+<p>First, it is always a good idea to figure out the bound currents:
+\(\begin{align*}
+\vec{J}_b &amp;= \nabla \times \vec{M} = \vec{0}\\
+\vec{K}_b &amp;= \vec{M}(\vec{r})|_{surf}\times \hat{n} = \vec{M}\times \hat{e}_r = M\sin \phi \hat{e}_z
+\end{align*}\)
+where we basically converted to cylindrical coordinate $\vec{M}=M(\cos \phi \hat{e}<em>r-\sin \phi \hat{e}</em>\phi)$, and we ignored the top/bottom surface of of the cylinder since it is infinitely long.</p>
+
+<p>Notice that we cannot use Ampere loops here due to $\phi$ dependence, hence we consider Laplacian by realizing that
+\(\vec{J}_{free} = \vec{0}\\
+\nabla \cdot \vec{M} = \nabla \cdot (M\hat{e}_x)=0\)
+Therefore Laplacian holds for $\vec{H}=-\nabla W$:
+\(\nabla^2 W = 0\)
+We know the solution for cylindrical Laplacian, but we need boundary conditions:
+\(\begin{cases}
+W_{out}=W_{in},&amp; \text{continuity}\\
+H^\perp_{above}-H^\perp_{below}=-(M^\perp_{above}-M^\perp_{below})=M\cos \phi, &amp; \text{B.C.} \\
+W_{out}(r \to \infty) = 0\\
+|W_{in}(r=0)| \le \infty
+\end{cases}\)
+And the solution takes the form of
+\(W(r,\phi)=(F_mr^m+G_mr^{-m})[L_m\cos(m\phi)+N_m \sin(m \phi)]\)
+then solve in the same manner as in electrostatics.</p>
+
+  </div><a class="u-url" href="/lectures/2021@columbia/APPH3300_Applied_Electromagnetism.html/" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/lectures/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Lecture Notes</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Lecture Notes</li><li><a class="u-email" href="mailto:jasonyux17@gmail.com">jasonyux17@gmail.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/jasonyux"><svg class="svg-icon"><use xlink:href="/lectures/assets/minima-social-icons.svg#github"></use></svg> <span class="username">jasonyux</span></a></li><li><a href="https://www.linkedin.com/in/xiao-yu2437"><svg class="svg-icon"><use xlink:href="/lectures/assets/minima-social-icons.svg#linkedin"></use></svg> <span class="username">xiao-yu2437</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>An inexhaustive collection of markdown/latex(PDF) notes that I took since college. </p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

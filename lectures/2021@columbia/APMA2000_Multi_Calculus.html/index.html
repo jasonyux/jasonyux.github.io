@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>APMA2000 Multi Calculus | Lecture Notes</title>
+<meta name="generator" content="Jekyll v4.3.1" />
+<meta property="og:title" content="APMA2000 Multi Calculus" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Multivariable Calculus Notes" />
+<meta property="og:description" content="Multivariable Calculus Notes" />
+<link rel="canonical" href="/lectures/2021@columbia/APMA2000_Multi_Calculus.html/" />
+<meta property="og:url" content="/lectures/2021@columbia/APMA2000_Multi_Calculus.html/" />
+<meta property="og:site_name" content="Lecture Notes" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-09-13T00:00:00-04:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="APMA2000 Multi Calculus" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2021-09-13T00:00:00-04:00","datePublished":"2021-09-13T00:00:00-04:00","description":"Multivariable Calculus Notes","headline":"APMA2000 Multi Calculus","mainEntityOfPage":{"@type":"WebPage","@id":"/lectures/2021@columbia/APMA2000_Multi_Calculus.html/"},"url":"/lectures/2021@columbia/APMA2000_Multi_Calculus.html/"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/lectures/assets/main.css"><link type="application/atom+xml" rel="alternate" href="/lectures/feed.xml" title="Lecture Notes" /></head>
+<body><header class="site-header">
+
+	<div class="wrapper"><a class="site-title" rel="author" href="/lectures/">Lecture Notes</a>
+
+		<nav class="site-nav">
+			<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+			<label for="nav-trigger">
+			<span class="menu-icon">
+				<svg viewBox="0 0 18 15" width="18px" height="15px">
+				<path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+				</svg>
+			</span>
+			</label>
+
+			<div class="trigger">
+				<a class="page-link" href="/">Home</a>
+				<a class="page-link" href="/projects">Projects</a>
+				<a class="page-link" href="/learning">Blog</a>
+				<a class="page-link" href="/research">Research</a>
+				<span class="page-link" href="#">[Education]</span>
+			</div>
+		</nav>
+	</div>
+  </header><main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <head>
+	<script>
+		MathJax = {
+		  tex: {
+			inlineMath: [['$', '$'], ['\\(', '\\)']],
+			displayMath: [['$$', '$$'], ['\\[', '\\]']]
+		  }
+		};
+	</script>
+	<script id="MathJax-script" async
+		src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+	</script>
+  </head>
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">APMA2000 Multi Calculus</h1>
+    <p class="post-meta"><time class="dt-published" datetime="2021-09-13T00:00:00-04:00" itemprop="datePublished">
+        Sep 13, 2021
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <h1 id="multivariable-calculus-notes">Multivariable Calculus Notes</h1>
+
+<h2 id="double-integral">Double Integral</h2>
+
+<p>In short, double integrals are trying to <strong>find the area of the domain on a 2-D plane</strong> while also <strong><em>multiplying each area with a height</em></strong>. The result is commonly understood as <strong>finding the volume under a certain 3-D surface</strong>.</p>
+
+<ol>
+  <li>
+    <p>First consider the surface $S$ with a rectangular domain:</p>
+
+    <p><img src="\lectures\images\typora-user-images\image-20200816115949749.png" alt="image-20200816115949749" style="zoom:67%;" /></p>
+  </li>
+  <li>
+    <p>Now, if we partition the rectangular domain into regular sized small areas $\Delta A$, we have the <strong>volume underneath the surface</strong>:
+\(V \approx \sum_{i=1}^{m} \sum_{j}^{n}f(x^*_{i,j},y^*_{i,j})\Delta A\)</p>
+  </li>
+  <li>
+    <p>Lastly, we just take the limit where $m \rightarrow \infty$ and $n \rightarrow \infty$:
+\(V = \lim_{m,n\rightarrow \infty}\sum_{i=1}^{m} \sum_{j}^{n}f(x^*_{i,j},y^*_{i,j})\Delta A = \iint_{Domain}f(x,y)\,dA\)</p>
+  </li>
+</ol>
+
+<p>In general, for non-rectangular domains, the idea is similar:</p>
+
+<ol>
+  <li>
+    <p>First, find <strong><em>curtains of the volumes</em></strong>:</p>
+
+    <p><img src="\lectures\images\typora-user-images\image-20200816120645302.png" alt="image-20200816120645302" /></p>
+
+    <p>With this, we can write:
+\(V = \int_a^b A(x)\,dx\)</p>
+  </li>
+  <li>
+    <p>Now, we just need to find the area of the curtain, which obviously would be a single integral iterating over $\Delta y$:
+\(A(x) = \int_{c}^d f(x,y)\, dy\)</p>
+  </li>
+  <li>
+    <p>Lastly, we just need to combine both integrals:
+\(V = \int_a^b \int_{c}^d f(x,y)\, dy\,dx\)</p>
+  </li>
+</ol>
+
+<p>For instance, if we have:</p>
+
+<p><img src="\lectures\images\typora-user-images\image-20200816123338431.png" alt="image-20200816123338431" /></p>
+
+<p>Then we can find the curtains and the volume with:
+\(A(x) = \int_{g_1(x)}^{g_2(x)}f(x,y)\,dy\\
+V = \int_{a}^{b}\int_{g_1(x)}^{g_2(x)}f(x,y)\,dy\,dx\)
+And notice that if we take $f(x,y)=1$:</p>
+
+<p><img src="\lectures\images\typora-user-images\image-20200816123223780.png" alt="image-20200816123223780" /></p>
+
+<p>Then we recover the familiar 1-D integral:
+\(\int_{a}^{b}\int_{g_1(x)}^{g_2(x)}1\,dy\,dx = \int_{a}^{b}(g_2(x)-g_1(x))\,dx\)</p>
+
+<h3 id="double-integral-in-polar-coordinates">Double Integral in Polar Coordinates</h3>
+
+<p>Similarly, in polar coordinates, you just need to <strong>imagine curtains and volumes</strong>:</p>
+
+<p>Consider the following domain:</p>
+
+<p><img src="\lectures\images\typora-user-images\image-20200816124151029.png" alt="image-20200816124151029" /></p>
+
+<p>Then, if we are integrating over the function $f(x,y) = f(rcos(\theta), rsin(\theta))$, we get:
+\(V = \iint_D f(x,y)\,dA = \int_{\alpha}^{\beta}\int_{r=h_1(\theta)}^{r=h_2(\theta)}f(rcos(\theta), rsin(\theta))\,rdrd\theta\)</p>
+
+<h2 id="triple-integral">Triple Integral</h2>
+
+<p>Similar to double integral, we first imagine a regular cuboid:</p>
+
+<ol>
+  <li>
+    <p>Consider a cuboid with its domain:</p>
+
+    <p><img src="\lectures\images\typora-user-images\image-20200816130313024.png" alt="image-20200816130313024" />
+\(B = \{(x,y,z) \,|\, a\le x\le b,\, c\le y\le d,\, e\le z\le f\}\)</p>
+  </li>
+  <li>
+    <p>Partition the large volume into smaller volumes:</p>
+  </li>
+</ol>
+
+<p><img src="\lectures\images\typora-user-images\image-20200816130509263.png" alt="image-20200816130509263" /></p>
+
+<ol>
+  <li>
+    <p>Now, write the Riemann Sum using the figure above:
+\(V = \sum_{i=1}^{l}\sum_{j=1}^{m}\sum_{k=1}^{n}f(x^*_{ijk},y^*_{ijk},z^*_{ijk})\,\Delta V\)</p>
+  </li>
+  <li>
+    <p>Lastly, taking the limit to infinity:
+\(V = \lim_{l,m,n\rightarrow \infty}\sum_{i=1}^{l}\sum_{j=1}^{m}\sum_{k=1}^{n}f(x^*_{ijk},y^*_{ijk},z^*_{ijk})\,\Delta V = \iiint_B f(x,y,z)\,dV\)</p>
+  </li>
+</ol>
+
+<p>For example, a simple cuboid would take the form:
+\(V = \int_a^b\int_c^d\int_e^f g(x,y,z)\,dxdydz\)
+In general, for a random 3 dimensional shape, you can imagine <strong>cutting the 3-D cake three times</strong>:</p>
+
+<ol>
+  <li><strong>The first cut</strong> would be finding its top and bottom surface:</li>
+</ol>
+
+<p><img src="\lectures\images\typora-user-images\image-20200816131232223.png" alt="image-20200816131232223" />
+\(\iiint_E f(x,y,z)\,dV = \iint_D\left[ \int_{u_1(x,y)}^{u_2(x,y)}f(x,y,z)dz \right]dA\)</p>
+
+<ol>
+  <li>
+    <p><strong>The second cut</strong> would be finding one of its sides:</p>
+
+    <ul>
+      <li>The <strong>silhouette of the second cut</strong> is easier to find out if you <strong>imagine the projection of the cake onto a 2-D plane</strong>, such as the region $D$ shown above.</li>
+    </ul>
+
+\[\iiint_E f(x,y,z)\,dV = \int\left[\int_{g_1(y)}^{g_2(y)}\left[ \int_{u_1(x,y)}^{u_2(x,y)}f(x,y,z)dz \right]dx\right]dy\]
+  </li>
+  <li>
+    <p><strong>The third/last cut</strong> would be two straight chopping:</p>
+  </li>
+</ol>
+
+\[\iiint_E f(x,y,z)\,dV = \int_a^b\int_{g_1(y)}^{g_2(y)} \int_{u_1(x,y)}^{u_2(x,y)}f(x,y,z)\,dzdxdy\]
+
+<p>Obviously, if we take $f(x,y,z)=1$, we can get the <strong>volume encapsulated</strong> in the 3-D surface:
+\(\iiint_E dV = \int_a^b\int_{g_1(y)}^{g_2(y)} \int_{u_1(x,y)}^{u_2(x,y)}dzdxdy\)</p>
+
+<h3 id="triple-integral-in-cylindrical-coordinates">Triple Integral in Cylindrical Coordinates</h3>
+
+<p>In this note, we take the following convention for cylindrical coordinates:</p>
+
+<p><img src="\lectures\images\typora-user-images\image-20200816132542567.png" alt="image-20200816132542567" /></p>
+
+<p>So we have:
+\(x = rcos(\theta)\\
+y = rsin(\theta)\\
+z = z\)
+The only difference from the above integrals is that the cuts now include cylindrical coordinates. The general formula looks like:
+\(\iiint_E f(x,y,z)\,dV = \int_\alpha^\beta\int_{h_1(\theta)}^{h_2(\theta)} \int_{u_1(rcos(\theta),rsin(\theta))}^{u_2(rcos(\theta),rsin(\theta))}f(rcos(\theta),rsin(\theta),z)\,rdzdrd\theta\)</p>
+
+<hr />
+
+<p><strong><em>For example</em></strong>:</p>
+
+<ul>
+  <li>
+    <p>Question:</p>
+
+    <p>Find out the mass of the volume below, where its density is defined by $K\sqrt{x^2+y^2}$:</p>
+
+    <p><img src="\lectures\images\typora-user-images\image-20200816133106828.png" alt="image-20200816133106828" /></p>
+  </li>
+  <li>
+    <p>Solution
+\(\begin{align*}
+m &amp;= \iiint_EK\sqrt{x^2+y^2}\,dV	\\
+&amp;= \int_{0}^{2\pi}\int_{0}^1\int_{1-r^2}^{4}(Kr)\,rdzdrd\theta	\\
+&amp;=\,\,...	\\
+&amp;=\frac{12\pi K}{5}
+\end{align*}\)</p>
+  </li>
+</ul>
+
+<hr />
+
+<h3 id="triple-integral-in-spherical-coordinates">Triple Integral in Spherical Coordinates</h3>
+
+<p>This note uses the following spherical coordinates convention:</p>
+
+<p><img src="\lectures\images\typora-user-images\image-20200816133539517.png" alt="image-20200816133539517" /></p>
+
+<p>where:
+\(x = \rho sin(\phi)cos(\theta)	\\
+y = \rho sin(\phi)sin(\theta)	\\
+z = \rho cos(\phi)\)
+and obviously:
+\(\rho^2 = x^2 + y^2 + z^2\)
+Therefore, the general formula for integrating in a spherical coordinate looks like: 
+\(\iiint_E f(x,y,z)\,dV = \int_\alpha^\beta\int_{c}^{d} \int_{g_1(\theta,\phi)}^{g_2(\theta,\phi)}f(\rho sin(\phi)cos(\theta),\rho sin(\phi)sin(\theta),\rho cos(\phi))\,\rho^2sin(\phi)d\rho d\phi d\theta\)
+Different from the previous two coordinates, <strong>it is easier to imagine making this cake</strong> than cutting the cake when you use spherical coordinates.</p>
+
+<hr />
+
+<p><strong><em>For example:</em></strong></p>
+
+<ul>
+  <li>
+    <p>Question:</p>
+
+    <p>Found out the volume of the solid that lies within the below surface:</p>
+
+    <p><img src="\lectures\images\typora-user-images\image-20200816134340312.png" alt="image-20200816134340312" /></p>
+  </li>
+  <li>
+    <p>Solution:
+\(\begin{align*}
+V &amp;= \iiint_EdV	\\
+&amp;= \int_0^{2\pi} \int_0^{\frac{\pi}{4}} \int_0^{cos(\phi)} \,\rho^2sin(\phi)d\rho d\phi d\theta	\\
+&amp;= \,\, ...	\\
+&amp;=\frac{\pi}{8}
+\end{align*}\)</p>
+
+    <p>where you can imagine:</p>
+
+    <ul>
+      <li><img src="\lectures\images\typora-user-images\image-20200816191555346.png" alt="image-20200816191555346" style="zoom:67%;" /></li>
+    </ul>
+
+    <p>\(\int_{0}^{cos(\phi)}d\rho\)
+draws the <strong>line silhouette of the sphere</strong> above the origin</p>
+
+    <ul>
+      <li><img src="\lectures\images\typora-user-images\image-20200816140001846.png" alt="image-20200816140001846" style="zoom:67%;" />
+\(\int_{0}^{\frac{\pi}{4}}\int_{0}^{cos(\phi)}d\rho d\phi\)</li>
+    </ul>
+
+    <p>cuts the line above so that the bottom part looks like a straight line. At this point <strong>an area/curtain is made</strong>.</p>
+
+    <ul>
+      <li><img src="\lectures\images\typora-user-images\image-20200816140017907.png" alt="image-20200816140017907" style="zoom:67%;" /></li>
+    </ul>
+
+\[\int_0^{2\pi} \int_{0}^{\frac{\pi}{4}}\int_{0}^{cos(\phi)}d\rho d\phi d\theta\]
+
+    <p>rotates the above line for one revolution to make a volume (and lastly add the geometric factor of $p^2sin(\phi)$)</p>
+  </li>
+</ul>
+
+<hr />
+
+<h2 id="line-integral">Line Integral</h2>
+
+<p>A line integral usually takes the form:
+\(\int_C f(x,y) \,ds\)
+and, as you can see, the key step lies in determining the expression for $ds$.</p>
+
+<ol>
+  <li>
+    <p>First, consider a curve $C$ in 2-D:</p>
+
+    <p><img src="\lectures\images\typora-user-images\image-20200817102412250.png" alt="image-20200817102412250" /></p>
+
+    <p>where we get:
+\(\begin{align*}
+L &amp;= \lim_{i\rightarrow \infty} \sum_{i=0}^{n-1}\left| P_iP_{i+1} \right|	\\
+&amp;= \lim_{i\rightarrow \infty} \sum_{i=0}^{n-1}\sqrt{(x_{i+1}-x_i)^2 + (y_{i+1}-y_i)^2}	\\
+&amp;= \lim_{i\rightarrow \infty} \sum_{i=0}^{n-1}\sqrt{\Delta x^2 + (\frac{dy}{dx}\Delta x)^2}	\\
+&amp;= \lim_{i\rightarrow \infty} \sum_{i=0}^{n-1}\sqrt{1 + \frac{dy}{dx}^2}\,\Delta x	\\
+&amp;= \int_a^b\sqrt{1 + \frac{dy}{dx}^2}\,d x	\\
+\end{align*}\)</p>
+  </li>
+  <li>
+    <p>More often, we encounter curves that are in 3-D and are defined by parametric equations:</p>
+
+    <p>Consider a curve that is defined by $C = (f(t), g(t))$.</p>
+
+    <p><img src="\lectures\images\typora-user-images\image-20200817103714365.png" alt="image-20200817103714365" /></p>
+
+    <p>Then we have:
+\(\begin{align*}
+L &amp;= \lim_{i\rightarrow \infty} \sum_{i=0}^{n-1}\left| P_iP_{i+1} \right|	\\
+&amp;= \lim_{i\rightarrow \infty} \sum_{i=0}^{n-1}\sqrt{(x_{i+1}-x_i)^2 + (y_{i+1}-y_i)^2}	\\
+&amp;= \lim_{i\rightarrow \infty} \sum_{i=0}^{n-1}\sqrt{\left(\frac{df}{dt}\Delta t\right)^2 + \left(\frac{dg}{dt}\Delta t\right)^2}	\\
+&amp;= \lim_{i\rightarrow \infty} \sum_{i=0}^{n-1}\sqrt{\frac{df}{dt}^2 + \frac{dg}{dt}^2}\,\Delta t\\
+&amp;= \int_{t=a}^{t=b}\sqrt{\frac{df}{dt}^2 + \frac{dg}{dt}^2}\,dt\\
+\end{align*}\)
+However, this <strong>assumes the direction such that $a&lt;b$.</strong> This is <strong>because the derivatives $\frac{df}{dt}$ and $\frac{dg}{dt}$ takes the positive direction</strong>.</p>
+  </li>
+  <li>
+    <p>Lastly, since we know the equation for $L$ (or $s$), and we just needed an expression for $ds$, we can solve this easily using the Fundamental Theorem of Calculus:
+\(\begin{align*}
+s &amp;= \int_{t=a}^{t=b}\sqrt{\frac{df}{dt}^2 + \frac{dg}{dt}^2}\,dt\\
+\frac{ds}{dt} &amp;= \sqrt{\frac{df}{dt}^2 + \frac{dg}{dt}^2}	\\
+ds &amp;= \sqrt{\frac{df}{dt}^2 + \frac{dg}{dt}^2}\, dt 
+\end{align*}\)
+Therefore, we get:
+\(\int_C f(x,y)\,ds = \int_{t=a}^{t=b} f(x_{(t)},y_{(t)}) \sqrt{\frac{dx_{(t)}}{dt}^2 + \frac{dy_{(t)}}{dt}^2}\, dt\)</p>
+  </li>
+</ol>
+
+<p>In general, we have:</p>
+
+<blockquote>
+  <p><strong>Line Integral Equations</strong>:</p>
+
+  <ul>
+    <li>In 2-D</li>
+  </ul>
+
+\[\int_C f(x,y)\,ds = \int_{t=a}^{t=b} f(x_{(t)},y_{(t)}) \sqrt{\frac{dx_{(t)}}{dt}^2 + \frac{dy_{(t)}}{dt}^2}\, dt\]
+
+  <ul>
+    <li>In 3-D
+\(\int_C f(x,y)\,ds = \int_{t=a}^{t=b} f(x_{(t)},y_{(t)},z_{(t)}) \sqrt{\frac{dx_{(t)}}{dt}^2 + \frac{dy_{(t)}}{dt}^2 + \frac{dz_{(t)}}{dt}^2}\, dt\)</li>
+  </ul>
+</blockquote>
+
+<p>Other similar integrals include:
+\(\int_C f(x,y)\,dx = \int_{a}^{b}f(x_{(t)},y_{(t)})\left(\frac{dx_{(t)}}{dt}dt\right) = \int_{a}^{b}f(x_{(t)},y_{(t)})\frac{dx_{(t)}}{dt}\,dt\)
+and
+\(\int_C f(x,y)\,dy = \int_{a}^{b}f(x_{(t)},y_{(t)})\left(\frac{dy_{(t)}}{dt}dt\right) = \int_{a}^{b}f(x_{(t)},y_{(t)})\frac{dy_{(t)}}{dt}\,dt\)</p>
+
+<h3 id="line-integral-of-vector-fields">Line Integral of Vector Fields</h3>
+
+<p>This is very useful in physics, especially when you are computing energy related quantities, such as work done.</p>
+
+<p>Instead of the line integral equations indicated above, consider the following scenario where you need to <strong>compute $\vec{F} \cdot d\vec{s}$ along a curve</strong>:</p>
+
+<p><img src="\lectures\images\typora-user-images\image-20200817105943730.png" alt="image-20200817105943730" /></p>
+
+<ol>
+  <li>First, write out the required integral:
+\(\begin{align*}
+W &amp;= \int_C \vec{F}_{(x,y,z)} \cdot \vec{T}_{(x,y,z)}\,ds	\\
+&amp;= \int_{t=a}^{t=b} \left[\vec{F}_{(\vec{r}_{(t)})} \cdot \frac{\vec{r}^\prime_{(t)}}{\left|\vec{r}^\prime_{(t)}\right|}\right]\,\left|\vec{r}^\prime_{(t)}\right| dt	\\
+&amp;= \int_{t=a}^{t=b} \vec{F}_{(\vec{r}_{(t)})}\cdot \vec{r}^\prime_{(t)}\, dt
+\end{align*}\)</li>
+</ol>
+
+<p>So, in general:</p>
+
+<blockquote>
+  <p><strong>Line Integral for Vector Fields Equation</strong>:
+\(\int_C \vec{F} \cdot d\vec{r}= \int_{t=a}^{t=b} \vec{F}_{(\vec{r}_{(t)})}\cdot \vec{r}^\prime_{(t)}\, dt\)</p>
+
+  <ul>
+    <li>If $\vec{F} = P\hat{i}+Q\hat{j}+R\hat{k}$
+\(\int_C \vec{F} \cdot d\vec{r}= \int_C P\,dx + Q\,dy + R\,dz\)</li>
+  </ul>
+</blockquote>
+
+<h3 id="the-fundamental-theorem-of-line-integral">The Fundamental Theorem of Line Integral</h3>
+
+<blockquote>
+  <p><strong>Theorem/Equation</strong>:</p>
+
+  <p>Let $C$ be a smooth curve given by the vector function $\vec{r}$, $a &lt; t &lt; b$. <strong>Let $f$ be a differentiable function</strong> of two or three variables whose
+<strong>gradient vector $\nabla f$ is continuous on $C$</strong>. Then
+\(\int_C \nabla f \cdot d\vec{r} = f(r_{(b)}) - f(r_{(a)})\)</p>
+</blockquote>
+
+<blockquote>
+  <p>Note:</p>
+
+  <ul>
+    <li>The theorem above says that we can evaluate the <strong>line integral of a <em>conservative vector field</em></strong> (the gradient vector field of the <strong><em>potential function</em> $f$</strong>) simply by knowing the value of $f$ at the endpoints of $C$. In fact, the above theorem says that the line integral of $\nabla f$ is the net change in $f$.
+      <ul>
+        <li>Therefore, for non-conservative fields, you cannot find an $f$ that satisfies the above equation, so that there <strong>DNE a potential for a non-conservative field</strong>.</li>
+      </ul>
+    </li>
+  </ul>
+</blockquote>
+
+<p>Proof of the above is also straight forward:
+\(\begin{align*}
+\int_C \nabla f \cdot d\vec{r} &amp;= \int_a^b \nabla f \cdot \frac{d\vec{r}_{(t)}}{dt} dt	\\
+&amp;= \int_a^b \left( \frac{\partial f}{\partial x} \frac{dx}{dt} + \frac{\partial f}{\partial y} \frac{dy}{dt} + \frac{\partial f}{\partial z} \frac{dz}{dt} \right) dt	\\
+&amp;= \int_a^b \frac{d}{dt}f_{(\vec{r}_{(t)})} \,dt\\
+&amp;= f_{(\vec{r}_{(b)})} - f_{(\vec{r}_{(a)})}
+\end{align*}\)</p>
+
+<h3 id="closed-line-integral-greens-theorem">Closed Line Integral/ Green’s Theorem</h3>
+
+<blockquote>
+  <p><strong>Green’s Theorem Def</strong>:</p>
+
+  <p>Let $C$ be a <strong>positively oriented</strong>, piecewise-smooth, simple closed curve <strong>in the plane</strong> and let $D$ be the region bounded by $C$. If $P$ and $Q$ have continuous partial derivatives on an open region that contains $D$, then:
+\(\oint_C P\,dx+ Q\,dy = \oiint_D \left(\frac{\partial Q}{dx}- \frac{\partial P}{\partial y}\right) dA\)</p>
+</blockquote>
+
+<blockquote>
+  <p>Notice:</p>
+
+  <ul>
+    <li>
+      <p>The above equation is essentially the <strong>2-D version of Stokes’ Theorem</strong> (<a href="#Closed-Surface-Integral/-Stokes'-Theorem">Closed Surface Integral/ Stokes’ Theorem</a>), where the expression $\frac{\partial Q}{dx}- \frac{\partial P}{\partial y}$ is essentially the $\nabla \times \vec{F}$ on the 2-D plane.</p>
+    </li>
+    <li>
+      <p>For a conservative force, we can conclude from the previous section that:
+\(\oint_C P\,dx+ Q\,dy = 0 = \oiint_D \left(\frac{\partial Q}{dx}- \frac{\partial P}{\partial y}\right) dA\)
+Therefore, for a <strong>conservative force</strong> $\vec{F}_c$ , it <strong>has to be that</strong>
+\(\nabla \times \vec{F}_c = 0\)</p>
+    </li>
+  </ul>
+</blockquote>
+
+<p>A common usage of the Green’s Theorem include <strong>finding out the area enclosed by a closed loop</strong>.</p>
+
+<p>Since we need to find:
+\(A  =  \oiint_D 1\, dA =  \oiint_D \left(\frac{\partial Q}{dx}- \frac{\partial P}{\partial y}\right) dA = \oint_C P\,dx+ Q\,dy\)
+Therefore, we can constitute $Q$ and $P$ by ourselves to satisfy this equation:
+\(\frac{\partial Q}{dx}- \frac{\partial P}{\partial y} = 1\)
+so that <strong>some of the equations that satisfies the above constraint includes</strong>:
+\(A = \frac{1}{2} \oint_C x \,dy - y\,dx	\\
+A = \oint_C x dy	\\
+A = - \oint_C y \,dx\)</p>
+
+<h2 id="surface-integral">Surface Integral</h2>
+
+<ol>
+  <li>
+    <p>First, we need to find a <strong>tangent plane</strong> of a <strong>parametric surface</strong>. This is achieved by:</p>
+
+    <p>The surface traced out by the vector equation:</p>
+  </li>
+</ol>
+
+\[\vec{r}(u,v) = x(u,v)\hat{i} + y(u,v)\hat{j} + z(u,v)\hat{k}\]
+
+<p><img src="\lectures\images\typora-user-images\image-20200814130219870.png" alt="image-20200814130219870" /></p>
+
+<p>​		Then two <strong>tangential vectors</strong> of the curves<strong>$C_1$</strong> and $C_2$ can be obtained by using partial derivatives:
+\(\vec{r}_u = \frac{\partial{x}}{\partial{u}}(u,v)\hat{i} + \frac{\partial{y}}{\partial{u}}(u,v)\hat{j} + \frac{\partial{z}}{\partial{u}}(u,v)\hat{k}	\\
+\vec{r}_v = \frac{\partial{x}}{\partial{v}}(u,v)\hat{i} + \frac{\partial{y}}{\partial{v}}(u,v)\hat{j} + \frac{\partial{z}}{\partial{v}}(u,v)\hat{k}\)</p>
+
+<ol>
+  <li>Second, we need to figure out the <strong>size of a patch/small piece of surface at point</strong> $P_{i,j} = \vec{r}(u_i, v_j)$:</li>
+</ol>
+
+<p><img src="\lectures\images\typora-user-images\image-20200814130809652.png" alt="image-20200814130809652" /></p>
+
+<p>​		This is achieved by using the partial derivatives:
+\(\Delta\vec{r}|_{u,v_j} = \frac{\partial{\vec{r}}}{\partial{u}}\Delta{u} = \vec{r}_u\Delta u	\\
+\Delta\vec{r}|_{u_i,v} = \frac{\partial{\vec{r}}}{\partial{v}}\Delta{v} = \vec{r}_v\Delta v\)
+<img src="\lectures\images\typora-user-images\image-20200814131533477.png" alt="image-20200814131533477" /></p>
+
+<p>​		So:
+\(S_{i,j} = \left|(\vec{r}_u\Delta u)\times (\vec{r}_v\Delta v \right)| = \left|\vec{r}_u\times \vec{r}_u\right|\Delta u\Delta v\)</p>
+
+<ol>
+  <li>
+    <p>Lastly, making this a Riemann Sum and <strong>taking infinitesimal over</strong> $\Delta u$ and $\Delta v$ gives:
+\(A_S = \iint_{Domain}\left|\vec{r}_u\times \vec{r}_u\right|du\,dv\)</p>
+
+    <p>And <strong>in general, if you need to integrate it over a function</strong> $f(x,y,z) = f(\vec{r}(u,v))$:
+\(\iint_S f(x,y,z)dS = \iint_D f(\vec{r}(u,v))\left|\vec{r}_u\times \vec{r}_u\right|du\,dv\)</p>
+
+    <blockquote>
+      <p>Notice that:</p>
+
+      <ul>
+        <li>
+          <table>
+            <tbody>
+              <tr>
+                <td>By taking $f(\vec{r}(u,v)) = 1$, we get $\iint_D 1\, \left</td>
+                <td>\vec{r}_u\times \vec{r}_u\right</td>
+                <td>du\,dv = A_S$</td>
+              </tr>
+            </tbody>
+          </table>
+        </li>
+      </ul>
+    </blockquote>
+  </li>
+</ol>
+
+<hr />
+
+<p><strong><em>For example</em></strong>:</p>
+
+<ul>
+  <li>
+    <p>Question:</p>
+
+    <p>​	Compute the <strong>surface integral</strong> $\iint_S x^2 dS$, where $S$ is the unit sphere given by $x^2 + y^2 +z^2 = 1$.</p>
+  </li>
+  <li>
+    <p>Solution:</p>
+
+    <p>​	First find the parametric equation of the surface:
+\(x = rsin(\phi)cos(\theta)=sin(\phi)cos(\theta);\\ 
+y=rsin(\phi)sin(\theta)=sin(\phi)sin(\theta); \\
+z=rcos(\phi)=cos(\phi);\\
+where:\, 0\le\phi\le\pi;\, 0\le\theta\le2\pi\)
+​	So the parametric equation becomes:
+\(\vec{r}(\phi, \theta) = sin(\phi)cos(\theta)\hat{i}+ sin(\phi)sin(\theta)\hat{j}+cos(\phi)\hat{k}\)
+​	Now, skipping the details, we need to compute:
+\(\left|\vec{r}_u\times \vec{r}_u\right| = sin(\phi)\)
+​	Finally, putting everything together:
+\(\begin{align*}
+\iint_S x^2 dS &amp;= \iint_D (sin(\phi)cos(\theta))^2 \left|\vec{r}_u\times \vec{r}_u\right|du\,dv	\\
+&amp;=\int_{0}^{2\pi}\int_{0}^{\pi} (sin(\phi)cos(\theta))^2 sin(\phi)d\phi\,d\theta	\\
+&amp;= ...
+\end{align*}\)</p>
+  </li>
+</ul>
+
+<hr />
+
+<h3 id="closed-surface-integral-stokes-theorem">Closed Surface Integral/ Stokes’ Theorem</h3>
+
+<p>Stoke theorem says:</p>
+
+<blockquote>
+  <p><strong>Stokes’ Theorem Definition</strong>:</p>
+
+  <ul>
+    <li>Let $S$ be an <strong>oriented piecewise-smooth surface</strong> that is <strong>bounded by a simple, closed, piecewise-smooth boundary curve $C$</strong> with <strong>positive orientation</strong>. Let $\vec{F}$ be a vector field whose components have continuous partial derivatives on an open region in $\mathbb{R}^3$ that contains $S$. Then:
+\(\oiint_S \vec{\nabla} \times \vec{F} \cdot d\vec{S} = \oint_C\vec{F} \cdot d\vec{r}\)
+and, to <strong>make it into the form we can calculate</strong>:
+\(\oint_C\vec{F} \cdot d\vec{r} = \oint_C \vec{F}\cdot\vec{T}\,ds\)
+and:
+\(\oiint_S \vec{\nabla} \times \vec{F} \cdot d\vec{S} = \oiint_S \vec{\nabla}\times\vec{F}\cdot\hat{n}\,dS\)
+This means that the <strong><em>line integral</em> around curve $C$ of the <em>tangential component</em> of $\vec{F}$</strong> is equal to the <strong><em>surface integral</em> over $S$ of the <em>normal component</em> of the curl of $\vec{F}$</strong>.</li>
+  </ul>
+</blockquote>
+
+<p><img src="https://cnx.org/resources/b398b9a85c53aab5bad52dce12ff28df0f8afa19/CNX_Calc_Figure_16_07_001.jpg" style="zoom:67%;" /></p>
+
+<h2 id="volume-integral">Volume Integral</h2>
+
+<p>Integrating a volume is the same as the triple integral, where you simply replace the $f(x,y,z)$ in:
+\(\sum_{i=1}^{l}\sum_{j=1}^{m}\sum_{k=1}^{n}f(x^*_{ijk},y^*_{ijk},z^*_{ijk})\,\Delta V\)
+with $f(x,y,z)=1$:
+\(V = \sum_{i=1}^{l}\sum_{j=1}^{m}\sum_{k=1}^{n}\Delta V\)
+Therefore you get:
+\(V = \int_a^b\int_c^d\int_e^f dxdydz\)
+In general, you have:
+\(V = \int_a^b\int_{g_1(y)}^{g_2(y)} \int_{u_1(x,y)}^{u_2(x,y)}dzdxdy\)
+where:</p>
+
+<ul>
+  <li>$u_1(x,y)$ and $u_2(x,y)$ describes two planes in which the volume is enclosed</li>
+  <li>$g_1(y)$, $g_2(y)$ and $a$, $b$ describes cutting the enclosed infinite shape between the two planes into a finite volume</li>
+</ul>
+
+<h3 id="closed-volume-integral-divergence-theorem">Closed Volume Integral/ Divergence Theorem</h3>
+
+<blockquote>
+  <p><strong>Divergence Theorem Def</strong>:</p>
+
+  <ul>
+    <li>The Divergence Theorem Let $E$ be a simple solid region and let $S$ be the boundary surface of $E$, given with positive (outward) orientation. Let $\vec{F}$ be a vector field whose component functions have continuous partial derivatives on an open region that contains $E$. Then:
+\(\oiint_S \vec{F} \cdot dS = \iiint_E \vec{\nabla} \cdot \vec{F} \, dV\)
+      <ul>
+        <li>Thus the Divergence Theorem states that, under the given conditions, <strong>the flux of $\vec{F}$ across the boundary surface of $E$ is equal to the triple integral of the divergence of $\vec{F}$ over $E$.</strong></li>
+      </ul>
+    </li>
+  </ul>
+</blockquote>
+
+
+  </div><a class="u-url" href="/lectures/2021@columbia/APMA2000_Multi_Calculus.html/" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/lectures/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Lecture Notes</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Lecture Notes</li><li><a class="u-email" href="mailto:jasonyux17@gmail.com">jasonyux17@gmail.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/jasonyux"><svg class="svg-icon"><use xlink:href="/lectures/assets/minima-social-icons.svg#github"></use></svg> <span class="username">jasonyux</span></a></li><li><a href="https://www.linkedin.com/in/xiao-yu2437"><svg class="svg-icon"><use xlink:href="/lectures/assets/minima-social-icons.svg#linkedin"></use></svg> <span class="username">xiao-yu2437</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>An inexhaustive collection of markdown/latex(PDF) notes that I took since college. </p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

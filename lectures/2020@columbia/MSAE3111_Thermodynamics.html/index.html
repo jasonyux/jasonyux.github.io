@@ -1,0 +1,2979 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>MSAE3111 Thermodynamics | Lecture Notes</title>
+<meta name="generator" content="Jekyll v4.3.1" />
+<meta property="og:title" content="MSAE3111 Thermodynamics" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Thermodynamics" />
+<meta property="og:description" content="Thermodynamics" />
+<link rel="canonical" href="/lectures/2020@columbia/MSAE3111_Thermodynamics.html/" />
+<meta property="og:url" content="/lectures/2020@columbia/MSAE3111_Thermodynamics.html/" />
+<meta property="og:site_name" content="Lecture Notes" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-12-13T00:00:00-05:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="MSAE3111 Thermodynamics" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2020-12-13T00:00:00-05:00","datePublished":"2020-12-13T00:00:00-05:00","description":"Thermodynamics","headline":"MSAE3111 Thermodynamics","mainEntityOfPage":{"@type":"WebPage","@id":"/lectures/2020@columbia/MSAE3111_Thermodynamics.html/"},"url":"/lectures/2020@columbia/MSAE3111_Thermodynamics.html/"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/lectures/assets/main.css"><link type="application/atom+xml" rel="alternate" href="/lectures/feed.xml" title="Lecture Notes" /></head>
+<body><header class="site-header">
+
+	<div class="wrapper"><a class="site-title" rel="author" href="/lectures/">Lecture Notes</a>
+
+		<nav class="site-nav">
+			<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+			<label for="nav-trigger">
+			<span class="menu-icon">
+				<svg viewBox="0 0 18 15" width="18px" height="15px">
+				<path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+				</svg>
+			</span>
+			</label>
+
+			<div class="trigger">
+				<a class="page-link" href="/">Home</a>
+				<a class="page-link" href="/projects">Projects</a>
+				<a class="page-link" href="/learning">Blog</a>
+				<a class="page-link" href="/research">Research</a>
+				<span class="page-link" href="#">[Education]</span>
+			</div>
+		</nav>
+	</div>
+  </header><main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <head>
+	<script>
+		MathJax = {
+		  tex: {
+			inlineMath: [['$', '$'], ['\\(', '\\)']],
+			displayMath: [['$$', '$$'], ['\\[', '\\]']]
+		  }
+		};
+	</script>
+	<script id="MathJax-script" async
+		src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+	</script>
+  </head>
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">MSAE3111 Thermodynamics</h1>
+    <p class="post-meta"><time class="dt-published" datetime="2020-12-13T00:00:00-05:00" itemprop="datePublished">
+        Dec 13, 2020
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <h1 id="thermodynamics">Thermodynamics</h1>
+
+<h2 id="quiz-1">Quiz 1</h2>
+
+<p>Includes only the Quiz 1 section.</p>
+
+<h3 id="states-and-equation-of-states">States and Equation of States</h3>
+
+<blockquote>
+  <p><strong>Surrounding:</strong> usually used when describing heat flow from the surrounding to the system. Often referred to <strong>reservoir</strong> as well.</p>
+</blockquote>
+
+<blockquote>
+  <p><strong>Extensive Properties:</strong> properties that are dependent on mass/volume/mole. (<em>For example, momentum, energy, etc.</em>)</p>
+</blockquote>
+
+<blockquote>
+  <p><strong>Intensive Properties:</strong> properties that are independent on mass/volume/mole. (<em>For example, energy per mole</em>)</p>
+</blockquote>
+
+<blockquote>
+  <p><strong>Quasi-static Changes:</strong> changes that are so slow such that you can assume certain variables/states being constant.</p>
+</blockquote>
+
+<blockquote>
+  <p><strong>Reversible Processes:</strong></p>
+
+  <ul>
+    <li>
+      <p>processes whose entropy does not change, and therefore direction can be reversed/</p>
+    </li>
+    <li>
+      <p>they are usually very <strong>slow</strong>, because to avoid heat-generating work such as friction, which is <em>related to the rate at which movement happens</em>, we can minimize friction by simply moving really <strong>REALLY</strong> slowly.</p>
+    </li>
+  </ul>
+</blockquote>
+
+<ol>
+  <li><strong><em>Volume Expansivity</em></strong>
+    <ul>
+      <li><em>at constant pressure:</em></li>
+    </ul>
+  </li>
+</ol>
+
+\[\beta = \frac{1}{V}\left.\frac{\partial V}{\partial T}\right|_P\]
+
+<ul>
+  <li><em>at constant temperature:</em></li>
+</ul>
+
+\[\kappa_T = -\frac{1}{V}\left.\frac{\partial V}{\partial P}\right|_T\]
+
+<ul>
+  <li><em>coefficient of linear expansion:</em></li>
+</ul>
+
+\[\alpha = \frac{1}{3}\beta\]
+
+<ol>
+  <li><strong><em>Volume Expansion for system with</em></strong> $U(V,T,P)=U(P,T) \to V(P,T)$
+    <ul>
+      <li>basically an equation of state defining a surface</li>
+    </ul>
+  </li>
+</ol>
+
+\[dV = \left.\frac{\partial V}{\partial T}\right|_P dT + \left.\frac{\partial V}{\partial P}\right|_T dP=\beta V dT - \kappa_T VdP\]
+
+<ul>
+  <li>
+    <p><strong><em>Calculus Equations for</em></strong> $f(x,y,z)=0$
+\({align*}
+\begin{align*}
+\left.\frac{\partial x}{\partial y}\right|_z &amp;= \frac{1}{\left.\frac{\partial y}{\partial z}\right|_z}	\\
+\left.\frac{\partial x}{\partial y}\right|_z &amp;= -\frac{\left.\frac{\partial x}{\partial z}\right|_y}{\left.\frac{\partial y}{\partial z}\right|_x}	\\
+\left.\frac{\partial x}{\partial y}\right|_z\left.\frac{\partial y}{\partial z}\right|_x\left.\frac{\partial z}{\partial x}\right|_y&amp;=-1
+\end{align*}\)</p>
+  </li>
+  <li>
+    <p><strong><em>Volume Expansion for ideal gas</em></strong></p>
+
+    <ul>
+      <li>realize they are <strong>not</strong> constants</li>
+    </ul>
+  </li>
+</ul>
+
+\[\beta = \frac{1}{T}\\
+\kappa_T = \frac{1}{P}\]
+
+<ul>
+  <li>
+    <p><strong><em>Exact Differential</em></strong></p>
+
+    <ul>
+      <li>basically, the function should <strong>not</strong> depend on path</li>
+    </ul>
+
+\[z=z(x,y)\to \frac{\partial^2 z}{\partial y \partial x}=\frac{\partial^2 z}{\partial x \partial y}\]
+
+    <p>​	So if:
+\(dz=M(x,y)dx+N(x,y)dy\,\,\&amp;\,\,\frac{\partial M}{\partial y}=\frac{\partial N}{\partial x}\)
+​	then $z$ is an <strong>exact differential</strong>, only dependent on the state $x,y$.</p>
+  </li>
+</ul>
+
+<h3 id="work">Work</h3>
+
+<ol>
+  <li>
+    <p><strong><em>Inexact Differential of Work Done for chemical system</em></strong></p>
+
+    <ul>
+      <li>since work done is $W=\int_C \vec{F} \cdot d\vec{r}$, it is path dependent.</li>
+    </ul>
+
+\[d'W= \vec{F} \cdot d \vec{r} = PAdx=PdV\]
+  </li>
+</ol>
+
+<blockquote>
+  <p><strong>Positive Work Done:</strong> this is defined to be work done <strong><em>by</em></strong> the system (e.g. gas)</p>
+</blockquote>
+
+<blockquote>
+  <p><strong>Negative Work Done:</strong> this is defined to be work done <strong><em>on</em></strong> the system (e.g. gas)</p>
+</blockquote>
+
+<ol>
+  <li>
+    <p><strong><em>Inexact Differential of (Configurational) Work Done</em></strong></p>
+
+    <ul>
+      <li>
+        <p>wire/tension
+\(d'W=-F_T dL\)</p>
+      </li>
+      <li>
+        <p>magnetic dipole
+\(d'W=-HdM\)</p>
+      </li>
+      <li>
+        <p>electric dipole
+\(d'W = -Ed\mathbb{P}\)</p>
+      </li>
+      <li>
+        <p>surface film
+\(d'W = -\sigma dA\)</p>
+      </li>
+      <li>
+        <p>electrical cell
+\(d'W=-\epsilon dz,\,\,\,\,z=charge\)</p>
+      </li>
+    </ul>
+
+    <p>where:</p>
+
+    <ul>
+      <li>there could be <strong>other dissipative/non-conservative work done</strong> for each system, but they are not listed here</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="first-law-of-thermodynamics">First Law of Thermodynamics</h3>
+
+<ol>
+  <li><strong><em>First Law of Thermodynamics</em>:</strong>
+    <ul>
+      <li>the work done through any <strong><em>adiabatic ($dQ=0$)</em></strong> path between two states are the same</li>
+      <li>or generally:</li>
+    </ul>
+  </li>
+</ol>
+
+<p>\(d'Q = dU + d'W\)
+​			where: obviously $U$ is a state function, independent of path.</p>
+
+<ol>
+  <li>
+    <p><strong><em>Enthalpy for a Chemical System</em></strong></p>
+
+    <ul>
+      <li>
+        <p>given for a system, $d’W=PdV$, we can arrive at:
+\(d'Q |_P = d(U+PV)\equiv dH\)
+where:</p>
+
+        <ul>
+          <li>$H\equiv U+PV$ is enthalpy</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ol>
+
+<ul>
+  <li>
+    <p><strong>Heat Capacity</strong>:</p>
+
+    <ul>
+      <li>how much heat to raise the temperature of a system of a given size:</li>
+    </ul>
+
+\[C \equiv \frac{Q}{\Delta T}\]
+
+    <p>which is path dependent since $Q$ is path dependent, and we define:</p>
+
+    <ul>
+      <li><em>at constant pressure:</em></li>
+    </ul>
+
+\[C_P \to Q|_P = \int_{T_1}^{T_2}C_P dT\]
+
+    <ul>
+      <li><em>at constant volume:</em>
+\(C_V \to Q|_V = \int_{T_1}^{T_2}C_V dV\)</li>
+    </ul>
+  </li>
+</ul>
+
+<ol>
+  <li>
+    <p><strong><em>Heat Capacity for a Chemical System at a Constant Volume</em></strong></p>
+
+    <ul>
+      <li>Since $d’Q = dU+PdV$, at constant volume:</li>
+    </ul>
+
+\[\left.\frac{\partial' Q}{\partial T}\right|_V = \left. \frac{\partial U}{\partial T}\right|_V = C_v\]
+  </li>
+  <li>
+    <p><strong><em>Heat Capacity for a Chemical System at a Constant Pressure</em></strong></p>
+
+    <ul>
+      <li>Since $d’Q = dH - VdP$, at constant pressure:
+\(\left.\frac{\partial' Q}{\partial T}\right|_P = \left. \frac{\partial H}{\partial T}\right|_P = C_P\)</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="internal-energy">Internal Energy</h3>
+
+<ol>
+  <li>
+    <p><strong><em>Heat Equation with Specific Heat Capacities for Chemical System</em></strong></p>
+
+    <ul>
+      <li>From equation of $d’Q$ and $dU$, we get:
+\(d'q = c_v dT+(\frac{c_P-c_v}{\beta v})dv\)
+where both $q$ and $v$ are normalized quantities from mole</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong><em>Joule’s Coefficient</em></strong>:</p>
+
+    <ul>
+      <li>it is a measured quantity with the following definition:
+\(\left.\frac{\partial T}{\partial V}\right|_U = \eta\)</li>
+    </ul>
+
+    <p>where:</p>
+
+    <ul>
+      <li>for an <strong>ideal gas</strong>, this is $0$</li>
+    </ul>
+  </li>
+</ol>
+
+<ul>
+  <li><strong>Free Expansion of Ideal Gas in Adiabatic Process</strong>
+    <ul>
+      <li>Free expansion is different from adiabatic process, in which free expansion basically has $0$ external pressure $=$ $0$ pressure overall.</li>
+      <li>Therefore, <strong><em>Free expansion means $d’W = 0$</em></strong>.</li>
+      <li>Since we also have an adiabatic process, $d’Q = 0$.</li>
+      <li>Therefore, <strong>we have $dU = 0$, so $dT = \Delta T = 0$</strong></li>
+    </ul>
+  </li>
+</ul>
+
+<ol>
+  <li>
+    <p><strong><em>Coefficient of Free Expansion:</em></strong></p>
+
+    <ul>
+      <li>
+        <p>a measure of how a the internal energy of a free gas (expanding or compressing) changes at constant temperature.</p>
+      </li>
+      <li>
+        <p>this is derived quantity form the above using the relation $\left.\frac{\partial U}{\partial V}\right|_T\left.\frac{\partial V}{\partial T}\right|_U\left.\frac{\partial T}{\partial U}\right|_V = -1$
+\(\left. \frac{\partial U}{\partial V} \right|_T \equiv FreeExpansion = -\eta C_V\)</p>
+      </li>
+    </ul>
+
+    <p>where:</p>
+
+    <ul>
+      <li>for <strong>ideal gas</strong>, this quantity is $0$ since $\eta$ is 0.</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong><em>Specific Heat Capacities and Coefficient of Free Expansion for Chemical System</em></strong></p>
+
+    <ul>
+      <li>
+        <table>
+          <tbody>
+            <tr>
+              <td>basically inserting the above into the equation $c_P - c_v = (\left.\frac{\partial U}{\partial V}\right</td>
+              <td>_T + P)\left. \frac{\partial V}{\partial T} \right</td>
+              <td>_P$</td>
+            </tr>
+          </tbody>
+        </table>
+      </li>
+    </ul>
+
+\[c_P - c_v = (P-\eta c_V)\left. \frac{\partial V}{\partial T} \right|_P\]
+  </li>
+  <li>
+    <p><strong><em>Specific Heat Capacities for Ideal Gas</em></strong></p>
+
+    <ul>
+      <li>basically knowing $\eta$ and $\left. \frac{\partial V}{\partial T} \right|_P$:
+\(c_P - c_v = R\)</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong><em>Internal Energy Differential with Specific Heats</em></strong></p>
+
+    <ul>
+      <li>using equation (11), we have:
+\(dU = C_V dT - \eta C_V dV\)</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong><em>Internal Energy with Specific Heats for Ideal Gas</em></strong></p>
+
+    <ul>
+      <li>because $\eta=0$ for ideal gas:
+\(dU = C_V dT\\
+U(T)=U(0)+\int_{T_0}^{T}C_V dT'\)</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="enthalpy">Enthalpy</h3>
+
+<ol>
+  <li><strong>Joule-Thompson Experiment: Throttling of Gas</strong>
+    <ul>
+      <li>basically, it is an <em>adiabatic</em> process where gas is transported from one chamber to another, such that:</li>
+    </ul>
+  </li>
+</ol>
+
+\[U_2 - U_1 = P_1V_1 - P_2V_2	\\
+U_2+P_2V_2 = P_1V_1+ U_1\]
+
+<p>​			or cleanly:
+\(H_1 = H_2\)
+​			which is true in this case because <strong><em>throttling kept pressure to be constant/isobaric throughout the process</em></strong></p>
+
+<ol>
+  <li>
+    <p><strong><em>Joule-Thompson Experiment of Change of Temperature of a Gas</em></strong></p>
+
+    <ul>
+      <li>this a measured quantity, defining:
+\(\mu = \left. \frac{\partial T}{\partial P} \right|_h,\,\,\,\,where\,h=\frac{H}{moles}\)</li>
+    </ul>
+
+    <p>where:</p>
+
+    <ul>
+      <li>for <strong>ideal gas,</strong> $\mu=0$.</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong><em>Specific Heat Capacity with Joule-Thompson Coefficient above</em></strong></p>
+
+    <ul>
+      <li>
+        <table>
+          <tbody>
+            <tr>
+              <td>basically, using the calculus result and cycle $\left. \frac{\partial h}{\partial T} \right</td>
+              <td>_P \left. \frac{\partial P}{\partial T} \right</td>
+              <td>_h\left. \frac{\partial T}{\partial h} \right</td>
+              <td>_P = -1$, we get</td>
+            </tr>
+          </tbody>
+        </table>
+      </li>
+    </ul>
+
+\[\left. \frac{\partial h}{\partial P} \right|_T = -\mu c_p\]
+  </li>
+  <li>
+    <p><strong><em>Specific Heat Capacities and Coefficient of Free Expansion for Chemical System</em></strong></p>
+
+    <ul>
+      <li>basically the other version of equation (12), using the result equation (18):
+\(c_P - c_v = (\mu c_p+V)\left. \frac{\partial P}{\partial T} \right|_V\)</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong><em>Enthalpy and the Specific Heats</em></strong></p>
+
+    <ul>
+      <li>since we knew $H(U,P,V)=H(P,V)$, we can also say $H(T,P)$</li>
+    </ul>
+
+\[dh= \left. \frac{\partial h}{\partial T}\right|_P dT+\left. \frac{\partial h}{\partial P}\right|_T dP	\\
+dh = c_p dT - \mu c_p dP\]
+  </li>
+  <li>
+    <p><strong><em>Enthalpy and the Specific Heats for Ideal Gas</em></strong></p>
+
+    <ul>
+      <li>Using the relation $\mu = 0$ for ideal gas, and the equation (20), we know:
+\(dh=c_p dT\\
+h(T) = h(T_0) + \int_{T_0}^{T} c_p dT'\)</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong><em>Heat Capacities for an Reversible Process with Ideal Gas</em></strong></p>
+
+    <ul>
+      <li>if we have an <strong>reversible process</strong> ($dS=0$), it has to be also <strong>adiabatic</strong> (since $d’Q = TdS$). Then using the two equations their their differential version of it, we get using equation (15) and (20) with ideal gas condition:</li>
+    </ul>
+  </li>
+</ol>
+
+\[d'q = du+Pdv;\,\,d'q=dh-vdP	\\
+d'q = c_v dT + Pdv';\,\,d'q=c_pdT -vdP	\\
+0= c_v dT + Pdv';\,\,0=c_pdT -vdP\\
+c_v dT =- Pdv';\,\,c_pdT =vdP\\\]
+
+<p>​			Hence, by dividing the above two equations we can arrive at:
+\(\frac{c_v dT}{c_p dT} = -\frac{Pdv}{vdP}	\\
+\frac{c_v}{c_p} = -\frac{Pdv}{vdP}	\\
+\frac{dP}{P} = -\frac{c_p}{c_v}\frac{dv}{v}	\\
+ln(PV^\gamma) = constant	\\
+PV^\gamma = constant\)
+​			where $\gamma = \frac{c_p}{c_v} &gt; 1$</p>
+
+<ol>
+  <li>
+    <p><strong><em>$\gamma$ for Ideal Gas in a Reversible Process</em></strong></p>
+
+    <ul>
+      <li>basically the by-product of the above:
+\(\gamma = \frac{c_p}{c_v} &gt; 1\)</li>
+    </ul>
+  </li>
+</ol>
+
+<h4 id="carnot-cycle">Carnot Cycle</h4>
+
+<p>For this section, refer to this diagram (again, ideal gas is assumed):</p>
+
+<p><img src="https://d1whtlypfis84e.cloudfront.net/guides/wp-content/uploads/2018/02/01084319/cccccccccccccc.png" alt="Carnot Engine: Cycle, Principles, Theorem, Efficiency with Videos," style="zoom:67%;" /></p>
+
+<ol>
+  <li>
+    <p><strong><em>Carnot Cycle Heat Quotient</em></strong></p>
+
+    <ul>
+      <li>Consider the process 1 and process 3, we can compute the ratio of the heat:
+\(\frac{Q_1}{|Q_3|}=\frac{T_1ln(\frac{V_2}{V_1})}{T_3 ln(\frac{V_3}{V_4})}\)
+now, since we know process 2 and process 4 are adiabatic processes, using equation (22), we found:
+\(T_2V_2^{\gamma}=T_1V_2^{\gamma}=T_3V_3^{\gamma}\\
+T_4V_4^{\gamma}=T_3V_4^{\gamma}=T_1V_1^{\gamma}\\\)
+dividing the above two, we obtain:
+\(\frac{T_1V_2^{\gamma}}{T_1V_1^{\gamma}}=\frac{T_3V_3^{\gamma}}{T_3V_4^{\gamma}}\\
+\frac{V_2^{\gamma}}{V_1^{\gamma}}=\frac{V_3^{\gamma}}{V_4^{\gamma}}\\
+\frac{V_2}{V_1}=\frac{V_3}{V_4}\)
+Hence the above equation reduces to:
+\(\frac{Q_1}{|Q_3|}=\frac{T_1}{T_3}\)</li>
+    </ul>
+  </li>
+</ol>
+
+<blockquote>
+  <p><strong>Thermal Efficiency:</strong> This is defined to be the ratio of total work done over total heat input
+\(\eta = \frac{W}{Q_{in}}\)</p>
+</blockquote>
+
+<ul>
+  <li>
+    <p><strong>Carnot Cycle Work Done</strong></p>
+
+    <ul>
+      <li>
+        <p>for processes 2 and process 4, we knew that $Q=0$ since they are adiabatic.</p>
+      </li>
+      <li>
+        <p>the total work done for both processes is therefore:
+\(0-\Delta U=\Delta W\)
+but as for ideal gas, $U=U(T,C_{V_{(T)}})$, hence as the net change in temperature is 0:
+\(0=\Delta W\)</p>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<ol>
+  <li>
+    <p><strong><em>Thermal Efficiency for Carnot Engines</em></strong></p>
+
+    <ul>
+      <li>
+        <p>using the equation (24) and the above fact for thermal efficiency, we obtain, for a carnot cycle/engine: 
+\(\eta = \frac{Q_1 + Q_3}{Q_1}= \frac{Q_1 - |Q_3|}{Q_1}	\\
+\eta = 1-\frac{T_3}{T_1}\)
+where:</p>
+
+        <ul>
+          <li>$T_1$ is the higher temperature in the graph.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ol>
+
+<ul>
+  <li><strong>Reverse Carnot Cycle for a Refrigerator</strong>:
+    <ul>
+      <li>Basically we will have heat flowing in process 3 at room temperature, and heat flowing out in process 1. (Therefore, reversing the cycle.)</li>
+      <li>Now, we can reach the same formula for net work done/heat flow, but with a negative sign, indicating that work done is needed <strong>on</strong> the system.</li>
+    </ul>
+  </li>
+</ul>
+
+<blockquote>
+  <p><strong>Figure of Merit:</strong> This is the refrigerator version for thermal efficiency, we take the ratio of heat removed/taken in over work done onto/supplied to the system.
+\(c=\frac{Q_{in}}{|W|}\)</p>
+
+  <ul>
+    <li>
+      <table>
+        <tbody>
+          <tr>
+            <td>we took $</td>
+            <td>W</td>
+            <td>$ because work done would be negative.</td>
+          </tr>
+        </tbody>
+      </table>
+    </li>
+  </ul>
+</blockquote>
+
+<h3 id="entropy">Entropy</h3>
+
+<p>This explains why not all processes are reversible, even if energetically permittable.</p>
+
+<p>In some of the equations below, this graph will still be used:</p>
+
+<p><img src="https://d1whtlypfis84e.cloudfront.net/guides/wp-content/uploads/2018/02/01084319/cccccccccccccc.png" alt="Carnot Engine: Cycle, Principles, Theorem, Efficiency with Videos," style="zoom:67%;" /></p>
+
+<blockquote>
+  <p><strong>Second law of Thermodynamics:</strong></p>
+
+  <ul>
+    <li>every process in an isolated entity (including the universe, if is acted on/by) can either have entropy $S$ staying the same or increase.</li>
+    <li>$\to$ in a reversible process, entropy $S$ must stay the same</li>
+    <li>$\to$ there is no perfect heat engine/refrigerator</li>
+  </ul>
+</blockquote>
+
+<ol>
+  <li>
+    <p><strong><em>Closed Loops in Carnot Cycle with Ideal Gas</em></strong></p>
+
+    <ul>
+      <li>
+        <p>for the closed loop in the figure above. and using equation (24), we know:
+\(\frac{Q_1}{-Q_3}=\frac{T_1}{T_3}\\
+\frac{Q_1}{T_1}+\frac{Q_3}{T_3}=0\)
+since the other two processes are adiabatic, we know:
+\(\sum_i \frac{Q_i}{T_i} =0\)
+Now, if we take infinitesimal loops, such that the two isothermal curve approach each other:
+\(\sum_i \frac{Q_i}{T_i} = \sum_i \frac{Q_1 - |Q_3|}{T_i} \approx \sum_i \frac{d'Q}{T_i}=0\\
+\oint_{carnot}\frac{d'Q}{T}=0\)
+However, since the above is an infinitesimal loop on the $P-V$ plane, we can construct any over loop by adding those small loops:</p>
+
+        <ul>
+          <li>notice that this also makes the conclusion general to other <strong>non-ideal gases</strong> as well</li>
+        </ul>
+
+\[\oint_{P-V\,plane}\frac{d'Q}{T}=0\]
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p><strong><em>Entropy</em></strong></p>
+
+    <ul>
+      <li>from the above, we can define the quantity entropy with an <strong><em>heat flow in a reversible process (since derived in Carnot Cycle)</em></strong> to be:
+\(dS \equiv \frac{d'Q_{rev}}{T}\,\,or\,\,d'Q_{rev} = TdS\)
+Therefore, we obtain the <strong><em>general result for any gas in the $P-V$ plane</em></strong>:
+\(\oint_{P-V\,plane}\frac{d'Q}{T}=\oint_{P-V\,plane} dS = 0\)</li>
+    </ul>
+  </li>
+</ol>
+
+<ul>
+  <li>
+    <p><strong>State of $S$</strong></p>
+
+    <ul>
+      <li>
+        <p>notice that equation (27) effectively made entropy $S$ become <strong>independent of path</strong> in the $P-V$ plane. Therefore, we conclude that:
+\(S=S(P,V)\)</p>
+      </li>
+      <li>
+        <p>now, if we use it for ideal gas, we get:
+\(S=S(P,V)=S(P,T)=S(T,V)\)</p>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<ol>
+  <li>
+    <p><strong><em>First law of Thermodynamics Combined with Entropy for Chemical Systems</em></strong></p>
+
+    <ul>
+      <li>using equation (27), we can write (if we have a <strong>reversible process</strong>):
+\(d'Q =dU+d'W\\
+TdS=dU+PdV\)</li>
+    </ul>
+  </li>
+</ol>
+
+<ul>
+  <li>
+    <p><strong>Specific Heats with Entropy</strong></p>
+
+    <ul>
+      <li>basically we have an alternative expression of $d’Q$, so we can express many things alternatively:
+\(C_V = \left. \frac{d'Q}{dT} \right|_V = T\left. \frac{dS}{dT} \right|_V	\\
+C_P = \left. \frac{d'Q}{dT} \right|_P = T\left. \frac{dS}{dT} \right|_P\)
+and etc.</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>Carnot Cycle in $T-S$ Plane</strong></p>
+
+    <ul>
+      <li>
+        <p>since Carnot cycle basically contains isothermal and adiabatic processes, we can construct the same cycle in the diagram below:</p>
+
+        <p><img src="https://www.mechanicaltutorial.com/pictures/content_picture/carnot_cycle/carnot_cycle_graph.png" alt="4 stages of carnot cycle improving thermal efficiency - MechanicalTutorial" style="zoom:67%;" /></p>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="midterm">Midterm</h2>
+
+<p>Includes this section and cumulatively, all the previous sections.</p>
+
+<h3 id="entropy-and-ideal-gas">Entropy and Ideal Gas</h3>
+
+<ol>
+  <li>
+    <p><strong><em>Entropy Differentials for Ideal Gas</em></strong></p>
+
+    <p>Since we know, for ideal gas, $dU = C_V dT - \eta C_V dV = C_V dT$, and $TdS = dU + PdV$ for a system:
+\(TdS = C_V dT + PdV\\
+dS = \frac{C_V}{T}dT + \frac{P}{T}dV\)
+since:
+\(dS = \left.\frac{\partial S}{\partial T}\right|_V dT + \left.\frac{\partial S}{\partial V}\right|_TdV\)
+we arrive at:
+\(\begin{cases}
+\text{for ideal gas:} &amp; \left.\frac{\partial S}{\partial T}\right|_V = \frac{C_V}{T}	\\
+ &amp; \left.\frac{\partial S}{\partial V}\right|_T = \frac{P}{T}=\frac{nR}{V}\\
+ \text{in general:} &amp; \left.\frac{\partial S}{\partial T}\right|_V = \frac{C_V}{T}	\\
+  &amp; \left.\frac{\partial S}{\partial V}\right|_T = \frac{P}{T}-\eta \frac{C_V}{T}
+\end{cases}\)</p>
+  </li>
+  <li>
+    <p><strong><em>Entropy Integral for Ideal Gas</em></strong></p>
+
+    <p>Using the above, we could explicitly calculate the change of entropy for an ideal gas:
+\(dS = C_V \frac{dT}{T} + nR \frac{dV}{V}\)
+so:
+\(S_2 - S_1 = C_V ln(\frac{T_2}{T_1}) + nRln(\frac{V_2}{V_1})\)</p>
+  </li>
+</ol>
+
+<h3 id="heatentropy-change-for-reversible-process">Heat/Entropy Change for Reversible Process</h3>
+
+<p>Now we are dealing with <strong>processes</strong>, so the <strong>second law of thermodynamics</strong> takes precedence.</p>
+
+<ul>
+  <li>if we are just dealing with a <strong>state of a system</strong>, use the <strong>first law</strong>.</li>
+</ul>
+
+<p>If we have a <strong>reversible</strong> process, we could also use the relation $d’Q = TdS$.</p>
+
+<ol>
+  <li>
+    <p><strong><em>Change of Entropy for Reversible Isothermal Process</em></strong></p>
+
+    <p>Again, since it is isothermal and reversible, we can use $d’Q = TdS$:
+\(S_2 - S_1 = \int_{Q_a}^{Q_b} \frac{d'Q}{T}=\frac{1}{T}(Q_b - Q_a)\)
+which means, <strong>at the constant temperature</strong>:</p>
+
+    <ul>
+      <li>net heat flow in = increase in entropy</li>
+      <li>net heat flow out = decrease in entropy = not possible to happen</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong><em>Change of Entropy for Reversible Isochoric Process</em></strong></p>
+
+    <table>
+      <tbody>
+        <tr>
+          <td>In addition to using $d’Q = TdS$, we also know $d’Q</td>
+          <td>_V = dU</td>
+          <td>_V = C_V dT + 0$</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>So we have:
+\(S_2 - S_1 = \int_{T_a}^{T_b} C_V\frac{ dT}{T}=C_V ln(\frac{T_b}{T_a}),\,\,\text{if $C_V$ is independent of $T$}\)</p>
+  </li>
+  <li>
+    <p><strong><em>Change of Entropy for Reversible Isobaric Process</em></strong></p>
+
+    <table>
+      <tbody>
+        <tr>
+          <td>Now, we use the equation $d’Q</td>
+          <td>_P = dH</td>
+          <td>_P = C_p dT - \mu C_p dP = C_p dT$</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>Therefore we have:
+\(S_2 - S_1 = \int_{T_a}^{T_b} C_P\frac{ dT}{T}=C_P ln(\frac{T_b}{T_a}),\,\,\text{if $C_P$ is independent of $T$}\)</p>
+  </li>
+  <li>
+    <p><strong><em>Reversible Heat Flow</em></strong>:</p>
+
+    <p>In all the last two cases above, we have $\Delta S$ dependent on change of $T$. This implies that, in order for a <strong>reversible process and a reversible heat flow</strong> to occur, we need to <strong>raise the temperature of the system as a sequence of infinitesimal steps</strong> $\delta T$:</p>
+  </li>
+</ol>
+
+<p>\(\begin{cases}
+  dS_{system} = C_{P\,or\,V} \frac{\delta T}{T}\\
+  dS_{surronding} = C_{P\,or\,V} \frac{\delta T}{T+2\delta T} \approx C_{P\,or\,V} \frac{\delta T}{T}
+  \end{cases}\)
+ 	 As a result, we recover:
+\(dS_{system} + dS_{surronding} = 0\)
+ 	 which is <strong>reversible heat flow</strong>.</p>
+
+<h3 id="heatentropy-change-for-irreversible-process">Heat/Entropy Change for Irreversible Process</h3>
+
+<p>The <strong>key idea/trick</strong> is that:</p>
+
+<ul>
+  <li>for each <strong>step</strong>/change, you can compute it using the <strong>reversible process</strong> as <strong>$S$ is a state equation</strong>
+    <ul>
+      <li>this means, for each <strong>change of the system or the surrounding <em>individually</em></strong>, you can use reversible process calculation</li>
+    </ul>
+  </li>
+  <li>then, a <strong>process basically involves the sum of changes of each part of the system</strong> (including surrounding)
+    <ul>
+      <li>you will find the <strong>total change of $S$ will be non-zero</strong></li>
+    </ul>
+  </li>
+</ul>
+
+<ol>
+  <li>
+    <p><strong><em>Change of Entropy at Either Constant P/V in an Irreversible Process</em></strong></p>
+
+    <p>The idea is as follows</p>
+
+    <p><img src="\lectures\images\typora-user-images\image-20201013171252696.png" alt="image-20201013171252696" style="zoom:67%;" /></p>
+
+    <p>and we treat the <strong><em>system individually</em></strong> first, <strong>going from state $T_1 \to T_2$:</strong>
+\(\Delta S_{sys} = C_{P\,or\,V} \cdot ln(\frac{T_2}{T_1})\)
+where:</p>
+
+    <ul>
+      <li>this is legal to treat it as reversible process, <strong>because for a system, it is merely a change of state, which is independent of path.</strong></li>
+    </ul>
+
+    <p>now, treat the <strong><em>surrounding individually</em></strong>, going from $T_2 \to T_2$, but with a heat flow known:
+\(\begin{align*}
+\Delta S_{surr} &amp;= \frac{1}{T}\int_{Q_a}^{Q_b} d'Q	\\
+ &amp;= \frac{1}{T_2}(-\Delta Q_{sys})	\\
+ &amp;= \frac{1}{T_2}\left(- \int_{T_1}^{T_2}C_{P\,or\,V} \cdot dT\right)\\
+ &amp;= -\frac{1}{T_2}C_{P \, or\,V}\left(T_2 - T_1\right)
+ \end{align*}\)
+Therefore, the <strong>total change for the process becomes</strong>:
+\(\begin{align*}
+\Delta S_{total} &amp;= \Delta S_{sys}+ \Delta S_{surr}	\\
+\Delta S_{total} &amp;= C_{P\,or\,V} \cdot ln\left(\frac{T_2}{T_1}\right) - C_{P \, or\,V}\frac{\left(T_2 - T_1\right)}{T_2}
+\end{align*}\)</p>
+  </li>
+  <li>
+    <p><strong><em>Second Law of Thermodynamics</em></strong></p>
+
+    <p>If we convert the previous equation (35) into the form:
+\(\Delta S_{total} = C_{P \,or\,V} \left( ln(1+x)-1+\frac{1}{1+x} \right)\)</p>
+
+    <p>where:</p>
+
+    <ul>
+      <li>$x = \frac{T_2 - T_1}{T_1}$</li>
+    </ul>
+
+    <p>It can be plotted to show that:
+\(\Delta S _{total} = \Delta S_{universe} \ge 0\)</p>
+  </li>
+</ol>
+
+<h3 id="energy-degradation">Energy Degradation</h3>
+
+<p>This is to show that, if you have done <strong>irreversible process/increased entropy</strong>, then the <strong>ability of doing work is reduced</strong></p>
+
+<ul>
+  <li>i.e. the maximum efficiency will go down</li>
+</ul>
+
+<ol>
+  <li>
+    <p><strong><em>Work Lost Due to Irreversible Process/Increase in Entropy</em></strong></p>
+
+    <p>Consider the same process, reached <strong>via two different path</strong>:</p>
+
+    <p><img src="\lectures\images\typora-user-images\image-20201013174701579.png" alt="image-20201013174701579" style="zoom:50%;" /></p>
+
+    <p>where:</p>
+
+    <ul>
+      <li>dotted lines indicate a <strong>reversible process</strong></li>
+      <li>solid line indicates an <strong>irreversible process</strong></li>
+    </ul>
+
+    <p>Path (a):
+\(W_{max} = \eta Q_{in} = Q_{in}\left(1-\frac{T_0}{T_1}\right)\)
+Path (b):
+\(W_{max} = \eta Q_{in} = Q_{in}\left(1-\frac{T_0}{T_2}\right)\)
+Now, if $T_2 &gt; T_1$, we see that the maximum work is different.</p>
+
+    <p>Consider the <strong>irreversible step</strong> in path (a):
+\(\begin{align*}
+\Delta S &amp;= \Delta S_1 + \Delta S_2	\\
+&amp;= \frac{Q}{T_1}+\frac{-Q}{T_2}	\\
+&amp;= Q\left(\frac{1}{T_1}-\frac{1}{T_2}\right)
+\end{align*}\)
+where:</p>
+
+    <ul>
+      <li>obviously we assumed the reservoir to be large enough so its temperature stayed constant</li>
+      <li>also, $T_2 &gt; T_1$ complies to our assumption</li>
+    </ul>
+
+    <p>Lastly, we see that:
+\(\begin{align*}
+W_{lost} &amp;= Q_{in}\left(1-\frac{T_0}{T_2}\right) - Q_{in}\left(1-\frac{T_0}{T_1}\right)	\\
+&amp;= T_0 Q_{in} \left( \frac{1}{T_1}-\frac{1}{T_2} \right)\\
+&amp;=  \frac{Q_{in}}{Q}T_0\Delta S_{total}
+\end{align*}\)
+where:</p>
+
+    <ul>
+      <li>$Q$ is <strong>irreversible</strong> heat</li>
+      <li>$Q_{in}$ is <strong>reversible</strong> heat</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong><em>Work Lost and Entropy</em></strong></p>
+
+    <p>If we make $Q_{in} = Q$, namely <strong>all the heat into the system is irreversible</strong>:</p>
+
+    <ul>
+      <li>we can do this as $Q$ was an arbitrary quantity</li>
+    </ul>
+
+\[W_{lost} = T_{sys} \Delta S_{universe}\]
+  </li>
+</ol>
+
+<h3 id="gas-mixing-contradiction">Gas Mixing Contradiction</h3>
+
+<ul>
+  <li>
+    <p><strong>Ideal Gas Mixing during an Adiabatic Free Expansion</strong></p>
+
+    <p>If we have an <strong>adiabatic process</strong>, it means $d’Q = 0$. A <strong>free expansion</strong> means no external pressure, hence $d’W=0$.</p>
+
+    <ul>
+      <li>therefore, we conclude that $dU=0$, so $T$ of gas has to stay constant.</li>
+    </ul>
+
+    <p><img src="\lectures\images\typora-user-images\image-20201013180947386.png" alt="image-20201013180947386" style="zoom:50%;" /></p>
+
+    <p>Then we have:
+\(\Delta S_{He} = \Delta S_{Ne},\,\,\text{assuming their $C_{V,P}$ are also the same}\)
+hence:
+\(\Delta S_{total} = 2\Delta S_{He} = 2\left( nRln\left( \frac{2V_1}{V_1} \right) \right) = 2nRln(2)\)
+However, if we simply change the $Ne$ to $He$, we would have a homogenous mixing, then it must be:
+\(\Delta S_{total}=0\)
+since <strong>homogenous mixing must be reversible</strong>.</p>
+
+    <p>And the solution is that we need to fix our equation of $\Delta S$ to include:
+\(\Delta S = C_V ln\left( \frac{T_2}{T_1} \right) + nR ln\left( \frac{M_2}{M_1} \right)\)
+where:</p>
+
+    <ul>
+      <li>$M=\frac{1}{concentration}$, instead of having volume inside.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="thermodynamic-processes">Thermodynamic Processes</h3>
+
+<ol>
+  <li>
+    <p><strong><em>Thermodynamic Processes of a Large Reservoir</em></strong></p>
+
+    <p>If you have a <strong>large reservoir of temperature</strong> $T_{res}$, and $Q$ is the heat <strong>flows into the system from it</strong>, then from the second law of thermodynamics:
+\(\begin{align*}
+\Delta S_{uni} &amp;\ge 0	\\
+\Delta S_{sys} + \Delta S_{res} &amp;\ge 0	\\
+\Delta S_{sys} + \frac{-Q}{T_{res}} &amp;\ge 0 \\
+T_{res}\Delta S_{sys} &amp;\ge Q \\
+T_{res}\Delta S_{sys} &amp;\ge \Delta U_{sys} + P_{sys}\Delta V_{sys} \\
+\end{align*}\)
+for <strong>any process</strong>.</p>
+  </li>
+  <li>
+    <p><strong><em>Thermodynamic Processes of a Large Reservoir using Enthalpy</em></strong></p>
+
+    <p><strong>Same as the above setting (41)</strong>, but we use $d’Q = dH - VdP$:
+\(T_{res}\Delta S_{sys} \ge \Delta H_{sys} - V_{sys}\Delta P_{sys}\)</p>
+  </li>
+</ol>
+
+<h1 id="list-of-useful-theorems">List of Useful Theorems</h1>
+
+<h2 id="thermodynamics-1">Thermodynamics</h2>
+
+<blockquote>
+  <p><strong>Theorem</strong></p>
+
+  <ul>
+    <li>By definition, $\left.\frac{\partial U}{\partial T}\right|<em>{V}=V\beta$ , $\left.\frac{\partial U}{\partial T}\right|</em>{P}=-V\kappa_T$
+\(dU=\beta VdT-\kappa_T V dP\)</li>
+  </ul>
+</blockquote>
+
+<h2 id="statistical-mechanics">Statistical Mechanics</h2>
+
+<h2 id="kinetic-theory">Kinetic Theory</h2>
+
+<h1 id="equation-appendix">Equation Appendix</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Equation Number</th>
+      <th>Title/Condition</th>
+      <th style="text-align: center">Equations</th>
+      <th> </th>
+      <th> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>chemical system</td>
+      <td style="text-align: center">\(dV=\beta V dT - \kappa_T VdP\)</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>chemical system</td>
+      <td style="text-align: center">\(d'W= \vec{F} \cdot d \vec{r} = PAdx=PdV\)</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>First Law of Thermodynamics</td>
+      <td style="text-align: center">$d’Q = dU + d’W$</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>chemical system</td>
+      <td style="text-align: center">$d’Q = dU + PdV$</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>chemical system</td>
+      <td style="text-align: center">$d’Q = dH - VdP$</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>chemical system</td>
+      <td style="text-align: center">$H\equiv U+PV$</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>wire/tension</td>
+      <td style="text-align: center">\(d'W=-F_T dL\)</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>magnetic dipole</td>
+      <td style="text-align: center">$d’W=-HdM$</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>electric dipole</td>
+      <td style="text-align: center">$d’W = -Ed\mathbb{P}$</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>surface film</td>
+      <td style="text-align: center">$d’W = -\sigma dA$</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>electrical cell</td>
+      <td style="text-align: center">$d’W=-\epsilon dz,\,\,\,\,z=charge$</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td> </td>
+      <td style="text-align: center">$\left.\frac{\partial’ Q}{\partial T}\right</td>
+      <td>_V= \left. \frac{\partial U}{\partial T}\right</td>
+      <td>_V = C_V $</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td> </td>
+      <td style="text-align: center">$\left.\frac{\partial’ Q}{\partial T}\right</td>
+      <td>_P= \left. \frac{\partial H}{\partial T}\right</td>
+      <td>_P = C_P $</td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td>Volumetric Expansion Coefficient</td>
+      <td style="text-align: center">$$\beta = \frac{1}{V}\left.\frac{\partial V}{\partial T}\right</td>
+      <td>_P$$</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td style="text-align: center">$$\kappa_T = -\frac{1}{V}\left.\frac{\partial V}{\partial P}\right</td>
+      <td>_T$$</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td style="text-align: center">\(\alpha = \frac{1}{3}\beta\)</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>9</td>
+      <td>chemical system</td>
+      <td style="text-align: center">$d’q = c_v dT+(\frac{c_P-c_v}{\beta v})dv$</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>10</td>
+      <td>chemical system</td>
+      <td style="text-align: center">$\left.\frac{\partial T}{\partial V}\right</td>
+      <td>_U = \eta$</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>11</td>
+      <td>Coefficient of Free Expansion</td>
+      <td style="text-align: center">$\left. \frac{\partial U}{\partial V} \right</td>
+      <td>_T\equiv -\eta C_V$</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>12</td>
+      <td>chemical system</td>
+      <td style="text-align: center">$$c_P - c_v = (P-\eta c_V)\left. \frac{\partial V}{\partial T} \right</td>
+      <td>_P$$</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>13</td>
+      <td>ideal gas</td>
+      <td style="text-align: center">$c_P - c_v = R$</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>14</td>
+      <td> </td>
+      <td style="text-align: center">$dU = C_V dT - \eta C_V dV$</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>15</td>
+      <td> </td>
+      <td style="text-align: center">$dU = C_V dT$</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td style="text-align: center">analogy to (21): $U(T)=U(0)+\int_{T_0}^{T}C_V dT’$</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>16</td>
+      <td>Chemical, isobaric processes:</td>
+      <td style="text-align: center">$U_2+P_2V_2 = P_1V_1+ U_1$</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td style="text-align: center">$H_2 = H_1$</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>17</td>
+      <td> </td>
+      <td style="text-align: center">$\mu = \left. \frac{\partial T}{\partial P} \right</td>
+      <td>_h,\,\,\,\,where\,h=\frac{H}{moles}$</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>18</td>
+      <td> </td>
+      <td style="text-align: center">$\left. \frac{\partial h}{\partial P} \right</td>
+      <td>_T = -\,u c_p$</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>19</td>
+      <td>chemical system</td>
+      <td style="text-align: center">$c_P - c_v = (\mu c_p+V)\left. \frac{\partial P}{\partial T} \right</td>
+      <td>_V$</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>20</td>
+      <td> </td>
+      <td style="text-align: center">$dh= \left. \frac{\partial h}{\partial T}\right</td>
+      <td>_P dT+\left. \frac{\partial h}{\partial P}\right</td>
+      <td>_T dP$</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td style="text-align: center">$dh = c_p dT - \mu c_p dP$</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>21</td>
+      <td> </td>
+      <td style="text-align: center">$dh=c_p dT$</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td style="text-align: center">analogy to (15): $h(T) = h(T_0) + \int_{T_0}^{T} c_p dT’$</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>22</td>
+      <td>ideal gas, adiabatic process</td>
+      <td style="text-align: center">$\gamma = \frac{c_p}{c_v} &gt; 1$</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>23</td>
+      <td>ideal gas, adiabatic process</td>
+      <td style="text-align: center">$PV^\gamma = constant$, for \(\gamma = \frac{c_p}{c_v} &gt; 1\)</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>ideal gas, isothermal process</td>
+      <td style="text-align: center">$PV= constant=nRT_0$</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>24</td>
+      <td>in a Carnot cycle, two isothermal processes</td>
+      <td style="text-align: center">$\frac{Q_1}{</td>
+      <td>Q_3</td>
+      <td>}=\frac{T_1}{T_3}$</td>
+    </tr>
+    <tr>
+      <td>25</td>
+      <td>ideal thermal efficiency for Carnot engine</td>
+      <td style="text-align: center">$\eta = 1-\frac{T_3}{T_1}$</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>26</td>
+      <td>for any gas</td>
+      <td style="text-align: center">$\oint_{P-V\,plane}\frac{dQ}{T}=0$</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>27</td>
+      <td>In a <strong><em>reversible process</em></strong></td>
+      <td style="text-align: center">$d’Q = TdS$</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td style="text-align: center">for any gas: $\oint_{P-V\,plane} dS = 0$</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>28</td>
+      <td>chemical system, <strong>reversible process</strong></td>
+      <td style="text-align: center">$TdS=dU+PdV$</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>29</td>
+      <td>for ideal gas</td>
+      <td style="text-align: center">$ \left.\frac{\partial S}{\partial T}\right</td>
+      <td>_V = \frac{C_V}{T}$</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>for ideal gas</td>
+      <td style="text-align: center">$\left.\frac{\partial S}{\partial V}\right</td>
+      <td>_T = \frac{P}{T}=\frac{nR}{V}$</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>for chemical system</td>
+      <td style="text-align: center">$\left.\frac{\partial S}{\partial T}\right</td>
+      <td>_V = \frac{C_V}{T}$</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>for chemical system</td>
+      <td style="text-align: center">$\left.\frac{\partial S}{\partial V}\right</td>
+      <td>_T = \frac{P}{T}-\eta \frac{C_V}{T}$</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>30</td>
+      <td>for ideal gas</td>
+      <td style="text-align: center">$S_2 - S_1 = C_V ln(\frac{T_2}{T_1}) + nRln(\frac{V_2}{V_1})$</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>31</td>
+      <td>isothermal reversible process</td>
+      <td style="text-align: center">$S_2 - S_1 = \int_{Q_a}^{Q_b} \frac{d’Q}{T}=\frac{1}{T}(Q_b - Q_a)$</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>32</td>
+      <td>isobaric reversible process</td>
+      <td style="text-align: center">$S_2 - S_1 =C_V ln(\frac{T_b}{T_a}),\,\,\text{if $C_V$ is independent of $T$}$</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>33</td>
+      <td>isobaric reversible process</td>
+      <td style="text-align: center">$S_2 - S_1 =C_P ln(\frac{T_b}{T_a}),\,\,\text{if $C_P$ is independent of $T$}$</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>34</td>
+      <td> </td>
+      <td style="text-align: center">reversible heat flow requires a sequence of <strong>infinitesimal heat transaction</strong> of $\delta T$</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>35</td>
+      <td>for a chemical system</td>
+      <td style="text-align: center">$\Delta S_{total} = \Delta S_{sys}+ \Delta S_{surr}= C_{P\,or\,V} \cdot ln\left(\frac{T_2}{T_1}\right) - C_{P \, or\,V}\frac{\left(T_2 - T_1\right)}{T_2}$</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>36</td>
+      <td>Second Law of Thermodynamics</td>
+      <td style="text-align: center">$\Delta S <em>{total} = \Delta S</em>{universe} \ge 0$</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>37</td>
+      <td>Irreversible heat transfer between two large reservoir</td>
+      <td style="text-align: center">$\Delta S = Q\left(\frac{1}{T_1}-\frac{1}{T_2}\right),\,\,\text{where $T_2 &gt; T_1$}$</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>38</td>
+      <td>for $Q$ being heat transfer (37) in irreversible process</td>
+      <td style="text-align: center">$W_{lost}=\frac{Q_{in}}{Q}T_{sys}\Delta S_{universe}$</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>39</td>
+      <td>if $Q$ is the same as $Q_{in}$ to the system (38), or all $Q_{in}$ is irreversible</td>
+      <td style="text-align: center">$W_{lost} = T_{sys} \Delta S_{universe}$</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>40</td>
+      <td>Lagrange Multiplier</td>
+      <td style="text-align: center">$\vec{\nabla}f(x,y)=\lambda \vec{\nabla}g(x,y)$, $g(x,y)$ being the constraint</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td style="text-align: center">one usage of this: <strong>nature prefers to maximize $S$ under certain constraint</strong></td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>41</td>
+      <td>Process with a large reservoir of $T_{res}$</td>
+      <td style="text-align: center">$T_{res}\Delta S_{sys} \ge \Delta U_{sys} + P\Delta V_{sys}$</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>42</td>
+      <td>Process with a large reservoir of $T_{res}$</td>
+      <td style="text-align: center">$T_{res}\Delta S_{sys} \ge \Delta H_{sys} - V_{sys}\Delta P_{sys}$</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>43</td>
+      <td>Helmholtz Energy (Third Potential)</td>
+      <td style="text-align: center">$F=U-TS$</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>44</td>
+      <td>Gibbs Free Energy (Fourth Potential)</td>
+      <td style="text-align: center">$G=U+PV-TS$</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td style="text-align: center">$G=F+PV$</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td style="text-align: center">$G=H-TS$</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>45</td>
+      <td>For a process</td>
+      <td style="text-align: center">$dF \le W_{total}$</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>For $W_{total}=W_{PdV}+W_{non-PdV}$, $W_{non-PdV}=0$</td>
+      <td style="text-align: center">$dF\le 0$, <strong>at constant volume</strong></td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>46</td>
+      <td>For a process at constant $T,V$, no $W_{Non-PdV}$</td>
+      <td style="text-align: center">$dF \le 0$</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>For a process at constant $T,P$, no $W_{Non-PdV}$</td>
+      <td style="text-align: center">$dG \le 0$</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>47</td>
+      <td>Second Law (Process) on First Potential</td>
+      <td style="text-align: center">$dU_{sys} \le T_{res}dS_{sys}-d’W_{sys}$</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>Second Law (Process) on Second Potential</td>
+      <td style="text-align: center">$dH_{sys} \le T_{res}dS_{sys}+V_{sys}dP_{sys}$</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>Second Law (Process) on Third Potential</td>
+      <td style="text-align: center">$dF_{sys} \le -S_{sys}dT_{res}-P_{sys}dV_{sys}$</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>Second Law (Process) on Fourth Potential</td>
+      <td style="text-align: center">$dG_{sys} \le -S_{sys}dT_{res}+V_{sys}dP_{sys}$</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>48</td>
+      <td>First Potential Derivatives</td>
+      <td style="text-align: center">$\left.\frac{\partial U}{\partial S}\right</td>
+      <td>_V = T$, $\left.\frac{\partial U}{\partial V}\right</td>
+      <td>_S = -P$</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>Second Potential Derivatives</td>
+      <td style="text-align: center">$\left.\frac{\partial H}{\partial S}\right</td>
+      <td>_V = T$, $\left.\frac{\partial H}{\partial P}\right</td>
+      <td>_S = V$</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>Third Potential Derivatives</td>
+      <td style="text-align: center">$\left.\frac{\partial F}{\partial T}\right</td>
+      <td>_V = -S$, $\left.\frac{\partial F}{\partial V}\right</td>
+      <td>_T = -P$</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>Fourth Potential Derivatives</td>
+      <td style="text-align: center">$\left.\frac{\partial G}{\partial T}\right</td>
+      <td>_P = -S$, $\left.\frac{\partial G}{\partial P}\right</td>
+      <td>_T = V$</td>
+    </tr>
+    <tr>
+      <td>49</td>
+      <td>Using (48)</td>
+      <td style="text-align: center">$U=F-T\left.\frac{\partial F}{\partial T}\right</td>
+      <td>_V$</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td style="text-align: center">$H=F-T\left.\frac{\partial F}{\partial T}\right</td>
+      <td>_V-V\left.\frac{\partial F}{\partial V}\right</td>
+      <td>_T$</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td style="text-align: center">$G=F-V\left.\frac{\partial F}{\partial V}\right</td>
+      <td>_T$</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>50</td>
+      <td> </td>
+      <td style="text-align: center">$\left.\frac{\partial^2 G}{\partial T^2}\right</td>
+      <td>_P = -\frac{C_P}{T}$</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>51</td>
+      <td> </td>
+      <td style="text-align: center">$\left.\frac{\partial^2 G}{\partial P^2}\right</td>
+      <td>_T = -\kappa_T V$</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>52</td>
+      <td> </td>
+      <td style="text-align: center">$\left.\frac{\partial^2 G}{\partial T\partial P}\right</td>
+      <td>_T = \beta V$</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>53</td>
+      <td>Maxwell’s Relations</td>
+      <td style="text-align: center">$\left.\frac{\partial T}{\partial V}\right</td>
+      <td>_S = -\left.\frac{\partial P}{\partial S}\right</td>
+      <td>_V$</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td style="text-align: center">$\left.\frac{\partial T}{\partial P}\right</td>
+      <td>_S = \left.\frac{\partial V}{\partial S}\right</td>
+      <td>_P$</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td style="text-align: center">$\left.\frac{\partial S}{\partial V}\right</td>
+      <td>_T = \left.\frac{\partial P}{\partial T}\right</td>
+      <td>_V$</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td style="text-align: center">$\left.\frac{\partial S}{\partial P}\right</td>
+      <td>_T = -\left.\frac{\partial V}{\partial T}\right</td>
+      <td>_P$</td>
+    </tr>
+    <tr>
+      <td>54</td>
+      <td>$TdS$ Equations</td>
+      <td style="text-align: center">$TdS=C_V dT + T\left.\frac{\partial P}{\partial T}\right</td>
+      <td>_V dV$</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td style="text-align: center">$TdS=C_P dT - T\left.\frac{\partial V}{\partial T}\right</td>
+      <td>_P dP$</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td style="text-align: center">$TdS=C_P \left.\frac{\partial T}{\partial V}\right</td>
+      <td>_PdV + C_V \left.\frac{\partial T}{\partial P}\right</td>
+      <td>_VdP$</td>
+    </tr>
+    <tr>
+      <td>55,56,57</td>
+      <td>All derived from (54)</td>
+      <td style="text-align: center">$\Delta S = \int\limits_{T_0}^T \frac{C_P}{T’}dT’-\int\limits_{P_0}^P \left.\frac{\partial V}{\partial T}\right</td>
+      <td>_P dP’$</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td style="text-align: center">$\Delta C_V</td>
+      <td><em>{T_0} = T_0\int\limits</em>{V_0}^V \left.\frac{\partial^2 P}{\partial T^2}\right</td>
+      <td>_VdV$</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td style="text-align: center">$\Delta C_P</td>
+      <td><em>{T_0} = T_0\int\limits</em>{P_0}^P \left.\frac{\partial^2 V}{\partial T^2}\right</td>
+      <td>_P dV$</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td style="text-align: center">$-\eta C_V=T\left.\frac{\partial P}{\partial T}\right</td>
+      <td>_V -P$</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>58</td>
+      <td>For ideal gas, using (30)</td>
+      <td style="text-align: center">$S_2 - S_1 = C_P ln(\frac{T_2}{T_1}) - nRln(\frac{P_2}{P_1})$</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>59</td>
+      <td>For ideal gas, using $G=H-TS$</td>
+      <td style="text-align: center">$G=nRT\left(ln(P)+\Phi(T)\right)$, $\Phi(T)$ is some function on $T$ only.</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>60</td>
+      <td>For ideal gas reaction, at <strong>constant temperature</strong> using (59)</td>
+      <td style="text-align: center">$G(P_f) = G(P_i) + nRTln(\frac{P_f}{P_i})$</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <thead>
+    <tr>
+      <th>Equation Number</th>
+      <th>Title/Condition</th>
+      <th style="text-align: center">Equations</th>
+      <th> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>61</td>
+      <td>For ideal gas reaction at <strong>constant temperature</strong>,</td>
+      <td style="text-align: center">$aA+bB \to cC+dD$</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>(derived using (60))</td>
+      <td style="text-align: center">$\frac{(P_C)^c(P_D)^d}{(P_A)^a(P_B)^b}=e^{-\frac{\Delta G^\circ}{RT}}\equiv k$</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>62</td>
+      <td>Chemical Potential</td>
+      <td style="text-align: center">$\mu \equiv \left.\frac{\partial G}{\partial N}\right</td>
+      <td>_{T,P}$</td>
+    </tr>
+    <tr>
+      <td>63</td>
+      <td>At constant pressure during phase transition</td>
+      <td style="text-align: center">$\Delta H &gt; \Delta U$, if $\Delta V &gt;0$</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>64</td>
+      <td>During phase transition</td>
+      <td style="text-align: center">$\begin{cases}g_{s}=g_{l} &amp; \text{at melting temperature}\ g_{l}=g_{g} &amp;\text{at boiling temperature}\ g_{s}=g_{g} &amp;\text{at sublimation temperature}\end{cases}$</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>65</td>
+      <td>At phase transition (hence constant $T$)</td>
+      <td style="text-align: center">$\begin{cases}l_{s\to l}=\text{heat of fusion}\ l_{l\to g}=\text{heat of vaporization}\ l_{s\to g}=\text{heat of sublimation}\end{cases}$</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td style="text-align: center">Above is also $\Delta H$ at constant $P$ during phase change.</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>66</td>
+      <td>reversible process</td>
+      <td style="text-align: center">$\begin{cases}\Delta S_{s\to l}=\frac{l_{s\to l}}{T}\ \Delta S_{l\to g}=\frac{l_{l\to g}}{T}\ \Delta S_{s\to g}=\frac{l_{s\to g}}{T}\end{cases}$</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>67</td>
+      <td>At constant temperature and pressure</td>
+      <td style="text-align: center">$\Delta G=0$ at phase transition</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>68</td>
+      <td>Clausius Chaperone Equation</td>
+      <td style="text-align: center">$\left.\frac{\partial P}{\partial T}\right</td>
+      <td><em>{s,l\,eqilib}=\frac{l</em>{s\to l}}{T_{melting}}\frac{1}{v_l - v_s}$</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td style="text-align: center">In general: $\left.\frac{\partial P}{\partial T}\right</td>
+      <td><em>{phase\,eqilib}=\frac{l</em>{phase\,trans}}{T_{phase\,trans}}\frac{1}{\Delta v_{phase}}$</td>
+    </tr>
+    <tr>
+      <td>69</td>
+      <td>For ideal gas, at liquid gas boundary, assuming $v_g - v_l \approx v_g$</td>
+      <td style="text-align: center">$P=Ae^{\frac{-l_{l \to g}}{RT}}$</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td style="text-align: center">$$</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>70</td>
+      <td>Energy Density (Radiation) of a Black Body</td>
+      <td style="text-align: center">$u=\sigma T^4$</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>71</td>
+      <td>Other properties of a Black Body</td>
+      <td style="text-align: center">$P=\frac{1}{3}\sigma T^4$</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td style="text-align: center">$U=\sigma T^4V$</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td style="text-align: center">$C_v = 4\sigma T^3V$</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td style="text-align: center">$TdS=4\sigma VT^3 dT + \frac{4}{3}\sigma T^4 dV$</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>72</td>
+      <td>Heat needed for a reversible, isothermal volume expansion of Black Body</td>
+      <td style="text-align: center">$\Delta Q = \frac{4}{3} \sigma T^4\Delta V$</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>73</td>
+      <td>Reversible adiabatic process of Black Body</td>
+      <td style="text-align: center">$VT^3=constant$</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>90</td>
+      <td>Third Law of Thermodynamics:</td>
+      <td style="text-align: center">$T \to 0$ means $\Delta S \to 0$ (technically a constant)</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td style="text-align: center">$C_{p,v}\to 0$ as $T \to 0$</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td style="text-align: center">$\beta \to 0$ as $T \to 0$</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>91</td>
+      <td>Experimental Property of Black Body Radiation</td>
+      <td style="text-align: center">$Radiation \propto Energy \,Density\, (\frac{U}{V}=u)$</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td style="text-align: center">$u=u(T)$ only</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td style="text-align: center">Radiation Pressure: $P=\frac{u}{3}$</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>74</td>
+      <td>Overall Principle of Statistical Mechanics</td>
+      <td style="text-align: center">All microstates are equally probable</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td style="text-align: center">$S = k_B ln(\Omega)$, $\Omega = \text{number of microstates}$</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>75, 76</td>
+      <td>Canonical Ensemble</td>
+      <td style="text-align: center">$P(E_s) = \frac{e^{-\beta E_s}}{\sum e^{-\beta E_s}}$ or $P(E_s) = \frac{g_ie^{-\beta E_s}}{\sum g_ie^{-\beta E_s}}$</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>(Canonical) Partition function</td>
+      <td style="text-align: center">$z=\sum e^{-\beta E_s}$</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td style="text-align: center">$\beta = \frac{1}{k_BT}$</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td style="text-align: center">$U = \langle E_{sys}\rangle = \sum E_s P(E_s)= \frac{\sum E_se^{-\beta E_s}}{\sum e^{-\beta E_s}} $</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>77</td>
+      <td>Grand Canonical Ensemble</td>
+      <td style="text-align: center">$P(E_s) = \frac{e^{-\beta E_s-\alpha N_s}}{\sum e^{-\beta E_s-\alpha N_s}}$</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>Grand Canonical Partition function</td>
+      <td style="text-align: center">$z=\sum e^{-\beta E_s-\alpha N_s}$</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td style="text-align: center">$U = \frac{\sum E_se^{-\beta E_s-\alpha N_s}}{\sum e^{-\beta E_s - \alpha N_s}}$</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td style="text-align: center">$\langle N_{sys}\rangle = \frac{\sum N_se^{-\beta E_s-\alpha N_s}}{\sum e^{-\beta E_s - \alpha N_s}}$</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>78</td>
+      <td>Macroscopic Property  $Y$ of a Macrostate</td>
+      <td style="text-align: center">$\langle Y \rangle =\frac{\sum Y_k w_k}{\sum w_k} $</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td style="text-align: center">usually, $\sum w_k=1$</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>79</td>
+      <td>Number of Microstates for System Without Degeneracy</td>
+      <td style="text-align: center">$\Omega =\frac{N!}{\Pi_i (n_i)!}$</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>(Microcanonical Ensemble)</td>
+      <td style="text-align: center">for $\begin{cases}n_1&amp;\text{$n_1$ particles in energy state 1}\n_2&amp;\text{$n_2$ particles in energy state 2}\n_1&amp;\text{$n_3$ particles in energy state 3}\…\n_n&amp;\text{$n_n$ particles in energy state n}\end{cases}$</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>80</td>
+      <td>Number of Microstates for System With Degeneracy</td>
+      <td style="text-align: center">$\Omega= \frac{N!}{\Pi_i \left(\frac{n_i}{g_i^{ni}}\right)!}$</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>(Microcanonical Ensemble)</td>
+      <td style="text-align: center">for $\begin{cases}g_1&amp;\text{$g_1$ degeneracy in energy state 1}\g_2&amp;\text{$g_2$ degeneracy in energy state 2}\g_1&amp;\text{$g_3$ degeneracy in energy state 3}\…\g_n&amp;\text{$g_n$ degeneracy in energy state n}\end{cases}$</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>81</td>
+      <td>Energy levels in Microcanonical Ensemble</td>
+      <td style="text-align: center">$E_n \approx n\hbar \omega$</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td style="text-align: center">$q \equiv \text{total level of excitation/ totoal # energy level}$</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>82</td>
+      <td>Number of Microstates for System</td>
+      <td style="text-align: center">$\Omega = \frac{(q+(N-1))!}{q!(N-1)!}\approx\frac{(q+N)!}{q!N!}$</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>(Microcanonical Ensemble)</td>
+      <td style="text-align: center">since $N \gg 1$</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>83</td>
+      <td>Stirling’s Approximation</td>
+      <td style="text-align: center">$ln(n!)\approx nln(n)-n$</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>84</td>
+      <td>Entropy of System given $q$ and $N$</td>
+      <td style="text-align: center">$S=k_Bln\left(\frac{(q+N)!}{q!N!}\right)$</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>Using (83)</td>
+      <td style="text-align: center">$S=k_B\left[ (q+N)ln(q+N)-qln(q)-Nln(N) \right]$</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>85</td>
+      <td>Energy for Microcanonical Ensemble using $T$</td>
+      <td style="text-align: center">$U=\frac{U_0}{e^{\frac{\hbar \omega}{k_B T}}-1}=\frac{N\hbar \omega}{e^{\frac{\hbar \omega}{k_B T}}-1}$</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td style="text-align: center">For $\begin{cases}U_{sys} = U = q\hbar \omega \ U_0 := N\hbar \omega\end{cases}$</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>86</td>
+      <td>Microcanonical Ensemble Average Energy per Oscillator</td>
+      <td style="text-align: center">$U_{\text{per oscillator}}=\frac{\hbar \omega}{e^{\frac{\hbar \omega}{k_bB T}}-1}$</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td style="text-align: center">\(q_{\text{per oscillator}}=\frac{1}{e^{\frac{\hbar \omega}{k_bB T}}-1}\)</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>87</td>
+      <td>Microcanonical Ensemble $C_V$</td>
+      <td style="text-align: center">$C_V=Nk_B\left(\frac{\hbar \omega}{k_B T}\right)^2\left[\frac{e^{\frac{\hbar \omega}{k_bB T}}}{e^{\frac{\hbar \omega}{k_bB T}}-1}\right]$</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>88</td>
+      <td>Microcanonical Ensemble at High Temperature Limit</td>
+      <td style="text-align: center">$U \approx Nk_B T$</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>average energy per oscillator</td>
+      <td style="text-align: center">$\frac{U}{N} \approx k_B T$</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td style="text-align: center">$C_V \approx Nk_B$</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>89</td>
+      <td>Microcanonical Ensemble at Low Temperature Limit</td>
+      <td style="text-align: center">$U \approx N\hbar \omega e^{-\frac{\hbar \omega}{k_bB T}}$</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td style="text-align: center">$\frac{U}{N} \approx \hbar \omega e^{-\frac{\hbar \omega}{k_bB T}}$</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td style="text-align: center">$C_V=Nk_B\left(\frac{\hbar \omega}{k_B T}\right)^2 e^{-\frac{\hbar \omega}{k_bB T}}$</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>104</td>
+      <td>Microcanonical Ensemble Entropy</td>
+      <td style="text-align: center">$S(T)=Nk_B[ln\left( \frac{1}{e^{\hbar \omega / k_B T}-1}\right)-\frac{\hbar \omega}{k_B T}\frac{1}{1-e^{-\hbar \omega / k_B T}}]$</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td style="text-align: center">$F(T)=Nk_B Tln(e^{\hbar\omega /k_BT}-1)-N\hbar \omega$</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>92</td>
+      <td>Canonical Ensemble, Probability of finding a Particle at Energy $E_{sys_j}=E_j$</td>
+      <td style="text-align: center">$\text{Prob}\propto \Omega_{res}\approx \Omega_{res}(E_{total})e^{-\beta E_j}$<br />assuming $E_{uni/total} \gg E_{sys_j}$</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>93, 94</td>
+      <td>Canonical Ensemble, same as (75), (76)</td>
+      <td style="text-align: center">$P(E_s) = \frac{e^{-\beta E_s}}{\sum e^{-\beta E_s}}$</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>95</td>
+      <td>Canonical Ensemble Partition Function with Degeneracy</td>
+      <td style="text-align: center">$z=\sum g_je^{-\beta E_s}$</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>96</td>
+      <td>Using Partition function for getting $U$, Canonical Ensemble</td>
+      <td style="text-align: center">$U=-\frac{\partial ln(z)}{\partial \beta}$</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>97,98,99</td>
+      <td>Canonical Ensemble Helmholtz Energy</td>
+      <td style="text-align: center">$z=e^{-\beta F_{sys}}$</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>(derived using an alternative method)</td>
+      <td style="text-align: center">$F_{sys}</td>
+      <td>_U = -k_B Tln(z)$</td>
+    </tr>
+    <tr>
+      <td>100</td>
+      <td>Multi-particle Canonical Ensemble</td>
+      <td style="text-align: center">$F_{sys}</td>
+      <td>_U = -Nk_B Tln(z)$</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td style="text-align: center">$U=-Nk_B T^2\frac{\partial ln(z_{(1)})}{\partial T}$</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>101</td>
+      <td>Canonical Ensemble, Work Done and Heat Flow</td>
+      <td style="text-align: center">$dU = \sum f_j dE_j+\sum E_jdf_j$</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>since $U=\sum f_jE_j$</td>
+      <td style="text-align: center">$d’Q = \sum f_j dE_j$</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>and $dU=d’Q-d’W$ has a  one-to-one relationship to (101)</td>
+      <td style="text-align: center">$d’W =-\sum E_jdf_j$</td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <thead>
+    <tr>
+      <th>Equation Number</th>
+      <th>Title/Condition</th>
+      <th>Equations</th>
+      <th> </th>
+      <th> </th>
+      <th> </th>
+      <th> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>102</td>
+      <td>Distinguishable Particles, Different Modes, Partition Function</td>
+      <td>$Z_{(N)} = \Pi_k(Z_k)$</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>$Z_{(N)} = Z_{(1)}^N$</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>\(Z_{sys} = Z_{translation}Z_{rotation}Z_{vibration}\)</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>103</td>
+      <td>Einstein Model of All Possible Energy States (Canonical)</td>
+      <td>$Z_{(1)}=\frac{1}{(1-e^{-\beta \hbar \omega})}$</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>$Z_{(N)}=\frac{1}{(1-e^{-\beta \hbar \omega})^N}$</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>104</td>
+      <td>Solid with different oscillation frequency, all possible states (Canonical)</td>
+      <td>$Z_{(1)} = \Pi_k(Z_k), Z_k = \frac{1}{1-e^{-\beta\hbar \omega_k}}$</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>$F_{(1)}=-k_B Tln(Z_{(1)})$</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>$U_{(1)}=-\frac{\partial ln(Z_{(1)})}{\partial \beta}$</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>105,106</td>
+      <td>Statistical Mechanical Limit for Thermodynamics</td>
+      <td>$error=\frac{1}{\sqrt{N}}$, $N=$ number of particles</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>calculated from</td>
+      <td>$error = \frac{\sigma (stand. dev)}{\lambda (avg)}=\frac{\sqrt{\lang (E-U)^2 \rangle}}{\lang E \rang}$</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>107</td>
+      <td>Continuous Variable Partition Function</td>
+      <td>$Z=\frac{1}{\hbar ^3}\int e^{-\epsilon/k_BT}dxdydzdp_xdp_ydp_z$</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>$\epsilon$ is now continuous energy distribution</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>$\lang Q\rang = \frac{1}{\hbar ^3}\frac{\int Qe^{-\epsilon/k_BT}dxdydzdp_xdp_ydp_z}{Z}$</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>108</td>
+      <td>Ideal Gas Using Continuous Variable Partition Function</td>
+      <td>$Z_{(1)}=\frac{1}{\hbar^3}Vm^3\left(\frac{2\pi k_bT}{m}\right)^{3/2}$</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>109</td>
+      <td>Ideal Gas</td>
+      <td>$U=\frac{3}{2}Nk_B T=\frac{3}{2}n_{mole}RT$</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>$C_V = \frac{3}{2}Nk_B =\frac{3}{2} nR$</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>110</td>
+      <td>Maxwell’s Velocity Distribution</td>
+      <td>$f(v_x,v_y,v_z)=\left( \frac{m}{2\pi k_bT} \right)^{3/2}e^\frac{-m(v_x^2+v_y^2+v_z^2)}{2k_BT}$</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>$f(v_x)=\left( \frac{m}{2\pi k_bT} \right)^{1/2}e^\frac{-m(v_x^2)}{2k_BT}$</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>where $v=\sqrt{v_x^2+v_y^2+v_z^2}$</td>
+      <td>$f(v)=\left( \frac{m}{2\pi k_bT} \right)^{3/2}e^\frac{-m(v^2)}{2k_BT}(4\pi v^2)$</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>111</td>
+      <td>Maxwell-Boltzmann most probable velocity</td>
+      <td>$v_{mp}=\sqrt{\frac{2k_BT}{m}}$</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>$\lang v\rang=\sqrt{\frac{8k_BT}{\pi m}}$</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>All derive from Maxwell-Boltzmann Continuous Velocity Distribution (110)</td>
+      <td>$v_{rms}=\sqrt{\lang v^2\rang}=\sqrt{\frac{3k_BT}{m}}$</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>112</td>
+      <td>Entropy of Ideal Gas</td>
+      <td>$S=Nk_B\left[ln\left( \frac{V(2\pi mk_BT)^{3/2}}{\hbar^3} \right)+\frac{3}{2}\right]$</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>Derived using 108, obtain $F$, then calculate $S=-\frac{\partial F}{\partial T}</td>
+      <td>_V$</td>
+      <td>or $S=Nk_B[lnV+\frac{3}{2}lnT+ln\left( \frac{(2\pi mk_B)^{3/2}}{\hbar^3} \right)+\frac{3}{2}]$</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>113</td>
+      <td>Correction of Indistinguishable Particles</td>
+      <td>$Z_{(N)}=\frac{Z_{(1)}^N}{N!}$</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>Entropy of Ideal Gas for Indistinguishable Particles</td>
+      <td>$S=Nk_B\left[ln\left( \frac{V}{N}\frac{(2\pi mk_BT)^{3/2}}{\hbar^3} \right)+\frac{5}{2}\right]$</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>114</td>
+      <td>Chemical System, High Temperature Limit</td>
+      <td>$\lang E\rang = \frac{1}{2}k_BT$</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>115</td>
+      <td>Linear Diatomic Molecule at Hight Temp</td>
+      <td>$C_V = \frac{7}{2}R$</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>116</td>
+      <td>Polyatomic Molecule with $N$ atoms at High Temp</td>
+      <td>$C_V = \frac{3}{2}R+\frac{3}{2}R+(3N-6)R$</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>Polyatomic Molecule with $N$ atoms at Low Temp</td>
+      <td>$C_V = \frac{3}{2}R$</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>117,118,119</td>
+      <td>Grand Canonical Ensemble, Probability of Finding a System Microstate</td>
+      <td>$f_j=\frac{1\cdot \Omega(E_r, N_r)}{\Omega(E_t,N_t)}=\frac{e^{-\beta (E_j - \mu N_j)}}{e^{-\beta \Psi}}$</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>Definition of chemical potential $ \mu$</td>
+      <td>$\frac{\partial S_r}{\partial (N_t-N)}\equiv -\frac{\mu}{T}$</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>Grand Canonical Ensemble, Gibbs Factor</td>
+      <td>$e^{-\beta (E_j - \mu N_j)}$</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>Grand Canonical Potential ($F$ equivalent)</td>
+      <td>$\Psi = U-TS-\mu N$, $N$ is average number of particles</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>Grand Canonical Partition Function</td>
+      <td>$Z=e^{-\beta \Psi}$</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>120,121</td>
+      <td>Grand Canonical Ensemble, $U$</td>
+      <td>$U=\frac{\sum E_je^{-\beta (E_j - \mu N_j)}}{e^{-\beta \Psi}}=-\frac{\partial lnZ}{\partial \beta}</td>
+      <td>_{\gamma=\mu\beta}$</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>Grand Canonical Ensemble, $\lang N\rang$</td>
+      <td>$\lang N\rang =\frac{\sum N_je^{-\beta (E_j - \mu N_j)}}{e^{-\beta \Psi}}=-\frac{\partial lnZ}{\partial \gamma}</td>
+      <td>_\beta $</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>122</td>
+      <td>Grand Canonical Ensemble, Chemical Potential for Ideal Gas</td>
+      <td>$\mu = -T\frac{\partial S}{\partial N}</td>
+      <td>_{U,V} = -k_BTln\left( \frac{V}{N}\left( \frac{2\pi mk_BT}{\hbar^2} \right)^{3/2} \right)$</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>$\mu=\frac{\partial G}{\partial N}</td>
+      <td>_{T,P}=\frac{G}{N}$</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>$\mu=\frac{\partial F}{\partial N}</td>
+      <td>_{T,V}$</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>123</td>
+      <td>Modified Grand Canonical For Quantum Mechanics</td>
+      <td>$f=\frac{e^{-\beta N_j (\epsilon_j -\mu)}}{Z}$</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>Assumed $E_j = N_j \epsilon_j$</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>124</td>
+      <td>Fermi-Dirac Statistics, Probability to find a fermion at state $\epsilon_i$</td>
+      <td>$f_{FD}=\frac{1}{e^{\beta (\epsilon_i - \mu)}+1}$</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>Fermi-Dirac Stat Partition Function</td>
+      <td>$Z_{FD}=1+e^{-\beta (\epsilon - \mu)}$</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>Derived since each state can only have 0 or 1 (same) fermion</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>125</td>
+      <td>Bose-Einstein Statistics, Probability to find a boson at state $\epsilon_i$</td>
+      <td>$f_{BE}=\frac{1}{e^{\beta (\epsilon_i - \mu)}-1}$</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>Bose-Einstein Stat Partition Function</td>
+      <td>$Z_{BE}=\frac{1}{1-e^{-\beta (\epsilon - \mu)}}$</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>Derived since each state can have 0,1,2,…,$N$ (same) boson</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>126</td>
+      <td>Fermi-Dirac and Bose-Einstein with Degeneracy</td>
+      <td>$f_{FD}=\frac{g_i}{e^{\beta (\epsilon_i - \mu)}+1}$</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>$f_{BE}=\frac{g_i}{e^{\beta (\epsilon_i - \mu)}-1}$</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>127</td>
+      <td>Number of fermions at state $\epsilon_i$ with Fermi-Dirac</td>
+      <td>$N_i=N\cdot f_{FD}=\frac{Ng_i}{e^{\beta (\epsilon_i - \mu)}+1}$</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>Number of bosons at state $\epsilon_i$ with Bose-Einstein</td>
+      <td>$N_i=N\cdot f_{BE}=\frac{Ng_i}{e^{\beta (\epsilon_i - \mu)}-1}$</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>128</td>
+      <td>Continuous Density of “States” for Photons with $k=\frac{2\pi}{\lambda}$</td>
+      <td>$D(k)dk=2\cdot\frac{V}{2\pi^2}k^2dk$</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>Continuous Density of “States” for Electrons with $E=\frac{p^2}{2m}$</td>
+      <td>$D(E)dE=\frac{V}{2\pi^2}\left(\frac{2m}{\hbar}\right)^{3/2}\sqrt{E}dE$</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>And $D(k)dk=D(E)dE$</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>129</td>
+      <td>Plank’s Black Body Law</td>
+      <td>$d\bar{u}=\frac{dU}{V}=\frac{8\pi h}{c^3}\frac{\nu^3}{e^{h\nu /k_BT}-1}$, where $p=\frac{h\nu}{c}$</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>Derived from continuous B-E statistics</td>
+      <td>$\int\limits_0^\infty d\bar{u}\, d\nu=\sigma T^4$</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>130</td>
+      <td>Molecular Flux Using Maxwell-Boltzmann Velocity Distribution</td>
+      <td>$\Phi = \frac{n\bar{v}}{4}=\frac{n}{4}\sqrt{\frac{8k_BT}{\pi m}}$</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>131</td>
+      <td>Collision Cross Section (where collision would happen to a molecule)</td>
+      <td>$\sigma=\pi d^2$, $d$ should be given</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>132</td>
+      <td>Mean Free Path for a particle</td>
+      <td>$\lambda_{mfp} = \frac{1}{n\sigma}=\tau\bar{v}$</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>Collision frequency of a particle</td>
+      <td>$\nu = \frac{1}{\tau} = n\sigma \bar{v}$</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>133</td>
+      <td>Fermi Energy</td>
+      <td>$E_{fermi}=\mu</td>
+      <td>_{T=0}$</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>(Maximum energy attainable by a fermion when $T=0$)</td>
+      <td>$N</td>
+      <td><em>{T=0}=(\int_0^\infty D(E)f</em>{FD}dE)</td>
+      <td><em>{T=0}=\int_0^{E</em>{fermi}}D(E)dE$</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>134</td>
+      <td>Probability of a Molecule not Collided over a distance $x$</td>
+      <td>$e^{-\frac{x}{\lambda}}$</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>$\lambda = $ mean free path</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>135</td>
+      <td>Number of Molecules haven’t yet collided over a distance $x$</td>
+      <td>$N=N_0 e^{-\frac{x}{\lambda}}$</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>136</td>
+      <td>Number of Molecules collided per distance $dx$</td>
+      <td>$N(x)-N(x+dx)=\frac{N_0}{\lambda}e^{-\frac{x}{\lambda}}dx$</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>137</td>
+      <td>Diffusion Distance</td>
+      <td>$x_{diff}=</td>
+      <td> </td>
+      <td>\sum \vec{x}_i</td>
+      <td> </td>
+      <td>=\sqrt{N_{collision}}\lambda=\sqrt{\frac{t}{\lambda}}\lambda$</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td>$x_{diff}^2=\frac{\lambda^2}{\tau}t=\frac{\bar{v}}{n \sigma}t$</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>$N_{collision}$ means number of collision a molecule suffered</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>138</td>
+      <td>Diffusion Equation, $D$ is diffusion coefficient</td>
+      <td>$D\vec{\nabla}^2n = \frac{dn}{dt}$</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>Molecular Flux $\Gamma = \Phi$</td>
+      <td>$\Gamma =-D\vec{\nabla}n$</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>139</td>
+      <td>Average distance above a surface so that Molecules can diffuse through</td>
+      <td>$\lang y\rang=\frac{\int \lambda \cos(\theta)\Delta \phi_{\theta, \phi, v}}{\int \Delta \phi_{\theta, \phi, v}}=\frac{2}{3}\lambda$</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>140</td>
+      <td>Electrical conductance $\sigma_c = \frac{1}{\rho_{res}}$, $n_e$=density of electron</td>
+      <td>$\sigma_c = e^2 \frac{n_e}{m_e}\tau_e$</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>$\lambda$ depends on density of nucleus, not electron</td>
+      <td>$\vec{J}=\sigma \vec{E}=e(n_e \vec{v}_d)$</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>141</td>
+      <td>Heat Flux $Q_{flux}$</td>
+      <td>$Q_{flux}=\Phi \cdot E_{\text{heat per molecule}}$</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>Assuming $E_{\text{heat per molecule}}=c_v T$</td>
+      <td>$Q_{flux}=-\frac{n\bar{v}}{3}c_v \lambda \frac{dT}{dy}=-\kappa \vec{\nabla}T$</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>Thermal conductivity $\kappa$</td>
+      <td>$\kappa=\frac{n\bar{v}}{3}c_v \lambda=\frac{1}{3}\frac{\bar{v}c_v}{\sigma}$</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>142</td>
+      <td>Momentum Flux $\vec{G}$ and Viscosity</td>
+      <td>$\vec{G}=\Phi \cdot P_{\text{momentum per molecule}}=\frac{n \bar{v}}{4}mu_x$</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>$\vec{\nabla}v$ is velocity gradient</td>
+      <td>$\vec{G}=-\frac{1}{3}n \bar{v}m\lambda \frac{du_x}{dy}=-\eta \vec{\nabla}v$</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>$\eta$ is coefficient of viscosity</td>
+      <td>$\eta=\frac{1}{3}n \bar{v}m\lambda=\frac{1}{3}\frac{m\bar{v}}{\sigma}$</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <thead>
+    <tr>
+      <th>Equation Number</th>
+      <th>Title/Condition</th>
+      <th>Equations</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+
+  </div><a class="u-url" href="/lectures/2020@columbia/MSAE3111_Thermodynamics.html/" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/lectures/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Lecture Notes</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Lecture Notes</li><li><a class="u-email" href="mailto:jasonyux17@gmail.com">jasonyux17@gmail.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/jasonyux"><svg class="svg-icon"><use xlink:href="/lectures/assets/minima-social-icons.svg#github"></use></svg> <span class="username">jasonyux</span></a></li><li><a href="https://www.linkedin.com/in/xiao-yu2437"><svg class="svg-icon"><use xlink:href="/lectures/assets/minima-social-icons.svg#linkedin"></use></svg> <span class="username">xiao-yu2437</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>An inexhaustive collection of markdown/latex(PDF) notes that I took since college. </p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
