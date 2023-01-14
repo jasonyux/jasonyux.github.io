@@ -47,17 +47,22 @@
       <div class="wrapper">
         <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
   <head>
-	<script>
-		MathJax = {
-		  tex: {
-			inlineMath: [['$', '$'], ['\\(', '\\)']],
-			displayMath: [['$$', '$$'], ['\\[', '\\]']]
-		  }
-		};
-	</script>
-	<script id="MathJax-script" async
-		src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
-	</script>
+  <script>
+    MathJax = {
+      // 
+      loader: {
+        load: ['[tex]/ams', '[tex]/textmacros', '[tex]/boldsymbol']
+      },
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        packages: {'[+]': ['ams', 'textmacros', 'boldsymbol']}
+      }
+    };
+  </script>
+  <script id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+  </script>
   </head>
   <header class="post-header">
     <h1 class="post-title p-name" itemprop="name headline">COMS3261 CS Theory</h1>
@@ -121,31 +126,12 @@
       <li>a finite sequence of symbols from $\Sigma$</li>
     </ul>
   </li>
-  <li>
-    <table>
-      <tbody>
-        <tr>
-          <td><strong>Length</strong> of string $s$, $</td>
-          <td>s</td>
-          <td>$</td>
-        </tr>
-      </tbody>
-    </table>
+  <li><strong>Length</strong> of string $s$, $\vert s\vert$
     <ul>
       <li>number of symbols in a string</li>
       <li>e.g.
         <ul>
-          <li>
-            <table>
-              <tbody>
-                <tr>
-                  <td>$</td>
-                  <td>1001</td>
-                  <td>=4$</td>
-                </tr>
-              </tbody>
-            </table>
-          </li>
+          <li>$\vert 1001\vert =4$</li>
         </ul>
       </li>
     </ul>
@@ -197,9 +183,11 @@
   </li>
 </ul>
 
-<p>This means that you can think of <strong>a language $L$ as a (yes/no) function $f$</strong> such that:
-\(f: x \in \Sigma^* \to \{1,0\}\)
-where:</p>
+<p>This means that you can think of <strong>a language $L$ as a (yes/no) function $f$</strong> such that:</p>
+
+\[f: x \in \Sigma^* \to \{1,0\}\]
+
+<p>where:</p>
 
 <ul>
   <li>$f(x\in \Sigma^*)=1$ if $x \in L$</li>
@@ -269,9 +257,11 @@ where:</p>
 
   <ul>
     <li>
-      <p>A DFA $M$ is a 5-tuple
-\(M=(Q,\Sigma, \delta, q_0, F)\)
-where:</p>
+      <p>A DFA $M$ is a 5-tuple</p>
+
+\[M=(Q,\Sigma, \delta, q_0, F)\]
+
+      <p>where:</p>
 
       <ul>
         <li>$Q$ is a finite set of states</li>
@@ -319,9 +309,11 @@ where:</p>
 
   <ul>
     <li>
-      <p>If there is a string $w=w_1, w_2, …w_n$ where $w_i \in \Sigma$, then a DFA $M$ accepts $W$ iff
-\(\exist \, r_0,r_1,r_2,...r_n \in Q\)
-such that</p>
+      <p>If there is a string $w=w_1, w_2, …w_n$ where $w_i \in \Sigma$, then a DFA $M$ accepts $W$ iff</p>
+
+\[\exist \, r_0,r_1,r_2,...r_n \in Q\]
+
+      <p>such that</p>
 
       <ol>
         <li>$r_0 = q_0$
@@ -345,9 +337,13 @@ such that</p>
   <p><strong>Language of a DFA Def:</strong></p>
 
   <ul>
-    <li>for a DFA $M$, we define:
-\(L(M)=\{ w \in \Sigma^* | M \,\,accepts \,\,w \}\)
-to be the language of a DFA $M$, or the language that <strong>$M$ computes/recognizes</strong>.</li>
+    <li>
+      <p>for a DFA $M$, we define:</p>
+
+\[L(M)=\{ w \in \Sigma^* | M \,\,accepts \,\,w \}\]
+
+      <p>to be the language of a DFA $M$, or the language that <strong>$M$ computes/recognizes</strong>.</p>
+    </li>
   </ul>
 </blockquote>
 
@@ -365,9 +361,13 @@ to be the language of a DFA $M$, or the language that <strong>$M$ computes/recog
   <p><strong>Regular Language Def</strong></p>
 
   <ul>
-    <li>A language $L$ is regular if:
-\(\exists \, M,\, s.t.\, L=L(M)\)
-this says that a language is regular if there <strong>exists a DFA that computes to it</strong>. This means being “regular” is just a property.</li>
+    <li>
+      <p>A language $L$ is regular if:</p>
+
+\[\exists \, M,\, s.t.\, L=L(M)\]
+
+      <p>this says that a language is regular if there <strong>exists a DFA that computes to it</strong>. This means being “regular” is just a property.</p>
+    </li>
   </ul>
 </blockquote>
 
@@ -398,9 +398,11 @@ this says that a language is regular if there <strong>exists a DFA that computes
       <li>e.g. $0011101$, $01110$, and etc.</li>
     </ul>
 
-    <p>Propose:
-\(L(M)=\{w\in\{0,1\}^*\,|\, w\,\,contains\,\,substring\,\,111\}\)
-Prove by induction on length of $w$, $|w|$</p>
+    <p>Propose:</p>
+
+\[L(M)=\{w\in\{0,1\}^*\,|\, w\,\,contains\,\,substring\,\,111\}\]
+
+    <p>Prove by induction on length of $w$, $\vert w\vert$</p>
   </li>
 </ul>
 
@@ -424,14 +426,7 @@ Prove by induction on length of $w$, $|w|$</p>
   <li>
     <p>Question</p>
 
-    <table>
-      <tbody>
-        <tr>
-          <td>Is such a language $L(M)={w\in{0,1}^*\,</td>
-          <td>\,w\,\,has\,\,an\,\,even\,\,number\,\,of\,\,0}$ regular?</td>
-        </tr>
-      </tbody>
-    </table>
+    <p>Is such a language $L(M)={w\in{0,1}^*\,\vert \,w\,\,has\,\,an\,\,even\,\,number\,\,of\,\,0}$ regular?</p>
   </li>
   <li>
     <p>Solution:</p>
@@ -646,9 +641,11 @@ Prove by induction on length of $w$, $|w|$</p>
 
   <ul>
     <li>
-      <p>An NFA with
-\(N=(Q,\Sigma, \delta, q_0, F)\)
-where:</p>
+      <p>An NFA with</p>
+
+\[N=(Q,\Sigma, \delta, q_0, F)\]
+
+      <p>where:</p>
 
       <ul>
         <li>$Q$ is a finite set of states</li>
@@ -716,9 +713,13 @@ where:</p>
   <p><strong>Definition</strong></p>
 
   <ul>
-    <li>For a NFA $N$, the language recognized by $N$ is
-\(L(N) =\{ w\in \Sigma^*\,|\, N \,\,accepts \,\,w \}\)</li>
+    <li>
+      <p>For a NFA $N$, the language recognized by $N$ is</p>
+
+\[L(N) =\{ w\in \Sigma^*\,|\, N \,\,accepts \,\,w \}\]
+    </li>
   </ul>
+
 </blockquote>
 
 <h3 id="regular-language-1">Regular Language</h3>
@@ -750,26 +751,36 @@ where:</p>
 
   <ul>
     <li>Here we try to prove the reverse, that a NFA can also be converted to a DFA.</li>
-    <li>Let
-\(N=(Q_N,\Sigma_N, \delta_N, q_{0_N}, F_N)\)
-​	need to show that for every token/intermediate state in a NFA, there exists a state that correspond to it in the DFA.</li>
+    <li>Let</li>
   </ul>
+
+\[N=(Q_N,\Sigma_N, \delta_N, q_{0_N}, F_N)\]
+
+  <p>​	need to show that for every token/intermediate state in a NFA, there exists a state that correspond to it in the DFA.</p>
 
   <p>​	One approach is to construct a DFA from</p>
 
-  <p>​	Since every <strong><em>set of states that is reached by the same substring in NFA</em></strong> must be a state in DFA:
-\(Q_D = P(Q_N)=\{S\,|\,S \subseteq Q_N\}\)
-​	and
-\(q_{0_D}= \{q_{0_N}\}\cup\{q\in Q_N\,|\,q\,is\,reachable\,via\,\epsilon\,from\,q_{0_N} \}\)</p>
+  <p>​	Since every <strong><em>set of states that is reached by the same substring in NFA</em></strong> must be a state in DFA:</p>
+
+\[Q_D = P(Q_N)=\{S\,|\,S \subseteq Q_N\}\]
+
+  <p>​	and</p>
+
+\[q_{0_D}= \{q_{0_N}\}\cup\{q\in Q_N\,|\,q\,is\,reachable\,via\,\epsilon\,from\,q_{0_N} \}\]
+
   <ul>
     <li>where:
       <ul>
         <li>this means $q_{0_D}$ corresponds to a set of states in $Q_N$</li>
       </ul>
 
-      <p>and
-\(F_D=\{S\subseteq Q_N\,|\,S \cap F_N \neq \empty\}\)</p>
+      <p>and</p>
     </li>
+  </ul>
+
+\[F_D=\{S\subseteq Q_N\,|\,S \cap F_N \neq \empty\}\]
+
+  <ul>
     <li>where
       <ul>
         <li>$F_D$ does not have to be same as as $F_N$</li>
@@ -777,20 +788,13 @@ where:</p>
     </li>
   </ul>
 
-  <p>\(\delta_D(S,a)\to S_1 \cup \{q\,|\,q\,is\,reachable\,via\,some\,\epsilon\,transition\,from\,some\,q^{\prime}\,in\,S_1\}\)</p>
+\[\delta_D(S,a)\to S_1 \cup \{q\,|\,q\,is\,reachable\,via\,some\,\epsilon\,transition\,from\,some\,q^{\prime}\,in\,S_1\}\]
+
   <ul>
     <li>where:
       <ul>
         <li>$\delta_D(S,a)$ means transition <strong>from a state $S$</strong> (which contains a set of states) with <strong>a symbol $a$</strong></li>
-        <li>
-          <table>
-            <tbody>
-              <tr>
-                <td>$S_1={q^{\prime} \in Q_N\,</td>
-                <td>\, q^{\prime}\in\delta_N(q,a)\,for\,all\,q\in S}$</td>
-              </tr>
-            </tbody>
-          </table>
+        <li>$S_1={q^{\prime} \in Q_N\, \vert \, q^{\prime}\in\delta_N(q,a)\,for\,all\,q\in S}$
           <ul>
             <li>basically states <em>reachable in the <strong>NFA</strong></em>, <em>from</em> states $S$ in a <strong><em>DFA</em></strong>, with the same symbol $a$</li>
           </ul>
@@ -845,14 +849,7 @@ where:</p>
 
 <ul>
   <li>
-    <table>
-      <tbody>
-        <tr>
-          <td>Define $L_n = {w \in {0,1}^*}</td>
-          <td>\,last\,nth\,symbol\,is\,0$</td>
-        </tr>
-      </tbody>
-    </table>
+    <p>Define $L_n = {w \in {0,1}^*} \vert  \,last\,nth\,symbol\,is\,0$</p>
 
     <p>Then:</p>
 
@@ -897,59 +894,26 @@ where:</p>
     <p><strong>Complement</strong></p>
   </li>
   <li>
-    <table>
-      <tbody>
-        <tr>
-          <td>$\bar{L_1}={w \in \Sigma^*</td>
-          <td>w\notin L_1}$</td>
-        </tr>
-      </tbody>
-    </table>
+    <p>$\bar{L_1}={w \in \Sigma^*\vert w\notin L_1}$</p>
   </li>
   <li>
     <p><strong>Union</strong></p>
 
     <ul>
-      <li>
-        <table>
-          <tbody>
-            <tr>
-              <td>$L_1 \cup L_2 ={ w \in \Sigma^*</td>
-              <td>w\in L_1 or\, w\in L_2 }$</td>
-            </tr>
-          </tbody>
-        </table>
-      </li>
+      <li>$L_1 \cup L_2 ={ w \in \Sigma^* \vert  w\in L_1 or\, w\in L_2 }$</li>
     </ul>
   </li>
   <li>
     <p><strong>Intersection</strong></p>
 
     <ul>
-      <li>
-        <table>
-          <tbody>
-            <tr>
-              <td>$L_1 \cap L_2 ={ w \in \Sigma^*</td>
-              <td>w\in L_1 and\, w\in L_2 }$</td>
-            </tr>
-          </tbody>
-        </table>
-      </li>
+      <li>$L_1 \cap L_2 ={ w \in \Sigma^* \vert  w\in L_1 and\, w\in L_2 }$</li>
     </ul>
   </li>
-  <li><strong>Concatenation</strong>
+  <li>
+    <p><strong>Concatenation</strong></p>
     <ul>
-      <li>
-        <table>
-          <tbody>
-            <tr>
-              <td>$L_1 \circ L_2={ w \in \Sigma^*</td>
-              <td>w=xy\,\,s.t.\,\,\forall x\in L_1\,and\,\forall y\in L_2 }$</td>
-            </tr>
-          </tbody>
-        </table>
-      </li>
+      <li>$L_1 \circ L_2={ w \in \Sigma^* \vert  w=xy\,\,s.t.\,\,\forall x\in L_1\,and\,\forall y\in L_2 }$</li>
       <li><strong>order matters, only $xy$ is allowed</strong>
         <ul>
           <li>like a cartesian product but concatenation</li>
@@ -963,9 +927,13 @@ where:</p>
   <p><strong>Theorem/Facts:</strong></p>
 
   <ul>
-    <li>For any $L_1,L_2$:
-\(L_2 \subseteq L_1 \circ L_2 \iff \epsilon \in L_1\,or\, L_2 = \empty\)</li>
+    <li>
+      <p>For any $L_1,L_2$:</p>
+
+\[L_2 \subseteq L_1 \circ L_2 \iff \epsilon \in L_1\,or\, L_2 = \empty\]
+    </li>
   </ul>
+
 </blockquote>
 
 <ul>
@@ -1054,9 +1022,11 @@ L^*=\{\epsilon\}\cup L^{1}\cup L^{2}\cup L^{3}...\]
         <li>this is trivial as we just need to have a start state $q_0$ that has two $\epsilon$ transaction to the $N_1$ and $N_2$ NFAs.</li>
       </ul>
 
-      <p>Then we have the new $N$ to be defined as:
-\(N=(Q_1 \cup Q_2 \cup \{\epsilon\}, \Sigma_1 \cup \Sigma_2, \delta, q_0, F_1 \cup F_2)\)
-where:</p>
+      <p>Then we have the new $N$ to be defined as:</p>
+
+\[N=(Q_1 \cup Q_2 \cup \{\epsilon\}, \Sigma_1 \cup \Sigma_2, \delta, q_0, F_1 \cup F_2)\]
+
+      <p>where:</p>
 
       <ul>
         <li>
@@ -1066,9 +1036,11 @@ where:</p>
         </li>
       </ul>
 
-      <p>And then we need to show (<strong>argue that it works</strong>):
-\(w\in L_1 \cup L_2 \iff N\,\,accepts\,\, w\)
-which is quite easy:</p>
+      <p>And then we need to show (<strong>argue that it works</strong>):</p>
+
+\[w\in L_1 \cup L_2 \iff N\,\,accepts\,\, w\]
+
+      <p>which is quite easy:</p>
 
       <p><img src="\lectures\images\typora-user-images\image-20200925003924445.png" alt="image-20200925003924445" /></p>
     </li>
@@ -1080,37 +1052,24 @@ which is quite easy:</p>
 
   <ul>
     <li>
-      <p>Instead of using NFA, we use a <strong>DFA</strong> for the proof. The idea would be to somehow to run a string in “parallel” in the two DFAs:
-\(D_1=(Q_1,\Sigma, \delta_1, q_1, F_1);\,D_2=(Q_2,\Sigma, \delta_2, q_2, F_2)\)
-and we construct a new DFA $D$:
-\(D=(Q,\Sigma, \delta, q_0, F)\)
-where:</p>
+      <p>Instead of using NFA, we use a <strong>DFA</strong> for the proof. The idea would be to somehow to run a string in “parallel” in the two DFAs:</p>
+
+\[D_1=(Q_1,\Sigma, \delta_1, q_1, F_1);\,D_2=(Q_2,\Sigma, \delta_2, q_2, F_2)\]
+
+      <p>and we construct a new DFA $D$:</p>
+
+\[D=(Q,\Sigma, \delta, q_0, F)\]
+
+      <p>where:</p>
 
       <ul>
-        <li>
-          <table>
-            <tbody>
-              <tr>
-                <td>$Q=Q_1 \times Q_2={(r_1,r_2)\,</td>
-                <td>\,\forall r_1\in Q_1,\,\forall r_2 \in Q_2}$</td>
-              </tr>
-            </tbody>
-          </table>
+        <li>$Q=Q_1 \times Q_2={(r_1,r_2)\,\vert \,\forall r_1\in Q_1,\,\forall r_2 \in Q_2}$
           <ul>
             <li>so basically you can run “in-parallel”</li>
           </ul>
         </li>
         <li>$q_0=(q_1,q_2)$</li>
-        <li>
-          <table>
-            <tbody>
-              <tr>
-                <td>$F={(r_1,r_2)\,</td>
-                <td>\,r_1\in F_1 \,or\,r_2\in F_2}=F_1\times Q_1 \cup F_2 \times Q_2$</td>
-              </tr>
-            </tbody>
-          </table>
-        </li>
+        <li>$F={(r_1,r_2)\,\vert \,r_1\in F_1 \,or\,r_2\in F_2}=F_1\times Q_1 \cup F_2 \times Q_2$</li>
         <li>$\delta((r_1,r_2),a)=(\delta_1(r_1,a), \delta_2(r_2,a))$</li>
       </ul>
     </li>
@@ -1120,16 +1079,7 @@ where:</p>
 <p>With the above proof, we can easily prove the <strong>intersection operation</strong></p>
 
 <ul>
-  <li>
-    <table>
-      <tbody>
-        <tr>
-          <td>the only difference is defining $F={(r_1,r_2)\,</td>
-          <td>\,r_1\in F_1 \,AND\,r_2\in F_2}=F_1\times Q_1 \cap F_2 \times Q_2$</td>
-        </tr>
-      </tbody>
-    </table>
-  </li>
+  <li>the only difference is defining $F={(r_1,r_2)\,\vert \,r_1\in F_1 \,AND\,r_2\in F_2}=F_1\times Q_1 \cap F_2 \times Q_2$</li>
 </ul>
 
 <blockquote>
@@ -1137,37 +1087,24 @@ where:</p>
 
   <ul>
     <li>
-      <p>The idea would be the same: to run a string in “parallel” in the two DFAs:
-\(D_1=(Q_1,\Sigma, \delta_1, q_1, F_1);\,D_2=(Q_2,\Sigma, \delta_2, q_2, F_2)\)
-and we construct a new DFA $D$:
-\(D=(Q,\Sigma, \delta, q_0, F)\)
-where:</p>
+      <p>The idea would be the same: to run a string in “parallel” in the two DFAs:</p>
+
+\[D_1=(Q_1,\Sigma, \delta_1, q_1, F_1);\,D_2=(Q_2,\Sigma, \delta_2, q_2, F_2)\]
+
+      <p>and we construct a new DFA $D$:</p>
+
+\[D=(Q,\Sigma, \delta, q_0, F)\]
+
+      <p>where:</p>
 
       <ul>
-        <li>
-          <table>
-            <tbody>
-              <tr>
-                <td>$Q=Q_1 \times Q_2={(r_1,r_2)\,</td>
-                <td>\,\forall r_1\in Q_1,\,\forall r_2 \in Q_2}$</td>
-              </tr>
-            </tbody>
-          </table>
+        <li>$Q=Q_1 \times Q_2={(r_1,r_2)\,\vert \,\forall r_1\in Q_1,\,\forall r_2 \in Q_2}$
           <ul>
             <li>so basically you can run “in-parallel”</li>
           </ul>
         </li>
         <li>$q_0=(q_1,q_2)$</li>
-        <li>
-          <table>
-            <tbody>
-              <tr>
-                <td>$F={(r_1,r_2)\,</td>
-                <td>\,r_1\in F_1 \,AND\,r_2\in F_2}=F_1\times Q_1 \cap F_2 \times Q_2$</td>
-              </tr>
-            </tbody>
-          </table>
-        </li>
+        <li>$F={(r_1,r_2)\,\vert \,r_1\in F_1 \,AND\,r_2\in F_2}=F_1\times Q_1 \cap F_2 \times Q_2$</li>
         <li>$\delta((r_1,r_2),a)=(\delta_1(r_1,a), \delta_2(r_2,a))$</li>
       </ul>
     </li>
@@ -1242,7 +1179,7 @@ where:</p>
 <ul>
   <li><strong>union $\cup$</strong></li>
   <li>
-    <p><strong>concatenation $\circ $</strong></p>
+    <p><strong>concatenation $\circ$</strong></p>
   </li>
   <li><strong>Kleene star $*$</strong></li>
 </ul>
@@ -1268,9 +1205,13 @@ where:</p>
         </li>
       </ul>
     </li>
-    <li>In other words, a regular expression is a <strong>string</strong> together with additional symbols allowed:
-\(\Sigma \cup \{\cup, *,\circ,(,)\}\)</li>
+    <li>
+      <p>In other words, a regular expression is a <strong>string</strong> together with additional symbols allowed:</p>
+
+\[\Sigma \cup \{\cup, *,\circ,(,)\}\]
+    </li>
   </ul>
+
 </blockquote>
 
 <p>And regular expressions are <strong>special strings</strong>, because:</p>
@@ -1312,15 +1253,7 @@ where:</p>
     <ul>
       <li>a language that has all contiguous blocks of $b$ of even length</li>
       <li>${abbbaa,abbb,bbbbaa,bbbb}$</li>
-      <li>
-        <table>
-          <tbody>
-            <tr>
-              <td>a language that has ${a^i</td>
-              <td>i\ge 1}$</td>
-            </tr>
-          </tbody>
-        </table>
+      <li>a language that has ${a^i \vert  i\ge 1}$
         <ul>
           <li>sometimes, also referred to as $a^+$</li>
         </ul>
@@ -1514,15 +1447,18 @@ where:</p>
   <li>
     <p><strong>Question:</strong></p>
 
-    <p>Prove that the following language is not regular:
-\(L=\{ a^i b^i \,|\,i\ge 0\}\)</p>
+    <p>Prove that the following language is not regular:</p>
+
+\[L=\{ a^i b^i \,|\,i\ge 0\}\]
   </li>
   <li>
     <p><strong>Solution</strong></p>
 
-    <p>First, we need to understand the language. <strong>Some examples would be</strong>:
-\(\{\epsilon, ab, aabb, aaabbb, ...\}\)
-The intuition would be that you would need an infinite number of states to know if you had the same number of $a$ and $b$.</p>
+    <p>First, we need to understand the language. <strong>Some examples would be</strong>:</p>
+
+\[\{\epsilon, ab, aabb, aaabbb, ...\}\]
+
+    <p>The intuition would be that you would need an infinite number of states to know if you had the same number of $a$ and $b$.</p>
 
     <p>We do this by contradiction:</p>
 
@@ -1532,9 +1468,11 @@ The intuition would be that you would need an infinite number of states to know 
 
         <p>Consider the string $a^pb^p \in L$.</p>
 
-        <p>Consider the computation of $D$ on $a^pb^p$
-\(r_0(a) \to r_1(a) \to r_2(a) \to... \to r_p(a) \to r_{p+1}(b) \to  r_{p+2}(b)\to ... r_{2p}(b)\)
-where:</p>
+        <p>Consider the computation of $D$ on $a^pb^p$</p>
+
+\[r_0(a) \to r_1(a) \to r_2(a) \to... \to r_p(a) \to r_{p+1}(b) \to  r_{p+2}(b)\to ... r_{2p}(b)\]
+
+        <p>where:</p>
 
         <ul>
           <li>$r_{2p}$ an accepting state</li>
@@ -1595,33 +1533,15 @@ where:</p>
 
   <ul>
     <li>
-      <p>For <strong>any regular language $L$</strong>, there exists a number $p$ (“pumping number”), such that for $\forall w \in L$, $|w| \ge p$,:
-\(\exists \,\,a\,\,way\,\,to\,\,parse\,\,w=xyz\)
-such that:</p>
+      <p>For <strong>any regular language $L$</strong>, there exists a number $p$ (“pumping number”), such that for $\forall w \in L$, $\vert w\vert  \ge p$,:</p>
+
+\[\exists \,\,a\,\,way\,\,to\,\,parse\,\,w=xyz\]
+
+      <p>such that:</p>
 
       <ul>
-        <li>
-          <table>
-            <tbody>
-              <tr>
-                <td>$</td>
-                <td>xy</td>
-                <td>\le p$</td>
-              </tr>
-            </tbody>
-          </table>
-        </li>
-        <li>
-          <table>
-            <tbody>
-              <tr>
-                <td>$</td>
-                <td>y</td>
-                <td>&gt; 0$</td>
-              </tr>
-            </tbody>
-          </table>
-        </li>
+        <li>$\vert xy\vert  \le p$</li>
+        <li>$\vert y\vert  &gt; 0$</li>
         <li>$\forall i,\,\,xy^iz\in L$
           <ul>
             <li><strong><em>the key part</em></strong></li>
@@ -1640,9 +1560,11 @@ such that:</p>
 
   <ul>
     <li>
-      <p>Let $L$ be regular, and let $D$ be some DFA recognizing $L$, and let $p$ be the number of states in $D$.
-\(\forall w \in L, |w|\ge p,\,\,write\,w=w_1w_2...w_p...w_m\)
-Now, consider a computation of $D$ on $w$:</p>
+      <p>Let $L$ be regular, and let $D$ be some DFA recognizing $L$, and let $p$ be the number of states in $D$.</p>
+
+\[\forall w \in L, |w|\ge p,\,\,write\,w=w_1w_2...w_p...w_m\]
+
+      <p>Now, consider a computation of $D$ on $w$:</p>
 
       <p><img src="\lectures\images\typora-user-images\image-20201001230309308.png" alt="image-20201001230309308" style="zoom: 50%;" /></p>
 
@@ -1682,41 +1604,13 @@ Now, consider a computation of $D$ on $w$:</p>
       <p>As a result, in this construction, we have shown that all the required properties hold:</p>
 
       <ul>
-        <li>
-          <table>
-            <tbody>
-              <tr>
-                <td>$</td>
-                <td>xy</td>
-                <td>=j\le p$</td>
-              </tr>
-            </tbody>
-          </table>
-        </li>
-        <li>
-          <table>
-            <tbody>
-              <tr>
-                <td>**$</td>
-                <td>y</td>
-                <td>=j-i &gt; 0$**</td>
-              </tr>
-            </tbody>
-          </table>
+        <li>$\vert xy\vert =j\le p$</li>
+        <li><strong>$\vert y\vert =j-i &gt; 0$</strong>
           <ul>
             <li>this $y$ has to be made such that $x$ CANNOT be pumped. So you actually <strong>cannot choose $y$.</strong></li>
           </ul>
         </li>
-        <li>
-          <table>
-            <tbody>
-              <tr>
-                <td>**$\exists\,i=0,1,2…</td>
-                <td>xy^iz\in L$**</td>
-              </tr>
-            </tbody>
-          </table>
-        </li>
+        <li><strong>$\exists\,i=0,1,2…\vert xy^iz\in L$</strong></li>
       </ul>
     </li>
   </ul>
@@ -1736,17 +1630,7 @@ Now, consider a computation of $D$ on $w$:</p>
 <ol>
   <li>Assume towards contradiction $L$ is regular.</li>
   <li>Then there must be <strong>$p$ being the pumping number</strong>.</li>
-  <li>
-    <table>
-      <tbody>
-        <tr>
-          <td>I <strong>choose</strong> some string $w\,</td>
-          <td>\,w\in L \,\,and \,\,</td>
-          <td>w</td>
-          <td>\ge p$</td>
-        </tr>
-      </tbody>
-    </table>
+  <li>I <strong>choose</strong> some string $w\,\vert \,w\in L \,\,and \,\,\vert w\vert \ge p$
     <ul>
       <li>this is the tricky part that you need to figure out yourself</li>
     </ul>
@@ -1754,28 +1638,8 @@ Now, consider a computation of $D$ on $w$:</p>
   <li>Then, whenever you parse the string $w$, there will be a cycle due to the lemma with the pumping number.</li>
   <li>Therefore, we <strong>know $w=xyz$ where</strong>
     <ul>
-      <li>
-        <table>
-          <tbody>
-            <tr>
-              <td>$</td>
-              <td>xy</td>
-              <td>\le p$</td>
-            </tr>
-          </tbody>
-        </table>
-      </li>
-      <li>
-        <table>
-          <tbody>
-            <tr>
-              <td>$</td>
-              <td>y</td>
-              <td>&gt;0$</td>
-            </tr>
-          </tbody>
-        </table>
-      </li>
+      <li>$\vert xy\vert \le p$</li>
+      <li>$\vert y\vert &gt;0$</li>
       <li>$\exist i,\,\,s.t.\,\,xy^iz \notin L$</li>
     </ul>
   </li>
@@ -1786,9 +1650,13 @@ Now, consider a computation of $D$ on $w$:</p>
   <p><strong>Theorem:</strong></p>
 
   <ul>
-    <li>If we have a language:
-\(L=\{w \in \{ a,b\}^*\,|\,w\,\,is\,\,a\,\,palindrome\}\)
-Then $L$ is not regular.</li>
+    <li>
+      <p>If we have a language:</p>
+
+\[L=\{w \in \{ a,b\}^*\,|\,w\,\,is\,\,a\,\,palindrome\}\]
+
+      <p>Then $L$ is not regular.</p>
+    </li>
   </ul>
 </blockquote>
 
@@ -1799,60 +1667,20 @@ Then $L$ is not regular.</li>
     <li>Try 1:
       <ul>
         <li>Assume towards contradiction that it is regular</li>
-        <li>
-          <table>
-            <tbody>
-              <tr>
-                <td>Then we choose $w=a^p$, where $</td>
-                <td>w</td>
-                <td>\ge p$ and we want to find a $w=xyz$ and by pumping, it will produce a word that is not in $L$.</td>
-              </tr>
-            </tbody>
-          </table>
-        </li>
+        <li>Then we choose $w=a^p$, where $\vert w\vert \ge p$ and we want to find a $w=xyz$ and by pumping, it will produce a word that is not in $L$.</li>
         <li>But it seems all the words are still in $L$. Hence it does not work.</li>
       </ul>
     </li>
     <li>Try 2:
       <ul>
         <li>Assume towards contradiction that it is regular</li>
-        <li>
-          <table>
-            <tbody>
-              <tr>
-                <td>Then we choose $w=a^pba^p$, where $</td>
-                <td>w</td>
-                <td>\ge p$</td>
-              </tr>
-            </tbody>
-          </table>
-        </li>
-        <li>
-          <table>
-            <tbody>
-              <tr>
-                <td>we want to find a $w=xyz$, such that $</td>
-                <td>xy</td>
-                <td>\le p$, and $</td>
-                <td>y</td>
-                <td>&gt;1$.</td>
-              </tr>
-            </tbody>
-          </table>
+        <li>Then we choose $w=a^pba^p$, where $\vert w\vert \ge p$</li>
+        <li>we want to find a $w=xyz$, such that $\vert xy\vert \le p$, and $\vert y\vert &gt;1$.
           <ul>
             <li>this means that $y$ must be consisting only $a$s. This $w$ has to be constructed nicely so that this result falls out.</li>
           </ul>
         </li>
-        <li>
-          <table>
-            <tbody>
-              <tr>
-                <td>Then, we can construct a string, for example: $xyyz=a^{p+</td>
-                <td>y</td>
-                <td>}ba^p \notin L$.</td>
-              </tr>
-            </tbody>
-          </table>
+        <li>Then, we can construct a string, for example: $xyyz=a^{p+\vert y\vert }ba^p \notin L$.
           <ul>
             <li>In general $\exists i,\,\,xy^iz=a^{p+i}ba^p \notin L$</li>
           </ul>
@@ -1871,8 +1699,9 @@ Then $L$ is not regular.</li>
   <li>
     <p><strong>Question</strong></p>
 
-    <p>Show that the language:
-\(L = \{1^n\,|\,n\,\,is\,\,prime\}\)</p>
+    <p>Show that the language:</p>
+
+\[L = \{1^n\,|\,n\,\,is\,\,prime\}\]
   </li>
   <li>
     <p><strong>Solution</strong></p>
@@ -1901,14 +1730,7 @@ Then $L$ is not regular.</li>
   <li>
     <p>Question:</p>
 
-    <table>
-      <tbody>
-        <tr>
-          <td>Show that $L={w\in{a,b}^*\,</td>
-          <td>\,#a=#b}$</td>
-        </tr>
-      </tbody>
-    </table>
+    <p>Show that $L={w\in{a,b}^*\,\vert \,#a=#b}$</p>
   </li>
   <li>
     <p>Solution:</p>
@@ -1917,9 +1739,11 @@ Then $L$ is not regular.</li>
 
     <p>Assume $L$ is regular, then we can take the $L_1 = a^<em>b^</em>$, which is <strong>regular</strong>.</p>
 
-    <p>Now, since regular languages are closed under operations $\cap$, consider:
-\(L \cap L_1 = L_1 = a^pb^p\,,\,\,\forall p \in \mathbb{Z}\)
-which we have proved to be <strong>non-regular</strong>.</p>
+    <p>Now, since regular languages are closed under operations $\cap$, consider:</p>
+
+\[L \cap L_1 = L_1 = a^pb^p\,,\,\,\forall p \in \mathbb{Z}\]
+
+    <p>which we have proved to be <strong>non-regular</strong>.</p>
 
     <p>Therefore, <strong>it is not closed</strong>, and we reached a contradiction.</p>
 
@@ -1953,10 +1777,12 @@ which we have proved to be <strong>non-regular</strong>.</p>
       <p>If such $z$ exists, then we say that <strong>$x,y$ are distinguishable by $L$</strong>.</p>
     </li>
     <li>
-      <p>If no such string exists, then we say $x,y$ are <strong>indistinguishable by</strong> $L$. (So they are either both in $L$ or both not.) Denote it by
-\(x \sim_L y\)</p>
+      <p>If no such string exists, then we say $x,y$ are <strong>indistinguishable by</strong> $L$. (So they are either both in $L$ or both not.) Denote it by</p>
+
+\[x \sim_L y\]
     </li>
   </ul>
+
 </blockquote>
 
 <p>Basically,  $x$ and $y$ are <strong>indistinguishable</strong> if <strong>both of them landed at the same state in a DFA/NFA</strong>, so that any ending you add to them will affect both the same way.</p>
@@ -1970,8 +1796,9 @@ which we have proved to be <strong>non-regular</strong>.</p>
 
   <ul>
     <li>
-      <p>Then $\sim_L$ is an <strong>equivalence relation</strong>.
-\([x] = \{y \in \Sigma^*\,|\,x\sim_Ly\}\)</p>
+      <p>Then $\sim_L$ is an <strong>equivalence relation</strong>.</p>
+
+\[[x] = \{y \in \Sigma^*\,|\,x\sim_Ly\}\]
 
       <ul>
         <li>where you basically have <strong>a set</strong> of those strings <strong>being indistinguishable in the same manner</strong></li>
@@ -2033,8 +1860,9 @@ which we have proved to be <strong>non-regular</strong>.</p>
   <li>
     <p><strong>Question:</strong></p>
 
-    <p>Consider the palindrome example:
-\(L_{pali} = \{ w\in\{a,b\}^*\,|\,w=w^R \}\)</p>
+    <p>Consider the palindrome example:</p>
+
+\[L_{pali} = \{ w\in\{a,b\}^*\,|\,w=w^R \}\]
   </li>
   <li>
     <p><strong>Solution</strong>:</p>
@@ -2063,9 +1891,11 @@ which we have proved to be <strong>non-regular</strong>.</p>
   <li>
     <p><strong>Question:</strong></p>
 
-    <p>Consider the language:
-\(L=\{a^nb^n\,|\,n\ge0\}\)
-is not regular.</p>
+    <p>Consider the language:</p>
+
+\[L=\{a^nb^n\,|\,n\ge0\}\]
+
+    <p>is not regular.</p>
   </li>
   <li>
     <p><strong>Solution:</strong></p>
@@ -2101,8 +1931,9 @@ is not regular.</p>
   <li>
     <p><strong>Question</strong>:</p>
 
-    <p>Show that there are exactly $2^n$ equivalent classes (states) in a language:
-\(L = \{0,1\}^*\,|\,nth\,\,last\,\,symbol\,\,is\,\,0\)</p>
+    <p>Show that there are exactly $2^n$ equivalent classes (states) in a language:</p>
+
+\[L = \{0,1\}^*\,|\,nth\,\,last\,\,symbol\,\,is\,\,0\]
   </li>
   <li>
     <p><strong>Solution:</strong></p>
@@ -2132,24 +1963,30 @@ is not regular.</p>
   <li><strong>algorithm generated</strong> (alike DFA/NFA)</li>
 </ul>
 
-<p>One example of a context-free language is:
-\(\Sigma = \{0,1\};\,\,\\
+<p>One example of a context-free language is:</p>
+
+\[\Sigma = \{0,1\};\,\,\\
 V=\{S\};\\
 \begin{cases}
 S\to \epsilon\\
 S\to 0S1
-\end{cases}\)
-Then, a word in the language would be:
-\(S \Rightarrow 0S1 \Rightarrow 00S11 \Rightarrow 0011 \in L(G)\)
-where:</p>
+\end{cases}\]
+
+<p>Then, a word in the language would be:</p>
+
+\[S \Rightarrow 0S1 \Rightarrow 00S11 \Rightarrow 0011 \in L(G)\]
+
+<p>where:</p>
 
 <ul>
   <li>you started with a start variable $S$, and then generated to $0S1$, and etc.</li>
 </ul>
 
-<p>And, in general, you have:
-\(L(G) = \{ 0^n1^n \,|\,n\ge0 \}\)
-and you get a sense that <strong>context free languages are basically production rules</strong>:</p>
+<p>And, in general, you have:</p>
+
+\[L(G) = \{ 0^n1^n \,|\,n\ge0 \}\]
+
+<p>and you get a sense that <strong>context free languages are basically production rules</strong>:</p>
 
 <ul>
   <li>strings you can produced from those rules are in the language.</li>
@@ -2178,9 +2015,11 @@ and you get a sense that <strong>context free languages are basically production
           <p>$\Sigma$ is an alphabet (finite)</p>
         </li>
         <li>
-          <p>$R$ is a finite set of <strong>rules</strong> of the form:
-\(A \to w;\,\,A\in V;\,\,w\in(V\cup\Sigma)^*\)
-so basically, you can <strong>have more than one variables</strong>, and <strong>each variable points to either a string or a string+another variable</strong>.</p>
+          <p>$R$ is a finite set of <strong>rules</strong> of the form:</p>
+
+\[A \to w;\,\,A\in V;\,\,w\in(V\cup\Sigma)^*\]
+
+          <p>so basically, you can <strong>have more than one variables</strong>, and <strong>each variable points to either a string or a string+another variable</strong>.</p>
 
           <ul>
             <li>in general, for generating an <strong>non-empty language</strong>, you need to have <strong><em>at least one rule that points to a symbol only</em></strong>.</li>
@@ -2201,14 +2040,18 @@ so basically, you can <strong>have more than one variables</strong>, and <strong
 
   <ul>
     <li>
-      <p>If two string $u,v \in (V \cup \Sigma)^*$, and there is a rule $A \to w \in R$, then we can write:
-\(uAv \Rightarrow uwv\)
-which reads: $uAv$ yields $uwv$.</p>
+      <p>If two string $u,v \in (V \cup \Sigma)^*$, and there is a rule $A \to w \in R$, then we can write:</p>
+
+\[uAv \Rightarrow uwv\]
+
+      <p>which reads: $uAv$ yields $uwv$.</p>
     </li>
     <li>
-      <p>If two string $u,v\in (V \cup \Sigma)^<em>$, we say <strong>that $u \Rightarrow ^* v$ if</strong> some $u_1, u_2, …,u_n \in (V \cup \Sigma)^</em>$ we have:
-\(u \Rightarrow u_1 \Rightarrow u_2 \Rightarrow ... \Rightarrow v\)
-where:</p>
+      <p>If two string $u,v\in (V \cup \Sigma)^<em>$, we say <strong>that $u \Rightarrow ^* v$ if</strong> some $u_1, u_2, …,u_n \in (V \cup \Sigma)^</em>$ we have:</p>
+
+\[u \Rightarrow u_1 \Rightarrow u_2 \Rightarrow ... \Rightarrow v\]
+
+      <p>where:</p>
 
       <ul>
         <li>$u_1,u_2,…,u_n$ are just strings that you can reach from its previous string.</li>
@@ -2245,9 +2088,13 @@ where:</p>
   <p><strong>Definition:</strong></p>
 
   <ul>
-    <li>We say context free language $G = (V, \Sigma, R, S)$ has the language $L(G)$ if:
-\({mathtools}
-L(G) = \{w \in \Sigma^* \,|\,S\Rightarrow ^* w\}\)</li>
+    <li>
+      <p>We say context free language $G = (V, \Sigma, R, S)$ has the language $L(G)$ if:
+$$ {mathtools}
+L(G) = {w \in \Sigma^* \,|\,S\Rightarrow ^* w}</p>
+
+      <p>$$</p>
+    </li>
   </ul>
 </blockquote>
 
@@ -2257,18 +2104,20 @@ L(G) = \{w \in \Sigma^* \,|\,S\Rightarrow ^* w\}\)</li>
 
 <ul>
   <li>
-    <p><strong>Question:</strong>
-\(G=(\{S\},\{a,b\},R,S)\\
+    <p><strong>Question:</strong></p>
+
+\[G=(\{S\},\{a,b\},R,S)\\
 R:\begin{cases}
 S \to \epsilon \\
 S \to aSa\,|\,bSb
-\end{cases}\)</p>
+\end{cases}\]
   </li>
   <li>
     <p><strong>Solution:</strong></p>
 
-    <p>We see that it is the language of:
-\(L(G) = \{w \in \{a,b\}^*\,|\,w\,\,in\,\,an\,\,even\,\,length\,\,palindrome\}\)</p>
+    <p>We see that it is the language of:</p>
+
+\[L(G) = \{w \in \{a,b\}^*\,|\,w\,\,in\,\,an\,\,even\,\,length\,\,palindrome\}\]
 
     <p>To prove it, we need to show the $\iff$ relationship:</p>
 
@@ -2289,25 +2138,31 @@ S \to aSa\,|\,bSb
 
 <ul>
   <li>
-    <p><strong>Question:</strong>
-\(G=\{ \{G\},\{a,b,+,*,(,)\},R,E \}\\
+    <p><strong>Question:</strong></p>
+
+\[G=\{ \{G\},\{a,b,+,*,(,)\},R,E \}\\
 E: \begin{cases}
 E \to E+E\,|\,E*E\,|\,(E)\,|\,a\,|\,b
-\end{cases}\)
-Derive the string $a+b*a$</p>
+\end{cases}\]
+
+    <p>Derive the string $a+b*a$</p>
   </li>
   <li>
     <p><strong>Solution:</strong></p>
 
-    <p>The solution is trivial:
-\(E \Rightarrow E+E \Rightarrow E+E*E \Rightarrow a+E*E\Rightarrow a+b*E \Rightarrow a+b*a\)
-in fact, its corresponding derivation tree looks like:</p>
+    <p>The solution is trivial:</p>
+
+\[E \Rightarrow E+E \Rightarrow E+E*E \Rightarrow a+E*E\Rightarrow a+b*E \Rightarrow a+b*a\]
+
+    <p>in fact, its corresponding derivation tree looks like:</p>
 
     <p><img src="\lectures\images\typora-user-images\image-20201009013908878.png" alt="image-20201009013908878" style="zoom:50%;" /></p>
 
-    <p>or, another way is:
-\(E \Rightarrow E*E \Rightarrow E+E*E \Rightarrow a+E*E\Rightarrow a+b*E \Rightarrow a+b*a\)
-and its derivation tree looks like:</p>
+    <p>or, another way is:</p>
+
+\[E \Rightarrow E*E \Rightarrow E+E*E \Rightarrow a+E*E\Rightarrow a+b*E \Rightarrow a+b*a\]
+
+    <p>and its derivation tree looks like:</p>
 
     <p><img src="\lectures\images\typora-user-images\image-20201009014007870.png" alt="image-20201009014007870" style="zoom:50%;" /></p>
 
@@ -2366,14 +2221,16 @@ and its derivation tree looks like:</p>
   </ul>
 </blockquote>
 
-<p>A <strong>inambiguous context-free language</strong> would be:
-\(G=G'(\{E,F,G\},\{a,b,+,*,(,)\},R,E)\\
+<p>A <strong>inambiguous context-free language</strong> would be:</p>
+
+\[G=G'(\{E,F,G\},\{a,b,+,*,(,)\},R,E)\\
 R:\begin{cases}
 E \to E+F \,|\, F\\
 F \to E*G \,|\, G\\
 G \to (E) \,|\, a\,|\,b
-\end{cases}\)
-where:</p>
+\end{cases}\]
+
+<p>where:</p>
 
 <ul>
   <li>
@@ -2391,9 +2248,11 @@ where:</p>
   </ul>
 </blockquote>
 
-<p>An example would be:
-\(L =\{a^nb^nc^md^m\,|\,n,m\ge0\} \cup \{a^nb^mc^md^n\,|\,n,m\ge0\}\)
-where:</p>
+<p>An example would be:</p>
+
+\[L =\{a^nb^nc^md^m\,|\,n,m\ge0\} \cup \{a^nb^mc^md^n\,|\,n,m\ge0\}\]
+
+<p>where:</p>
 
 <ul>
   <li>again, this would be hard to prove, but it is <strong>inherently ambiguous</strong>.</li>
@@ -2436,14 +2295,7 @@ where:</p>
 
 <p>Consider the <strong>set of all valid regular expression</strong> over $\Sigma = {a,b}$.</p>
 
-<table>
-  <tbody>
-    <tr>
-      <td>That is, take alphabet ${a,b,(,),\cup,\circ,<em>,\empty, \epsilon}$ and the language $REGEX:{w \in {a,b,(,),\cup,\circ,</em>,\empty, \epsilon}^*</td>
-      <td>\text{$w$ in in the regular expression}}$</td>
-    </tr>
-  </tbody>
-</table>
+<p>That is, take alphabet ${a,b,(,),\cup,\circ,<em>,\empty, \epsilon}$ and the language $REGEX:{w \in {a,b,(,),\cup,\circ,</em>,\empty, \epsilon}^*\vert \text{$w$in in the regular expression}}$</p>
 
 <ul>
   <li>e.g. $w=((a\circ*$ is not a regular expression, so it is not in $REGEX$, but $w=((a))$ is.</li>
@@ -2469,31 +2321,11 @@ where:</p>
       <p>Choose $w=((((..(a^<em>)^</em>..)^*)))$ which is a valid regular expression, and $((((..($ is length $p$.</p>
 
       <ul>
-        <li>
-          <table>
-            <tbody>
-              <tr>
-                <td>so we have $</td>
-                <td>w</td>
-                <td>&gt; p$</td>
-              </tr>
-            </tbody>
-          </table>
-        </li>
+        <li>so we have $\vert w\vert  &gt; p$</li>
       </ul>
     </li>
     <li>
-      <table>
-        <tbody>
-          <tr>
-            <td>For any possible parsing $w=xyz$, where $</td>
-            <td>xy</td>
-            <td>\le p$, $</td>
-            <td>y</td>
-            <td>&gt;0$.</td>
-          </tr>
-        </tbody>
-      </table>
+      <p>For any possible parsing $w=xyz$, where $\vert xy\vert \le p$, $\vert y\vert &gt;0$.</p>
     </li>
     <li>
       <p>Then it has to be the cases that $y$ contains only $($.</p>
@@ -2502,17 +2334,7 @@ where:</p>
       <p>Now, we can simply choose any $i$, for example $i=2$</p>
 
       <ul>
-        <li>
-          <table>
-            <tbody>
-              <tr>
-                <td>$xyyz=(^{p+</td>
-                <td>y</td>
-                <td>} a)^<em>)^</em>…)$ is not balanced in brackets, so it is not regular.</td>
-              </tr>
-            </tbody>
-          </table>
-        </li>
+        <li>$xyyz=(^{p+\vert y\vert } a)^<em>)^</em>…)$ is not balanced in brackets, so it is not regular.</li>
       </ul>
     </li>
     <li>
@@ -2570,14 +2392,7 @@ S\to (S \cup S) | (S \circ S)|(S^*)
         <li>
           <p>$L(G) = L(G_1) \cup L(G_2)$</p>
 
-          <table>
-            <tbody>
-              <tr>
-                <td>so we need to show that $S \Rightarrow ^* w \iff S_1 \Rightarrow^*w</td>
-                <td>S_2 \Rightarrow^*w $</td>
-              </tr>
-            </tbody>
-          </table>
+          <p>so we need to show that $S \Rightarrow ^* w \iff S_1 \Rightarrow^<em>w \vert S_2 \Rightarrow^</em>w$</p>
 
           <ul>
             <li>this will be trivial as if you start with $S$, it must go either first to $S_1$ or $S_2$. Then the rest follows.</li>
@@ -2696,36 +2511,20 @@ S\to (S \cup S) | (S \circ S)|(S^*)
 
   <ul>
     <li>
-      <p>If $L$ is a CFL, then there exists a constant $p$, s.t. $\forall w,\,w\in L$, and $|w| \ge p$, there exists a way to parse $w$ into:
-\(w=uvxyz\)
-where:</p>
+      <p>If $L$ is a CFL, then there exists a constant $p$, s.t. $\forall w,\,w\in L$, and $\vert w\vert  \ge p$, there exists a way to parse $w$ into:</p>
+
+\[w=uvxyz\]
+
+      <p>where:</p>
 
       <ul>
         <li>this is the <strong>different part from the normal pumping lemma</strong></li>
-        <li>
-          <table>
-            <tbody>
-              <tr>
-                <td>$</td>
-                <td>vxy</td>
-                <td>\le p$</td>
-              </tr>
-            </tbody>
-          </table>
+        <li>$\vert vxy\vert  \le p$
           <ul>
             <li>different from the normal pumping lemma as well</li>
           </ul>
         </li>
-        <li>
-          <table>
-            <tbody>
-              <tr>
-                <td>$</td>
-                <td>vy</td>
-                <td>&gt;0$</td>
-              </tr>
-            </tbody>
-          </table>
+        <li>$\vert vy\vert &gt;0$
           <ul>
             <li>again, this and the above has to come out by themselves. You <strong>cannot choose</strong> them.</li>
             <li><strong>this is the part where we can pump</strong>
@@ -2780,64 +2579,29 @@ where:</p>
     <p>Assume CF, then you get a pumping number $p$.</p>
   </li>
   <li>
-    <table>
-      <tbody>
-        <tr>
-          <td>Choose a string $w \in L$, such that $</td>
-          <td>w</td>
-          <td>$ is <strong>long enough hence</strong> $</td>
-          <td>w</td>
-          <td>\ge p$</td>
-        </tr>
-      </tbody>
-    </table>
+    <p>Choose a string $w \in L$, such that $\vert w\vert$ is <strong>long enough hence</strong> $\vert w\vert \ge p$</p>
   </li>
   <li>
     <p>Think about <strong>all possible parsing of $v,y$,</strong> such that:</p>
 
     <ul>
-      <li>
-        <table>
-          <tbody>
-            <tr>
-              <td>$</td>
-              <td>vxy</td>
-              <td>\le p$</td>
-            </tr>
-          </tbody>
-        </table>
+      <li>$\vert vxy\vert \le p$
         <ul>
-          <li>
-            <table>
-              <tbody>
-                <tr>
-                  <td>essentially, since $x$ can be $\epsilon$, we need to make sure $</td>
-                  <td>vy</td>
-                  <td>\le p$</td>
-                </tr>
-              </tbody>
-            </table>
-          </li>
+          <li>essentially, since $x$ can be $\epsilon$, we need to make sure $\vert vy\vert \le p$</li>
         </ul>
       </li>
-      <li>
-        <table>
-          <tbody>
-            <tr>
-              <td>and $</td>
-              <td>vy</td>
-              <td>&gt; 0$</td>
-            </tr>
-          </tbody>
-        </table>
+      <li>and $\vert vy\vert  &gt; 0$
         <ul>
           <li>as otherwise, you wouldn’t have an really long word shown in the proof sketch above</li>
         </ul>
       </li>
     </ul>
   </li>
-  <li>Show that for <strong>all possible parsing</strong>, you can choose an $i$ such that:
-\(uv^i xy^i z \notin L\)</li>
+  <li>
+    <p>Show that for <strong>all possible parsing</strong>, you can choose an $i$ such that:</p>
+
+\[uv^i xy^i z \notin L\]
+  </li>
 </ol>
 
 <h3 id="example-tandem-pumping-lemma">Example: Tandem Pumping Lemma</h3>
@@ -2850,8 +2614,9 @@ where:</p>
   <li>
     <p><strong>Question</strong>:</p>
 
-    <p>Show the following language is not CF:
-\(L=\{a^i b^i c^i | i \ge 0\}\)</p>
+    <p>Show the following language is not CF:</p>
+
+\[L=\{a^i b^i c^i | i \ge 0\}\]
   </li>
   <li>
     <p><strong>Solution:</strong></p>
@@ -2861,17 +2626,7 @@ where:</p>
     <p><img src="\lectures\images\typora-user-images\image-20201020210031078.png" alt="image-20201020210031078" style="zoom:50%;" /></p>
 
     <ul>
-      <li>
-        <table>
-          <tbody>
-            <tr>
-              <td>so since $vxy$ can only hold up to two different characters, $v,y$ to be pumped can be at most two different characters. Therefore, since $</td>
-              <td>vy</td>
-              <td>&gt;0$, you will have <strong>at least one character unchanged</strong>.</td>
-            </tr>
-          </tbody>
-        </table>
-      </li>
+      <li>so since $vxy$ can only hold up to two different characters, $v,y$ to be pumped can be at most two different characters. Therefore, since $\vert vy\vert &gt;0$, you will have <strong>at least one character unchanged</strong>.</li>
     </ul>
   </li>
 </ul>
@@ -2884,8 +2639,9 @@ where:</p>
   <li>
     <p><strong>Question:</strong></p>
 
-    <p>Show that the following language is not context-free:
-\(L=\{ ww \ | \ w \in\{a,b\}^* \}\)</p>
+    <p>Show that the following language is not context-free:</p>
+
+\[L=\{ ww \ | \ w \in\{a,b\}^* \}\]
   </li>
   <li>
     <p><strong>Solution:</strong></p>
@@ -2938,9 +2694,10 @@ where:</p>
       </ul>
     </li>
     <li>
-      <p>Define:
-\(L_1 =\{ a^ib^ic^j \,|\, i,j\ge 0 \}\\
-L_2 =\{ a^ib^jc^j \,|\, i,j\ge 0 \}\)</p>
+      <p>Define:</p>
+
+\[L_1 =\{ a^ib^ic^j \,|\, i,j\ge 0 \}\\
+L_2 =\{ a^ib^jc^j \,|\, i,j\ge 0 \}\]
 
       <ul>
         <li>
@@ -2948,26 +2705,21 @@ L_2 =\{ a^ib^jc^j \,|\, i,j\ge 0 \}\)</p>
 
           <ul>
             <li>
-              <p>Quite simple, for $L_1$ just need:
-\(S\to \epsilon\,|\,aSbV \\
-V \to c \,|\,VV\)</p>
+              <p>Quite simple, for $L_1$ just need:</p>
+
+\[S\to \epsilon\,|\,aSbV \\
+V \to c \,|\,VV\]
             </li>
             <li>
-              <p>For $L_2$, you need:
-\(S\to \epsilon\,|\,VbSc \\
-V \to a \,|\,VV\)</p>
+              <p>For $L_2$, you need:</p>
+
+\[S\to \epsilon\,|\,VbSc \\
+V \to a \,|\,VV\]
             </li>
           </ul>
         </li>
         <li>
-          <table>
-            <tbody>
-              <tr>
-                <td>Claim 2: $L_1 \cap L_2 = { a^ib^ic^i \,</td>
-                <td>\, i\ge 0 }$</td>
-              </tr>
-            </tbody>
-          </table>
+          <p>Claim 2: $L_1 \cap L_2 = { a^ib^ic^i \,\vert \, i\ge 0 }$</p>
 
           <ul>
             <li>which is <strong>not context free</strong>.</li>
@@ -2996,9 +2748,11 @@ V \to a \,|\,VV\)</p>
       <p>Assume towards contradiction, that it was closed.</p>
     </li>
     <li>
-      <p>Now, using De Morgen:
-\(L_1 \cap L_2 = \overline{(\overline{L_1} \cup \overline{L_2})}\)
-However, we know that:</p>
+      <p>Now, using De Morgen:</p>
+
+\[L_1 \cap L_2 = \overline{(\overline{L_1} \cup \overline{L_2})}\]
+
+      <p>However, we know that:</p>
 
       <ul>
         <li>$LHS$ is not closed</li>
@@ -3119,9 +2873,11 @@ However, we know that:</p>
 
   <ul>
     <li>
-      <p>A Turing Machine is a 7-tuple:
-\(M=(Q,\Sigma, \Gamma, \delta, q_0, q_{acc},q_{rej})\)
-where:</p>
+      <p>A Turing Machine is a 7-tuple:</p>
+
+\[M=(Q,\Sigma, \Gamma, \delta, q_0, q_{acc},q_{rej})\]
+
+      <p>where:</p>
 
       <ul>
         <li>$Q$: a finite set of states</li>
@@ -3184,14 +2940,7 @@ where:</p>
     <p><img src="\lectures\images\typora-user-images\image-20201023014822520.png" alt="image-20201023014822520" style="zoom: 50%;" /></p>
   </li>
   <li>
-    <table>
-      <tbody>
-        <tr>
-          <td>This recognized $L={w \in {a,b}^*\,</td>
-          <td>\, w \,\text{contains a $b$} }$</td>
-        </tr>
-      </tbody>
-    </table>
+    <p>This recognized $L={w \in {a,b}^*\,\vert \, w \,\text{contains a$b$} }$</p>
   </li>
 </ul>
 
@@ -3229,9 +2978,13 @@ where:</p>
         <li>not accepted - met reject state <strong>or run forever</strong></li>
       </ul>
     </li>
-    <li>Then the language of a TM $M$ is defined as:
-\(L(M)=\{w \,|\,\text{$M$ accepts $w$}\}\)</li>
+    <li>
+      <p>Then the language of a TM $M$ is defined as:</p>
+
+\[L(M)=\{w \,|\,\text{$M$ accepts $w$}\}\]
+    </li>
   </ul>
+
 </blockquote>
 
 <blockquote>
@@ -3239,9 +2992,11 @@ where:</p>
 
   <ul>
     <li>
-      <p>A configuration represents the <strong>status of computation at a certain point</strong>. The configuration is:
-\(C=uqv\)
-where:</p>
+      <p>A configuration represents the <strong>status of computation at a certain point</strong>. The configuration is:</p>
+
+\[C=uqv\]
+
+      <p>where:</p>
 
       <ul>
         <li>$u,v \in \Gamma^*$</li>
@@ -3274,9 +3029,11 @@ where:</p>
 
   <ul>
     <li>
-      <p>the initial configuration would always be:
-\(C_{ini}=q_0w\)
-where:</p>
+      <p>the initial configuration would always be:</p>
+
+\[C_{ini}=q_0w\]
+
+      <p>where:</p>
 
       <ul>
         <li>$w$ is the input string</li>
@@ -3342,8 +3099,8 @@ where:</p>
     <li>A language $L$ is <strong>TM-recognizable</strong> if there exists a Turing Machine $M$ such that $L(M)=L$.
       <ul>
         <li>sometimes, people also call this $L$ <strong><em>recursively-enumerable</em></strong></li>
-        <li>$x\in L \to $ $M$ accepts $x$</li>
-        <li>$x\notin L \to $ $M$ rejects $x$ <strong>or run forever</strong></li>
+        <li>$x\in L \to$ $M$ accepts $x$</li>
+        <li>$x\notin L \to$ $M$ rejects $x$ <strong>or run forever</strong></li>
       </ul>
     </li>
   </ul>
@@ -3353,8 +3110,9 @@ where:</p>
 
 <ul>
   <li>
-    <p>Consider the non-regular but context-free language:
-\(L=\{0^i1^i\,|\,i\ge0\}\)</p>
+    <p>Consider the non-regular but context-free language:</p>
+
+\[L=\{0^i1^i\,|\,i\ge0\}\]
   </li>
   <li>
     <p>The TM for it would be:</p>
@@ -3386,8 +3144,9 @@ where:</p>
   <li>
     <p><strong>Question:</strong></p>
 
-    <p>Construct the TM for:
-\(\{1^{2n}\,|\,n\ge0\}\)</p>
+    <p>Construct the TM for:</p>
+
+\[\{1^{2n}\,|\,n\ge0\}\]
   </li>
   <li>
     <p><strong>My Solution</strong>:</p>
@@ -3431,8 +3190,8 @@ where:</p>
         <li>$M$ recognizes $L$</li>
         <li>$M$ is a <strong>decider</strong>
           <ul>
-            <li>$x\in L \to $ $M$ accepts $x$</li>
-            <li>$x\notin L \to $ $M$ rejects $x$</li>
+            <li>$x\in L \to$ $M$ accepts $x$</li>
+            <li>$x\notin L \to$ $M$ rejects $x$</li>
           </ul>
         </li>
       </ul>
@@ -3463,9 +3222,11 @@ where:</p>
 
   <ul>
     <li>
-      <p>An input-output TM:
-\(\{Q, \Sigma, \Gamma, \delta, q_{start}, q_{halt}\}\)
-starts with input written on tape ($C_1=q_{start}w$). <strong>If/when</strong> it changes to state $q_{halt}$, then the <strong>machine stops, and the string written on tape (w/o the trailing infinite blanks) is the output</strong>.</p>
+      <p>An input-output TM:</p>
+
+\[\{Q, \Sigma, \Gamma, \delta, q_{start}, q_{halt}\}\]
+
+      <p>starts with input written on tape ($C_1=q_{start}w$). <strong>If/when</strong> it changes to state $q_{halt}$, then the <strong>machine stops, and the string written on tape (w/o the trailing infinite blanks) is the output</strong>.</p>
 
       <ul>
         <li>in general, those TM could also go into infinite loop</li>
@@ -3479,9 +3240,11 @@ starts with input written on tape ($C_1=q_{start}w$). <strong>If/when</strong> i
 
   <ul>
     <li>
-      <p>A function:
-\(f: \Sigma^* \to \Sigma^*\)
-is <strong>computable</strong> if there exists a TM $M$, such that $\forall w \in \Sigma^*$ (notice the <strong>for all</strong> here) , <strong>$M$ halts with output $f(w)$ written on the tape.</strong></p>
+      <p>A function:</p>
+
+\[f: \Sigma^* \to \Sigma^*\]
+
+      <p>is <strong>computable</strong> if there exists a TM $M$, such that $\forall w \in \Sigma^*$ (notice the <strong>for all</strong> here) , <strong>$M$ halts with output $f(w)$ written on the tape.</strong></p>
 
       <ul>
         <li>this also means it does not go into loop</li>
@@ -3572,9 +3335,11 @@ is <strong>computable</strong> if there exists a TM $M$, such that $\forall w \i
   <li>
     <p><strong>TM with command of not moving</strong>:</p>
 
-    <p>So you have:
-\(\delta : Q\times \Gamma \to Q\times \Gamma \times \{L,R,S\}\)
-where:</p>
+    <p>So you have:</p>
+
+\[\delta : Q\times \Gamma \to Q\times \Gamma \times \{L,R,S\}\]
+
+    <p>where:</p>
 
     <ul>
       <li>$S$ means not to move/stay</li>
@@ -3666,7 +3431,11 @@ where:</p>
   <ul>
     <li>
       <p>Basically, it is the same as a TM, except for the transition function:
-\(\delta : Q \times \Gamma \to \mathbb{P}(Q \times \Gamma \times \{L,R\})\)
+$$</p>
+
+      <p>\delta : Q \times \Gamma \to \mathbb{P}(Q \times \Gamma \times {L,R})</p>
+
+      <p>$$
 so that:</p>
 
       <ul>
@@ -3872,7 +3641,11 @@ so that:</p>
   <ul>
     <li>
       <p><strong>Every algorithm (TM)</strong> can be encoded as a string/finite symbol description. We will denote:
-\(\langle M \rangle\)
+$$</p>
+
+      <p>\langle M \rangle</p>
+
+      <p>$$
 being the string representing the TM, $M$.</p>
 
       <ul>
@@ -3901,8 +3674,8 @@ being the string representing the TM, $M$.</p>
     <li>This works <strong>only</strong> with a TM-<strong>Decidable</strong> language:
       <ul>
         <li>Set $M’$ to be the same as $M$, but flip the $q_{acc}$ and $q_{rej}$ states.</li>
-        <li>Then, whenever $w \in L(M) \iff \text{$M$ accepts $w$} \iff \text{$M’$ rejects $w$}\iff w \notin L(M’)$</li>
-        <li>and conversely $w \notin L(M) \iff \text{$M$ rejects $w$} \iff \text{$M’$ accepts $w$}\iff w \in L(M’)$
+        <li>Then, whenever $w \in L(M) \iff \text{$M$accepts$w$} \iff \text{$M’$rejects$w$}\iff w \notin L(M’)$</li>
+        <li>and conversely $w \notin L(M) \iff \text{$M$rejects$w$} \iff \text{$M’$accepts$w$}\iff w \in L(M’)$
           <ul>
             <li>note, the line above only works if $M$ is a <strong>decider</strong>. If it is not, we also need to think about the cases of rejected due to running forever</li>
           </ul>
@@ -3941,8 +3714,8 @@ being the string representing the TM, $M$.</p>
           <ul>
             <li>then there $\exists M_1, M_2$ s.t.
               <ul>
-                <li>$M_1$ recognizes $L$ $\begin{cases}x\in L \Rarr \text{$M_1$ accepts $x$}\x\notin L \Rarr \text{$M_1$ rejects or run forever for $x$}\end{cases}$</li>
-                <li>$M_2$ recognizes $\bar{L}$ $\begin{cases}x\in \bar{L} \Rarr \text{$M_2$ accepts $x$}\x\notin \bar{L} \Rarr \text{$M_2$ rejects or run forever for $x$}\end{cases}$</li>
+                <li>$M_1$ recognizes $L$ $\begin{cases}x\in L \Rarr \text{$M_1$accepts$x$}\x\notin L \Rarr \text{$M_1$rejects or run forever for$x$}\end{cases}$</li>
+                <li>$M_2$ recognizes $\bar{L}$ $\begin{cases}x\in \bar{L} \Rarr \text{$M_2$accepts$x$}\x\notin \bar{L} \Rarr \text{$M_2$rejects or run forever for$x$}\end{cases}$</li>
               </ul>
             </li>
             <li>Use $M_1, M_2$ to <strong>construct a decider</strong> for $L$:
@@ -3958,7 +3731,7 @@ being the string representing the TM, $M$.</p>
                     <li>if $M_2$ accepts $x$, return reject</li>
                   </ul>
                 </li>
-                <li>Therefore, we have $\begin{cases}x\in L\Rarr \text{$M_1$ will accept} \Rarr \text{$M$ accepts}\x\notin L\Rarr x\in \bar{L}\Rarr\text{$M_2$ will accept} \Rarr \text{$M$ rejects}\end{cases}$</li>
+                <li>Therefore, we have $\begin{cases}x\in L\Rarr \text{$M_1$will accept} \Rarr \text{$M$accepts}\x\notin L\Rarr x\in \bar{L}\Rarr\text{$M_2$will accept} \Rarr \text{$M$rejects}\end{cases}$</li>
               </ul>
             </li>
             <li>Hence we have found a decider for $L$ using $M$ above. So $L$ is TM Decidable.</li>
@@ -3981,7 +3754,18 @@ being the string representing the TM, $M$.</p>
   <ul>
     <li>
       <p>The acceptance problem of performing the DFA task is <strong>decidable</strong>:
-\(A_{DFA}=\{ \langle D,w \rangle | \text{$D$ is a DFA and $D$ accepts $w$}\}\)
+$$</p>
+
+      <table>
+        <tbody>
+          <tr>
+            <td>A_{DFA}={ \langle D,w \rangle</td>
+            <td>\text{$D$ is a DFA and $D$ accepts $w$}}</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p>$$
 where:</p>
 
       <ul>
@@ -4021,7 +3805,18 @@ where:</p>
   <ul>
     <li>
       <p>Similarly, doing the job of a NFA:
-\(A_{NFA}=\{ \langle N,w \rangle | \text{$N$ is a NFA and $N$ accepts $w$}\}\)
+$$</p>
+
+      <table>
+        <tbody>
+          <tr>
+            <td>A_{NFA}={ \langle N,w \rangle</td>
+            <td>\text{$N$ is a NFA and $N$ accepts $w$}}</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p>$$
 is also decidable.</p>
     </li>
     <li>
@@ -4047,7 +3842,18 @@ is also decidable.</p>
   <ul>
     <li>
       <p>We can use a TM decider to check whether if a DFA has no acceptations:
-\(E_{DFA}=\{\langle D\rangle | \text{$D$ is a DFA and $L(D)=\empty$}\}\)</p>
+$$</p>
+
+      <table>
+        <tbody>
+          <tr>
+            <td>E_{DFA}={\langle D\rangle</td>
+            <td>\text{$D$ is a DFA and $L(D)=\empty$}}</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p>$$</p>
     </li>
     <li>
       <p>Construction of decidable TM:</p>
@@ -4087,10 +3893,22 @@ is also decidable.</p>
   <p><strong>Application:</strong></p>
 
   <ul>
-    <li>
-      <p>We can use a TM <strong>decider</strong> to check whether if two DFA are the same:
-\(EQ_{DFA}=\{\langle D_1, D_2\rangle | \text{$D_1,D_2$ are DFA and $L(D_1)=L(D_2)$}\}\)</p>
-    </li>
+    <li>We can use a TM <strong>decider</strong> to check whether if two DFA are the same:
+$$</li>
+  </ul>
+
+  <table>
+    <tbody>
+      <tr>
+        <td>EQ_{DFA}={\langle D_1, D_2\rangle</td>
+        <td>\text{$D_1,D_2$ are DFA and $L(D_1)=L(D_2)$}}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>$$</p>
+
+  <ul>
     <li>Construction:</li>
     <li>Using the idea of symmetric difference, and construct $L(C)$ as follows.
       <ul>
@@ -4113,7 +3931,18 @@ is also decidable.</p>
   <ul>
     <li>
       <p>We can also use a decider to do the job of a CFG:
-\(A_{CFG}=\{ \langle G,w \rangle | \text{$G$ is a CFG and $G$ accepts $w$}\}\)</p>
+$$</p>
+
+      <table>
+        <tbody>
+          <tr>
+            <td>A_{CFG}={ \langle G,w \rangle</td>
+            <td>\text{$G$ is a CFG and $G$ accepts $w$}}</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p>$$</p>
     </li>
     <li>
       <p>Construction skipped.</p>
@@ -4134,26 +3963,8 @@ is also decidable.</p>
   <p><strong>Not TM decidable Languages</strong></p>
 
   <ul>
-    <li>
-      <table>
-        <tbody>
-          <tr>
-            <td>$EQ_{CFG} = { \langle G_1,G_2 \rangle</td>
-            <td>\text{$G_1$, $G_2$ are CFG, $L(G_1)=L(G_2)$} }$</td>
-          </tr>
-        </tbody>
-      </table>
-    </li>
-    <li>
-      <table>
-        <tbody>
-          <tr>
-            <td>$AMB_{G} = { \langle G\rangle</td>
-            <td>\text{$G$ is a CFG that is ambiguous} }$</td>
-          </tr>
-        </tbody>
-      </table>
-    </li>
+    <li>$EQ_{CFG} = { \langle G_1,G_2 \rangle \vert  \text{$G_1$,$G_2$are CFG,$L(G_1)=L(G_2)$} }$</li>
+    <li>$AMB_{G} = { \langle G\rangle \vert  \text{$G$is a CFG that is ambiguous} }$</li>
   </ul>
 </blockquote>
 
@@ -4174,7 +3985,18 @@ is also decidable.</p>
   <ul>
     <li>
       <p>The acceptance problem of TM, such that using this I get whether the input is accepted or not (including running forever): $A_{TM}$
-\(A_{TM}= \{ \langle M,w\rangle | \text{$M$ is a TM, and $M$ accepts $w$} \}\)
+$$</p>
+
+      <table>
+        <tbody>
+          <tr>
+            <td>A_{TM}= { \langle M,w\rangle</td>
+            <td>\text{$M$ is a TM, and $M$ accepts $w$} }</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p>$$
 where:</p>
 
       <ul>
@@ -4209,8 +4031,21 @@ where:</p>
   <p><strong>Examples of TM Non-decidable Languages</strong></p>
 
   <ul>
-    <li>The same acceptance problem of TM, $A_{TM}$, is <strong>not decidable</strong>
-\(A_{TM}= \{ \langle M,w\rangle | \text{$M$ is a TM, and $M$ accepts $w$} \}\)</li>
+    <li>
+      <p>The same acceptance problem of TM, $A_{TM}$, is <strong>not decidable</strong>
+$$</p>
+
+      <table>
+        <tbody>
+          <tr>
+            <td>A_{TM}= { \langle M,w\rangle</td>
+            <td>\text{$M$ is a TM, and $M$ accepts $w$} }</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p>$$</p>
+    </li>
   </ul>
 </blockquote>
 
@@ -4262,7 +4097,18 @@ where:</p>
   <ul>
     <li>
       <p>The TM that tells me if a TM is <strong>not empty</strong>
-\(NE_{TM} = \{ \langle M \rangle | \text{$M$ is a $TM$ and $L(M)\neq \empty$} \}\)</p>
+$$</p>
+
+      <table>
+        <tbody>
+          <tr>
+            <td>NE_{TM} = { \langle M \rangle</td>
+            <td>\text{$M$ is a $TM$ and $L(M)\neq \empty$} }</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p>$$</p>
     </li>
     <li>
       <p><strong>Proof/Construction</strong></p>
@@ -4305,17 +4151,7 @@ where:</p>
             <li>on input $\langle M\rangle$:</li>
             <li>for $i = 1,2,3…$
               <ul>
-                <li>
-                  <table>
-                    <tbody>
-                      <tr>
-                        <td>for all $s \in \Sigma^*$, $</td>
-                        <td>s</td>
-                        <td>\le i$</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </li>
+                <li>for all $s \in \Sigma^*$, $\vert s\vert  \le i$</li>
                 <li>Run $M$ on $s$ for $i$ steps (hence this step is always <strong>finite</strong>)</li>
                 <li>if accepts, accept (so this step can <strong><em>always</em> be reached</strong>)</li>
               </ul>
@@ -4365,8 +4201,14 @@ where:</p>
   <p><strong>Definition:</strong></p>
 
   <ul>
-    <li>Two sets $A,B$ have the same <strong>cardinality</strong>  ($|A|=|B|$) if there is a bijection function (<strong>one-to-one</strong> and onto function)
-\(f: A \to B\)</li>
+    <li>
+      <p>Two sets $A,B$ have the same <strong>cardinality</strong>  ($\vert A\vert =\vert B\vert$) if there is a bijection function (<strong>one-to-one</strong> and onto function)
+$$</p>
+
+      <p>f: A \to B</p>
+
+      <p>$$</p>
+    </li>
   </ul>
 </blockquote>
 
@@ -4376,7 +4218,11 @@ where:</p>
   <ul>
     <li>
       <p>A set $A$ is <strong>countable</strong>, if $A$ is either <strong>finite</strong>, <strong><em>or</em></strong> there is a bijection function:
-\(f:\N \to A\)
+$$</p>
+
+      <p>f:\N \to A</p>
+
+      <p>$$
 where:</p>
 
       <ul>
@@ -4390,19 +4236,7 @@ where:</p>
   <p><strong>Fact:</strong></p>
 
   <ul>
-    <li>
-      <table>
-        <tbody>
-          <tr>
-            <td>If $A \subseteq B$, then $</td>
-            <td>A</td>
-            <td>\le</td>
-            <td>B</td>
-            <td>$</td>
-          </tr>
-        </tbody>
-      </table>
-    </li>
+    <li>If $A \subseteq B$, then $\vert A\vert  \le \vert B\vert$</li>
     <li>If $A \subseteq B$, and $B$ is countable, then $A$ is also countable.</li>
     <li>A countable or finite <strong>union</strong> of countable sets is <strong>countable</strong>.</li>
   </ul>
@@ -4460,7 +4294,11 @@ where:</p>
     </li>
     <li>
       <p>Then we can write a all members into a set, such that we get a one-to-one mapping with the natural numbers:
-\(\{r_1, r_2,r_3, ... \}\text{, members of $r_i$, $\forall i \in \N$}\)</p>
+$$</p>
+
+      <p>{r_1, r_2,r_3, … }\text{, members of $r_i$, $\forall i \in \N$}</p>
+
+      <p>$$</p>
 
       <ul>
         <li>
@@ -4522,7 +4360,11 @@ where:</p>
   <ul>
     <li>
       <p>For finite $\Sigma$, the set of all <strong>languages</strong>
-\(\{ L \subseteq \Sigma^* \} = \mathbb{P}(\Sigma^*)\)
+$$</p>
+
+      <p>{ L \subseteq \Sigma^* } = \mathbb{P}(\Sigma^*)</p>
+
+      <p>$$
 is <strong>not</strong> countable</p>
     </li>
     <li>
@@ -4561,16 +4403,7 @@ is <strong>not</strong> countable</p>
           <p>and the diagonal way to construct $L$ is evident from above, as:</p>
 
           <ul>
-            <li>
-              <table>
-                <tbody>
-                  <tr>
-                    <td>Construct $L = { s_i \in \Sigma^*</td>
-                    <td>s_i \notin L_i }$</td>
-                  </tr>
-                </tbody>
-              </table>
-            </li>
+            <li>Construct $L = { s_i \in \Sigma^* \vert  s_i \notin L_i }$</li>
             <li>Then, there is at least one string that:
               <ul>
                 <li>was accepted by $L_i$ but not accepted by $L$</li>
@@ -4611,8 +4444,14 @@ is <strong>not</strong> countable</p>
   <p><strong>Claim:</strong></p>
 
   <ul>
-    <li>We say that the problem:
-\(\overline{A_{TM}} \text{ is not recognizable}\)</li>
+    <li>
+      <p>We say that the problem:
+$$</p>
+
+      <p>\overline{A_{TM}} \text{ is not recognizable}</p>
+
+      <p>$$</p>
+    </li>
   </ul>
 </blockquote>
 
@@ -4665,9 +4504,22 @@ is <strong>not</strong> countable</p>
   <p><strong>Claim:</strong></p>
 
   <ul>
-    <li>The halting problem:
-\(\text{$Halt_{TM}$ = \{ $\lang M,w\rang$|$M$ is a TM, $M$ halts on $w$ \}}\)
-is <strong>undecidable</strong></li>
+    <li>
+      <p>The halting problem:
+$$</p>
+
+      <table>
+        <tbody>
+          <tr>
+            <td>\text{$Halt_{TM}$ = { $\lang M,w\rang$</td>
+            <td>$M$ is a TM, $M$ halts on $w$ }}</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p>$$
+is <strong>undecidable</strong></p>
+    </li>
   </ul>
 </blockquote>
 
@@ -4720,7 +4572,7 @@ is <strong>undecidable</strong></li>
   <p><strong>Reduction:</strong></p>
 
   <ul>
-    <li>We say a <strong>language $A$</strong> is Turing-reducible to a language $B$, written $A \le_T B $, if given a subroutine/decider/oracle that decides $B$, there <strong>exists a decider for $A$.</strong>
+    <li>We say a <strong>language $A$</strong> is Turing-reducible to a language $B$, written $A \le_T B$, if given a subroutine/decider/oracle that decides $B$, there <strong>exists a decider for $A$.</strong>
       <ul>
         <li>i.e. if we know how to <strong>solve</strong> $B$ (harder part), then we <strong>also know how to solve</strong> $A$ (easier part).</li>
         <li>i.e. $A$ would be easier to decide than $B$, such that when we decide $B$, we have already decided $A$.</li>
@@ -4812,7 +4664,18 @@ is <strong>undecidable</strong></li>
 <ul>
   <li>
     <p><strong>Claim:</strong>
-\(E_{TM}=\{ \lang M\rang\,|\, \text{$M$ is a TM, and $L(M)\neq \empty$} \}\)
+$$</p>
+
+    <table>
+      <tbody>
+        <tr>
+          <td>E_{TM}={ \lang M\rang\,</td>
+          <td>\, \text{$M$ is a TM, and $L(M)\neq \empty$} }</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>$$
 is <strong>not</strong> decidable.</p>
   </li>
   <li>
@@ -4857,7 +4720,18 @@ is <strong>not</strong> decidable.</p>
 <ul>
   <li>
     <p><strong>Claim:</strong>
-\(EQ_{TM}=\{ \lang M_1, M_2 \rang | \text{$M_1, M_2$ are TMs and $L(M_1)=L(M_2)$} \}\)
+$$</p>
+
+    <table>
+      <tbody>
+        <tr>
+          <td>EQ_{TM}={ \lang M_1, M_2 \rang</td>
+          <td>\text{$M_1, M_2$ are TMs and $L(M_1)=L(M_2)$} }</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>$$
 is <strong>not decidable</strong>.</p>
 
     <ul>
@@ -4892,7 +4766,18 @@ is <strong>not decidable</strong>.</p>
 <ul>
   <li>
     <p><strong>Claim:</strong>
-\(REG_{TM}=\{ \lang M\rang | \text{$M$ is a TM, $L(M)$ is regular} \}\)
+$$</p>
+
+    <table>
+      <tbody>
+        <tr>
+          <td>REG_{TM}={ \lang M\rang</td>
+          <td>\text{$M$ is a TM, $L(M)$ is regular} }</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>$$
 is <strong>not decidable</strong></p>
   </li>
   <li>
@@ -4961,7 +4846,18 @@ is <strong>not decidable</strong></p>
   <ul>
     <li>
       <p>Any non-trivial language of the form:
-\(\{ \lang M\rang | \text{M is a TM and $L(M)$ satisfies...}\}\)
+$$</p>
+
+      <table>
+        <tbody>
+          <tr>
+            <td>{ \lang M\rang</td>
+            <td>\text{M is a TM and $L(M)$ satisfies…}}</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p>$$
 is <strong>not decidable</strong></p>
 
       <ul>
@@ -4977,15 +4873,7 @@ is <strong>not decidable</strong></p>
   <ul>
     <li>$P$ is a <strong>non-trivial</strong> property of a <strong><em>recognizable</em></strong> languages:
       <ul>
-        <li>
-          <table>
-            <tbody>
-              <tr>
-                <td>$P \subseteq {\lang M\rang</td>
-                <td>\text{ $M$ is a TM }}$ (defining <strong>property</strong>)</td>
-              </tr>
-            </tbody>
-          </table>
+        <li>$P \subseteq {\lang M\rang \vert \text{$M$is a TM }}$ (defining <strong>property</strong>)
           <ul>
             <li><strong>then</strong> if $M_1, M_2$ are TMs and $L(M_1)=L(M_2)$, then either:
               <ul>
@@ -4996,15 +4884,7 @@ is <strong>not decidable</strong></p>
             <li>so the property is a property of the <strong>LANGUAGE</strong> of the TM, <strong>not</strong> of the <strong>implementation</strong> of TM</li>
           </ul>
         </li>
-        <li>
-          <table>
-            <tbody>
-              <tr>
-                <td><strong>and</strong> $P \neq \empty$, $P \neq { \lang M \rang</td>
-                <td>\text{$M$ is a TM} }$ (defining <strong>non-trivial</strong>)</td>
-              </tr>
-            </tbody>
-          </table>
+        <li><strong>and</strong> $P \neq \empty$, $P \neq { \lang M \rang \vert  \text{$M$is a TM} }$ (defining <strong>non-trivial</strong>)
           <ul>
             <li>i.e. $P$ is a proper, non-empty subset of all TM $\lang M\rang$</li>
             <li>i.e. there exists <strong>at least one</strong> $\lang M \rang \in P$, and <strong>at least one</strong> $\lang M \rang \notin P$</li>
@@ -5086,10 +4966,14 @@ is <strong>not decidable</strong></p>
   <ul>
     <li>
       <p>The proof above for Rice’s Theorem, which showed $A_{TM} \le_T P$ can be rephrased to show that
-\(\begin{cases}
-\overline{A_{TM}} \le_M P &amp; \text{if $\lang M_{\empty}\rang \in P$} \\
+$$</p>
+
+      <p>\begin{cases}
+\overline{A_{TM}} \le_M P &amp; \text{if $\lang M_{\empty}\rang \in P$} <br />
 \overline{A_{TM}} \le_M \overline{P} &amp; \text{if $\lang M_{\empty}\rang \notin P$}
-\end{cases}\)
+\end{cases}</p>
+
+      <p>$$
 which is <strong>mapping reduction</strong>, which shows the <strong>refined Rice’s Theorem</strong>:</p>
 
       <ul>
@@ -5113,7 +4997,18 @@ which is <strong>mapping reduction</strong>, which shows the <strong>refined Ric
     <p><strong>Question:</strong></p>
 
     <p>The language:
-\(P=\{\lang M\rang | \text{$M$ is a TM, and every string accepted by $M$ starts with $0$}  \}\)
+$$</p>
+
+    <table>
+      <tbody>
+        <tr>
+          <td>P={\lang M\rang</td>
+          <td>\text{$M$ is a TM, and every string accepted by $M$ starts with $0$}  }</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>$$
 is <strong>undecidable <em>by Rice’s Theorem</em></strong></p>
   </li>
   <li>
@@ -5158,16 +5053,7 @@ is <strong>undecidable <em>by Rice’s Theorem</em></strong></p>
         <li>it is a property of a DFA, graph, integers, etc. such that it <strong>cannot</strong> be rephrased as a <strong>TM property</strong></li>
         <li>it is a property that <strong>depends on implementation</strong>
           <ul>
-            <li>
-              <table>
-                <tbody>
-                  <tr>
-                    <td>e.g. ${ \lang M\rang</td>
-                    <td>\text{$M$ is a TM, $M$ accepts $\epsilon$, and $M$ has at least 17 states} }$</td>
-                  </tr>
-                </tbody>
-              </table>
-            </li>
+            <li>e.g. ${ \lang M\rang \vert  \text{$M$is a TM,$M$accepts$\epsilon$, and$M$has at least 17 states} }$</li>
           </ul>
         </li>
       </ul>
@@ -5276,7 +5162,11 @@ is <strong>undecidable <em>by Rice’s Theorem</em></strong></p>
   <ul>
     <li>
       <p>A language $A$ is <strong>mapping reducible to a language</strong> $B$, denoted as $A \le_{M} B$, if there <strong>exists a computable function</strong>
-\(f:\Sigma^* \to \Sigma^*\)
+$$</p>
+
+      <p>f:\Sigma^* \to \Sigma^*</p>
+
+      <p>$$
 <strong>such</strong> that:</p>
 
       <ul>
@@ -5298,20 +5188,15 @@ is <strong>undecidable <em>by Rice’s Theorem</em></strong></p>
 <ul>
   <li>
     <p><strong>Question</strong>:
-\(\overline{A_{TM}} \le_M REG_{TM}\)
+$$</p>
+
+    <p>\overline{A_{TM}} \le_M REG_{TM}</p>
+
+    <p>$$
 where:</p>
 
     <ul>
-      <li>
-        <table>
-          <tbody>
-            <tr>
-              <td>recall that $REG_{TM}={ \lang M\rang</td>
-              <td>\text{$M$ is a TM, $L(M)$ is regular} }$</td>
-            </tr>
-          </tbody>
-        </table>
-      </li>
+      <li>recall that $REG_{TM}={ \lang M\rang \vert  \text{$M$is a TM,$L(M)$is regular} }$</li>
     </ul>
   </li>
   <li>
@@ -5471,7 +5356,18 @@ where:</p>
 <ul>
   <li>
     <p><strong>Theorem</strong>:
-\(ALL_{TM} = \{ \lang M\rang | \text{$M$ is a TM, and $L(M)=\Sigma^*$ } \}\)
+$$</p>
+
+    <table>
+      <tbody>
+        <tr>
+          <td>ALL_{TM} = { \lang M\rang</td>
+          <td>\text{$M$ is a TM, and $L(M)=\Sigma^*$ } }</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>$$
 is <strong>neither recognizable nor co-recognizable</strong></p>
   </li>
   <li>
@@ -5560,7 +5456,11 @@ is <strong>neither recognizable nor co-recognizable</strong></p>
   <ul>
     <li>
       <p>If we have a <strong>TM reducibility</strong>, then:
-\(A \le_T B \iff \bar{A} \le_T B \iff A \le_T \bar{B} \iff \bar{A} \le_T \bar{B}\)</p>
+$$</p>
+
+      <p>A \le_T B \iff \bar{A} \le_T B \iff A \le_T \bar{B} \iff \bar{A} \le_T \bar{B}</p>
+
+      <p>$$</p>
 
       <ul>
         <li>since we have decidability, then we can easily flip them to <strong>still be decidable</strong></li>
@@ -5568,8 +5468,15 @@ is <strong>neither recognizable nor co-recognizable</strong></p>
     </li>
     <li>
       <p>If we have <strong>Mapping reducibility</strong>, we only have:
-\(A \le_M B \iff \bar{A} \le_M \bar{B}\)
-\(\bar{A} \le_M B \iff A \le_M \bar{B}\)</p>
+$$</p>
+
+      <p>A \le_M B \iff \bar{A} \le_M \bar{B}</p>
+
+\[\]
+
+      <p>\bar{A} \le_M B \iff A \le_M \bar{B}</p>
+
+      <p>$$</p>
 
       <ul>
         <li>since now, we are talking about <strong>mapping function</strong> $f$</li>
@@ -5625,7 +5532,11 @@ is <strong>neither recognizable nor co-recognizable</strong></p>
   <ul>
     <li>
       <p>Given a TM $M$, the <strong>running time/time complexity</strong> of $M$ is a <strong>function</strong>:
-\(f: \N \to \N\)
+$$</p>
+
+      <p>f: \N \to \N</p>
+
+      <p>$$
 where:</p>
 
       <ul>
@@ -5659,8 +5570,20 @@ where:</p>
   <p><strong>Definition:</strong></p>
 
   <ul>
-    <li>We define a <strong>set</strong> of language:
-\(\text{TIME}(t(n)) = \{ L | L \text{ is decidable by a TM that runs in time } O(t(n)) \}\)
+    <li>
+      <p>We define a <strong>set</strong> of language:
+$$</p>
+
+      <table>
+        <tbody>
+          <tr>
+            <td>\text{TIME}(t(n)) = { L</td>
+            <td>L \text{ is decidable by a TM that runs in time } O(t(n)) }</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p>$$</p>
       <ul>
         <li>note that:
           <ul>
@@ -5678,7 +5601,11 @@ where:</p>
   <ul>
     <li>
       <p>For functions $f,g: \N \to \R^+$, we say that:
-\(f(n)=O(g(n))\)
+$$</p>
+
+      <p>f(n)=O(g(n))</p>
+
+      <p>$$
 if there exists a positive constant $c, n_0$ such that:</p>
 
       <ul>
@@ -5699,8 +5626,13 @@ if there exists a positive constant $c, n_0$ such that:</p>
   <p><strong>From the definition of $\text{TIME}(t(n))$</strong>:</p>
 
   <ul>
-    <li>it follows that <strong>if $t(n)=O(t’(n))$</strong>, then:
-\(\text{TIME}(t(n)) \subseteq \text{TIME}(t'(n))\)
+    <li>
+      <p>it follows that <strong>if $t(n)=O(t’(n))$</strong>, then:
+$$</p>
+
+      <p>\text{TIME}(t(n)) \subseteq \text{TIME}(t’(n))</p>
+
+      <p>$$</p>
       <ul>
         <li>i.e. obviously, if a TM $M$ runs in $t(n)$, then it also runs in $O(t’(n))$</li>
       </ul>
@@ -5712,8 +5644,13 @@ if there exists a positive constant $c, n_0$ such that:</p>
   <p><strong>Definition:</strong></p>
 
   <ul>
-    <li>The class <strong>poly-time computable languages</strong> is defined as:
-\(P = \bigcup_{k=1}^\infty \text{TIME}(n^k)\)
+    <li>
+      <p>The class <strong>poly-time computable languages</strong> is defined as:
+$$</p>
+
+      <p>P = \bigcup_{k=1}^\infty \text{TIME}(n^k)</p>
+
+      <p>$$</p>
       <ul>
         <li>
           <p>note that this means:</p>
@@ -5794,7 +5731,11 @@ if there exists a positive constant $c, n_0$ such that:</p>
   <ul>
     <li>
       <p>An algorithm is poly-time if it’s <strong>poly-time in terms of its input length</strong>:
-\(f(n) \in P\)
+$$</p>
+
+      <p>f(n) \in P</p>
+
+      <p>$$
 however:</p>
 
       <ul>
@@ -5831,9 +5772,15 @@ however:</p>
           <p>proof sketch:</p>
 
           <p>we know:
-\(O(n^k), \text{where $k$ is some constant}\)
-to represent a number in base $k$, and $k \neq 1$, we have
-\(N = k^n\)</p>
+$$</p>
+
+          <p>O(n^k), \text{where $k$ is some constant}</p>
+
+\[to represent a number in base $k$, and $k \neq 1$, we have\]
+
+          <p>N = k^n</p>
+
+          <p>$$</p>
         </li>
       </ul>
 
@@ -5841,15 +5788,22 @@ to represent a number in base $k$, and $k \neq 1$, we have
 
       <ul>
         <li>$k$ is the base. (e.g. base 2 for binary)</li>
-        <li>
-          <p>therefore, if $n=log(N)$, we have:
-\(f(N)=O(({log_k(N)}^k))=O(N^k)\)
-however, if we use unary: so $n=N$, (unary) then:
-\(f(N)=O(N^k)\)</p>
-        </li>
-        <li>still works? ==TODO==</li>
+        <li>therefore, if $n=log(N)$, we have:
+$$</li>
       </ul>
+
+      <p>f(N)=O(({log_k(N)}^k))=O(N^k)</p>
     </li>
+  </ul>
+
+\[however, if we use unary: so $n=N$, (unary) then:\]
+
+  <p>f(N)=O(N^k)</p>
+
+  <p>$$</p>
+
+  <ul>
+    <li>still works? ==TODO==</li>
   </ul>
 </blockquote>
 
@@ -5881,63 +5835,29 @@ however, if we use unary: so $n=N$, (unary) then:
       <li>first, prove that the above is <strong>implementable</strong> (each step is <strong>computable</strong>), which is in this case</li>
     </ul>
 
-    <table>
-      <tbody>
-        <tr>
-          <td>Running time in $</td>
-          <td>x</td>
-          <td>$:</td>
-        </tr>
-      </tbody>
-    </table>
+    <p>Running time in $\vert x\vert$:</p>
 
     <blockquote>
       <ul>
         <li>
-          <table>
-            <tbody>
-              <tr>
-                <td>Each Iteration of loop is poly-time in $</td>
-                <td>x</td>
-                <td>$ (since division is polytime)</td>
-              </tr>
-            </tbody>
-          </table>
+          <p>Each Iteration of loop is poly-time in $\vert x\vert$ (since division is polytime)</p>
         </li>
         <li>
           <p>the number of iterations is $\sqrt{x}$</p>
 
           <ul>
             <li>
-              <table>
-                <tbody>
-                  <tr>
-                    <td>since $x = 2^{</td>
-                    <td>x</td>
-                    <td>}$ in binary</td>
-                  </tr>
-                </tbody>
-              </table>
+              <p>since $x = 2^{\vert x\vert }$ in binary</p>
             </li>
             <li>
-              <table>
-                <tbody>
-                  <tr>
-                    <td>or $x=k^{</td>
-                    <td>x</td>
-                    <td>}=2^{log_k(2)\cdot</td>
-                    <td>x</td>
-                    <td>}=2^{O(</td>
-                    <td>x</td>
-                    <td>)}$, for $k$ being the base except for unary</td>
-                  </tr>
-                </tbody>
-              </table>
+              <p>or $x=k^{\vert x\vert }=2^{log_k(2)\cdot \vert x\vert }=2^{O(\vert x\vert )}$, for $k$ being the base except for unary</p>
             </li>
-            <li>hence:
+            <li>
+              <p>hence:
 \(\sqrt{x}=2^{O(x)/2}=2^{O(x)}\)
 Therefore, the runtime for this algorithm is in fact <strong>exponential</strong>:
-\(\text{TIME}=2^{O(|x|)}\cdot O(|x|^k) \notin P\)</li>
+\(\text{TIME}=2^{O(|x|)}\cdot O(|x|^k) \notin P\)</p>
+            </li>
           </ul>
         </li>
       </ul>
@@ -5980,21 +5900,28 @@ Therefore, the runtime for this algorithm is in fact <strong>exponential</strong
   <ul>
     <li>
       <p>A <strong>verifier</strong> for a language $A$, is a TM (algorithm) $V$, s.t. $V$ gets input $(x,c)$ and outputs accept/reject, where:
-\(A=\{ x | \text{$V(x,c)$ accepts for some $c$} \}\)</p>
+$$</p>
 
-      <ul>
-        <li>
-          <p>i.e. $V$ is a verifier for $A$, if $A$ consists of all strings $x$ where there <strong>exists some $c$ (certificate/”solution”)</strong>, such that $V(x,c)$ accepts.</p>
+      <table>
+        <tbody>
+          <tr>
+            <td>A={ x</td>
+            <td>\text{$V(x,c)$ accepts for some $c$} }</td>
+          </tr>
+        </tbody>
+      </table>
 
-          <ul>
-            <li>so
-\(\begin{cases}
+\[- i.e. $V$ is a verifier for $A$, if $A$ consists of all strings $x$ where there **exists some $c$ (certificate/"solution")**, such that $V(x,c)$ accepts.
+
+  - so\]
+
+      <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>\begin{cases}
 x \in A \Rarr \exists c, &amp; V(x,c)\,accepts\\
 x \notin A \Rarr \forall c, &amp; V(x,c)\,rejects
-\end{cases}\)</li>
-          </ul>
-        </li>
-      </ul>
+\end{cases}
+  
+$$
+</code></pre></div>      </div>
     </li>
   </ul>
 
@@ -6004,17 +5931,7 @@ x \notin A \Rarr \forall c, &amp; V(x,c)\,rejects
   <p><strong>Polytime Verifier</strong></p>
 
   <ul>
-    <li>
-      <table>
-        <tbody>
-          <tr>
-            <td>A polytime verifier for a language $A$ is a verifier $V$, such that $V$ runs in time $O(</td>
-            <td>x</td>
-            <td>^k)$, i.e. polytime in length</td>
-          </tr>
-        </tbody>
-      </table>
-    </li>
+    <li>A polytime verifier for a language $A$ is a verifier $V$, such that $V$ runs in time $O(\vert x\vert ^k)$, i.e. polytime in length</li>
   </ul>
 </blockquote>
 
@@ -6032,9 +5949,29 @@ x \notin A \Rarr \forall c, &amp; V(x,c)\,rejects
 
 <blockquote>
   <p><strong>Formal Definition of P and NP</strong>
-\(NP = \{ L | \text{$L$ is polytime verifiable in length of input} \}\)</p>
+$$</p>
 
-\[P = \{ L | \text{$L$ is polytime computable in length of input} \}\]
+  <table>
+    <tbody>
+      <tr>
+        <td>NP = { L</td>
+        <td>\text{$L$ is polytime verifiable in length of input} }</td>
+      </tr>
+    </tbody>
+  </table>
+
+\[\]
+
+  <table>
+    <tbody>
+      <tr>
+        <td>P = { L</td>
+        <td>\text{$L$ is polytime computable in length of input} }</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>$$</p>
 </blockquote>
 
 <hr />
@@ -6044,7 +5981,18 @@ x \notin A \Rarr \forall c, &amp; V(x,c)\,rejects
 <ul>
   <li>
     <p>Consider the language:
-\(Composite=\{ \lang x\rang | \text{$x$ is not prime} \}\)
+$$</p>
+
+    <table>
+      <tbody>
+        <tr>
+          <td>Composite={ \lang x\rang</td>
+          <td>\text{$x$ is not prime} }</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>$$
 where:</p>
 
     <ul>
@@ -6073,15 +6021,7 @@ where:</p>
 
     <ul>
       <li>
-        <table>
-          <tbody>
-            <tr>
-              <td>$V$ runs in time $poly(</td>
-              <td>x</td>
-              <td>)$</td>
-            </tr>
-          </tbody>
-        </table>
+        <p>$V$ runs in time $poly(\vert x\vert )$</p>
 
         <ul>
           <li>every step is in polytime</li>
@@ -6128,7 +6068,11 @@ where:</p>
 
 <blockquote>
   <p><strong>Claim:</strong>
-\(P \subseteq NP\)</p>
+$$</p>
+
+  <p>P \subseteq NP</p>
+
+  <p>$$</p>
 
   <ul>
     <li>where:
@@ -6157,7 +6101,11 @@ where:</p>
   <ul>
     <li>
       <p>However, this is <strong>not known:</strong>
-\(NP \subseteq P  \,\,??\,\,NP \nsubseteq P\)
+$$</p>
+
+      <p>NP \subseteq P  \,\,??\,\,NP \nsubseteq P</p>
+
+      <p>$$
 where:</p>
 
       <ul>
@@ -6184,7 +6132,11 @@ where:</p>
 
 <blockquote>
   <p><strong>Claim:</strong>
-\(P \subseteq NP \subseteq \text{EXP}\)</p>
+$$</p>
+
+  <p>P \subseteq NP \subseteq \text{EXP}</p>
+
+  <p>$$</p>
 </blockquote>
 
 <blockquote>
@@ -6198,56 +6150,13 @@ where:</p>
       <p>We then just need to show $NP \subseteq \text{EXP}$</p>
 
       <ul>
-        <li>
-          <table>
-            <tbody>
-              <tr>
-                <td>If $L \in NP$, then there exists a polytime verifier $V$ for $L$, **such that $V(x,c)$ runs in time $O(</td>
-                <td>x</td>
-                <td>^k)​**$</td>
-              </tr>
-            </tbody>
-          </table>
+        <li>If $L \in NP$, then there exists a polytime verifier $V$ for $L$, <strong>such that $V(x,c)$ runs in time $O(\vert x\vert ^k)​</strong>$
           <ul>
-            <li>
-              <table>
-                <tbody>
-                  <tr>
-                    <td>note that, since $V(x,c)$ is polytime, is immediately made $</td>
-                    <td>c</td>
-                    <td>\le O(</td>
-                    <td>x</td>
-                    <td>^k)$. Because if it were, then simply reading the input $c$ would have exceeded the polytime, then this contradicts the verifier $V$</td>
-                  </tr>
-                </tbody>
-              </table>
-            </li>
+            <li>note that, since $V(x,c)$ is polytime, is immediately made $\vert c\vert  \le O(\vert x\vert ^k)$. Because if it were, then simply reading the input $c$ would have exceeded the polytime, then this contradicts the verifier $V$</li>
           </ul>
         </li>
-        <li>
-          <table>
-            <tbody>
-              <tr>
-                <td>Let us fix a constant $a$, such that $V$ runs in $a</td>
-                <td>x</td>
-                <td>^k$ time, for some constant $a,k$.</td>
-              </tr>
-            </tbody>
-          </table>
-        </li>
-        <li>
-          <table>
-            <tbody>
-              <tr>
-                <td>Then, we just <strong>check all</strong> $c$ <strong>up to</strong> $</td>
-                <td>c</td>
-                <td>\le a</td>
-                <td>x</td>
-                <td>^k$</td>
-              </tr>
-            </tbody>
-          </table>
-        </li>
+        <li>Let us fix a constant $a$, such that $V$ runs in $a\vert x\vert ^k$ time, for some constant $a,k$.</li>
+        <li>Then, we just <strong>check all</strong> $c$ <strong>up to</strong> $\vert c\vert  \le a\vert x\vert ^k$</li>
       </ul>
 
       <p><img src="\lectures\images\typora-user-images\image-20201204012600475.png" alt="image-20201204012600475" style="zoom:50%;" /></p>
@@ -6255,21 +6164,7 @@ where:</p>
       <p>where:</p>
 
       <ul>
-        <li>
-          <table>
-            <tbody>
-              <tr>
-                <td>this would be <strong>loop</strong> for all numbers $c$ up to $2^{O(</td>
-                <td>c</td>
-                <td>)}=2^{a\cdot</td>
-                <td>x</td>
-                <td>^k}= O(2^{</td>
-                <td>x</td>
-                <td>^k})$ <strong>times</strong></td>
-              </tr>
-            </tbody>
-          </table>
-        </li>
+        <li>this would be <strong>loop</strong> for all numbers $c$ up to $2^{O(\vert c\vert )}=2^{a\cdot \vert x\vert ^k}= O(2^{\vert x\vert ^k})$ <strong>times</strong></li>
       </ul>
 
       <p>where, the <strong>runtime</strong> analysis would be:</p>
@@ -6283,7 +6178,11 @@ where:</p>
 
 <blockquote>
   <p><strong>Claim:</strong>
-\(P \subsetneq \text{EXP}\)</p>
+$$</p>
+
+  <p>P \subsetneq \text{EXP}</p>
+
+  <p>$$</p>
 
   <ul>
     <li>this is <strong>provable</strong>. However, we will not prove them</li>
@@ -6293,13 +6192,19 @@ where:</p>
 <p>Consequently, we now do not know where $NP$ fits:</p>
 
 <ul>
-  <li>the following cases could <strong>all</strong> be <strong>possible</strong>
-\(\begin{cases}
-P = NP \subsetneq EXP\\
-P \subsetneq NP \subsetneq EXP\\
-P \subseteq NP = EXP\\
-...
-\end{cases}\)</li>
+  <li>
+    <p>the following cases could <strong>all</strong> be <strong>possible</strong>
+$$</p>
+
+    <p>\begin{cases}
+P = NP \subsetneq EXP<br />
+P \subsetneq NP \subsetneq EXP<br />
+P \subseteq NP = EXP<br />
+…
+\end{cases}</p>
+
+    <p>$$</p>
+  </li>
 </ul>
 
 <h1 id="week-14">Week 14</h1>
@@ -6339,7 +6244,11 @@ P \subseteq NP = EXP\\
   <ul>
     <li>
       <p>A language <strong>$A$ is polytime reducible to $B$</strong>, ($A \le_P B$), if $\exist$ polytime computable function $f: \Sigma^<em>: \Sigma^</em>$, such that
-\(x \in A \iff f(x) \in B\)
+$$</p>
+
+      <p>x \in A \iff f(x) \in B</p>
+
+      <p>$$
 where again we are just <strong>mapping inputs</strong> from one into another:</p>
 
       <p><img src="\lectures\images\typora-user-images\image-20201211183456563.png" alt="image-20201211183456563" /></p>
@@ -6373,7 +6282,11 @@ where again we are just <strong>mapping inputs</strong> from one into another:</
     </li>
     <li>
       <p>Suppose $A \le_P B$, then there is a polytime algorithm $F$ computing a function $f$ such that
-\(x \in A \iff f(x) \in B\)
+$$</p>
+
+      <p>x \in A \iff f(x) \in B</p>
+
+      <p>$$
 Suppose $B \in P$, then there is a polytime algorithm $M_B$ that decides $B$.</p>
 
       <p>I use the two elements to <strong>construct an algorithm that decides $A$</strong></p>
@@ -6416,7 +6329,11 @@ Suppose $B \in P$, then there is a polytime algorithm $M_B$ that decides $B$.</p
     </li>
     <li>
       <p>Suppose $A \le_P B$, then I get a polytime decidable function $f$
-\(w \in A \iff f(w) \in B\)</p>
+$$</p>
+
+      <p>w \in A \iff f(w) \in B</p>
+
+      <p>$$</p>
     </li>
     <li>
       <p>Suppose $B \in NP$, then I get a polytime verifier $V_B(x,c)$ that verifies $B$.</p>
@@ -6541,7 +6458,11 @@ Suppose $B \in P$, then there is a polytime algorithm $M_B$ that decides $B$.</p
   <ul>
     <li>
       <p>Suppose \(A \le_P B\). Then I can have a polytime computable function $f$ such that:
-\(x \in A \iff f(x) \in B\)</p>
+$$</p>
+
+      <p>x \in A \iff f(x) \in B</p>
+
+      <p>$$</p>
     </li>
     <li>
       <p>Suppose $A$ is $\text{NP-Hard}$</p>
@@ -6555,9 +6476,15 @@ Suppose $B \in P$, then there is a polytime algorithm $M_B$ that decides $B$.</p
       </ul>
 
       <p>Because $A$ is $\text{NP-Hard}$, then $C \le_P A$. This means that I get a polytime computable function $g$:
-\(w \in C \iff g(w) \in A\)
-Now, since I know $C \le_P A$ and $A \le_P B$, I can show $C \le_P B$ by constructing the <strong>mapping (using transitivity)</strong>
-\(w \in C \iff f(g(w)) \in B\)</p>
+$$</p>
+
+      <p>w \in C \iff g(w) \in A</p>
+
+\[Now, since I know $C \le_P A$ and $A \le_P B$, I can show $C \le_P B$ by constructing the **mapping (using transitivity)**\]
+
+      <p>w \in C \iff f(g(w)) \in B</p>
+
+      <p>$$</p>
     </li>
     <li>
       <p>this completes the proof</p>
@@ -6642,7 +6569,18 @@ Now, since I know $C \le_P A$ and $A \le_P B$, I can show $C \le_P B$ by constru
     <p><strong>Question</strong></p>
 
     <p>Given an <strong>undirected</strong> graph $G$, tells whether $G$ has a Hamiltonian Cycle (a cycle that goes <strong>through each nodes exactly once</strong>):
-\(Ham_{cycyle}=\{ \lang G\rang | \text{$G$ is an undirected graph and $G$ has a Hamiltonian Cycle} \}\)
+$$</p>
+
+    <table>
+      <tbody>
+        <tr>
+          <td>Ham_{cycyle}={ \lang G\rang</td>
+          <td>\text{$G$ is an undirected graph and $G$ has a Hamiltonian Cycle} }</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>$$
 this problem is NP</p>
   </li>
   <li>
@@ -6689,17 +6627,7 @@ this problem is NP</p>
 
   <ul>
     <li>In short, we need to give an algorithm that solves it in $EXP$</li>
-    <li>
-      <table>
-        <tbody>
-          <tr>
-            <td>The idea is simple, <strong>try all permutations of $c$,</strong> which has $</td>
-            <td>V</td>
-            <td>!$ of it, which is exponential, and <strong>use</strong> the $V$ we had above</td>
-          </tr>
-        </tbody>
-      </table>
-    </li>
+    <li>The idea is simple, <strong>try all permutations of $c$,</strong> which has $\vert V\vert !$ of it, which is exponential, and <strong>use</strong> the $V$ we had above</li>
   </ul>
 </blockquote>
 
@@ -6712,7 +6640,18 @@ this problem is NP</p>
     <p><strong>Question</strong></p>
 
     <p>The sudoku problem
-\(sudoku:\{ P | \text{$P$ is a $n^2 \times  n^2$ grid, partially filled with integers from $1$ to $n^2$, such that there exists a valid solution} \}\)
+$$</p>
+
+    <table>
+      <tbody>
+        <tr>
+          <td>sudoku:{ P</td>
+          <td>\text{$P$ is a $n^2 \times  n^2$ grid, partially filled with integers from $1$ to $n^2$, such that there exists a valid solution} }</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>$$
 is NP-Complete.</p>
   </li>
   <li>
@@ -6733,7 +6672,18 @@ is NP-Complete.</p>
     <p><strong>Question</strong></p>
 
     <p>The problem
-\(\text{SUBSET-SUM}: \{ (x_1, x_2, ...x_n, t) | x_1, ...,x_n,t \text{ are integers such that there exists non-empty $S \subseteq \{1,2,...,n\}$ such that $\sum_{i\in S} x_i = t$} \}\)
+$$</p>
+
+    <table>
+      <tbody>
+        <tr>
+          <td>\text{SUBSET-SUM}: { (x_1, x_2, …x_n, t)</td>
+          <td>x_1, …,x_n,t \text{ are integers such that there exists non-empty $S \subseteq {1,2,…,n}$ such that $\sum_{i\in S} x_i = t$} }</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>$$
 where:</p>
 
     <ul>
@@ -6759,7 +6709,18 @@ where:</p>
     <p><strong>Question</strong></p>
 
     <p>The problem
-\(SAT=\{ \varphi | \varphi \text{ is a satifiable Boolean formula} \}\)
+$$</p>
+
+    <table>
+      <tbody>
+        <tr>
+          <td>SAT={ \varphi</td>
+          <td>\varphi \text{ is a satifiable Boolean formula} }</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>$$
 where:</p>
 
     <ul>
@@ -6787,7 +6748,18 @@ where:</p>
     <p><strong>Question</strong></p>
 
     <p>The variation of $SAT$
-\(\text{CNF-SAT}=\{ \varphi | \varphi \text{ is a CNF of a Boolean formula and is a satifiable} \}\)
+$$</p>
+
+    <table>
+      <tbody>
+        <tr>
+          <td>\text{CNF-SAT}={ \varphi</td>
+          <td>\varphi \text{ is a CNF of a Boolean formula and is a satifiable} }</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>$$
 where:</p>
 
     <ul>
@@ -6805,7 +6777,7 @@ where:</p>
       </li>
       <li>$\varphi$ is a CNF form is it is composed of clauses $C_i$
         <ul>
-          <li>$\varphi = C_1 \and C_2 \and C_3 … $</li>
+          <li>$\varphi = C_1 \and C_2 \and C_3 …$</li>
           <li>only $\and$ (AND) are included between clauses</li>
         </ul>
       </li>
@@ -6831,7 +6803,18 @@ where:</p>
     <p><strong>Question:</strong></p>
 
     <p>The problem/variation of $SAT$:
-\(3SAT = \{  \varphi | \varphi \text{ is a 3-CNF of a Boolean formula and is a satifiable}  \}\)
+$$</p>
+
+    <table>
+      <tbody>
+        <tr>
+          <td>3SAT = {  \varphi</td>
+          <td>\varphi \text{ is a 3-CNF of a Boolean formula and is a satifiable}  }</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>$$
 where:</p>
 
     <ul>
@@ -6920,15 +6903,32 @@ where:</p>
   <p><strong>Definition</strong></p>
 
   <ul>
-    <li>A non-deterministic time:
-\(\text{NTIME}(t(n))=\{ L | \exists \text{ a NTM $N$ that decides $L$, and runs in time $O(t(n))$} \}\)</li>
+    <li>
+      <p>A non-deterministic time:
+$$</p>
+
+      <table>
+        <tbody>
+          <tr>
+            <td>\text{NTIME}(t(n))={ L</td>
+            <td>\exists \text{ a NTM $N$ that decides $L$, and runs in time $O(t(n))$} }</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p>$$</p>
+    </li>
   </ul>
 
 </blockquote>
 
 <blockquote>
   <p><strong>Theorem</strong>
-\(NP=\bigcup_{k=1}^{\infty}\text{NTIME}(n^k)\)</p>
+$$</p>
+
+  <p>NP=\bigcup_{k=1}^{\infty}\text{NTIME}(n^k)</p>
+
+  <p>$$</p>
 
   <ul>
     <li>i.e. to show that a language is in $NP$, instead of giving a verifier, we could show by giving a <strong>non-deterministic TM</strong> that actually <strong>solves</strong> it, with <strong>longest path being the order of $O(n^k)$.</strong></li>
@@ -7015,17 +7015,7 @@ where:</p>
 
 <ul>
   <li>the NTM $N$ will <strong>non-deterministically</strong> try all $c$</li>
-  <li>
-    <table>
-      <tbody>
-        <tr>
-          <td>if there is a certificate $c$ that works, then $</td>
-          <td>c</td>
-          <td>\in O(n^k)$</td>
-        </tr>
-      </tbody>
-    </table>
-  </li>
+  <li>if there is a certificate $c$ that works, then $\vert c\vert  \in O(n^k)$</li>
   <li>hence we are just <strong>testing all branches up to depth</strong> $O(n^k)$, which would be $\in \text{NTIME}(n^k)$</li>
 </ul>
 
@@ -7195,59 +7185,19 @@ the basis for the circuitry used in electronic computers. Hence the fact that <s
 
 <ol>
   <li>Usually, using Induction will work</li>
-  <li>
-    <table>
-      <tbody>
-        <tr>
-          <td>Show that it is true for $</td>
-          <td>\alpha</td>
-          <td>=1$</td>
-        </tr>
-      </tbody>
-    </table>
+  <li>Show that it is true for $\vert \alpha\vert =1$
     <ul>
       <li>$L(a)$</li>
       <li>$L(\epsilon)$</li>
       <li>$L(\empty)$</li>
     </ul>
   </li>
-  <li>
-    <table>
-      <tbody>
-        <tr>
-          <td>Assume that the property is true for $</td>
-          <td>\alpha</td>
-          <td>= k$</td>
-        </tr>
-      </tbody>
-    </table>
-  </li>
-  <li>
-    <table>
-      <tbody>
-        <tr>
-          <td>Show that, for $</td>
-          <td>\alpha</td>
-          <td>=k+1$, we can have:</td>
-        </tr>
-      </tbody>
-    </table>
+  <li>Assume that the property is true for $\vert \alpha\vert  = k$</li>
+  <li>Show that, for $\vert \alpha\vert =k+1$, we can have:
     <ul>
       <li>$\alpha = (\alpha_1 \circ \alpha_2)$, $L(\alpha) = L(\alpha_1)\circ L(\alpha_2)$ still has that property
         <ul>
-          <li>
-            <table>
-              <tbody>
-                <tr>
-                  <td>notice **that $</td>
-                  <td>\alpha_1</td>
-                  <td>,</td>
-                  <td>\alpha_2</td>
-                  <td>$ are now smaller than $k$**, so assumption from (3) can be used</td>
-                </tr>
-              </tbody>
-            </table>
-          </li>
+          <li>notice <strong>that $\vert \alpha_1\vert ,\vert \alpha_2\vert$ are now smaller than $k$</strong>, so assumption from (3) can be used</li>
         </ul>
       </li>
       <li>$\alpha = (\alpha_1 \cup \alpha_2)$, $L(\alpha) = L(\alpha_1)\cup L(\alpha_2)$ still has that property</li>
@@ -7286,17 +7236,7 @@ the basis for the circuitry used in electronic computers. Hence the fact that <s
       <li>e.g. if we needed the string $0^i1^{i+j}0^j$, then we could use the idea:
         <ul>
           <li>first part is to get $0^i1^i$, then get $1^j0^j$,</li>
-          <li>
-            <table>
-              <tbody>
-                <tr>
-                  <td>so you have $\begin{cases}S \to UT\ U\to 0U1</td>
-                  <td>\epsilon \ T\to 1T0</td>
-                  <td>\epsilon\end{cases}$</td>
-                </tr>
-              </tbody>
-            </table>
-          </li>
+          <li>so you have $\begin{cases}S \to UT\ U\to 0U1 \vert  \epsilon \ T\to 1T0 \vert  \epsilon\end{cases}$</li>
         </ul>
       </li>
     </ul>
@@ -7315,28 +7255,8 @@ the basis for the circuitry used in electronic computers. Hence the fact that <s
       <li>e.g.  $w$ starts with a $1$ and has a middle element $0$ and is of odd length
         <ul>
           <li>when one more variable is added, it must exactly add one symbol to the front and back:</li>
-          <li>
-            <table>
-              <tbody>
-                <tr>
-                  <td>$\begin{cases}S \to 1T0</td>
-                  <td>1T1\ T\to UTU</td>
-                  <td>0 \ U \to 1</td>
-                  <td>0\end{cases}$</td>
-                </tr>
-              </tbody>
-            </table>
-          </li>
-          <li>
-            <table>
-              <tbody>
-                <tr>
-                  <td>where $T\to UTU</td>
-                  <td>0$ populates the string to have $UUU…0UUU…$</td>
-                </tr>
-              </tbody>
-            </table>
-          </li>
+          <li>$\begin{cases}S \to 1T0 \vert  1T1\ T\to UTU \vert  0 \ U \to 1\vert 0\end{cases}$</li>
+          <li>where $T\to UTU\vert 0$ populates the string to have $UUU…0UUU…$</li>
         </ul>
       </li>
     </ul>
@@ -7455,16 +7375,7 @@ the basis for the circuitry used in electronic computers. Hence the fact that <s
 <p><strong>TM recognizable</strong></p>
 
 <ul>
-  <li>
-    <table>
-      <tbody>
-        <tr>
-          <td>$A_{TM} = { \langle M,w\rangle</td>
-          <td>\text{$M$ is a TM, and $M$ accepts $w$} }$</td>
-        </tr>
-      </tbody>
-    </table>
-  </li>
+  <li>$A_{TM} = { \langle M,w\rangle \vert  \text{$M$is a TM, and$M$accepts$w$} }$</li>
   <li>$NE_{TM}$</li>
 </ul>
 
@@ -7473,7 +7384,7 @@ the basis for the circuitry used in electronic computers. Hence the fact that <s
 <ul>
   <li>$A_{DFA}$</li>
   <li>$A_{NFA}$</li>
-  <li>$ E_{DFA}$</li>
+  <li>$E_{DFA}$</li>
   <li>$EQ_{DFA}$</li>
   <li>$A_{CFG}$</li>
   <li>$A_{regular}$</li>
@@ -7492,16 +7403,7 @@ the basis for the circuitry used in electronic computers. Hence the fact that <s
 
 <ul>
   <li>$A_{TM}$</li>
-  <li>
-    <table>
-      <tbody>
-        <tr>
-          <td>$Halt_{TM} = {\lang M,w\rang</td>
-          <td>M \text{ halts on input $w$} }$</td>
-        </tr>
-      </tbody>
-    </table>
-  </li>
+  <li>$Halt_{TM} = {\lang M,w\rang\vert  M \text{ halts on input$w$} }$</li>
   <li>$E_{TM}$</li>
   <li>$EQ_{TM}$</li>
   <li>$REG_{TM}$</li>

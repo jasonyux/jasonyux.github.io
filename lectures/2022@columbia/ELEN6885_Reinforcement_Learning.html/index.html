@@ -47,17 +47,22 @@
       <div class="wrapper">
         <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
   <head>
-	<script>
-		MathJax = {
-		  tex: {
-			inlineMath: [['$', '$'], ['\\(', '\\)']],
-			displayMath: [['$$', '$$'], ['\\[', '\\]']]
-		  }
-		};
-	</script>
-	<script id="MathJax-script" async
-		src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
-	</script>
+  <script>
+    MathJax = {
+      // 
+      loader: {
+        load: ['[tex]/ams', '[tex]/textmacros', '[tex]/boldsymbol']
+      },
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        packages: {'[+]': ['ams', 'textmacros', 'boldsymbol']}
+      }
+    };
+  </script>
+  <script id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+  </script>
   </head>
   <header class="post-header">
     <h1 class="post-title p-name" itemprop="name headline">ELEN6885 Reinforcement Learning part1</h1>
@@ -137,43 +142,58 @@
 
 <p>The general process of interaction looks like:</p>
 
-<p><img src="rl/image-20220915170944706.png" alt="image-20220915170944706" style="zoom: 50%;" /></p>
+<p><img src="/lectures/images/2022-12-15-ELEN6885_Reinforcement_Learning/image-20220915170944706.png" alt="image-20220915170944706" style="zoom: 50%;" /></p>
 
 <p>where essentially, the agent learns</p>
 
 <ul>
   <li>
-    <p>a <strong>policy</strong> (e.g. the decision making agent)
-\(s \in S \to \pi(a|s),a\in A(s)\)
-since the action space could be dependent on the state. Note that a policy could be <strong>stochastic</strong> or <strong>determinstic</strong></p>
+    <p>a <strong>policy</strong> (e.g. the decision making agent)</p>
+
+\[s \in S \to \pi(a|s),a\in A(s)\]
+
+    <p>since the action space could be dependent on the state. Note that a policy could be <strong>stochastic</strong> or <strong>determinstic</strong></p>
   </li>
   <li>
     <p>a <strong>reward</strong> indicates the ==desirability== of that state. Reward is immediate or sometimes delayed (but as long as you have a reward for the entire episode, it is fine)</p>
   </li>
   <li>
-    <p>a <strong>return</strong> is a cumulative sequence of received rewards after a given time step
-\(G_t = R_{t+1}+\gamma R_{t+2} + \gamma^2 R_{t+3} + ... = \sum_{k=0}^T \gamma^k R_{t+1+k}\)
-where usually $\gamma &lt; 1$ if we have infinite episodes $T \to \infty$</p>
+    <p>a <strong>return</strong> is a cumulative sequence of received rewards after a given time step</p>
+
+\[G_t = R_{t+1}+\gamma R_{t+2} + \gamma^2 R_{t+3} + ... = \sum_{k=0}^T \gamma^k R_{t+1+k}\]
+
+    <p>where usually $\gamma &lt; 1$ if we have infinite episodes $T \to \infty$</p>
   </li>
   <li>
-    <p>a <strong>value function</strong> (which depends on the policy)
-\(V_\pi(s) = \mathbb{E}_\pi [G_t|S_t=s] = \mathbb{E}_\pi \left[ \sum_{k=0}^T \gamma^k R_{t+1+k} |S_t=s \right]\)
-given that I am currently at $s$, what is the <em>expected return if I follow the policy $\pi$</em>.</p>
+    <p>a <strong>value function</strong> (which depends on the policy)</p>
+
+\[V_\pi(s) = \mathbb{E}_\pi [G_t|S_t=s] = \mathbb{E}_\pi \left[ \sum_{k=0}^T \gamma^k R_{t+1+k} |S_t=s \right]\]
+
+    <p>given that I am currently at $s$, what is the <em>expected return if I follow the policy $\pi$</em>.</p>
   </li>
   <li>
-    <p>a <strong>action-value function</strong>
-\(Q_\pi(s,a) =  \mathbb{E}_\pi [G_t|S_t=s, A_t=a] = \mathbb{E}_\pi \left[ \sum_{k=0}^T \gamma^k R_{t+1+k} |S_t=s, A_t=a\right]\)
-given that I am currently as $s$, what is the <em>expected return if I take $a$ as next step and then follow policy $\pi$</em>. Note that if we take a “marginal” on $a$, we can get the $V_\pi$ from the $Q_\pi$:
-\(V_\pi(s) = \sum_{a \in A(s)} Q_\pi(s,a) \pi(a|s)\)
-which can be easily seen from their definitions. The reverse can be derived as well:
-\(Q^\pi(s,a) = R(s,a)+\gamma \sum_{s' \in S}P(s'|s,a)V^\pi(s')\)</p>
+    <p>a <strong>action-value function</strong></p>
+
+\[Q_\pi(s,a) =  \mathbb{E}_\pi [G_t|S_t=s, A_t=a] = \mathbb{E}_\pi \left[ \sum_{k=0}^T \gamma^k R_{t+1+k} |S_t=s, A_t=a\right]\]
+
+    <p>given that I am currently as $s$, what is the <em>expected return if I take $a$ as next step and then follow policy $\pi$</em>. Note that if we take a “marginal” on $a$, we can get the $V_\pi$ from the $Q_\pi$:</p>
+
+\[V_\pi(s) = \sum_{a \in A(s)} Q_\pi(s,a) \pi(a|s)\]
+
+    <p>which can be easily seen from their definitions. The reverse can be derived as well:</p>
+
+\[Q^\pi(s,a) = R(s,a)+\gamma \sum_{s' \in S}P(s'|s,a)V^\pi(s')\]
   </li>
   <li>
-    <p>a <strong>world model</strong> (optional, so that if you know this, planning becomes much easier)
-\(\mathcal{P}_{ss'}^a = \mathbb{P}[S_{t+1} = s' | S_t=s , A_t=a]\)
-which is the transition probability
-\(\mathcal{R}_s^a = \mathbb{E}[R_{t+1} | S_t=s,A_t=a]\)
-which is the reward model. Note that it is expected when what happens next is stochastic.</p>
+    <p>a <strong>world model</strong> (optional, so that if you know this, planning becomes much easier)</p>
+
+\[\mathcal{P}_{ss'}^a = \mathbb{P}[S_{t+1} = s' | S_t=s , A_t=a]\]
+
+    <p>which is the transition probability</p>
+
+\[\mathcal{R}_s^a = \mathbb{E}[R_{t+1} | S_t=s,A_t=a]\]
+
+    <p>which is the reward model. Note that it is expected when what happens next is stochastic.</p>
   </li>
 </ul>
 
@@ -199,9 +219,9 @@ which is the reward model. Note that it is expected when what happens next is st
       </thead>
       <tbody>
         <tr>
-          <td style="text-align: center"><img src="rl/image-20220915170101082.png" alt="image-20220915170101082" style="zoom:50%;" /></td>
-          <td style="text-align: center"><img src="rl/image-20220915170120864.png" alt="image-20220915170120864" style="zoom:50%;" /></td>
-          <td style="text-align: center"><img src="rl/image-20220915170136366.png" alt="image-20220915170136366" style="zoom:50%;" /></td>
+          <td style="text-align: center"><img src="/lectures/images/2022-12-15-ELEN6885_Reinforcement_Learning/image-20220915170101082.png" alt="image-20220915170101082" style="zoom:50%;" /></td>
+          <td style="text-align: center"><img src="/lectures/images/2022-12-15-ELEN6885_Reinforcement_Learning/image-20220915170120864.png" alt="image-20220915170120864" style="zoom:50%;" /></td>
+          <td style="text-align: center"><img src="/lectures/images/2022-12-15-ELEN6885_Reinforcement_Learning/image-20220915170136366.png" alt="image-20220915170136366" style="zoom:50%;" /></td>
         </tr>
       </tbody>
     </table>
@@ -229,23 +249,25 @@ which is the reward model. Note that it is expected when what happens next is st
       </thead>
       <tbody>
         <tr>
-          <td style="text-align: center"><img src="rl/image-20220915170318596.png" alt="image-20220915170318596" style="zoom:50%;" /></td>
-          <td style="text-align: center"><img src="rl/image-20220915170339032.png" alt="image-20220915170339032" style="zoom: 67%;" /></td>
+          <td style="text-align: center"><img src="/lectures/images/2022-12-15-ELEN6885_Reinforcement_Learning/image-20220915170318596.png" alt="image-20220915170318596" style="zoom:50%;" /></td>
+          <td style="text-align: center"><img src="/lectures/images/2022-12-15-ELEN6885_Reinforcement_Learning/image-20220915170339032.png" alt="image-20220915170339032" style="zoom: 67%;" /></td>
         </tr>
       </tbody>
     </table>
 
     <p>we can sample episodes for student markov chain starting from $S_1=C_1$ and obtain episodes such as:</p>
 
-    <p><img src="rl/image-20220915170437631.png" alt="image-20220915170437631" style="zoom:33%;" /></p>
+    <p><img src="/lectures/images/2022-12-15-ELEN6885_Reinforcement_Learning/image-20220915170437631.png" alt="image-20220915170437631" style="zoom:33%;" /></p>
 
     <p>Of course, for each episode, you can have some reward given some reward model:</p>
 
-    <p><img src="rl/image-20220915170506093.png" alt="image-20220915170506093" style="zoom:50%;" /></p>
+    <p><img src="/lectures/images/2022-12-15-ELEN6885_Reinforcement_Learning/image-20220915170506093.png" alt="image-20220915170506093" style="zoom:50%;" /></p>
 
-    <p>where essentially we are just computing the expected return $G_t$. But since you can have as much episodes as you want, we can consider:
-\(V(S=C_1)=\mathbb{E}[G_t | S_t=C_1] = \sum_{i=1}^\infty P(\tau_i)\cdot V(\tau_i)\)
-where probability of a trajectory $P(\tau_i)$ we can get since we know the transition model. However, note that this is impossible to compute since we can have infinite episodes (so we need other tricks, e.g. Bellman Equations &amp; Dynamic Programming)</p>
+    <p>where essentially we are just computing the expected return $G_t$. But since you can have as much episodes as you want, we can consider:</p>
+
+\[V(S=C_1)=\mathbb{E}[G_t | S_t=C_1] = \sum_{i=1}^\infty P(\tau_i)\cdot V(\tau_i)\]
+
+    <p>where probability of a trajectory $P(\tau_i)$ we can get since we know the transition model. However, note that this is impossible to compute since we can have infinite episodes (so we need other tricks, e.g. Bellman Equations &amp; Dynamic Programming)</p>
   </li>
 </ul>
 
@@ -264,20 +286,16 @@ where probability of a trajectory $P(\tau_i)$ we can get since we know the trans
       <p>$\mathcal{A}$ is a finite set of actions</p>
     </li>
     <li>
-      <p>$\mathcal{P}$ is a state trainsition probability matrix:
-\(\mathcal{P}_{ss'}^a = \mathbb{P}[S_{t+1}=s'|S_t=s,A_t=a]\)</p>
+      <p>$\mathcal{P}$ is a state trainsition probability matrix:</p>
+
+\[\mathcal{P}_{ss'}^a = \mathbb{P}[S_{t+1}=s'|S_t=s,A_t=a]\]
     </li>
     <li>
-      <table>
-        <tbody>
-          <tr>
-            <td>$\mathcal{R}$ is a reward function, so that $\mathcal{R}<em>s^a = \mathbb{E}[R</em>{t+1}</td>
-            <td>S_t=s, A_t=a]$ for cases when reward is not deterministic</td>
-          </tr>
-        </tbody>
-      </table>
+      <p>$\mathcal{R}$ is a reward function, so that $\mathcal{R}<em>s^a = \mathbb{E}[R</em>{t+1}\vert S_t=s, A_t=a]$ for cases when reward is not deterministic</p>
     </li>
-    <li>$\gamma$ being the discount factor $\gamma \in [0,1]$.</li>
+    <li>
+      <p>$\gamma$ being the discount factor $\gamma \in [0,1]$.</p>
+    </li>
   </ul>
 </blockquote>
 
@@ -289,7 +307,7 @@ where probability of a trajectory $P(\tau_i)$ we can get since we know the trans
 
 <p>There are two threads of development</p>
 
-<p><img src="rl/image-20220915170902678.png" alt="image-20220915170902678" style="zoom:50%;" /></p>
+<p><img src="/lectures/images/2022-12-15-ELEN6885_Reinforcement_Learning/image-20220915170902678.png" alt="image-20220915170902678" style="zoom:50%;" /></p>
 
 <p>So that essentially:</p>
 
@@ -324,13 +342,15 @@ where probability of a trajectory $P(\tau_i)$ we can get since we know the trans
   <li>then play towards the better machine</li>
 </ol>
 
-<p>With this, we consider $Q_t(a)$ value being the estimated value/average reward so far of action $a$ at the $t$-th play:
-\(Q_t(a) = \frac{R_1 +R_2 + ... + R_{K_a}}{K_a}\)
-for $K_a$ is the number of times action $a$ was chosen and $R_1,…,R_{K_a}$ being the reward associated with action $a$.</p>
+<p>With this, we consider $Q_t(a)$ value being the estimated value/average reward so far of action $a$ at the $t$-th play:</p>
+
+\[Q_t(a) = \frac{R_1 +R_2 + ... + R_{K_a}}{K_a}\]
+
+<p>for $K_a$ is the number of times action $a$ was chosen and $R_1,…,R_{K_a}$ being the reward associated with action $a$.</p>
 
 <p>Once you estimated $Q_t(a)$, we can consider:</p>
 
-<p><img src="rl/image-20220916082722457.png" alt="image-20220916082722457" style="zoom: 67%;" /></p>
+<p><img src="/lectures/images/2022-12-15-ELEN6885_Reinforcement_Learning/image-20220916082722457.png" alt="image-20220916082722457" style="zoom: 67%;" /></p>
 
 <p>where we can test:</p>
 
@@ -363,9 +383,11 @@ for $K_a$ is the number of times action $a$ was chosen and $R_1,…,R_{K_a}$ bei
 <p>An alternative to $\epsilon$-greedy is the <strong>Softmax policy</strong> (to balance exploration and exploitation)</p>
 
 <blockquote>
-  <p><strong>Softmax Policy</strong>: essentially use softmax of the Q values to give probability
-\(\mathrm{Softmax}(Q(a)) = \frac{\exp(Q_t(a)/\tau)}{\sum_{a \in A} \exp(Q_t(a)/\tau)}\)
-note that $\tau$ has a critical effect:</p>
+  <p><strong>Softmax Policy</strong>: essentially use softmax of the Q values to give probability</p>
+
+\[\mathrm{Softmax}(Q(a)) = \frac{\exp(Q_t(a)/\tau)}{\sum_{a \in A} \exp(Q_t(a)/\tau)}\]
+
+  <p>note that $\tau$ has a critical effect:</p>
 
   <ul>
     <li>if $\tau \to \infty$, the distribution will become almost uniform</li>
@@ -381,22 +403,26 @@ note that $\tau$ has a critical effect:</p>
 
 <ul>
   <li>
-    <p>do you need to store all rewards to estimate average reward $Q_k$ for each action? No, you can use a <strong>moving average</strong>
-\(\begin{align}
+    <p>do you need to store all rewards to estimate average reward $Q_k$ for each action? No, you can use a <strong>moving average</strong></p>
+
+\[\begin{align}
 Q_{k+1}
 &amp;= \frac{1}{k} \sum_{t=1}^k R_t\\
 &amp;= \frac{1}{k} \left( R_t + \sum_{i=1}^{k-1} R_i \right) \\
 &amp;= \frac{1}{k} \left( R_t + kQ_k - Q_k \right) \\
 &amp;= Q_k + \frac{1}{k}[R_k - Q_k]
-\end{align}\)
-where $Q_k$ is for the computed average reward from the previous step, and <strong>$R_k$ is the new info</strong>. Note that ==this form is very commonly seen in RL==:
-\(\text{New Estimate} \gets \text{Old Estimate} + \alpha \underbrace{(\text{Target - Old Estimate})}_{\text{innovation term}}\)
-where the innovation term would give you some idea of the new information. The step size is there because we know the innovation term will oscillate since $\mathrm{Target}$ might contain inaccuraries</p>
+\end{align}\]
+
+    <p>where $Q_k$ is for the computed average reward from the previous step, and <strong>$R_k$ is the new info</strong>. Note that ==this form is very commonly seen in RL==:</p>
+
+\[\text{New Estimate} \gets \text{Old Estimate} + \alpha \underbrace{(\text{Target - Old Estimate})}_{\text{innovation term}}\]
+
+    <p>where the innovation term would give you some idea of the new information. The step size is there because we know the innovation term will oscillate since $\mathrm{Target}$ might contain inaccuraries</p>
   </li>
   <li>
     <p>what is a <strong>good step size</strong> to choose? We want your estimate, e.g. $Q$-value to converge.</p>
 
-    <p><img src="rl/image-20220916084728218.png" alt="image-20220916084728218" style="zoom:50%;" /></p>
+    <p><img src="/lectures/images/2022-12-15-ELEN6885_Reinforcement_Learning/image-20220916084728218.png" alt="image-20220916084728218" style="zoom:50%;" /></p>
 
     <p>an example for this to work is $\alpha=1/k$. Essentially, the intuition behind this is that it will take past information a bit more, but you should <em>always have some non-trivial weight on the new information</em>.</p>
   </li>
@@ -410,9 +436,11 @@ where the innovation term would give you some idea of the new information. The s
 <p>MDP formally describe an environment for reinforcement learning, where the ==environment is fully observable==. First</p>
 
 <blockquote>
-  <p><strong>Markov Property</strong>: the future is independent of the past given the present. i.e. I only care about present, past gives no information
-\(P(S_{t+1}|S_t) = P(S_{t+1}|S_1,...,S_t)\)
-may or may not be a good assumption in some problems. However, you can always make this a good assumption, e.g. ==if you choose $S_t = \text{everything up to time t}$, then this trivially holds==.</p>
+  <p><strong>Markov Property</strong>: the future is independent of the past given the present. i.e. I only care about present, past gives no information</p>
+
+\[P(S_{t+1}|S_t) = P(S_{t+1}|S_1,...,S_t)\]
+
+  <p>may or may not be a good assumption in some problems. However, you can always make this a good assumption, e.g. ==if you choose $S_t = \text{everything up to time t}$, then this trivially holds==.</p>
 </blockquote>
 
 <p>A recap of the definitions</p>
@@ -425,15 +453,17 @@ may or may not be a good assumption in some problems. However, you can always ma
       <p>$\mathcal{S}$ is a finite set of states</p>
     </li>
     <li>
-      <p>$\mathcal{P}$ is a state trainsition probability matrix:
-\(\mathcal{P}_{ss'} = \mathbb{P}[S_{t+1}=s'|S_t=s]\)</p>
+      <p>$\mathcal{P}$ is a state trainsition probability matrix:</p>
+
+\[\mathcal{P}_{ss'} = \mathbb{P}[S_{t+1}=s'|S_t=s]\]
     </li>
   </ul>
+
 </blockquote>
 
 <p>An example of the transition matrix is</p>
 
-<p><img src="rl/image-20220916085816449.png" alt="image-20220916085816449" style="zoom:50%;" /></p>
+<p><img src="/lectures/images/2022-12-15-ELEN6885_Reinforcement_Learning/image-20220916085816449.png" alt="image-20220916085816449" style="zoom:50%;" /></p>
 
 <blockquote>
   <p><strong>Markov Reward Process</strong> is a tuple $\lang S,\mathcal{P},\mathcal{R},\gamma \rang$</p>
@@ -443,33 +473,30 @@ may or may not be a good assumption in some problems. However, you can always ma
       <p>$\mathcal{S}$ is a finite set of states</p>
     </li>
     <li>
-      <p>$\mathcal{P}$ is a state trainsition probability matrix:
-\(\mathcal{P}_{ss'} = \mathbb{P}[S_{t+1}=s'|S_t=s]\)</p>
+      <p>$\mathcal{P}$ is a state trainsition probability matrix:</p>
+
+\[\mathcal{P}_{ss'} = \mathbb{P}[S_{t+1}=s'|S_t=s]\]
     </li>
     <li>
-      <table>
-        <tbody>
-          <tr>
-            <td>$\mathcal{R}$ is a reward function, so that $\mathcal{R}<em>s = \mathbb{E}[R</em>{t+1}</td>
-            <td>S_t=s]$ for cases when reward is not deterministic</td>
-          </tr>
-        </tbody>
-      </table>
+      <p>$\mathcal{R}$ is a reward function, so that $\mathcal{R}<em>s = \mathbb{E}[R</em>{t+1}\vert S_t=s]$ for cases when reward is not deterministic</p>
     </li>
-    <li>$\gamma$ being the discount factor $\gamma \in [0,1]$. Useful for infinite episodes</li>
+    <li>
+      <p>$\gamma$ being the discount factor $\gamma \in [0,1]$. Useful for infinite episodes</p>
+    </li>
   </ul>
 </blockquote>
 
 <p><em>For example:</em></p>
 
-<p><img src="rl/image-20220916090117592.png" alt="image-20220916090117592" style="zoom: 50%;" /></p>
+<p><img src="/lectures/images/2022-12-15-ELEN6885_Reinforcement_Learning/image-20220916090117592.png" alt="image-20220916090117592" style="zoom: 50%;" /></p>
 
 <p>Then from this, we can also define</p>
 
 <ul>
   <li>
-    <p><strong>return</strong>: think of the $R_{t+1}$ as going from a MDP to a MRP. If you start at Class 1, then you should also include $R=-2$ in your computation, just as in MDP, the reward
-\(G_t = R_{t+1} + \gamma R_{t+2} += ... = \sum_{k=0}^\infty \gamma^k R_{t+k+1}\)</p>
+    <p><strong>return</strong>: think of the $R_{t+1}$ as going from a MDP to a MRP. If you start at Class 1, then you should also include $R=-2$ in your computation, just as in MDP, the reward</p>
+
+\[G_t = R_{t+1} + \gamma R_{t+2} += ... = \sum_{k=0}^\infty \gamma^k R_{t+k+1}\]
   </li>
   <li>
     <p>the choice of $\gamma$ affects the bahavior/goal of your algorithm</p>
@@ -484,8 +511,10 @@ may or may not be a good assumption in some problems. However, you can always ma
 <p>Additionally, we can also define <strong>state-value function</strong></p>
 
 <blockquote>
-  <p><strong>State Value Function</strong> (for MRP): the expected return starting from state $s$ 
-\(V(s) = \mathbb{E}[G_t|S_t=s]\)</p>
+  <p><strong>State Value Function</strong> (for MRP): the expected return starting from state $s$</p>
+
+\[V(s) = \mathbb{E}[G_t|S_t=s]\]
+
 </blockquote>
 
 <p>which we have discussed before, and to compute this intuitively would be:</p>
@@ -498,7 +527,7 @@ may or may not be a good assumption in some problems. However, you can always ma
 
 <p>Which would give this</p>
 
-<p><img src="rl/image-20220916090938392.png" alt="image-20220916090938392" style="zoom:50%;" /></p>
+<p><img src="/lectures/images/2022-12-15-ELEN6885_Reinforcement_Learning/image-20220916090938392.png" alt="image-20220916090938392" style="zoom:50%;" /></p>
 
 <blockquote>
   <p>Is there an easier way than sample, weight, and sum? The <strong>Bellman Equation</strong>.</p>
@@ -506,14 +535,15 @@ may or may not be a good assumption in some problems. However, you can always ma
 
 <p>We can decompose the value function definition, and see what we get</p>
 
-<p><img src="rl/image-20220916091139515.png" alt="image-20220916091139515" style="zoom:50%;" /></p>
+<p><img src="/lectures/images/2022-12-15-ELEN6885_Reinforcement_Learning/image-20220916091139515.png" alt="image-20220916091139515" style="zoom:50%;" /></p>
 
 <p>where only the last step is tricky:</p>
 
 <ul>
   <li>
-    <p>what is $\mathbb{E}[\gamma G_{t+1}|S_t=s]$? By definition of expected value:
-\(\begin{align*}
+    <p>what is $\mathbb{E}[\gamma G_{t+1}\vert S_t=s]$? By definition of expected value:</p>
+
+\[\begin{align*}
 \mathbb{E}[\gamma G_{t+1}|S_t=s]
 &amp;= \gamma \sum_g G_{t+1} P(G_{t+1}|S_t=s)\\
 &amp;= \gamma \sum_g G_{t+1} \sum_{s'} P(G_{t+1}, S_{t+1}=s'|S_t=s)\\
@@ -521,8 +551,9 @@ may or may not be a good assumption in some problems. However, you can always ma
 &amp;= \gamma  \sum_{s'} \left( \sum_g G_{t+1}  P(G_{t+1}|S_{t+1}=s') \right) P(S_{t+1}=s'|S_t=s)\\
 &amp;= \gamma \sum_{s'\in S}V(s') P(S_{t+1}=s'|S_t=s)\\
 &amp;= \mathbb{E}[\gamma V(s') | S_t=s]
-\end{align*}\)
-where:</p>
+\end{align*}\]
+
+    <p>where:</p>
 
     <ul>
       <li>the aim for the second equality is because we know the final result has $v(S_{t+1})$, so we need to introduce a next state $s’$.</li>
@@ -531,27 +562,33 @@ where:</p>
     </ul>
   </li>
   <li>
-    <p>now, given the above, we essentially realize for an ealier state:
-\(\begin{align*}
+    <p>now, given the above, we essentially realize for an ealier state:</p>
+
+\[\begin{align*}
   V(s) 
   &amp;= \mathbb{E}[R_{t+1}|S_t=s] + \gamma \mathbb{E}[V(S_{t+1})|S_t=s] \\
   &amp;= \mathcal{R}_s + \gamma \sum\limits_{s' \in S} \mathcal{P}_{ss'} V(s')
-\end{align*}\)
-for $\mathcal{R}$ is the expected reward in case reward is stochastic. And in matrix form:
-\(V = \mathcal{R} + \gamma \mathcal{P}V\)
-for instance:</p>
+\end{align*}\]
 
-    <p><img src="rl/image-20220916092443352.png" alt="image-20220916092443352" style="zoom:33%;" /></p>
+    <p>for $\mathcal{R}$ is the expected reward in case reward is stochastic. And in matrix form:</p>
 
-    <p>so given this, <strong>can we solve for $V$</strong> (which is our final goal)? Simply solve it if given $P,R$:
-\(\begin{align*}
+\[V = \mathcal{R} + \gamma \mathcal{P}V\]
+
+    <p>for instance:</p>
+
+    <p><img src="/lectures/images/2022-12-15-ELEN6885_Reinforcement_Learning/image-20220916092443352.png" alt="image-20220916092443352" style="zoom:33%;" /></p>
+
+    <p>so given this, <strong>can we solve for $V$</strong> (which is our final goal)? Simply solve it if given $P,R$:</p>
+
+\[\begin{align*}
 V 
 &amp;= R+\gamma P V\\
 V &amp;=(I - \gamma \mathcal{P})^{-1} R
-\end{align*}\)
-An example using this to compute $V$ from the closed form solution:</p>
+\end{align*}\]
 
-    <p><img src="rl/image-20220916092636709.png" alt="image-20220916092636709" style="zoom: 50%;" /></p>
+    <p>An example using this to compute $V$ from the closed form solution:</p>
+
+    <p><img src="/lectures/images/2022-12-15-ELEN6885_Reinforcement_Learning/image-20220916092636709.png" alt="image-20220916092636709" style="zoom: 50%;" /></p>
 
     <p>but is this all? We have real life concerns:</p>
 
@@ -565,11 +602,18 @@ An example using this to compute $V$ from the closed form solution:</p>
 <blockquote>
   <p>Two important results from the previous discussion for MRP:</p>
   <ul>
-    <li>Bellman’s equation for $V$:
-\(V = \mathcal{R} + \gamma \mathcal{P}V\)</li>
-    <li>and we can solve for $V$ easily in closed form:
-\(V =(I - \gamma \mathcal{P})^{-1} R\)</li>
+    <li>
+      <p>Bellman’s equation for $V$:</p>
+
+\[V = \mathcal{R} + \gamma \mathcal{P}V\]
+    </li>
+    <li>
+      <p>and we can solve for $V$ easily in closed form:</p>
+
+\[V =(I - \gamma \mathcal{P})^{-1} R\]
+    </li>
   </ul>
+
 </blockquote>
 
 <p>However</p>
@@ -601,54 +645,53 @@ An example using this to compute $V$ from the closed form solution:</p>
       <p>==$\mathcal{A}$ is a finite set of actions==</p>
     </li>
     <li>
-      <p>$\mathcal{P}$ is a state trainsition probability matrix:
-\(\mathcal{P}_{ss'}^a = \mathbb{P}[S_{t+1}=s'|S_t=s,\textcolor{red}{A_t=a}]\)</p>
+      <p>$\mathcal{P}$ is a state trainsition probability matrix:</p>
+
+\[\mathcal{P}_{ss'}^a = \mathbb{P}[S_{t+1}=s'|S_t=s,\textcolor{red}{A_t=a}]\]
     </li>
     <li>
-      <table>
-        <tbody>
-          <tr>
-            <td>$\mathcal{R}$ is a reward function, so that $\mathcal{R}<em>s^a = \mathbb{E}[R</em>{t+1}</td>
-            <td>S_t=s, A_t=a]$ for cases when reward is not deterministic</td>
-          </tr>
-        </tbody>
-      </table>
+      <p>$\mathcal{R}$ is a reward function, so that $\mathcal{R}<em>s^a = \mathbb{E}[R</em>{t+1}\vert S_t=s, A_t=a]$ for cases when reward is not deterministic</p>
     </li>
-    <li>$\gamma$ being the discount factor $\gamma \in [0,1]$.</li>
+    <li>
+      <p>$\gamma$ being the discount factor $\gamma \in [0,1]$.</p>
+    </li>
   </ul>
 </blockquote>
 
 <p>and remember that, most of the time, we do no have access to $P$.</p>
 
-<p>Then, ==when given a policy $\pi(a|s)$, we are back to a MRP==: it becomes a process of $\left\langle \mathcal{S}, \mathcal{P}^{\pi}, \mathcal{R}^{\pi}, \gamma \right\rangle$, where:</p>
+<p>Then, ==when given a policy $\pi(a\vert s)$, we are back to a MRP==: it becomes a process of $\left\langle \mathcal{S}, \mathcal{P}^{\pi}, \mathcal{R}^{\pi}, \gamma \right\rangle$, where:</p>
 <ul>
-  <li>the transition matrix’s action is removed by:
-\(\mathcal{P}^{\pi}_{ss'} = \sum_a \pi(a|s) \mathcal{P}_{ss'}^a\)
-i.e. if I take an action $a$ at state $s$, what the the trainsition probability to $s’$? Then I take the average, to get the averae transition probability from $s\to s’$ for the policy</li>
   <li>
-    <p>the reward function’s action is removed by:
-\(\mathcal{R}^{\pi}_s = \sum_a \pi(a|s) \mathcal{R}_s^a\)
-for $\mathcal{P}_{ss’}^{a}, R_s^{a}$ are given as part of the MDP.</p>
+    <p>the transition matrix’s action is removed by:</p>
+
+\[\mathcal{P}^{\pi}_{ss'} = \sum_a \pi(a|s) \mathcal{P}_{ss'}^a\]
+
+    <p>i.e. if I take an action $a$ at state $s$, what the the trainsition probability to $s’$? Then I take the average, to get the averae transition probability from $s\to s’$ for the policy</p>
   </li>
-  <li>when given a policy, your MDP evaluations become MRP evaluations, since now $P^\pi_{s,s’}$ is your transition matrix independent of action, and you can compute them in a closed form using our previous result.</li>
+  <li>
+    <p>the reward function’s action is removed by:</p>
+
+\[\mathcal{R}^{\pi}_s = \sum_a \pi(a|s) \mathcal{R}_s^a\]
+
+    <p>for $\mathcal{P}_{ss’}^{a}, R_s^{a}$ are given as part of the MDP.</p>
+  </li>
+  <li>
+    <p>when given a policy, your MDP evaluations become MRP evaluations, since now $P^\pi_{s,s’}$ is your transition matrix independent of action, and you can compute them in a closed form using our previous result.</p>
+  </li>
 </ul>
 
 <blockquote>
-  <p>But now, ==value function== will depend on the ==policy I use==, as compared to the previous cases:
-\(V_\pi(s) = \mathbb{E}_\pi[G_t|S_t=s]\)
-and ==so is the action-value function==</p>
+  <p>But now, ==value function== will depend on the ==policy I use==, as compared to the previous cases:</p>
+
+\[V_\pi(s) = \mathbb{E}_\pi[G_t|S_t=s]\]
+
+  <p>and ==so is the action-value function==</p>
 </blockquote>
 
-<table>
-  <tbody>
-    <tr>
-      <td><em>For instance</em>: consider a given policy $\pi(a</td>
-      <td>s)=0.5$ uniformly, with $\gamma=1$. Then you should get</td>
-    </tr>
-  </tbody>
-</table>
+<p><em>For instance</em>: consider a given policy $\pi(a\vert s)=0.5$ uniformly, with $\gamma=1$. Then you should get</p>
 
-<p><img src="rl/image-20220916094059606.png" alt="image-20220916094059606" style="zoom: 50%;" /></p>
+<p><img src="/lectures/images/2022-12-15-ELEN6885_Reinforcement_Learning/image-20220916094059606.png" alt="image-20220916094059606" style="zoom: 50%;" /></p>
 
 <p>using essentially the MRP results we got, and reducing MDP given a policy to MRP.</p>
 
@@ -657,25 +700,35 @@ and ==so is the action-value function==</p>
 <blockquote>
   <p><strong>Bellman Expectation Equation</strong>: notice the connection between value function and action-value function</p>
 
-  <p><img src="rl/image-20220916113343.png" style="zoom:30%;" /></p>
+  <p><img src="/lectures/images/2022-12-15-ELEN6885_Reinforcement_Learning/image-20220916113343.png" style="zoom:30%;" /></p>
 
   <p>giving the equations for:</p>
 
   <ul>
     <li>Value function $V_\pi(s)$ being averaging over next value functions</li>
-    <li>
-      <p>Action-value function $Q_\pi(s,a)$ being averaging over next action-value functions after taking action $a$ at state $s$
-Hence we get:
-\(V_\pi(s) = \mathbb{E}_\pi [R_{t+1} + \gamma V_\pi(S_{t+1})|S_t=s]\)
-\(Q_\pi(s,a) = \mathbb{E}_\pi [R_{t+1} + \gamma Q_\pi(S_{t+1},A_{t+1})|S_t=s,A_t=a]\)
-or we can express them as:
-\(V_\pi(s) = \sum_a \pi(a|s) Q_\pi(s,a)\)
-\(Q_\pi(s,a) = \mathcal{R}_s^a + \gamma \sum_{s'} \mathcal{P}_{ss'}^a V_\pi(s')\)
-then using those relationships, I can express ==$V$ in terms of $V$==, and ==$Q$ in terms of $Q$==, which gives the Bellman Expectation Equation:
-\(V_\pi(s) = \sum_a \pi(a|s) \left( \mathcal{R}_s^a + \gamma \sum_{s'} \mathcal{P}_{ss'}^a V_\pi(s') \right)\)
-\(Q_\pi(s,a) = \mathcal{R}_s^a + \gamma \sum_{s'} \mathcal{P}_{ss'}^a \sum_{a'} \pi(a'|s') Q_\pi(s',a')\)
-which is basically the ==same as the equation we had with $\mathbb{E}_\pi$==. Note that</p>
-    </li>
+    <li>Action-value function $Q_\pi(s,a)$ being averaging over next action-value functions after taking action $a$ at state $s$
+Hence we get:</li>
+  </ul>
+
+\[V_\pi(s) = \mathbb{E}_\pi [R_{t+1} + \gamma V_\pi(S_{t+1})|S_t=s]\]
+
+\[Q_\pi(s,a) = \mathbb{E}_\pi [R_{t+1} + \gamma Q_\pi(S_{t+1},A_{t+1})|S_t=s,A_t=a]\]
+
+  <p>or we can express them as:</p>
+
+\[V_\pi(s) = \sum_a \pi(a|s) Q_\pi(s,a)\]
+
+\[Q_\pi(s,a) = \mathcal{R}_s^a + \gamma \sum_{s'} \mathcal{P}_{ss'}^a V_\pi(s')\]
+
+  <p>then using those relationships, I can express ==$V$ in terms of $V$==, and ==$Q$ in terms of $Q$==, which gives the Bellman Expectation Equation:</p>
+
+\[V_\pi(s) = \sum_a \pi(a|s) \left( \mathcal{R}_s^a + \gamma \sum_{s'} \mathcal{P}_{ss'}^a V_\pi(s') \right)\]
+
+\[Q_\pi(s,a) = \mathcal{R}_s^a + \gamma \sum_{s'} \mathcal{P}_{ss'}^a \sum_{a'} \pi(a'|s') Q_\pi(s',a')\]
+
+  <p>which is basically the ==same as the equation we had with $\mathbb{E}_\pi$==. Note that</p>
+
+  <ul>
     <li>when transition is deterministic given an action, then $\mathcal{P}<em>{ss’}^a=1$ for the destined state $(s,a) \to s’$, and $\mathcal{P}</em>{ss’}^a=0$ otherwise.</li>
     <li>similarly, the expected reward $\mathcal{R}_s^a$ is used when reward is non-deterministic given a $s,a$,</li>
   </ul>
@@ -684,11 +737,15 @@ which is basically the ==same as the equation we had with $\mathbb{E}_\pi$==. No
 <p>And with this, we again have the closed form solution as implied by the above as we reduced MDP to MRP once we have a policy:</p>
 
 <blockquote>
-  <p><strong>Closed Form Solution for $V^\pi$</strong> in MDP: the Bellman’s expectation equation can essentially be translated to the MRP version:
-\(V_\pi = \mathcal{R}^{\pi} + \gamma \mathcal{P}^{\pi} V_\pi\)
-and the closed form solution is:
-\(V_\pi = (\mathbb{I} - \gamma \mathcal{P}^{\pi})^{-1} \mathcal{R}^{\pi}\)
-for $\mathcal{P}^\pi, \mathcal{R}^\pi$ being the transition and reward matrix reduced to MRP implied by the policy $\pi$.</p>
+  <p><strong>Closed Form Solution for $V^\pi$</strong> in MDP: the Bellman’s expectation equation can essentially be translated to the MRP version:</p>
+
+\[V_\pi = \mathcal{R}^{\pi} + \gamma \mathcal{P}^{\pi} V_\pi\]
+
+  <p>and the closed form solution is:</p>
+
+\[V_\pi = (\mathbb{I} - \gamma \mathcal{P}^{\pi})^{-1} \mathcal{R}^{\pi}\]
+
+  <p>for $\mathcal{P}^\pi, \mathcal{R}^\pi$ being the transition and reward matrix reduced to MRP implied by the policy $\pi$.</p>
 </blockquote>
 
 <h2 id="optimal-value-functions-and-policies">Optimal Value Functions and Policies</h2>
@@ -697,25 +754,24 @@ for $\mathcal{P}^\pi, \mathcal{R}^\pi$ being the transition and reward matrix re
 
 <p>First, we need to define what they are:</p>
 <blockquote>
-  <p><strong>Optimal Value Function</strong>: the value function that maximizes the expected return for any given policy $\pi$:
-\(V_*(s) = \max_\pi V_\pi(s)\)
-and the optimal action-value function is the same:
-\(Q_*(s,a) = \max_\pi Q_\pi(s,a)\)</p>
+  <p><strong>Optimal Value Function</strong>: the value function that maximizes the expected return for any given policy $\pi$:</p>
+
+\[V_*(s) = \max_\pi V_\pi(s)\]
+
+  <p>and the optimal action-value function is the same:</p>
+
+\[Q_*(s,a) = \max_\pi Q_\pi(s,a)\]
+
 </blockquote>
 
-<table>
-  <tbody>
-    <tr>
-      <td>But what about optimal policy, which if we recall are distributions $\pi(a</td>
-      <td>s)$? We can define it as:</td>
-    </tr>
-  </tbody>
-</table>
+<p>But what about optimal policy, which if we recall are distributions $\pi(a\vert s)$? We can define it as:</p>
 
 <blockquote>
-  <p><strong>Optimal Policy</strong>: we can define a partial ordering
-\(\pi &gt; \pi' \iff V_\pi(s) \geq V_{\pi'}(s),\quad \forall s\)
-and note that, the two most important attribute for a problem</p>
+  <p><strong>Optimal Policy</strong>: we can define a partial ordering</p>
+
+\[\pi &gt; \pi' \iff V_\pi(s) \geq V_{\pi'}(s),\quad \forall s\]
+
+  <p>and note that, the two most important attribute for a problem</p>
   <ul>
     <li>(existence) solution always exists. For any MDP, there eixts an optimal policy (e.g. see example below)</li>
     <li>(uniqueness) the optimal policy <em>not</em> unique, but all optimal policies achieve the same value function/action-value functin.</li>
@@ -724,23 +780,29 @@ and note that, the two most important attribute for a problem</p>
 
 <p>For instance, we can give an optimal policy better than all other policies</p>
 
-<p>\(\pi_*(a|s) = \begin{cases}
+\[\pi_*(a|s) = \begin{cases}
 1 &amp; \text{if } a=\arg\max_{a\in A} Q_*(s,a)\\
 0 &amp; \text{otherwise}
-\end{cases}\)
-which is optimal, meaning there always exist an optimal policy. But in reality, we ==don’t know $Q_*$ yet==. So our task remains how we can find such a policy, now that we know it exists.</p>
+\end{cases}\]
+
+<p>which is optimal, meaning there always exist an optimal policy. But in reality, we ==don’t know $Q_*$ yet==. So our task remains how we can find such a policy, now that we know it exists.</p>
 
 <blockquote>
   <p><strong>Bellman Optimality Equation</strong>: we can again draw the graph, and derive the optimality equations from $V_<em>,Q_</em>$, which gives us some idea how we can find it</p>
 
-  <p><img src="rl/image-20220916113343.png" style="zoom:30%;" /></p>
+  <p><img src="/lectures/images/2022-12-15-ELEN6885_Reinforcement_Learning/image-20220916113343.png" style="zoom:30%;" /></p>
 
-  <p>giving the equations for intuitively as:
-\(V_*(s) = \max_a Q_*(s,a)\)
-\(Q_* (s,a) = \mathcal{R}_s^a + \gamma \sum_{s'} \mathcal{P}_{ss'}^a V_*(s')\)
-and we can combine them to obtain a form only including itself:
-\(V_*(s) = \max_a \left( \mathcal{R}_s^a + \gamma \sum_{s'} \mathcal{P}_{ss'}^a V_*(s') \right)\)
-\(Q_*(s,a) = \mathcal{R}_s^a + \gamma \sum_{s'} \mathcal{P}_{ss'}^a \max_{a'} Q_*(s',a')\)</p>
+  <p>giving the equations for intuitively as:</p>
+
+\[V_*(s) = \max_a Q_*(s,a)\]
+
+\[Q_* (s,a) = \mathcal{R}_s^a + \gamma \sum_{s'} \mathcal{P}_{ss'}^a V_*(s')\]
+
+  <p>and we can combine them to obtain a form only including itself:</p>
+
+\[V_*(s) = \max_a \left( \mathcal{R}_s^a + \gamma \sum_{s'} \mathcal{P}_{ss'}^a V_*(s') \right)\]
+
+\[Q_*(s,a) = \mathcal{R}_s^a + \gamma \sum_{s'} \mathcal{P}_{ss'}^a \max_{a'} Q_*(s',a')\]
 
   <p>==this is essentially the basis of all RL algorithms and what they aim to solve==</p>
 </blockquote>
@@ -760,7 +822,7 @@ and we can combine them to obtain a form only including itself:
 
 <p><strong>Partially Obseravable MDP</strong>: for instance, the robot can only observe neighboring grids, but not the global information</p>
 
-<p><img src="rl/image-20220923081511421.png" alt="image-20220923081511421" style="zoom:33%;" /></p>
+<p><img src="/lectures/images/2022-12-15-ELEN6885_Reinforcement_Learning/image-20220923081511421.png" alt="image-20220923081511421" style="zoom:33%;" /></p>
 
 <p>therefore, technically:</p>
 
@@ -772,26 +834,23 @@ and we can combine them to obtain a form only including itself:
 <blockquote>
   <p><strong>Belief MDP</strong></p>
 
-  <table>
-    <tbody>
-      <tr>
-        <td>ideally, we want $\pi(a</td>
-        <td>s)$ given a state. All I have is a history $h=(A_0,O_1,…,A_{t-1},O_t,R_t)$</td>
-      </tr>
-    </tbody>
-  </table>
+  <p>ideally, we want $\pi(a\vert s)$ given a state. All I have is a history $h=(A_0,O_1,…,A_{t-1},O_t,R_t)$</p>
 
-  <p>therefore, we can consider a <strong>belief state</strong> (instead of state):
-\(b(h) = (\mathcal{P} (S_t=s^1 | H_t = h),\mathcal{P} (S_t=s^2 | H_t = h), ...,\mathcal{P} (S_t=s^n | H_t = h) )\)
-which is a probablity over all possible states.</p>
+  <p>therefore, we can consider a <strong>belief state</strong> (instead of state):</p>
+
+\[b(h) = (\mathcal{P} (S_t=s^1 | H_t = h),\mathcal{P} (S_t=s^2 | H_t = h), ...,\mathcal{P} (S_t=s^n | H_t = h) )\]
+
+  <p>which is a probablity over all possible states.</p>
 
   <ul>
     <li>note that we ==do not have to encode a belief state like this==. In the case of a continous distirbutoin, this can be a gaussian distribution, for instance.</li>
   </ul>
 
-  <p>then your policy becomes:
-\(\pi(a| b(h))\)
-notice that belife states satisfy Markov propety</p>
+  <p>then your policy becomes:</p>
+
+\[\pi(a| b(h))\]
+
+  <p>notice that belife states satisfy Markov propety</p>
 </blockquote>
 
 <hr />
@@ -846,11 +905,15 @@ notice that belife states satisfy Markov propety</p>
   <p><strong>Aim</strong>: given any policy $\pi$, we want to evaluate its value function in a MDP.</p>
 </blockquote>
 
-<p>The key idea is the Bellman equation: assuming we know everything on the RHS, then that should give me the correct value on LHS:
-\(V_\pi(s) = \sum_a \pi(a|s) \left( \mathcal{R}_s^a + \gamma \sum_{s'} \mathcal{P}_{ss'}^a V_\pi(s') \right)\)
-using this idea of dependency=constraint, we can <strong>iteratively estimate $V_\pi(s)$</strong> by:
-\(V_{k+1}(s) = \sum_a \pi(a|s) \left( \mathcal{R}_s^a + \gamma \sum_{s'} \mathcal{P}_{ss'}^a V_{k}(s') \right)\)
-which is called a <strong>synchronous backup</strong> since it uses $V_k(s)$ even if we have <em>for some states a better estimate $V_{k+1}(s)$</em></p>
+<p>The key idea is the Bellman equation: assuming we know everything on the RHS, then that should give me the correct value on LHS:</p>
+
+\[V_\pi(s) = \sum_a \pi(a|s) \left( \mathcal{R}_s^a + \gamma \sum_{s'} \mathcal{P}_{ss'}^a V_\pi(s') \right)\]
+
+<p>using this idea of dependency=constraint, we can <strong>iteratively estimate $V_\pi(s)$</strong> by:</p>
+
+\[V_{k+1}(s) = \sum_a \pi(a|s) \left( \mathcal{R}_s^a + \gamma \sum_{s'} \mathcal{P}_{ss'}^a V_{k}(s') \right)\]
+
+<p>which is called a <strong>synchronous backup</strong> since it uses $V_k(s)$ even if we have <em>for some states a better estimate $V_{k+1}(s)$</em></p>
 
 <blockquote>
   <p><strong>Synchronus Policy Evaluation</strong>:</p>
@@ -865,8 +928,11 @@ which is called a <strong>synchronous backup</strong> since it uses $V_k(s)$ eve
       <p>for each state $s \in S$:</p>
 
       <ol>
-        <li>estimaet $V_{k+1}(s)$ by
-\(V_{k+1}(s) = \sum_a \pi(a|s) \left( \mathcal{R}_s^a + \gamma \sum_{s'} \mathcal{P}_{ss'}^a V_{k}(s') \right)\)</li>
+        <li>
+          <p>estimaet $V_{k+1}(s)$ by</p>
+
+\[V_{k+1}(s) = \sum_a \pi(a|s) \left( \mathcal{R}_s^a + \gamma \sum_{s'} \mathcal{P}_{ss'}^a V_{k}(s') \right)\]
+        </li>
       </ol>
     </li>
     <li>
@@ -880,11 +946,13 @@ which is called a <strong>synchronous backup</strong> since it uses $V_k(s)$ eve
 <blockquote>
   <p><strong>Note</strong> that in homeworks, we had this ==bottom up approach== where we found the correct value function <strong>in one step</strong>. For instance, we can compute the following value function of a policy:</p>
 
-  <p><img src="rl/image-20220923111844922.png" alt="image-20220923111844922" style="zoom:33%;" /></p>
+  <p><img src="/lectures/images/2022-12-15-ELEN6885_Reinforcement_Learning/image-20220923111844922.png" alt="image-20220923111844922" style="zoom:33%;" /></p>
 
-  <p>then since $V(S=s_{t+2})=0$ for any state, we can compute $V(S=s_{t+1})$ ==without any error== using the backup equation
-\(V_\pi(s) = \sum_a \pi(a|s) \left( \mathcal{R}_s^a + \gamma \sum_{s'} \mathcal{P}_{ss'}^a V_{\pi}(s') \right)\)
-and all can be done over one iteration.</p>
+  <p>then since $V(S=s_{t+2})=0$ for any state, we can compute $V(S=s_{t+1})$ ==without any error== using the backup equation</p>
+
+\[V_\pi(s) = \sum_a \pi(a|s) \left( \mathcal{R}_s^a + \gamma \sum_{s'} \mathcal{P}_{ss'}^a V_{\pi}(s') \right)\]
+
+  <p>and all can be done over one iteration.</p>
 </blockquote>
 
 <p>But in reality, ==often your state space is not a tree==, i.e. to get to $S=s_{14}$ in the example below, there will be ==loops== in your tree (i.e. you can get to $s_{14}$ from $s_{13}$, and to get to $s_{13}$ you can also start from $s_{14}$). Therefore, since then you ==cannot estimate $V(S=s_{14})$== correctly, you will need a loop for convergence.</p>
@@ -893,7 +961,7 @@ and all can be done over one iteration.</p>
 
 <p><em>For Example</em>: Small Grid World</p>
 
-<p><img src="rl/image-20220923083659494.png" alt="image-20220923083659494" style="zoom:50%;" /></p>
+<p><img src="/lectures/images/2022-12-15-ELEN6885_Reinforcement_Learning/image-20220923083659494.png" alt="image-20220923083659494" style="zoom:50%;" /></p>
 
 <p>where we have:</p>
 
@@ -905,33 +973,28 @@ and all can be done over one iteration.</p>
   <li>actions leading out of the state gives no changes (i.e. go left of $s_8$ is still $s_8$)</li>
 </ul>
 
-<table>
-  <tbody>
-    <tr>
-      <td><strong>Question</strong>: if my policy is random $\pi(a</td>
-      <td>s)=0.25,\forall a$, what is the value of it/how good is this?</td>
-    </tr>
-  </tbody>
-</table>
+<p><strong>Question</strong>: if my policy is random $\pi(a\vert s)=0.25,\forall a$, what is the value of it/how good is this?</p>
 
 <p>Since we also have transition model, we can use the DP algorithm. We can initialize $V_0(s)=0$:</p>
 
-<p><img src="rl/image-20220923083836193.png" alt="image-20220923083836193" style="zoom:33%;" /></p>
+<p><img src="/lectures/images/2022-12-15-ELEN6885_Reinforcement_Learning/image-20220923083836193.png" alt="image-20220923083836193" style="zoom:33%;" /></p>
 
-<p>for intance, to compute $V_2(s=1)$ would be:
-\(\begin{align*}
+<p>for intance, to compute $V_2(s=1)$ would be:</p>
+
+\[\begin{align*}
 V_{k=2}(s_1) 
 &amp;= \sum_a 0.25 \cdot \left( -1 + \gamma \sum_{s'} \mathcal{P}_{ss'}^a V_{k=1}(s') \right) \\
 &amp;= 0.25 (-1 + 0) + 0.25 (-1 + -1) + 0.25 (-1 + -1) + 0.25 (-1 + -1) \\
 &amp;= -1.75
-\end{align*}\)
-where all the $V_1(s)$ comes from our estimate from $v_1$ at the previous timestep.</p>
+\end{align*}\]
+
+<p>where all the $V_1(s)$ comes from our estimate from $v_1$ at the previous timestep.</p>
 
 <p><strong>Additional Question</strong>: what would be my control?</p>
 
 <p>(This is just a lucky case that we got optimal policy in one greedy step.) We know that the value function is for a random policy, but can we get a better policy from it? Notice that by simply using the <strong>greedy policy of $\pi$</strong>:</p>
 
-<p>| <img src="rl/image-20220923084435565.png" alt="image-20220923084435565" style="zoom:50%;" /> | <img src="rl/image-20220923084439721.png" alt="image-20220923084439721" style="zoom:50%;" /> |
+<p>| <img src="/lectures/images/2022-12-15-ELEN6885_Reinforcement_Learning/image-20220923084435565.png" alt="image-20220923084435565" style="zoom:50%;" /> | <img src="/lectures/images/2022-12-15-ELEN6885_Reinforcement_Learning/image-20220923084439721.png" alt="image-20220923084439721" style="zoom:50%;" /> |
 | ———————————————————— | ———————————————————— |</p>
 
 <p>notice that this is essentially performing <strong>exactly one iteration of policy improvement</strong>, but we luckily get the optimal policy just by doing policy improvement once</p>
@@ -943,15 +1006,17 @@ where all the $V_1(s)$ comes from our estimate from $v_1$ at the previous timest
 <blockquote>
   <p><strong>Policy Improvement</strong>: generate a policy $\pi’$ that is better than $\pi$</p>
 
-  <p><em>one way</em> to guarantee improvement is to apply a greedy policy
-\(\pi' = \mathrm{greedy}(V_\pi)\)
-and we can later show that indeed improves the policy and is useful.</p>
+  <p><em>one way</em> to guarantee improvement is to apply a greedy policy</p>
+
+\[\pi' = \mathrm{greedy}(V_\pi)\]
+
+  <p>and we can later show that indeed improves the policy and is useful.</p>
 </blockquote>
 
 <blockquote>
   <p><strong>Policy Iteration</strong>: since we can get a better policy from old value, then we can iterate:</p>
 
-  <p><img src="rl/image-20220923084722197.png" alt="image-20220923084722197" style="zoom:33%;" /></p>
+  <p><img src="/lectures/images/2022-12-15-ELEN6885_Reinforcement_Learning/image-20220923084722197.png" alt="image-20220923084722197" style="zoom:33%;" /></p>
 
   <p><code class="language-plaintext highlighter-rouge">Repeat</code> until no improvement/convergence</p>
 
@@ -963,7 +1028,7 @@ and we can later show that indeed improves the policy and is useful.</p>
 
 <p>This gives the <strong>policy iteration algorithm</strong> in more details:</p>
 
-<p><img src="rl/image-20220923093222983.png" alt="image-20220923093222983" style="zoom:50%;" /></p>
+<p><img src="/lectures/images/2022-12-15-ELEN6885_Reinforcement_Learning/image-20220923093222983.png" alt="image-20220923093222983" style="zoom:50%;" /></p>
 
 <p>where essentially</p>
 
@@ -980,15 +1045,19 @@ and we can later show that indeed improves the policy and is useful.</p>
 
 <p><em>Proof</em>: We want to prove that greedy policy always improve the policy, hence we have a ==monotonic improvement==</p>
 
-<p>Consider some existing deterministic policy $\pi(s)$, and we have a greedy policy version $\pi’(s)$:
-\(\pi'(s) = \mathrm{greedy}(\pi(s)) = \arg\max_{a \in A}q_\pi(s,a)\)
-Then by definition, the <strong>action-value must have obviously improved the policy by one-step</strong>
-\(q_\pi(s,\pi'(s)) = \max_{a \in A} q_\pi(s,a) \ge q_\pi(s,\pi(s)) = v_\pi(s)\)
-where the last step is due to the fact that we are using a <strong>determistic policy</strong>, so the state-value function will be the same as value function since you <strong>always only choose one action per state</strong>.</p>
+<p>Consider some existing deterministic policy $\pi(s)$, and we have a greedy policy version $\pi’(s)$:</p>
+
+\[\pi'(s) = \mathrm{greedy}(\pi(s)) = \arg\max_{a \in A}q_\pi(s,a)\]
+
+<p>Then by definition, the <strong>action-value must have obviously improved the policy by one-step</strong></p>
+
+\[q_\pi(s,\pi'(s)) = \max_{a \in A} q_\pi(s,a) \ge q_\pi(s,\pi(s)) = v_\pi(s)\]
+
+<p>where the last step is due to the fact that we are using a <strong>determistic policy</strong>, so the state-value function will be the same as value function since you <strong>always only choose one action per state</strong>.</p>
 
 <p>Finally, we just need to show that $V_{\pi’}(s) \ge V_\pi(s)$ by connecting the above</p>
 
-<p>\(\begin{align*}
+\[\begin{align*}
 v_{\pi}(s)
 &amp;\le q_\pi(s,\pi'(s)) \\
 &amp;= \mathbb{E}_{(a,r,s'|s) \sim \pi'}[ \mathcal{R}_{t+1} + \gamma v_\pi(S_{t+1}) | S_t=s ] \\
@@ -996,18 +1065,23 @@ v_{\pi}(s)
 &amp;\le \mathbb{E}_{\pi'}[ \mathcal{R}_{t+1} + \gamma R_{t+2} + \gamma^{2} q_\pi(S_{t+2}, \pi'(S_{t+2})) | S_t=s ] \\
 &amp;\le \mathbb{E}_{\pi'}[ \mathcal{R}_{t+1} + \gamma R_{t+2} + \gamma^{2} R_{t+3} + ... | S_t=s ] \\
 &amp;= v_{\pi'}(s)
-\end{align*}\)
-where:</p>
+\end{align*}\]
+
+<p>where:</p>
 <ul>
   <li>the second equality is because we have are sampling the immediate next step from $\pi’$, but the rest is following $\pi$.</li>
   <li>third inequality relies on the fact that we are a deterministic policy and $q_\pi(s,\pi’(s)) \ge v_\pi(s)$ by construction</li>
 </ul>
 
-<p>Notice that since the improvement is monotonic, then we have everything becomes an equality at convergence:
-\(q_\pi(s,\pi'(s)) = \max_{a \in A} q_\pi(s,a) = q_\pi(s,\pi(s)) = v_\pi(s)\)
-meaning that the Bellman optimality equation is satisfied
-\(v_\pi(s) = \max_{a \in A}q_\pi(s,a)\)
-which means the $\pi$ we get at the <strong>end of convergence</strong> is the optimal policy</p>
+<p>Notice that since the improvement is monotonic, then we have everything becomes an equality at convergence:</p>
+
+\[q_\pi(s,\pi'(s)) = \max_{a \in A} q_\pi(s,a) = q_\pi(s,\pi(s)) = v_\pi(s)\]
+
+<p>meaning that the Bellman optimality equation is satisfied</p>
+
+\[v_\pi(s) = \max_{a \in A}q_\pi(s,a)\]
+
+<p>which means the $\pi$ we get at the <strong>end of convergence</strong> is the optimal policy</p>
 
 <hr />
 
@@ -1038,8 +1112,8 @@ which means the $\pi$ we get at the <strong>end of convergence</strong> is the o
 <table>
   <thead>
     <tr>
-      <th style="text-align: center"><img src="rl/image-20220923084435565.png" alt="image-20220923084435565" /></th>
-      <th style="text-align: center"><img src="rl/image-20220923084439721.png" alt="image-20220923084439721" /></th>
+      <th style="text-align: center"><img src="/lectures/images/2022-12-15-ELEN6885_Reinforcement_Learning/image-20220923084435565.png" alt="image-20220923084435565" /></th>
+      <th style="text-align: center"><img src="/lectures/images/2022-12-15-ELEN6885_Reinforcement_Learning/image-20220923084439721.png" alt="image-20220923084439721" /></th>
     </tr>
   </thead>
   <tbody>
@@ -1052,7 +1126,7 @@ which means the $\pi$ we get at the <strong>end of convergence</strong> is the o
 
 <p><strong>Value Iteration</strong>:</p>
 
-<p><img src="rl/image-20220923094259901.png" alt="image-20220923094259901" style="zoom: 50%;" /></p>
+<p><img src="/lectures/images/2022-12-15-ELEN6885_Reinforcement_Learning/image-20220923094259901.png" alt="image-20220923094259901" style="zoom: 50%;" /></p>
 
 <p>where essentially</p>
 
@@ -1072,7 +1146,7 @@ which means the $\pi$ we get at the <strong>end of convergence</strong> is the o
 
 <p>Note that all the above is synchronous DP, because at each step $k+1$ we are using the value function strictly from step $k$.</p>
 
-<p><img src="rl/image-20220923094516742.png" alt="image-20220923094516742" style="zoom:40%;" /></p>
+<p><img src="/lectures/images/2022-12-15-ELEN6885_Reinforcement_Learning/image-20220923094516742.png" alt="image-20220923094516742" style="zoom:40%;" /></p>
 
 <ul>
   <li><strong>major dropback:</strong> even for value iteration, it needs to <strong>iterate through every state at each iteration</strong> (which could be intractable for large state space)</li>
@@ -1103,7 +1177,7 @@ which means the $\pi$ we get at the <strong>end of convergence</strong> is the o
   <p><strong>Intuition</strong>: since we already have a new value for some states we finished computing at $t=k+1$. we use the <strong>new value directly</strong> before completing the entire estimate over all states</p>
 </blockquote>
 
-<p><img src="rl/image-20220923094905916.png" alt="image-20220923094905916" style="zoom:40%;" /></p>
+<p><img src="/lectures/images/2022-12-15-ELEN6885_Reinforcement_Learning/image-20220923094905916.png" alt="image-20220923094905916" style="zoom:40%;" /></p>
 
 <p>note that already here, we made an improvement <strong>for memory</strong>. But what about state space complexity?</p>
 
@@ -1133,9 +1207,13 @@ which means the $\pi$ we get at the <strong>end of convergence</strong> is the o
 <ol>
   <li>agent has a current policy $\pi$</li>
   <li>agent performs some action and observe $S_t, A_t, R_{t+1}$, and is at $S_{t+1}$</li>
-  <li>backup the value function $V(S_t)$ using the new observation
-\(v(S_t) \gets \max_{a\in A} \left( \mathcal{R}_{\textcolor{red}{S_t}}^{a} + \gamma \sum\limits_{s'\in S} \mathcal{P}_{\textcolor{red}{S_t}s'}^{a} v(\textcolor{red}{s'}) \right)\)
-notice that this is off-policy since the value now is not about the behavior policy</li>
+  <li>
+    <p>backup the value function $V(S_t)$ using the new observation</p>
+
+\[v(S_t) \gets \max_{a\in A} \left( \mathcal{R}_{\textcolor{red}{S_t}}^{a} + \gamma \sum\limits_{s'\in S} \mathcal{P}_{\textcolor{red}{S_t}s'}^{a} v(\textcolor{red}{s'}) \right)\]
+
+    <p>notice that this is off-policy since the value now is not about the behavior policy</p>
+  </li>
   <li>update the policy $\pi$ using the new value function and repeat</li>
 </ol>
 
@@ -1169,7 +1247,7 @@ notice that this is off-policy since the value now is not about the behavior pol
   <li>In the long run, however, these two processes interact to <strong>find a single joint solution</strong>: the optimal value function and an optimal policy</li>
 </ul>
 
-<p><img src="rl/image-20221007144344783.png" alt="image-20221007144344783" style="zoom: 33%;" /></p>
+<p><img src="/lectures/images/2022-12-15-ELEN6885_Reinforcement_Learning/image-20221007144344783.png" alt="image-20221007144344783" style="zoom: 33%;" /></p>
 
 <blockquote>
   <p>Therefore, why GPI holds, i.e. usually converge to optimal value/policy, can be intuitively explained as:</p>
@@ -1215,26 +1293,34 @@ notice that this is off-policy since the value now is not about the behavior pol
       <p>hence can be only used with episodic MDP</p>
     </li>
     <li>
-      <p>the main idea is to consider value function of a state = mean return from it
-\(V(s) = \mathbb{E}[G(s)] \approx \frac{1}{n}\sum_{i=1}^n G(s)\)</p>
+      <p>the main idea is to consider value function of a state = mean return from it</p>
+
+\[V(s) = \mathbb{E}[G(s)] \approx \frac{1}{n}\sum_{i=1}^n G(s)\]
     </li>
   </ul>
+
 </blockquote>
 
-<p>Specifically, we consider the goal of learning $V_\pi$ from episodes of a policy $\pi$
-\((S_1, A_1, R_1, ..., S_k) \sim \pi\)
-is <strong>one episode from $\pi$</strong>. We ca sample many episodes, and for each episode:</p>
+<p>Specifically, we consider the goal of learning $V_\pi$ from episodes of a policy $\pi$</p>
+
+\[(S_1, A_1, R_1, ..., S_k) \sim \pi\]
+
+<p>is <strong>one episode from $\pi$</strong>. We ca sample many episodes, and for each episode:</p>
 
 <ol>
   <li>
-    <p>compute the total discounted reward for the future for <em>each state</em>:
-\(G_t^i = R_{t+1}^i + \gamma R_{t+2}^i + ... + \gamma ^{T-1} R_T^i\)
-for $i$-th episode</p>
+    <p>compute the total discounted reward for the future for <em>each state</em>:</p>
+
+\[G_t^i = R_{t+1}^i + \gamma R_{t+2}^i + ... + \gamma ^{T-1} R_T^i\]
+
+    <p>for $i$-th episode</p>
   </li>
   <li>
-    <p>estimate the value function using the law of large numbers:
-\(v_\pi(s) = \mathbb{E}_\pi[G_t | S_t=s] = \lim_{n \to \infty}  \frac{1}{n}\sum_{i=1}^n G^i_t(s)\)
-for $G_t^i(s)$ means the discounted reward starting from state $s_t$ at the $i$-th episode</p>
+    <p>estimate the value function using the law of large numbers:</p>
+
+\[v_\pi(s) = \mathbb{E}_\pi[G_t | S_t=s] = \lim_{n \to \infty}  \frac{1}{n}\sum_{i=1}^n G^i_t(s)\]
+
+    <p>for $G_t^i(s)$ means the discounted reward starting from state $s_t$ at the $i$-th episode</p>
   </li>
 </ol>
 
@@ -1249,10 +1335,12 @@ for $G_t^i(s)$ means the discounted reward starting from state $s_t$ at the $i$-
 
 <h3 id="firstevery-visit-mc-policy-evaluation">First/Every Visit MC Policy Evaluation</h3>
 
-<p>Consider the following two epsiodes we have sampled following policy $\pi$:
-\((S_1, S_2, S_1, S_2, S_4, S_5) \sim \pi \\
-(S_1, S_2, S_2, S_4, S_5, S_3) \sim \pi\)
-with some reward for each state, but ignored here. Suppose I want to estimate $V(s_1)$ from the two samples</p>
+<p>Consider the following two epsiodes we have sampled following policy $\pi$:</p>
+
+\[(S_1, S_2, S_1, S_2, S_4, S_5) \sim \pi \\
+(S_1, S_2, S_2, S_4, S_5, S_3) \sim \pi\]
+
+<p>with some reward for each state, but ignored here. Suppose I want to estimate $V(s_1)$ from the two samples</p>
 
 <blockquote>
   <p><strong>First Visit MC Policy Evaluation</strong>: to evaluate $V_\pi(s)$ for a state $s$</p>
@@ -1262,14 +1350,18 @@ with some reward for each state, but ignored here. Suppose I want to estimate $V
     <li>increment total return for that state $S(s) \gets S(s) + G_t$</li>
   </ol>
 
-  <p>Then the value estimate is:
-\(v_\pi(s) = \frac{S(s)}{N(s)}\)
-and by law of large numbers, $N(s) \to \infty$ we have $v_\pi(s) \to V_\pi(s)$. Hence this is a ==consistent== estimator.</p>
+  <p>Then the value estimate is:</p>
+
+\[v_\pi(s) = \frac{S(s)}{N(s)}\]
+
+  <p>and by law of large numbers, $N(s) \to \infty$ we have $v_\pi(s) \to V_\pi(s)$. Hence this is a ==consistent== estimator.</p>
 </blockquote>
 
-<p>Therefore, using first visit MC policy evaluation in the previous example, we would have:
-\(v_\pi(s_1) = \frac{G^{1}_1(s_1) + G^{2}_1(s_1)}{2}\)
-where $G^{i}_t(s)$ is the t-th timestep in the i-th episode.</p>
+<p>Therefore, using first visit MC policy evaluation in the previous example, we would have:</p>
+
+\[v_\pi(s_1) = \frac{G^{1}_1(s_1) + G^{2}_1(s_1)}{2}\]
+
+<p>where $G^{i}_t(s)$ is the t-th timestep in the i-th episode.</p>
 
 <blockquote>
   <p><strong>Every Visit MC Policy Evaluation</strong>: to evaluate $V_\pi(s)$ for a state $s$</p>
@@ -1279,13 +1371,16 @@ where $G^{i}_t(s)$ is the t-th timestep in the i-th episode.</p>
     <li>increment total return for that state $S(s) \gets S(s) + G_t$</li>
   </ol>
 
-  <p>Then the value estimate is:
-\(V(s) = \frac{S(s)}{N(s)}\)
-and this again, by law of large numbers, this is a ==consistent== estimator.</p>
+  <p>Then the value estimate is:</p>
+
+\[V(s) = \frac{S(s)}{N(s)}\]
+
+  <p>and this again, by law of large numbers, this is a ==consistent== estimator.</p>
 </blockquote>
 
-<p>Using every visit MC policy evaluation in the previous example, we would have:
-\(V(s_2) = \frac{G^{1}_2(s_2) + G^1_4(s_2) + G^{1}_2(s_2) + G^{1}_2(s_2)}{4}\)</p>
+<p>Using every visit MC policy evaluation in the previous example, we would have:</p>
+
+\[V(s_2) = \frac{G^{1}_2(s_2) + G^1_4(s_2) + G^{1}_2(s_2) + G^{1}_2(s_2)}{4}\]
 
 <p>Essentially we treat every sample of even the same episode separately</p>
 
@@ -1330,15 +1425,17 @@ and this again, by law of large numbers, this is a ==consistent== estimator.</p>
   </ul>
 </blockquote>
 
-<p>Last but not least, implementation wise since we are computing a mean, we could use <strong>recursive mean computations</strong>:
-\(\begin{align*}
+<p>Last but not least, implementation wise since we are computing a mean, we could use <strong>recursive mean computations</strong>:</p>
+
+\[\begin{align*}
   \mu_k
   &amp;= \frac{1}{k} \sum_{i=1}^k x_i \\
   &amp;= \frac{1}{k} \left( \sum_{i=1}^{k-1} x_i + x_k \right) \\
   &amp;= \frac{1}{k} \left( (k-1) \mu_{k-1} + x_k \right)\\
   &amp;= u_{k-1} + \frac{1}{k}(x_k - \mu_{k-1})
-  \end{align*}\)
-in our case, $\mu$ would be the mean hence estimation of value $V_\pi$. This gives use the usually programmatic <strong>recursive MC updates</strong>, where we perform updates on the fly when doing sampling:</p>
+  \end{align*}\]
+
+<p>in our case, $\mu$ would be the mean hence estimation of value $V_\pi$. This gives use the usually programmatic <strong>recursive MC updates</strong>, where we perform updates on the fly when doing sampling:</p>
 
 \[\begin{align*}
   N(S_t) &amp;\gets N(S_t) + 1\\
@@ -1356,8 +1453,8 @@ in our case, $\mu$ would be the mean hence estimation of value $V_\pi$. This giv
   </thead>
   <tbody>
     <tr>
-      <td style="text-align: center"><img src="rl/image-20220930175001.png" style="zoom:100%;" /></td>
-      <td style="text-align: center"><img src="rl/image-20220930175019.png" style="zoom:100%;" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2022-12-15-ELEN6885_Reinforcement_Learning/image-20220930175001.png" style="zoom:100%;" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2022-12-15-ELEN6885_Reinforcement_Learning/image-20220930175019.png" style="zoom:100%;" /></td>
     </tr>
   </tbody>
 </table>
@@ -1366,22 +1463,30 @@ in our case, $\mu$ would be the mean hence estimation of value $V_\pi$. This giv
 
 <p>However, if you have a non-stationary problem (e.g. mean of a distribution is time-dependent), then we want to have a dynamic estimator and we don’t want convergence.</p>
 
-<p>Hence we just want to use ==new information directly==, without doing the averaging:
-\(V(s_t) \gets V(s_t) + \alpha (G_t - V(s_t))\)
-which you can just convert to the equation of moving average
-\(V(s_t) \gets (1-\alpha) V(s_t) + \alpha G_t\)
-for a <strong>constant step size $\alpha$</strong>. We can intuitively see the difference as the previous form of $V(S_t) \gets V(S_t) + \frac{1}{N(S_t)}(G_t - V(S_t))$ since now this is a constant step size:
-\(\begin{align*}
+<p>Hence we just want to use ==new information directly==, without doing the averaging:</p>
+
+\[V(s_t) \gets V(s_t) + \alpha (G_t - V(s_t))\]
+
+<p>which you can just convert to the equation of moving average</p>
+
+\[V(s_t) \gets (1-\alpha) V(s_t) + \alpha G_t\]
+
+<p>for a <strong>constant step size $\alpha$</strong>. We can intuitively see the difference as the previous form of $V(S_t) \gets V(S_t) + \frac{1}{N(S_t)}(G_t - V(S_t))$ since now this is a constant step size:</p>
+
+\[\begin{align*}
 V_{t+1} 
 &amp;= V(s_t) + \alpha (G_t - V(s_t)) \\
 &amp;= \alpha G_t + (1-\alpha) V_t \\
 &amp;= \alpha G_t + (1-\alpha) [ \alpha G_{t-1} + (1-\alpha)V_{t-1}]\\
 &amp;= \alpha G_t + (1-\alpha) \alpha G_{t-1} + (1-\alpha)^2 V_{t-1}\\
 &amp;= ...
-\end{align*}\)
-so eventually you reach $G_1$, hence we get:
-\(v_{t+1}(s) = (1-\alpha)^t v_1(s) + \sum_{i=1}^t \alpha (1-\alpha)^{t-i}G_i\)
-meaning that for large $t$:</p>
+\end{align*}\]
+
+<p>so eventually you reach $G_1$, hence we get:</p>
+
+\[v_{t+1}(s) = (1-\alpha)^t v_1(s) + \sum_{i=1}^t \alpha (1-\alpha)^{t-i}G_i\]
+
+<p>meaning that for large $t$:</p>
 
 <ul>
   <li>the first term will become extremely small, meaning that the <strong>old information would matter very slightly</strong> (whereas in $V(S_t) \gets V(S_t) + \frac{1}{N(S_t)}(G_t - V(S_t))$ every sample has equal contribution)</li>
@@ -1391,7 +1496,7 @@ meaning that for large $t$:</p>
 
 <p>But in principle, all the MC backups essentially does:</p>
 
-<p><img src="rl/image-20220930085105526.png" alt="image-20220930085105526" style="zoom:33%;" /></p>
+<p><img src="/lectures/images/2022-12-15-ELEN6885_Reinforcement_Learning/image-20220930085105526.png" alt="image-20220930085105526" style="zoom:33%;" /></p>
 
 <p>which is like a <strong>DFS</strong> when sampling. This is later constrasted with TD approaches.</p>
 
@@ -1399,7 +1504,7 @@ meaning that for large $t$:</p>
 
 <p>First, we revisit our previous approach of generalized policy iteration</p>
 
-<p><img src="rl/image-20220930085400935.png" alt="image-20220930085400935" style="zoom: 50%;" /></p>
+<p><img src="/lectures/images/2022-12-15-ELEN6885_Reinforcement_Learning/image-20220930085400935.png" alt="image-20220930085400935" style="zoom: 50%;" /></p>
 
 <p>where we used greedy policy for improvement and is proven to work.</p>
 
@@ -1412,12 +1517,20 @@ meaning that for large $t$:</p>
 
 <p>We realize that using greedy-policy here have two concerns:</p>
 <ol>
-  <li>if we estimateed $v_\pi$, then since greedy needs:
-\(\pi'(s) = \arg\max_{a \in A} Q(s,a)\)
-but <em>if we only have $V_\pi$</em>, then we need to compute:
-\(\pi'(s) = \arg\max_{a \in A} \mathcal{R}_s^{a}+ \mathcal{P}_{ss'}^{a}V'_\pi\)
-but we don’t know $\mathcal{P}$</li>
-  <li>could get me stuck in some suboptimal action due to exploitation</li>
+  <li>
+    <p>if we estimateed $v_\pi$, then since greedy needs:</p>
+
+\[\pi'(s) = \arg\max_{a \in A} Q(s,a)\]
+
+    <p>but <em>if we only have $V_\pi$</em>, then we need to compute:</p>
+
+\[\pi'(s) = \arg\max_{a \in A} \mathcal{R}_s^{a}+ \mathcal{P}_{ss'}^{a}V'_\pi\]
+
+    <p>but we don’t know $\mathcal{P}$</p>
+  </li>
+  <li>
+    <p>could get me stuck in some suboptimal action due to exploitation</p>
+  </li>
 </ol>
 
 <blockquote>
@@ -1427,44 +1540,39 @@ but we don’t know $\mathcal{P}$</li>
 <p>But then second problem is a little more complicated:</p>
 
 <blockquote>
-  <p>We can use <strong>$\epsilon$-greedy policy</strong> instead of greedy policy to allow for ==exploration== since we are estimating the world (hence do no have complete information as in the Model-based case)
-\(\pi(a|s) = \begin{cases}
+  <p>We can use <strong>$\epsilon$-greedy policy</strong> instead of greedy policy to allow for ==exploration== since we are estimating the world (hence do no have complete information as in the Model-based case)</p>
+
+\[\pi(a|s) = \begin{cases}
   (\epsilon / m) + 1 - \epsilon &amp; \text{if } a = \arg\max_{a \in A} Q(s,a) \\
   \epsilon / m &amp; \text{otherwise}
-\end{cases}\)
-for $m = |A|$. But does this <strong>guarantee the improvement of the policy</strong>? This is proven to be true!</p>
+\end{cases}\]
+
+  <p>for $m = \vert A\vert$. But does this <strong>guarantee the improvement of the policy</strong>? This is proven to be true!</p>
 </blockquote>
 
 <p><em>Proof</em>: for all states, any Ɛ-greedy policy 𝜋, the Ɛ-greedy policy 𝜋’ with respect to is an improvement, that is,</p>
 
-<p><img src="rl/image-20220930090408152.png" alt="image-20220930090408152" style="zoom:60%;" /></p>
+<p><img src="/lectures/images/2022-12-15-ELEN6885_Reinforcement_Learning/image-20220930090408152.png" alt="image-20220930090408152" style="zoom:60%;" /></p>
 
 <p>where a key step is shown above. There we wanted to show that $q_\pi(s,\pi’(s))$ is better than the old $v_\pi(s)$</p>
 
 <ul>
   <li>the second equality comes from the fact that best action has an additional $(1-\epsilon)$ probability</li>
   <li>the third equality comes from the fact that $\sum_x \alpha(x)f(x) \le \max_x f(x)$ for $\sum \alpha(x) = 1$. In other words, weighted average is always less than the maximum value.</li>
-  <li>
-    <table>
-      <tbody>
-        <tr>
-          <td>the fourth equality comes from expanding the second term and cancelling the first term, with only $\sum \pi(a</td>
-          <td>s) q_\pi(s,a)$ left</td>
-        </tr>
-      </tbody>
-    </table>
-  </li>
+  <li>the fourth equality comes from expanding the second term and cancelling the first term, with only $\sum \pi(a\vert s) q_\pi(s,a)$ left</li>
 </ul>
 
 <p>Then finally the last step to show $v_{\pi’}(s) \ge v_\pi(s)$ which we ignored basically comes from expanding the definition of value function, and substituting in our result above.</p>
 
 <p>Therefore, the final MC policy iteration becomes</p>
 
-<p><img src="rl/image-20220930091516025.png" alt="image-20220930091516025" style="zoom:50%;" /></p>
+<p><img src="/lectures/images/2022-12-15-ELEN6885_Reinforcement_Learning/image-20220930091516025.png" alt="image-20220930091516025" style="zoom:50%;" /></p>
 
 <blockquote>
-  <p><strong>Note</strong> that different from the model-based case, we cannot perform value-iteration here to simplify the computation. This is because we don’t have the transition model $\mathcal{P}$ as required in the Bellman optimality equation:
-\(Q_*(s,a) = \mathcal{R}_s^a + \sum_{s'} \mathcal{P}_{ss'}^a \max_{a'} Q_*(s',a')\)</p>
+  <p><strong>Note</strong> that different from the model-based case, we cannot perform value-iteration here to simplify the computation. This is because we don’t have the transition model $\mathcal{P}$ as required in the Bellman optimality equation:</p>
+
+\[Q_*(s,a) = \mathcal{R}_s^a + \sum_{s'} \mathcal{P}_{ss'}^a \max_{a'} Q_*(s',a')\]
+
 </blockquote>
 
 <h3 id="greedy-in-the-limit-with-infinite-exploration">Greedy in the Limit with Infinite Exploration</h3>
@@ -1474,11 +1582,17 @@ for $m = |A|$. But does this <strong>guarantee the improvement of the policy</st
 <blockquote>
   <p><strong>GLIE</strong>: A learning policy is called <strong>GLIE</strong> (Greedy in the Limit with Infinite Exploration) if it satisfies the following two properties:</p>
   <ol>
-    <li>If a state is visited infinitely often, then <strong>each action in that state is chosen infinitely often</strong> (with probability 1):
-\(\lim_{k \to \infty} N_k(s,a) = \infty\)</li>
-    <li>In the limit (as $t \to \infty$), the learning policy is <strong>greedy with respect to the learned Q-function</strong> (with probability 1):
-\(\lim_{k \to \infty} \pi_k(a|s) = 1(a = \arg\max_{a' \in A} Q_k(s,a'))\)</li>
+    <li>If a state is visited infinitely often, then <strong>each action in that state is chosen infinitely often</strong> (with probability 1):</li>
   </ol>
+
+\[\lim_{k \to \infty} N_k(s,a) = \infty\]
+
+  <ol>
+    <li>In the limit (as $t \to \infty$), the learning policy is <strong>greedy with respect to the learned Q-function</strong> (with probability 1):</li>
+  </ol>
+
+\[\lim_{k \to \infty} \pi_k(a|s) = 1(a = \arg\max_{a' \in A} Q_k(s,a'))\]
+
 </blockquote>
 
 <p>Therefore, taking into account our policy improvement with $\epsilon$-greedy, we can ==still achieve optimal policy by satisfying the GLIE condition== with:</p>
@@ -1508,23 +1622,32 @@ for $m = |A|$. But does this <strong>guarantee the improvement of the policy</st
 <h3 id="importance-sampling">Importance Sampling</h3>
 
 <blockquote>
-  <p><strong>Importance Sampling</strong>: goal is to estimate the expected value of a function $f(x)$ (i.e. $G(s)$) under some probability distribution $p(x)$, without sampling from the distribution $p(x)$ but <strong>using $f(x)$ sampled from $q(x)$</strong>:
-\(\mathbb{E}_{x \sim p(x)}[f(x)] =?\)
-with data sampled from $x \sim q(x)$. It turns out we can easily show that, under few assumptions:
-\(\mathbb{E}_{x \sim p(x)}[f(x)] = \mathbb{E}_{x \sim q(x)}\left[\frac{p(x)}{q(x)}f(x)\right]\)</p>
+  <p><strong>Importance Sampling</strong>: goal is to estimate the expected value of a function $f(x)$ (i.e. $G(s)$) under some probability distribution $p(x)$, without sampling from the distribution $p(x)$ but <strong>using $f(x)$ sampled from $q(x)$</strong>:</p>
+
+\[\mathbb{E}_{x \sim p(x)}[f(x)] =?\]
+
+  <p>with data sampled from $x \sim q(x)$. It turns out we can easily show that, under few assumptions:</p>
+
+\[\mathbb{E}_{x \sim p(x)}[f(x)] = \mathbb{E}_{x \sim q(x)}\left[\frac{p(x)}{q(x)}f(x)\right]\]
+
 </blockquote>
 
 <p>Notice that the ==stationary distribution of states== will be different, i.e. we will be considering</p>
 
-<p><img src="rl/image-20220930093651232.png" alt="image-20220930093651232" style="zoom:33%;" /></p>
+<p><img src="/lectures/images/2022-12-15-ELEN6885_Reinforcement_Learning/image-20220930093651232.png" alt="image-20220930093651232" style="zoom:33%;" /></p>
 
-<p>So, if we have samples generated from $x \sim q$, and since in our case we consider $f(X) = G_t(s)$, then basically need to consider, for each trajectory $\tau_j$ and its discounted reward $G^{j}$:
-\(Q_{\tau \sim \pi}(s,a) = \mathbb{E}_{\tau \sim \mu(x)}\left[\frac{P_\pi(\tau)}{P_\mu(\tau)}G^{j}\right]\)
-But what is this ratio of probability?
-\(P_\pi(\tau) = P_\pi(S_t, A_t, ..., S_T, A_T)\\
-P_\mu(\tau) = P_\mu(S_t, A_t, ..., S_T, A_T)\)
-we can essentially use chain rule to represent this as quantities we know:
-\(\begin{align*}
+<p>So, if we have samples generated from $x \sim q$, and since in our case we consider $f(X) = G_t(s)$, then basically need to consider, for each trajectory $\tau_j$ and its discounted reward $G^{j}$:</p>
+
+\[Q_{\tau \sim \pi}(s,a) = \mathbb{E}_{\tau \sim \mu(x)}\left[\frac{P_\pi(\tau)}{P_\mu(\tau)}G^{j}\right]\]
+
+<p>But what is this ratio of probability?</p>
+
+\[P_\pi(\tau) = P_\pi(S_t, A_t, ..., S_T, A_T)\\
+P_\mu(\tau) = P_\mu(S_t, A_t, ..., S_T, A_T)\]
+
+<p>we can essentially use chain rule to represent this as quantities we know:</p>
+
+\[\begin{align*}
 P_\pi(\tau) 
 &amp;= P_\pi(S_t, A_t, ..., S_T, A_T)\\
 &amp;= \pi(A_T | S_t, S_{T-1},A_{T-1}, ..., S_t,A_t) P_\pi(S_t, A_t, S_{t+1},A_{t+1},...S_T, A_T)\\
@@ -1532,64 +1655,43 @@ P_\pi(\tau)
 &amp;= \underbrace{\pi(A_T | S_T)}_{\mathrm{policy} } \underbrace{P_\pi(S_T | S_{T-1}, A_{t-1})}_{\text{transition model} } P_\pi(S_t, A_t, S_{t+1},A_{t+1},...S_{T-1},A_{T-1})\\
 &amp;= ...\\
 &amp;= p(S_{1}) \prod_{i=1}^{T}\underbrace{\pi(A_{i}|S_{i})}_{\mathrm{policy}} \underbrace{p(R_{i}|S_{i},A_{i})}_{\text{reward model}} \underbrace{p(S_{i+1}|S_{i},A_{i})}_{\text{transition model}}
-\end{align*}\)
-where</p>
+\end{align*}\]
+
+<p>where</p>
 
 <ul>
   <li>the third and fourth equality comes from the fact that we are MDP, hence future <strong>only depends on current</strong></li>
-  <li>finally, the transition probability and reward probability will be cancelled when we do the ratio:
-\(\frac{P_\pi(\tau)}{P_\mu(\tau)} = \frac{p(S_{1}) \prod_{i=1}^{T}\pi(A_{i}|S_{i}) p(R_{i}|S_{i},A_{i}) p(S_{i+1}|S_{i},A_{i})}{p(S_{1}) \prod_{i=1}^{T}\mu(A_{i}|S_{i}) p(R_{i}|S_{i},A_{i}) p(S_{i+1}|S_{i},A_{i})} = \prod_{i=1}^{T}\frac{\pi(A_{i}|S_{i})}{\mu(A_{i}|S_{i})} \equiv w_{\mathrm{IS}}\)
-is called the ==importance sampling weight== for each trajectory</li>
+  <li>
+    <p>finally, the transition probability and reward probability will be cancelled when we do the ratio:</p>
+
+\[\frac{P_\pi(\tau)}{P_\mu(\tau)} = \frac{p(S_{1}) \prod_{i=1}^{T}\pi(A_{i}|S_{i}) p(R_{i}|S_{i},A_{i}) p(S_{i+1}|S_{i},A_{i})}{p(S_{1}) \prod_{i=1}^{T}\mu(A_{i}|S_{i}) p(R_{i}|S_{i},A_{i}) p(S_{i+1}|S_{i},A_{i})} = \prod_{i=1}^{T}\frac{\pi(A_{i}|S_{i})}{\mu(A_{i}|S_{i})} \equiv w_{\mathrm{IS}}\]
+
+    <p>is called the ==importance sampling weight== for each trajectory</p>
+  </li>
   <li>can estimate <em>any other policy</em>, but given that we have the same coverage. unseen action in policy $\mu$, it has prob zero</li>
 </ul>
 
 <blockquote>
-  <p><strong>Ordinary IS</strong>: the above essentially gives the ordinary IS algorithm:
-\(\begin{align*}
+  <p><strong>Ordinary IS</strong>: the above essentially gives the ordinary IS algorithm:</p>
+
+\[\begin{align*}
   V_{\pi}(s)
   &amp; \approx \frac{1}{n} \sum\limits_{j=1}^{n} \frac{p_\pi(T_j|s)}{p_\mu(T_j|s)} G(T_j)\\
   &amp;= \frac{1}{n} \sum\limits_{j=1}^{n} \left(\prod_{i=1}^{T} \frac{\pi(a_{j,i}|s_{j,i})}{\mu(a_{j,i}|s_{j,i})} \right) G(T_j)\\
   &amp;= \frac{1}{n} \sum\limits_{j=1}^{n} w_{\mathrm{IS}} \cdot  G(T_j)
-\end{align*}\)
-for practically, we are just <strong>swapping out $G(T_j)$ with $w_{\mathrm{IS}} \cdot  G(T_j)$ in our previous on-policy algorithms</strong>.</p>
+\end{align*}\]
+
+  <p>for practically, we are just <strong>swapping out $G(T_j)$ with $w_{\mathrm{IS}} \cdot  G(T_j)$ in our previous on-policy algorithms</strong>.</p>
 </blockquote>
 
-<table>
-  <tbody>
-    <tr>
-      <td>Now, what are the assumptions used to make IS work? You might notice the term $\frac{\pi(a_{j,i}</td>
-      <td>s_{j,i})}{\mu(a_{j,i}</td>
-      <td>s_{j,i})}$ could have gone badly, and it is exactly the case</td>
-    </tr>
-  </tbody>
-</table>
+<p>Now, what are the assumptions used to make IS work? You might notice the term $\frac{\pi(a_{j,i}\vert s_{j,i})}{\mu(a_{j,i}\vert s_{j,i})}$ could have gone badly, and it is exactly the case</p>
 
 <blockquote>
   <p><strong>Importance Sampling Assumptions</strong>: since we are reweighing samples from $\mu$, if we have distributions that are non-overlapping, then this will obviously not work.</p>
 
   <ul>
-    <li>
-      <table>
-        <tbody>
-          <tr>
-            <td>in particular, if we have any single case that $\mu(a</td>
-            <td>s)=0$ but $\pi(a</td>
-            <td>s)&gt;0$, then this will not work.</td>
-          </tr>
-        </tbody>
-      </table>
-    </li>
-    <li>
-      <table>
-        <tbody>
-          <tr>
-            <td>therefore, for this to work, we want to have a large ==coverage==: so that for $\forall a,s$ such that $\pi(a</td>
-            <td>s)&gt;0$, you want $\mu(a</td>
-            <td>s)&gt;0$.</td>
-          </tr>
-        </tbody>
-      </table>
-    </li>
+    <li>in particular, if we have any single case that $\mu(a\vert s)=0$ but $\pi(a\vert s)&gt;0$, then this will not work.</li>
+    <li>therefore, for this to work, we want to have a large ==coverage==: so that for $\forall a,s$ such that $\pi(a\vert s)&gt;0$, you want $\mu(a\vert s)&gt;0$.</li>
   </ul>
 </blockquote>
 
@@ -1627,22 +1729,30 @@ for practically, we are just <strong>swapping out $G(T_j)$ with $w_{\mathrm{IS}}
       <p>but because you are updating from your estimate based on your estimate, <strong>there will be bias</strong> (MC has no bias)</p>
     </li>
     <li>
-      <p>For any fixed policy $\pi$, TD(0) has been proved to converge to $v_\pi$, in the mean for a constant step-size parameter if it is sufficiently small, and with probability $1$ if the step-size prameter decreases according to the usual stochastic approximation condition:
-\(\sum_{n=1}^\infty \alpha_n(t) = \infty,\quad \text{and}\quad \sum_{n=1}^\infty \alpha^2_n(t) &lt; \infty\)
-The first condition is required to guarantee that the steps are large enough to eventually ==overcome any initial conditions or random fluctuations==. The second condition guarantees that <strong>eventually the steps become small enough to assure convergence</strong>.</p>
+      <p>For any fixed policy $\pi$, TD(0) has been proved to converge to $v_\pi$, in the mean for a constant step-size parameter if it is sufficiently small, and with probability $1$ if the step-size prameter decreases according to the usual stochastic approximation condition:</p>
+
+\[\sum_{n=1}^\infty \alpha_n(t) = \infty,\quad \text{and}\quad \sum_{n=1}^\infty \alpha^2_n(t) &lt; \infty\]
+
+      <p>The first condition is required to guarantee that the steps are large enough to eventually ==overcome any initial conditions or random fluctuations==. The second condition guarantees that <strong>eventually the steps become small enough to assure convergence</strong>.</p>
     </li>
   </ul>
 </blockquote>
 
-<p>Recall that MC updates in general looks like
-\(V(S_t) \gets V(S_t) + \alpha (\underbrace{G_t}_{\text{MC target}} - V(S_t))\)
-which is the actual return, but in TD(0) we can update using an <strong>estimated return</strong>
-\(V(S_t) \gets V(S_t) + \alpha (\underbrace{(R_{t+1} + \gamma V(S_{t+1})}_{\text{TD(0) target}}) - V(S_t))so that :\)</p>
+<p>Recall that MC updates in general looks like</p>
+
+\[V(S_t) \gets V(S_t) + \alpha (\underbrace{G_t}_{\text{MC target}} - V(S_t))\]
+
+<p>which is the actual return, but in TD(0) we can update using an <strong>estimated return</strong></p>
+
+\[V(S_t) \gets V(S_t) + \alpha (\underbrace{(R_{t+1} + \gamma V(S_{t+1})}_{\text{TD(0) target}}) - V(S_t))so that :\]
+
 <ul>
   <li>
-    <p>essentially I am utilizing the fact that:
-\(G_t = R_{t+1} + \gamma R_{t+2}+ \gamma ^2 R_{t+3}+ ...= R_{t+1} + \gamma V(S_{t+1})\)
-hence since we can approximate $V(S_{t+1}) \approx v(s_{t+1})$, we get our TD(0) update</p>
+    <p>essentially I am utilizing the fact that:</p>
+
+\[G_t = R_{t+1} + \gamma R_{t+2}+ \gamma ^2 R_{t+3}+ ...= R_{t+1} + \gamma V(S_{t+1})\]
+
+    <p>hence since we can approximate $V(S_{t+1}) \approx v(s_{t+1})$, we get our TD(0) update</p>
   </li>
   <li>intuitively, this TD(0) means that I wanted to make update on $S_t$ and I do this by:
     <ul>
@@ -1655,14 +1765,18 @@ hence since we can approximate $V(S_{t+1}) \approx v(s_{t+1})$, we get our TD(0)
 
 <p>But since TD$(0)$ is only moving/looking one step forward at $V(S_{t+1})$, you can easily also look many steps:</p>
 
-<p><img src="rl/image-20221007111034003.png" alt="image-20221007111034003" style="zoom: 25%;" /></p>
+<p><img src="/lectures/images/2022-12-15-ELEN6885_Reinforcement_Learning/image-20221007111034003.png" alt="image-20221007111034003" style="zoom: 25%;" /></p>
 
 <blockquote>
-  <p><strong>General TD$(n)$</strong> updates: since we can also have
-\(G_t = R_{t+1} + \gamma R_{t+2}+ \gamma ^2 R_{t+3}+ ...= R_{t+1} + \gamma R_{t+2}+\gamma^2 V(S_{t+2})\)
-this becomes a TD(1) since now we are looking even one more step ahead, hence suing
-\(V(S_t) \gets V(S_t) + \alpha (\underbrace{(R_{t+1}+\gamma R_{t+2} + \gamma^2 V(S_{t+1})}_{\text{TD(1) target}}) - V(S_t))\)
-and this can go to TD$(n)$ easily.</p>
+  <p><strong>General TD$(n)$</strong> updates: since we can also have</p>
+
+\[G_t = R_{t+1} + \gamma R_{t+2}+ \gamma ^2 R_{t+3}+ ...= R_{t+1} + \gamma R_{t+2}+\gamma^2 V(S_{t+2})\]
+
+  <p>this becomes a TD(1) since now we are looking even one more step ahead, hence suing</p>
+
+\[V(S_t) \gets V(S_t) + \alpha (\underbrace{(R_{t+1}+\gamma R_{t+2} + \gamma^2 V(S_{t+1})}_{\text{TD(1) target}}) - V(S_t))\]
+
+  <p>and this can go to TD$(n)$ easily.</p>
 </blockquote>
 
 <p>Visually, we can compare the three algorithms discussed so far:</p>
@@ -1676,15 +1790,15 @@ and this can go to TD$(n)$ easily.</p>
   </thead>
   <tbody>
     <tr>
-      <td style="text-align: center"><img src="rl/image-20221007082930340.png" alt="image-20221007082930340" style="zoom:33%;" /></td>
-      <td style="text-align: center"><img src="rl/image-20221007082958257.png" alt="image-20221007082958257" style="zoom:33%;" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2022-12-15-ELEN6885_Reinforcement_Learning/image-20221007082930340.png" alt="image-20221007082930340" style="zoom:33%;" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2022-12-15-ELEN6885_Reinforcement_Learning/image-20221007082958257.png" alt="image-20221007082958257" style="zoom:33%;" /></td>
     </tr>
   </tbody>
 </table>
 
 <p>And just to be complete, for DP method we know all transition probabilities, henc we can take into account all possibilities</p>
 
-<p><img src="rl/image-20221007083124404.png" alt="image-20221007083124404" style="zoom:33%;" /></p>
+<p><img src="/lectures/images/2022-12-15-ELEN6885_Reinforcement_Learning/image-20221007083124404.png" alt="image-20221007083124404" style="zoom:33%;" /></p>
 
 <p>In this sense,  TD(0) can be seen as <strong>taking samples over this DP backup</strong>, which also “bootstraps”</p>
 
@@ -1721,7 +1835,7 @@ and this can go to TD$(n)$ easily.</p>
 
 <p>Finally, algorithmically for TD(n):</p>
 
-<p><img src="rl/image-20221007111217374.png" alt="image-20221007111217374" style="zoom: 33%;" /></p>
+<p><img src="/lectures/images/2022-12-15-ELEN6885_Reinforcement_Learning/image-20221007111217374.png" alt="image-20221007111217374" style="zoom: 33%;" /></p>
 
 <h2 id="mc-vs-td-methods">MC v.s. TD Methods</h2>
 
@@ -1802,7 +1916,7 @@ and this can go to TD$(n)$ easily.</p>
 
 <p>Consider the following MDP, with reward $0$ except for one state:</p>
 
-<p><img src="rl/image-20221007084804460.png" alt="image-20221007084804460" style="zoom: 50%;" /></p>
+<p><img src="/lectures/images/2022-12-15-ELEN6885_Reinforcement_Learning/image-20221007084804460.png" alt="image-20221007084804460" style="zoom: 50%;" /></p>
 
 <p>So that essentially there are:</p>
 
@@ -1820,7 +1934,7 @@ and this can go to TD$(n)$ easily.</p>
 
 <p>With which we arrive at:</p>
 
-<p><img src="rl/image-20221007134742879.png" alt="image-20221007134742879" style="zoom: 50%;" /></p>
+<p><img src="/lectures/images/2022-12-15-ELEN6885_Reinforcement_Learning/image-20221007134742879.png" alt="image-20221007134742879" style="zoom: 50%;" /></p>
 
 <p>so after 100 episodes seen, we see it is going to converge to the true value.</p>
 
@@ -1828,12 +1942,14 @@ and this can go to TD$(n)$ easily.</p>
 
 <ul>
   <li>
-    <p>realize that if you calculate anything from $V(S)\to S’ \neq S_T$ you will get no change in value, still $0.5$. For instance:
-\(V_A \gets V_A + \gamma (R + V_B - V_A) = 0.5 + 1 \cdot (0) = 0.5\)</p>
+    <p>realize that if you calculate anything from $V(S)\to S’ \neq S_T$ you will get no change in value, still $0.5$. For instance:</p>
+
+\[V_A \gets V_A + \gamma (R + V_B - V_A) = 0.5 + 1 \cdot (0) = 0.5\]
   </li>
   <li>
-    <p>but things change only if you ended up at $V_T$ on the left, so that you get
-\(V_A \gets V_A + \gamma (R + V_T - V_A) = 0.5 + 0.1 \cdot (0 + 0 -0.5) = 0.45\)</p>
+    <p>but things change only if you ended up at $V_T$ on the left, so that you get</p>
+
+\[V_A \gets V_A + \gamma (R + V_T - V_A) = 0.5 + 0.1 \cdot (0 + 0 -0.5) = 0.45\]
   </li>
 </ul>
 
@@ -1841,7 +1957,7 @@ and this can go to TD$(n)$ easily.</p>
 
 <p>In this example, we can also compare the MC and TD variance</p>
 
-<p><img src="rl/image-20221007090134530.png" alt="image-20221007090134530" style="zoom: 50%;" /></p>
+<p><img src="/lectures/images/2022-12-15-ELEN6885_Reinforcement_Learning/image-20221007090134530.png" alt="image-20221007090134530" style="zoom: 50%;" /></p>
 
 <p>and note that MC achieves least MSE, while TD is performing MLE.</p>
 
@@ -1874,11 +1990,11 @@ and this can go to TD$(n)$ easily.</p>
 
 <p>Given a single move/step $(S,A,R,S’,A’)$ we can perform an update using TD(0) equation:</p>
 
-<p><img src="rl/image-20221007091739133.png" alt="image-20221007091739133" style="zoom: 33%;" /></p>
+<p><img src="/lectures/images/2022-12-15-ELEN6885_Reinforcement_Learning/image-20221007091739133.png" alt="image-20221007091739133" style="zoom: 33%;" /></p>
 
 <p>Then, instead of waiting it to cnverge we can directly perform update, hence the algorithm becomes</p>
 
-<p><img src="rl/image-20221007091933118.png" alt="image-20221007091933118" style="zoom:50%;" /></p>
+<p><img src="/lectures/images/2022-12-15-ELEN6885_Reinforcement_Learning/image-20221007091933118.png" alt="image-20221007091933118" style="zoom:50%;" /></p>
 
 <p>where notice that essentially I improve my policy by picking better $A$ using $\epsilon$-greedy, and then ask my model to update accordingly.</p>
 
@@ -1903,7 +2019,7 @@ and this can go to TD$(n)$ easily.</p>
 
 <p>Now, the algorithm is that you are not choosing $A’$ from the current policy $\pi$, but update using greedy policy $\mathrm{greedy}(\pi)$</p>
 
-<p><img src="rl/image-20221007092305741.png" alt="image-20221007092305741" style="zoom: 50%;" /></p>
+<p><img src="/lectures/images/2022-12-15-ELEN6885_Reinforcement_Learning/image-20221007092305741.png" alt="image-20221007092305741" style="zoom: 50%;" /></p>
 
 <p>hence this is off-policy</p>
 
@@ -1915,7 +2031,7 @@ and this can go to TD$(n)$ easily.</p>
 
 <p>Algorithm:</p>
 
-<p><img src="rl/image-20221007145704583.png" alt="image-20221007145704583" style="zoom:33%;" /></p>
+<p><img src="/lectures/images/2022-12-15-ELEN6885_Reinforcement_Learning/image-20221007145704583.png" alt="image-20221007145704583" style="zoom:33%;" /></p>
 
 <p>where here I improve my policy by picking better $A$ using $\epsilon$-greedy, but then ask my model to update the greedy policy.</p>
 
@@ -1933,7 +2049,7 @@ and this can go to TD$(n)$ easily.</p>
 
 <p>Consider the following cliff walking problem, where we want to use the SARSA and Q-learning to find the ==optimal policy given fixed $\epsilon=0.1$.== Then eventually you will see the following performance</p>
 
-<p><img src="rl/image-20221007093725043.png" alt="image-20221007093725043" style="zoom:50%;" /></p>
+<p><img src="/lectures/images/2022-12-15-ELEN6885_Reinforcement_Learning/image-20221007093725043.png" alt="image-20221007093725043" style="zoom:50%;" /></p>
 
 <p>however, here we notice that Q-learning is doing worse. This does <strong>not</strong> contradict our previous conclusions because:</p>
 
@@ -1956,11 +2072,11 @@ and this can go to TD$(n)$ easily.</p>
 
 <p>We can compare the backup diagrams and realize that our update forms corresponds a lot to <strong>DP=Bellman Equations while TD=sampling Bellman Equations</strong></p>
 
-<p><img src="rl/image-20221007094456708.png" alt="image-20221007094456708" style="zoom: 50%;" /></p>
+<p><img src="/lectures/images/2022-12-15-ELEN6885_Reinforcement_Learning/image-20221007094456708.png" alt="image-20221007094456708" style="zoom: 50%;" /></p>
 
 <p>This becomes much clearer if we compare the update equation used:</p>
 
-<p><img src="rl/image-20221007094708566.png" alt="image-20221007094708566" style="zoom:50%;" /></p>
+<p><img src="/lectures/images/2022-12-15-ELEN6885_Reinforcement_Learning/image-20221007094708566.png" alt="image-20221007094708566" style="zoom:50%;" /></p>
 
 <p>where $x \xleftarrow{\alpha} y$ means the update $x \gets x+ \alpha (y-x)$</p>
 
@@ -1990,15 +2106,17 @@ and this can go to TD$(n)$ easily.</p>
 
 <p>Recall that TD(0) considers the update of <strong>one-step look ahead</strong></p>
 
-<p><img src="rl/image-20221015013800029.png" alt="image-20221015013800029" style="zoom:33%;" /></p>
+<p><img src="/lectures/images/2022-12-15-ELEN6885_Reinforcement_Learning/image-20221015013800029.png" alt="image-20221015013800029" style="zoom:33%;" /></p>
 
-<p>which basically aims to approximate the target $G_t = R_{t+1} + \gamma R_{t+2}+ \gamma ^2 R_{t+3}+ …= R_{t+1} + \gamma V(S_{t+1})$. We mentioned that we can easily extend this idea to <strong>$n$-step look ahead</strong>, which can be even generalized to the MC which gets to the terminate state:
-\(\begin{align*}
+<p>which basically aims to approximate the target $G_t = R_{t+1} + \gamma R_{t+2}+ \gamma ^2 R_{t+3}+ …= R_{t+1} + \gamma V(S_{t+1})$. We mentioned that we can easily extend this idea to <strong>$n$-step look ahead</strong>, which can be even generalized to the MC which gets to the terminate state:</p>
+
+\[\begin{align*}
 G_t^{(n)} 
 &amp;=R_{t+1} + \gamma R_{t+2}+ \gamma ^2 R_{t+3}+ ... \\
 &amp;= R_{t+1} + \gamma R_{t+2} + ... + \gamma^{n-1}R_{t+n} + \underbrace{\gamma^nV(S_{t+n})}_{\text{n-th step}}
-\end{align*}\)
-Hence visually</p>
+\end{align*}\]
+
+<p>Hence visually</p>
 
 <table>
   <thead>
@@ -2009,8 +2127,8 @@ Hence visually</p>
   </thead>
   <tbody>
     <tr>
-      <td style="text-align: center"><img src="rl/image-20221014081856031.png" alt="image-20221014081856031" style="zoom: 33%;" /></td>
-      <td style="text-align: center"><img src="rl/image-20221014081936837.png" alt="image-20221014081936837" style="zoom: 50%;" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2022-12-15-ELEN6885_Reinforcement_Learning/image-20221014081856031.png" alt="image-20221014081856031" style="zoom: 33%;" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2022-12-15-ELEN6885_Reinforcement_Learning/image-20221014081936837.png" alt="image-20221014081936837" style="zoom: 50%;" /></td>
     </tr>
   </tbody>
 </table>
@@ -2030,7 +2148,7 @@ Hence visually</p>
   </thead>
   <tbody>
     <tr>
-      <td style="text-align: center"><img src="rl/image-20221014082300419.png" alt="image-20221014082300419" style="zoom: 33%;" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2022-12-15-ELEN6885_Reinforcement_Learning/image-20221014082300419.png" alt="image-20221014082300419" style="zoom: 33%;" /></td>
       <td style="text-align: center">$\frac{1}{2} G^2 + \frac{1}{2} G^4 = \frac{1}{2}\sum G^{(n)}$</td>
     </tr>
   </tbody>
@@ -2039,11 +2157,15 @@ Hence visually</p>
 <p>So the question is what is a good way to combine those information?</p>
 
 <blockquote>
-  <p><strong>$\lambda$-Return:</strong> compute $G_t^\lambda$ which combines all $n$-step return $G_t^{n}$ ==using weight $(1-\lambda )\lambda^{n-1}$==, which decays each future by $\lambda$ while summing up to $1$. This means that given all returns:
-\(G_t^\lambda = (1-\lambda) \sum_{n=1}^\infty \lambda^{n-1} G_t^{(n)}, \quad G_t^{(n)} = R_{t+1} + \gamma R_{t+2} + ... + \gamma^{N}V(S_{t+N})\)
-and hence your update equation becomes
-\(V(S_t) \gets V(S_t) + \alpha (G_t^\lambda - V(S_t))\)
-however, since this means you are adding both long episodes (MC) and short ones (TD), you will get</p>
+  <p><strong>$\lambda$-Return:</strong> compute $G_t^\lambda$ which combines all $n$-step return $G_t^{n}$ ==using weight $(1-\lambda )\lambda^{n-1}$==, which decays each future by $\lambda$ while summing up to $1$. This means that given all returns:</p>
+
+\[G_t^\lambda = (1-\lambda) \sum_{n=1}^\infty \lambda^{n-1} G_t^{(n)}, \quad G_t^{(n)} = R_{t+1} + \gamma R_{t+2} + ... + \gamma^{N}V(S_{t+N})\]
+
+  <p>and hence your update equation becomes</p>
+
+\[V(S_t) \gets V(S_t) + \alpha (G_t^\lambda - V(S_t))\]
+
+  <p>however, since this means you are adding both long episodes (MC) and short ones (TD), you will get</p>
 
   <ul>
     <li>==both high bias and big variance== (from MC and TD)</li>
@@ -2065,15 +2187,16 @@ however, since this means you are adding both long episodes (MC) and short ones 
   </thead>
   <tbody>
     <tr>
-      <td style="text-align: center"><img src="rl/image-20221014082434105.png" alt="image-20221014082434105" style="zoom:50%;" /></td>
-      <td style="text-align: center"><img src="rl/image-20221014083138482.png" alt="image-20221014083138482" style="zoom:33%;" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2022-12-15-ELEN6885_Reinforcement_Learning/image-20221014082434105.png" alt="image-20221014082434105" style="zoom:50%;" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2022-12-15-ELEN6885_Reinforcement_Learning/image-20221014083138482.png" alt="image-20221014083138482" style="zoom:33%;" /></td>
     </tr>
   </tbody>
 </table>
 
 <blockquote>
-  <p>==Note== that in the forward-view, the <strong>weights need to sum up to $1$</strong>. This means in case if you have a finite horizon, as shown in the figure above you need to <strong>adjust your last weight</strong> so that your weights sum up to $1$.
-\(G_t^{\lambda} = (1-\lambda) \sum_{n=1}^{T-t-1}\lambda^{n-1}G_{t}^{(n)}+\underbrace{\lambda ^{T-t-1}G_t}_{\text{last return}}\)</p>
+  <p>==Note== that in the forward-view, the <strong>weights need to sum up to $1$</strong>. This means in case if you have a finite horizon, as shown in the figure above you need to <strong>adjust your last weight</strong> so that your weights sum up to $1$.</p>
+
+\[G_t^{\lambda} = (1-\lambda) \sum_{n=1}^{T-t-1}\lambda^{n-1}G_{t}^{(n)}+\underbrace{\lambda ^{T-t-1}G_t}_{\text{last return}}\]
 
   <ul>
     <li>for instance, if you have three $G_t^{(n)}$, and $\lambda = 0.5$, then the weights will be $0.5, 0.5^2, 1-(0.5+0.5^2)$</li>
@@ -2082,7 +2205,7 @@ however, since this means you are adding both long episodes (MC) and short ones 
 
 <p>So how do we <strong>improve this theoretical idea</strong>. Consider viewing TD($\lambda$) as a ==forward view== as we are looking into the future</p>
 
-<p><img src="rl/image-20221014083247509.png" alt="image-20221014083247509" style="zoom: 50%;" /></p>
+<p><img src="/lectures/images/2022-12-15-ELEN6885_Reinforcement_Learning/image-20221014083247509.png" alt="image-20221014083247509" style="zoom: 50%;" /></p>
 
 <blockquote>
   <p>This forward view provides theory, the ==backward view== provides mechanism/practicality</p>
@@ -2125,14 +2248,16 @@ however, since this means you are adding both long episodes (MC) and short ones 
 <blockquote>
   <p><strong>Eligibility Trace</strong>: essentially how do we ==design a weighting== that achieves the above but also allow us to do per-step update?</p>
 
-  <p>Initialize the weight $E_0(s)=0$ for each state, and then consider 
-\(E_t(s) = \gamma \lambda E_{t-1}(s) + \mathbb{1}(S_t=s)\)
-for $\mathbb{1}$ is the indicator function, and it records the <strong>“importance” for each state</strong> when the value function is updated (see later). But why this form? It turns out that this specific form allows for an ==(offline) equivalence== of eligibility trace to TD($\lambda$) forward view.</p>
+  <p>Initialize the weight $E_0(s)=0$ for each state, and then consider</p>
+
+\[E_t(s) = \gamma \lambda E_{t-1}(s) + \mathbb{1}(S_t=s)\]
+
+  <p>for $\mathbb{1}$ is the indicator function, and it records the <strong>“importance” for each state</strong> when the value function is updated (see later). But why this form? It turns out that this specific form allows for an ==(offline) equivalence== of eligibility trace to TD($\lambda$) forward view.</p>
 </blockquote>
 
 <p>For example, consider you are rolling out a single episode, and a state that is being visited 4 times in a row, not seen for a while, then seen twice, then seen once. Then, the eligibility trace of it looks like:</p>
 
-<p><img src="rl/image-20221014084104772.png" alt="image-20221014084104772" style="zoom:50%;" /></p>
+<p><img src="/lectures/images/2022-12-15-ELEN6885_Reinforcement_Learning/image-20221014084104772.png" alt="image-20221014084104772" style="zoom:50%;" /></p>
 
 <p>therefore, it satisfied what I needed:</p>
 
@@ -2144,25 +2269,35 @@ for $\mathbb{1}$ is the indicator function, and it records the <strong>“import
 <blockquote>
   <p><strong>Backward View</strong> of TD($\lambda$): now we can use eligibility trace for value update.</p>
 
-  <p>Consider the TD error $\delta_t$ we used to update when doing TD(0):
-\(\delta_t = \underbrace{R_{t+1} + \gamma V(S_{t+1})}_{\text{TD(0) target}} - V(S_t)\)
-which enabled us to do per time-step update. Then, the idea is we ==weigh== the per-time step error, such that ==if we accumulate the updates until the end of the episode==, it will result in the ==same update as the forward TD($\lambda$)==. This is also called the <strong>offline equivalence</strong> (see next section), but with this constraint we end up with the weight called ==eligibility trace $E_t(s)$== which we showed before:
-\(E_t(s) = \gamma \lambda E_{t-1}(s) + \mathbb{1}(S_t=s)\)
-and hence the update rule:
-\(V(s)\gets V(s) + \alpha E_t(s) \delta_t\)
-so that this is given to each state, e.g. if we have 10 states, we get 10 eligibility traces. Intuitively, since $E_t(s)$ depended on history, it measures how much this state matters <strong>by looking in the past</strong>: to see if it is seen frequently, recently.</p>
+  <p>Consider the TD error $\delta_t$ we used to update when doing TD(0):</p>
+
+\[\delta_t = \underbrace{R_{t+1} + \gamma V(S_{t+1})}_{\text{TD(0) target}} - V(S_t)\]
+
+  <p>which enabled us to do per time-step update. Then, the idea is we ==weigh== the per-time step error, such that ==if we accumulate the updates until the end of the episode==, it will result in the ==same update as the forward TD($\lambda$)==. This is also called the <strong>offline equivalence</strong> (see next section), but with this constraint we end up with the weight called ==eligibility trace $E_t(s)$== which we showed before:</p>
+
+\[E_t(s) = \gamma \lambda E_{t-1}(s) + \mathbb{1}(S_t=s)\]
+
+  <p>and hence the update rule:</p>
+
+\[V(s)\gets V(s) + \alpha E_t(s) \delta_t\]
+
+  <p>so that this is given to each state, e.g. if we have 10 states, we get 10 eligibility traces. Intuitively, since $E_t(s)$ depended on history, it measures how much this state matters <strong>by looking in the past</strong>: to see if it is seen frequently, recently.</p>
 </blockquote>
 
 <p>Visually, the backward view means we are using this loss $\delta_t$ using information in the past:</p>
 
-<p><img src="rl/image-20221014084613356.png" alt="image-20221014084613356" style="zoom:33%;" /></p>
+<p><img src="/lectures/images/2022-12-15-ELEN6885_Reinforcement_Learning/image-20221014084613356.png" alt="image-20221014084613356" style="zoom:33%;" /></p>
 
 <p>additionally</p>
 
 <ul>
-  <li>if $\lambda = 0$, then $E_t(s) =\mathbb{1}(S_t=s)$  and then eligibility trace becomes TD(0) update since we are then doing:
-\(V(s)\gets V(s) + \alpha \delta_t(s)\cdot \mathbb{1}(S_t=s)\)
-meaning we only update the ones we just saw</li>
+  <li>
+    <p>if $\lambda = 0$, then $E_t(s) =\mathbb{1}(S_t=s)$  and then eligibility trace becomes TD(0) update since we are then doing:</p>
+
+\[V(s)\gets V(s) + \alpha \delta_t(s)\cdot \mathbb{1}(S_t=s)\]
+
+    <p>meaning we only update the ones we just saw</p>
+  </li>
 </ul>
 
 <p>So this backward update now has the advantage of</p>
@@ -2178,7 +2313,7 @@ meaning we only update the ones we just saw</li>
 
 <p>Finally, we can show the algorithm of using Eligibility trace:</p>
 
-<p><img src="rl/image-20221014085742951.png" alt="image-20221014085742951" style="zoom: 67%;" /></p>
+<p><img src="/lectures/images/2022-12-15-ELEN6885_Reinforcement_Learning/image-20221014085742951.png" alt="image-20221014085742951" style="zoom: 67%;" /></p>
 
 <p>where basically the error is TD(0) error, but we are <strong>updating all states using eligibility trace per time step</strong></p>
 
@@ -2196,26 +2331,29 @@ meaning we only update the ones we just saw</li>
       <p>we are updating <strong>all states per time step</strong>, so even if you have just seen a state $S_t=B$, and $S={A,B}$, you still need to update <strong>both $S=A,S=B$</strong> in the loop when updating $V(s)$. A hint is to notice that $\delta$ is not a function of state in the above algorithm.</p>
     </li>
     <li>
-      <p>when used with value function approximation, the <strong>eligibility trace generalizes</strong> to
-\(E_t(s) = \gamma \lambda E_{t-1}(s) + \nabla \hat{V}(S,w)\)
-and algorithm looks like</p>
+      <p>when used with value function approximation, the <strong>eligibility trace generalizes</strong> to</p>
 
-      <p><img src="rl/image-20221205221054594.png" alt="image-20221205221054594" style="zoom: 25%;" /></p>
+\[E_t(s) = \gamma \lambda E_{t-1}(s) + \nabla \hat{V}(S,w)\]
+
+      <p>and algorithm looks like</p>
+
+      <p><img src="/lectures/images/2022-12-15-ELEN6885_Reinforcement_Learning/image-20221205221054594.png" alt="image-20221205221054594" style="zoom: 25%;" /></p>
     </li>
   </ul>
 </blockquote>
 
 <h3 id="offline-equivalent-of-forward-and-backward-views">Offline Equivalent of Forward and Backward Views</h3>
 
-<p>Finally, here we answer the question why did people decide to use specifically the weight in the form of $E_t(s)$
-\(E_t(s) = \gamma \lambda E_{t-1}(s) + \mathbb{1}(S_t=s)\)</p>
+<p>Finally, here we answer the question why did people decide to use specifically the weight in the form of $E_t(s)$</p>
+
+\[E_t(s) = \gamma \lambda E_{t-1}(s) + \mathbb{1}(S_t=s)\]
 
 <blockquote>
   <p><strong>Offline Equivalence</strong></p>
 
   <p>Consider having your eligibility trace being updated/accumulated all the time, but ==you only update $V$ at the end==. Recall that for the forward view, we also only update at the end. Now, you realize that</p>
 
-  <p><img src="rl/image-20221014085128664.png" alt="image-20221014085128664" style="zoom:33%;" /></p>
+  <p><img src="/lectures/images/2022-12-15-ELEN6885_Reinforcement_Learning/image-20221014085128664.png" alt="image-20221014085128664" style="zoom:33%;" /></p>
 
   <p>so if we were offline only learning the eligibility traces, your final updated $V$ will be the same as the forward view</p>
 
@@ -2241,20 +2379,29 @@ and algorithm looks like</p>
 
 <p>First, we consider the forward TD($\lambda$). Consider the ==$n$-step look ahead for SARSA’s target==</p>
 
-<p><img src="rl/image-20221015155935901.png" alt="image-20221015155935901" style="zoom:33%;" /></p>
+<p><img src="/lectures/images/2022-12-15-ELEN6885_Reinforcement_Learning/image-20221015155935901.png" alt="image-20221015155935901" style="zoom:33%;" /></p>
 
-<p>So that the $n$-step look ahead return is
-\(q_t^{n} = R_{t+1} + \gamma R_{t+2} + ... + \gamma^{T-1} R_{t+n} + \gamma^n Q(S_{t+n})\)
-Hence the forward view considers weighting those returns:
-\(q_t^{\lambda} = (1-\lambda) \sum_{n=1}^\infty \lambda^{n-1} q_t^{(n)}\)
-So the forward view of SARSA becomes:
-\(Q(S_t, A_t) \gets Q(S_t,A_t) + \alpha (\underbrace{q_t^{\lambda}}_{\text{TD($\lambda$) target}} - Q(S_t,A_t))\)
-and notice that using $\lambda=0$ we get back SARSA (which uses TD(0) target)</p>
+<p>So that the $n$-step look ahead return is</p>
 
-<p>Then from it, we can <strong>find the backward view</strong> by building this ==eligibility trace== knowing that
-\(\delta_t = R_{t+1} + \gamma Q(S_{t+1}, A_{t+1}) - Q(S_t, A_t)\)
-so then intuitively we can say that the eligibility trace is, with $E_0(s,a)=0$:
-\(E_t(s,a) = \gamma \lambda E_{t-1}(s,a) + \mathbb{1}(S_t=s, A_t=a)\)</p>
+\[q_t^{n} = R_{t+1} + \gamma R_{t+2} + ... + \gamma^{T-1} R_{t+n} + \gamma^n Q(S_{t+n})\]
+
+<p>Hence the forward view considers weighting those returns:</p>
+
+\[q_t^{\lambda} = (1-\lambda) \sum_{n=1}^\infty \lambda^{n-1} q_t^{(n)}\]
+
+<p>So the forward view of SARSA becomes:</p>
+
+\[Q(S_t, A_t) \gets Q(S_t,A_t) + \alpha (\underbrace{q_t^{\lambda}}_{\text{TD($\lambda$) target}} - Q(S_t,A_t))\]
+
+<p>and notice that using $\lambda=0$ we get back SARSA (which uses TD(0) target)</p>
+
+<p>Then from it, we can <strong>find the backward view</strong> by building this ==eligibility trace== knowing that</p>
+
+\[\delta_t = R_{t+1} + \gamma Q(S_{t+1}, A_{t+1}) - Q(S_t, A_t)\]
+
+<p>so then intuitively we can say that the eligibility trace is, with $E_0(s,a)=0$:</p>
+
+\[E_t(s,a) = \gamma \lambda E_{t-1}(s,a) + \mathbb{1}(S_t=s, A_t=a)\]
 
 <p>so that our update rule is:</p>
 
@@ -2270,11 +2417,11 @@ so then intuitively we can say that the eligibility trace is, with $E_0(s,a)=0$:
 
 <p>Therefore, we get this SARSA($\lambda$) algorithm</p>
 
-<p><img src="rl/image-20221014091605986.png" alt="image-20221014091605986" style="zoom:50%;" /></p>
+<p><img src="/lectures/images/2022-12-15-ELEN6885_Reinforcement_Learning/image-20221014091605986.png" alt="image-20221014091605986" style="zoom:50%;" /></p>
 
 <p>We can visualize the differences:</p>
 
-<p><img src="rl/image-20221014091753630.png" alt="image-20221014091753630" style="zoom: 50%;" /></p>
+<p><img src="/lectures/images/2022-12-15-ELEN6885_Reinforcement_Learning/image-20221014091753630.png" alt="image-20221014091753630" style="zoom: 50%;" /></p>
 
 <p>so that</p>
 <ul>
@@ -2293,15 +2440,17 @@ so then intuitively we can say that the eligibility trace is, with $E_0(s,a)=0$:
   <li>both Q-learning and SARSA is proven to give you the optimal policy (under mild conditions)</li>
 </ul>
 
-<p>Now, consider Q($\lambda$).  We first consider ==$n$-step look ahead of the target== (different from SARSA’s target)
-\(\begin{cases}
+<p>Now, consider Q($\lambda$).  We first consider ==$n$-step look ahead of the target== (different from SARSA’s target)</p>
+
+\[\begin{cases}
 \text{1-step}, &amp; R_{t+1} + \gamma \max_a Q(S_{t+1}, a) \\
 \vdots \\
 \text{$n$-step}, &amp; R_{t+1} + \gamma R_{t+2} + ... + \gamma^{T-1} R_{t+n} + \gamma^n \max_a Q(S_{t+n}, a)
-\end{cases}\)
-But then, you have a problem that since Q-learning is off-policy, what does the forward view look like? In Watkin’s $Q(\lambda)$, we considers two terminate cases:</p>
+\end{cases}\]
 
-<p><img src="rl/image-20221014092301366.png" alt="image-20221014092301366" style="zoom:50%;" /></p>
+<p>But then, you have a problem that since Q-learning is off-policy, what does the forward view look like? In Watkin’s $Q(\lambda)$, we considers two terminate cases:</p>
+
+<p><img src="/lectures/images/2022-12-15-ELEN6885_Reinforcement_Learning/image-20221014092301366.png" alt="image-20221014092301366" style="zoom:50%;" /></p>
 
 <p>so that your last look-ahead either is</p>
 <ul>
@@ -2311,20 +2460,23 @@ But then, you have a problem that since Q-learning is off-policy, what does the 
 
 <p>So that your backward view becomes</p>
 
-<p>\(\delta_{t} = R_{t+1} + \gamma \max_a Q(S_{t+1}, a) - Q(S_t, A_t)\)
-with eligibility trace
-\(E_t(s,a) = \begin{cases}
+\[\delta_{t} = R_{t+1} + \gamma \max_a Q(S_{t+1}, a) - Q(S_t, A_t)\]
+
+<p>with eligibility trace</p>
+
+\[E_t(s,a) = \begin{cases}
 1 + \gamma \lambda E_{t-1}(s,a) &amp; \text{if }s=s_t, \text{ and } a\sim \epsilon\text{-greedy}(Q(s,a)) = \arg\max_{a} Q(s,a) \\
 0, &amp; \text{if }a \neq \arg\max_{a} Q(s,a)\\
 \gamma \lambda E_{t-1}(s,a) &amp; \text{otherwise, i.e. not at } s_t
-\end{cases}\)
-with the upadte rule being</p>
+\end{cases}\]
+
+<p>with the upadte rule being</p>
 
 \[Q(s,a) \gets Q(s,a) + \alpha E_t(s,a) \delta_t\]
 
 <p>Hence the algorithm looks like</p>
 
-<p><img src="rl/image-20221014092949925.png" alt="image-20221014092949925" style="zoom:50%;" /></p>
+<p><img src="/lectures/images/2022-12-15-ELEN6885_Reinforcement_Learning/image-20221014092949925.png" alt="image-20221014092949925" style="zoom:50%;" /></p>
 
 <p>so basically</p>
 <ul>
@@ -2343,7 +2495,7 @@ with the upadte rule being</p>
 
 <p>All the basics of RL algorithms can be put in one picture, and we can understand their differences/similarities</p>
 
-<p><img src="rl/image-20221014094057829.png" alt="image-20221014094057829" style="zoom:50%;" /></p>
+<p><img src="/lectures/images/2022-12-15-ELEN6885_Reinforcement_Learning/image-20221014094057829.png" alt="image-20221014094057829" style="zoom:50%;" /></p>
 
 <p>where</p>
 

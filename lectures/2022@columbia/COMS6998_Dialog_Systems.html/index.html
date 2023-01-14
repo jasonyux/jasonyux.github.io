@@ -47,17 +47,22 @@
       <div class="wrapper">
         <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
   <head>
-	<script>
-		MathJax = {
-		  tex: {
-			inlineMath: [['$', '$'], ['\\(', '\\)']],
-			displayMath: [['$$', '$$'], ['\\[', '\\]']]
-		  }
-		};
-	</script>
-	<script id="MathJax-script" async
-		src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
-	</script>
+  <script>
+    MathJax = {
+      // 
+      loader: {
+        load: ['[tex]/ams', '[tex]/textmacros', '[tex]/boldsymbol']
+      },
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        packages: {'[+]': ['ams', 'textmacros', 'boldsymbol']}
+      }
+    };
+  </script>
+  <script id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+  </script>
   </head>
   <header class="post-header">
     <h1 class="post-title p-name" itemprop="name headline">COMS6998 Dialog Systems</h1>
@@ -115,7 +120,7 @@
 
 <p>The main conference for NLP would be ACL, and dialog has been a very popular field:</p>
 
-<p><img src="dialogs/image-20220907163617003.png" alt="image-20220907163617003" style="zoom:50%;" /></p>
+<p><img src="/lectures/images/2022-10-19-COMS6998_Dialog_Systems/image-20220907163617003.png" alt="image-20220907163617003" style="zoom:50%;" /></p>
 
 <p>Task-oriented conversational agents can help complete task that are <strong>more efficient, standardized, and cheaper</strong> way.</p>
 
@@ -123,7 +128,7 @@
 
 <p>Usually have two different goals and hence two metrics</p>
 
-<p><img src="dialogs/image-20220907164320144.png" alt="image-20220907164320144" style="zoom:33%;" /></p>
+<p><img src="/lectures/images/2022-10-19-COMS6998_Dialog_Systems/image-20220907164320144.png" alt="image-20220907164320144" style="zoom:33%;" /></p>
 
 <ul>
   <li>task-oriented chatbot: relative simple to evaluate
@@ -147,25 +152,25 @@
   </thead>
   <tbody>
     <tr>
-      <td style="text-align: center"><img src="dialogs/image-20220907164901763.png" alt="image-20220907164901763" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2022-10-19-COMS6998_Dialog_Systems/image-20220907164901763.png" alt="image-20220907164901763" /></td>
       <td>What is the user intent? For instance</td>
       <td><strong>Problem</strong>: user utterance $\to$ a distributed semantic representation<br /><strong>Sub-Tasks</strong>: intent detection, slot filling<br />e.g. I need something that is in east part of the town $\to$ <code class="language-plaintext highlighter-rouge">Inform: location=east</code></td>
       <td style="text-align: left">classification+sequence labeling (BIO tags) or sequence generation (e.g. directly use T5 to generate the desired output)</td>
     </tr>
     <tr>
-      <td style="text-align: center"><img src="dialogs/image-20220907165352093.png" alt="image-20220907165352093" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2022-10-19-COMS6998_Dialog_Systems/image-20220907165352093.png" alt="image-20220907165352093" /></td>
       <td>Important information you need to remember over time to complete the task (i.e. <strong>what is happening and what the user still needs</strong>) (e.g. tracking NLU output over time).<br />This is actually very important because if you get this right, then you just need to do some API calls and done.</td>
       <td>Input:<br />User: I am looking for a moderate price ranged Italian restaurant.<br />Sys: De luca cucina and bar is a modern European restaurant in the center.<br />User: I need something that’s in the east part of town<br /><strong>Output</strong>: <code class="language-plaintext highlighter-rouge">inform: price=moderate, location=east</code></td>
       <td style="text-align: left">Sequence classification (e.g. given <code class="language-plaintext highlighter-rouge">price</code>, is it <code class="language-plaintext highlighter-rouge">low</code>, <code class="language-plaintext highlighter-rouge">moderate</code>, or <code class="language-plaintext highlighter-rouge">high</code>) or sequence generation</td>
     </tr>
     <tr>
-      <td style="text-align: center"><img src="dialogs/image-20220907165404636.png" alt="image-20220907165404636" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2022-10-19-COMS6998_Dialog_Systems/image-20220907165404636.png" alt="image-20220907165404636" /></td>
       <td>Dialog Policy Planning: plan what the system <em>should</em> say.<br />(e.g. use of offline RL)</td>
       <td><strong>Problem</strong>: dialog state $\to$ system action mean representation(intent + slot)/template<br /><br />e.g. <code class="language-plaintext highlighter-rouge">inform: price=moderate, location=east</code> $\to$ <code class="language-plaintext highlighter-rouge">provide: restaurant_name, price, address</code></td>
       <td style="text-align: left">supervised learning or reinforcement learning</td>
     </tr>
     <tr>
-      <td style="text-align: center"><img src="dialogs/image-20220907165419278.png" alt="image-20220907165419278" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2022-10-19-COMS6998_Dialog_Systems/image-20220907165419278.png" alt="image-20220907165419278" /></td>
       <td>How to say it</td>
       <td>e.g. <code class="language-plaintext highlighter-rouge">provide: restaurant_name, price, address</code> $\to$ Curry prince is moderately priced and located at 452 newmarket road.</td>
       <td style="text-align: left">Seq-2-Seq generation</td>
@@ -182,7 +187,7 @@
 
 <p>Of course, then you have this simple brute force approach</p>
 
-<p><img src="dialogs/image-20220907170317204.png" alt="image-20220907170317204" style="zoom:33%;" /></p>
+<p><img src="/lectures/images/2022-10-19-COMS6998_Dialog_Systems/image-20220907170317204.png" alt="image-20220907170317204" style="zoom:33%;" /></p>
 
 <p>but then the problem is:</p>
 
@@ -242,7 +247,7 @@ conversation flow (e.g. generate what DA to do at each turn), which can then be 
   <li>
     <p>A domain is defined by an ontology (i.e. set of concepts that are related), which is a collection of slots and values that the system has (know how to deal with):</p>
 
-    <p><img src="dialogs/image-20220911010133911.png" alt="image-20220911010133911" style="zoom: 67%;" /></p>
+    <p><img src="/lectures/images/2022-10-19-COMS6998_Dialog_Systems/image-20220911010133911.png" alt="image-20220911010133911" style="zoom: 67%;" /></p>
 
     <p>and in general, a dialogue act consists of the intent/act type (such as <code class="language-plaintext highlighter-rouge">request </code>or <code class="language-plaintext highlighter-rouge">inform</code>) and slot-value pairs. For example, the act <code class="language-plaintext highlighter-rouge">inform(domain=hotel,price=expensive)</code> has the intent <code class="language-plaintext highlighter-rouge">inform</code>, where the user is informing the system to constrain the search to expensive hotels.</p>
   </li>
@@ -257,7 +262,7 @@ conversation flow (e.g. generate what DA to do at each turn), which can then be 
   <li>
     <p>prompt a user with a <strong>task template</strong> (generated by machine but mapped to natural language using a template)</p>
 
-    <p><img src="dialogs/image-20220911010401705.png" alt="image-20220911010401705" style="zoom:67%;" /></p>
+    <p><img src="/lectures/images/2022-10-19-COMS6998_Dialog_Systems/image-20220911010401705.png" alt="image-20220911010401705" style="zoom:67%;" /></p>
 
     <p>which is presented gradually to the user, and the user needs to ==fulfill those tasks by talking to the system==.</p>
   </li>
@@ -271,16 +276,16 @@ conversation flow (e.g. generate what DA to do at each turn), which can then be 
   <li>
     <p>perform annotation on dialog act (e.g. <code class="language-plaintext highlighter-rouge">inform(domain=hotel,price=expensive)</code>) by using Amazon Mechanical Turk (by eliminating some poor workers). An example of what they are given is shown here</p>
 
-    <p><img src="dialogs/image-20220911011238227.png" alt="image-20220911011238227" style="zoom: 50%;" /></p>
+    <p><img src="/lectures/images/2022-10-19-COMS6998_Dialog_Systems/image-20220911011238227.png" alt="image-20220911011238227" style="zoom: 50%;" /></p>
   </li>
   <li>
     <p>This results in the following data statistics:</p>
 
-    <p><img src="dialogs/image-20220911011549988.png" alt="image-20220911011549988" style="zoom: 67%;" /></p>
+    <p><img src="/lectures/images/2022-10-19-COMS6998_Dialog_Systems/image-20220911011549988.png" alt="image-20220911011549988" style="zoom: 67%;" /></p>
 
     <p>on the left we see that multi-domain dialogs tends to be longer, and on the right we see that system reponses tend to be longer. And finally, very self-explanatory:</p>
 
-    <p><img src="dialogs/image-20220911011454740.png" alt="image-20220911011454740" style="zoom: 67%;" /></p>
+    <p><img src="/lectures/images/2022-10-19-COMS6998_Dialog_Systems/image-20220911011454740.png" alt="image-20220911011454740" style="zoom: 67%;" /></p>
   </li>
 </ol>
 
@@ -290,22 +295,22 @@ conversation flow (e.g. generate what DA to do at each turn), which can then be 
   <li>
     <p><strong>dialog state tracking</strong> (identify the correct slot-value pair): since other datasets only have a single domain, only the <code class="language-plaintext highlighter-rouge">restaurant</code> domain in this dataset is used:</p>
 
-    <p><img src="dialogs/image-20220911012028270.png" alt="image-20220911012028270" style="zoom:67%;" /></p>
+    <p><img src="/lectures/images/2022-10-19-COMS6998_Dialog_Systems/image-20220911012028270.png" alt="image-20220911012028270" style="zoom:67%;" /></p>
 
     <p>Here, the model is a SOTA from another <a href="https://arxiv.org/abs/1807.06517">paper</a> which basically considers learning slot-value pairs and domains separately during training, hence enabling model to <strong>learn cross-domain slot-value pairs</strong>:</p>
 
-    <p><img src="dialogs/image-20220911012133082.png" alt="image-20220911012133082" style="zoom:67%;" /></p>
+    <p><img src="/lectures/images/2022-10-19-COMS6998_Dialog_Systems/image-20220911012133082.png" alt="image-20220911012133082" style="zoom:67%;" /></p>
 
     <p>the result is that overall accuracy is lower, hence this dataset is harder.</p>
   </li>
   <li>
     <p><strong>dialog-context-to-text generation</strong> (more end-2-end than next one) given the oracle belief state (tracked when system is doing query). We generate the response by doing:</p>
 
-    <p><img src="dialogs/image-20220911012630020.png" alt="image-20220911012630020" style="zoom: 67%;" /></p>
+    <p><img src="/lectures/images/2022-10-19-COMS6998_Dialog_Systems/image-20220911012630020.png" alt="image-20220911012630020" style="zoom: 67%;" /></p>
 
     <p>which basically sets the hidden state $h$ for the decoder to be information about what user said (belief state), while attending to the user’s actual utterances. Since this is generation, metrics such as BLEU for fluency would apply:</p>
 
-    <p><img src="dialogs/image-20220911012807592.png" alt="image-20220911012807592" style="zoom: 50%;" /></p>
+    <p><img src="/lectures/images/2022-10-19-COMS6998_Dialog_Systems/image-20220911012807592.png" alt="image-20220911012807592" style="zoom: 50%;" /></p>
 
     <p>where <em>Success</em> measures whether if the system has fulfilled the user’s request, and <em>Inform</em> measure whether the system has provided an appropriate entity.</p>
   </li>
@@ -326,7 +331,7 @@ conversation flow (e.g. generate what DA to do at each turn), which can then be 
 
 <p><strong>Dataset Setup</strong>:</p>
 
-<p><img src="dialogs/image-20220911014016544.png" alt="image-20220911014016544" style="zoom: 50%;" /></p>
+<p><img src="/lectures/images/2022-10-19-COMS6998_Dialog_Systems/image-20220911014016544.png" alt="image-20220911014016544" style="zoom: 50%;" /></p>
 
 <ul>
   <li>a <strong>schema</strong> (see above) is a combination of intent and slots with some additional constraints (such as some intent requires at least certain slots to be there)</li>
@@ -335,7 +340,7 @@ conversation flow (e.g. generate what DA to do at each turn), which can then be 
 
 <p><strong>Dataset Collection</strong>:</p>
 
-<p><img src="dialogs/image-20220911014417690.png" alt="image-20220911014417690" style="zoom: 67%;" /></p>
+<p><img src="/lectures/images/2022-10-19-COMS6998_Dialog_Systems/image-20220911014417690.png" alt="image-20220911014417690" style="zoom: 67%;" /></p>
 
 <ol>
   <li>first they use dialog simulators to interact with services to generate dialog outlines, basically a). This is achieved by first seeding the user agent with a scenario (among the 200 they identified), and then generate the dialog act to do for the next turn.</li>
@@ -385,7 +390,7 @@ conversation flow (e.g. generate what DA to do at each turn), which can then be 
 
     <p>some important results are shown here</p>
 
-    <p><img src="dialogs/image-20220911020544880.png" alt="image-20220911020544880" style="zoom: 50%;" /></p>
+    <p><img src="/lectures/images/2022-10-19-COMS6998_Dialog_Systems/image-20220911020544880.png" alt="image-20220911020544880" style="zoom: 50%;" /></p>
 
     <p>where we notice that major factors affecting the performance across domains is:</p>
 
@@ -410,7 +415,7 @@ conversation flow (e.g. generate what DA to do at each turn), which can then be 
 
 <p><strong>Dataset Setup</strong></p>
 
-<p><img src="dialogs/image-20220911102517255.png" alt="image-20220911102517255" style="zoom: 67%;" /></p>
+<p><img src="/lectures/images/2022-10-19-COMS6998_Dialog_Systems/image-20220911102517255.png" alt="image-20220911102517255" style="zoom: 67%;" /></p>
 
 <ul>
   <li>
@@ -420,21 +425,21 @@ conversation flow (e.g. generate what DA to do at each turn), which can then be 
       <li>
         <p>ConvAI2 example:</p>
 
-        <p><img src="dialogs/image-20220914173659527.png" alt="image-20220914173659527" style="zoom: 50%;" /></p>
+        <p><img src="/lectures/images/2022-10-19-COMS6998_Dialog_Systems/image-20220914173659527.png" alt="image-20220914173659527" style="zoom: 50%;" /></p>
 
         <p>then the user is asked to converse on telling each other about their personalities</p>
       </li>
       <li>
         <p>WoW example:</p>
 
-        <p><img src="dialogs/image-20220914173747579.png" alt="image-20220914173747579" style="zoom:33%;" /></p>
+        <p><img src="/lectures/images/2022-10-19-COMS6998_Dialog_Systems/image-20220914173747579.png" alt="image-20220914173747579" style="zoom:33%;" /></p>
 
         <p>where the topic is used as an initial context</p>
       </li>
       <li>
         <p>ED example:</p>
 
-        <p><img src="dialogs/image-20220914173900784.png" alt="image-20220914173900784" style="zoom:33%;" /></p>
+        <p><img src="/lectures/images/2022-10-19-COMS6998_Dialog_Systems/image-20220914173900784.png" alt="image-20220914173900784" style="zoom:33%;" /></p>
       </li>
     </ul>
   </li>
@@ -514,7 +519,7 @@ Jack   friend_with   Germany    0.156      5
   <li>
     <p>Then, along with just models trained on their own dataset, we can have 7 models to evaluate:</p>
 
-    <p><img src="dialogs/image-20220911104543720.png" alt="image-20220911104543720" style="zoom:80%;" /></p>
+    <p><img src="/lectures/images/2022-10-19-COMS6998_Dialog_Systems/image-20220911104543720.png" alt="image-20220911104543720" style="zoom:80%;" /></p>
 
     <p>where we observe that:</p>
 
@@ -532,7 +537,7 @@ Jack   friend_with   Germany    0.156      5
   <li>
     <p>finally, there is of course the human evaluation:</p>
 
-    <p><img src="dialogs/image-20220911105544154.png" alt="image-20220911105544154" style="zoom: 67%;" /></p>
+    <p><img src="/lectures/images/2022-10-19-COMS6998_Dialog_Systems/image-20220911105544154.png" alt="image-20220911105544154" style="zoom: 67%;" /></p>
   </li>
 </ul>
 
@@ -564,7 +569,7 @@ Jack   friend_with   Germany    0.156      5
 
 <p><strong>Setup</strong></p>
 
-<p><img src="dialogs/image-20220916193314825.png" alt="image-20220916193314825" /></p>
+<p><img src="/lectures/images/2022-10-19-COMS6998_Dialog_Systems/image-20220916193314825.png" alt="image-20220916193314825" /></p>
 
 <ul>
   <li>the input essentially is the sentence, and slot detection and slot-filling is <strong>done simultaneously from the flat structure</strong>
@@ -587,9 +592,9 @@ Jack   friend_with   Germany    0.156      5
   </thead>
   <tbody>
     <tr>
-      <td style="text-align: center"><img src="dialogs/image-20220916193557680.png" alt="image-20220916193557680" /></td>
-      <td style="text-align: center"><img src="dialogs/image-20220916193613690.png" alt="image-20220916193613690" /></td>
-      <td style="text-align: center"><img src="dialogs/image-20220916193622327.png" alt="image-20220916193622327" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2022-10-19-COMS6998_Dialog_Systems/image-20220916193557680.png" alt="image-20220916193557680" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2022-10-19-COMS6998_Dialog_Systems/image-20220916193613690.png" alt="image-20220916193613690" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2022-10-19-COMS6998_Dialog_Systems/image-20220916193622327.png" alt="image-20220916193622327" /></td>
     </tr>
   </tbody>
 </table>
@@ -604,13 +609,17 @@ Jack   friend_with   Germany    0.156      5
     </ul>
   </li>
   <li>
-    <p>to model attention vector, we want to measure how each <strong>hidden state $s_j$ in the decoder</strong> relates to the <strong>aligned word’s hidden state $h_k$</strong>:
-\(e_{i,k} = g(s_{i-1},h_k)\)
-then essentially $e$ is transformed into weights
-\(c_i = \sum_{j=1}^T \alpha_{i,j}h_j,\qquad \alpha_{i,j} = \mathrm{Softmax}(e_{i,j})\)
-essentially $c_i$ provides additional information to answer: which of the aligned word’s hidden state $h_j$ relate to the current state I want to decode $s_{i-1}$. They also provided a visualization of this attention</p>
+    <p>to model attention vector, we want to measure how each <strong>hidden state $s_j$ in the decoder</strong> relates to the <strong>aligned word’s hidden state $h_k$</strong>:</p>
 
-    <p><img src="dialogs/image-20220916194611133.png" alt="image-20220916194611133" style="zoom:80%;" /></p>
+\[e_{i,k} = g(s_{i-1},h_k)\]
+
+    <p>then essentially $e$ is transformed into weights</p>
+
+\[c_i = \sum_{j=1}^T \alpha_{i,j}h_j,\qquad \alpha_{i,j} = \mathrm{Softmax}(e_{i,j})\]
+
+    <p>essentially $c_i$ provides additional information to answer: which of the aligned word’s hidden state $h_j$ relate to the current state I want to decode $s_{i-1}$. They also provided a visualization of this attention</p>
+
+    <p><img src="/lectures/images/2022-10-19-COMS6998_Dialog_Systems/image-20220916194611133.png" alt="image-20220916194611133" style="zoom:80%;" /></p>
 
     <p>where we are decoding the last tag, and we are attending to words such as <code class="language-plaintext highlighter-rouge">cleveland</code>.</p>
 
@@ -627,7 +636,7 @@ essentially $c_i$ provides additional information to answer: which of the aligne
   <li>
     <p>to further <strong>utilize the decoded tags</strong>, they can also do it <strong>auto-regressively</strong> by feeding the decoded tag into the forward direction of the RNN</p>
 
-    <p><img src="dialogs/image-20220916195139765.png" alt="image-20220916195139765" style="zoom:67%;" /></p>
+    <p><img src="/lectures/images/2022-10-19-COMS6998_Dialog_Systems/image-20220916195139765.png" alt="image-20220916195139765" style="zoom:67%;" /></p>
   </li>
 </ul>
 
@@ -640,7 +649,7 @@ essentially $c_i$ provides additional information to answer: which of the aligne
   <li>
     <p>then essentially they were doing an ablation study of a) effect of alignment b) effect of attention:</p>
 
-    <p><img src="dialogs/image-20220916195457119.png" alt="image-20220916195457119" style="zoom:67%;" /></p>
+    <p><img src="/lectures/images/2022-10-19-COMS6998_Dialog_Systems/image-20220916195457119.png" alt="image-20220916195457119" style="zoom:67%;" /></p>
 
     <p>so it is found that <strong>alignment and attention does give improvement</strong>, yet the latter gave only small improvement. They also investigate further and found that the attention was giving mostly uniform weights except for a few cases (hence the small boosts)</p>
   </li>
@@ -664,7 +673,7 @@ essentially $c_i$ provides additional information to answer: which of the aligne
 
 <p><strong>Setup</strong>:</p>
 
-<p><img src="dialogs/image-20220916202809150.png" alt="image-20220916202809150" style="zoom:67%;" /></p>
+<p><img src="/lectures/images/2022-10-19-COMS6998_Dialog_Systems/image-20220916202809150.png" alt="image-20220916202809150" style="zoom:67%;" /></p>
 
 <ul>
   <li>
@@ -679,8 +688,8 @@ essentially $c_i$ provides additional information to answer: which of the aligne
       </thead>
       <tbody>
         <tr>
-          <td style="text-align: center"><img src="dialogs/image-20220916202659271.png" alt="image-20220916202659271" style="zoom:50%;" /></td>
-          <td style="text-align: center"><img src="dialogs/image-20220916202702538.png" alt="image-20220916202702538" style="zoom:50%;" /></td>
+          <td style="text-align: center"><img src="/lectures/images/2022-10-19-COMS6998_Dialog_Systems/image-20220916202659271.png" alt="image-20220916202659271" style="zoom:50%;" /></td>
+          <td style="text-align: center"><img src="/lectures/images/2022-10-19-COMS6998_Dialog_Systems/image-20220916202702538.png" alt="image-20220916202702538" style="zoom:50%;" /></td>
         </tr>
       </tbody>
     </table>
@@ -722,29 +731,15 @@ essentially $c_i$ provides additional information to answer: which of the aligne
       <li>
         <p>a module <strong>generating the initial user goal</strong> $P(y_o^u)$. This can be done by sampling a ==production rule==</p>
 
-        <p><img src="dialogs/image-20220916204534378.png" alt="image-20220916204534378" style="zoom: 67%;" /></p>
+        <p><img src="/lectures/images/2022-10-19-COMS6998_Dialog_Systems/image-20220916204534378.png" alt="image-20220916204534378" style="zoom: 67%;" /></p>
       </li>
       <li>
-        <table>
-          <tbody>
-            <tr>
-              <td>a module <strong>generating system act</strong> $P(y_t^s</td>
-              <td>y_t^u)$. This is done by looking at the user’s act tree $y_t^u$, look up the production rules to figure out <strong>how to finish the tree</strong>, and take that as the system act</td>
-            </tr>
-          </tbody>
-        </table>
+        <p>a module <strong>generating system act</strong> $P(y_t^s\vert y_t^u)$. This is done by looking at the user’s act tree $y_t^u$, look up the production rules to figure out <strong>how to finish the tree</strong>, and take that as the system act</p>
 
-        <p><img src="dialogs/image-20220916205038811.png" alt="image-20220916205038811" style="zoom:67%;" /></p>
+        <p><img src="/lectures/images/2022-10-19-COMS6998_Dialog_Systems/image-20220916205038811.png" alt="image-20220916205038811" style="zoom:67%;" /></p>
       </li>
       <li>
-        <table>
-          <tbody>
-            <tr>
-              <td>a module for <strong>user state update</strong>/DS based on dialog history $P(y_t^u</td>
-              <td>y_{&lt;t}^s,y_{&lt;t}^u)$. There are two details in this task:</td>
-            </tr>
-          </tbody>
-        </table>
+        <p>a module for <strong>user state update</strong>/DS based on dialog history $P(y_t^u\vert y_{&lt;t}^s,y_{&lt;t}^u)$. There are two details in this task:</p>
 
         <ul>
           <li>
@@ -759,7 +754,7 @@ essentially $c_i$ provides additional information to answer: which of the aligne
 
             <p>since this is now generated from two trees (there are two at the top of the stack)</p>
 
-            <p><img src="dialogs/image-20220916205633058.png" alt="image-20220916205633058" style="zoom:67%;" /></p>
+            <p><img src="/lectures/images/2022-10-19-COMS6998_Dialog_Systems/image-20220916205633058.png" alt="image-20220916205633058" style="zoom:67%;" /></p>
 
             <p>where the next user state will be combining the two</p>
           </li>
@@ -801,13 +796,14 @@ essentially $c_i$ provides additional information to answer: which of the aligne
 
     <ul>
       <li>
-        <p><strong>dialog history</strong> is computed as a fixed-size history representation derived from the previous conversation flow $(Y_{&lt;t})$, specifically the top of the stat $y_{t-1}^{top,u}$ along with:
-\(Y_{t-1}^u = \text{merge}(y_{t-1}^u, y_{t-1}^{top,u})\)</p>
+        <p><strong>dialog history</strong> is computed as a fixed-size history representation derived from the previous conversation flow $(Y_{&lt;t})$, specifically the top of the stat $y_{t-1}^{top,u}$ along with:</p>
+
+\[Y_{t-1}^u = \text{merge}(y_{t-1}^u, y_{t-1}^{top,u})\]
       </li>
       <li>
         <p><strong>encoding the features</strong>:</p>
 
-        <p><img src="dialogs/image-20220916210719872.png" alt="image-20220916210719872" style="zoom:80%;" /></p>
+        <p><img src="/lectures/images/2022-10-19-COMS6998_Dialog_Systems/image-20220916210719872.png" alt="image-20220916210719872" style="zoom:80%;" /></p>
 
         <p>where essentially we have three features and hence three encoders:</p>
 
@@ -826,30 +822,37 @@ essentially $c_i$ provides additional information to answer: which of the aligne
           <li>
             <p>==just decode a flattened string==, as in Figure 1. The final aim is to simply ==compute the probability of next token== by accessing its probability of generation and copy</p>
 
-            <p>Specifically, the decoder takes
-\(g_i = \mathrm{LSTM}(g_{i-1},y_{t,i-1}^u)\)
-which is basically <strong>auto-regressive</strong>, and the <strong>attention</strong> is used together with $g_i$ to compute probability of next token</p>
+            <p>Specifically, the decoder takes</p>
+
+\[g_i = \mathrm{LSTM}(g_{i-1},y_{t,i-1}^u)\]
+
+            <p>which is basically <strong>auto-regressive</strong>, and the <strong>attention</strong> is used together with $g_i$ to compute probability of next token</p>
 
             <ul>
               <li>
-                <p>attention: <strong>attend current state to history</strong>
-\(a_{i,j} = attn(g_i,H)\)
-where history would be either of the three from the three encoders. Then this is used for weights to produce:
-\(\bar{h}_i = \sum_{j=1}^n w_{i,j} h_i,\quad w_{i,j} = \mathrm{Softmax}(a_{i,j})\)</p>
+                <p>attention: <strong>attend current state to history</strong></p>
+
+\[a_{i,j} = attn(g_i,H)\]
+
+                <p>where history would be either of the three from the three encoders. Then this is used for weights to produce:</p>
+
+\[\bar{h}_i = \sum_{j=1}^n w_{i,j} h_i,\quad w_{i,j} = \mathrm{Softmax}(a_{i,j})\]
               </li>
               <li>
                 <p>finally, the token distribution is computed by <strong>concatenating $\bar{h}_i^x, \bar{h}_i^s, \bar{h}_i^u$</strong> from the encoders and $g_i$ <strong>to give $f_i$</strong></p>
 
-                <p><img src="dialogs/image-20220916211928284.png" alt="image-20220916211928284" style="zoom:67%;" /></p>
+                <p><img src="/lectures/images/2022-10-19-COMS6998_Dialog_Systems/image-20220916211928284.png" alt="image-20220916211928284" style="zoom:67%;" /></p>
               </li>
             </ul>
 
             <p>finally, since this is decoding a flat string, the loss is simply CCE of the correct $y_{y,i}^u$</p>
           </li>
           <li>
-            <p>==decode a tree by generating nodes and select their parent relationships from the existing tree==: you basically take the hidden state/embedding of the previous node $n_{t,i-1}^u$ and its parent relation $r_{t,i-1}^u$ to be input features as well for decoding:
-\(g_i = \mathrm{LSTM}(g_{i-1},n_{t,i-1}^u , r_{t,i-1}^u)\)
-the we perform two predictions using two layers using $g_i$</p>
+            <p>==decode a tree by generating nodes and select their parent relationships from the existing tree==: you basically take the hidden state/embedding of the previous node $n_{t,i-1}^u$ and its parent relation $r_{t,i-1}^u$ to be input features as well for decoding:</p>
+
+\[g_i = \mathrm{LSTM}(g_{i-1},n_{t,i-1}^u , r_{t,i-1}^u)\]
+
+            <p>the we perform two predictions using two layers using $g_i$</p>
 
             <ul>
               <li>
@@ -872,7 +875,7 @@ the we perform two predictions using two layers using $g_i$</p>
   <li>
     <p>experiment on DST dataset, where for models not with hierarchical MR in mind, all training and testing here are flattened:</p>
 
-    <p><img src="dialogs/image-20220916212530129.png" alt="image-20220916212530129" style="zoom:67%;" /></p>
+    <p><img src="/lectures/images/2022-10-19-COMS6998_Dialog_Systems/image-20220916212530129.png" alt="image-20220916212530129" style="zoom:67%;" /></p>
 
     <ul>
       <li>==TODO== doesn’t this also mean that flattened based is naturally less accurate than tree based (TED-Flat v.s. TED-Vanilla) given that the <strong>task is tree based</strong>?</li>
@@ -881,7 +884,7 @@ the we perform two predictions using two layers using $g_i$</p>
   <li>
     <p>evidence of compounding error if prediction is done auto-regressively:</p>
 
-    <p><img src="dialogs/image-20220916212637904.png" alt="image-20220916212637904" style="zoom:80%;" /></p>
+    <p><img src="/lectures/images/2022-10-19-COMS6998_Dialog_Systems/image-20220916212637904.png" alt="image-20220916212637904" style="zoom:80%;" /></p>
 
     <p>where the oracle means substituting the gold previous state for encoding</p>
   </li>
@@ -916,7 +919,7 @@ the we perform two predictions using two layers using $g_i$</p>
   <li>
     <p>We propose a more <strong>comprehensive unified DA taxonomy</strong> for task-oriented dialog, which consists of 20 frequently-used DAs</p>
 
-    <p><img src="dialogs/image-20220705152203066.png" alt="image-20220705152203066" style="zoom:67%;" /></p>
+    <p><img src="/lectures/images/2022-10-19-COMS6998_Dialog_Systems/image-20220705152203066.png" alt="image-20220705152203066" style="zoom:67%;" /></p>
   </li>
 </ul>
 
@@ -938,35 +941,48 @@ the we perform two predictions using two layers using $g_i$</p>
   <li>
     <p>Four objectives are employed in our dialog pre-training process: response selection, response generation, ==DA prediction== and consistency regularization.</p>
 
-    <p><img src="dialogs/image-20220705152829713.png" alt="image-20220705152829713" /></p>
+    <p><img src="/lectures/images/2022-10-19-COMS6998_Dialog_Systems/image-20220705152829713.png" alt="image-20220705152829713" /></p>
 
     <p>where the important components include:</p>
 
     <ul>
       <li>
-        <p><strong>Response Selection</strong>. For a context response pair $(c; r)$ from the corpus, the positive example (with label $l = 1$) is obtained by concatenating $c$ with its corresponding response $r$, and the negative example (with label $l = 0$) is constructed by concatenating $c$ with a response $r^-$ that is randomly selected from the corpus. Then simply for each pair:
-\(L_{RS} = -\log p(l=1|c,r)-\log p(l=0|c,r^-)\)
-where the predicted probability is fine-tuned by adding a linear head to the transformer and then a sigmoid on the <code class="language-plaintext highlighter-rouge">[CLS]</code> token:
-\(p(l=1|c,r) = \mathrm{sigmoid}(\phi_a(h_{cls}))\)
-note that $\phi_a$ is a fully-connected NN with output size of 1.</p>
+        <p><strong>Response Selection</strong>. For a context response pair $(c; r)$ from the corpus, the positive example (with label $l = 1$) is obtained by concatenating $c$ with its corresponding response $r$, and the negative example (with label $l = 0$) is constructed by concatenating $c$ with a response $r^-$ that is randomly selected from the corpus. Then simply for each pair:</p>
+
+\[L_{RS} = -\log p(l=1|c,r)-\log p(l=0|c,r^-)\]
+
+        <p>where the predicted probability is fine-tuned by adding a linear head to the transformer and then a sigmoid on the <code class="language-plaintext highlighter-rouge">[CLS]</code> token:</p>
+
+\[p(l=1|c,r) = \mathrm{sigmoid}(\phi_a(h_{cls}))\]
+
+        <p>note that $\phi_a$ is a fully-connected NN with output size of 1.</p>
       </li>
       <li>
-        <p><strong>Response Generation</strong>. The response generation task aims to predict the dialog response r auto-regressively based on the dialog context $c$. Here we use the standard NLL loss per token in each generated sequence:
-\(L_{RG} = - \sum_{t=1}^T \log p(r_t|c,r_{&lt;t})\)
-for $r_t$ is the $t$-th word in $r$, and $r_{&lt;t}={r_1,…,r_{t-1}}$. So basically this is the greedy prediction.</p>
+        <p><strong>Response Generation</strong>. The response generation task aims to predict the dialog response r auto-regressively based on the dialog context $c$. Here we use the standard NLL loss per token in each generated sequence:</p>
+
+\[L_{RG} = - \sum_{t=1}^T \log p(r_t|c,r_{&lt;t})\]
+
+        <p>for $r_t$ is the $t$-th word in $r$, and $r_{&lt;t}={r_1,…,r_{t-1}}$. So basically this is the greedy prediction.</p>
       </li>
       <li>
-        <p><strong>DA Prediction</strong>: For a context response pair $(c; r)$ sampled from <code class="language-plaintext highlighter-rouge">UniDA</code>, the DA prediction task aims to predict the DA label $a$ of the response $r$ based ==merely on the context $c$==. However, since there are responses in <code class="language-plaintext highlighter-rouge">UniDA </code> associated with multiple DA, we model it as a Bernoulli Distribution such that $a\equiv (a_1,a_2,…,a_N)$ for $N$ being the number of dialog acts, and $p(a|c)=\prod_i^N p(a_i|c)$. Therefore, taking the dialog context $c$ as input, we add a multi-dimensional binary classifiers on $h_{cls}$ to predict each act $a_i$:
-\(L_{DA}=-\sum_{i=1}^N \{y_i \log p(a_i|c)+(1-y_i)\log(1-p(a_i|c)\}\)
-and our prediction is a single $N$ dimensional vector
-\(p(a|c) = \mathrm{sigmoid}(\phi_b(h_{cls})) \in \mathbb{R}^N\)</p>
+        <p><strong>DA Prediction</strong>: For a context response pair $(c; r)$ sampled from <code class="language-plaintext highlighter-rouge">UniDA</code>, the DA prediction task aims to predict the DA label $a$ of the response $r$ based ==merely on the context $c$==. However, since there are responses in <code class="language-plaintext highlighter-rouge">UniDA </code> associated with multiple DA, we model it as a Bernoulli Distribution such that $a\equiv (a_1,a_2,…,a_N)$ for $N$ being the number of dialog acts, and $p(a\vert c)=\prod_i^N p(a_i\vert c)$. Therefore, taking the dialog context $c$ as input, we add a multi-dimensional binary classifiers on $h_{cls}$ to predict each act $a_i$:</p>
+
+\[L_{DA}=-\sum_{i=1}^N \{y_i \log p(a_i|c)+(1-y_i)\log(1-p(a_i|c)\}\]
+
+        <p>and our prediction is a single $N$ dimensional vector</p>
+
+\[p(a|c) = \mathrm{sigmoid}(\phi_b(h_{cls})) \in \mathbb{R}^N\]
       </li>
       <li>
-        <p><strong>Consistency Regularization</strong>: because there is no DA label for <code class="language-plaintext highlighter-rouge">UniDial</code>, we do some kind of self-supervision on inferring the DA labels based on a given dialog context $c$. Specifically, we use the same network $\phi_b$ to predict the dialog act twice after a dropout layer:
-\(q(a|c)=\mathrm{softmax}(\phi_b(h_{cls})) \in \mathbb{R}^N\)
-which basically predicts DA distribution of a given sequence. Then as we feed the sequence through the same dropout layer we have different hidden features, we can consider to match the two distributions:
-\(L_{KL} = \frac{1}{2}\left( D_{KL}(q_1||q_2)+  D_{KL}(q_2||q_1)\right)\)
-essentially making sure that the learnt features are useful for DA prediction.</p>
+        <p><strong>Consistency Regularization</strong>: because there is no DA label for <code class="language-plaintext highlighter-rouge">UniDial</code>, we do some kind of self-supervision on inferring the DA labels based on a given dialog context $c$. Specifically, we use the same network $\phi_b$ to predict the dialog act twice after a dropout layer:</p>
+
+\[q(a|c)=\mathrm{softmax}(\phi_b(h_{cls})) \in \mathbb{R}^N\]
+
+        <p>which basically predicts DA distribution of a given sequence. Then as we feed the sequence through the same dropout layer we have different hidden features, we can consider to match the two distributions:</p>
+
+\[L_{KL} = \frac{1}{2}\left( D_{KL}(q_1||q_2)+  D_{KL}(q_2||q_1)\right)\]
+
+        <p>essentially making sure that the learnt features are useful for DA prediction.</p>
       </li>
     </ul>
   </li>
@@ -975,23 +991,31 @@ essentially making sure that the learnt features are useful for DA prediction.</
 
     <ul>
       <li>
-        <p><code class="language-plaintext highlighter-rouge">UniDA</code> samples which includes DA annotation, hence
-\(L = L_{RS} + L_{RG} + L_{DA} + L_{KL}\)</p>
+        <p><code class="language-plaintext highlighter-rouge">UniDA</code> samples which includes DA annotation, hence</p>
+
+\[L = L_{RS} + L_{RG} + L_{DA} + L_{KL}\]
       </li>
       <li>
-        <p><code class="language-plaintext highlighter-rouge">UniDial</code> samples which does not have DA annotation and some are very ==noisy==. Hence we consider a ==gating mechanism of weighting the $L_{KL}$== by looking at the entropy of the DA prediction $q(a|c)$:
-\(E = \sum_{i}^N q(a_i|c)\log(q(a_i|c))\)
-and we want to weight more on samples with low entropy:
-\(g=\min \left\{ \max\left\{0, \frac{E_{\max} - (E-\log E)}{E_\max} \right\},1 \right\}\)
-Therefore our loss for those data is:
-\(L = L_{RS}+L_{RG}+g L_{KL}\)</p>
+        <p><code class="language-plaintext highlighter-rouge">UniDial</code> samples which does not have DA annotation and some are very ==noisy==. Hence we consider a ==gating mechanism of weighting the $L_{KL}$== by looking at the entropy of the DA prediction $q(a\vert c)$:</p>
+
+\[E = \sum_{i}^N q(a_i|c)\log(q(a_i|c))\]
+
+        <p>and we want to weight more on samples with low entropy:</p>
+
+\[g=\min \left\{ \max\left\{0, \frac{E_{\max} - (E-\log E)}{E_\max} \right\},1 \right\}\]
+
+        <p>Therefore our loss for those data is:</p>
+
+\[L = L_{RS}+L_{RG}+g L_{KL}\]
       </li>
     </ul>
   </li>
   <li>
-    <p>Finally, once we trained our model with mixing <code class="language-plaintext highlighter-rouge">UniDA</code> and <code class="language-plaintext highlighter-rouge">UniDial</code>, it is a ==pretrained model and we can fine-tune it with our desired DA dataset== :
-\(L_{\text{fine-tune}} = L_{RS} + L_{RG} + \alpha L_{DA}\)
-for $\alpha=1$ if the dataset has annotated DA, and $\alpha=0$ otherwise. Notice that a response selection objective is still here even if we in the end only need generation capability. This is because we want to alleviate the model discrepancy between pretraining and finetuning.</p>
+    <p>Finally, once we trained our model with mixing <code class="language-plaintext highlighter-rouge">UniDA</code> and <code class="language-plaintext highlighter-rouge">UniDial</code>, it is a ==pretrained model and we can fine-tune it with our desired DA dataset== :</p>
+
+\[L_{\text{fine-tune}} = L_{RS} + L_{RG} + \alpha L_{DA}\]
+
+    <p>for $\alpha=1$ if the dataset has annotated DA, and $\alpha=0$ otherwise. Notice that a response selection objective is still here even if we in the end only need generation capability. This is because we want to alleviate the model discrepancy between pretraining and finetuning.</p>
   </li>
 </ul>
 
@@ -1035,11 +1059,13 @@ for $\alpha=1$ if the dataset has annotated DA, and $\alpha=0$ otherwise. Notice
 
     <p>and since we can have grounded dialog, the input can have $S,E$ for $S$ being the dialog context history, and the additional information needed (e.g. price of a hotel) is the environment $E$</p>
 
-    <p><img src="dialogs/image-20220922214111334.png" alt="image-20220922214111334" style="zoom:67%;" /></p>
+    <p><img src="/lectures/images/2022-10-19-COMS6998_Dialog_Systems/image-20220922214111334.png" alt="image-20220922214111334" style="zoom:67%;" /></p>
 
-    <p>then, the loss for all pretraining task is the cross entropy for decoding each word:
-\(p(T|S,E) = \prod_{n=1}^N p(t_n | t_1, ..., t_{n-1}, S,E)\)
-so $T = {t_1,…,t_n}$ is the target sentence. Note that in tasks that does not require extra information, $E$ is left as empty.</p>
+    <p>then, the loss for all pretraining task is the cross entropy for decoding each word:</p>
+
+\[p(T|S,E) = \prod_{n=1}^N p(t_n | t_1, ..., t_{n-1}, S,E)\]
+
+    <p>so $T = {t_1,…,t_n}$ is the target sentence. Note that in tasks that does not require extra information, $E$ is left as empty.</p>
   </li>
   <li>the <strong>public dialog dataset</strong> comes from the Reddit comment chains used for DialoGPT</li>
   <li>the <strong>grounded dialog dataset</strong> contains a collection of: DSTC7 Task 2 corps, MS MARCO, UnifiedQA, SGD</li>
@@ -1078,8 +1104,8 @@ so $T = {t_1,…,t_n}$ is the target sentence. Note that in tasks that does not 
       </thead>
       <tbody>
         <tr>
-          <td style="text-align: center"><img src="dialogs/image-20220922215023283.png" alt="image-20220922215023283" style="zoom:50%;" /></td>
-          <td style="text-align: center"><img src="dialogs/image-20220922215110548.png" alt="image-20220922215110548" style="zoom:50%;" /></td>
+          <td style="text-align: center"><img src="/lectures/images/2022-10-19-COMS6998_Dialog_Systems/image-20220922215023283.png" alt="image-20220922215023283" style="zoom:50%;" /></td>
+          <td style="text-align: center"><img src="/lectures/images/2022-10-19-COMS6998_Dialog_Systems/image-20220922215110548.png" alt="image-20220922215110548" style="zoom:50%;" /></td>
         </tr>
       </tbody>
     </table>
@@ -1119,7 +1145,7 @@ so $T = {t_1,…,t_n}$ is the target sentence. Note that in tasks that does not 
   <li>
     <p>the basic flow looks like this:</p>
 
-    <p><img src="dialogs/image-20220930210844601.png" alt="image-20220930210844601" style="zoom:80%;" /></p>
+    <p><img src="/lectures/images/2022-10-19-COMS6998_Dialog_Systems/image-20220930210844601.png" alt="image-20220930210844601" style="zoom:80%;" /></p>
 
     <p>and on a high level, we have on the left:</p>
 
@@ -1182,12 +1208,12 @@ so $T = {t_1,…,t_n}$ is the target sentence. Note that in tasks that does not 
 
     <p>experimentally, the choice of model is determined empirically:</p>
 
-    <p><img src="dialogs/image-20220930212606488.png" alt="image-20220930212606488" style="zoom:67%;" /></p>
+    <p><img src="/lectures/images/2022-10-19-COMS6998_Dialog_Systems/image-20220930212606488.png" alt="image-20220930212606488" style="zoom:67%;" /></p>
   </li>
   <li>
     <p><strong>Intent and OOD Classification</strong>: since each user utterance is seen as intents, the scripted dialog cannot continue if an intent is OOD from the script:</p>
 
-    <p><img src="dialogs/image-20220930212722131.png" alt="image-20220930212722131" style="zoom:80%;" /></p>
+    <p><img src="/lectures/images/2022-10-19-COMS6998_Dialog_Systems/image-20220930212722131.png" alt="image-20220930212722131" style="zoom:80%;" /></p>
 
     <p>where there are two intents in question:</p>
 
@@ -1200,14 +1226,14 @@ so $T = {t_1,…,t_n}$ is the target sentence. Note that in tasks that does not 
 
     <p>Which model to use is again chosen empirically, but notice that since such a task is not common in other dsets, they had to artificially create one using existing dset by leaving some intents out, and also hand-annotated a new one</p>
 
-    <p><img src="dialogs/image-20220930213028860.png" alt="image-20220930213028860" style="zoom:80%;" /></p>
+    <p><img src="/lectures/images/2022-10-19-COMS6998_Dialog_Systems/image-20220930213028860.png" alt="image-20220930213028860" style="zoom:80%;" /></p>
 
     <p>notice that now performance speed also matters</p>
   </li>
   <li>
     <p><strong>Neural Response Generator</strong>: used in two tasks: a) if <strong>OOD</strong>, use this model to generate b) generates a follow up question when a <strong>trivia is selected</strong> in the dialog manager. Notice that the aim of this is to ==compensate== the incomplete scripted dialog in some cases, but the major focus should be on the success/controllability of the scripted dialog:</p>
 
-    <p><img src="dialogs/image-20220930213317181.png" alt="image-20220930213317181" style="zoom:80%;" /></p>
+    <p><img src="/lectures/images/2022-10-19-COMS6998_Dialog_Systems/image-20220930213317181.png" alt="image-20220930213317181" style="zoom:80%;" /></p>
 
     <p>where notice that the hand-designed dialog is restored at the end. To have this controllability, the model:</p>
 
@@ -1232,7 +1258,7 @@ so $T = {t_1,…,t_n}$ is the target sentence. Note that in tasks that does not 
 
     <p>results:</p>
 
-    <p><img src="dialogs/image-20220930213854750.png" alt="image-20220930213854750" style="zoom:80%;" /></p>
+    <p><img src="/lectures/images/2022-10-19-COMS6998_Dialog_Systems/image-20220930213854750.png" alt="image-20220930213854750" style="zoom:80%;" /></p>
 
     <p>where for evaluation both automatic metric and human evaluation is used:</p>
 
@@ -1347,7 +1373,7 @@ so $T = {t_1,…,t_n}$ is the target sentence. Note that in tasks that does not 
   <li>
     <p>the general idea is to use a piece of evidence (provided beforehand) added to the conversation history as input</p>
 
-    <p><img src="dialogs/image-20221008141417379.png" alt="image-20221008141417379" style="zoom:80%;" /></p>
+    <p><img src="/lectures/images/2022-10-19-COMS6998_Dialog_Systems/image-20221008141417379.png" alt="image-20221008141417379" style="zoom:80%;" /></p>
   </li>
   <li>
     <p>to train this type of model, dataset with only informative utterances are needed, but that kind does not exist. Since the only available ones (e.g. Wizard of Wikipedia) are generated by humans, they <strong>mix chi-chat utterances/subjectivity</strong> to <strong>objective informative facts</strong> in their responses</p>
@@ -1356,7 +1382,7 @@ so $T = {t_1,…,t_n}$ is the target sentence. Note that in tasks that does not 
       <li>
         <p>to deal with it, you either remove all subjective ones (e.g. has personal pronouns), but that leaves too little training data left</p>
 
-        <p><img src="dialogs/image-20221008141727577.png" alt="image-20221008141727577" style="zoom:80%;" /></p>
+        <p><img src="/lectures/images/2022-10-19-COMS6998_Dialog_Systems/image-20221008141727577.png" alt="image-20221008141727577" style="zoom:80%;" /></p>
       </li>
       <li>
         <p>or, as used in this paper, they score existing samples based on <em>objective voice</em>, <em>lexical precision</em> (sticking to fact), and <em>entailment</em> to provide additional ==signal during training and hence control during inference==</p>
@@ -1379,7 +1405,7 @@ so $T = {t_1,…,t_n}$ is the target sentence. Note that in tasks that does not 
   <li>
     <p>tested on GPT2 and T5, hence overall pipeline looks like:</p>
 
-    <p><img src="dialogs/image-20221008142202615.png" alt="image-20221008142202615" style="zoom: 67%;" /></p>
+    <p><img src="/lectures/images/2022-10-19-COMS6998_Dialog_Systems/image-20221008142202615.png" alt="image-20221008142202615" style="zoom: 67%;" /></p>
   </li>
   <li>
     <p>they used two approaches in total to add control</p>
@@ -1402,7 +1428,7 @@ so $T = {t_1,…,t_n}$ is the target sentence. Note that in tasks that does not 
       <li>
         <p><strong>automatic metric scoring</strong> the responses on <em>objective voice</em>, <em>lexical precision</em>, <em>entailment</em>, and <em>BLEU</em> score compared to the original gold response</p>
 
-        <p><img src="dialogs/image-20221008143707179.png" alt="image-20221008143707179" style="zoom:67%;" /></p>
+        <p><img src="/lectures/images/2022-10-19-COMS6998_Dialog_Systems/image-20221008143707179.png" alt="image-20221008143707179" style="zoom:67%;" /></p>
 
         <p>where ablation study is also here. However, since those metrics are all self-designed, human eval is needed.</p>
       </li>
@@ -1418,8 +1444,8 @@ so $T = {t_1,…,t_n}$ is the target sentence. Note that in tasks that does not 
           </thead>
           <tbody>
             <tr>
-              <td style="text-align: center"><img src="dialogs/image-20221008143835131.png" alt="image-20221008143835131" /></td>
-              <td style="text-align: center"><img src="dialogs/image-20221008143850486.png" alt="image-20221008143850486" /></td>
+              <td style="text-align: center"><img src="/lectures/images/2022-10-19-COMS6998_Dialog_Systems/image-20221008143835131.png" alt="image-20221008143835131" /></td>
+              <td style="text-align: center"><img src="/lectures/images/2022-10-19-COMS6998_Dialog_Systems/image-20221008143850486.png" alt="image-20221008143850486" /></td>
             </tr>
           </tbody>
         </table>
@@ -1466,7 +1492,7 @@ so $T = {t_1,…,t_n}$ is the target sentence. Note that in tasks that does not 
       <li>
         <p>for T5 based backbone, do a <em>fusion-in-decoder</em> which is essentially processing Question + Each Passage in parallel by an encoder, then concatenate the hidden encoder states, and feed into decoder (the model thus performs evidence fusion in the decoder only, and we refer to it as Fusion-in-Decoder)</p>
 
-        <p><img src="dialogs/image-20221008145447935.png" alt="image-20221008145447935" style="zoom:80%;" /></p>
+        <p><img src="/lectures/images/2022-10-19-COMS6998_Dialog_Systems/image-20221008145447935.png" alt="image-20221008145447935" style="zoom:80%;" /></p>
 
         <p>note that this style was also used a lot in Multi-Modal (visual-semantic grounding) work</p>
       </li>
@@ -1505,7 +1531,7 @@ so $T = {t_1,…,t_n}$ is the target sentence. Note that in tasks that does not 
       <li><strong>response module task</strong>: input context plus the knowledge sentence and target is next sentence, using the same dset as above</li>
     </ul>
 
-    <p><img src="dialogs/image-20221008150843877.png" alt="image-20221008150843877" /></p>
+    <p><img src="/lectures/images/2022-10-19-COMS6998_Dialog_Systems/image-20221008150843877.png" alt="image-20221008150843877" /></p>
   </li>
 </ul>
 
@@ -1535,8 +1561,8 @@ so $T = {t_1,…,t_n}$ is the target sentence. Note that in tasks that does not 
       </thead>
       <tbody>
         <tr>
-          <td style="text-align: center"><img src="dialogs/image-20221008151133688.png" alt="image-20221008151133688" /></td>
-          <td style="text-align: center"><img src="dialogs/image-20221008151125898.png" alt="image-20221008151125898" /></td>
+          <td style="text-align: center"><img src="/lectures/images/2022-10-19-COMS6998_Dialog_Systems/image-20221008151133688.png" alt="image-20221008151133688" /></td>
+          <td style="text-align: center"><img src="/lectures/images/2022-10-19-COMS6998_Dialog_Systems/image-20221008151125898.png" alt="image-20221008151125898" /></td>
         </tr>
       </tbody>
     </table>
@@ -1551,7 +1577,7 @@ so $T = {t_1,…,t_n}$ is the target sentence. Note that in tasks that does not 
       <li>
         <p>testing if the additional LM task is helpful or not</p>
 
-        <p><img src="dialogs/image-20221008151408879.png" alt="image-20221008151408879" /></p>
+        <p><img src="/lectures/images/2022-10-19-COMS6998_Dialog_Systems/image-20221008151408879.png" alt="image-20221008151408879" /></p>
 
         <p>==TODO== it seems that with LM it is better, so are the modules compared the one with LM or the “standard SeeKeR”?</p>
       </li>
@@ -1642,7 +1668,7 @@ so $T = {t_1,…,t_n}$ is the target sentence. Note that in tasks that does not 
   <li>
     <p>found that ==social strategies does correlate to the probability of successful recommendation==</p>
 
-    <p><img src="dialogs/image-20221014201122513.png" alt="image-20221014201122513" style="zoom:67%;" /></p>
+    <p><img src="/lectures/images/2022-10-19-COMS6998_Dialog_Systems/image-20221014201122513.png" alt="image-20221014201122513" style="zoom:67%;" /></p>
   </li>
   <li>
     <p>examine if the <strong>quality of the movie matters more than recommendation</strong></p>
@@ -1663,11 +1689,11 @@ so $T = {t_1,…,t_n}$ is the target sentence. Note that in tasks that does not 
   <li>
     <p><strong>baseline</strong> dialog model uses two separate pretrained language models to learn the recommender and the seeker <strong>separately</strong></p>
 
-    <p><img src="dialogs/image-20221014201740089.png" alt="image-20221014201740089" /></p>
+    <p><img src="/lectures/images/2022-10-19-COMS6998_Dialog_Systems/image-20221014201740089.png" alt="image-20221014201740089" /></p>
 
     <p>additionally, key terms such as movie names and actor names are delexicalized to terms such as  <code class="language-plaintext highlighter-rouge">[Movie_Title_0]</code> for later replacement</p>
 
-    <p><img src="dialogs/image-20221014201838409.png" alt="image-20221014201838409" /></p>
+    <p><img src="/lectures/images/2022-10-19-COMS6998_Dialog_Systems/image-20221014201838409.png" alt="image-20221014201838409" /></p>
   </li>
   <li>
     <p><strong>strategy-incorporated model</strong>: generate both the sentences but also strategies</p>
@@ -1680,7 +1706,7 @@ so $T = {t_1,…,t_n}$ is the target sentence. Note that in tasks that does not 
   <li>
     <p>use human evaluation to see which system is better (or can’t tell which one is better) in terms of fluency, naturalness, persuasion …</p>
 
-    <p><img src="dialogs/image-20221014202221999.png" alt="image-20221014202221999" /></p>
+    <p><img src="/lectures/images/2022-10-19-COMS6998_Dialog_Systems/image-20221014202221999.png" alt="image-20221014202221999" /></p>
 
     <p>==TODO== why, if you only prioritize encouragement, you can better fluency, consistency, naturalness? How much is this due to selecting long sentences?</p>
   </li>
@@ -1728,7 +1754,7 @@ so $T = {t_1,…,t_n}$ is the target sentence. Note that in tasks that does not 
   <li>
     <p>use <strong>agenda-based dialog system</strong>, meaning that the flow/intent of what to say is more or less predefined</p>
 
-    <p><img src="dialogs/image-20221014203710682.png" alt="image-20221014203710682" style="zoom:80%;" /></p>
+    <p><img src="/lectures/images/2022-10-19-COMS6998_Dialog_Systems/image-20221014203710682.png" alt="image-20221014203710682" style="zoom:80%;" /></p>
   </li>
   <li>
     <p>the overall model thus contains three main components</p>
@@ -1770,14 +1796,14 @@ so $T = {t_1,…,t_n}$ is the target sentence. Note that in tasks that does not 
   <li>
     <p>first found not much difference in which strategy used overall</p>
 
-    <p><img src="dialogs/image-20221014204957608.png" alt="image-20221014204957608" /></p>
+    <p><img src="/lectures/images/2022-10-19-COMS6998_Dialog_Systems/image-20221014204957608.png" alt="image-20221014204957608" /></p>
 
     <p>but then they found that participants are <strong>perceiving bots are humans or vice versa despite the given label</strong></p>
   </li>
   <li>
     <p>found that if bots are ==perceived as human==, then the above it matters</p>
 
-    <p><img src="dialogs/image-20221014205113538.png" alt="image-20221014205113538" /></p>
+    <p><img src="/lectures/images/2022-10-19-COMS6998_Dialog_Systems/image-20221014205113538.png" alt="image-20221014205113538" /></p>
 
     <p>this shows that being a human is more persuasive hence:</p>
 
@@ -1789,7 +1815,7 @@ so $T = {t_1,…,t_n}$ is the target sentence. Note that in tasks that does not 
   <li>
     <p>finally, we can check cases when the person believed in the given labelled identity</p>
 
-    <p><img src="dialogs/image-20221014205642372.png" alt="image-20221014205642372" /></p>
+    <p><img src="/lectures/images/2022-10-19-COMS6998_Dialog_Systems/image-20221014205642372.png" alt="image-20221014205642372" /></p>
 
     <p>where this means that if bot’s identity does not matter, then in each pair of blue and green bar it should be same height:</p>
 

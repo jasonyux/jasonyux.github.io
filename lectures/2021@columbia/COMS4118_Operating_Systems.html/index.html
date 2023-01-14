@@ -47,17 +47,22 @@
       <div class="wrapper">
         <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
   <head>
-	<script>
-		MathJax = {
-		  tex: {
-			inlineMath: [['$', '$'], ['\\(', '\\)']],
-			displayMath: [['$$', '$$'], ['\\[', '\\]']]
-		  }
-		};
-	</script>
-	<script id="MathJax-script" async
-		src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
-	</script>
+  <script>
+    MathJax = {
+      // 
+      loader: {
+        load: ['[tex]/ams', '[tex]/textmacros', '[tex]/boldsymbol']
+      },
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        packages: {'[+]': ['ams', 'textmacros', 'boldsymbol']}
+      }
+    };
+  </script>
+  <script id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+  </script>
   </head>
   <header class="post-header">
     <h1 class="post-title p-name" itemprop="name headline">COMS4118 Operating Systems</h1>
@@ -1279,8 +1284,9 @@ movb $1, (0xff0) # accesses 0xf0ff0
 
 <p>Some threading APIs are implemented on the <strong>kernel level</strong> (results directly in system calls), whereas some are implemented on the <strong>user level</strong>.</p>
 
-<p><em>For example</em>, consider the task of calculating:
-\(\sum_{i=1}^n i\)</p>
+<p><em>For example</em>, consider the task of calculating:</p>
+
+\[\sum_{i=1}^n i\]
 
 <ol>
   <li><strong>POSIX Pthread</strong></li>
@@ -4521,8 +4527,9 @@ turnaround time.</p>
 
   <ul>
     <li>
-      <p>Let $t_n$ be the <em>length</em> of the $n$-th CPU burst, and let $\tau_{n+1}$ be our <em>predicted value</em> for the next CPU burst. Then, for $\alpha$, $0 \le \alpha \le 1$, define:
-\(\tau_{n+1} = \alpha t_n + (1-\alpha)\tau_{n}\)</p>
+      <p>Let $t_n$ be the <em>length</em> of the $n$-th CPU burst, and let $\tau_{n+1}$ be our <em>predicted value</em> for the next CPU burst. Then, for $\alpha$, $0 \le \alpha \le 1$, define:</p>
+
+\[\tau_{n+1} = \alpha t_n + (1-\alpha)\tau_{n}\]
     </li>
     <li>
       <p>Notice that this means:</p>
@@ -4532,9 +4539,11 @@ turnaround time.</p>
         <li>$\tau_n$ stores the <em>past history.</em></li>
       </ul>
 
-      <p>because:
-\(\tau_{n+1}=\alpha t_n + \left[(1-\alpha)\alpha t_{n-1}+(1-\alpha)^2\alpha t_{n-2}+...+(1-\alpha)^{n+1}\alpha t_{0}+(1-\alpha)^{n+1} \tau_{0}\right]\)
-and the initial $\tau_0$ can be defined as <em>a constant</em> or as an <em>overall system average</em></p>
+      <p>because:</p>
+
+\[\tau_{n+1}=\alpha t_n + \left[(1-\alpha)\alpha t_{n-1}+(1-\alpha)^2\alpha t_{n-2}+...+(1-\alpha)^{n+1}\alpha t_{0}+(1-\alpha)^{n+1} \tau_{0}\right]\]
+
+      <p>and the initial $\tau_0$ can be defined as <em>a constant</em> or as an <em>overall system average</em></p>
     </li>
   </ul>
 </blockquote>
@@ -4561,7 +4570,7 @@ and the initial $\tau_0$ can be defined as <em>a constant</em> or as an <em>over
 
 <ul>
   <li>for example, process $P_2$ arrives at time 1. The remaining time for process $P_1$ (7 milliseconds) is larger than the time required by process $P_2$ (4 milliseconds), <em>so process $P_1$ is preempted</em>, and process $P_2$ is scheduled</li>
-  <li>The <em>average waiting time</em> for this example is $[(10 − 1) + (1 − 1) + (17 − 2) + (5 − 3)]/4 = 26/4 = 6.5 $milliseconds. Non-preemptive SJF scheduling would result in an average waiting time of $7.75$ milliseconds.</li>
+  <li>The <em>average waiting time</em> for this example is $[(10 − 1) + (1 − 1) + (17 − 2) + (5 − 3)]/4 = 26/4 = 6.5$milliseconds. Non-preemptive SJF scheduling would result in an average waiting time of $7.75$ milliseconds.</li>
 </ul>
 
 <hr />
@@ -4774,8 +4783,11 @@ of a process. For example, time limits, memory requirements, etc.</li>
   <p><strong>Weighted RR</strong></p>
 
   <ul>
-    <li>Basically, now the <strong>time slice</strong> for each <strong>running task</strong> is calculated based on:
-\(\text{time quantum} \times \text{weight}\)</li>
+    <li>
+      <p>Basically, now the <strong>time slice</strong> for each <strong>running task</strong> is calculated based on:</p>
+
+\[\text{time quantum} \times \text{weight}\]
+    </li>
   </ul>
 
   <p>where the <code class="language-plaintext highlighter-rouge">weight</code> could be assigned by a user</p>
@@ -4802,9 +4814,11 @@ of a process. For example, time limits, memory requirements, etc.</li>
     <li>a weighted associated <code class="language-plaintext highlighter-rouge">weight</code></li>
   </ul>
 
-  <p>Then, the algorithm <strong>picks the smallest <code class="language-plaintext highlighter-rouge">vruntime</code>:</strong>
-\(\frac{\text{runtime}}{\text{weight}} = \text{vruntime}\)
-where:</p>
+  <p>Then, the algorithm <strong>picks the smallest <code class="language-plaintext highlighter-rouge">vruntime</code>:</strong></p>
+
+\[\frac{\text{runtime}}{\text{weight}} = \text{vruntime}\]
+
+  <p>where:</p>
 
   <ul>
     <li>you will soon notice that the Linux <code class="language-plaintext highlighter-rouge">CFS</code> has <em>its idea based off from here</em></li>
@@ -4829,9 +4843,11 @@ where:</p>
 
   <ul>
     <li>
-      <p>This is defined as:
-\(\text{vruntime} + \frac{\text{time quantum time}}{\text{weight}}\)
-so that even at $t=0$, we have an <strong>offset</strong></p>
+      <p>This is defined as:</p>
+
+\[\text{vruntime} + \frac{\text{time quantum time}}{\text{weight}}\]
+
+      <p>so that even at $t=0$, we have an <strong>offset</strong></p>
 
       <ul>
         <li>so if the <code class="language-plaintext highlighter-rouge">time_quantum = 1</code>, we would have:
@@ -5375,8 +5391,9 @@ The contention takes place among <em>all (KLT) threads in the system</em>. In th
       <p>The <em>rate</em> of a periodic task is $1/p$.</p>
     </li>
     <li>
-      <p>The relationship of the processing time, the deadline, and the period can be expressed as
-\(0 ≤ t ≤ d ≤ p.\)</p>
+      <p>The relationship of the processing time, the deadline, and the period can be expressed as</p>
+
+\[0 ≤ t ≤ d ≤ p.\]
     </li>
   </ol>
 
@@ -5449,8 +5466,11 @@ CPU system is idle until time $100$, when $P_1$ is scheduled again.</li>
       <p>Despite being optimal, then, rate-monotonic scheduling has a limitation:</p>
 
       <ul>
-        <li><strong>CPU utilization is bounded</strong>, and it is not always possible fully to maximize CPU resources. The <strong>worst-case CPU utilization</strong> for scheduling $N$ processes is
-\(N(2^{1/N}-1)\)</li>
+        <li>
+          <p><strong>CPU utilization is bounded</strong>, and it is not always possible fully to maximize CPU resources. The <strong>worst-case CPU utilization</strong> for scheduling $N$ processes is</p>
+
+\[N(2^{1/N}-1)\]
+        </li>
       </ul>
     </li>
   </ul>
@@ -5560,8 +5580,9 @@ CPU system is idle until time $100$, when $P_1$ is scheduled again.</li>
 
       <ul>
         <li>
-          <p>The virtual run time is associated with a <strong>decay factor based on the priority (<code class="language-plaintext highlighter-rouge">nice</code> value) of a task</strong>: lower-priority tasks have higher rates of decay than higher-priority tasks. 
-\(vruntime += timeRanJustNow * decayOrGrowthFactor\)</p>
+          <p>The virtual run time is associated with a <strong>decay factor based on the priority (<code class="language-plaintext highlighter-rouge">nice</code> value) of a task</strong>: lower-priority tasks have higher rates of decay than higher-priority tasks.</p>
+
+\[vruntime += timeRanJustNow * decayOrGrowthFactor\]
         </li>
         <li>
           <p>For tasks at normal priority (nice values of 0), virtual run time is identical to actual physical run time.</p>
@@ -7191,8 +7212,9 @@ and a second for normal tasks.</li>
 
   <ul>
     <li>
-      <p>the core principle is to <strong>keep</strong>:
-\(\text{size of page table } \le \text{size of page}\)</p>
+      <p>the core principle is to <strong>keep</strong>:</p>
+
+\[\text{size of page table } \le \text{size of page}\]
     </li>
     <li>
       <p>In the end, if we use multilevel page table:</p>
@@ -7344,8 +7366,9 @@ and a second for normal tasks.</li>
   <li>$99\%$ cache <em>hit rate</em></li>
 </ul>
 
-<p>Then we have the long term memory access time of:
-\(0.99(10+100) + 0.01(10+100+100+100)=112ns\)</p>
+<p>Then we have the long term memory access time of:</p>
+
+\[0.99(10+100) + 0.01(10+100+100+100)=112ns\]
 
 <p>where:</p>
 

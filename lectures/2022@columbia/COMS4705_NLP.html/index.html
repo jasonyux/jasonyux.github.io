@@ -47,17 +47,22 @@
       <div class="wrapper">
         <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
   <head>
-	<script>
-		MathJax = {
-		  tex: {
-			inlineMath: [['$', '$'], ['\\(', '\\)']],
-			displayMath: [['$$', '$$'], ['\\[', '\\]']]
-		  }
-		};
-	</script>
-	<script id="MathJax-script" async
-		src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
-	</script>
+  <script>
+    MathJax = {
+      // 
+      loader: {
+        load: ['[tex]/ams', '[tex]/textmacros', '[tex]/boldsymbol']
+      },
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        packages: {'[+]': ['ams', 'textmacros', 'boldsymbol']}
+      }
+    };
+  </script>
+  <script id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+  </script>
   </head>
   <header class="post-header">
     <h1 class="post-title p-name" itemprop="name headline">COMS4705 NLP part1</h1>
@@ -159,13 +164,13 @@
   <li>
     <p>help human translators to translate text</p>
 
-    <p><img src="NLP/image-20220119163324409.png" alt="image-20220119163324409" style="zoom: 80%;" /></p>
+    <p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220119163324409.png" alt="image-20220119163324409" style="zoom: 80%;" /></p>
   </li>
 </ul>
 
 <h2 id="current-progress-in-nlp">Current Progress in NLP</h2>
 
-<p><img src="NLP/image-20220119163418984.png" alt="image-20220119163418984" /></p>
+<p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220119163418984.png" alt="image-20220119163418984" /></p>
 
 <p>where:</p>
 
@@ -179,7 +184,7 @@
 
 <h2 id="difficulties-in-nlp">Difficulties in NLP</h2>
 
-<p><img src="NLP/image-20220119170850994.png" alt="image-20220119170850994" /></p>
+<p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220119170850994.png" alt="image-20220119170850994" /></p>
 
 <p>where:</p>
 
@@ -357,7 +362,7 @@
 
 <p><strong>More operators</strong></p>
 
-<p><img src="NLP/image-20220124204253621.png" alt="image-20220124204253621" /></p>
+<p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220124204253621.png" alt="image-20220124204253621" /></p>
 
 <hr />
 
@@ -436,7 +441,7 @@
 
 <p>In practice, <strong>tokenization runs before any other processing</strong>, and needs to be fast. For example, converting:</p>
 
-<p><img src="NLP/image-20220124210124932.png" alt="image-20220124210124932" /></p>
+<p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220124210124932.png" alt="image-20220124210124932" /></p>
 
 <p>therefore:</p>
 
@@ -451,7 +456,7 @@
 <span class="o">&gt;&gt;&gt;</span> <span class="n">pattern</span> <span class="o">=</span> <span class="sa">r</span><span class="s">'''(?x) # set flag to allow verbose regexps
 ... ([A-Z]\.)+ # abbreviations, e.g. U.S.A.
 ... | \w+(-\w+)* # words with optional internal hyphens
-... | \$?\d+(\.\d+)?%? # currency and percentages, e.g. $12.40, 82%
+... | \$?\d+(\.\d+)?%? # currency and percentages, e.g.$12.40, 82%
 ... | \.\.\. # ellipsis
 ... | [][.,;"'?():-_`] # these are separate tokens; includes ], [
 ... '''</span>
@@ -461,9 +466,11 @@
   </li>
 </ul>
 
-<p>Another common task is to compute the <strong>length of a sentence</strong>. While this sounds as just counting the tokenization, depending on application, you might need to think of whether if you should count on <strong>lemma</strong> or <strong>wordform</strong>:
-\(\text{Seuss's \textbf{cat} in the hat is different from other \textbf{cats}!}\)
-so here notice that:</p>
+<p>Another common task is to compute the <strong>length of a sentence</strong>. While this sounds as just counting the tokenization, depending on application, you might need to think of whether if you should count on <strong>lemma</strong> or <strong>wordform</strong>:</p>
+
+\[\text{Seuss's \textbf{cat} in the hat is different from other \textbf{cats}!}\]
+
+<p>so here notice that:</p>
 
 <ul>
   <li>A <strong>lemma</strong> is a set of lexical forms having the same stem, the same major part-of-speech, and the same word sense
@@ -486,16 +493,7 @@ so here notice that:</p>
 <p>for instance:</p>
 
 <ul>
-  <li>
-    <table>
-      <tbody>
-        <tr>
-          <td><strong>Types</strong> are the number of <strong>distinct words</strong> in a corpus; if the set of words in the vocabulary is $V$, the number of types is the word token vocabulary size $</td>
-          <td>V</td>
-          <td>$.</td>
-        </tr>
-      </tbody>
-    </table>
+  <li><strong>Types</strong> are the number of <strong>distinct words</strong> in a corpus; if the set of words in the vocabulary is $V$, the number of types is the word token vocabulary size $\vert V\vert$.
     <ul>
       <li>When we speak about the number of words in the language, we are generally referring to word types.</li>
     </ul>
@@ -524,9 +522,11 @@ so here notice that:</p>
   <li>
     <p><strong>Issues in Languages</strong>.</p>
 
-    <p>For instance in German, the word:
-\(\text{Lebensversicherungsgesellschaftsangesteller} \to \text{life insurance company employee}\)
-is basically four words in one:</p>
+    <p>For instance in German, the word:</p>
+
+\[\text{Lebensversicherungsgesellschaftsangesteller} \to \text{life insurance company employee}\]
+
+    <p>is basically four words in one:</p>
 
     <ul>
       <li>this single word contains four things, so we need to use compound splitter to split into four</li>
@@ -534,7 +534,7 @@ is basically four words in one:</p>
 
     <p>In Chinese, the sentence $\text{姚明进入总决赛}$ can be split into:</p>
 
-    <p><img src="NLP/image-20220124211419440.png" alt="image-20220124211419440" /></p>
+    <p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220124211419440.png" alt="image-20220124211419440" /></p>
 
     <p>because there is <strong>no space</strong>! How do we split them into tokens?</p>
 
@@ -555,7 +555,7 @@ is basically four words in one:</p>
 
 <p>it turns out that it worked pretty well in most of the cases. For illustration purposes, we demonstrate them in English:</p>
 
-<p><img src="NLP/image-20220124212048751.png" alt="image-20220124212048751" style="zoom: 67%;" /></p>
+<p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220124212048751.png" alt="image-20220124212048751" style="zoom: 67%;" /></p>
 
 <p>note that in languages such as Chinese they actually work pretty well</p>
 
@@ -625,8 +625,9 @@ Search: Windows, windows, window</li>
 
 <p><strong>Case Folding</strong></p>
 
-<p>One easy kind of normalization would be case folding: Mapping everything to lower case means that $\text{Woodchuck}$ and $\text{woodchuck}$ are represented <strong>identically</strong>/same form.
-\(\text{SAIL} \iff \text{sail}\)</p>
+<p>One easy kind of normalization would be case folding: Mapping everything to lower case means that $\text{Woodchuck}$ and $\text{woodchuck}$ are represented <strong>identically</strong>/same form.</p>
+
+\[\text{SAIL} \iff \text{sail}\]
 
 \[\text{US} \iff \text{us}\]
 
@@ -656,8 +657,9 @@ Search: Windows, windows, window</li>
   <li>i.e. words with same lemma should be considered as the “same”/a match</li>
 </ul>
 
-<p>More examples include:
-\(\{\text{car, cars, car's, cars'}\} \to \text{car}\)</p>
+<p>More examples include:</p>
+
+\[\{\text{car, cars, car's, cars'}\} \to \text{car}\]
 
 \[\text{He is reading detective stories} \to \text{He be read detective story}\]
 
@@ -693,11 +695,13 @@ Search: Windows, windows, window</li>
   <p><strong>Stemming</strong> refers to a <strong><em>simpler</em></strong> version of <strong>lemmatization</strong> in which we mainly just strip suffixes from the end of the word</p>
 </blockquote>
 
-<p>For instance:
-\(\text{automate, automatic, automation} \iff \text{automat}\)
-And for paragraphs:</p>
+<p>For instance:</p>
 
-<p><img src="NLP/image-20220124222030375.png" alt="image-20220124222030375" /></p>
+\[\text{automate, automatic, automation} \iff \text{automat}\]
+
+<p>And for paragraphs:</p>
+
+<p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220124222030375.png" alt="image-20220124222030375" /></p>
 
 <p>sometimes Stemming is not very useful</p>
 
@@ -710,7 +714,7 @@ And for paragraphs:</p>
 
 <p>In short, The algorithm is based on series of rewrite rules run in series, as a <strong>cascade</strong>, in which the output of each pass is fed as input to the next pass:</p>
 
-<p><img src="NLP/image-20220124171350348.png" alt="image-20220124171350348" /></p>
+<p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220124171350348.png" alt="image-20220124171350348" /></p>
 
 <p>where:</p>
 
@@ -760,14 +764,14 @@ And for paragraphs:</p>
   <li>
     <p>Construct features:</p>
 
-    <p><img src="NLP/image-20220124171830656.png" alt="image-20220124171830656" style="zoom:50%;" /></p>
+    <p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220124171830656.png" alt="image-20220124171830656" style="zoom:50%;" /></p>
 
     <p>how to choose good features is the key part.</p>
   </li>
   <li>
     <p>Run the Decision Tree. Output could look like:</p>
 
-    <p><img src="NLP/image-20220124172059642.png" alt="image-20220124172059642" /></p>
+    <p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220124172059642.png" alt="image-20220124172059642" /></p>
   </li>
 </ol>
 
@@ -785,13 +789,13 @@ And for paragraphs:</p>
   <p><strong>Edit distance</strong> gives us a way to quantify both of these intuitions about string similarity.</p>
 
   <ul>
-    <li>e.g. $ \text{graffe}$ with $ \text{giraffe}$</li>
+    <li>e.g. $\text{graffe}$ with $\text{giraffe}$</li>
   </ul>
 
   <p><strong>Minimum edit distance</strong> between two strings is defined as the ==minimum number of (weighted) editing operations== (operations like insertion, deletion, substitution) needed to transform one string into another.</p>
 
   <ul>
-    <li>e.g.  $ \text{graffe}$ to $ \text{giraffe}$ would require one</li>
+    <li>e.g.  $\text{graffe}$ to $\text{giraffe}$ would require one</li>
     <li>e.g. $\text{intention}$ and $\text{execution}$, for example, is $5$ (without weighting)
       <ul>
         <li>(delete an $i$, substitute $e$ for $n$, substitute $x$ for $t$, insert $c$, substitute $u$ for $n$)</li>
@@ -802,7 +806,7 @@ And for paragraphs:</p>
 
 <p>But the problem is, how do we <strong>algorithmically do it</strong>. First, we may want to visualize the result:</p>
 
-<p><img src="NLP/image-20220126184007787.png" alt="image-20220126184007787" /></p>
+<p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220126184007787.png" alt="image-20220126184007787" /></p>
 
 <p>here we are:</p>
 
@@ -834,25 +838,25 @@ And for paragraphs:</p>
 
   <p>Our final aim is to produce something like this</p>
 
-  <p><img src="NLP/image-20220126190229994.png" alt="image-20220126190229994" /></p>
+  <p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220126190229994.png" alt="image-20220126190229994" /></p>
 
-  <p>Imagine some string (perhaps it is $ \text{exention}$) that is ==in this optimal path== (whatever it is).</p>
+  <p>Imagine some string (perhaps it is $\text{exention}$) that is ==in this optimal path== (whatever it is).</p>
 
   <ul>
-    <li>if $ \text{exention} $ is in the optimal operation list, then the optimal sequence must also <strong>include the optimal path</strong> from
-$ \text{intention }$ to $ \text{exention}$.</li>
+    <li>if $\text{exention}$ is in the optimal operation list, then the optimal sequence must also <strong>include the optimal path</strong> from
+$\text{intention }$ to $\text{exention}$.</li>
     <li>all the other path we can forget</li>
   </ul>
 
   <p>Then, iteratively compute it:</p>
 
   <ol>
-    <li>from $ \text{intention}$ to $ \text{*}$ (empty string, base case)</li>
-    <li>from $ \text{intention}$ to $ \text{e}$</li>
-    <li>from $ \text{intention}$ to $ \text{ex}$</li>
-    <li>from $ \text{intention}$ to $ \text{exe}$</li>
+    <li>from $\text{intention}$ to $\text{*}$ (empty string, base case)</li>
+    <li>from $\text{intention}$ to $\text{e}$</li>
+    <li>from $\text{intention}$ to $\text{ex}$</li>
+    <li>from $\text{intention}$ to $\text{exe}$</li>
     <li>etc</li>
-    <li>from $ \text{intention}$ to $ \text{execution}$</li>
+    <li>from $\text{intention}$ to $\text{execution}$</li>
   </ol>
 
   <p>In reality since you can also start from $\text{execution}$, it would be a <strong>2D matrix</strong></p>
@@ -871,18 +875,18 @@ $ \text{intention }$ to $ \text{exention}$.</li>
 
 <p>Then, the update rule is simply</p>
 
-<p><img src="NLP/image-20220126191018501.png" alt="image-20220126191018501" /></p>
+<p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220126191018501.png" alt="image-20220126191018501" /></p>
 
 <p>i.e. choosing the best path <strong>given the previous bests</strong>, which are $D[i-1,j], D[i,j-1], D[i-1,j-1]$.</p>
 
 <ul>
-  <li>we used $ \text{sub-cost}$ for substitution cost so that user can specify the weights.</li>
+  <li>we used $\text{sub-cost}$ for substitution cost so that user can specify the weights.</li>
   <li>here, we will use $\text{sub-cost}=2$, $\text{del-cost}=\text{ins-cost}=1$</li>
 </ul>
 
 <p>Therefore, the algorithm is:</p>
 
-<p><img src="NLP/image-20220126191416847.png" alt="image-20220126191416847" /></p>
+<p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220126191416847.png" alt="image-20220126191416847" /></p>
 
 <p>Therefore, it can be easily seen that:</p>
 
@@ -899,12 +903,12 @@ $ \text{intention }$ to $ \text{exention}$.</li>
   <li>
     <p>First we initialize</p>
 
-    <p><img src="NLP/image-20220126191709962.png" alt="image-20220126191709962" style="zoom:67%;" /></p>
+    <p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220126191709962.png" alt="image-20220126191709962" style="zoom:67%;" /></p>
   </li>
   <li>
     <p>Then, we fill it up row by row</p>
 
-    <p><img src="NLP/image-20220126191552866.png" alt="image-20220126191552866" style="zoom:67%;" /></p>
+    <p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220126191552866.png" alt="image-20220126191552866" style="zoom:67%;" /></p>
 
     <p>which works since for each computation, the 3 inputs $D[i-1,j], D[i,j-1], D[i-1,j-1]$ would have already been computed.</p>
 
@@ -912,20 +916,20 @@ $ \text{intention }$ to $ \text{exention}$.</li>
       <li>we could also go column by column, from bottom up</li>
     </ul>
 
-    <p><img src="NLP/image-20220126191745000.png" alt="image-20220126191745000" style="zoom:67%;" /></p>
+    <p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220126191745000.png" alt="image-20220126191745000" style="zoom:67%;" /></p>
   </li>
   <li>
     <p>fill up and return the top right</p>
 
-    <p><img src="NLP/image-20220126191918416.png" alt="image-20220126191918416" style="zoom: 67%;" /></p>
+    <p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220126191918416.png" alt="image-20220126191918416" style="zoom: 67%;" /></p>
   </li>
 </ol>
 
 <p>Note that, the optimal path at each stage is outlined here (done by backtracking)</p>
 
-<p><img src="NLP/image-20220126192033839.png" alt="image-20220126192033839" style="zoom: 67%;" /></p>
+<p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220126192033839.png" alt="image-20220126192033839" style="zoom: 67%;" /></p>
 
-<p>The value $3$ here would mean the minimal cost to go from $ \text{IN}$ to $ \text{E}$. We can follow the path:</p>
+<p>The value $3$ here would mean the minimal cost to go from $\text{IN}$ to $\text{E}$. We can follow the path:</p>
 
 <ol>
   <li>cost $0$ from start</li>
@@ -934,7 +938,7 @@ $ \text{intention }$ to $ \text{exention}$.</li>
       <li><strong>delete</strong> $I$</li>
     </ul>
   </li>
-  <li>cost $3$ to go from $ \text{IN} \to \text{E}$
+  <li>cost $3$ to go from $\text{IN} \to \text{E}$
     <ul>
       <li><strong>replace</strong> $N \to E$</li>
     </ul>
@@ -945,11 +949,11 @@ $ \text{intention }$ to $ \text{exention}$.</li>
 
 <p>Recall that an alignment basically is the <strong>optimal path</strong> for edit distance:</p>
 
-<p><img src="NLP/image-20220126184007787.png" alt="image-20220126184007787" /></p>
+<p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220126184007787.png" alt="image-20220126184007787" /></p>
 
 <p>Therefore, since it is just the optimal path, we only need to store, for each $D[i,j]$. where did the best previous path come from:</p>
 
-<p><img src="NLP/image-20220126193638591.png" alt="image-20220126193638591" style="zoom:67%;" /></p>
+<p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220126193638591.png" alt="image-20220126193638591" style="zoom:67%;" /></p>
 
 <p>since technically a cell $D[i,j]$ could be optimally reached from several path, the <strong>result is NOT unique</strong></p>
 
@@ -960,7 +964,7 @@ $ \text{intention }$ to $ \text{exention}$.</li>
 
 <p>The graphical result looks like:</p>
 
-<p><img src="NLP/image-20220126193807284.png" alt="image-20220126193807284" style="zoom: 67%;" /></p>
+<p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220126193807284.png" alt="image-20220126193807284" style="zoom: 67%;" /></p>
 
 <hr />
 
@@ -968,15 +972,19 @@ $ \text{intention }$ to $ \text{exention}$.</li>
 
 <p>Consider how this part comes about from our optimal path</p>
 
-<p><img src="NLP/image-20220126194029765.png" alt="image-20220126194029765" /></p>
+<p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220126194029765.png" alt="image-20220126194029765" /></p>
 
 <h1 id="language-models">Language Models</h1>
 
-<p>The task we are considering is <strong>predicting the next few words someone is going to say</strong>? What word, for example, is likely to follow
-\(\text{Please turn your homework ...}\)
-In the following sections we will formalize this intuition by introducing models that assign a ==probability to each possible next word==. The same models will also serve to assign a probability to an entire sentence. So that:
-\(P(\text{all of a sudden I notice three guys}) &gt; P(\text{guys all I of notice three a sudden})\)
-This would be useful in:</p>
+<p>The task we are considering is <strong>predicting the next few words someone is going to say</strong>? What word, for example, is likely to follow</p>
+
+\[\text{Please turn your homework ...}\]
+
+<p>In the following sections we will formalize this intuition by introducing models that assign a ==probability to each possible next word==. The same models will also serve to assign a probability to an entire sentence. So that:</p>
+
+\[P(\text{all of a sudden I notice three guys}) &gt; P(\text{guys all I of notice three a sudden})\]
+
+<p>This would be useful in:</p>
 
 <ul>
   <li>
@@ -984,7 +992,7 @@ This would be useful in:</p>
   </li>
   <li>For writing tools like <strong>spelling correction</strong> or grammatical error correction
     <ul>
-      <li>$ \text{Their are two midterms}$, in which $ \text{There}$ was mistyped as $ \text{Their}$</li>
+      <li>$\text{Their are two midterms}$, in which $\text{There}$ was mistyped as $\text{Their}$</li>
     </ul>
   </li>
   <li>Assigning probabilities to sequences of words (sentences) is also essential in <strong>machine translation</strong>.</li>
@@ -1000,7 +1008,7 @@ This would be useful in:</p>
   <p>An <strong>n-gram</strong> is a sequence of $n$ words:</p>
 
   <ul>
-    <li>a $2$-gram (which we’ll call bigram) is a two-word sequence of words like $ \text{please turn}$, or $ \text{turn your}$</li>
+    <li>a $2$-gram (which we’ll call bigram) is a two-word sequence of words like $\text{please turn}$, or $\text{turn your}$</li>
     <li>a 3-gram (a trigram) is a three-word sequence of words like $\text{please turn your}$, or $\text{turn your homework}$.</li>
   </ul>
 
@@ -1009,42 +1017,53 @@ This would be useful in:</p>
 
 <h2 id="n-grams">N-Grams</h2>
 
-<p>Essentially, we would be interested in computing:
-\(P(W_1, W_2, ..., W_n)\)
-for assigning probability to a given <strong>sequence of words</strong>.</p>
+<p>Essentially, we would be interested in computing:</p>
+
+\[P(W_1, W_2, ..., W_n)\]
+
+<p>for assigning probability to a given <strong>sequence of words</strong>.</p>
 
 <ul>
   <li>note that this is a ==joint== probability, which means ==order matters==. e,g. $P(X_1 = 1,X_2 =0) \neq P(X_1=0,X_2=1)$</li>
 </ul>
 
-<p>For predicting <strong>next</strong> word:
-\(P(W_5| W_1, W_2, ..., W_4)\)</p>
+<p>For predicting <strong>next</strong> word:</p>
+
+\[P(W_5| W_1, W_2, ..., W_4)\]
 
 <blockquote>
   <p><strong>Language model</strong>, again, needs to be able to compute those probabilities.</p>
 </blockquote>
 
-<p>The question is how? If we naively want to estimate:
-\(P(X_1, ...,X_n) \approx \frac{\text{Count}(X_1,...X_n)}{\text{All Sentences}}\)
-The problem is that combination of $X_1,…,X_n$ might not even be there for $n$ being large.</p>
+<p>The question is how? If we naively want to estimate:</p>
+
+\[P(X_1, ...,X_n) \approx \frac{\text{Count}(X_1,...X_n)}{\text{All Sentences}}\]
+
+<p>The problem is that combination of $X_1,…,X_n$ might not even be there for $n$ being large.</p>
 
 <ul>
   <li>doesn’t appear in training set (usually just a large corpus) doesn’t mean chance of occurring is $0$</li>
   <li>need Laplace Smoothing, as you shall see soon</li>
 </ul>
 
-<p>We know that a joint:
-\(\begin{align*}
+<p>We know that a joint:</p>
+
+\[\begin{align*}
 P(X_1,...,X_n) 
 &amp;= P(X_1)P(X_2|X_1)P(X_3|X_1,X_2)...P(X_n|X_1,...X_{n-1})\\
 &amp;= P(X_1)P(X_2|X_{1})P(X_3|X_{1:2})...P(X_n|X_{1:n-1})\\
 &amp;= \prod_{i=1}^nP(X_i|X_{1:i-1})
-\end{align*}\)
-But still, we are left we computing for $i = n$, or any large $i$: 
-\(P(X_i|X_1, ..., X_{k-1})= \frac{P(X_1,...,X_{k-1},X_k)}{P(X_1,...X_{k-1})}\)
-using law of total probability. Therefore:
-\(P(X_i|X_1, ..., X_{k-1}) \approx \frac{\text{Count}(X_1,...,X_{k-1},X_k)}{\text{Count}(X_1,...X_{k-1})}\)
-So the <strong>same problem persist</strong>.</p>
+\end{align*}\]
+
+<p>But still, we are left we computing for $i = n$, or any large $i$:</p>
+
+\[P(X_i|X_1, ..., X_{k-1})= \frac{P(X_1,...,X_{k-1},X_k)}{P(X_1,...X_{k-1})}\]
+
+<p>using law of total probability. Therefore:</p>
+
+\[P(X_i|X_1, ..., X_{k-1}) \approx \frac{\text{Count}(X_1,...,X_{k-1},X_k)}{\text{Count}(X_1,...X_{k-1})}\]
+
+<p>So the <strong>same problem persist</strong>.</p>
 
 <p>Yet we can ==approximate== this using <strong>Markov’s Assumption</strong></p>
 
@@ -1056,39 +1075,41 @@ So the <strong>same problem persist</strong>.</p>
       <p>thus the n-gram (which looks $n-1$ words into the past only)</p>
     </li>
     <li>
-      <table>
-        <tbody>
-          <tr>
-            <td>e.g. $n=2$ means we only consider up to $1$ word in the past, i.e. only $P(X_i</td>
-            <td>X_{i-1})$</td>
-          </tr>
-        </tbody>
-      </table>
+      <p>e.g. $n=2$ means we only consider up to $1$ word in the past, i.e. only $P(X_i\vert X_{i-1})$</p>
 
       <ul>
-        <li>so that:
-\(P(\text{the}|\text{its water is so transparent that})\to P(\text{the}|\text{that})\)</li>
+        <li>
+          <p>so that:</p>
+
+\[P(\text{the}|\text{its water is so transparent that})\to P(\text{the}|\text{that})\]
+        </li>
       </ul>
     </li>
   </ul>
+
 </blockquote>
 
-<p>Therefore, the <strong>n-gram model</strong> basically says:
-\(\begin{align*}
+<p>Therefore, the <strong>n-gram model</strong> basically says:</p>
+
+\[\begin{align*}
 P(X_1,...,X_m) 
 &amp;= \prod_{i=1}^m P(X_i|X_{i-n+1}, ..., X_{i-1})
-\end{align*}\)
-Then to formally find out estimates for each $P(X_i|X_{i-n}, …, X_{i-1})$, we consider them as parameters and perform a MLE.</p>
+\end{align*}\]
+
+<p>Then to formally find out estimates for each $P(X_i\vert X_{i-n}, …, X_{i-1})$, we consider them as parameters and perform a MLE.</p>
 
 <ul>
   <li>
-    <p>in a bigram case, where $n=2$, each parameter $P(X_i|X_{i-1})$ can be estimated using MLE to yield:
-\(P_{MLE}(X_i | X_{i-1}) = \frac{\text{Count}(X_{i-1},X_{i})}{\text{Count}(X_i)}\)
-notice that the demotivator is a <strong>unigram probability</strong></p>
+    <p>in a bigram case, where $n=2$, each parameter $P(X_i\vert X_{i-1})$ can be estimated using MLE to yield:</p>
+
+\[P_{MLE}(X_i | X_{i-1}) = \frac{\text{Count}(X_{i-1},X_{i})}{\text{Count}(X_i)}\]
+
+    <p>notice that the demotivator is a <strong>unigram probability</strong></p>
   </li>
   <li>
-    <p>In general:
-\(P_{MLE}(X_i | X_{i-n+1:i-1}) = \frac{\text{Count}(X_{i-n+1:i-1},X_{i})}{\text{Count}(X_{i-n+1:i-1})}\)</p>
+    <p>In general:</p>
+
+\[P_{MLE}(X_i | X_{i-n+1:i-1}) = \frac{\text{Count}(X_{i-n+1:i-1},X_{i})}{\text{Count}(X_{i-n+1:i-1})}\]
   </li>
 </ul>
 
@@ -1098,29 +1119,31 @@ notice that the demotivator is a <strong>unigram probability</strong></p>
 
 <p>Consider our corpus being given as three sentences, the start is measured by <code class="language-plaintext highlighter-rouge">&lt;s&gt;</code> and end <code class="language-plaintext highlighter-rouge">&lt;/s&gt;</code></p>
 
-<p><img src="NLP/image-20220126215730731.png" alt="image-20220126215730731" /></p>
+<p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220126215730731.png" alt="image-20220126215730731" /></p>
 
 <p>Suppose we are using <strong>bigram</strong>. Then we can compute some of the bigrams being</p>
 
-<p><img src="NLP/image-20220126215751859.png" alt="image-20220126215751859" /></p>
+<p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220126215751859.png" alt="image-20220126215751859" /></p>
 
 <hr />
 
 <p><em>For Example</em>:</p>
 
-<p>Consider using bigram, and recall that:
-\(P_{MLE}(w_i | w_{i-1}) = \frac{\text{Count}(w_{i-1},w_{i})}{\text{Count}(w_i)}= \frac{\text{Count}(w_{i-1},w_{i})}{\sum \text{Count}(w_i,w_{i-1})}\)
-Let the <strong>unigram probabilities</strong> be given:</p>
+<p>Consider using bigram, and recall that:</p>
 
-<p><img src="NLP/image-20220126215919938.png" alt="image-20220126215919938" style="zoom:80%;" /></p>
+\[P_{MLE}(w_i | w_{i-1}) = \frac{\text{Count}(w_{i-1},w_{i})}{\text{Count}(w_i)}= \frac{\text{Count}(w_{i-1},w_{i})}{\sum \text{Count}(w_i,w_{i-1})}\]
+
+<p>Let the <strong>unigram probabilities</strong> be given:</p>
+
+<p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220126215919938.png" alt="image-20220126215919938" style="zoom:80%;" /></p>
 
 <p>And the bigram counts have been filled</p>
 
-<p><img src="NLP/image-20220126220043258.png" alt="image-20220126220043258" style="zoom:80%;" /></p>
+<p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220126220043258.png" alt="image-20220126220043258" style="zoom:80%;" /></p>
 
 <p>Then we can compute the <strong>probability of a sentence</strong></p>
 
-<p><img src="NLP/image-20220126220108341.png" alt="image-20220126220108341" /></p>
+<p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220126220108341.png" alt="image-20220126220108341" /></p>
 
 <hr />
 
@@ -1141,9 +1164,11 @@ Let the <strong>unigram probabilities</strong> be given:</p>
         <p>$\log$ is good since it is <strong>monotonously increasing</strong> anyway</p>
       </li>
       <li>
-        <p>this could also speed up computation, because we can convert our probability output
-\(\log (p_1 \times p_2 \times ... \times p_n) = \log(p_1) + \log(p_2) + ... + \log(p_n)\)
-becomes addition</p>
+        <p>this could also speed up computation, because we can convert our probability output</p>
+
+\[\log (p_1 \times p_2 \times ... \times p_n) = \log(p_1) + \log(p_2) + ... + \log(p_n)\]
+
+        <p>becomes addition</p>
       </li>
     </ul>
   </li>
@@ -1174,29 +1199,35 @@ becomes addition</p>
 <blockquote>
   <p><strong>Perplexity</strong></p>
 
-  <p>Consider a word sequence/sentence of $W_1, …, W_n$
-\(PP(W_1, W_2, ..., W_n) \equiv PP(W)\)
-Then:
-\(\begin{align*}
+  <p>Consider a word sequence/sentence of $W_1, …, W_n$</p>
+
+\[PP(W_1, W_2, ..., W_n) \equiv PP(W)\]
+
+  <p>Then:</p>
+
+\[\begin{align*}
 PP(W)
 &amp;= P(W_1,W_2, ..., W_n)^{-1/n}\\
 &amp;= \sqrt[n]{\frac{1}{P(W_1,W_2, ..., W_n)}}\\
 &amp;= \sqrt[n]{\frac{1}{\prod_{i=1}^nP(W_i|W_{1:i-1})}}
-\end{align*}\)
-is the exact definition.</p>
+\end{align*}\]
+
+  <p>is the exact definition.</p>
 </blockquote>
 
 <p>The intuition of what perplexity measures is as follows:</p>
 
 <ul>
   <li>
-    <p>in fact:
-\(\text{perplexity} = 2^{\text{entropy}}\)
-where:</p>
+    <p>in fact:</p>
+
+\[\text{perplexity} = 2^{\text{entropy}}\]
+
+    <p>where:</p>
 
     <ul>
       <li>
-        <p>$ \text{entropy}$ is the average number of <strong>bits</strong> that we need to encode the information</p>
+        <p>$\text{entropy}$ is the average number of <strong>bits</strong> that we need to encode the information</p>
       </li>
       <li>
         <p>so $\exp$ of the entropy is the <strong>total amount of all possible information</strong></p>
@@ -1223,8 +1254,9 @@ where:</p>
 
 <p><em>For Example</em></p>
 
-<p>If we use a Bigram model:
-\(PP(W)= \sqrt[n]{\frac{1}{\prod_{i=1}^nP(W_i|W_{i-1})}}\)</p>
+<p>If we use a Bigram model:</p>
+
+\[PP(W)= \sqrt[n]{\frac{1}{\prod_{i=1}^nP(W_i|W_{i-1})}}\]
 
 <hr />
 
@@ -1237,15 +1269,17 @@ where:</p>
   <li>$P(W_i)=1/90$ but $P(W=0)=9/10$</li>
 </ul>
 
-<p>Then if we see a text with $N$ words that look like:
-\(\text{0 0 0 3 0 0 3 0 ....}\)
-then:</p>
+<p>Then if we see a text with $N$ words that look like:</p>
+
+\[\text{0 0 0 3 0 0 3 0 ....}\]
+
+<p>then:</p>
 
 <ul>
   <li>
     <p>the perplexity of the first model:</p>
 
-    <p><img src="NLP/image-20220126224432849.png" alt="image-20220126224432849" /></p>
+    <p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220126224432849.png" alt="image-20220126224432849" /></p>
 
     <p>where we are ignoring the start <code class="language-plaintext highlighter-rouge">&lt;s&gt;</code> and end <code class="language-plaintext highlighter-rouge">&lt;/s&gt;</code> for now</p>
   </li>
@@ -1260,7 +1294,7 @@ then:</p>
 
 <p>The table below shows the perplexity of a 1.5 million word WSJ test set according to each of these grammars</p>
 
-<p><img src="NLP/image-20220126224549084.png" alt="image-20220126224549084" /></p>
+<p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220126224549084.png" alt="image-20220126224549084" /></p>
 
 <p>so basically Trigram is doing the best here.</p>
 
@@ -1270,49 +1304,24 @@ then:</p>
 
 <ul>
   <li>Sampling from a distribution means to choose random points according to their likelihood</li>
-  <li>
-    <table>
-      <tbody>
-        <tr>
-          <td>since our distribution basically are $P(w_i</td>
-          <td>w_{i-k+1:i-1})$, we treat this as a distribution and <strong>randomly sample from it</strong></td>
-        </tr>
-      </tbody>
-    </table>
-  </li>
+  <li>since our distribution basically are $P(w_i\vert w_{i-k+1:i-1})$, we treat this as a distribution and <strong>randomly sample from it</strong></li>
 </ul>
 
 <p>For example, suppose we have a Bigram Model. Using <strong>Shannon Visualization Method</strong>:</p>
 
-<p><img src="NLP/image-20220131190017653.png" alt="image-20220131190017653" style="zoom:50%;" /></p>
+<p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220131190017653.png" alt="image-20220131190017653" style="zoom:50%;" /></p>
 
 <p>where:</p>
 
 <ol>
-  <li>
-    <table>
-      <tbody>
-        <tr>
-          <td>consider $P(w</td>
-          <td>\text{<s>})$ as a distribution for all token $w$. **Randomly sample from it**</s></td>
-        </tr>
-      </tbody>
-    </table>
-    <ul>
-      <li>in this case, we got $ \text{I}$</li>
+  <li>consider $P(w\vert  \text{<s>})$ as a distribution for all token $w$. **Randomly sample from it**
+</s>    <ul>
+      <li>in this case, we got $\text{I}$</li>
     </ul>
   </li>
-  <li>
-    <table>
-      <tbody>
-        <tr>
-          <td>consider $P(w</td>
-          <td>\text{ I})$ as a distribututoin for all token $w$. Randomly sample from it</td>
-        </tr>
-      </tbody>
-    </table>
+  <li>consider $P(w\vert  \text{ I})$ as a distribututoin for all token $w$. Randomly sample from it
     <ul>
-      <li>in this case, we got $ \text{want}$</li>
+      <li>in this case, we got $\text{want}$</li>
     </ul>
   </li>
   <li>continues until we sampled $\text{&lt;/s&gt;}$</li>
@@ -1326,7 +1335,7 @@ then:</p>
 
 <p>Then, if we you this idea to <strong>generate texts from Shakespeare</strong> (by training on Shakespeare corpus)</p>
 
-<p><img src="NLP/image-20220131163935285.png" alt="image-20220131163935285" style="zoom: 33%;" /></p>
+<p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220131163935285.png" alt="image-20220131163935285" style="zoom: 33%;" /></p>
 
 <p>where the output is <strong>almost garbage</strong>. This is because:</p>
 
@@ -1345,7 +1354,7 @@ then:</p>
 
 <p>On the other hand, if the test and training corpus are somewhat similar:</p>
 
-<p><img src="NLP/image-20220131164208075.png" alt="image-20220131164208075" style="zoom:33%;" /></p>
+<p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220131164208075.png" alt="image-20220131164208075" style="zoom:33%;" /></p>
 
 <p>then it seems to work.</p>
 
@@ -1387,11 +1396,13 @@ then:</p>
 
 <p>For example: <em>Sparsity</em></p>
 
-<p><img src="NLP/image-20220131191756528.png" alt="image-20220131191756528" /></p>
+<p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220131191756528.png" alt="image-20220131191756528" /></p>
 
-<p>Then:
-\(P( \text{offer} | \text{ denied the}) = 0\)
-since it was never seen in.</p>
+<p>Then:</p>
+
+\[P( \text{offer} | \text{ denied the}) = 0\]
+
+<p>since it was never seen in.</p>
 
 <ul>
   <li>this happens <strong>very often</strong> in real life applications</li>
@@ -1480,7 +1491,7 @@ hurt the performance of any application we want to run on this data.</li>
 
 <p>So for instance:</p>
 
-<p><img src="NLP/image-20220131221619172.png" alt="image-20220131221619172" style="zoom:50%;" /></p>
+<p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220131221619172.png" alt="image-20220131221619172" style="zoom:50%;" /></p>
 
 <p>In general, there are many ways to do smoothing:</p>
 
@@ -1505,17 +1516,21 @@ hurt the performance of any application we want to run on this data.</li>
   </ul>
 </blockquote>
 
-<p>Let us first recall that our <strong>MLE estimate</strong> without smoothing was like (for Bigram)
-\(P_{MLE}(w_i | w_{i-1}) = \frac{\text{Count}(w_{i-1},w_{i})}{\text{Count}(w_i)}= \frac{\text{Count}(w_{i-1},w_{i})}{\sum \text{Count}(w_i,w_{i-1})}\)
-we needed $\sum \text{Count}(w_i,w_{i-1})$ because it is $ \text{Count}(w_i,w_{i-1})$, i.e. the element in our bigram frequency matrix that gets <strong>added 1</strong>.</p>
+<p>Let us first recall that our <strong>MLE estimate</strong> without smoothing was like (for Bigram)</p>
+
+\[P_{MLE}(w_i | w_{i-1}) = \frac{\text{Count}(w_{i-1},w_{i})}{\text{Count}(w_i)}= \frac{\text{Count}(w_{i-1},w_{i})}{\sum \text{Count}(w_i,w_{i-1})}\]
+
+<p>we needed $\sum \text{Count}(w_i,w_{i-1})$ because it is $\text{Count}(w_i,w_{i-1})$, i.e. the element in our bigram frequency matrix that gets <strong>added 1</strong>.</p>
 
 <ul>
   <li>also notice that we <strong>don’t need gradient descent</strong> type algorithm, as this is a ==probabilistic model==</li>
 </ul>
 
-<p>Therefore, the Add-1 estimate is simply:
-\(P_{Laplace}(w_i | w_{i-1}) = \frac{\text{Count}(w_{i-1},w_{i}) + 1}{\sum( \text{Count}(w_{i-1},w_{i}) + 1)}=\frac{\text{Count}(w_{i-1},w_{i}) + 1}{\text{Count}(w_{i-1}) + V}\)
-where notice that:</p>
+<p>Therefore, the Add-1 estimate is simply:</p>
+
+\[P_{Laplace}(w_i | w_{i-1}) = \frac{\text{Count}(w_{i-1},w_{i}) + 1}{\sum( \text{Count}(w_{i-1},w_{i}) + 1)}=\frac{\text{Count}(w_{i-1},w_{i}) + 1}{\text{Count}(w_{i-1}) + V}\]
+
+<p>where notice that:</p>
 
 <ul>
   <li>$V$ is the size of vocabulary, which makes sense since $P$ needs to add up to 1</li>
@@ -1527,7 +1542,7 @@ where notice that:</p>
 
 <p>When added smoothing the <strong>bigram frequency matrix</strong> looks like</p>
 
-<p><img src="NLP/image-20220131223032810.png" alt="image-20220131223032810" style="zoom:50%;" /></p>
+<p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220131223032810.png" alt="image-20220131223032810" style="zoom:50%;" /></p>
 
 <p>where:</p>
 
@@ -1538,15 +1553,19 @@ where notice that:</p>
 
 <p>Now we can <strong>compute the conditional probability</strong></p>
 
-<p><img src="NLP/image-20220131223135921.png" alt="image-20220131223135921" style="zoom:50%;" /></p>
+<p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220131223135921.png" alt="image-20220131223135921" style="zoom:50%;" /></p>
 
-<p>To see the <strong>smoothing effect more easily</strong>, we can reconstruct the <em>count/frequency matrix</em> by treating:
-\(P_{ \text{Laplace}}(w_n | w_{n-1}) \equiv \frac{ \text{Count}^*(w_{n-1}w_n)}{\text{Count}(w_{n-1})} = \frac{\text{Count}(w_{i-1},w_{i}) + 1}{\text{Count}(w_{i-1}) + V}\)
-Then we can easily get:
-\(\text{Count}^*(w_{n-1}w_n) =\frac{(\text{Count}(w_{i-1},w_{i}) + 1 ) * \text{Count}(w_{n-1})}{\text{Count}(w_{i-1}) + V}\)
-This means that the frequency becomes:</p>
+<p>To see the <strong>smoothing effect more easily</strong>, we can reconstruct the <em>count/frequency matrix</em> by treating:</p>
 
-<p><img src="NLP/image-20220131224038444.png" alt="image-20220131224038444" style="zoom: 67%;" /></p>
+\[P_{ \text{Laplace}}(w_n | w_{n-1}) \equiv \frac{ \text{Count}^*(w_{n-1}w_n)}{\text{Count}(w_{n-1})} = \frac{\text{Count}(w_{i-1},w_{i}) + 1}{\text{Count}(w_{i-1}) + V}\]
+
+<p>Then we can easily get:</p>
+
+\[\text{Count}^*(w_{n-1}w_n) =\frac{(\text{Count}(w_{i-1},w_{i}) + 1 ) * \text{Count}(w_{n-1})}{\text{Count}(w_{i-1}) + V}\]
+
+<p>This means that the frequency becomes:</p>
+
+<p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220131224038444.png" alt="image-20220131224038444" style="zoom: 67%;" /></p>
 
 <blockquote>
   <p><strong>Note</strong></p>
@@ -1565,9 +1584,11 @@ This means that the frequency becomes:</p>
 
 <h3 id="add-k-smoothing">Add-k Smoothing</h3>
 
-<p>Why add-1? Sometimes you may want to shift <strong>a bit less of the probability</strong> to unseen events, so that you might pick $k=0.5$, or $k=0.05$ for instance to:
-\(P_{Laplace}(w_i | w_{i-1}) = \frac{\text{Count}(w_{i-1},w_{i}) + k}{\sum( \text{Count}(w_{i-1},w_{i}) + k)}=\frac{\text{Count}(w_{i-1},w_{i}) + k}{\text{Count}(w_{i-1}) + kV}\)
-where:</p>
+<p>Why add-1? Sometimes you may want to shift <strong>a bit less of the probability</strong> to unseen events, so that you might pick $k=0.5$, or $k=0.05$ for instance to:</p>
+
+\[P_{Laplace}(w_i | w_{i-1}) = \frac{\text{Count}(w_{i-1},w_{i}) + k}{\sum( \text{Count}(w_{i-1},w_{i}) + k)}=\frac{\text{Count}(w_{i-1},w_{i}) + k}{\text{Count}(w_{i-1}) + kV}\]
+
+<p>where:</p>
 
 <ul>
   <li>now we may want to know what $k$ is the most optimal. This can be done, for example, by optimizing on a devset.</li>
@@ -1575,9 +1596,11 @@ where:</p>
 
 <h3 id="backoff-and-interpolation">Backoff and Interpolation</h3>
 
-<p>Again, recall that the problem is no examples of a particular trigram (for example), $w_{n-2}w_{n-1}w_{n}$ is seen such that:
-\(P(w_n|w_{n-2}w_{n-1}) = 0\)
-However, we can maybe just <strong>rely on/estimate its probability by using the bigram probability $P(w_n | w_{n-1})$.</strong></p>
+<p>Again, recall that the problem is no examples of a particular trigram (for example), $w_{n-2}w_{n-1}w_{n}$ is seen such that:</p>
+
+\[P(w_n|w_{n-2}w_{n-1}) = 0\]
+
+<p>However, we can maybe just <strong>rely on/estimate its probability by using the bigram probability $P(w_n \vert  w_{n-1})$.</strong></p>
 
 <ul>
   <li>or basically any <em>lower order N-gram model</em></li>
@@ -1605,7 +1628,7 @@ However, we can maybe just <strong>rely on/estimate its probability by using the
 
 <p><em>For Example</em>: Simple Linear Interpolation</p>
 
-<p><img src="NLP/image-20220131230002807.png" alt="image-20220131230002807" style="zoom:80%;" /></p>
+<p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220131230002807.png" alt="image-20220131230002807" style="zoom:80%;" /></p>
 
 <p>where:</p>
 
@@ -1626,7 +1649,7 @@ However, we can maybe just <strong>rely on/estimate its probability by using the
 
 <p>Then, the parameter $\lambda$ will be huge:</p>
 
-<p><img src="NLP/image-20220131230531023.png" alt="image-20220131230531023" style="zoom:80%;" /></p>
+<p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220131230531023.png" alt="image-20220131230531023" style="zoom:80%;" /></p>
 
 <ul>
   <li>in general, both the simple interpolation and conditional are <strong>learned/optimized from a held-out corpus</strong>.
@@ -1642,28 +1665,23 @@ converges on locally optimal $\lambda$s</li>
 
 <p><em>Example: <strong>Katz backoff</strong></em></p>
 
-<p>In the end, we want to produce a <strong>probability distribution</strong>
-\(P(w_n | w_{n-N+1:n-1})\)
-if we naively just do:
-\(P(w_n | w_{n-N+1:n-1}) = \begin{cases}
+<p>In the end, we want to produce a <strong>probability distribution</strong></p>
+
+\[P(w_n | w_{n-N+1:n-1})\]
+
+<p>if we naively just do:</p>
+
+\[P(w_n | w_{n-N+1:n-1}) = \begin{cases}
 P(w_n | w_{n-N+1:n-1}), &amp; \text{if Count}(w_{n-N+1:n}) &gt; 0\\
 P(w_n | w_{n-N+2:n-1}), &amp; \text{otherwise}
-\end{cases}\)
-we notice that this <strong>will exceed $1$</strong> since just summing up over $P(w_n | w_{n-N+1:n-1})$ already reaches $1$.</p>
+\end{cases}\]
+
+<p>we notice that this <strong>will exceed $1$</strong> since just summing up over $P(w_n \vert  w_{n-N+1:n-1})$ already reaches $1$.</p>
 
 <p>Therefore, we need to:</p>
 
 <ul>
-  <li>
-    <table>
-      <tbody>
-        <tr>
-          <td>discount some probability mass from $P(w_n</td>
-          <td>w_{n-N+1:n-1})$</td>
-        </tr>
-      </tbody>
-    </table>
-  </li>
+  <li>discount some probability mass from $P(w_n \vert  w_{n-N+1:n-1})$</li>
   <li>for lower-order $n$-gram, we need a factor $\alpha$ to distribute it such that everything adds up to 1</li>
 </ul>
 
@@ -1697,7 +1715,7 @@ P^*(w_n | w_{n-N+1:n-1}), &amp; \text{if Count}(w_{n-N+1:n}) &gt; 0\\
 
 <p>For instance, for a Bigram model, it has been found that the following are the training and heldout dataset</p>
 
-<p><img src="NLP/image-20220131233252358.png" alt="image-20220131233252358" style="zoom:80%;" /></p>
+<p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220131233252358.png" alt="image-20220131233252358" style="zoom:80%;" /></p>
 
 <p>notice that:</p>
 
@@ -1707,7 +1725,7 @@ P^*(w_n | w_{n-N+1:n-1}), &amp; \text{if Count}(w_{n-N+1:n}) &gt; 0\\
 
 <p>Therefore, <strong>absolute discounting for Bigram</strong> models looks like:</p>
 
-<p><img src="NLP/image-20220131233349379.png" alt="image-20220131233349379" /></p>
+<p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220131233349379.png" alt="image-20220131233349379" /></p>
 
 <p>where:</p>
 
@@ -1722,43 +1740,49 @@ P^*(w_n | w_{n-N+1:n-1}), &amp; \text{if Count}(w_{n-N+1:n}) &gt; 0\\
   <p>Essentially instead of blindly picking the most probable $P(w_i)$ if you don’t know what to do next, pick the $w_i$ that is <strong>likely to appear in a new/novel context</strong></p>
 </blockquote>
 
-<p>For instance, consider that you are predicting the next word of:
-\(\text{I can’t see without my reading \_\_.}\)
-to predict the next word:</p>
+<p>For instance, consider that you are predicting the next word of:</p>
+
+\[\text{I can’t see without my reading \_\_.}\]
+
+<p>to predict the next word:</p>
 
 <ul>
-  <li>if we basically used $P(w_i)$ for interpolation, then words like $ \text{Kong}$ might appear more often as a unigram than $ \text{glasses}$</li>
+  <li>if we basically used $P(w_i)$ for interpolation, then words like $\text{Kong}$ might appear more often as a unigram than $\text{glasses}$</li>
   <li>basically, if we are only to guess the next word, use the one that <strong>appears more context</strong>/has a wider distribution
     <ul>
-      <li>i.e. $ \text{Kong}$ could have only appeared after $ \text{Hong}$, but $ \text{glasses}$ would have appeared ==after many different types of words==</li>
+      <li>i.e. $\text{Kong}$ could have only appeared after $\text{Hong}$, but $\text{glasses}$ would have appeared ==after many different types of words==</li>
     </ul>
   </li>
 </ul>
 
 <p>Therefore, we would be doing, for <strong>Interpolated Kneser-Ney smoothing for bigrams</strong></p>
 
-<p><img src="NLP/image-20220131234213040.png" alt="image-20220131234213040" /></p>
+<p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220131234213040.png" alt="image-20220131234213040" /></p>
 
 <p>where:</p>
 
 <ul>
-  <li>the $ \max$ is there since we might go negative in count if $d$ is large</li>
+  <li>the $\max$ is there since we might go negative in count if $d$ is large</li>
   <li>$P_\text{CONTINUATION}$ would be our approximate of how “versatile” a word/phrase would be.</li>
 </ul>
 
-<p>In the case of <strong>Bigram</strong>, $P_{ \text{CONTINUATION}}$ is formalized as
-\(P_{ \text{CONTINUATION}}(w) \propto | \{ v: C(vw) &gt; 0 \}|\)
-which is basically the number of word types seen to precede $w$. Then, we need to <strong>normalize it</strong>, hence
-\(P_{ \text{CONTINUATION}}(w) = \frac{ | \{ v: C(vw) &gt; 0 \}|}{\sum_{w'} | \{ v: C(vw') &gt; 0 \}|}\)
-so that:</p>
+<p>In the case of <strong>Bigram</strong>, $P_{ \text{CONTINUATION}}$ is formalized as</p>
+
+\[P_{ \text{CONTINUATION}}(w) \propto | \{ v: C(vw) &gt; 0 \}|\]
+
+<p>which is basically the number of word types seen to precede $w$. Then, we need to <strong>normalize it</strong>, hence</p>
+
+\[P_{ \text{CONTINUATION}}(w) = \frac{ | \{ v: C(vw) &gt; 0 \}|}{\sum_{w'} | \{ v: C(vw') &gt; 0 \}|}\]
+
+<p>so that:</p>
 
 <ul>
-  <li>words such as $ \text{Kong}$ would have a low continuation probability since it only appears after $ \text{Hong}$.</li>
+  <li>words such as $\text{Kong}$ would have a low continuation probability since it only appears after $\text{Hong}$.</li>
 </ul>
 
 <p>Lastly, a formula for $\lambda$ is also provided</p>
 
-<p><img src="NLP/image-20220131234644462.png" alt="image-20220131234644462" /></p>
+<p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220131234644462.png" alt="image-20220131234644462" /></p>
 
 <p>where the first term is basically a normalizing constant</p>
 
@@ -1766,7 +1790,7 @@ so that:</p>
 
 <p><strong>General recursive formulation</strong>:</p>
 
-<p><img src="NLP/image-20220131234713627.png" alt="image-20220131234713627" /></p>
+<p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220131234713627.png" alt="image-20220131234713627" /></p>
 
 <p>where the definition of the count $c_{KN}$ depends on whether we are</p>
 
@@ -1775,7 +1799,7 @@ so that:</p>
   <li>or one of the lower-order n-grams (bigram or unigram if we are interpolating trigram, bigram, and unigram)</li>
 </ul>
 
-<p><img src="NLP/image-20220131234820143.png" alt="image-20220131234820143" /></p>
+<p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220131234820143.png" alt="image-20220131234820143" /></p>
 
 <p>where remember that continuation count is the number of unique single word contexts for $\cdot$.</p>
 
@@ -1816,30 +1840,23 @@ so that:</p>
   <li>this algorithm for computing probability is called <strong>stupid backoff</strong></li>
 </ul>
 
-<p>Notice that all modifications of the basic N-gram language model is ==modifying this term==:
-\(P(w_i | w_{i-n+1:i-1})\)
-Stupid backoff basically ==gives up== the idea of trying to make the above quantity a ==true probability distribution== (i.e. sums up to 1).</p>
+<p>Notice that all modifications of the basic N-gram language model is ==modifying this term==:</p>
+
+\[P(w_i | w_{i-n+1:i-1})\]
+
+<p>Stupid backoff basically ==gives up== the idea of trying to make the above quantity a ==true probability distribution== (i.e. sums up to 1).</p>
 
 <ul>
   <li>no discounting of the higher-order probabilities.</li>
   <li>simply backoff to a lower order n-gram, <strong>weighed</strong> by a fixed (context-independent) weight</li>
 </ul>
 
-<p><img src="NLP/image-20220202184949652.png" alt="image-20220202184949652" /></p>
+<p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220202184949652.png" alt="image-20220202184949652" /></p>
 
 <p>where, since this is no longer a probability distribution, $S$ instead of $P$ is used:</p>
 
 <ul>
-  <li>
-    <table>
-      <tbody>
-        <tr>
-          <td>the upper term is essentially $P(w_i</td>
-          <td>w_{i-n+1:i-1})$</td>
-        </tr>
-      </tbody>
-    </table>
-  </li>
+  <li>the upper term is essentially $P(w_i \vert  w_{i-n+1:i-1})$</li>
   <li>the lower term essentially is a <strong>decaying weight</strong> the lower n-gram you are using</li>
   <li>using $\lambda = 0.4$ seems to work well</li>
 </ul>
@@ -1943,15 +1960,17 @@ Stupid backoff basically ==gives up== the idea of trying to make the above quant
 
 <p>In this section we introduce the noisy channel model and show how to apply it to the task of <strong>detecting and correcting spelling errors</strong>. An image of what we need to do is the following:</p>
 
-<p><img src="NLP/image-20220202192513059.png" alt="image-20220202192513059" style="zoom: 67%;" /></p>
+<p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220202192513059.png" alt="image-20220202192513059" style="zoom: 67%;" /></p>
 
 <p>basically the idea is similar to the <strong>probabilistic interpretation of logistic regression</strong>:</p>
 
 <ul>
   <li>
-    <p>This channel introduces “<strong>noise</strong>” in the form of substitutions or other changes to the letters, making it hard to recognize the “<strong>true</strong>” word. i.e.
-\(w' = w + \epsilon\)
-where $w$ is the word we <strong>observe</strong>, $w$ is the <strong>true word</strong>, $\epsilon$ is some random noise we ==want to model==</p>
+    <p>This channel introduces “<strong>noise</strong>” in the form of substitutions or other changes to the letters, making it hard to recognize the “<strong>true</strong>” word. i.e.</p>
+
+\[w' = w + \epsilon\]
+
+    <p>where $w$ is the word we <strong>observe</strong>, $w$ is the <strong>true word</strong>, $\epsilon$ is some random noise we ==want to model==</p>
   </li>
   <li>
     <p>we need to find the word $w$ that generated this misspelled word $w’$.</p>
@@ -1966,27 +1985,23 @@ where $w$ is the word we <strong>observe</strong>, $w$ is the <strong>true word<
   <li>pick the $w$ that comes <strong>closest to observed word $w’$</strong></li>
 </ol>
 
-<p>Then, we essentially consider the user <strong>input $x$</strong> which is misspelled, but $w$ is the real intention so that:
-\(x \equiv w' = w + \epsilon\)
-We want to find out $\hat{w}$ that is <strong>most probably generated $x$</strong>:
-\(\begin{align*}
+<p>Then, we essentially consider the user <strong>input $x$</strong> which is misspelled, but $w$ is the real intention so that:</p>
+
+\[x \equiv w' = w + \epsilon\]
+
+<p>We want to find out $\hat{w}$ that is <strong>most probably generated $x$</strong>:</p>
+
+\[\begin{align*}
 \hat{w}
 &amp;= \arg\max_{w \in V} P(w|x)\\
 &amp;= \arg\max_{w \in V} \frac{P(x | w)P(w)}{P(x)}\\
 &amp;= \arg\max_{w \in V} P(x | w)P(w)
-\end{align*}\)
-then</p>
+\end{align*}\]
+
+<p>then</p>
 
 <ul>
-  <li>
-    <table>
-      <tbody>
-        <tr>
-          <td>$P(x</td>
-          <td>w)$ represents the probability a word $w$ <strong>generated misspelled $x$</strong> from this noisy channel</td>
-        </tr>
-      </tbody>
-    </table>
+  <li>$P(x\vert w)$ represents the probability a word $w$ <strong>generated misspelled $x$</strong> from this noisy channel
     <ul>
       <li>this would be approximated from the training corpus (which contains <strong>both a misspelled version and the correct version</strong>)</li>
     </ul>
@@ -2003,24 +2018,16 @@ then</p>
 
 <p>Hence the <strong>noisy channel model</strong> is:</p>
 
-<p><img src="NLP/image-20220202194340960.png" alt="image-20220202194340960" /></p>
+<p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220202194340960.png" alt="image-20220202194340960" /></p>
 
 <p>Then the overall algorithm is this:</p>
 
-<p><img src="NLP/image-20220202195102285.png" alt="image-20220202195102285" style="zoom: 67%;" /></p>
+<p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220202195102285.png" alt="image-20220202195102285" style="zoom: 67%;" /></p>
 
 <p>where:</p>
 
 <ul>
-  <li>
-    <table>
-      <tbody>
-        <tr>
-          <td>the most important yet haven’t discussed part is how to estimate $P(x</td>
-          <td>w)$, nor $P(w)$ which potentially could depend on many factors such as word context, keyboard position, etc</td>
-        </tr>
-      </tbody>
-    </table>
+  <li>the most important yet haven’t discussed part is how to estimate $P(x\vert w)$, nor $P(w)$ which potentially could depend on many factors such as word context, keyboard position, etc
     <ul>
       <li>prior in general is computed using <strong>language model</strong>, such as unigram to trigram or 4-gram.</li>
     </ul>
@@ -2029,29 +2036,15 @@ then</p>
   <li>we use extended edit distance so that in addition to insertions, deletions, and substitutions, we’ll add a fourth type of edit, <strong>transpositions</strong>. This version is also called <strong>Damerau-Levenshtein edit distance</strong></li>
 </ul>
 
-<p>Now, we discuss how to estimate the two key probability. We will take the example of correcting the misspelled word “$ \text{acress}$”</p>
+<p>Now, we discuss how to estimate the two key probability. We will take the example of correcting the misspelled word “$\text{acress}$”</p>
 
 <hr />
 
-<table>
-  <tbody>
-    <tr>
-      <td>**Estimating $P(x</td>
-      <td>w)$**: Simple Model</td>
-    </tr>
-  </tbody>
-</table>
+<p><strong>Estimating $P(x\vert w)$</strong>: Simple Model</p>
 
 <p>A <strong>perfect</strong> model of the probability that a word will be mistyped would condition on all sorts of factors: who the typist was, whether the typist was lefthanded or right-handed, and so on. However, it turns out that we can do pretty well by just looking at the <strong>local context</strong>.</p>
 
-<table>
-  <tbody>
-    <tr>
-      <td>==A simple model== might estimate, for example, $P( \text{acress}</td>
-      <td>\text{across})$ just using the number of times that <strong>the letter $e$ was substituted for the letter $o$</strong> in some large corpus of errors.</td>
-    </tr>
-  </tbody>
-</table>
+<p>==A simple model== might estimate, for example, $P( \text{acress}\vert  \text{across})$ just using the number of times that <strong>the letter $e$ was substituted for the letter $o$</strong> in some large corpus of errors.</p>
 
 <ul>
   <li>to compute the probability for each edit we’ll need a <strong>confusion matrix</strong> that contains counts of errors.</li>
@@ -2060,35 +2053,28 @@ then</p>
 
 <p>Then, since we have four operations, we get <strong>four confusion matrix</strong>, each for:</p>
 
-<p><img src="NLP/image-20220202202359773.png" alt="image-20220202202359773" style="zoom:80%;" /></p>
+<p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220202202359773.png" alt="image-20220202202359773" style="zoom:80%;" /></p>
 
 <p>An example for substitution confusion matrix is:</p>
 
-<p><img src="NLP/image-20220131173445849.png" alt="image-20220131173445849" style="zoom:50%;" /></p>
+<p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220131173445849.png" alt="image-20220131173445849" style="zoom:50%;" /></p>
 
-<p>(technically the above is $ \text{sub}(y,x)$ by our above definition, but the order is something you can decide by yourself)</p>
+<p>(technically the above is $\text{sub}(y,x)$ by our above definition, but the order is something you can decide by yourself)</p>
 
 <ul>
   <li>
     <p>this type of data would be drawn from a <strong>list of misspellings</strong> like the following</p>
 
-    <p><img src="NLP/image-20220202202619100.png" alt="image-20220202202619100" style="zoom:50%;" /></p>
+    <p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220202202619100.png" alt="image-20220202202619100" style="zoom:50%;" /></p>
   </li>
   <li>
     <p>There are lists available on Wikipedia and from Roger Mitton (http://www.dcs.bbk.ac.uk/~ROGER/corpora.html) and Peter Norvig (http://norvig.com/ngrams/).</p>
   </li>
 </ul>
 
-<table>
-  <tbody>
-    <tr>
-      <td>Finally, with those counts, we can estimate $P(x</td>
-      <td>w)$ as follows:</td>
-    </tr>
-  </tbody>
-</table>
+<p>Finally, with those counts, we can estimate $P(x\vert w)$ as follows:</p>
 
-<p><img src="NLP/image-20220202202920494.png" alt="image-20220202202920494" style="zoom:67%;" /></p>
+<p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220202202920494.png" alt="image-20220202202920494" style="zoom:67%;" /></p>
 
 <p>where:</p>
 
@@ -2100,28 +2086,13 @@ then</p>
 
 <p>Example computations look like</p>
 
-<p><img src="NLP/image-20220202203132853.png" alt="image-20220202203132853" style="zoom:50%;" /></p>
+<p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220202203132853.png" alt="image-20220202203132853" style="zoom:50%;" /></p>
 
-<table>
-  <tbody>
-    <tr>
-      <td>where make sure $x</td>
-      <td>w$ and $P(x</td>
-      <td>w)$ makes sense.</td>
-    </tr>
-  </tbody>
-</table>
+<p>where make sure $x\vert w$ and $P(x\vert w)$ makes sense.</p>
 
 <hr />
 
-<table>
-  <tbody>
-    <tr>
-      <td>**Estimating $P(x</td>
-      <td>w)$**: Iterative model</td>
-    </tr>
-  </tbody>
-</table>
+<p><strong>Estimating $P(x\vert w)$</strong>: Iterative model</p>
 
 <p>An alternative approach used by Kernighan et al. (1990) is to compute the confusion matrices by iteratively using this very spelling error correction algorithm itself.</p>
 
@@ -2137,7 +2108,7 @@ then</p>
 
 <p>Basically an EM algorithm. Then, once we have the confusion matrix, use the same equation</p>
 
-<p><img src="NLP/image-20220202202920494.png" alt="image-20220202202920494" style="zoom:67%;" /></p>
+<p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220202202920494.png" alt="image-20220202202920494" style="zoom:67%;" /></p>
 
 <p>and the rest is the same.</p>
 
@@ -2145,24 +2116,28 @@ then</p>
 
 <p><strong>Estimating $P(w)$</strong>: Unigram</p>
 
-<p>Now, recall that our model is:
-\(\begin{align*}
+<p>Now, recall that our model is:</p>
+
+\[\begin{align*}
 \hat{w}
 &amp;= \arg\max_{w \in V} P(w|x)\\
 &amp;= \arg\max_{w \in V} \frac{P(x | w)P(w)}{P(x)}\\
 &amp;= \arg\max_{w \in V} P(x | w)P(w)
-\end{align*}\)
-so we still need $P(w)$.</p>
+\end{align*}\]
+
+<p>so we still need $P(w)$.</p>
 
 <p>If we choose to compute $P(w)$ as a <strong>unigram</strong>, then:</p>
 
-<p><img src="NLP/image-20220202203357036.png" alt="image-20220202203357036" style="zoom:50%;" /></p>
+<p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220202203357036.png" alt="image-20220202203357036" style="zoom:50%;" /></p>
 
-<p>It turns out $ \text{across}$ has a high value!</p>
+<p>It turns out $\text{across}$ has a high value!</p>
 
-<p>Unfortunately, this is the wrong choice as the writer’s intention becomes clear from the context: 
-\(\text{ . . was called a “stellar and versatile \textbf{acress} whose combination of sass and glamour has defined her. . . }\)
-The surrounding words make it clear that $ \text{actress }$ was the intended word. We are <strong>missing context</strong> data from unigram + simple model for $P(x|w)$ based on purely alphabets.</p>
+<p>Unfortunately, this is the wrong choice as the writer’s intention becomes clear from the context:</p>
+
+\[\text{ . . was called a “stellar and versatile \textbf{acress} whose combination of sass and glamour has defined her. . . }\]
+
+<p>The surrounding words make it clear that $\text{actress }$ was the intended word. We are <strong>missing context</strong> data from unigram + simple model for $P(x\vert w)$ based on purely alphabets.</p>
 
 <hr />
 
@@ -2170,24 +2145,17 @@ The surrounding words make it clear that $ \text{actress }$ was the intended wor
 
 <p>Now, with bigram, we can compute $P(\text{actress})$ and $P(\text{across})$ as:</p>
 
-<p><img src="NLP/image-20220202203838501.png" alt="image-20220202203838501" style="zoom:80%;" /></p>
+<p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220202203838501.png" alt="image-20220202203838501" style="zoom:80%;" /></p>
 
 <p>which then can be estimated using <strong>bigram</strong> because we know the following:</p>
 
-<p><img src="NLP/image-20220202203901397.png" alt="image-20220202203901397" style="zoom:80%;" /></p>
+<p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220202203901397.png" alt="image-20220202203901397" style="zoom:80%;" /></p>
 
 <p>Finally:</p>
 
-<p><img src="NLP/image-20220202203911300.png" alt="image-20220202203911300" style="zoom:80%;" /></p>
+<p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220202203911300.png" alt="image-20220202203911300" style="zoom:80%;" /></p>
 
-<table>
-  <tbody>
-    <tr>
-      <td>which combining the the $P(x</td>
-      <td>w)$ prediction, we gave out the <strong>correct result</strong> that $ \text{actress}$ is more likely.</td>
-    </tr>
-  </tbody>
-</table>
+<p>which combining the the $P(x\vert w)$ prediction, we gave out the <strong>correct result</strong> that $\text{actress}$ is more likely.</p>
 
 <h2 id="real-word-spelling-errors">Real-Word Spelling Errors</h2>
 
@@ -2198,9 +2166,11 @@ The surrounding words make it clear that $ \text{actress }$ was the intended wor
   <li>A number of studies suggest that between 25% and 40% of spelling errors are valid English words</li>
 </ul>
 
-<p>For instance:
-\(\text{This used to belong to \textbf{thew} queen. They are leaving in about fifteen \textbf{minuets} to go to her house.}\)
-How do we use noisy channel that seems to be based on <strong>detecting error from misspelling</strong>?</p>
+<p>For instance:</p>
+
+\[\text{This used to belong to \textbf{thew} queen. They are leaving in about fifteen \textbf{minuets} to go to her house.}\]
+
+<p>How do we use noisy channel that seems to be based on <strong>detecting error from misspelling</strong>?</p>
 
 <hr />
 
@@ -2223,18 +2193,20 @@ How do we use noisy channel that seems to be based on <strong>detecting error fr
         <li>
           <p>generate possible sentences from those words. For instance, if the input is $\text{two of thew}$:</p>
 
-          <p><img src="NLP/image-20220202161842395.png" alt="image-20220202161842395" style="zoom: 33%;" /></p>
+          <p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220202161842395.png" alt="image-20220202161842395" style="zoom: 33%;" /></p>
 
           <p>where we already see <strong>a lot of possibility</strong>. To simplify, we ==assume== that every sentence has only one error. Then we have:</p>
 
-          <p><img src="NLP/image-20220202213018817.png" alt="image-20220202213018817" /></p>
+          <p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220202213018817.png" alt="image-20220202213018817" /></p>
         </li>
       </ol>
     </li>
     <li>
-      <p>picks the sentence with the highest language model probability
-\(\hat{W} = \arg\max_{W \in C(X)} P(W|X)= \arg \max_{W \in C(X)} P(X|W)P(W)\)
-where $W$ we know are generated by us.</p>
+      <p>picks the sentence with the highest language model probability</p>
+
+\[\hat{W} = \arg\max_{W \in C(X)} P(W|X)= \arg \max_{W \in C(X)} P(X|W)P(W)\]
+
+      <p>where $W$ we know are generated by us.</p>
     </li>
   </ol>
 </blockquote>
@@ -2242,24 +2214,19 @@ where $W$ we know are generated by us.</p>
 <p>Now, the problem is we need to estimate:</p>
 
 <ul>
-  <li>
-    <table>
-      <tbody>
-        <tr>
-          <td>$P(X</td>
-          <td>W)$</td>
-        </tr>
-      </tbody>
-    </table>
-  </li>
+  <li>$P(X\vert W)$</li>
   <li>$P(W)$ - this can be done using a <strong>language model</strong>, essentially like we are generating sentences from it. (e.g. use a Trigram)</li>
 </ul>
 
-<p>Now, the problem is $P(X|W)$. Since we ==assume only one word error==, then we can assume:
-\(P(X|W) = P(x_1, ..., x_n | w_1, ..., w_n) = \prod_{i=1}^n P(x_i|w_i)\)
-where we assumed each $x_i|w_i$ pair are uncorrelated to each other. Then, if correct, i.e. $x_i = w_i$, we assumed $\alpha$ (as shown below). Hence:
-\(P(X|W) = \prod_{i=1}^n P(x_i|w_i) = \alpha^{n-1}P(x_k|w_k)\)
-where:</p>
+<p>Now, the problem is $P(X\vert W)$. Since we ==assume only one word error==, then we can assume:</p>
+
+\[P(X|W) = P(x_1, ..., x_n | w_1, ..., w_n) = \prod_{i=1}^n P(x_i|w_i)\]
+
+<p>where we assumed each $x_i\vert w_i$ pair are uncorrelated to each other. Then, if correct, i.e. $x_i = w_i$, we assumed $\alpha$ (as shown below). Hence:</p>
+
+\[P(X|W) = \prod_{i=1}^n P(x_i|w_i) = \alpha^{n-1}P(x_k|w_k)\]
+
+<p>where:</p>
 
 <ul>
   <li>we assumed there is only one error, and the error is on $x_k$.</li>
@@ -2267,64 +2234,31 @@ where:</p>
 
 <p>since context information/positional information is encoded into $P(W)$. Then, we can use the simple model that</p>
 
-<p><img src="NLP/image-20220202213308252.png" alt="image-20220202213308252" style="zoom:80%;" /></p>
+<p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220202213308252.png" alt="image-20220202213308252" style="zoom:80%;" /></p>
 
 <p>where notice that:</p>
 
 <ul>
-  <li>
-    <table>
-      <tbody>
-        <tr>
-          <td>essentially $P(w</td>
-          <td>w)$, i.e. typed correctly, is probability $\alpha$. Often this is set to $\alpha = 0.95$</td>
-        </tr>
-      </tbody>
-    </table>
-  </li>
-  <li>
-    <table>
-      <tbody>
-        <tr>
-          <td>alternatively we can make the distribution <strong>proportional to the edit probability</strong> from the more sophisticated channel model. i.e. we use $P(x</td>
-          <td>w)$ estimation by look at the confusion matrices.</td>
-        </tr>
-      </tbody>
-    </table>
-  </li>
+  <li>essentially $P(w\vert w)$, i.e. typed correctly, is probability $\alpha$. Often this is set to $\alpha = 0.95$</li>
+  <li>alternatively we can make the distribution <strong>proportional to the edit probability</strong> from the more sophisticated channel model. i.e. we use $P(x\vert w)$ estimation by look at the confusion matrices.</li>
 </ul>
 
-<p>Lastly, since constants can be <strong>dropped during $\arg\max_W$</strong>:
-\(\hat{W} =\arg \max_{W \in C(X)} P(X|W)P(W) = \text{arg\,max}_{W \in C(X), k\in[1,n]} P(x_k|w_k)P(W)\)
-for the single wrong word being at position $k$.</p>
+<p>Lastly, since constants can be <strong>dropped during $\arg\max_W$</strong>:</p>
+
+\[\hat{W} =\arg \max_{W \in C(X)} P(X|W)P(W) = \text{arg\,max}_{W \in C(X), k\in[1,n]} P(x_k|w_k)P(W)\]
+
+<p>for the single wrong word being at position $k$.</p>
 
 <hr />
 
-<table>
-  <tbody>
-    <tr>
-      <td>For example, if we used the simple estimation for $P(x</td>
-      <td>w)$, then $P(X</td>
-      <td>W)$ essentially is:</td>
-    </tr>
-  </tbody>
-</table>
+<p>For example, if we used the simple estimation for $P(x\vert w)$, then $P(X\vert W)$ essentially is:</p>
 
-<p><img src="NLP/image-20220202213655859.png" alt="image-20220202213655859" style="zoom:67%;" /></p>
+<p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220202213655859.png" alt="image-20220202213655859" style="zoom:67%;" /></p>
 
-<p>where here we only looked at the case when we want to correct $ \text{thew}$ in the sentence, which again is a <strong>real word</strong>.</p>
+<p>where here we only looked at the case when we want to correct $\text{thew}$ in the sentence, which again is a <strong>real word</strong>.</p>
 
 <ul>
-  <li>
-    <table>
-      <tbody>
-        <tr>
-          <td>finally, don’t forget to <strong>multiply by $P(W)$</strong> to get your final estimate for $P(W</td>
-          <td>X)$!</td>
-        </tr>
-      </tbody>
-    </table>
-  </li>
+  <li>finally, don’t forget to <strong>multiply by $P(W)$</strong> to get your final estimate for $P(W\vert X)$!</li>
 </ul>
 
 <h2 id="noisy-channel-model-the-state-of-the-art">Noisy Channel Model: The State of the Art</h2>
@@ -2340,25 +2274,20 @@ for the single wrong word being at position $k$.</p>
 
     <ul>
       <li>Google solves this by using a <strong>blacklist</strong>, forbidding certain tokens (like numbers, punctuation, and single letter words) from being changed</li>
-      <li>
-        <table>
-          <tbody>
-            <tr>
-              <td>Instead of just choosing a candidate correction if it has a higher probability $P(w</td>
-              <td>x)$ than the word itself, these more careful systems choose to <strong>suggest</strong> a correction $w$ over keeping the non-correction $x$ only if the ==difference in probabilities is sufficiently great==.</td>
-            </tr>
-          </tbody>
-        </table>
-      </li>
+      <li>Instead of just choosing a candidate correction if it has a higher probability $P(w\vert x)$ than the word itself, these more careful systems choose to <strong>suggest</strong> a correction $w$ over keeping the non-correction $x$ only if the ==difference in probabilities is sufficiently great==.</li>
     </ul>
   </li>
   <li>
     <p>improve the performance of the noisy channel model by changing <strong>how the prior and the likelihood are combined</strong></p>
 
     <ul>
-      <li>we might trust one of the two models more, therefore we use a <strong>weighted combination</strong>
-\(\hat{w} = \arg\max_{w \in V} P(x|w)P(w)^\lambda\)
-for some constant $\lambda$</li>
+      <li>
+        <p>we might trust one of the two models more, therefore we use a <strong>weighted combination</strong></p>
+
+\[\hat{w} = \arg\max_{w \in V} P(x|w)P(w)^\lambda\]
+
+        <p>for some constant $\lambda$</p>
+      </li>
     </ul>
   </li>
   <li>For specific confusion sets, such as <em>peace</em>/<em>piece</em>, <em>affect</em>/<em>effect</em>, <em>weather</em>/<em>whether</em>, we can train <strong>supervised classifiers</strong> to draw on many features of the context and make a choice between the two candidates
@@ -2467,7 +2396,7 @@ the transformed space. (e.g. for CNNs, edges, textures, etc.)
 
 <p>Essentially you have:</p>
 
-<p><img src="NLP/image-20220207170751180.png" alt="image-20220207170751180" style="zoom:50%;" /></p>
+<p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220207170751180.png" alt="image-20220207170751180" style="zoom:50%;" /></p>
 
 <p>where:</p>
 
@@ -2482,7 +2411,7 @@ the transformed space. (e.g. for CNNs, edges, textures, etc.)
 
 <p>Within each encoder, essentially you will have:</p>
 
-<p><img src="NLP/image-20220207170815940.png" alt="image-20220207170815940" style="zoom:50%;" /></p>
+<p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220207170815940.png" alt="image-20220207170815940" style="zoom:50%;" /></p>
 
 <p>where:</p>
 
@@ -2631,7 +2560,7 @@ the transformed space. (e.g. for CNNs, edges, textures, etc.)
 
 <p><em>For example</em>, term frequency would look like:</p>
 
-<p><img src="NLP/image-20220209162739783.png" alt="image-20220209162739783" style="zoom: 50%;" /></p>
+<p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220209162739783.png" alt="image-20220209162739783" style="zoom: 50%;" /></p>
 
 <p>where:</p>
 
@@ -2646,7 +2575,7 @@ the transformed space. (e.g. for CNNs, edges, textures, etc.)
 
 <p>This can be useful to determine <strong>similarity between word</strong> if their <strong>vector representation is similar</strong></p>
 
-<p><img src="NLP/image-20220209162905547.png" alt="image-20220209162905547" style="zoom: 50%;" /></p>
+<p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220209162905547.png" alt="image-20220209162905547" style="zoom: 50%;" /></p>
 
 <p>for instance, “fool” and “clown” would be more similar than others.</p>
 
@@ -2663,19 +2592,7 @@ the transformed space. (e.g. for CNNs, edges, textures, etc.)
   <p>In <strong>term-context matrix</strong>: columns are labeled by words rather matrix than documents.</p>
 
   <ul>
-    <li>
-      <table>
-        <tbody>
-          <tr>
-            <td>This matrix is thus of dimensionality $</td>
-            <td>V</td>
-            <td>\times</td>
-            <td>V</td>
-            <td>$</td>
-          </tr>
-        </tbody>
-      </table>
-    </li>
+    <li>This matrix is thus of dimensionality $\vert V\vert \times \vert V\vert$</li>
     <li>each cell records the number of times the row (target) word and the column (context) word <strong>co-occur in some context</strong> in some training corpus
       <ul>
         <li>e.g. the context could be the document, in which case the cell represents the number of times the two words appear in the same document.</li>
@@ -2687,7 +2604,7 @@ the transformed space. (e.g. for CNNs, edges, textures, etc.)
 
 <p>For instance, consider the following training corpus:</p>
 
-<p><img src="NLP/image-20220209234231289.png" alt="image-20220209234231289" style="zoom:50%;" /></p>
+<p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220209234231289.png" alt="image-20220209234231289" style="zoom:50%;" /></p>
 
 <p>we want to compute the term-context matrix for the <strong>target word</strong> highlighted in bold.</p>
 
@@ -2697,7 +2614,7 @@ the transformed space. (e.g. for CNNs, edges, textures, etc.)
 
 <p>Then, if we take <strong>every occurrence</strong> of each word (say strawberry) and count the context words around it, we get a word-word co-occurrence matrix:</p>
 
-<p><img src="NLP/image-20220209234351416.png" alt="image-20220209234351416" style="zoom:50%;" /></p>
+<p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220209234351416.png" alt="image-20220209234351416" style="zoom:50%;" /></p>
 
 <p>note that:</p>
 
@@ -2729,9 +2646,11 @@ the transformed space. (e.g. for CNNs, edges, textures, etc.)
   </ul>
 </blockquote>
 
-<p>The <strong>term frequency</strong> in a document $d$ is computed by:
-\(\text{tf}(t,d) = \log_{10}(\text{count}(t,d) + 1)\)
-where:</p>
+<p>The <strong>term frequency</strong> in a document $d$ is computed by:</p>
+
+\[\text{tf}(t,d) = \log_{10}(\text{count}(t,d) + 1)\]
+
+<p>where:</p>
 
 <ul>
   <li>we added $1$ so that we won’t do $\log 0$, which is negative infinity</li>
@@ -2745,11 +2664,13 @@ where:</p>
 
 <p>For example: consider in the collection of Shakespeare’s 37 plays the two words <em>Romeo</em> and <em>action</em></p>
 
-<p><img src="NLP/image-20220210001201947.png" alt="image-20220210001201947" style="zoom:50%;" /></p>
+<p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220210001201947.png" alt="image-20220210001201947" style="zoom:50%;" /></p>
 
-<p>Therefore, we want to <strong>emphasize discriminative</strong> words like Romeo via the <strong>inverse document frequency</strong> or IDF term weight:
-\(\text{idf}(t) = \log_{10}\left( \frac{N}{\text{df}(t) } \right)\)
-where:</p>
+<p>Therefore, we want to <strong>emphasize discriminative</strong> words like Romeo via the <strong>inverse document frequency</strong> or IDF term weight:</p>
+
+\[\text{idf}(t) = \log_{10}\left( \frac{N}{\text{df}(t) } \right)\]
+
+<p>where:</p>
 
 <ul>
   <li>apparently $\text{df(t)}$​ is the <strong>number of documents</strong> in which term t occurs and $N$ is the total number of documents in the collection</li>
@@ -2762,7 +2683,7 @@ where:</p>
 
 <p>Here are some IDF values for some words in the Shakespeare corpus</p>
 
-<p><img src="NLP/image-20220210001906935.png" alt="image-20220210001906935" style="zoom: 50%;" /></p>
+<p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220210001906935.png" alt="image-20220210001906935" style="zoom: 50%;" /></p>
 
 <p>so we have:</p>
 
@@ -2773,11 +2694,13 @@ where:</p>
   <li>so common as to be completely non-discriminative since they occur in all 37 plays like <em>good</em> or <em>sweet</em></li>
 </ul>
 
-<p>Finally, the TF-IDF basically then does:
-\(\text{TF-IDF}(t,d) = \text{tf}(t,d) \times \text{idf}(t)\)
-An example would be:</p>
+<p>Finally, the TF-IDF basically then does:</p>
 
-<p><img src="NLP/image-20220210002036715.png" alt="image-20220210002036715" style="zoom: 67%;" /></p>
+\[\text{TF-IDF}(t,d) = \text{tf}(t,d) \times \text{idf}(t)\]
+
+<p>An example would be:</p>
+
+<p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220210002036715.png" alt="image-20220210002036715" style="zoom: 67%;" /></p>
 
 <p>where notice that:</p>
 
@@ -2809,17 +2732,21 @@ An example would be:</p>
   </ul>
 </blockquote>
 
-<p>Therefore, this is a measure of how often two events $x$ and $y$ occur, compared with what we would expect if they were independent:
-\(I(x,y) = \log_2\left(\frac{P(x,y)}{P(x)P(y)}\right)\)
-where essentially:</p>
+<p>Therefore, this is a measure of how often two events $x$ and $y$ occur, compared with what we would expect if they were independent:</p>
+
+\[I(x,y) = \log_2\left(\frac{P(x,y)}{P(x)P(y)}\right)\]
+
+<p>where essentially:</p>
 
 <ul>
   <li>probability of them occurring <strong>jointly together</strong> over them occurring <strong>independently</strong></li>
 </ul>
 
-<p>Hence, the <strong>pointwise mutual information</strong> between a target word $w$ and a context word $c$ (Church and Hanks 1989, Church and Hanks 1990) is then defined as:
-\(\text{PMI}(w,c) = \log_2\left(\frac{P(w,c)}{P(w)P(c)}\right)\)
-where notice that:</p>
+<p>Hence, the <strong>pointwise mutual information</strong> between a target word $w$ and a context word $c$ (Church and Hanks 1989, Church and Hanks 1990) is then defined as:</p>
+
+\[\text{PMI}(w,c) = \log_2\left(\frac{P(w,c)}{P(w)P(c)}\right)\]
+
+<p>where notice that:</p>
 
 <ul>
   <li>
@@ -2837,14 +2764,17 @@ where notice that:</p>
   <li>To distinguish whether two words whose individual probability is each $10^{-6}$ occur together less often than chance, we would need to be certain that the probability of the two occurring together is significantly different than $10^{-12}$, and this kind of granularity would require an enormous corpus.</li>
 </ul>
 
-<p>Therefore, we often turn to the <strong>Positive PMI</strong> (PPMI), which <strong>replaces all negative PMI values</strong> with zero:
-\(\text{PPMI}(w,c) = \max\left( \log_2 \frac{P(w,c)}{P(w)P(c)},0 \right)\)
-More formally, for our <strong>word-context matrix $F$</strong>, if we have $W$ rows (words) and $C$ columns (contexts), and each element is represented by $f_{ij}$, we can <strong>estimate the probability</strong> by:</p>
+<p>Therefore, we often turn to the <strong>Positive PMI</strong> (PPMI), which <strong>replaces all negative PMI values</strong> with zero:</p>
 
-<p><img src="NLP/image-20220210005339711.png" alt="image-20220210005339711" style="zoom: 67%;" /></p>
+\[\text{PPMI}(w,c) = \max\left( \log_2 \frac{P(w,c)}{P(w)P(c)},0 \right)\]
 
-<p>Therefore, the PPMI can be computed as:
-\(\text{PPMI}(w,c) = \max\left( \log_2 \frac{p_{ij}}{p_{i*}p_{*j}},0 \right)\)</p>
+<p>More formally, for our <strong>word-context matrix $F$</strong>, if we have $W$ rows (words) and $C$ columns (contexts), and each element is represented by $f_{ij}$, we can <strong>estimate the probability</strong> by:</p>
+
+<p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220210005339711.png" alt="image-20220210005339711" style="zoom: 67%;" /></p>
+
+<p>Therefore, the PPMI can be computed as:</p>
+
+\[\text{PPMI}(w,c) = \max\left( \log_2 \frac{p_{ij}}{p_{i*}p_{*j}},0 \right)\]
 
 <hr />
 
@@ -2852,21 +2782,21 @@ More formally, for our <strong>word-context matrix $F$</strong>, if we have $W$ 
 
 <p>Consider the following given statistics:</p>
 
-<p><img src="NLP/image-20220210005520660.png" alt="image-20220210005520660" style="zoom: 67%;" /></p>
+<p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220210005520660.png" alt="image-20220210005520660" style="zoom: 67%;" /></p>
 
 <p>we could compute $\text{PPMI(information,data)}$, assuming we pretended that Fig. 6.6 encompassed all the relevant word contexts/dimensions, as follows:</p>
 
-<p><img src="NLP/image-20220210005645612.png" alt="image-20220210005645612" style="zoom:67%;" /></p>
+<p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220210005645612.png" alt="image-20220210005645612" style="zoom:67%;" /></p>
 
 <p>Alternatively, notice that essentially the above probabilities are joint and their marginal. So, we can compute the <strong>joint $P(w,c)$</strong> with their marginal shown on the right/bottom:</p>
 
-<p><img src="NLP/image-20220210005924934.png" alt="image-20220210005924934" style="zoom: 67%;" /></p>
+<p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220210005924934.png" alt="image-20220210005924934" style="zoom: 67%;" /></p>
 
 <p>where you see the three values are exactly what we used before for PPMI.</p>
 
 <p>Lastly, doing it for all pairs results in:</p>
 
-<p><img src="NLP/image-20220210010050305.png" alt="image-20220210010050305" style="zoom: 67%;" /></p>
+<p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220210010050305.png" alt="image-20220210010050305" style="zoom: 67%;" /></p>
 
 <p>so we see that:</p>
 
@@ -2890,11 +2820,15 @@ More formally, for our <strong>word-context matrix $F$</strong>, if we have $W$ 
   <li>Use add-one smoothing (covered next)</li>
 </ul>
 
-<p>Therefore, now we consider:
-\(\text{PPMI}(w,c) = \max\left( \log_2 \frac{P(w,c)}{P(w)P_\alpha(c)},0 \right)\)
-for:
-\(P_\alpha (c) = \frac{\text{Count}(c)^\alpha}{\sum_c \text{Count}(c)^\alpha}\)
-for some $\alpha &lt; 1$, so that $P(c)$ is larger for rare words.</p>
+<p>Therefore, now we consider:</p>
+
+\[\text{PPMI}(w,c) = \max\left( \log_2 \frac{P(w,c)}{P(w)P_\alpha(c)},0 \right)\]
+
+<p>for:</p>
+
+\[P_\alpha (c) = \frac{\text{Count}(c)^\alpha}{\sum_c \text{Count}(c)^\alpha}\]
+
+<p>for some $\alpha &lt; 1$, so that $P(c)$ is larger for rare words.</p>
 
 <ul>
   <li>empirically using $\alpha = 0.75$ works pretty well</li>
@@ -2910,11 +2844,11 @@ for some $\alpha &lt; 1$, so that $P(c)$ is larger for rare words.</p>
 
 <p>For instance</p>
 
-<p><img src="NLP/image-20220209165806308.png" alt="image-20220209165806308" style="zoom: 50%;" /></p>
+<p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220209165806308.png" alt="image-20220209165806308" style="zoom: 50%;" /></p>
 
 <p>Then, the rest of the computation is the same:</p>
 
-<p><img src="NLP/image-20220209170027477.png" alt="image-20220209170027477" style="zoom:33%;" /></p>
+<p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220209170027477.png" alt="image-20220209170027477" style="zoom:33%;" /></p>
 
 <h2 id="cosine-distance">Cosine Distance</h2>
 
@@ -2937,8 +2871,9 @@ for some $\alpha &lt; 1$, so that $P(c)$ is larger for rare words.</p>
 
 <p>Therefore, we would like to be able to <strong>normalize them</strong>. Then, essentially we get a <strong>cosine of the angle</strong>:</p>
 
-<p>\(\frac{a \cdot b}{|a||b|} = \cos(\theta_{ab})\)
-where:</p>
+\[\frac{a \cdot b}{|a||b|} = \cos(\theta_{ab})\]
+
+<p>where:</p>
 
 <ul>
   <li>we can use the $v,w$ vector being the <strong>PPMI vector</strong> for word $v$, or <strong>TF-IDF vectors,</strong> or whatever we want</li>
@@ -2950,11 +2885,11 @@ where:</p>
 
 <p>If we have a raw frequency count word-context matrix, such that each word embedding is essentially a <strong>row vector</strong>:</p>
 
-<p><img src="NLP/image-20220210173041179.png" alt="image-20220210173041179" style="zoom:67%;" /></p>
+<p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220210173041179.png" alt="image-20220210173041179" style="zoom:67%;" /></p>
 
 <p>Then, we can compute, for instance the similarity between <em>cheery</em> and <em>information</em> v.s. <em>digital</em> and <em>information</em></p>
 
-<p><img src="NLP/image-20220210173126201.png" alt="image-20220210173126201" style="zoom:67%;" /></p>
+<p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220210173126201.png" alt="image-20220210173126201" style="zoom:67%;" /></p>
 
 <p>where the result here makes sense because <em>information</em> is indeed more similar to <em>digital</em> then <em>cherry</em>!</p>
 
@@ -2969,8 +2904,9 @@ where:</p>
     <p>for $k$ words in a document, consider the embedding for each word $w_i$</p>
   </li>
   <li>
-    <p>then, compute the <strong>centroid</strong> to be representing the document:
-\(d = \frac{w_1 + w_2 + ... + w_k}{k}\)</p>
+    <p>then, compute the <strong>centroid</strong> to be representing the document:</p>
+
+\[d = \frac{w_1 + w_2 + ... + w_k}{k}\]
   </li>
   <li>
     <p>compute $\cos(d_1,d_2)$ of the angles to measure similarly.</p>
@@ -2981,21 +2917,24 @@ where:</p>
 
 <p>Besides cosine similarly, some other common ones are shown below:</p>
 
-<p><img src="NLP/image-20220210173709980.png" alt="image-20220210173709980" style="zoom:50%;" /></p>
+<p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220210173709980.png" alt="image-20220210173709980" style="zoom:50%;" /></p>
 
 <h2 id="using-syntax">Using Syntax</h2>
 
 <p>Before, we cared more about <strong>semantics</strong> as a measure of similarity. Now, we consider words are <strong>similar</strong> if they have similar <strong>syntactic</strong> contexts.</p>
 
 <ul>
-  <li>for example, we can <strong>count syntax occurance</strong> instance of just word occurance: 
-\(\text{M(“cell”,”absorb”) = count(subj(cell,absorb)) +
-count(obj(cell,absorb)) + ...}\)</li>
+  <li>
+    <p>for example, we can <strong>count syntax occurance</strong> instance of just word occurance:</p>
+
+\[\text{M(“cell”,”absorb”) = count(subj(cell,absorb)) +
+count(obj(cell,absorb)) + ...}\]
+  </li>
 </ul>
 
 <p>Then, we can also construct a <strong>frequency matrix</strong> where the values represent <strong>count syntax occurrence</strong>. With that, we can then compute quantities such as PMI:</p>
 
-<p><img src="NLP/image-20220210173833488.png" alt="image-20220210173833488" style="zoom: 50%;" /></p>
+<p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220210173833488.png" alt="image-20220210173833488" style="zoom: 50%;" /></p>
 
 <p>where in this example, we see that:</p>
 
@@ -3040,9 +2979,11 @@ count(obj(cell,absorb)) + ...}\)</li>
 
 <p><em>Recall that</em>:</p>
 
-<p>Let $A \in \mathbb{R}^{n \times p}$. Then:
-\(A = USV^T\)
-is the singular value decomposition where:</p>
+<p>Let $A \in \mathbb{R}^{n \times p}$. Then:</p>
+
+\[A = USV^T\]
+
+<p>is the singular value decomposition where:</p>
 
 <ul>
   <li>$U^TU=I \in \mathbb{R}^{n \times n}$, and $V^TV=I \in \mathbb{R}^{p \times p}$</li>
@@ -3054,19 +2995,11 @@ is the singular value decomposition where:</p>
 
 <p>To begin with, consider the matrix we want to truncate is $X$:</p>
 
-<p><img src="NLP/image-20220210175311644.png" alt="image-20220210175311644" style="zoom: 50%;" /></p>
+<p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220210175311644.png" alt="image-20220210175311644" style="zoom: 50%;" /></p>
 
-<table>
-  <tbody>
-    <tr>
-      <td>Then, since we want to <strong>truncate the dimension</strong>, we would like to have embedding matrix of size $</td>
-      <td>V</td>
-      <td>\times k$, hence we consider taking <strong>only the $k$ singular values</strong></td>
-    </tr>
-  </tbody>
-</table>
+<p>Then, since we want to <strong>truncate the dimension</strong>, we would like to have embedding matrix of size $\vert V\vert  \times k$, hence we consider taking <strong>only the $k$ singular values</strong></p>
 
-<p><img src="NLP/image-20220209172324672.png" alt="image-20220209172324672" style="zoom: 50%;" /></p>
+<p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220209172324672.png" alt="image-20220209172324672" style="zoom: 50%;" /></p>
 
 <p>Then we can treat:</p>
 
@@ -3077,9 +3010,11 @@ is the singular value decomposition where:</p>
 
 <h3 id="pca">PCA</h3>
 
-<p>The PCA viewpoint requires that one compute the <strong>eigenvalues</strong> and <strong>eigenvectors</strong> of the <strong>covariance matrix</strong>, which is the product:
-\(\frac{1}{n-1} XX^T = \frac{1}{n-1}WDW^T\)
-where recall that covariance matrices are <strong>symmetric</strong>.</p>
+<p>The PCA viewpoint requires that one compute the <strong>eigenvalues</strong> and <strong>eigenvectors</strong> of the <strong>covariance matrix</strong>, which is the product:</p>
+
+\[\frac{1}{n-1} XX^T = \frac{1}{n-1}WDW^T\]
+
+<p>where recall that covariance matrices are <strong>symmetric</strong>.</p>
 
 <ul>
   <li>
@@ -3090,11 +3025,15 @@ where recall that covariance matrices are <strong>symmetric</strong>.</p>
   </li>
 </ul>
 
-<p>Its relation to SVD can be seen easily if we consider:
-\(X= USV^T\)
-then reconstructing the covariance:
-\(\frac{1}{n-1}XX^T = \frac{1}{n-1}(USV^T)(USV^T) = \frac{1}{n-1}US^2U^T\)
-where it is obvious that:</p>
+<p>Its relation to SVD can be seen easily if we consider:</p>
+
+\[X= USV^T\]
+
+<p>then reconstructing the covariance:</p>
+
+\[\frac{1}{n-1}XX^T = \frac{1}{n-1}(USV^T)(USV^T) = \frac{1}{n-1}US^2U^T\]
+
+<p>where it is obvious that:</p>
 
 <ul>
   <li>$U \to W$ is the correspondence between SVD and PCA, also related to why we are taking $W$ to be the word matrix in the above section.</li>
@@ -3137,82 +3076,40 @@ where it is obvious that:</p>
   <p>This model then can be extended to include negative samplings, which is covered next.</p>
 </blockquote>
 
-<table>
-  <tbody>
-    <tr>
-      <td>The goal of our simple neural model is this (e.g. say out vocabulary size is $</td>
-      <td>V</td>
-      <td>$)</td>
-    </tr>
-  </tbody>
-</table>
+<p>The goal of our simple neural model is this (e.g. say out vocabulary size is $\vert V\vert$)</p>
 
 <ol>
   <li>given an input target word (e.g. <em>Soviet</em>)
     <ul>
       <li>also perhaps specify a window size (e.g. $L=5$)</li>
-      <li>
-        <table>
-          <tbody>
-            <tr>
-              <td>==input== will be a <strong>one-hot encoded vector</strong> of dimension $</td>
-              <td>V</td>
-              <td>$</td>
-            </tr>
-          </tbody>
-        </table>
-      </li>
+      <li>==input== will be a <strong>one-hot encoded vector</strong> of dimension $\vert V\vert$</li>
     </ul>
   </li>
   <li>output probability for each word $w_i \in V$ to be <strong>next to the input word</strong>, within the specified window
     <ul>
       <li>e.g. output probabilities are going to be much higher for words like “<em>Union</em>” and “<em>Russia</em>” than for unrelated words like “<em>watermelon</em>” and “<em>kangaroo</em>”.</li>
-      <li>
-        <table>
-          <tbody>
-            <tr>
-              <td>==output== will **also be vector of dimension $</td>
-              <td>V</td>
-              <td>$<strong>, but values are the **probability that word will be inside the window</strong></td>
-            </tr>
-          </tbody>
-        </table>
-      </li>
+      <li>==output== will <strong>also be vector of dimension $\vert V\vert$</strong>, but values are the <strong>probability that word will be inside the window</strong></li>
     </ul>
   </li>
   <li>We’ll run the model once per context word within the window defined by $L$</li>
 </ol>
 
-<table>
-  <tbody>
-    <tr>
-      <td>Then, our architecture this the follows, say that $</td>
-      <td>V</td>
-      <td>=10,000$:</td>
-    </tr>
-  </tbody>
-</table>
+<p>Then, our architecture this the follows, say that $\vert V\vert =10,000$:</p>
 
-<p><img src="NLP/image-20220214190726243.png" alt="image-20220214190726243" style="zoom: 67%;" /></p>
+<p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220214190726243.png" alt="image-20220214190726243" style="zoom: 67%;" /></p>
 
 <p>where we have:</p>
 
 <ul>
   <li>
-    <table>
-      <tbody>
-        <tr>
-          <td>$W \in \mathbb{R}^{</td>
-          <td>V</td>
-          <td>\times d}$ so that the first layer is $W^T x_t = e_t$ for the $t$-th word</td>
-        </tr>
-      </tbody>
-    </table>
+    <p>$W \in \mathbb{R}^{\vert V\vert \times d}$ so that the first layer is $W^T x_t = e_t$ for the $t$-th word</p>
   </li>
   <li>
-    <p>$C \in \mathbb{R}^{d \times |V|}$ so that the output layer does:
-\(o = \text{Softmax}(C^T e_t) \in \mathbb{R}^{|V|\times 1}\)
-is essentially the probability for each word in the vocabulary as a neighbor to $w_t$</p>
+    <p>$C \in \mathbb{R}^{d \times \vert V\vert }$ so that the output layer does:</p>
+
+\[o = \text{Softmax}(C^T e_t) \in \mathbb{R}^{|V|\times 1}\]
+
+    <p>is essentially the probability for each word in the vocabulary as a neighbor to $w_t$</p>
   </li>
   <li>
     <p>finally, since we need to output probability, we take <strong>SoftMax</strong> as the activation layer in the end</p>
@@ -3229,8 +3126,8 @@ is essentially the probability for each word in the vocabulary as a neighbor to 
       </thead>
       <tbody>
         <tr>
-          <td style="text-align: center"><img src="NLP/image-20220214191348056.png" alt="image-20220214191348056" style="zoom: 67%;" /></td>
-          <td style="text-align: center"><img src="NLP/image-20220214191337883.png" alt="image-20220214191337883" style="zoom: 67%;" /></td>
+          <td style="text-align: center"><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220214191348056.png" alt="image-20220214191348056" style="zoom: 67%;" /></td>
+          <td style="text-align: center"><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220214191337883.png" alt="image-20220214191337883" style="zoom: 67%;" /></td>
         </tr>
       </tbody>
     </table>
@@ -3244,27 +3141,32 @@ is essentially the probability for each word in the vocabulary as a neighbor to 
   </li>
 </ul>
 
-<p>Therefore, ==interpretation== of the output would be:
-\(p(w_k | w_t) = \frac{\exp(c_k \cdot e_t)}{\sum_{k \in |V|} \exp(c_k \cdot e_t)}\)
-is like a <strong>bigram probability</strong>, but here it signified the probability of word $w_k$ being <strong>within the window of $w_t$</strong>.</p>
+<p>Therefore, ==interpretation== of the output would be:</p>
 
-<p>Finally, we need to define a loss. Our ==objective== is to maximize the probability of the <strong>entire sentence</strong>.
-\(\begin{align*}
+\[p(w_k | w_t) = \frac{\exp(c_k \cdot e_t)}{\sum_{k \in |V|} \exp(c_k \cdot e_t)}\]
+
+<p>is like a <strong>bigram probability</strong>, but here it signified the probability of word $w_k$ being <strong>within the window of $w_t$</strong>.</p>
+
+<p>Finally, we need to define a loss. Our ==objective== is to maximize the probability of the <strong>entire sentence</strong>.</p>
+
+\[\begin{align*}
 &amp;\quad\arg\max_\theta \prod_{t=1}^T P(w_{t-L},...,w_{t-1},w_{t+1},...,w_{t+L})\\
 &amp;=\arg\max_\theta \prod_{t=1}^T \prod_{-L \le j \le L, j \neq 0} P(w_{t+j}|w_t;\theta)\\
 &amp;=\arg\min_\theta -\sum_{t=1}^T \sum_{-L \le j \le L, j \neq 0} \log P(w_{t+j}|w_t;\theta)
-\end{align*}\)
-note that:</p>
+\end{align*}\]
+
+<p>note that:</p>
 
 <ul>
   <li>
     <p>$T$ is the length of the entire sequence/sentence, $L$ is the window size</p>
   </li>
   <li>
-    <p>essentially this is <strong>negative loss likelihood</strong>, which is the same as ==cross entropy loss==, which recall is basically the loss if you used $q(x)$ to approximate $p(x)$:
-  \(H(p,q) = -\sum_x p(x)\log q(x)\)</p>
+    <p>essentially this is <strong>negative loss likelihood</strong>, which is the same as ==cross entropy loss==, which recall is basically the loss if you used $q(x)$ to approximate $p(x)$:</p>
   </li>
 </ul>
+
+\[H(p,q) = -\sum_x p(x)\log q(x)\]
 
 <p>Then, we abasically obtained two <strong>embedding matrix $W,C$</strong>:</p>
 
@@ -3280,9 +3182,13 @@ note that:</p>
   <p>It turns out that this simple skipgram is very <strong>related to PPMI matrix</strong></p>
 
   <ul>
-    <li>$WC^T \in \mathbb{R}^{|V|\times |V|}$ can be shown as:
-\(WC^T = M_{PPMI}- \log k\)
-so that each element in $WC^T$ is related to <strong>association between input $i$ and output word $j$</strong>.</li>
+    <li>
+      <p>$WC^T \in \mathbb{R}^{\vert V\vert \times \vert V\vert }$ can be shown as:</p>
+
+\[WC^T = M_{PPMI}- \log k\]
+
+      <p>so that each element in $WC^T$ is related to <strong>association between input $i$ and output word $j$</strong>.</p>
+    </li>
   </ul>
 </blockquote>
 
@@ -3292,7 +3198,7 @@ so that each element in $WC^T$ is related to <strong>association between input $
 
 <p>Training data comes by feeding it <strong>word pairs</strong> found in our training documents</p>
 
-<p><img src="NLP/image-20220214182056311.png" alt="image-20220214182056311" style="zoom: 67%;" /></p>
+<p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220214182056311.png" alt="image-20220214182056311" style="zoom: 67%;" /></p>
 
 <p>then use gradient descent to minimize the loss. In this example a window size of $L=2$ is used.</p>
 
@@ -3343,9 +3249,11 @@ so that each element in $WC^T$ is related to <strong>association between input $
 
   <p>Given a tuple $w,c$ being target word $w$ paired with a candidate word $c$, what is the <strong>probability</strong> that $c$ is a <strong>context word</strong> (i.e. physically next to it)?</p>
 
-  <p>To present such <strong>probability</strong>, we will use:
-\(P(+|w,c) = \sigma(\vec{w}\cdot \vec{c}) =\frac{1}{1 + \exp(-\vec{w}\cdot \vec{c})}\)
-for $\vec{w},\vec{c}$ being the <strong>embedding of word $w,c$</strong>.</p>
+  <p>To present such <strong>probability</strong>, we will use:</p>
+
+\[P(+|w,c) = \sigma(\vec{w}\cdot \vec{c}) =\frac{1}{1 + \exp(-\vec{w}\cdot \vec{c})}\]
+
+  <p>for $\vec{w},\vec{c}$ being the <strong>embedding of word $w,c$</strong>.</p>
 
   <ul>
     <li>so on our way to learn such classifier, we would have learnt $\vec{w},\vec{c}$ which will be used for embedding</li>
@@ -3354,36 +3262,48 @@ for $\vec{w},\vec{c}$ being the <strong>embedding of word $w,c$</strong>.</p>
 
 <p>Consider we want to find out the <strong>embedding of the word $\text{apricot}$</strong>, and we have the following data:</p>
 
-<p><img src="NLP/image-20220208214715503.png" alt="image-20220208214715503" /></p>
+<p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220208214715503.png" alt="image-20220208214715503" /></p>
 
 <p>where:</p>
 
 <ul>
   <li>
-    <p>let us take a window size of $2$, so that we view $[c_1, …, c_4]$ above as <strong>real context word</strong> for $ \text{apricot}$.</p>
+    <p>let us take a window size of $2$, so that we view $[c_1, …, c_4]$ above as <strong>real context word</strong> for $\text{apricot}$.</p>
   </li>
   <li>
-    <p>our goal is to have a logistic regression such that:
-\(P(+|w,c)\)
-is <strong>high</strong> if $c$ is a <strong>real context word</strong>, and that:
-\(P(-|w,c)  = 1-P(+|w,c)\)
-is <strong>high</strong> if $c$ is <strong>not a context word</strong>.</p>
+    <p>our goal is to have a logistic regression such that:</p>
+
+\[P(+|w,c)\]
+
+    <p>is <strong>high</strong> if $c$ is a <strong>real context word</strong>, and that:</p>
+
+\[P(-|w,c)  = 1-P(+|w,c)\]
+
+    <p>is <strong>high</strong> if $c$ is <strong>not a context word</strong>.</p>
   </li>
 </ul>
 
-<p>Then, the question is how do we model such probability? We assumed that <strong>words next to each other</strong> should have ==similar embeddings==. This means that:
-\(\text{Similarity}(w,c) \approx \vec{w} \cdot \vec{c}\)
-for $\vec{w},\vec{c}$ being the embeddings for the word $w,c$. Then, to map this to <strong>probability that $c$ is a real context word for $w$ as</strong>:
-\(P(+|w,c) = \sigma(\vec{w}\cdot \vec{c}) =\frac{1}{1 + \exp(-\vec{w}\cdot \vec{c})}\)
-is high if high dot product = similar = next to each other. Then similarly, probability that $c$ is not a context word as:
-\(P(-|w,c) = \sigma(-\vec{w}\cdot \vec{c}) =\frac{1}{1 + \exp(+\vec{w}\cdot \vec{c})}\)
-for $c$ being <strong>negative samples</strong> (not context words).</p>
+<p>Then, the question is how do we model such probability? We assumed that <strong>words next to each other</strong> should have ==similar embeddings==. This means that:</p>
+
+\[\text{Similarity}(w,c) \approx \vec{w} \cdot \vec{c}\]
+
+<p>for $\vec{w},\vec{c}$ being the embeddings for the word $w,c$. Then, to map this to <strong>probability that $c$ is a real context word for $w$ as</strong>:</p>
+
+\[P(+|w,c) = \sigma(\vec{w}\cdot \vec{c}) =\frac{1}{1 + \exp(-\vec{w}\cdot \vec{c})}\]
+
+<p>is high if high dot product = similar = next to each other. Then similarly, probability that $c$ is not a context word as:</p>
+
+\[P(-|w,c) = \sigma(-\vec{w}\cdot \vec{c}) =\frac{1}{1 + \exp(+\vec{w}\cdot \vec{c})}\]
+
+<p>for $c$ being <strong>negative samples</strong> (not context words).</p>
 
 <hr />
 
-<p>Now, this means that we can also assign “<strong>similarity score</strong>” between a target word and a <strong>context window</strong>:
-\(P(+|w, c_{1:L}) = \prod_{i=1}^L \sigma(\vec{c}_i \cdot \vec{w})\)
-where:</p>
+<p>Now, this means that we can also assign “<strong>similarity score</strong>” between a target word and a <strong>context window</strong>:</p>
+
+\[P(+|w, c_{1:L}) = \prod_{i=1}^L \sigma(\vec{c}_i \cdot \vec{w})\]
+
+<p>where:</p>
 
 <ul>
   <li>we assumed <strong>all contexts words are independent</strong></li>
@@ -3394,7 +3314,7 @@ where:</p>
 
 <p>Now, we can think of what are are learning graphically:</p>
 
-<p><img src="NLP/image-20220208220831910.png" alt="image-20220208220831910" /></p>
+<p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220208220831910.png" alt="image-20220208220831910" /></p>
 
 <p>where essentially:</p>
 
@@ -3403,19 +3323,7 @@ where:</p>
     <ul>
       <li>i.e. for the $i$-th word (in the dictionary), its word embedding will be the $i$-th column of $W$, and similarly for context embedding</li>
       <li>i.e. every word will have <strong>two embeddings</strong>, one in $W$ and another in $C$. In reality people either only take $W$ or take $W+C$</li>
-      <li>
-        <table>
-          <tbody>
-            <tr>
-              <td>if your vocabulary size is $</td>
-              <td>V</td>
-              <td>$, and you want an embedding of dimension $d$, then $W,C \in \mathbb{R}^{d \times</td>
-              <td>V</td>
-              <td>}$ so that you can fetch the embedding from a one-hot vector.</td>
-            </tr>
-          </tbody>
-        </table>
-      </li>
+      <li>if your vocabulary size is $\vert V\vert$, and you want an embedding of dimension $d$, then $W,C \in \mathbb{R}^{d \times \vert V\vert }$ so that you can fetch the embedding from a one-hot vector.</li>
     </ul>
   </li>
   <li>we have <strong>two embeddings</strong> because a word $w$ could be treated as a target, but sometimes it might also be picked as a context $c$, in which we update the embedding separately.</li>
@@ -3425,15 +3333,15 @@ where:</p>
 
 <p>Our target is to learn the matrix:</p>
 
-<p><img src="NLP/image-20220208220831910.png" alt="image-20220208220831910" /></p>
+<p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220208220831910.png" alt="image-20220208220831910" /></p>
 
 <p>Let us begin with an example text, where our target word currently is $w=\text{apricot}$.</p>
 
-<p><img src="NLP/image-20220208221658252.png" alt="image-20220208221658252" /></p>
+<p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220208221658252.png" alt="image-20220208221658252" /></p>
 
 <p>Then taking a window size of $2$, we also want to have <strong>negative samples</strong> (in fact, more negative samples than positive ones per target word so that we are called <strong>SGNS</strong>):</p>
 
-<p><img src="NLP/image-20220208221831637.png" alt="image-20220208221831637" /></p>
+<p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220208221831637.png" alt="image-20220208221831637" /></p>
 
 <p>where here:</p>
 
@@ -3442,31 +3350,35 @@ where:</p>
     <p>each of the training sample $(w, c_{pos})$ comes with $k=2$ negative samples, for $k$ being tunable</p>
   </li>
   <li>
-    <p>the negative samples are sampled <strong>randomly by</strong>:
-\(\text{Prob of sampling $w$}= P_\alpha(w) = \frac{ \text{Count}(w)^\alpha }{\sum_{w'} \text{Count}(w')^\alpha}\)
-where we usually take $\alpha = 0.75$ so that <strong>rare words have a  better chance</strong></p>
+    <p>the negative samples are sampled <strong>randomly by</strong>:</p>
+
+\[\text{Prob of sampling $w$}= P_\alpha(w) = \frac{ \text{Count}(w)^\alpha }{\sum_{w'} \text{Count}(w')^\alpha}\]
+
+    <p>where we usually take $\alpha = 0.75$ so that <strong>rare words have a  better chance</strong></p>
 
     <p>e.g. if $P(a)=0.99,P(b)=0.01$, doing the power would give:</p>
 
-    <p><img src="NLP/image-20220208222147320.png" alt="image-20220208222147320" style="zoom:80%;" /></p>
+    <p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220208222147320.png" alt="image-20220208222147320" style="zoom:80%;" /></p>
   </li>
 </ul>
 
-<p>Then, <strong>given a positive pair and the $k$ negative pairs</strong>, our ==loss function to minimize would be==
-\(L_{CE} = -\log{\left[ P(+|w,c_{pos}) \cdot \prod_{i=1}^k P(- |w,c_{neg})\right]} = - \left[ \log \sigma(c_{pos} \cdot w) + \sum_{i=1}^k  \log \sigma(-c_{neg} \cdot w) \right]\)
-which we want to <strong>minimize</strong> by <strong>updating $\vec{w} \in W$</strong> for the target word and $\vec{c} \in C$ for the context word.</p>
+<p>Then, <strong>given a positive pair and the $k$ negative pairs</strong>, our ==loss function to minimize would be==</p>
+
+\[L_{CE} = -\log{\left[ P(+|w,c_{pos}) \cdot \prod_{i=1}^k P(- |w,c_{neg})\right]} = - \left[ \log \sigma(c_{pos} \cdot w) + \sum_{i=1}^k  \log \sigma(-c_{neg} \cdot w) \right]\]
+
+<p>which we want to <strong>minimize</strong> by <strong>updating $\vec{w} \in W$</strong> for the target word and $\vec{c} \in C$ for the context word.</p>
 
 <p>Therefore, we need to take the derivatives:</p>
 
-<p><img src="NLP/image-20220208222630846.png" alt="image-20220208222630846" style="zoom:80%;" /></p>
+<p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220208222630846.png" alt="image-20220208222630846" style="zoom:80%;" /></p>
 
 <p>Then the update equations</p>
 
-<p><img src="NLP/image-20220208222649078.png" alt="image-20220208222649078" style="zoom:80%;" /></p>
+<p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220208222649078.png" alt="image-20220208222649078" style="zoom:80%;" /></p>
 
 <p>So graphically, we are doing:</p>
 
-<p><img src="NLP/image-20220208222800901.png" alt="image-20220208222800901" style="zoom:80%;" /></p>
+<p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220208222800901.png" alt="image-20220208222800901" style="zoom:80%;" /></p>
 
 <p>notice that we update target word embedding in $W$ but context words in $C$.</p>
 
@@ -3503,8 +3415,8 @@ which we want to <strong>minimize</strong> by <strong>updating $\vec{w} \in W$</
   </thead>
   <tbody>
     <tr>
-      <td style="text-align: center"><img src="NLP/image-20220214195156731.png" alt="image-20220214195156731" style="zoom:67%;" /></td>
-      <td style="text-align: center"><img src="NLP/image-20220214195149883.png" alt="image-20220214195149883" style="zoom:67%;" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220214195156731.png" alt="image-20220214195156731" style="zoom:67%;" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220214195149883.png" alt="image-20220214195149883" style="zoom:67%;" /></td>
     </tr>
   </tbody>
 </table>
@@ -3519,8 +3431,9 @@ which we want to <strong>minimize</strong> by <strong>updating $\vec{w} \in W$</
     <p>get the embedding for contexts $e_{t-L} = W^T x_{t-L}$, and etc for all the $2L$ vectors</p>
   </li>
   <li>
-    <p>take an <strong>average</strong> of the $2L$ embedded vectors:
-\(h_t = \frac{1}{2L}(e_{t-L}+ ... + e_{t-1} + e_{t+1}+...+e_{t+L})\)</p>
+    <p>take an <strong>average</strong> of the $2L$ embedded vectors:</p>
+
+\[h_t = \frac{1}{2L}(e_{t-L}+ ... + e_{t-1} + e_{t+1}+...+e_{t+L})\]
   </li>
   <li>
     <p>generates the output $z=W’^Th_t$</p>
@@ -3530,9 +3443,11 @@ which we want to <strong>minimize</strong> by <strong>updating $\vec{w} \in W$</
   </li>
 </ol>
 
-<p>Then, since the correct <strong>label we already know</strong>, let it be $y$. Then the loss is again cross entropy for <strong>each sample:</strong>
-\(H(\hat{y},y) = -\sum_{i=1}^{|V|}y_i \log(\hat{y}_i)\)
-where:</p>
+<p>Then, since the correct <strong>label we already know</strong>, let it be $y$. Then the loss is again cross entropy for <strong>each sample:</strong></p>
+
+\[H(\hat{y},y) = -\sum_{i=1}^{|V|}y_i \log(\hat{y}_i)\]
+
+<p>where:</p>
 
 <ul>
   <li>$\hat{y},y$ essentially represents <strong>probability distributions</strong>, and the above is <strong>loss for a single sample</strong></li>
@@ -3555,9 +3470,11 @@ where:</p>
   <li>
     <p><strong>Fasttext</strong>: Fasttext deals with these problems by using <strong>subword</strong> models, representing each word as itself plus a bag of constituent n-grams, with special boundary symbols <code class="language-plaintext highlighter-rouge">&lt;</code> and <code class="language-plaintext highlighter-rouge">&gt;</code> added to each word</p>
 
-    <p>For example, with $n = 3$ the word where would be represented by the sequence <code class="language-plaintext highlighter-rouge">&lt;where&gt;</code> plus the character n-grams:
-\(\text{&lt;wh, whe, her, ere, re&gt;}\)
-then a skipgram embedding is learned for each constituent n-gram, and the word <code class="language-plaintext highlighter-rouge">where</code> is represented by the <strong>sum of all of the embeddings of its constituent n-grams</strong>. Therefore, ==Unknown words== can then be presented only by the sum of the constituent n-grams!</p>
+    <p>For example, with $n = 3$ the word where would be represented by the sequence <code class="language-plaintext highlighter-rouge">&lt;where&gt;</code> plus the character n-grams:</p>
+
+\[\text{&lt;wh, whe, her, ere, re&gt;}\]
+
+    <p>then a skipgram embedding is learned for each constituent n-gram, and the word <code class="language-plaintext highlighter-rouge">where</code> is represented by the <strong>sum of all of the embeddings of its constituent n-grams</strong>. Therefore, ==Unknown words== can then be presented only by the sum of the constituent n-grams!</p>
   </li>
   <li>
     <p><strong>GloVe</strong>: GloVe model is based on capturing <strong>global corpus statistics</strong>. GloVe is based on ratios of probabilities from the word-word cooccurrence matrix, combining the intuitions of count-based models like PPMI while also capturing the linear structures used by methods like word2vec.</p>
@@ -3571,7 +3488,7 @@ then a skipgram embedding is learned for each constituent n-gram, and the word <
 
 <p>The embeddings learnt from machine learning related methods have the advantage of <strong>pair-wise similarity</strong> as well:</p>
 
-<p><img src="NLP/image-20220214164550354.png" alt="image-20220214164550354" style="zoom: 67%;" /></p>
+<p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220214164550354.png" alt="image-20220214164550354" style="zoom: 67%;" /></p>
 
 <h1 id="sequence-labeling-for-pos-and-named-entities">Sequence Labeling for POS and Named Entities</h1>
 
@@ -3593,8 +3510,8 @@ then a skipgram embedding is learned for each constituent n-gram, and the word <
       </thead>
       <tbody>
         <tr>
-          <td style="text-align: center"><img src="NLP/image-20220214211513858.png" alt="image-20220214211513858" style="zoom: 50%;" /></td>
-          <td style="text-align: center"><img src="NLP/image-20220214211510110.png" alt="image-20220214211510110" style="zoom:50%;" /></td>
+          <td style="text-align: center"><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220214211513858.png" alt="image-20220214211513858" style="zoom: 50%;" /></td>
+          <td style="text-align: center"><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220214211510110.png" alt="image-20220214211510110" style="zoom:50%;" /></td>
         </tr>
       </tbody>
     </table>
@@ -3653,8 +3570,8 @@ then a skipgram embedding is learned for each constituent n-gram, and the word <
   </thead>
   <tbody>
     <tr>
-      <td style="text-align: center"><img src="NLP/image-20220214205049594.png" alt="image-20220214205049594" style="zoom:80%;" /></td>
-      <td style="text-align: center"><img src="NLP/image-20220214205135570.png" alt="image-20220214205135570" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220214205049594.png" alt="image-20220214205049594" style="zoom:80%;" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220214205135570.png" alt="image-20220214205135570" /></td>
     </tr>
   </tbody>
 </table>
@@ -3689,7 +3606,7 @@ then a skipgram embedding is learned for each constituent n-gram, and the word <
 
 <p>An example of tagging would include (blue tagged with universal, red tagged with Penn Treebank):</p>
 
-<p><img src="NLP/image-20220214205734029.png" alt="image-20220214205734029" style="zoom:67%;" /></p>
+<p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220214205734029.png" alt="image-20220214205734029" style="zoom:67%;" /></p>
 
 <h2 id="pos-tagging">POS Tagging</h2>
 
@@ -3735,7 +3652,7 @@ then a skipgram embedding is learned for each constituent n-gram, and the word <
 
 <p>For instance, the word <em>back</em> can have 6 different POS in different contexts:</p>
 
-<p><img src="NLP/image-20220214210940242.png" alt="image-20220214210940242" style="zoom:67%;" /></p>
+<p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220214210940242.png" alt="image-20220214210940242" style="zoom:67%;" /></p>
 
 <p>Nonetheless, many words are easy to disambiguate, because their <strong>different tags aren’t equally likely.</strong> For example, <em>a</em> can be a determiner or the letter <em>a</em>, but the determiner sense is much more likely.</p>
 
@@ -3808,13 +3725,15 @@ then a skipgram embedding is learned for each constituent n-gram, and the word <
 
 <p>A Markov chain makes a very strong assumption that if we want to predict the <strong>future</strong> in the sequence, all that matters is the <strong>current state</strong>.</p>
 
-<p>Consider a sequence of state variables $q_1, …, q_i$:
-\(\text{Markov Assumption}: P(q_i=a|q_1,...,q_{i-1}) = p(q_i=a|q_{i-1})\)
-(basically the assumption used in <strong>bigram models</strong>)</p>
+<p>Consider a sequence of state variables $q_1, …, q_i$:</p>
+
+\[\text{Markov Assumption}: P(q_i=a|q_1,...,q_{i-1}) = p(q_i=a|q_{i-1})\]
+
+<p>(basically the assumption used in <strong>bigram models</strong>)</p>
 
 <p>It is then common to represent the states and probabilities as a <strong>directed graph</strong>:</p>
 
-<p><img src="NLP/image-20220214215527052.png" alt="image-20220214215527052" style="zoom:67%;" /></p>
+<p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220214215527052.png" alt="image-20220214215527052" style="zoom:67%;" /></p>
 
 <p>where:</p>
 
@@ -3857,9 +3776,11 @@ then a skipgram embedding is learned for each constituent n-gram, and the word <
     <p>then, essentially each state $q_i$ will be associated with a tag, then we would output a <strong>sequence of tags</strong> and our job is done</p>
   </li>
   <li>
-    <p>our goal would be to do:
-\(\hat{t}_{1:n} = \arg\max_{t_1,...,t_n} P(t_1,...,t_n|w_1,...,w_n)\)
-then we need to find away to calculate this.</p>
+    <p>our goal would be to do:</p>
+
+\[\hat{t}_{1:n} = \arg\max_{t_1,...,t_n} P(t_1,...,t_n|w_1,...,w_n)\]
+
+    <p>then we need to find away to calculate this.</p>
   </li>
 </ul>
 
@@ -3899,77 +3820,71 @@ then we need to find away to calculate this.</p>
 
 <ul>
   <li>
-    <p>the transition $a_{ij}$ signifies the <strong>transition probability</strong>:
-\(a_{ij}\to P(t_i |t_{i-1}) = \frac{\text{Count}(t_{i-1},t_i)}{\text{Count}(t_i)}\)
-for instance, in WSJ corpus <code class="language-plaintext highlighter-rouge">MD </code>occurs 13124 times of which it is followed by <code class="language-plaintext highlighter-rouge">VB </code>10471, for an MLE estimate then gives:
-\(P(VB|MD) = \frac{10471}{13124}=0.8\)</p>
+    <p>the transition $a_{ij}$ signifies the <strong>transition probability</strong>:</p>
+
+\[a_{ij}\to P(t_i |t_{i-1}) = \frac{\text{Count}(t_{i-1},t_i)}{\text{Count}(t_i)}\]
+
+    <p>for instance, in WSJ corpus <code class="language-plaintext highlighter-rouge">MD </code>occurs 13124 times of which it is followed by <code class="language-plaintext highlighter-rouge">VB </code>10471, for an MLE estimate then gives:</p>
+
+\[P(VB|MD) = \frac{10471}{13124}=0.8\]
   </li>
   <li>
-    <p>the <strong>emission probability</strong> $b_i(o_t)$​ represent the probability, given a tag (say <code class="language-plaintext highlighter-rouge">MD</code>), that it will be associated with a given word (say <em>will</em>).
-\(b_i(o_t) \to P(w_i|t_i) = \frac{\text{Count}(t_{i},w_i)}{\text{Count}(t_i)}\)
-For instance, of the 13124 occurrences of MD in the WSJ corpus, it is associated with will 4046 times:
-\(P(will|MD) = \frac{4046}{13124} = 0.31\)</p>
+    <p>the <strong>emission probability</strong> $b_i(o_t)$​ represent the probability, given a tag (say <code class="language-plaintext highlighter-rouge">MD</code>), that it will be associated with a given word (say <em>will</em>).</p>
+
+\[b_i(o_t) \to P(w_i|t_i) = \frac{\text{Count}(t_{i},w_i)}{\text{Count}(t_i)}\]
+
+    <p>For instance, of the 13124 occurrences of MD in the WSJ corpus, it is associated with will 4046 times:</p>
+
+\[P(will|MD) = \frac{4046}{13124} = 0.31\]
   </li>
 </ul>
 
 <p>Together, we have essentially <strong>two probabilities $A,B$</strong> to look at. Graphically:</p>
 
-<p><img src="NLP/image-20220214222145077.png" alt="image-20220214222145077" /></p>
+<p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220214222145077.png" alt="image-20220214222145077" /></p>
 
 <p>where:</p>
 
 <ul>
-  <li>
-    <table>
-      <tbody>
-        <tr>
-          <td>the $A$ probability are the $a_{ij}\to P(t_i</td>
-          <td>t_{i-1})$, and the $B$ probability $P(w_i</td>
-          <td>t_i)$</td>
-        </tr>
-      </tbody>
-    </table>
-  </li>
+  <li>the $A$ probability are the $a_{ij}\to P(t_i \vert t_{i-1})$, and the $B$ probability $P(w_i\vert t_i)$</li>
   <li>therefore, the total <strong>number of parameters</strong> with $\lambda = {A,B}$</li>
   <li>you might want to do <strong>smoothing techniques</strong> here as well, as you are doing counts</li>
   <li>so essentially the hidden state $q_i=t_i$ is <strong>what we are interested in</strong>, and we want to find out the ==best sequence of hidden state==, hence tagging, when ==given a sequence of observations==</li>
 </ul>
 
-<p>Formalizing this mathematically, given an observation of $n$ words:
-\(\hat{t}_{1:n} = \arg\max_{t_1,...,t_n} P(t_1,...,t_n|w_1,...,w_n)\)
-Then, we can simplify this by:
-\(\begin{align*}
+<p>Formalizing this mathematically, given an observation of $n$ words:</p>
+
+\[\hat{t}_{1:n} = \arg\max_{t_1,...,t_n} P(t_1,...,t_n|w_1,...,w_n)\]
+
+<p>Then, we can simplify this by:</p>
+
+\[\begin{align*}
 \hat{t}_{1:n} 
 &amp;= \arg\max_{t_1,...,t_n} P(t_1,...,t_n|w_1,...,w_n)\\
 &amp;= \arg\max_{t_1,...,t_n} P(w_1,...,w_n|t_1,...,t_n)P(t_1,...,t_n)\\
 &amp;\approx \arg\max_{t_1,...,t_n} \prod_{i=1}^nP(w_i|t_i) P(t_1,...,t_n)\\
 &amp;\approx \arg\max_{t_1,...,t_n} \prod_{i=1}^n P(w_i|t_i) \prod_{j=1}^n  P(t_j|t_{j-1})\\
 &amp;= \arg\max_{t_1,...,t_n} \prod_{i=1}^n P(w_i|t_i) P(t_i|t_{i-1})\\
-\end{align*}\)
-where:</p>
+\end{align*}\]
+
+<p>where:</p>
 
 <ul>
   <li>
-    <p>the third equality ==assumed== independence of neighboring words and tags
-\(P(t_1,...,t_n|w_1,...,w_n) \approx \prod_{i=1}^nP(w_i|t_i)\)</p>
+    <p>the third equality ==assumed== independence of neighboring words and tags</p>
+
+\[P(t_1,...,t_n|w_1,...,w_n) \approx \prod_{i=1}^nP(w_i|t_i)\]
   </li>
   <li>
-    <p>the fourth equality ==assumed== bigram for tags
-\(P(t_1,...,t_n) \approx \prod_{i=1}^n P(t_i|t_{i-1})\)</p>
+    <p>the fourth equality ==assumed== bigram for tags</p>
+
+\[P(t_1,...,t_n) \approx \prod_{i=1}^n P(t_i|t_{i-1})\]
   </li>
   <li>
     <p>the second last equality <strong>is not a nested product</strong>, hence we can simply rewrite it as a single product</p>
   </li>
   <li>
-    <table>
-      <tbody>
-        <tr>
-          <td>now, notice that $P(w_i</td>
-          <td>t_i)$ and $P(t_i</td>
-          <td>t_{i-1})$ are ==known probabilities== (emission and transition). So we can actually compute this task!</td>
-        </tr>
-      </tbody>
-    </table>
+    <p>now, notice that $P(w_i\vert t_i)$ and $P(t_i\vert t_{i-1})$ are ==known probabilities== (emission and transition). So we can actually compute this task!</p>
   </li>
 </ul>
 
@@ -4006,7 +3921,7 @@ where:</p>
 
     <p>For example, given two sequences $O_1={o_1^1,o_2^1,…,o_n^1},O_2={o_1^2,o_2^2,…,o_n^2}$</p>
 
-    <p><img src="NLP/image-20220216162822681.png" alt="image-20220216162822681" style="zoom:33%;" /></p>
+    <p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220216162822681.png" alt="image-20220216162822681" style="zoom:33%;" /></p>
 
     <p>our HMM model could emit the probaility for each of them, and we can take the highest as our prediction. (similar to bigram, but more robust as we are also having syntax information)</p>
   </li>
@@ -4014,8 +3929,11 @@ where:</p>
     <p><strong>Most likely state sequence (Decoding):</strong> To tag each token in a sequence with a label.</p>
 
     <ul>
-      <li>the optimization task mentioned before
-\(\hat{t}_{1:n} = \arg\max_{t_1,...,t_n} P(t_1,...,t_n|w_1,...,w_n)\)</li>
+      <li>
+        <p>the optimization task mentioned before</p>
+
+\[\hat{t}_{1:n} = \arg\max_{t_1,...,t_n} P(t_1,...,t_n|w_1,...,w_n)\]
+      </li>
     </ul>
 
     <p>essentially spit out a <strong>sequence of hidden states</strong> (in this case, tags)</p>
@@ -4027,14 +3945,7 @@ where:</p>
 <p>Our first problem is to compute the <strong>likelihood of a particular observation</strong> sequence $O={o_1,…,o_n}$</p>
 
 <blockquote>
-  <table>
-    <tbody>
-      <tr>
-        <td><strong>Computing Likelihood</strong>: Given an HMM $\lambda = (A,B)$, i.e. the probabilities, and an observation sequence $O$, ==determine the likelihood $P(O</td>
-        <td>\lambda) \equiv P_\lambda(O)$.==</td>
-      </tr>
-    </tbody>
-  </table>
+  <p><strong>Computing Likelihood</strong>: Given an HMM $\lambda = (A,B)$, i.e. the probabilities, and an observation sequence $O$, ==determine the likelihood $P(O\vert \lambda) \equiv P_\lambda(O)$.==</p>
 
   <ul>
     <li>this can then be used for classifying which sequence has a higher likelihood, for instance</li>
@@ -4045,9 +3956,11 @@ where:</p>
 
 <p><em>Recall</em></p>
 
-<p>For Markov Chain/Bigram model, we would simply say:
-\(P(O|\lambda)=P_\lambda(O) = \prod_{i=1}^N P(o_i|o_{i-1})\)
-however, in a HMM, emitting $o_i$ means we need to ==first know $q_i$==, which we don’t know.</p>
+<p>For Markov Chain/Bigram model, we would simply say:</p>
+
+\[P(O|\lambda)=P_\lambda(O) = \prod_{i=1}^N P(o_i|o_{i-1})\]
+
+<p>however, in a HMM, emitting $o_i$ means we need to ==first know $q_i$==, which we don’t know.</p>
 
 <ul>
   <li>i.e. we don’t know the hidden sequence that generates the sequence $O$</li>
@@ -4057,7 +3970,7 @@ however, in a HMM, emitting $o_i$ means we need to ==first know $q_i$==, which w
 
 <p>To make the idea more concrete, consider the following HMM that computes <strong>how many ice-cream I will eat on each day</strong>, given a sequence of days:</p>
 
-<p><img src="NLP/image-20220216193412037.png" alt="image-20220216193412037" style="zoom: 67%;" /></p>
+<p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220216193412037.png" alt="image-20220216193412037" style="zoom: 67%;" /></p>
 
 <p>where:</p>
 
@@ -4072,40 +3985,37 @@ however, in a HMM, emitting $o_i$ means we need to ==first know $q_i$==, which w
 
 <p>Suppose we are given the observed sequence $O={o_1=3,o_2=1,o_3=3}$. The question is: ==what is the probability of this happening, i.e. $P_\lambda(O)$==?</p>
 
-<p>Since we only know $P(o_i|q_i)$, i.e. $P(1 | \text{hot})=0.2$, we do know the following:
-\(P(O|Q) = P(o_1,...,o_T|q_1,...,q_t) = \prod_{i=1}^T P(o_i | q_i)\)
-which is true due to <strong>markov’s assumption</strong>.</p>
+<p>Since we only know $P(o_i\vert q_i)$, i.e. $P(1 \vert  \text{hot})=0.2$, we do know the following:</p>
+
+\[P(O|Q) = P(o_1,...,o_T|q_1,...,q_t) = \prod_{i=1}^T P(o_i | q_i)\]
+
+<p>which is true due to <strong>markov’s assumption</strong>.</p>
 
 <ul>
-  <li>
-    <table>
-      <tbody>
-        <tr>
-          <td>e.g. $P(3,1,3</td>
-          <td>\text{ hot,hot,cold}) = P(3</td>
-          <td>\text{hot})P(1</td>
-          <td>\text{hot})P(3</td>
-          <td>\text{cold})$</td>
-        </tr>
-      </tbody>
-    </table>
-  </li>
+  <li>e.g. $P(3,1,3\vert  \text{ hot,hot,cold}) = P(3\vert  \text{hot})P(1\vert  \text{hot})P(3\vert  \text{cold})$</li>
 </ul>
 
-<p>Then, we know that:
-\(P(O) = \sum_Q P(O|Q)P(Q)\)
-where $\sum_Q$ means summing over ==all possible sequences==.</p>
+<p>Then, we know that:</p>
 
-<p>Therefore, notice that we now only need $P(Q)$:
-\(P(Q)=P(q_1,...,q_t) = \prod_{i=1}^T P(q_i|q_{i-1})\)
-Therefore, combining we get the <strong>probability of observing a sequence $O={o_1,…,o_T}$</strong>
-\(P(O)=P(o_1,...,o_t) = \sum_Q P(O|Q)P(Q) =\sum_Q \left(  \prod_{i=1}^T P(o_i | q_i)P(q_i|q_{i-1}) \right)\)
-summing over all possible sequences $Q={q_1,…,q_T}$</p>
+\[P(O) = \sum_Q P(O|Q)P(Q)\]
+
+<p>where $\sum_Q$ means summing over ==all possible sequences==.</p>
+
+<p>Therefore, notice that we now only need $P(Q)$:</p>
+
+\[P(Q)=P(q_1,...,q_t) = \prod_{i=1}^T P(q_i|q_{i-1})\]
+
+<p>Therefore, combining we get the <strong>probability of observing a sequence $O={o_1,…,o_T}$</strong></p>
+
+\[P(O)=P(o_1,...,o_t) = \sum_Q P(O|Q)P(Q) =\sum_Q \left(  \prod_{i=1}^T P(o_i | q_i)P(q_i|q_{i-1}) \right)\]
+
+<p>summing over all possible sequences $Q={q_1,…,q_T}$</p>
 
 <ul>
   <li>
-    <p>for example, in the ice-cream case, we would have <strong>$2^3=8$ possible cases</strong> for our observation being length $T=3$:
-\(P(3,1,3) = P(3,1,3, \text{cold, cold, cold})+P(3,1,3, \text{cold, cold, hot})+...\)</p>
+    <p>for example, in the ice-cream case, we would have <strong>$2^3=8$ possible cases</strong> for our observation being length $T=3$:</p>
+
+\[P(3,1,3) = P(3,1,3, \text{cold, cold, cold})+P(3,1,3, \text{cold, cold, hot})+...\]
   </li>
   <li>
     <p>for an HMM with $N$ hidden states and an observation sequence of $T$ observations, <strong>there are $N^T$ possible observations.</strong> In practice this would be a pain to compute directly, so we have the following ==forward algorithm==.</p>
@@ -4116,17 +4026,9 @@ summing over all possible sequences $Q={q_1,…,q_T}$</p>
   <p><strong>Forward Algorithm</strong> is a kind of dynamic programming algorithm that can compltet this task in $O(N^2T)$ by implicitly folding each of these paths into a single <strong>forward trellis</strong></p>
 </blockquote>
 
-<table>
-  <tbody>
-    <tr>
-      <td>Essentially, realize that computing $P(3,1</td>
-      <td>\text{ hot hot})$ and $P(3,1</td>
-      <td>\text{ hot cold})$ results in:</td>
-    </tr>
-  </tbody>
-</table>
+<p>Essentially, realize that computing $P(3,1\vert  \text{ hot hot})$ and $P(3,1\vert  \text{ hot cold})$ results in:</p>
 
-<p><img src="NLP/image-20220216200606139.png" alt="image-20220216200606139" style="zoom:67%;" /></p>
+<p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220216200606139.png" alt="image-20220216200606139" style="zoom:67%;" /></p>
 
 <p>where the key idea is to realize that they are <strong>sharing the same path</strong>:</p>
 
@@ -4138,32 +4040,27 @@ summing over all possible sequences $Q={q_1,…,q_T}$</p>
 
 <ul>
   <li>
-    <p>$\alpha_{t}(j)$ being the probability of <strong>being in state $j$ after the first $t$ observations</strong> = ==emitting $o_t$ at $q_t=j$== This means that:
-\(\alpha_{t}(j) = P_\lambda(o_1,...,o_t,q_t = j)\)
-e.g. probability of being in $q_2 = \text{hot}$ after seeing the first $1$ observation $o_1=3$. Hence graphically:</p>
+    <p>$\alpha_{t}(j)$ being the probability of <strong>being in state $j$ after the first $t$ observations</strong> = ==emitting $o_t$ at $q_t=j$== This means that:</p>
 
-    <p><img src="NLP/image-20220216200948999.png" alt="image-20220216200948999" /></p>
+\[\alpha_{t}(j) = P_\lambda(o_1,...,o_t,q_t = j)\]
+
+    <p>e.g. probability of being in $q_2 = \text{hot}$ after seeing the first $1$ observation $o_1=3$. Hence graphically:</p>
+
+    <p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220216200948999.png" alt="image-20220216200948999" /></p>
   </li>
   <li>
-    <p>Therefore, the we can compute it by:
-\(\alpha_t(j) = \sum_{i=1}^N \underbrace{\alpha_{t-1}(i)a_{ij}}_{\text{get to state $q_j$}}\quad \underbrace{b_j(o_t)}_{\text{emit $o_t$ at $q_t$}}\)
-whic should be pretty clear form the graph, so that:</p>
+    <p>Therefore, the we can compute it by:</p>
+
+\[\alpha_t(j) = \sum_{i=1}^N \underbrace{\alpha_{t-1}(i)a_{ij}}_{\text{get to state $q_j$}}\quad \underbrace{b_j(o_t)}_{\text{emit $o_t$ at $q_t$}}\]
+
+    <p>whic should be pretty clear form the graph, so that:</p>
 
     <ul>
       <li>$\alpha_{t-1}(i)$ is <strong>previous forward path probability</strong> from the previous time step</li>
       <li>$a_{ij}$ is the <strong>transitioni probability</strong> to state $q_t=j$, i.e. the current focus</li>
       <li>$b_j(o_t)$ is the <strong>state observation likelihood/emission probability</strong> to emit $o_t$ when you are at state $q_t=j$
         <ul>
-          <li>
-            <table>
-              <tbody>
-                <tr>
-                  <td>i.e. emitting $P(o_t=3</td>
-                  <td>q_t = \text{hot})$</td>
-                </tr>
-              </tbody>
-            </table>
-          </li>
+          <li>i.e. emitting $P(o_t=3\vert q_t = \text{hot})$</li>
         </ul>
       </li>
     </ul>
@@ -4174,15 +4071,17 @@ whic should be pretty clear form the graph, so that:</p>
 
 <p><em>For Example</em>. Given the following HMM, and $O={3,1,3}$</p>
 
-<p><img src="NLP/image-20220216193412037.png" alt="image-20220216193412037" style="zoom: 67%;" /></p>
+<p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220216193412037.png" alt="image-20220216193412037" style="zoom: 67%;" /></p>
 
 <p>what would be $\alpha_2(2)$?</p>
 
-<p><em>Solution</em>: Essentially this means $t=2,j=2$, that we are emitting $o_2=1$ at state $q_t=2=\text{hot}$. Hence:
-\(\alpha_2(a)=\alpha_{1}(1)\cdot P(H|C)\cdot P(1|H) + \alpha_{1}(2)\cdot P(H|H)\cdot P(1|H)\)
- The answer is essentially</p>
+<p><em>Solution</em>: Essentially this means $t=2,j=2$, that we are emitting $o_2=1$ at state $q_t=2=\text{hot}$. Hence:</p>
 
-<p><img src="NLP/image-20220216201909089.png" alt="image-20220216201909089" style="zoom:80%;" /></p>
+\[\alpha_2(a)=\alpha_{1}(1)\cdot P(H|C)\cdot P(1|H) + \alpha_{1}(2)\cdot P(H|H)\cdot P(1|H)\]
+
+<p>The answer is essentially</p>
+
+<p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220216201909089.png" alt="image-20220216201909089" style="zoom:80%;" /></p>
 
 <hr />
 
@@ -4192,16 +4091,20 @@ whic should be pretty clear form the graph, so that:</p>
 
 <ol>
   <li>
-    <p><strong>Initialization</strong>:
-\(\alpha_1(j)=P(o_1,q_1=j) = \pi_j b_j(o_1),\quad 1 \le j \le N\)
-i.e. probability of emitting $o_1$ at each state</p>
+    <p><strong>Initialization</strong>:</p>
 
-    <p><img src="NLP/image-20220216203453892.png" alt="image-20220216203453892" style="zoom:50%;" /></p>
+\[\alpha_1(j)=P(o_1,q_1=j) = \pi_j b_j(o_1),\quad 1 \le j \le N\]
+
+    <p>i.e. probability of emitting $o_1$ at each state</p>
+
+    <p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220216203453892.png" alt="image-20220216203453892" style="zoom:50%;" /></p>
   </li>
   <li>
-    <p><strong>Recursion</strong>. Iterate for $t=2…T$:
-\(\alpha_t(j) = \sum_{i=1}^N \alpha_{t-1}(i)a_{ij}b_j(o_t),\quad 1 \le j \le N\)
-graphically:</p>
+    <p><strong>Recursion</strong>. Iterate for $t=2…T$:</p>
+
+\[\alpha_t(j) = \sum_{i=1}^N \alpha_{t-1}(i)a_{ij}b_j(o_t),\quad 1 \le j \le N\]
+
+    <p>graphically:</p>
 
     <table>
       <thead>
@@ -4212,32 +4115,36 @@ graphically:</p>
       </thead>
       <tbody>
         <tr>
-          <td style="text-align: center"><img src="NLP/image-20220216203622723.png" alt="image-20220216203622723" /></td>
-          <td style="text-align: center"><img src="NLP/image-20220216203714068.png" alt="image-20220216203714068" /></td>
+          <td style="text-align: center"><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220216203622723.png" alt="image-20220216203622723" /></td>
+          <td style="text-align: center"><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220216203714068.png" alt="image-20220216203714068" /></td>
         </tr>
       </tbody>
     </table>
   </li>
   <li>
-    <p><strong>Termination</strong>: Sum over the last cells:
-\(P(O|\lambda) = \sum_{i=1}^N \alpha_T(i)\)
-graphically:</p>
+    <p><strong>Termination</strong>: Sum over the last cells:</p>
 
-    <p><img src="NLP/image-20220216203747644.png" alt="image-20220216203747644" style="zoom:50%;" /></p>
+\[P(O|\lambda) = \sum_{i=1}^N \alpha_T(i)\]
+
+    <p>graphically:</p>
+
+    <p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220216203747644.png" alt="image-20220216203747644" style="zoom:50%;" /></p>
   </li>
 </ol>
 
 <p>Then the actual algorithm pseudo-code:</p>
 
-<p><img src="NLP/image-20220216203846265.png" alt="image-20220216203846265" style="zoom:80%;" /></p>
+<p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220216203846265.png" alt="image-20220216203846265" style="zoom:80%;" /></p>
 
 <p>which you can see the main loops goes to $T\cdot N \cdot N$, hence we have $O(TN^2)$</p>
 
 <h3 id="decoding-the-viterbi-algorithm">Decoding: The Viterbi Algorithm</h3>
 
-<p>Now, we consider <strong>performing POS Tagging</strong> for a given observation $O$. This means essentially we need to compute:
-\(\hat{t}_{1:n} = \arg\max_{t_1,...,t_n} P(t_1,...,t_n|w_1,...,w_n)\)
-which can be generalized to the task of <strong>sequence labeling</strong>/==most likely sequence==</p>
+<p>Now, we consider <strong>performing POS Tagging</strong> for a given observation $O$. This means essentially we need to compute:</p>
+
+\[\hat{t}_{1:n} = \arg\max_{t_1,...,t_n} P(t_1,...,t_n|w_1,...,w_n)\]
+
+<p>which can be generalized to the task of <strong>sequence labeling</strong>/==most likely sequence==</p>
 
 <blockquote>
   <p><strong>Decoding</strong>: Given as input an HMM $\lambda = (A,B)$ and a sequence of observations $O = o_1,…,o_T$ , find the ==most probable sequence of states $Q=q_1,…,q_T$ .==</p>
@@ -4247,16 +4154,11 @@ which can be generalized to the task of <strong>sequence labeling</strong>/==mos
 
 <ul>
   <li>
-    <table>
-      <tbody>
-        <tr>
-          <td>give a sequence $3,1,3$, what is the best likely weather sequence? e.g. $P(H,H,H</td>
-          <td>3,1,3)=?$</td>
-        </tr>
-      </tbody>
-    </table>
+    <p>give a sequence $3,1,3$, what is the best likely weather sequence? e.g. $P(H,H,H\vert 3,1,3)=?$</p>
   </li>
-  <li>For <strong>each possible sequence</strong>, e.g. $(HHH, HHC, HCH)$, we could run the forward algorithm and compute the likelihood of the observation sequence given that hidden state sequence. This is brute force and takes an ==exponentially large number of state sequences==.</li>
+  <li>
+    <p>For <strong>each possible sequence</strong>, e.g. $(HHH, HHC, HCH)$, we could run the forward algorithm and compute the likelihood of the observation sequence given that hidden state sequence. This is brute force and takes an ==exponentially large number of state sequences==.</p>
+  </li>
 </ul>
 
 <p>Then, the idea is as follows:</p>
@@ -4265,7 +4167,7 @@ which can be generalized to the task of <strong>sequence labeling</strong>/==mos
   <li>
     <p>at each time step $t$, for each state $q_t=j,1 \le j \le N$, we can store a <strong>best path</strong> that arrived there:</p>
 
-    <p><img src="NLP/image-20220216210631958.png" alt="image-20220216210631958" style="zoom:67%;" /></p>
+    <p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220216210631958.png" alt="image-20220216210631958" style="zoom:67%;" /></p>
   </li>
   <li>
     <p>Then, once we have computed the probability and <strong>propagated to the end</strong>, we can <strong>backtrace</strong> and get the optimal path</p>
@@ -4276,11 +4178,15 @@ which can be generalized to the task of <strong>sequence labeling</strong>/==mos
 
 <ol>
   <li>
-    <p>consider at each time step $t$, we want to know:
-\(v_{t}(j) = \max_{q_1,...,q_{t-1}}P_\lambda(o_1,...,o_t,q_t = j)\)
-This can be computed from <strong>iterating over the previous best scores $v_{t-1}$</strong>, taking the best, and <strong>save a “checkpoint/back pointer”</strong>.
-\(v_t(j) = \max_{q_1,...,q_{t-1}}\,\, \underbrace{v_{t-1}(i)a_{ij}}_{\text{get to state $q_j$}}\quad \underbrace{b_j(o_t)}_{\text{emit $o_t$ at $q_t$}}\)
-note that</p>
+    <p>consider at each time step $t$, we want to know:</p>
+
+\[v_{t}(j) = \max_{q_1,...,q_{t-1}}P_\lambda(o_1,...,o_t,q_t = j)\]
+
+    <p>This can be computed from <strong>iterating over the previous best scores $v_{t-1}$</strong>, taking the best, and <strong>save a “checkpoint/back pointer”</strong>.</p>
+
+\[v_t(j) = \max_{q_1,...,q_{t-1}}\,\, \underbrace{v_{t-1}(i)a_{ij}}_{\text{get to state $q_j$}}\quad \underbrace{b_j(o_t)}_{\text{emit $o_t$ at $q_t$}}\]
+
+    <p>note that</p>
 
     <ul>
       <li>the only difference of this with the <strong>forward algorithm</strong> is that it was 1. taking the sum; 2. no need to store a back pointer/checkpoint</li>
@@ -4289,7 +4195,7 @@ note that</p>
 
     <p>When we have the back pointers, it look like:</p>
 
-    <p><img src="NLP/image-20220216211645021.png" alt="image-20220216211645021" style="zoom: 67%;" /></p>
+    <p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220216211645021.png" alt="image-20220216211645021" style="zoom: 67%;" /></p>
 
     <p>which we only need to backtrack one step per node.</p>
   </li>
@@ -4302,33 +4208,38 @@ note that</p>
 
 <ol>
   <li>
-    <p><strong>Initialization</strong>:
-\(\begin{align*}
+    <p><strong>Initialization</strong>:</p>
+
+\[\begin{align*}
 v_1(j) &amp;= \pi_j b_j(o_1),&amp;1 \le j \le N\\
 bt_1(j) &amp;= 0, &amp; 1 \le j \le N
-\end{align*}\)
-where $bt_1(j)$ means the back pointer of state $q_1=j$ is $q_0$,</p>
+\end{align*}\]
+
+    <p>where $bt_1(j)$ means the back pointer of state $q_1=j$ is $q_0$,</p>
   </li>
   <li>
-    <p><strong>Recursion</strong>. Iterate for $t=2…T$:
-\(\begin{align*}
+    <p><strong>Recursion</strong>. Iterate for $t=2…T$:</p>
+
+\[\begin{align*}
 \alpha_t(j) &amp;= \max_{i=1...N}\,\,v_{t-1}(i)a_{ij}b_j(o_t),\quad 1 \le j \le N\\
 bt_t(j)&amp; = \arg\max_{i=1...N}\,\, v_{t-1}(i)a_{ij}b_j(o_t),\quad 1 \le j \le N
-\end{align*}\)
-so in addition to moving forward, we are saving the best back pointer of $q_t=j$ being $q_{t-1}=i$</p>
+\end{align*}\]
+
+    <p>so in addition to moving forward, we are saving the best back pointer of $q_t=j$ being $q_{t-1}=i$</p>
   </li>
   <li>
-    <p><strong>Termination</strong>: The best score by <strong>comparing</strong> over the last cells:
-\(\begin{align*}
+    <p><strong>Termination</strong>: The best score by <strong>comparing</strong> over the last cells:</p>
+
+\[\begin{align*}
 \text{Best Score}: \quad &amp;P^* = \max_{i=1...N} v_T(i)\\
 \text{Start of Backtrace}: \quad &amp;q_T^* = \arg\max_{i=1...N} v_T(i)
-\end{align*}\)</p>
+\end{align*}\]
   </li>
 </ol>
 
 <p>Hence the algorithm pseudo-code looks like:</p>
 
-<p><img src="NLP/image-20220216212501011.png" alt="image-20220216212501011" style="zoom: 80%;" /></p>
+<p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220216212501011.png" alt="image-20220216212501011" style="zoom: 80%;" /></p>
 
 <p>which is again $O(N^2T)$ as it is almost the same as the forward algorithm.</p>
 
@@ -4342,14 +4253,7 @@ so in addition to moving forward, we are saving the best back pointer of $q_t=j$
 </ul>
 
 <blockquote>
-  <table>
-    <tbody>
-      <tr>
-        <td>Given an observation sequence, $O={o_1, o_2, …, 0_n}$, what set of parameters, $λ=(A,B)$, for a given model <strong>maximizes the probability that this data was generated</strong> from this model $P(O</td>
-        <td>\lambda)=P_\lambda(O)$?</td>
-      </tr>
-    </tbody>
-  </table>
+  <p>Given an observation sequence, $O={o_1, o_2, …, 0<em>n}$, what set of parameters, $λ=(A,B)$, for a given model <strong>maximizes the probability that this data was generated</strong> from this model $P(O\vert  \lambda)=P</em>\lambda(O)$?</p>
 
   <ul>
     <li>but now, data ara <strong>unlabelled</strong> so we cannot use counts.</li>
@@ -4385,8 +4289,9 @@ so in addition to moving forward, we are saving the best back pointer of $q_t=j$
 
         <p><img src="../../Fall/Machine_Learning/Verma/ML/image-20211130173706229.png" alt="image-20211130173706229" style="zoom:50%;" /></p>
 
-        <p>then, e.g. mountain 3 will get the proportion
-\(\frac{P_1}{P_1+P_2+P_3+P_4}\)</p>
+        <p>then, e.g. mountain 3 will get the proportion</p>
+
+\[\frac{P_1}{P_1+P_2+P_3+P_4}\]
       </li>
       <li>
         <p>in the Lloyd’s Algorithm for the K-means, the idea is similar in that we assign the data point <strong>completely (hard)</strong> to the closest cluster (closest to the mean)</p>
@@ -4420,11 +4325,11 @@ so in addition to moving forward, we are saving the best back pointer of $q_t=j$
   </thead>
   <tbody>
     <tr>
-      <td style="text-align: center"><img src="NLP/image-20220216213626101.png" alt="image-20220216213626101" /></td>
-      <td style="text-align: center"><img src="NLP/image-20220216213632341.png" alt="image-20220216213632341" /></td>
-      <td style="text-align: center">!<img src="NLP/image-20220216213639649.png" alt="image-20220216213639649" /></td>
-      <td style="text-align: center"><img src="NLP/image-20220216213645910.png" alt="image-20220216213645910" /></td>
-      <td style="text-align: center"><img src="NLP/image-20220216213652320.png" alt="image-20220216213652320" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220216213626101.png" alt="image-20220216213626101" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220216213632341.png" alt="image-20220216213632341" /></td>
+      <td style="text-align: center">!<img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220216213639649.png" alt="image-20220216213639649" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220216213645910.png" alt="image-20220216213645910" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220216213652320.png" alt="image-20220216213652320" /></td>
     </tr>
   </tbody>
 </table>
@@ -4456,16 +4361,7 @@ so in addition to moving forward, we are saving the best back pointer of $q_t=j$
 <p>Note that in general, for EM type algorithms:</p>
 
 <ul>
-  <li>
-    <table>
-      <tbody>
-        <tr>
-          <td><strong>Each iteration</strong> changes the parameters in a way that is <strong>guaranteed to increase t</strong>he likelihood of the data: $P(O</td>
-          <td>\lambda )=P_\lambda (O)$.</td>
-        </tr>
-      </tbody>
-    </table>
-  </li>
+  <li><strong>Each iteration</strong> changes the parameters in a way that is <strong>guaranteed to increase t</strong>he likelihood of the data: $P(O\vert \lambda )=P_\lambda (O)$.</li>
   <li>Converges to a local maximum.</li>
 </ul>
 
@@ -4489,7 +4385,7 @@ so in addition to moving forward, we are saving the best back pointer of $q_t=j$
   <li>
     <p>Essentially <strong>soft label for unlabelled</strong> data, but <strong>hard assignments for labelled data</strong>.</p>
 
-    <p><img src="NLP/image-20220216221236167.png" alt="image-20220216221236167" style="zoom:67%;" /></p>
+    <p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220216221236167.png" alt="image-20220216221236167" style="zoom:67%;" /></p>
   </li>
 </ol>
 
@@ -4524,7 +4420,7 @@ so in addition to moving forward, we are saving the best back pointer of $q_t=j$
 
 <p>A more specific example would be:</p>
 
-<p><img src="NLP/image-20220221182530243.png" alt="image-20220221182530243" style="zoom: 50%;" /></p>
+<p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220221182530243.png" alt="image-20220221182530243" style="zoom: 50%;" /></p>
 
 <h2 id="context-free-grammar">Context Free Grammar</h2>
 
@@ -4553,9 +4449,11 @@ so in addition to moving forward, we are saving the best back pointer of $q_t=j$
       <p>$\Sigma$ is a set of <strong>terminal symbols</strong>/an alphabet (finite). This is <strong>disjoint from $N$</strong>.</p>
     </li>
     <li>
-      <p>$R$ is a finite set of <strong>rules</strong> of the form:
-\(A \to w;\,\,A\in N;\,\,w\in(V\cup\Sigma)^*\)
-so basically, you can <strong>have more than one variables</strong>, and <strong>each variable points to either a string or a string+another variable</strong>.</p>
+      <p>$R$ is a finite set of <strong>rules</strong> of the form:</p>
+
+\[A \to w;\,\,A\in N;\,\,w\in(V\cup\Sigma)^*\]
+
+      <p>so basically, you can <strong>have more than one variables</strong>, and <strong>each variable points to either a string or a string+another variable</strong>.</p>
 
       <p>In general, for generating an <strong>non-empty language</strong>, you need to have <strong><em>at least one rule that points to a symbol only</em></strong>.</p>
     </li>
@@ -4579,14 +4477,18 @@ so basically, you can <strong>have more than one variables</strong>, and <strong
 
   <ul>
     <li>
-      <p>If two string $\alpha, \gamma \in (N \cup \Sigma)^*$, and there is a rule $A \to \beta \in R$, then we can write:
-\(\alpha A \gamma \Rightarrow \alpha \beta \gamma\)
-which reads: $\alpha A\gamma$ yields $\alpha \beta \gamma$.</p>
+      <p>If two string $\alpha, \gamma \in (N \cup \Sigma)^*$, and there is a rule $A \to \beta \in R$, then we can write:</p>
+
+\[\alpha A \gamma \Rightarrow \alpha \beta \gamma\]
+
+      <p>which reads: $\alpha A\gamma$ yields $\alpha \beta \gamma$.</p>
     </li>
     <li>
-      <p>If two string $\alpha_1, \alpha_m \in (N \cup \Sigma)^<em>$, we say <strong>that $\alpha_1 \Rightarrow^* \alpha_m$ if</strong> some $\alpha_2, …,\alpha_{m-1} \in (N \cup \Sigma)^</em>$ we have:
-\(\alpha_1 \Rightarrow \alpha_2 \Rightarrow \alpha_3 \Rightarrow ... \Rightarrow \alpha_m\)
-where:</p>
+      <p>If two string $\alpha_1, \alpha_m \in (N \cup \Sigma)^<em>$, we say <strong>that $\alpha_1 \Rightarrow^* \alpha_m$ if</strong> some $\alpha_2, …,\alpha_{m-1} \in (N \cup \Sigma)^</em>$ we have:</p>
+
+\[\alpha_1 \Rightarrow \alpha_2 \Rightarrow \alpha_3 \Rightarrow ... \Rightarrow \alpha_m\]
+
+      <p>where:</p>
 
       <ul>
         <li>$\alpha_1,\alpha_2, …,\alpha_m$ are just strings that you can reach from its previous string.</li>
@@ -4631,7 +4533,7 @@ where:</p>
 
 <p>For instance, the ATIS English corpus provides the following CFG definitions for <strong>English</strong></p>
 
-<p><img src="NLP/image-20220221185338372.png" alt="image-20220221185338372" style="zoom:67%;" /></p>
+<p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220221185338372.png" alt="image-20220221185338372" style="zoom:67%;" /></p>
 
 <p>where we can see all <strong>rules/productions</strong> that are possible, and that:</p>
 
@@ -4647,12 +4549,12 @@ where:</p>
   <li>
     <p><strong>generating</strong> sentences/==derivation==.</p>
 
-    <p><img src="NLP/image-20220221190302536.png" alt="image-20220221190302536" style="zoom:33%;" /></p>
+    <p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220221190302536.png" alt="image-20220221190302536" style="zoom:33%;" /></p>
   </li>
   <li>
     <p>as a device for <strong>assigning</strong> a structure to a given sentence (i.e. output a parse tree)</p>
 
-    <p><img src="NLP/image-20220221190318504.png" alt="image-20220221190318504" style="zoom: 50%;" /></p>
+    <p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220221190318504.png" alt="image-20220221190318504" style="zoom: 50%;" /></p>
 
     <p>where sometimes you are asked to</p>
 
@@ -4678,8 +4580,8 @@ where:</p>
   </thead>
   <tbody>
     <tr>
-      <td style="text-align: center"><img src="NLP/image-20220221185745736.png" alt="image-20220221185745736" style="zoom:67%;" /></td>
-      <td style="text-align: center"><img src="NLP/image-20220221185833457.png" alt="image-20220221185833457" style="zoom:67%;" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220221185745736.png" alt="image-20220221185745736" style="zoom:67%;" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220221185833457.png" alt="image-20220221185833457" style="zoom:67%;" /></td>
     </tr>
   </tbody>
 </table>
@@ -4711,12 +4613,14 @@ where:</p>
   <p>Therefore, CNF parse trees are <strong>binary branching</strong>.</p>
 </blockquote>
 
-<p>For instance, you can convert $A \to BCD$ to CNF by:
-\(\begin{cases}
+<p>For instance, you can convert $A \to BCD$ to CNF by:</p>
+
+\[\begin{cases}
 A \to BX\\
 X \to CD
-\end{cases}\)
-where you added a non-terminal $X$.</p>
+\end{cases}\]
+
+<p>where you added a non-terminal $X$.</p>
 
 <h2 id="partial-parsing">Partial Parsing</h2>
 
@@ -4736,9 +4640,11 @@ where you added a non-terminal $X$.</p>
   </ul>
 </blockquote>
 
-<p>Since chunked texts lack a hierarchical structure, a simple <strong>bracketing notation</strong> is sufficient to denote the location and the type of the chunks in a given example:
-\(\text{$[_{NP}$ The morning flight] $[_{PP}$ from] $[_{NP}$ Denver] $[_{VP}$ has arrived.]}\)
-this makes clear that chunking invovles two tasks:</p>
+<p>Since chunked texts lack a hierarchical structure, a simple <strong>bracketing notation</strong> is sufficient to denote the location and the type of the chunks in a given example:</p>
+
+\[\text{$[_{NP}$ The morning flight] $[_{PP}$ from] $[_{NP}$ Denver] $[_{VP}$ has arrived.]}\]
+
+<p>this makes clear that chunking invovles two tasks:</p>
 
 <ul>
   <li>
@@ -4748,17 +4654,20 @@ this makes clear that chunking invovles two tasks:</p>
     <p><strong>labeling</strong> (assigning the correct tag to the discovered chunks).</p>
   </li>
   <li>
-    <p>in different applications, some input words may not be part of any chunk. For example, if you consider base $NP$ chunking:
-\(\text{$[_{NP}$ The morning flight] from $[_{NP}$ Denver] has arrived.}\)</p>
+    <p>in different applications, some input words may not be part of any chunk. For example, if you consider base $NP$ chunking:</p>
+
+\[\text{$[_{NP}$ The morning flight] from $[_{NP}$ Denver] has arrived.}\]
   </li>
 </ul>
 
 <blockquote>
   <p>In most approaches, <strong>base phrases</strong> include the <strong>headword</strong> of the phrase, along with any <strong>pre-head material</strong> within the constituent, while crucially excluding any <strong>post-head</strong> material.</p>
 
-  <p>For instance:
-\(\text{$[_{NP}$ a flight] $[_{PP}$ from] $[_{NP}$ Indianapolis]$[_{PP}$ to]$[_{NP}$ Houston]}\)
-has:</p>
+  <p>For instance:</p>
+
+\[\text{$[_{NP}$ a flight] $[_{PP}$ from] $[_{NP}$ Indianapolis]$[_{PP}$ to]$[_{NP}$ Houston]}\]
+
+  <p>has:</p>
 
   <ul>
     <li>$[_{NP} \text{ a flight}]$ for <em>flight</em> being the headwords of the <code class="language-plaintext highlighter-rouge">NP</code>, and <em>a</em> being the pre-head.</li>
@@ -4786,8 +4695,8 @@ has:</p>
   </thead>
   <tbody>
     <tr>
-      <td style="text-align: center"><img src="NLP/image-20220221200618115.png" alt="image-20220221200618115" style="zoom:67%;" /></td>
-      <td style="text-align: center"><img src="NLP/image-20220221200625067.png" alt="image-20220221200625067" style="zoom:67%;" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220221200618115.png" alt="image-20220221200618115" style="zoom:67%;" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220221200625067.png" alt="image-20220221200625067" style="zoom:67%;" /></td>
     </tr>
   </tbody>
 </table>
@@ -4803,20 +4712,24 @@ has:</p>
 
 <hr />
 
-<p>To <strong>evaluate our performance</strong>, we are strict in that:
-\(\begin{align*}
+<p>To <strong>evaluate our performance</strong>, we are strict in that:</p>
+
+\[\begin{align*}
 \text{Precision}&amp;=P=\frac{\text{Number of correct chunks found}}{\text{Total number of chunks found}}\\
 \text{Recall}&amp;=R=\frac{\text{Number of correct chunks found}}{\text{Total number of chunks}}
-\end{align*}\)</p>
+\end{align*}\]
 
 <ul>
   <li>note that if one part of the phrase is labeled as wrong, the <strong>entire chunk is wrong</strong></li>
 </ul>
 
-<p>Take harmonic mean to produce a single evaluation metric called <strong>F measure.</strong>:
-\(F_\beta = \frac{(\beta^2 + 1)P\cdot R}{\beta^2 P + R}\)
-and mostly commonly $F_1$ is used:
-\(F_1 = \frac{2PR}{P+2} = \frac{1}{2[(1/P) + (1/R)]}\)</p>
+<p>Take harmonic mean to produce a single evaluation metric called <strong>F measure.</strong>:</p>
+
+\[F_\beta = \frac{(\beta^2 + 1)P\cdot R}{\beta^2 P + R}\]
+
+<p>and mostly commonly $F_1$ is used:</p>
+
+\[F_1 = \frac{2PR}{P+2} = \frac{1}{2[(1/P) + (1/R)]}\]
 
 <ul>
   <li>current best system for NP chunking: F1=96%</li>
@@ -4827,7 +4740,7 @@ and mostly commonly $F_1$ is used:
 
 <p>Our task of parsing a give sentence is essentially:</p>
 
-<p><img src="NLP/image-20220221201827629.png" alt="image-20220221201827629" style="zoom: 50%;" /></p>
+<p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220221201827629.png" alt="image-20220221201827629" style="zoom: 50%;" /></p>
 
 <blockquote>
   <p><em>Intuition</em></p>
@@ -4870,10 +4783,10 @@ and mostly commonly $F_1$ is used:
       </thead>
       <tbody>
         <tr>
-          <td style="text-align: center"><img src="NLP/image-20220221202005862.png" alt="image-20220221202005862" style="zoom:67%;" /></td>
-          <td style="text-align: center"><img src="NLP/image-20220221202043999.png" alt="image-20220221202043999" style="zoom:67%;" /></td>
-          <td style="text-align: center"><img src="NLP/image-20220221202055609.png" alt="image-20220221202055609" style="zoom:67%;" /></td>
-          <td style="text-align: center"><img src="NLP/image-20220221202415708.png" alt="image-20220221202415708" style="zoom:67%;" /></td>
+          <td style="text-align: center"><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220221202005862.png" alt="image-20220221202005862" style="zoom:67%;" /></td>
+          <td style="text-align: center"><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220221202043999.png" alt="image-20220221202043999" style="zoom:67%;" /></td>
+          <td style="text-align: center"><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220221202055609.png" alt="image-20220221202055609" style="zoom:67%;" /></td>
+          <td style="text-align: center"><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220221202415708.png" alt="image-20220221202415708" style="zoom:67%;" /></td>
         </tr>
       </tbody>
     </table>
@@ -4892,10 +4805,10 @@ and mostly commonly $F_1$ is used:
       </thead>
       <tbody>
         <tr>
-          <td style="text-align: center"><img src="NLP/image-20220221202316095.png" alt="image-20220221202316095" style="zoom:67%;" /></td>
-          <td style="text-align: center"><img src="NLP/image-20220221202354464.png" alt="image-20220221202354464" style="zoom:67%;" /></td>
-          <td style="text-align: center"><img src="NLP/image-20220221202448182.png" alt="image-20220221202448182" style="zoom:67%;" /></td>
-          <td style="text-align: center"><img src="NLP/image-20220221202536027.png" alt="image-20220221202536027" style="zoom:67%;" /></td>
+          <td style="text-align: center"><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220221202316095.png" alt="image-20220221202316095" style="zoom:67%;" /></td>
+          <td style="text-align: center"><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220221202354464.png" alt="image-20220221202354464" style="zoom:67%;" /></td>
+          <td style="text-align: center"><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220221202448182.png" alt="image-20220221202448182" style="zoom:67%;" /></td>
+          <td style="text-align: center"><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220221202536027.png" alt="image-20220221202536027" style="zoom:67%;" /></td>
         </tr>
       </tbody>
     </table>
@@ -4905,7 +4818,7 @@ and mostly commonly $F_1$ is used:
   <li>
     <p>Finally:</p>
 
-    <p><img src="NLP/image-20220221164426930.png" alt="image-20220221164426930" style="zoom:50%;" /></p>
+    <p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220221164426930.png" alt="image-20220221164426930" style="zoom:50%;" /></p>
   </li>
 </ol>
 
@@ -4928,10 +4841,10 @@ and mostly commonly $F_1$ is used:
       </thead>
       <tbody>
         <tr>
-          <td style="text-align: center"><img src="NLP/image-20220221202819359.png" alt="image-20220221202819359" style="zoom: 80%;" /></td>
-          <td style="text-align: center"><img src="NLP/image-20220221202948073.png" alt="image-20220221202948073" style="zoom:67%;" /></td>
-          <td style="text-align: center"><img src="NLP/image-20220221203032448.png" alt="image-20220221203032448" style="zoom:67%;" /></td>
-          <td style="text-align: center"><img src="NLP/image-20220221203102330.png" alt="image-20220221203102330" /></td>
+          <td style="text-align: center"><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220221202819359.png" alt="image-20220221202819359" style="zoom: 80%;" /></td>
+          <td style="text-align: center"><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220221202948073.png" alt="image-20220221202948073" style="zoom:67%;" /></td>
+          <td style="text-align: center"><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220221203032448.png" alt="image-20220221203032448" style="zoom:67%;" /></td>
+          <td style="text-align: center"><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220221203102330.png" alt="image-20220221203102330" /></td>
         </tr>
       </tbody>
     </table>
@@ -4949,9 +4862,9 @@ and mostly commonly $F_1$ is used:
       </thead>
       <tbody>
         <tr>
-          <td style="text-align: center"><img src="NLP/image-20220221203220418.png" alt="image-20220221203220418" style="zoom: 50%;" /></td>
-          <td style="text-align: center"><img src="NLP/image-20220221203244530.png" alt="image-20220221203244530" style="zoom: 50%;" /></td>
-          <td style="text-align: center"><img src="NLP/image-20220221203314276.png" alt="image-20220221203314276" style="zoom: 50%;" /></td>
+          <td style="text-align: center"><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220221203220418.png" alt="image-20220221203220418" style="zoom: 50%;" /></td>
+          <td style="text-align: center"><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220221203244530.png" alt="image-20220221203244530" style="zoom: 50%;" /></td>
+          <td style="text-align: center"><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220221203314276.png" alt="image-20220221203314276" style="zoom: 50%;" /></td>
         </tr>
       </tbody>
     </table>
@@ -5004,17 +4917,19 @@ and mostly commonly $F_1$ is used:
     <li>
       <p>Rules with <strong>right-hand sides longer than 2</strong> are normalized through the introduction of ==new non-terminals==</p>
 
-      <p>This is simple, if you have $A \to BC\gamma$, then:
-\(A \to X\gamma\\
-X \to BC\)
-would work.</p>
+      <p>This is simple, if you have $A \to BC\gamma$, then:</p>
+
+\[A \to X\gamma\\
+X \to BC\]
+
+      <p>would work.</p>
     </li>
   </ul>
 </blockquote>
 
 <p>A full example looks like:</p>
 
-<p><img src="NLP/image-20220221204556585.png" alt="image-20220221204556585" style="zoom: 50%;" /></p>
+<p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220221204556585.png" alt="image-20220221204556585" style="zoom: 50%;" /></p>
 
 <p>as an exercise you can try to reproduce the red highlighted parts.</p>
 
@@ -5039,7 +4954,7 @@ would work.</p>
 
 <p>An example of recognizing the sentence $\text{Book the flight through Houston}$ looks like:</p>
 
-<p><img src="NLP/image-20220221211559902.png" alt="image-20220221211559902" style="zoom: 80%;" /></p>
+<p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220221211559902.png" alt="image-20220221211559902" style="zoom: 80%;" /></p>
 
 <p>notice that:</p>
 
@@ -5054,7 +4969,7 @@ would work.</p>
 
 <p>In specific, each cell $[i,j]$ is filled by considering all the following possibilities:</p>
 
-<p><img src="NLP/image-20220221212351220.png" alt="image-20220221212351220" style="zoom:67%;" /></p>
+<p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220221212351220.png" alt="image-20220221212351220" style="zoom:67%;" /></p>
 
 <p>where for instance:</p>
 
@@ -5064,7 +4979,7 @@ would work.</p>
 
 <p>Hence, the algorithm looks like:</p>
 
-<p><img src="NLP/image-20220221213305457.png" alt="image-20220221213305457" style="zoom:67%;" /></p>
+<p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220221213305457.png" alt="image-20220221213305457" style="zoom:67%;" /></p>
 
 <p>where it is important to note that the highlighted loop is essentially trying the combined pairs in the above figure (13.6).</p>
 
@@ -5091,8 +5006,8 @@ would work.</p>
       </thead>
       <tbody>
         <tr>
-          <td style="text-align: center"><img src="NLP/image-20220221214015066.png" alt="image-20220221214015066" style="zoom:67%;" /></td>
-          <td style="text-align: center"><img src="NLP/image-20220221214034779.png" alt="image-20220221214034779" style="zoom:67%;" /></td>
+          <td style="text-align: center"><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220221214015066.png" alt="image-20220221214015066" style="zoom:67%;" /></td>
+          <td style="text-align: center"><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220221214034779.png" alt="image-20220221214034779" style="zoom:67%;" /></td>
         </tr>
       </tbody>
     </table>
@@ -5102,7 +5017,7 @@ would work.</p>
 
     <p>For example:</p>
 
-    <p><img src="NLP/image-20220221214139022.png" alt="image-20220221214139022" style="zoom: 80%;" /></p>
+    <p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220221214139022.png" alt="image-20220221214139022" style="zoom: 80%;" /></p>
   </li>
 </ol>
 
@@ -5133,9 +5048,11 @@ would work.</p>
   <li>for each cell, look at all possible splits/combinations. There are $O(n)$ of them</li>
 </ul>
 
-<p>Hence, we have:
-\(O(n^3)\)
-as the time complexity.</p>
+<p>Hence, we have:</p>
+
+\[O(n^3)\]
+
+<p>as the time complexity.</p>
 
 <h2 id="problems-with-cfg">Problems with CFG</h2>
 
@@ -5152,9 +5069,11 @@ as the time complexity.</p>
 
 <ul>
   <li>
-    <p>we need subject-verb agreement such as:
-\(\text{I am cold.} \quad vs \quad \text{*I are cold}\)
-both of which will be parsed by the CKY, as both <em>am</em> and <em>are</em> are verb.</p>
+    <p>we need subject-verb agreement such as:</p>
+
+\[\text{I am cold.} \quad vs \quad \text{*I are cold}\]
+
+    <p>both of which will be parsed by the CKY, as both <em>am</em> and <em>are</em> are verb.</p>
 
     <p>To fix issues like this, we need <strong>separate production rules for each combination</strong></p>
 
@@ -5167,9 +5086,11 @@ both of which will be parsed by the CKY, as both <em>am</em> and <em>are</em> ar
     </ul>
   </li>
   <li>
-    <p>pronoun agreement:
-\(\text{I gave him the book.} \quad vs \quad \text{*I gave he the book}\)
-again, we need more rules that what we have to correctly deal with them.</p>
+    <p>pronoun agreement:</p>
+
+\[\text{I gave him the book.} \quad vs \quad \text{*I gave he the book}\]
+
+    <p>again, we need more rules that what we have to correctly deal with them.</p>
   </li>
 </ul>
 
@@ -5177,9 +5098,11 @@ again, we need more rules that what we have to correctly deal with them.</p>
 
 <p><em>For Example</em>: Subcategorization</p>
 
-<p>Specific verbs have specific rules for words after them. For example:
-\(\text{John wants to buy a car.} \quad vs \quad \text{*John wants buy a car.}\)
-Again, more specific rules are needed for different tokens, this cannot be characterized by our current CFG.</p>
+<p>Specific verbs have specific rules for words after them. For example:</p>
+
+\[\text{John wants to buy a car.} \quad vs \quad \text{*John wants buy a car.}\]
+
+<p>Again, more specific rules are needed for different tokens, this cannot be characterized by our current CFG.</p>
 
 <hr />
 
@@ -5206,10 +5129,13 @@ Again, more specific rules are needed for different tokens, this cannot be chara
       <p>$\Sigma$ is a set of <strong>terminal symbols</strong>/an alphabet (finite). This is <strong>disjoint from $N$</strong>.</p>
     </li>
     <li>
-      <p>$R$ is a finite set of ==probabalistic rules== of the form:
-\(A \to \beta[p],\, p\equiv p(A \to \beta |A); \quad \,A\in N;\,\,\beta \in(V\cup\Sigma)^*\)
-which is probabalistic, meaning the <strong>probability of expanding to $\beta$</strong> when <strong>given the non-terminal $A$</strong>. Therefore necessarily we need:
-\(\sum_\beta p(A \to \beta| A)=1\)</p>
+      <p>$R$ is a finite set of ==probabalistic rules== of the form:</p>
+
+\[A \to \beta[p],\, p\equiv p(A \to \beta |A); \quad \,A\in N;\,\,\beta \in(V\cup\Sigma)^*\]
+
+      <p>which is probabalistic, meaning the <strong>probability of expanding to $\beta$</strong> when <strong>given the non-terminal $A$</strong>. Therefore necessarily we need:</p>
+
+\[\sum_\beta p(A \to \beta| A)=1\]
     </li>
     <li>
       <p>$S \in N$ is the <strong>start</strong> variable</p>
@@ -5221,33 +5147,18 @@ which is probabalistic, meaning the <strong>probability of expanding to $\beta$<
 
 <p><em>For Example</em></p>
 
-<p><img src="NLP/image-20220223223442662.png" alt="image-20220223223442662" style="zoom:67%;" /></p>
+<p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220223223442662.png" alt="image-20220223223442662" style="zoom:67%;" /></p>
 
-<table>
-  <tbody>
-    <tr>
-      <td>and notice that, for instance $\sum_\beta p(S \to \beta</td>
-      <td>S)=1$ is the first three rows of the table.</td>
-    </tr>
-  </tbody>
-</table>
+<p>and notice that, for instance $\sum_\beta p(S \to \beta \vert S)=1$ is the first three rows of the table.</p>
 
-<p>This would be useful because we can define the ==probability of a particular parse tree $T$== of a setnence $S$ being:
-\(P(T,S)=P(T)=\prod_{i=1}^nP(\text{RHS}_i|\text{LHS}_i)\)
-where each rule $i$ is being expressed as $\text{LHS}_i \to \text{RHS}_i$.</p>
+<p>This would be useful because we can define the ==probability of a particular parse tree $T$== of a setnence $S$ being:</p>
+
+\[P(T,S)=P(T)=\prod_{i=1}^nP(\text{RHS}_i|\text{LHS}_i)\]
+
+<p>where each rule $i$ is being expressed as $\text{LHS}_i \to \text{RHS}_i$.</p>
 
 <ul>
-  <li>
-    <table>
-      <tbody>
-        <tr>
-          <td>$P(T,S)=P(S</td>
-          <td>T)P(T)=P(T)$ since given the tree $P(S</td>
-          <td>T)=1$ includes all words of the sentence.</td>
-        </tr>
-      </tbody>
-    </table>
-  </li>
+  <li>$P(T,S)=P(S\vert T)P(T)=P(T)$ since given the tree $P(S\vert T)=1$ includes all words of the sentence.</li>
   <li>so all we need to do it to <strong>multiply probabilities of each of the rules</strong> used in the derivation, to get a score/probability of a parse tree $P(T)$!.</li>
 </ul>
 
@@ -5262,15 +5173,15 @@ where each rule $i$ is being expressed as $\text{LHS}_i \to \text{RHS}_i$.</p>
   </thead>
   <tbody>
     <tr>
-      <td style="text-align: center"><img src="NLP/image-20220223224338903.png" alt="image-20220223224338903" /></td>
-      <td style="text-align: center"><img src="NLP/image-20220223224343499.png" alt="image-20220223224343499" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220223224338903.png" alt="image-20220223224338903" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220223224343499.png" alt="image-20220223224343499" /></td>
     </tr>
   </tbody>
 </table>
 
 <p>And as an exercise, make sure the following is correct:</p>
 
-<p><img src="NLP/image-20220223224426107.png" alt="image-20220223224426107" style="zoom:67%;" /></p>
+<p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220223224426107.png" alt="image-20220223224426107" style="zoom:67%;" /></p>
 
 <p>Then, with the single capability of providing a score to a parse tree, we can do:</p>
 
@@ -5282,9 +5193,11 @@ where each rule $i$ is being expressed as $\text{LHS}_i \to \text{RHS}_i$.</p>
 
 <h3 id="pcfg-most-likely-derivation">PCFG Most Likely Derivation</h3>
 
-<p>With the ability to assign a score to a tree $T$, we can basically do <strong>disambiguation</strong> by picking the most probable:
-\(\hat{T}(S) = \arg\max_T P(T|S)=\arg\max_T P(T,S)=\arg\max_T P(T)\)
-since $P(S)$ is a constant, and $P(T,S)=P(T)$. Baically we just choose the parse with highest probability.</p>
+<p>With the ability to assign a score to a tree $T$, we can basically do <strong>disambiguation</strong> by picking the most probable:</p>
+
+\[\hat{T}(S) = \arg\max_T P(T|S)=\arg\max_T P(T,S)=\arg\max_T P(T)\]
+
+<p>since $P(S)$ is a constant, and $P(T,S)=P(T)$. Baically we just choose the parse with highest probability.</p>
 
 <p>Then, the algorithms for computing the most likely parse are <strong>simple extensions</strong> of the standard algorithms for parsing, i.e. <strong>augmenting CKY algorithm with probabilities</strong>.</p>
 
@@ -5315,15 +5228,15 @@ since $P(S)$ is a constant, and $P(T,S)=P(T)$. Baically we just choose the parse
   </thead>
   <tbody>
     <tr>
-      <td style="text-align: center"><img src="NLP/image-20220223230424007.png" alt="image-20220223230424007" style="zoom:67%;" /></td>
-      <td style="text-align: center"><img src="NLP/image-20220223230433792.png" alt="image-20220223230433792" style="zoom: 50%;" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220223230424007.png" alt="image-20220223230424007" style="zoom:67%;" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220223230433792.png" alt="image-20220223230433792" style="zoom: 50%;" /></td>
     </tr>
   </tbody>
 </table>
 
 <p>And the algorithm is simply:</p>
 
-<p><img src="NLP/image-20220223233120282.png" alt="image-20220223233120282" style="zoom:67%;" /></p>
+<p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220223233120282.png" alt="image-20220223233120282" style="zoom:67%;" /></p>
 
 <p>as compared to the original CKY, which is basically <strong>concatenating</strong> each rule $A_i$ at the cell $T[i,j]$.</p>
 
@@ -5333,7 +5246,7 @@ since $P(S)$ is a constant, and $P(T,S)=P(T)$. Baically we just choose the parse
 
 <p>For a better visualization, at cell $T[1,4]$, the will do:</p>
 
-<p><img src="NLP/image-20220223233727351.png" alt="image-20220223233727351" style="zoom: 67%;" /></p>
+<p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220223233727351.png" alt="image-20220223233727351" style="zoom: 67%;" /></p>
 
 <p>for every possible rule $A_i \to …$, and each cell $T[1,4,A_i]$ records the best arrow combination for rule $A_i$ (e.g. which of the two purple is better for rule $A_1$ is recorded at $T[1,4,A_1]$, and so on for $A_2$…)</p>
 
@@ -5341,10 +5254,11 @@ since $P(S)$ is a constant, and $P(T,S)=P(T)$. Baically we just choose the parse
 
 <p><em>For Example</em>: Convert CFG Probability</p>
 
-<p><img src="NLP/image-20220223231013212.png" alt="image-20220223231013212" style="zoom:67%;" /></p>
+<p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220223231013212.png" alt="image-20220223231013212" style="zoom:67%;" /></p>
 
-<p>Notice how the red boxes is converted to the red boxes on the right, while the yellow highlighted part obeyed that:
-\(\sum_\beta P(A\to \beta |A)=1\)</p>
+<p>Notice how the red boxes is converted to the red boxes on the right, while the yellow highlighted part obeyed that:</p>
+
+\[\sum_\beta P(A\to \beta |A)=1\]
 
 <h3 id="pcfg-observation-likelihood">PCFG Observation Likelihood</h3>
 
@@ -5366,7 +5280,7 @@ since $P(S)$ is a constant, and $P(T,S)=P(T)$. Baically we just choose the parse
 
 <p>Therefore, the algorithm is:</p>
 
-<p><img src="NLP/image-20220223234622363.png" alt="image-20220223234622363" style="zoom: 67%;" /></p>
+<p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220223234622363.png" alt="image-20220223234622363" style="zoom: 67%;" /></p>
 
 <p>where notice that:</p>
 
@@ -5381,9 +5295,11 @@ since $P(S)$ is a constant, and $P(T,S)=P(T)$. Baically we just choose the parse
 
 <ul>
   <li>
-    <p>when given some <strong>labelled</strong> training corpus (i.e. Treebank corpus, where parse trees are given), we just need to do <strong>counts</strong>. This is as simple as:
-\(P(A \to \beta |A) = \frac{\text{Count}(A \to \beta)}{\text{Count}(A)}\)
-again, since it is counts, we will need <strong>smoothing techniques</strong>.</p>
+    <p>when given some <strong>labelled</strong> training corpus (i.e. Treebank corpus, where parse trees are given), we just need to do <strong>counts</strong>. This is as simple as:</p>
+
+\[P(A \to \beta |A) = \frac{\text{Count}(A \to \beta)}{\text{Count}(A)}\]
+
+    <p>again, since it is counts, we will need <strong>smoothing techniques</strong>.</p>
   </li>
   <li>
     <p>if we don’t have a treebank but we do have a (non-probabilistic) parser, we can <strong>generate the counts and probabilities</strong> we need by</p>
@@ -5443,25 +5359,31 @@ again, since it is counts, we will need <strong>smoothing techniques</strong>.</
 
 <p>For example, in English it turns out that <code class="language-plaintext highlighter-rouge">NPs </code> that are syntactic subjects are far more likely to be <strong>pronouns</strong>, and <code class="language-plaintext highlighter-rouge">NPs </code>that are syntactic objects are far more likely to be <strong>non-pronominal</strong>:</p>
 
-<p><img src="NLP/image-20220228210117439.png" alt="image-20220228210117439" style="zoom: 67%;" /></p>
+<p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220228210117439.png" alt="image-20220228210117439" style="zoom: 67%;" /></p>
 
-<p>and there is no way to represent this in CFG as it is context free, so all we can do is:
-\(\text{NP} \to \text{DT  NN}, \quad 0.28 \\
-\text{NP} \to \text{PN}, \quad 0.25\)
-instead of something like “$\text{NP} \to \text{DT  NN}= 0.91 $ if it is in subject position”.</p>
+<p>and there is no way to represent this in CFG as it is context free, so all we can do is:</p>
+
+\[\text{NP} \to \text{DT  NN}, \quad 0.28 \\
+\text{NP} \to \text{PN}, \quad 0.25\]
+
+<p>instead of something like “$\text{NP} \to \text{DT  NN}= 0.91$ if it is in subject position”.</p>
 
 <h3 id="pcfg-lexical-dependencies-problem">PCFG Lexical Dependencies Problem</h3>
 
 <p>A second class of problems with PCFGs is their lack of sensitivity to the words in the parse tree.</p>
 
-<p>For example, consider the following problem of <strong><code class="language-plaintext highlighter-rouge">PP</code> attachment</strong>: should it be to <code class="language-plaintext highlighter-rouge">VP</code> or <code class="language-plaintext highlighter-rouge">NP</code>? We have the following rules:
-\(VP \to VBD\,\,NP\,\,PP\)
-and
-\(VP \to VBD \,\, NP\\
-NP \to NP \,\, PP\)
-It turns out that in some specific cases, the <strong>correct answer is with <code class="language-plaintext highlighter-rouge">VP</code></strong>, but in other cases, the correct answer is with <strong>NP</strong>:</p>
+<p>For example, consider the following problem of <strong><code class="language-plaintext highlighter-rouge">PP</code> attachment</strong>: should it be to <code class="language-plaintext highlighter-rouge">VP</code> or <code class="language-plaintext highlighter-rouge">NP</code>? We have the following rules:</p>
 
-<p><img src="NLP/image-20220228211200751.png" alt="image-20220228211200751" style="zoom: 50%;" /></p>
+\[VP \to VBD\,\,NP\,\,PP\]
+
+<p>and</p>
+
+\[VP \to VBD \,\, NP\\
+NP \to NP \,\, PP\]
+
+<p>It turns out that in some specific cases, the <strong>correct answer is with <code class="language-plaintext highlighter-rouge">VP</code></strong>, but in other cases, the correct answer is with <strong>NP</strong>:</p>
+
+<p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220228211200751.png" alt="image-20220228211200751" style="zoom: 50%;" /></p>
 
 <p>And with correct answer being with NP is when you analyze the sentence “<em>fishermen caught tons of herring</em>”, so that <em>of</em> is attached to <em>tons</em>, which is <code class="language-plaintext highlighter-rouge">NP</code> instead of attaching to <code class="language-plaintext highlighter-rouge">caught</code>.</p>
 
@@ -5483,15 +5405,17 @@ It turns out that in some specific cases, the <strong>correct answer is with <co
 <p>Recall that the problem is CFG is context-free: what if <code class="language-plaintext highlighter-rouge">NPs </code> in <strong>subject</strong> position tend to be <strong>pronouns</strong>, whereas <code class="language-plaintext highlighter-rouge">NPs </code> in <strong>object</strong> position tend to have full lexical (<strong>non-pronominal</strong>) form.</p>
 
 <blockquote>
-  <p>One idea would be to split the NP non-terminal into two versions: one for subjects, one for objects: $NP_{\text{subject}}$ and $NP_{\text{object}}$. Then we can have:
-\(NP_{\text{subject}} \to PR\\
-NP_{\text{object}} \to PR\)
-with two probability.</p>
+  <p>One idea would be to split the NP non-terminal into two versions: one for subjects, one for objects: $NP_{\text{subject}}$ and $NP_{\text{object}}$. Then we can have:</p>
+
+\[NP_{\text{subject}} \to PR\\
+NP_{\text{object}} \to PR\]
+
+  <p>with two probability.</p>
 </blockquote>
 
 <p>One way to implement this would be to do <strong>parent annotation</strong></p>
 
-<p><img src="NLP/image-20220228214223666.png" alt="image-20220228214223666" style="zoom: 50%;" /></p>
+<p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220228214223666.png" alt="image-20220228214223666" style="zoom: 50%;" /></p>
 
 <p>where, except for pre-terminal nodes, each non-terminal is labelled by <code class="language-plaintext highlighter-rouge">X^Y</code> where <code class="language-plaintext highlighter-rouge">Y</code> is the parent.</p>
 
@@ -5519,26 +5443,34 @@ with two probability.</p>
   </ul>
 </blockquote>
 
-<p>For instance, instead of $VP \to VBD \,\, NP\,\,PP$ we have:
-\(VP(\text{dumped}) \to VBD(\text{dumped}) \,\, NP(\text{sacks})\,\,PP(\text{into})\)
-for the following tree:</p>
+<p>For instance, instead of $VP \to VBD \,\, NP\,\,PP$ we have:</p>
 
-<p><img src="NLP/image-20220228215843081.png" alt="image-20220228215843081" style="zoom: 67%;" /></p>
+\[VP(\text{dumped}) \to VBD(\text{dumped}) \,\, NP(\text{sacks})\,\,PP(\text{into})\]
 
-<p>which also made a further extension to <strong>include the head word tag</strong>, e.g.
-\(VP(\text{dumped}, VBD) \to VBD(\text{dumped}, VBD) \,\, NP(\text{sacks},NNS)\,\,PP(\text{into},P)\)
-notice that the rules here have to be split into two sets:</p>
+<p>for the following tree:</p>
+
+<p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220228215843081.png" alt="image-20220228215843081" style="zoom: 67%;" /></p>
+
+<p>which also made a further extension to <strong>include the head word tag</strong>, e.g.</p>
+
+\[VP(\text{dumped}, VBD) \to VBD(\text{dumped}, VBD) \,\, NP(\text{sacks},NNS)\,\,PP(\text{into},P)\]
+
+<p>notice that the rules here have to be split into two sets:</p>
 
 <ul>
   <li>lexical rules will be <strong>deterministic</strong>, since $p[DT(\text{a},DT) \to \text{a}] = 1$</li>
   <li>internal rules with be <strong>probabilistic</strong> as usual. Those are the parameters we need to train.</li>
 </ul>
 
-<p>Then, to train it, we can imagine this as a simple context-free grammar with <strong>many copies of each rule</strong>, one copy for each possible headword/head tag for each constituent. For instance, the rule:
-\(VP(\text{dumped}, VBD) \to VBD(\text{dumped}, VBD) \,\, NP(\text{sacks},NNS)\,\,PP(\text{into},P)\)
-<em>should be estimated</em> by:
-\(\frac{\text{Count}[VP(\text{dumped}, VBD) \to VBD(\text{dumped}, VBD) \,\, NP(\text{sacks},NNS)\,\,PP(\text{into},P)]}{\text{Count}[VP(\text{dumped}, VBD) ]}\)
-but obviously this is <strong>too specific</strong>. The idea of lexicalized parsing is to make some further <strong>independence assumptions</strong> to break down each rule so that we would estimate the probability, and an example would be the <strong>Collins Parser</strong>.</p>
+<p>Then, to train it, we can imagine this as a simple context-free grammar with <strong>many copies of each rule</strong>, one copy for each possible headword/head tag for each constituent. For instance, the rule:</p>
+
+\[VP(\text{dumped}, VBD) \to VBD(\text{dumped}, VBD) \,\, NP(\text{sacks},NNS)\,\,PP(\text{into},P)\]
+
+<p><em>should be estimated</em> by:</p>
+
+\[\frac{\text{Count}[VP(\text{dumped}, VBD) \to VBD(\text{dumped}, VBD) \,\, NP(\text{sacks},NNS)\,\,PP(\text{into},P)]}{\text{Count}[VP(\text{dumped}, VBD) ]}\]
+
+<p>but obviously this is <strong>too specific</strong>. The idea of lexicalized parsing is to make some further <strong>independence assumptions</strong> to break down each rule so that we would estimate the probability, and an example would be the <strong>Collins Parser</strong>.</p>
 
 <blockquote>
   <p>Although this can make <strong>disambiguation</strong> between parses work even better, accurately estimating parameters (i.e. probability of each of those production rules) on such a large number of very specialized productions could ==require enormous amounts of treebank data==.</p>
@@ -5555,11 +5487,13 @@ but obviously this is <strong>too specific</strong>. The idea of lexicalized par
   <li>move to the right side of the head and start generating dependents there until we generate <code class="language-plaintext highlighter-rouge">STOP</code>.</li>
 </ol>
 
-<p>Therefore, consider estimating:
-\(P[VP(\text{dumped}, VBD) \to \text{STOP}\,\,\,\, VBD(\text{dumped}, VBD) \,\, NP(\text{sacks},NNS)\,\,PP(\text{into},P)\,\,\,\, \text{STOP}]\)
-Then the generative procedure is:</p>
+<p>Therefore, consider estimating:</p>
 
-<p><img src="NLP/image-20220228222206905.png" alt="image-20220228222206905" style="zoom: 67%;" /></p>
+\[P[VP(\text{dumped}, VBD) \to \text{STOP}\,\,\,\, VBD(\text{dumped}, VBD) \,\, NP(\text{sacks},NNS)\,\,PP(\text{into},P)\,\,\,\, \text{STOP}]\]
+
+<p>Then the generative procedure is:</p>
+
+<p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220228222206905.png" alt="image-20220228222206905" style="zoom: 67%;" /></p>
 
 <p>where notice that</p>
 
@@ -5570,18 +5504,11 @@ Then the generative procedure is:</p>
 
 <p>Then, we can estimate the probability by a product:</p>
 
-<p><img src="NLP/image-20220228222314839.png" alt="image-20220228222314839" style="zoom: 67%;" /></p>
+<p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220228222314839.png" alt="image-20220228222314839" style="zoom: 67%;" /></p>
 
-<table>
-  <tbody>
-    <tr>
-      <td>and each smaller probability can be estimated using counts, for example $P_R[NP(\text{sacks})</td>
-      <td>VP,VBD, \text{dumped}]$ will be estimated by:</td>
-    </tr>
-  </tbody>
-</table>
+<p>and each smaller probability can be estimated using counts, for example $P_R[NP(\text{sacks}) \vert  VP,VBD, \text{dumped}]$ will be estimated by:</p>
 
-<p><img src="NLP/image-20220228222545521.png" alt="image-20220228222545521" style="zoom: 80%;" /></p>
+<p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220228222545521.png" alt="image-20220228222545521" style="zoom: 80%;" /></p>
 
 <p>which is much less specific.</p>
 
@@ -5599,18 +5526,22 @@ Then the generative procedure is:</p>
 
 <p>For instance:</p>
 
-<p><img src="NLP/image-20220228170603417.png" alt="image-20220228170603417" style="zoom: 67%;" /></p>
+<p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220228170603417.png" alt="image-20220228170603417" style="zoom: 67%;" /></p>
 
 <p>so in short a constituent basically corresponds to the <strong>word/leaves it entails + the label itself</strong>. Then, we can measure <strong>precision and recall</strong></p>
 
-<p><img src="NLP/image-20220228224205589.png" alt="image-20220228224205589" style="zoom:67%;" /></p>
+<p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220228224205589.png" alt="image-20220228224205589" style="zoom:67%;" /></p>
 
-<p>This is essentially related to the evaluation metric used in <a href="#Chunking Algorithms">Chunking Algorithms</a>. Therefore, the in this example will have:
-\(\text{Recall} = 10/12\\
-\text{Precision} = 10/12\)
-And normally we report the $F_1$ score being:
-\(F_1 = \frac{2P\cdot R}{P+R}\)
-Results of current state-of-the-art systems on the English Penn WSJ treebank are $91\%-92\%$ labeled $F_1$.</p>
+<p>This is essentially related to the evaluation metric used in <a href="#Chunking Algorithms">Chunking Algorithms</a>. Therefore, the in this example will have:</p>
+
+\[\text{Recall} = 10/12\\
+\text{Precision} = 10/12\]
+
+<p>And normally we report the $F_1$ score being:</p>
+
+\[F_1 = \frac{2P\cdot R}{P+R}\]
+
+<p>Results of current state-of-the-art systems on the English Penn WSJ treebank are $91\%-92\%$ labeled $F_1$.</p>
 
 <hr />
 
@@ -5625,9 +5556,11 @@ Results of current state-of-the-art systems on the English Penn WSJ treebank are
 <p>Another idea for building a parser would be to think about <strong>how human parses</strong> a sentence.</p>
 
 <blockquote>
-  <p>Psycholinguistic studies show that words that are <strong>more probable given the preceding</strong> lexical and syntactic <strong>context are read faster.</strong> For instance:
-\(\text{John put the dog inthe pen with a \textbf{lock}}.\)
-where the last word should come pretty fast.</p>
+  <p>Psycholinguistic studies show that words that are <strong>more probable given the preceding</strong> lexical and syntactic <strong>context are read faster.</strong> For instance:</p>
+
+\[\text{John put the dog inthe pen with a \textbf{lock}}.\]
+
+  <p>where the last word should come pretty fast.</p>
 </blockquote>
 
 <p>Then, modeling these effects requires an ==incremental statistical parser== that incorporates one word at a time into a continuously growing parse tree.</p>
@@ -5636,17 +5569,22 @@ where the last word should come pretty fast.</p>
 
 <ul>
   <li>
-    <p><strong>garden path sentences</strong>: people are confused by sentences that seem to have a particular syntactic structure but then <em>suddenly violate this structure</em>: a grammatically correct sentence that starts in such a way that a reader’s most likely interpretation will be incorrect. For instance:
-\(\text{The old man the boat.}\)
-When we read <em>old</em> followed by <em>man</em> they assume that the phrase <em>the old man</em> is to be interpreted as <em>determiner</em> – <em>adjective</em> – <em>noun</em>. When readers encounter another <em>the</em> following the supposed noun <em>man</em> (rather than the expected verb, as in e.g. <em>The old man washed the boat</em>),[<a href="https://en.wikipedia.org/wiki/Garden-path_sentence#cite_note-4">a]</a> they are <strong>forced to re-analyze the sentence.</strong></p>
+    <p><strong>garden path sentences</strong>: people are confused by sentences that seem to have a particular syntactic structure but then <em>suddenly violate this structure</em>: a grammatically correct sentence that starts in such a way that a reader’s most likely interpretation will be incorrect. For instance:</p>
+
+\[\text{The old man the boat.}\]
+
+    <p>When we read <em>old</em> followed by <em>man</em> they assume that the phrase <em>the old man</em> is to be interpreted as <em>determiner</em> – <em>adjective</em> – <em>noun</em>. When readers encounter another <em>the</em> following the supposed noun <em>man</em> (rather than the expected verb, as in e.g. <em>The old man washed the boat</em>),[<a href="https://en.wikipedia.org/wiki/Garden-path_sentence#cite_note-4">a]</a> they are <strong>forced to re-analyze the sentence.</strong></p>
 
     <p>Incremental computational parsers can try to predict and explain the problems encountered parsing such sentences.</p>
   </li>
   <li>
-    <p><strong>nested expressions</strong>: nested expressions are hard for humans to process beyond 1 or 2 levels of nesting, for instance:
-\(\text{The rat the cat the dog the boy owned bit chased died.}\)
-to solve this, one way is to use <strong>center embedding</strong>, which is computing the equivalent “tail embedded” (tail recursive) versions are easier to understand:
-\(\text{The boy owned a dog that bit a cat that chased a rat that died.}\)</p>
+    <p><strong>nested expressions</strong>: nested expressions are hard for humans to process beyond 1 or 2 levels of nesting, for instance:</p>
+
+\[\text{The rat the cat the dog the boy owned bit chased died.}\]
+
+    <p>to solve this, one way is to use <strong>center embedding</strong>, which is computing the equivalent “tail embedded” (tail recursive) versions are easier to understand:</p>
+
+\[\text{The boy owned a dog that bit a cat that chased a rat that died.}\]
   </li>
 </ul>
 
@@ -5692,7 +5630,7 @@ to solve this, one way is to use <strong>center embedding</strong>, which is com
 <blockquote>
   <p>Here, syntactic structure of a sentence is described solely in terms of <strong>directed binary grammatical relations</strong> between the words, as in the following dependency parse:</p>
 
-  <p><img src="NLP/image-20220302183610409.png" alt="image-20220302183610409" style="zoom: 80%;" /></p>
+  <p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220302183610409.png" alt="image-20220302183610409" style="zoom: 80%;" /></p>
 
   <p>Relations among the words are illustrated above the sentence with <strong>directed, labeled arcs</strong> from heads to dependents.</p>
 </blockquote>
@@ -5701,7 +5639,7 @@ to solve this, one way is to use <strong>center embedding</strong>, which is com
 
 <p>For example:</p>
 
-<p><img src="NLP/image-20220302184449124.png" alt="image-20220302184449124" style="zoom: 67%;" /></p>
+<p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220302184449124.png" alt="image-20220302184449124" style="zoom: 67%;" /></p>
 
 <p>notice that:</p>
 
@@ -5725,7 +5663,7 @@ to solve this, one way is to use <strong>center embedding</strong>, which is com
 
 <p>When each verb is encountered in the stack,</p>
 
-<p><img src="NLP/image-20220302170518958.png" alt="image-20220302170518958" style="zoom:33%;" /></p>
+<p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220302170518958.png" alt="image-20220302170518958" style="zoom:33%;" /></p>
 
 <h2 id="neural-dependency-parser">Neural Dependency Parser</h2>
 
@@ -5735,7 +5673,7 @@ to solve this, one way is to use <strong>center embedding</strong>, which is com
   <li>e.g. whether if you shoud left reduce or right reduce</li>
 </ul>
 
-<p><img src="NLP/image-20220302171055831.png" alt="image-20220302171055831" style="zoom:33%;" /></p>
+<p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220302171055831.png" alt="image-20220302171055831" style="zoom:33%;" /></p>
 
 <p>Use  features (words, POS tags, arc labels) extracted from the current stack, buffer, and arcs as context.</p>
 

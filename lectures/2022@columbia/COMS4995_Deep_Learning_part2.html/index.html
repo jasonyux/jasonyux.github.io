@@ -47,17 +47,22 @@
       <div class="wrapper">
         <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
   <head>
-	<script>
-		MathJax = {
-		  tex: {
-			inlineMath: [['$', '$'], ['\\(', '\\)']],
-			displayMath: [['$$', '$$'], ['\\[', '\\]']]
-		  }
-		};
-	</script>
-	<script id="MathJax-script" async
-		src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
-	</script>
+  <script>
+    MathJax = {
+      // 
+      loader: {
+        load: ['[tex]/ams', '[tex]/textmacros', '[tex]/boldsymbol']
+      },
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        packages: {'[+]': ['ams', 'textmacros', 'boldsymbol']}
+      }
+    };
+  </script>
+  <script id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+  </script>
   </head>
   <header class="post-header">
     <h1 class="post-title p-name" itemprop="name headline">COMS4995 Deep Learning part2</h1>
@@ -73,11 +78,11 @@
 
 <p>The idea is to, given some task and its dataset, find a ML algorithm (including the five pieces shown below) that solves a problem</p>
 
-<p><img src="DL_notes_part2/image-20220322142544019.png" alt="image-20220322142544019" style="zoom:50%;" /></p>
+<p><img src="/lectures/images/2022-04-21-COMS4995_Deep_Learning_part2/image-20220322142544019.png" alt="image-20220322142544019" style="zoom:50%;" /></p>
 
 <p>where the training data/task/solution could come from Kaggle, as a label composed of the following 5 pieces:</p>
 
-<p><img src="DL_notes_part2/image-20220322142138049.png" alt="image-20220322142138049" style="zoom: 50%;" /></p>
+<p><img src="/lectures/images/2022-04-21-COMS4995_Deep_Learning_part2/image-20220322142138049.png" alt="image-20220322142138049" style="zoom: 50%;" /></p>
 
 <ul>
   <li><strong>pre-processing</strong>: which imputation method if needed?</li>
@@ -93,23 +98,25 @@
   <li>
     <p>automated <strong>activation function</strong> finding:</p>
 
-    <p><img src="DL_notes_part2/image-20220322152105804.png" alt="image-20220322152105804" style="zoom: 60%;" /></p>
+    <p><img src="/lectures/images/2022-04-21-COMS4995_Deep_Learning_part2/image-20220322152105804.png" alt="image-20220322152105804" style="zoom: 60%;" /></p>
 
     <p>where essentially we given in <em>building blocks</em> to compose some activation function, and ask it to find a best one</p>
   </li>
   <li>
     <p>automated <strong>optimizer</strong> finding, where again we feed in ==building blocks== for an optimizer</p>
 
-    <p><img src="DL_notes_part2/image-20220322152256184.png" alt="image-20220322152256184" style="zoom: 75%;" /></p>
+    <p><img src="/lectures/images/2022-04-21-COMS4995_Deep_Learning_part2/image-20220322152256184.png" alt="image-20220322152256184" style="zoom: 75%;" /></p>
 
-    <p>and under some tasks, the best solution could be:
-\(\text{PowerSign} = \alpha^{f(t)*\text{sign}(g)*\text{sign}(m)}*g\)
-for $g$ being gradient and $m$ being momentum.</p>
+    <p>and under some tasks, the best solution could be:</p>
+
+\[\text{PowerSign} = \alpha^{f(t)*\text{sign}(g)*\text{sign}(m)}*g\]
+
+    <p>for $g$ being gradient and $m$ being momentum.</p>
   </li>
   <li>
     <p>automated <strong>data augmentation</strong> finding. Again, consider a space of possible actions:</p>
 
-    <p><img src="DL_notes_part2/image-20220322152536897.png" alt="image-20220322152536897" style="zoom:80%;" /></p>
+    <p><img src="/lectures/images/2022-04-21-COMS4995_Deep_Learning_part2/image-20220322152536897.png" alt="image-20220322152536897" style="zoom:80%;" /></p>
   </li>
   <li>
     <p>automated algorithm selection</p>
@@ -134,7 +141,7 @@ for $g$ being gradient and $m$ being momentum.</p>
   <li>output a ML system that you can use to do predictions</li>
 </ul>
 
-<p><img src="DL_notes_part2/image-20220322152751963.png" alt="image-20220322152751963" style="zoom: 50%;" /></p>
+<p><img src="/lectures/images/2022-04-21-COMS4995_Deep_Learning_part2/image-20220322152751963.png" alt="image-20220322152751963" style="zoom: 50%;" /></p>
 
 <p>Some nowadays implemented ones look like:</p>
 
@@ -173,7 +180,7 @@ for $g$ being gradient and $m$ being momentum.</p>
 
 <p>Hence we consider:</p>
 
-<p><img src="DL_notes_part2/image-20220322153446273.png" alt="image-20220322153446273" style="zoom: 50%;" /></p>
+<p><img src="/lectures/images/2022-04-21-COMS4995_Deep_Learning_part2/image-20220322153446273.png" alt="image-20220322153446273" style="zoom: 50%;" /></p>
 
 <p>for instance, metadata features for dataset include:</p>
 
@@ -208,8 +215,8 @@ for $g$ being gradient and $m$ being momentum.</p>
   </thead>
   <tbody>
     <tr>
-      <td style="text-align: center"><img src="DL_notes_part2/image-20220322153943284.png" alt="image-20220322153943284" style="zoom:50%;" /></td>
-      <td style="text-align: center"><img src="DL_notes_part2/image-20220322153946013.png" alt="image-20220322153946013" style="zoom:50%;" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2022-04-21-COMS4995_Deep_Learning_part2/image-20220322153943284.png" alt="image-20220322153943284" style="zoom:50%;" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2022-04-21-COMS4995_Deep_Learning_part2/image-20220322153946013.png" alt="image-20220322153946013" style="zoom:50%;" /></td>
     </tr>
   </tbody>
 </table>
@@ -231,7 +238,7 @@ for $g$ being gradient and $m$ being momentum.</p>
   <li>
     <p><strong>adaptive</strong> search in certain regions where we found good candidates:</p>
 
-    <p><img src="DL_notes_part2/image-20220324131827277.png" alt="image-20220324131827277" style="zoom: 50%;" /></p>
+    <p><img src="/lectures/images/2022-04-21-COMS4995_Deep_Learning_part2/image-20220324131827277.png" alt="image-20220324131827277" style="zoom: 50%;" /></p>
 
     <p>i.e. make the search more dense in that area</p>
   </li>
@@ -249,11 +256,13 @@ for $g$ being gradient and $m$ being momentum.</p>
   <p>Instead of finding the algorithm and the hyperparameters, consider <strong>finding them jointly</strong>.</p>
 </blockquote>
 
-<p>Given a dataset $D$, find the algorithm $A$ (e.g. linear regression, decision tree, etc) <strong>and</strong> a hyperparameter such that we <strong>minimize the loss of $A$ on $D_{test}$</strong> when trained on $D_{train}$:
-\(A^*_{\theta^*} = \arg\min_{A,\theta} \sum \mathcal{L}(A_\theta, D_{train}, D_{valid})\)
-The algorithms and hyperparameters you can search through could be:</p>
+<p>Given a dataset $D$, find the algorithm $A$ (e.g. linear regression, decision tree, etc) <strong>and</strong> a hyperparameter such that we <strong>minimize the loss of $A$ on $D_{test}$</strong> when trained on $D_{train}$:</p>
 
-<p><img src="DL_notes_part2/image-20220324133718072.png" alt="image-20220324133718072" style="zoom:50%;" /></p>
+\[A^*_{\theta^*} = \arg\min_{A,\theta} \sum \mathcal{L}(A_\theta, D_{train}, D_{valid})\]
+
+<p>The algorithms and hyperparameters you can search through could be:</p>
+
+<p><img src="/lectures/images/2022-04-21-COMS4995_Deep_Learning_part2/image-20220324133718072.png" alt="image-20220324133718072" style="zoom:50%;" /></p>
 
 <h2 id="ensemble-of-models">Ensemble of Models</h2>
 
@@ -269,8 +278,9 @@ The algorithms and hyperparameters you can search through could be:</p>
   <li>take $\arg\max_j$ to split out the prediction</li>
 </ul>
 
-<p>\(y = \arg\max_j \frac{1}{m} \left( \sum_{i=1}^m p_i^{(j)} \right)\)
-This would be the <strong>simplest form</strong> of assembling. Other ways would be <strong>stacking</strong></p>
+\[y = \arg\max_j \frac{1}{m} \left( \sum_{i=1}^m p_i^{(j)} \right)\]
+
+<p>This would be the <strong>simplest form</strong> of assembling. Other ways would be <strong>stacking</strong></p>
 
 <h3 id="model-stacking">Model Stacking</h3>
 
@@ -298,15 +308,15 @@ This would be the <strong>simplest form</strong> of assembling. Other ways would
   </thead>
   <tbody>
     <tr>
-      <td style="text-align: center"><img src="DL_notes_part2/image-20220324154011972.png" alt="image-20220324154011972" /></td>
-      <td style="text-align: center"><img src="DL_notes_part2/image-20220324154344375.png" alt="image-20220324154344375" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2022-04-21-COMS4995_Deep_Learning_part2/image-20220324154011972.png" alt="image-20220324154011972" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2022-04-21-COMS4995_Deep_Learning_part2/image-20220324154344375.png" alt="image-20220324154344375" /></td>
     </tr>
   </tbody>
 </table>
 
 <p>Then the idea is to take the predictions from each model as a <strong>meta-feature</strong> that you can feed in to a super-model:</p>
 
-<p><img src="DL_notes_part2/image-20220324154645301.png" alt="image-20220324154645301" style="zoom: 67%;" /></p>
+<p><img src="/lectures/images/2022-04-21-COMS4995_Deep_Learning_part2/image-20220324154645301.png" alt="image-20220324154645301" style="zoom: 67%;" /></p>
 
 <p>The key idea is so that:</p>
 
@@ -334,8 +344,8 @@ This would be the <strong>simplest form</strong> of assembling. Other ways would
   </thead>
   <tbody>
     <tr>
-      <td style="text-align: center"><img src="DL_notes_part2/image-20220324155629798.png" alt="image-20220324155629798" /></td>
-      <td style="text-align: center"><img src="DL_notes_part2/image-20220324155651998.png" alt="image-20220324155651998" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2022-04-21-COMS4995_Deep_Learning_part2/image-20220324155629798.png" alt="image-20220324155629798" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2022-04-21-COMS4995_Deep_Learning_part2/image-20220324155651998.png" alt="image-20220324155651998" /></td>
     </tr>
   </tbody>
 </table>
@@ -348,7 +358,7 @@ This would be the <strong>simplest form</strong> of assembling. Other ways would
   <li>get feed back to NN controller (update)</li>
 </ul>
 
-<p><img src="DL_notes_part2/image-20220324134011709.png" alt="image-20220324134011709" style="zoom: 50%;" /></p>
+<p><img src="/lectures/images/2022-04-21-COMS4995_Deep_Learning_part2/image-20220324134011709.png" alt="image-20220324134011709" style="zoom: 50%;" /></p>
 
 <h3 id="darpa">DARPA</h3>
 
@@ -380,7 +390,7 @@ This would be the <strong>simplest form</strong> of assembling. Other ways would
   <li>
     <p><strong>Gradient-based</strong>: have differentiable primitives, build a DAG, and optimize end-to-end using backprop:</p>
 
-    <p><img src="DL_notes_part2/image-20220324134352891.png" alt="image-20220324134352891" style="zoom:50%;" /></p>
+    <p><img src="/lectures/images/2022-04-21-COMS4995_Deep_Learning_part2/image-20220324134352891.png" alt="image-20220324134352891" style="zoom:50%;" /></p>
   </li>
   <li>
     <p><strong>Reinforcement-based</strong>: since essentially it is a search in high dimensional space,</p>
@@ -394,21 +404,21 @@ This would be the <strong>simplest form</strong> of assembling. Other ways would
       </thead>
       <tbody>
         <tr>
-          <td style="text-align: center"><img src="DL_notes_part2/image-20220324160954905.png" alt="image-20220324160954905" style="zoom: 80%;" /></td>
-          <td style="text-align: center"><img src="DL_notes_part2/image-20220324161009596.png" alt="image-20220324161009596" style="zoom:80%;" /></td>
+          <td style="text-align: center"><img src="/lectures/images/2022-04-21-COMS4995_Deep_Learning_part2/image-20220324160954905.png" alt="image-20220324160954905" style="zoom: 80%;" /></td>
+          <td style="text-align: center"><img src="/lectures/images/2022-04-21-COMS4995_Deep_Learning_part2/image-20220324161009596.png" alt="image-20220324161009596" style="zoom:80%;" /></td>
         </tr>
       </tbody>
     </table>
 
     <p>in this approach, the <strong>entire pipeline is a single state</strong>. Therefore we need some kind of encoding for the pipeline, which can be done by:</p>
 
-    <p><img src="DL_notes_part2/image-20220324134723681.png" alt="image-20220324134723681" style="zoom:50%;" /></p>
+    <p><img src="/lectures/images/2022-04-21-COMS4995_Deep_Learning_part2/image-20220324134723681.png" alt="image-20220324134723681" style="zoom:50%;" /></p>
   </li>
 </ul>
 
 <p>A brief comparison on performance</p>
 
-<p><img src="DL_notes_part2/image-20220324161321505.png" alt="image-20220324161321505" style="zoom: 67%;" /></p>
+<p><img src="/lectures/images/2022-04-21-COMS4995_Deep_Learning_part2/image-20220324161321505.png" alt="image-20220324161321505" style="zoom: 67%;" /></p>
 
 <p>where the horizontal line is the gradient-based method, we see that RL-based in doing better.</p>
 
@@ -425,8 +435,8 @@ This would be the <strong>simplest form</strong> of assembling. Other ways would
   </thead>
   <tbody>
     <tr>
-      <td style="text-align: center"><img src="DL_notes_part2/image-20220324161652671.png" alt="image-20220324161652671" style="zoom:67%;" /></td>
-      <td style="text-align: center"><img src="DL_notes_part2/image-20220324161712502.png" alt="image-20220324161712502" style="zoom:67%;" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2022-04-21-COMS4995_Deep_Learning_part2/image-20220324161652671.png" alt="image-20220324161652671" style="zoom:67%;" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2022-04-21-COMS4995_Deep_Learning_part2/image-20220324161712502.png" alt="image-20220324161712502" style="zoom:67%;" /></td>
     </tr>
   </tbody>
 </table>
@@ -443,11 +453,11 @@ This would be the <strong>simplest form</strong> of assembling. Other ways would
 
 <p>The performance becomes better</p>
 
-<p><img src="DL_notes_part2/image-20220324135000791.png" alt="image-20220324135000791" style="zoom: 80%;" /></p>
+<p><img src="/lectures/images/2022-04-21-COMS4995_Deep_Learning_part2/image-20220324135000791.png" alt="image-20220324135000791" style="zoom: 80%;" /></p>
 
 <p>In the end, an ablation study is done on using the DNN or not. The result is similar but time performance is drastic</p>
 
-<p><img src="DL_notes_part2/image-20220324162040893.png" alt="image-20220324162040893" style="zoom:67%;" /></p>
+<p><img src="/lectures/images/2022-04-21-COMS4995_Deep_Learning_part2/image-20220324162040893.png" alt="image-20220324162040893" style="zoom:67%;" /></p>
 
 <p>basically just MCTS would be very slow.</p>
 
@@ -467,7 +477,7 @@ This would be the <strong>simplest form</strong> of assembling. Other ways would
   <li>each cell represent rating $Y_{ij}$ a user $j$  gave to item $i$</li>
 </ul>
 
-<p><img src="DL_notes_part2/image-20220324162316215.png" alt="image-20220324162316215" style="zoom:67%;" /></p>
+<p><img src="/lectures/images/2022-04-21-COMS4995_Deep_Learning_part2/image-20220324162316215.png" alt="image-20220324162316215" style="zoom:67%;" /></p>
 
 <p>where this would be a sparse matrix in general as many users won’t see all contents.</p>
 
@@ -477,7 +487,7 @@ This would be the <strong>simplest form</strong> of assembling. Other ways would
 
 <p>In terms of AutoML, we are basically doing:</p>
 
-<p><img src="DL_notes_part2/image-20220324162549833.png" alt="image-20220324162549833" style="zoom:67%;" /></p>
+<p><img src="/lectures/images/2022-04-21-COMS4995_Deep_Learning_part2/image-20220324162549833.png" alt="image-20220324162549833" style="zoom:67%;" /></p>
 
 <p>where if fully filled, we can find the best algorithms given a dataset.</p>
 
@@ -485,9 +495,11 @@ This would be the <strong>simplest form</strong> of assembling. Other ways would
 
 <p><strong>Naive Solution of Filling Matrix:</strong></p>
 
-<p>Let each item have a ==known feature vector== $\vec{x}^{(i)}$. We want to learn some parameters $\theta^{(j)}$ of each user and assume that $\theta^{(j)^T}x^{i}$ would model their preference score. Then:
-\(\min_{\theta^{(j)}} \frac{1}{2} \sum_{i:M_{ij}=1} \left(\theta^{(j)^T}x^{i} - Y_{ij}\right)^2 + \text{Regularize}(\theta^{(j)})\)
-note that since we only know part of the matrix:</p>
+<p>Let each item have a ==known feature vector== $\vec{x}^{(i)}$. We want to learn some parameters $\theta^{(j)}$ of each user and assume that $\theta^{(j)^T}x^{i}$ would model their preference score. Then:</p>
+
+\[\min_{\theta^{(j)}} \frac{1}{2} \sum_{i:M_{ij}=1} \left(\theta^{(j)^T}x^{i} - Y_{ij}\right)^2 + \text{Regularize}(\theta^{(j)})\]
+
+<p>note that since we only know part of the matrix:</p>
 
 <ul>
   <li>$i:M_{ij}=1$ means we are only fitting on the known parts</li>
@@ -496,7 +508,7 @@ note that since we only know part of the matrix:</p>
 
 <p>This model is actually the simple content-based recommendation system</p>
 
-<p><img src="DL_notes_part2/image-20220324163254898.png" alt="image-20220324163254898" style="zoom: 50%;" /></p>
+<p><img src="/lectures/images/2022-04-21-COMS4995_Deep_Learning_part2/image-20220324163254898.png" alt="image-20220324163254898" style="zoom: 50%;" /></p>
 
 <p><strong>Problem</strong>: In tasks AutoML needs to solve, we are usually given a ==unknown/new dataset and task==. I.e. we are having a new item with unknown $\vec{x}^{i}$.</p>
 
@@ -507,15 +519,17 @@ note that since we only know part of the matrix:</p>
   <li>then once you get $\theta^{(j)}$ fit $x^{(i)}$ back</li>
 </ul>
 
-<p>So the entire task can be seen as
-\(\min_{\theta^{(j)},x^{(i)}} \frac{1}{2} \sum_{i:M_{ij}=1} \left(\theta^{(j)^T}x^{i} - Y_{ij}\right)^2 + \text{Regularize}(x^{(i)}) + \text{Regularize}(\theta^{(j)})\)
-which then we can fill in all items in the matrix. Note that:</p>
+<p>So the entire task can be seen as</p>
+
+\[\min_{\theta^{(j)},x^{(i)}} \frac{1}{2} \sum_{i:M_{ij}=1} \left(\theta^{(j)^T}x^{i} - Y_{ij}\right)^2 + \text{Regularize}(x^{(i)}) + \text{Regularize}(\theta^{(j)})\]
+
+<p>which then we can fill in all items in the matrix. Note that:</p>
 
 <ul>
   <li>
     <p>this model only using dot products can be rephrased into a <strong>lower rank decomposition</strong> and imputation</p>
 
-    <p><img src="DL_notes_part2/image-20220324135719482.png" alt="image-20220324135719482" style="zoom: 50%;" /></p>
+    <p><img src="/lectures/images/2022-04-21-COMS4995_Deep_Learning_part2/image-20220324135719482.png" alt="image-20220324135719482" style="zoom: 50%;" /></p>
   </li>
 </ul>
 
@@ -539,7 +553,7 @@ which then we can fill in all items in the matrix. Note that:</p>
 
 <p>It turns out that just using the metadata could do equally well even if you haven’t seen the actual dataset</p>
 
-<p><img src="DL_notes_part2/image-20220324140307276.png" alt="image-20220324140307276" style="zoom:67%;" /></p>
+<p><img src="/lectures/images/2022-04-21-COMS4995_Deep_Learning_part2/image-20220324140307276.png" alt="image-20220324140307276" style="zoom:67%;" /></p>
 
 <p>One potential representation would be computing a <strong>graph embedding</strong>: embedding of dataset that are similar should be close.</p>
 
@@ -552,8 +566,8 @@ which then we can fill in all items in the matrix. Note that:</p>
   </thead>
   <tbody>
     <tr>
-      <td style="text-align: center"><img src="DL_notes_part2/image-20220324180536406.png" alt="image-20220324180536406" style="zoom:67%;" /></td>
-      <td style="text-align: center"><img src="DL_notes_part2/image-20220324140500517.png" alt="image-20220324140500517" style="zoom: 50%;" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2022-04-21-COMS4995_Deep_Learning_part2/image-20220324180536406.png" alt="image-20220324180536406" style="zoom:67%;" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2022-04-21-COMS4995_Deep_Learning_part2/image-20220324140500517.png" alt="image-20220324140500517" style="zoom: 50%;" /></td>
     </tr>
   </tbody>
 </table>
@@ -568,7 +582,7 @@ which then we can fill in all items in the matrix. Note that:</p>
 
 <p>Then you use <strong>assembling</strong> to those AutoML systems as well</p>
 
-<p><img src="DL_notes_part2/image-20220324180807518.png" alt="image-20220324180807518" style="zoom:80%;" /></p>
+<p><img src="/lectures/images/2022-04-21-COMS4995_Deep_Learning_part2/image-20220324180807518.png" alt="image-20220324180807518" style="zoom:80%;" /></p>
 
 <h2 id="bayesian-optimization">Bayesian Optimization</h2>
 
@@ -578,9 +592,11 @@ which then we can fill in all items in the matrix. Note that:</p>
   <p><strong>Goal</strong>: Given some model and a loss function, <strong>select model hyperparameters</strong> such that the loss would be small.</p>
 </blockquote>
 
-<p>We would want:
-\(z^* = \arg\min \mathcal{L}(M_z)\)
-and we want to approximate best hyperparameter $z^*$ that minimizes the loss within only <strong>a few steps $z_1,…,z_n$</strong>.</p>
+<p>We would want:</p>
+
+\[z^* = \arg\min \mathcal{L}(M_z)\]
+
+<p>and we want to approximate best hyperparameter $z^*$ that minimizes the loss within only <strong>a few steps $z_1,…,z_n$</strong>.</p>
 
 <p>The idea is:</p>
 
@@ -592,9 +608,11 @@ and we want to approximate best hyperparameter $z^*$ that minimizes the loss wit
     <p>each time we evaluate $f$ at a new point $z_i\equiv x_i$, we update our model for $f(x)$</p>
   </li>
   <li>
-    <p>use posterior to derive/update <strong>acquisition function $\alpha(x)$</strong>
-\(\alpha(x) = \mu(x) - k \sigma(x)\)
-where $\mu(x),\sigma(x)$ are mean and std. of posterior at point $x$. Here $k$ controls the trade of between exploration and exploitation:</p>
+    <p>use posterior to derive/update <strong>acquisition function $\alpha(x)$</strong></p>
+
+\[\alpha(x) = \mu(x) - k \sigma(x)\]
+
+    <p>where $\mu(x),\sigma(x)$ are mean and std. of posterior at point $x$. Here $k$ controls the trade of between exploration and exploitation:</p>
 
     <ul>
       <li>if small $k$, then the $\arg\min$ in the next step favors small $\mu(x)$, o.e. <strong>exploitation</strong></li>
@@ -602,15 +620,17 @@ where $\mu(x),\sigma(x)$ are mean and std. of posterior at point $x$. Here $k$ c
     </ul>
   </li>
   <li>
-    <p>use the acquisition function to determine the next point
-\(x_{i+1} = \arg\min \alpha(x)\)
-and continue from step 2</p>
+    <p>use the acquisition function to determine the next point</p>
+
+\[x_{i+1} = \arg\min \alpha(x)\]
+
+    <p>and continue from step 2</p>
   </li>
 </ol>
 
 <p>Graphically, suppose we have already sampled three points $x_1,x_2,x_3$, e.g. learning rate. We are interested in <strong>which point to sample next</strong>:</p>
 
-<p><img src="DL_notes_part2/image-20220324182138908.png" alt="image-20220324182138908" style="zoom:80%;" /></p>
+<p><img src="/lectures/images/2022-04-21-COMS4995_Deep_Learning_part2/image-20220324182138908.png" alt="image-20220324182138908" style="zoom:80%;" /></p>
 
 <p>where</p>
 
@@ -621,7 +641,7 @@ and continue from step 2</p>
 
 <p>Now, depending how we choose $k$, the acquisition function could look differently:</p>
 
-<p><img src="DL_notes_part2/image-20220324182943833.png" alt="image-20220324182943833" style="zoom: 33%;" /></p>
+<p><img src="/lectures/images/2022-04-21-COMS4995_Deep_Learning_part2/image-20220324182943833.png" alt="image-20220324182943833" style="zoom: 33%;" /></p>
 
 <p>For instance:</p>
 
@@ -635,9 +655,9 @@ and continue from step 2</p>
   </thead>
   <tbody>
     <tr>
-      <td style="text-align: center"><img src="DL_notes_part2/image-20220324182818062.png" alt="image-20220324182818062" /></td>
-      <td style="text-align: center"><img src="DL_notes_part2/image-20220324182751888.png" alt="image-20220324182751888" /></td>
-      <td style="text-align: center"><img src="DL_notes_part2/image-20220324182745786.png" alt="image-20220324182745786" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2022-04-21-COMS4995_Deep_Learning_part2/image-20220324182818062.png" alt="image-20220324182818062" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2022-04-21-COMS4995_Deep_Learning_part2/image-20220324182751888.png" alt="image-20220324182751888" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2022-04-21-COMS4995_Deep_Learning_part2/image-20220324182745786.png" alt="image-20220324182745786" /></td>
     </tr>
   </tbody>
 </table>
@@ -650,7 +670,7 @@ and continue from step 2</p>
 
 <p>The algorithm hence looks like</p>
 
-<p><img src="DL_notes_part2/image-20220324183029861.png" alt="image-20220324183029861" style="zoom: 50%;" /></p>
+<p><img src="/lectures/images/2022-04-21-COMS4995_Deep_Learning_part2/image-20220324183029861.png" alt="image-20220324183029861" style="zoom: 50%;" /></p>
 
 <p>And in practice, <code class="language-plaintext highlighter-rouge">sklearn</code> already implemented such a search. It has a function which uses a flag to either do Grid Search, Random Search, or Bayesian Optimizations.</p>
 
@@ -662,7 +682,7 @@ and continue from step 2</p>
 
 <p>For instance, consider self-driving cars</p>
 
-<p><img src="DL_notes_part2/image-20220324183210597.png" alt="image-20220324183210597" style="zoom:80%;" /></p>
+<p><img src="/lectures/images/2022-04-21-COMS4995_Deep_Learning_part2/image-20220324183210597.png" alt="image-20220324183210597" style="zoom:80%;" /></p>
 
 <p>where we need to do:</p>
 
@@ -679,12 +699,12 @@ and continue from step 2</p>
   <li>
     <p>do we want to build predictors doing <strong>independent work for each task</strong>?</p>
 
-    <p><img src="DL_notes_part2/image-20220324183353600.png" alt="image-20220324183353600" style="zoom: 50%;" /></p>
+    <p><img src="/lectures/images/2022-04-21-COMS4995_Deep_Learning_part2/image-20220324183353600.png" alt="image-20220324183353600" style="zoom: 50%;" /></p>
   </li>
   <li>
     <p>independent predictors but using the <strong>same backbone</strong>?</p>
 
-    <p><img src="DL_notes_part2/image-20220324183336235.png" alt="image-20220324183336235" style="zoom:50%;" /></p>
+    <p><img src="/lectures/images/2022-04-21-COMS4995_Deep_Learning_part2/image-20220324183336235.png" alt="image-20220324183336235" style="zoom:50%;" /></p>
   </li>
   <li>
     <p>or maybe <strong>one model for all tasks</strong>? i.e. one neural network for learning multiple tasks: all-in-one</p>
@@ -695,7 +715,7 @@ and continue from step 2</p>
 
 <p>The simplest approach for solving $N$ different task would be to have the following architecture</p>
 
-<p><img src="DL_notes_part2/image-20220329150812694.png" alt="image-20220329150812694" style="zoom:50%;" /></p>
+<p><img src="/lectures/images/2022-04-21-COMS4995_Deep_Learning_part2/image-20220329150812694.png" alt="image-20220329150812694" style="zoom:50%;" /></p>
 
 <p>Some <strong>advantages</strong></p>
 
@@ -757,7 +777,7 @@ and continue from step 2</p>
 
 <p>Why is this relevant? One way to see it is that if our <strong>model can perform well on few/one-shot</strong>, then:</p>
 
-<p><img src="DL_notes_part2/image-20220329132903813.png" alt="image-20220329132903813" style="zoom:50%;" /></p>
+<p><img src="/lectures/images/2022-04-21-COMS4995_Deep_Learning_part2/image-20220329132903813.png" alt="image-20220329132903813" style="zoom:50%;" /></p>
 
 <p>all we need is a <strong>single model</strong> with a few-shot examples to <strong>solve multiple tasks</strong>.</p>
 
@@ -778,7 +798,7 @@ and continue from step 2</p>
 
 <p>Suppose we are given $N$ training data, being ${x^{(i)}, y_1^{(i)},…, y_T^{(i)}}_{i=1}^T$. We consider the architecture of</p>
 
-<p><img src="DL_notes_part2/image-20220329151752499.png" alt="image-20220329151752499" style="zoom: 50%;" /></p>
+<p><img src="/lectures/images/2022-04-21-COMS4995_Deep_Learning_part2/image-20220329151752499.png" alt="image-20220329151752499" style="zoom: 50%;" /></p>
 
 <p>where</p>
 
@@ -801,8 +821,9 @@ and continue from step 2</p>
     <p>task-specific decoder network would be $g_t$ for each task $t$, with parameter $\theta_t$</p>
   </li>
   <li>
-    <p><strong>task-specific loss</strong> would be defined as
-\(\mathcal{L}_t(\theta_t, \theta_s)=\frac{1}{N}\sum_i \mathcal{L}_t(g_t(f(x;\theta_s);\theta_t),y_t)\)</p>
+    <p><strong>task-specific loss</strong> would be defined as</p>
+
+\[\mathcal{L}_t(\theta_t, \theta_s)=\frac{1}{N}\sum_i \mathcal{L}_t(g_t(f(x;\theta_s);\theta_t),y_t)\]
   </li>
 </ul>
 
@@ -816,37 +837,53 @@ and continue from step 2</p>
   <p><strong>Aim</strong>: we want to solve for the best combination of all parameters $\theta_s$ and $\theta_{t_1},…,\theta_{t_T}$.</p>
 </blockquote>
 
-<p>The problem we are considering is the following and we want to solve for the best $\theta$ set:
-\(\min_\theta \mathcal{L}(\theta)\equiv\min_{\theta_i} \mathcal{L}(\theta_s,\theta_{t_1},...,\theta_{t_T})\)
-But the key problem here is that <strong>solutions may not be comparable to begin with</strong>:</p>
+<p>The problem we are considering is the following and we want to solve for the best $\theta$ set:</p>
+
+\[\min_\theta \mathcal{L}(\theta)\equiv\min_{\theta_i} \mathcal{L}(\theta_s,\theta_{t_1},...,\theta_{t_T})\]
+
+<p>But the key problem here is that <strong>solutions may not be comparable to begin with</strong>:</p>
 
 <ul>
-  <li>consider $\theta,\theta’$ being two sets of solution such that
-\(\mathcal{L}_{t_1}(\theta_s,\theta_{t_1})&lt;\mathcal{L}_{t_1}(\theta_s',\theta_{t_1}')\)
-so that this the $\theta$ set performs better in task 1, but
-\(\mathcal{L}_{t_2}(\theta_s,\theta_{t_2})&gt;\mathcal{L}_{t_2}(\theta_s',\theta_{t_2}')\)
-in task 2, the set $\theta’$ performs better.</li>
+  <li>
+    <p>consider $\theta,\theta’$ being two sets of solution such that</p>
+
+\[\mathcal{L}_{t_1}(\theta_s,\theta_{t_1})&lt;\mathcal{L}_{t_1}(\theta_s',\theta_{t_1}')\]
+
+    <p>so that this the $\theta$ set performs better in task 1, but</p>
+
+\[\mathcal{L}_{t_2}(\theta_s,\theta_{t_2})&gt;\mathcal{L}_{t_2}(\theta_s',\theta_{t_2}')\]
+
+    <p>in task 2, the set $\theta’$ performs better.</p>
+  </li>
 </ul>
 
 <blockquote>
   <p>Therefore, ==how do we define an ordering for the parameters to begin with==?</p>
 </blockquote>
 
-<p>One simple idea is to consider a <strong>linear combination</strong>
-\(\mathcal{L}(\theta)\equiv \mathcal{L}(\theta_s,\theta_1,...,\theta_T) \to \sum_t \alpha_t \mathcal{L}_t(\theta_t,\theta_s)\)
-which gives a <strong>well-defined ordering</strong>. Then we can update/solve by:
-\(\min_{\theta}\mathcal{L}(\theta) =\min_{\theta} \sum_t \alpha_t \mathcal{L}_t(\theta_t,\theta_s)\)
-but how do we find an $\alpha$?</p>
+<p>One simple idea is to consider a <strong>linear combination</strong></p>
+
+\[\mathcal{L}(\theta)\equiv \mathcal{L}(\theta_s,\theta_1,...,\theta_T) \to \sum_t \alpha_t \mathcal{L}_t(\theta_t,\theta_s)\]
+
+<p>which gives a <strong>well-defined ordering</strong>. Then we can update/solve by:</p>
+
+\[\min_{\theta}\mathcal{L}(\theta) =\min_{\theta} \sum_t \alpha_t \mathcal{L}_t(\theta_t,\theta_s)\]
+
+<p>but how do we find an $\alpha$?</p>
 
 <h3 id="multi-objective-optimization">Multi-Objective Optimization</h3>
 
-<p>Another formulation/view point of the task is to consider
-\(\min_{\theta_i} \mathcal{L}(\theta_s,\theta_{t_1},...,\theta_{t_T}) = \min_{\theta_i}(\mathcal{L}_{t_1}(\theta_s,\theta_{t_1}),...,\mathcal{L}_{t_T}(\theta_s,\theta_{t_T}))\)
-This can be generalized into the question that we have a <strong>system of $T$ functions $f_t(x) = \mathcal{L}(\theta)$</strong>, then we can define a partial ordering for $y \in \mathbb{R}^T = (f_1(x),…,f_T(x))$ such that:
-\(y \prec y' \iff f_i(x) &lt; f_i(x')\,\,\forall i\)
-in other words, $y$ wins/is smaller if it is smaller in all dimension. Then applied in our case, we essentially have “<strong>many optimal solutions</strong>” forming a ==Pareto frontier==.</p>
+<p>Another formulation/view point of the task is to consider</p>
 
-<p><img src="DL_notes_part2/image-20220329155604002.png" alt="image-20220329155604002" style="zoom: 80%;" /></p>
+\[\min_{\theta_i} \mathcal{L}(\theta_s,\theta_{t_1},...,\theta_{t_T}) = \min_{\theta_i}(\mathcal{L}_{t_1}(\theta_s,\theta_{t_1}),...,\mathcal{L}_{t_T}(\theta_s,\theta_{t_T}))\]
+
+<p>This can be generalized into the question that we have a <strong>system of $T$ functions $f_t(x) = \mathcal{L}(\theta)$</strong>, then we can define a partial ordering for $y \in \mathbb{R}^T = (f_1(x),…,f_T(x))$ such that:</p>
+
+\[y \prec y' \iff f_i(x) &lt; f_i(x')\,\,\forall i\]
+
+<p>in other words, $y$ wins/is smaller if it is smaller in all dimension. Then applied in our case, we essentially have “<strong>many optimal solutions</strong>” forming a ==Pareto frontier==.</p>
+
+<p><img src="/lectures/images/2022-04-21-COMS4995_Deep_Learning_part2/image-20220329155604002.png" alt="image-20220329155604002" style="zoom: 80%;" /></p>
 
 <p>where notice that:</p>
 
@@ -860,13 +897,17 @@ in other words, $y$ wins/is smaller if it is smaller in all dimension. Then appl
 </blockquote>
 
 <blockquote>
-  <p><strong>Theorem</strong>: A point $x$is pareto stationary if there exists $\alpha \in \mathbb{R}^T$ such that
-\(\sum_t \alpha_t \nabla f_t(x)=0,\quad \sum_t \alpha_t=1,\forall\alpha_t \ge 0\)</p>
+  <p><strong>Theorem</strong>: A point $x$is pareto stationary if there exists $\alpha \in \mathbb{R}^T$ such that</p>
+
+\[\sum_t \alpha_t \nabla f_t(x)=0,\quad \sum_t \alpha_t=1,\forall\alpha_t \ge 0\]
+
 </blockquote>
 
-<p>Therefore, this gives us a way to <strong>define how to find a meaningful $\alpha$</strong>, which comes down to:
-\(\min_\alpha \left\|  \sum_t \alpha_t \nabla f_t(x)  \right\| \to \min_\alpha \left\|  \sum_t \alpha_t \nabla \mathcal{L}_t(\theta_s, \theta_t)  \right\|\)
-under the constraint that $\sum_t \alpha_t=1,\forall\alpha_t \ge 0$.</p>
+<p>Therefore, this gives us a way to <strong>define how to find a meaningful $\alpha$</strong>, which comes down to:</p>
+
+\[\min_\alpha \left\|  \sum_t \alpha_t \nabla f_t(x)  \right\| \to \min_\alpha \left\|  \sum_t \alpha_t \nabla \mathcal{L}_t(\theta_s, \theta_t)  \right\|\]
+
+<p>under the constraint that $\sum_t \alpha_t=1,\forall\alpha_t \ge 0$.</p>
 
 <h3 id="negative-transfer">Negative Transfer</h3>
 
@@ -892,7 +933,7 @@ under the constraint that $\sum_t \alpha_t=1,\forall\alpha_t \ge 0$.</p>
   <li>
     <p><strong>Hard parameter sharing</strong>, which we have seen</p>
 
-    <p><img src="DL_notes_part2/image-20220329160407600.png" alt="image-20220329160407600" style="zoom:50%;" /></p>
+    <p><img src="/lectures/images/2022-04-21-COMS4995_Deep_Learning_part2/image-20220329160407600.png" alt="image-20220329160407600" style="zoom:50%;" /></p>
   </li>
   <li>
     <p><strong>Soft parameter sharing</strong></p>
@@ -908,8 +949,8 @@ under the constraint that $\sum_t \alpha_t=1,\forall\alpha_t \ge 0$.</p>
       </thead>
       <tbody>
         <tr>
-          <td style="text-align: center"><img src="DL_notes_part2/image-20220329160407600.png" alt="image-20220329160407600" style="zoom: 67%;" /></td>
-          <td style="text-align: center"><img src="DL_notes_part2/image-20220329160450920.png" alt="image-20220329160450920" style="zoom: 67%;" /></td>
+          <td style="text-align: center"><img src="/lectures/images/2022-04-21-COMS4995_Deep_Learning_part2/image-20220329160407600.png" alt="image-20220329160407600" style="zoom: 67%;" /></td>
+          <td style="text-align: center"><img src="/lectures/images/2022-04-21-COMS4995_Deep_Learning_part2/image-20220329160450920.png" alt="image-20220329160450920" style="zoom: 67%;" /></td>
         </tr>
       </tbody>
     </table>
@@ -919,7 +960,7 @@ under the constraint that $\sum_t \alpha_t=1,\forall\alpha_t \ge 0$.</p>
   <li>
     <p><strong>Ad-hoc sharing</strong></p>
 
-    <p><img src="DL_notes_part2/image-20220329160641830.png" alt="image-20220329160641830" style="zoom:50%;" /></p>
+    <p><img src="/lectures/images/2022-04-21-COMS4995_Deep_Learning_part2/image-20220329160641830.png" alt="image-20220329160641830" style="zoom:50%;" /></p>
 
     <p>so we compute task relatedness, then iteratively group network</p>
 
@@ -928,7 +969,7 @@ under the constraint that $\sum_t \alpha_t=1,\forall\alpha_t \ge 0$.</p>
   <li>
     <p><strong>learning to route</strong></p>
 
-    <p><img src="DL_notes_part2/image-20220329160822139.png" alt="image-20220329160822139" style="zoom:67%;" /></p>
+    <p><img src="/lectures/images/2022-04-21-COMS4995_Deep_Learning_part2/image-20220329160822139.png" alt="image-20220329160822139" style="zoom:67%;" /></p>
 
     <p>where we learn separate execution paths for different tasks</p>
   </li>
@@ -951,8 +992,8 @@ under the constraint that $\sum_t \alpha_t=1,\forall\alpha_t \ge 0$.</p>
   </thead>
   <tbody>
     <tr>
-      <td style="text-align: center"><img src="DL_notes_part2/image-20220329135502879.png" alt="image-20220329135502879" style="zoom:33%;" /></td>
-      <td style="text-align: center"><img src="DL_notes_part2/image-20220329135538244.png" alt="image-20220329135538244" style="zoom: 33%;" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2022-04-21-COMS4995_Deep_Learning_part2/image-20220329135502879.png" alt="image-20220329135502879" style="zoom:33%;" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2022-04-21-COMS4995_Deep_Learning_part2/image-20220329135538244.png" alt="image-20220329135538244" style="zoom: 33%;" /></td>
     </tr>
   </tbody>
 </table>
@@ -968,11 +1009,11 @@ under the constraint that $\sum_t \alpha_t=1,\forall\alpha_t \ge 0$.</p>
 
 <p>Then this problem is:</p>
 
-<p><img src="DL_notes_part2/image-20220329135838627.png" alt="image-20220329135838627" style="zoom: 50%;" /></p>
+<p><img src="/lectures/images/2022-04-21-COMS4995_Deep_Learning_part2/image-20220329135838627.png" alt="image-20220329135838627" style="zoom: 50%;" /></p>
 
 <p>where of course this is still a NP-hard problem, so in reality we would use approximations. Some results look like</p>
 
-<p><img src="DL_notes_part2/image-20220329140020358.png" alt="image-20220329140020358" style="zoom:50%;" /></p>
+<p><img src="/lectures/images/2022-04-21-COMS4995_Deep_Learning_part2/image-20220329140020358.png" alt="image-20220329140020358" style="zoom:50%;" /></p>
 
 <p>where $S,D,N,K,E$ would be the tasks, and the circular nodes are the networks.</p>
 
@@ -989,8 +1030,8 @@ under the constraint that $\sum_t \alpha_t=1,\forall\alpha_t \ge 0$.</p>
   </thead>
   <tbody>
     <tr>
-      <td style="text-align: center"><img src="DL_notes_part2/image-20220329140327911.png" alt="image-20220329140327911" style="zoom:33%;" /></td>
-      <td style="text-align: center"><img src="DL_notes_part2/image-20220329140336981.png" alt="image-20220329140336981" style="zoom:33%;" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2022-04-21-COMS4995_Deep_Learning_part2/image-20220329140327911.png" alt="image-20220329140327911" style="zoom:33%;" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2022-04-21-COMS4995_Deep_Learning_part2/image-20220329140336981.png" alt="image-20220329140336981" style="zoom:33%;" /></td>
     </tr>
   </tbody>
 </table>
@@ -1011,12 +1052,12 @@ under the constraint that $\sum_t \alpha_t=1,\forall\alpha_t \ge 0$.</p>
   <li>
     <p>find the building blocks</p>
 
-    <p><img src="DL_notes_part2/image-20220329140440942.png" alt="image-20220329140440942" style="zoom:33%;" /></p>
+    <p><img src="/lectures/images/2022-04-21-COMS4995_Deep_Learning_part2/image-20220329140440942.png" alt="image-20220329140440942" style="zoom:33%;" /></p>
   </li>
   <li>
     <p>pattern matching amongst the examples in the questoin</p>
 
-    <p><img src="DL_notes_part2/image-20220329140515145.png" alt="image-20220329140515145" style="zoom:33%;" /></p>
+    <p><img src="/lectures/images/2022-04-21-COMS4995_Deep_Learning_part2/image-20220329140515145.png" alt="image-20220329140515145" style="zoom:33%;" /></p>
   </li>
 </ol>
 
@@ -1051,7 +1092,7 @@ under the constraint that $\sum_t \alpha_t=1,\forall\alpha_t \ge 0$.</p>
 
 <p>Consider the task of <strong>learning a language</strong> from a few examples</p>
 
-<p>| <img src="DL_notes_part2/image-20220331131451815.png" alt="image-20220331131451815" style="zoom:50%;" /> | <img src="DL_notes_part2/image-20220331131458719.png" alt="image-20220331131458719" style="zoom:50%;" /> | <img src="DL_notes_part2/image-20220331131505428.png" alt="image-20220331131505428" style="zoom:50%;" /> |
+<p>| <img src="/lectures/images/2022-04-21-COMS4995_Deep_Learning_part2/image-20220331131451815.png" alt="image-20220331131451815" style="zoom:50%;" /> | <img src="/lectures/images/2022-04-21-COMS4995_Deep_Learning_part2/image-20220331131458719.png" alt="image-20220331131458719" style="zoom:50%;" /> | <img src="/lectures/images/2022-04-21-COMS4995_Deep_Learning_part2/image-20220331131505428.png" alt="image-20220331131505428" style="zoom:50%;" /> |
 | :———————————————————-: | :———————————————————-: | :———————————————————-: |</p>
 
 <p>As a human, you are expected to find from the above:</p>
@@ -1060,7 +1101,7 @@ under the constraint that $\sum_t \alpha_t=1,\forall\alpha_t \ge 0$.</p>
   <li>
     <p><strong>primitives</strong></p>
 
-    <p><img src="DL_notes_part2/image-20220331131551153.png" alt="image-20220331131551153" style="zoom:50%;" /></p>
+    <p><img src="/lectures/images/2022-04-21-COMS4995_Deep_Learning_part2/image-20220331131551153.png" alt="image-20220331131551153" style="zoom:50%;" /></p>
   </li>
   <li>
     <p><strong>rules/function</strong></p>
@@ -1084,8 +1125,8 @@ under the constraint that $\sum_t \alpha_t=1,\forall\alpha_t \ge 0$.</p>
   </thead>
   <tbody>
     <tr>
-      <td style="text-align: center"><img src="DL_notes_part2/image-20220331131825975.png" alt="image-20220331131825975" style="zoom:50%;" /></td>
-      <td style="text-align: center"><img src="DL_notes_part2/image-20220331131840229.png" alt="image-20220331131840229" style="zoom:50%;" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2022-04-21-COMS4995_Deep_Learning_part2/image-20220331131825975.png" alt="image-20220331131825975" style="zoom:50%;" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2022-04-21-COMS4995_Deep_Learning_part2/image-20220331131840229.png" alt="image-20220331131840229" style="zoom:50%;" /></td>
     </tr>
   </tbody>
 </table>
@@ -1113,7 +1154,7 @@ under the constraint that $\sum_t \alpha_t=1,\forall\alpha_t \ge 0$.</p>
 
 <p><em>Recall</em> that in supervised learning, we have:</p>
 
-<p><img src="DL_notes_part2/image-20220331173929736.png" alt="image-20220331173929736" style="zoom:50%;" /></p>
+<p><img src="/lectures/images/2022-04-21-COMS4995_Deep_Learning_part2/image-20220331173929736.png" alt="image-20220331173929736" style="zoom:50%;" /></p>
 
 <p>where</p>
 
@@ -1125,8 +1166,9 @@ under the constraint that $\sum_t \alpha_t=1,\forall\alpha_t \ge 0$.</p>
     <p>the <strong>learning algorithm</strong> specifies the architecture we use, e.g. SVM/k-NN/CNN/etc</p>
   </li>
   <li>
-    <p>during <strong>training</strong>, we find parameter for the <strong>predictor</strong>
-\(\theta^* = \arg\max_\theta p(\theta |D) = \arg\max_\theta p(D|\theta)p(\theta)\)</p>
+    <p>during <strong>training</strong>, we find parameter for the <strong>predictor</strong></p>
+
+\[\theta^* = \arg\max_\theta p(\theta |D) = \arg\max_\theta p(D|\theta)p(\theta)\]
   </li>
   <li>
     <p>during <strong>testing</strong>/inference, we use $\theta^*$</p>
@@ -1177,9 +1219,11 @@ under the constraint that $\sum_t \alpha_t=1,\forall\alpha_t \ge 0$.</p>
         <p>for that specific $T_i$.</p>
       </li>
       <li>
-        <p>update the <strong>initialization $\theta\equiv \phi$</strong> as how the <strong>total loss over all tasks can be decreased if I have a better $\theta$</strong> to begin with
-\(\theta \leftarrow \theta - \beta \nabla_\theta\sum_{T_i} L_{T_i}(f_{\theta_i'})\)
-where:</p>
+        <p>update the <strong>initialization $\theta\equiv \phi$</strong> as how the <strong>total loss over all tasks can be decreased if I have a better $\theta$</strong> to begin with</p>
+
+\[\theta \leftarrow \theta - \beta \nabla_\theta\sum_{T_i} L_{T_i}(f_{\theta_i'})\]
+
+        <p>where:</p>
 
         <ul>
           <li>
@@ -1189,9 +1233,11 @@ where:</p>
             <p>$L_{T_i}(f_{\theta_i’})$ will now be evaluated on the <strong>new samples</strong> from $q_i(x)$, known as the ==query set== to test its generalization ability as well</p>
           </li>
           <li>
-            <p>since we are taking derivative w.r.t $\theta$, and we know (if only doing a single iteration)
-\(\theta_i' = \theta - \alpha \nabla_\theta L_{T_i}(f_\theta)\)
-essentially this term include <strong>loss of losses</strong>.</p>
+            <p>since we are taking derivative w.r.t $\theta$, and we know (if only doing a single iteration)</p>
+
+\[\theta_i' = \theta - \alpha \nabla_\theta L_{T_i}(f_\theta)\]
+
+            <p>essentially this term include <strong>loss of losses</strong>.</p>
           </li>
         </ul>
       </li>
@@ -1204,7 +1250,7 @@ essentially this term include <strong>loss of losses</strong>.</p>
 
 <p>Hence the algorithm is</p>
 
-<p><img src="DL_notes_part2/image-20220331182301680.png" alt="image-20220331182301680" /></p>
+<p><img src="/lectures/images/2022-04-21-COMS4995_Deep_Learning_part2/image-20220331182301680.png" alt="image-20220331182301680" /></p>
 
 <p>which we know is agonistic of what model $f$ we picked.</p>
 
@@ -1214,19 +1260,19 @@ essentially this term include <strong>loss of losses</strong>.</p>
 
 <p>Graphically:</p>
 
-<p><img src="DL_notes_part2/image-20220331183545995.png" alt="image-20220331183545995" style="zoom:50%;" /></p>
+<p><img src="/lectures/images/2022-04-21-COMS4995_Deep_Learning_part2/image-20220331183545995.png" alt="image-20220331183545995" style="zoom:50%;" /></p>
 
 <p>where the aim is to provide some good $\theta$ for your network $f_\theta$ such that it can get <strong>good performance on task $T_i$ with only a few updates</strong> on $\theta$.</p>
 
 <p>Other related meta-learning algorithms only vary in how they descent the $\theta_i’$ for each task:</p>
 
-<p><img src="DL_notes_part2/image-20220331183053756.png" alt="image-20220331183053756" style="zoom: 33%;" /></p>
+<p><img src="/lectures/images/2022-04-21-COMS4995_Deep_Learning_part2/image-20220331183053756.png" alt="image-20220331183053756" style="zoom: 33%;" /></p>
 
 <hr />
 
 <p><em>Example</em>: K-shot learning for animal classifications:</p>
 
-<p><img src="DL_notes_part2/image-20220331183817789.png" alt="image-20220331183817789" style="zoom:67%;" /></p>
+<p><img src="/lectures/images/2022-04-21-COMS4995_Deep_Learning_part2/image-20220331183817789.png" alt="image-20220331183817789" style="zoom:67%;" /></p>
 
 <p>where essentially:</p>
 
@@ -1237,7 +1283,7 @@ essentially this term include <strong>loss of losses</strong>.</p>
   <li>
     <p>we want to generalize well to $3$-shot $2$-way, so that our model performs well on</p>
 
-    <p><img src="DL_notes_part2/image-20220331184002413.png" alt="image-20220331184002413" style="zoom:67%;" /></p>
+    <p><img src="/lectures/images/2022-04-21-COMS4995_Deep_Learning_part2/image-20220331184002413.png" alt="image-20220331184002413" style="zoom:67%;" /></p>
 
     <p>with only a few updates from $\theta$, i.e. it is almost like fine-tuning it.</p>
   </li>
@@ -1258,7 +1304,7 @@ essentially this term include <strong>loss of losses</strong>.</p>
   <li>learning goal: learn <strong>embedding network</strong> $f_\theta, g_\theta$</li>
 </ul>
 
-<p><img src="DL_notes_part2/image-20220331135040507.png" alt="image-20220331135040507" style="zoom: 50%;" /></p>
+<p><img src="/lectures/images/2022-04-21-COMS4995_Deep_Learning_part2/image-20220331135040507.png" alt="image-20220331135040507" style="zoom: 50%;" /></p>
 
 <p>where:</p>
 
@@ -1275,15 +1321,19 @@ essentially this term include <strong>loss of losses</strong>.</p>
 
 <p><strong>For a simplified version</strong>, let us just say that $g_\theta = f_\theta$.</p>
 
-<p>Here the idea is that we consider
-\(\hat{y} = \sum_{i=1}^k a(x_q,x_i)y_i\)
-which is basically a <strong>weighted sum</strong></p>
+<p>Here the idea is that we consider</p>
+
+\[\hat{y} = \sum_{i=1}^k a(x_q,x_i)y_i\]
+
+<p>which is basically a <strong>weighted sum</strong></p>
 
 <ul>
   <li>
-    <p>for $a(x_q,x_i)$ being an attention kernel. The simplest you can use is
-\(a(x_q,x_i) = \text{Softmax}(c(x_q,x_i))\)
-for $c(x_q,x_i)$ being a dot product</p>
+    <p>for $a(x_q,x_i)$ being an attention kernel. The simplest you can use is</p>
+
+\[a(x_q,x_i) = \text{Softmax}(c(x_q,x_i))\]
+
+    <p>for $c(x_q,x_i)$ being a dot product</p>
   </li>
   <li>
     <p>for simplicity, we assume we have $Q=1$ for training.</p>
@@ -1297,25 +1347,31 @@ for $c(x_q,x_i)$ being a dot product</p>
     <p><code class="language-plaintext highlighter-rouge">BaseNetwork</code> a backbone doing $f_\theta(x_i)$, which will be also used in <a href="#Prototypical Network">Prototypical Network</a></p>
   </li>
   <li>
-    <p>the predictor then does 
-\(\hat{y} = \sum_{i=1}^k a(x_q,x_i)y_i\)
-as specified above</p>
+    <p>the predictor then does</p>
+
+\[\hat{y} = \sum_{i=1}^k a(x_q,x_i)y_i\]
+
+    <p>as specified above</p>
   </li>
 </ul>
 
 <h3 id="prototypical-network">Prototypical Network</h3>
 
-<p>Here the idea is to consider predicting $\hat{y}$ of $x_q$ by <strong>nearest neighbor</strong> to ==prototypes $c_k$ of each class== (learnt from the few-shot training):
-\(c_ k = \frac{1}{|S_k|} \sum_{(x_i,y_i)\in S_k} f_\theta(x_i)\)
-basically is saying each class $K=k$ has a <strong>prototype being its centroid</strong>. Then, for a new query $x_q$ we can simply do:
-\(p(y=k|x) = \text{Softmax}(-d(f_\theta(x_q), c_k))= \frac{\exp(-d(f_\theta(x_q), c_k))}{\sum_{k'}\exp(-d(f_\theta(x_q), c_{k'}))}\)
-for $-d(f_\theta(x_q), c_k)$ basically is the <strong>distance</strong> between $f_\theta(x_q)$ and $c_k$.</p>
+<p>Here the idea is to consider predicting $\hat{y}$ of $x_q$ by <strong>nearest neighbor</strong> to ==prototypes $c_k$ of each class== (learnt from the few-shot training):</p>
+
+\[c_ k = \frac{1}{|S_k|} \sum_{(x_i,y_i)\in S_k} f_\theta(x_i)\]
+
+<p>basically is saying each class $K=k$ has a <strong>prototype being its centroid</strong>. Then, for a new query $x_q$ we can simply do:</p>
+
+\[p(y=k|x) = \text{Softmax}(-d(f_\theta(x_q), c_k))= \frac{\exp(-d(f_\theta(x_q), c_k))}{\sum_{k'}\exp(-d(f_\theta(x_q), c_{k'}))}\]
+
+<p>for $-d(f_\theta(x_q), c_k)$ basically is the <strong>distance</strong> between $f_\theta(x_q)$ and $c_k$.</p>
 
 <h3 id="relation-network">Relation Network</h3>
 
 <p>Instead of using Nearest Neighbor for classification, use a Neural network</p>
 
-<p><img src="DL_notes_part2/image-20220331135342524.png" alt="image-20220331135342524" style="zoom: 80%;" /></p>
+<p><img src="/lectures/images/2022-04-21-COMS4995_Deep_Learning_part2/image-20220331135342524.png" alt="image-20220331135342524" style="zoom: 80%;" /></p>
 
 <h2 id="meta-learning-with-meta-grammar">Meta Learning with Meta Grammar</h2>
 
@@ -1323,29 +1379,24 @@ for $-d(f_\theta(x_q), c_k)$ basically is the <strong>distance</strong> between 
 
 <p>So the general idea is:</p>
 
-<p><img src="DL_notes_part2/image-20220331192923316.png" alt="image-20220331192923316" style="zoom:67%;" /></p>
+<p><img src="/lectures/images/2022-04-21-COMS4995_Deep_Learning_part2/image-20220331192923316.png" alt="image-20220331192923316" style="zoom:67%;" /></p>
 
 <p>The detailed architecture looks like:</p>
 
-<p><img src="DL_notes_part2/image-20220331193412508.png" alt="image-20220331193412508" /></p>
+<p><img src="/lectures/images/2022-04-21-COMS4995_Deep_Learning_part2/image-20220331193412508.png" alt="image-20220331193412508" /></p>
 
-<table>
-  <tbody>
-    <tr>
-      <td>notice that essentially the entire neural model is on $p_\theta(G</td>
-      <td>X)$ is a distribution over grammar $G$ given the support set $X$. this works by</td>
-    </tr>
-  </tbody>
-</table>
+<p>notice that essentially the entire neural model is on $p_\theta(G\vert X)$ is a distribution over grammar $G$ given the support set $X$. this works by</p>
 
 <ul>
   <li>
-    <p>an <strong>encoder</strong> $\text{Enc}(\cdot)$, which encodes each support example $(x_i,y_i)$ into a vector $h_i$
-\(\text{Enc}(X) = \{h_i\}^n_{i=1}\)</p>
+    <p>an <strong>encoder</strong> $\text{Enc}(\cdot)$, which encodes each support example $(x_i,y_i)$ into a vector $h_i$</p>
+
+\[\text{Enc}(X) = \{h_i\}^n_{i=1}\]
   </li>
   <li>
-    <p>a <strong>decoder</strong> $\text{Dec}(\cdot)$ which decodes the grammar while attending to the support example
-\(p_\theta(\cdot |X) = \text{Dec}(\{h_i\}_{i=1}^n)\)</p>
+    <p>a <strong>decoder</strong> $\text{Dec}(\cdot)$ which decodes the grammar while attending to the support example</p>
+
+\[p_\theta(\cdot |X) = \text{Dec}(\{h_i\}_{i=1}^n)\]
   </li>
   <li>
     <p>decoder outputs a tokenized program, which is then parsed into an interpretation grammar</p>
@@ -1384,7 +1435,7 @@ for $-d(f_\theta(x_q), c_k)$ basically is the <strong>distance</strong> between 
   <li>but only had recorded 170K structures</li>
 </ul>
 
-<p><img src="DL_notes_part2/image-20220405164909069.png" alt="image-20220405164909069" style="zoom: 50%;" /></p>
+<p><img src="/lectures/images/2022-04-21-COMS4995_Deep_Learning_part2/image-20220405164909069.png" alt="image-20220405164909069" style="zoom: 50%;" /></p>
 
 <p>we want to fill the gap using Deep Learning.</p>
 
@@ -1395,12 +1446,12 @@ for $-d(f_\theta(x_q), c_k)$ basically is the <strong>distance</strong> between 
     <li>
       <p><strong>secondary structure</strong>: is this part a <em>$\alpha$-helix, or $\beta$-sheet, or a loop</em>, which is a labelling task</p>
 
-      <p><img src="DL_notes_part2/image-20220405165300853.png" alt="image-20220405165300853" style="zoom:50%;" /></p>
+      <p><img src="/lectures/images/2022-04-21-COMS4995_Deep_Learning_part2/image-20220405165300853.png" alt="image-20220405165300853" style="zoom:50%;" /></p>
     </li>
     <li>
       <p><strong>3D structure prediction</strong>: 3D position of each atom in the protein</p>
 
-      <p><img src="DL_notes_part2/image-20220405165157359.png" style="zoom: 67%;" /></p>
+      <p><img src="/lectures/images/2022-04-21-COMS4995_Deep_Learning_part2/image-20220405165157359.png" style="zoom: 67%;" /></p>
     </li>
     <li>
       <p><strong>folding</strong>: essentially the quaternary structure, how they fold when placed into a solution (liquid)</p>
@@ -1420,7 +1471,7 @@ for $-d(f_\theta(x_q), c_k)$ basically is the <strong>distance</strong> between 
   <li>Nucleocapsid proteins that hold <strong>RNA</strong> (to infect other cells in your body)</li>
 </ul>
 
-<p><img src="DL_notes_part2/image-20220405132718808.png" alt="image-20220405132718808" style="zoom: 40%;" /></p>
+<p><img src="/lectures/images/2022-04-21-COMS4995_Deep_Learning_part2/image-20220405132718808.png" alt="image-20220405132718808" style="zoom: 40%;" /></p>
 
 <p>where:</p>
 
@@ -1469,7 +1520,7 @@ for $-d(f_\theta(x_q), c_k)$ basically is the <strong>distance</strong> between 
 
 <p>Here, essentially it is a Seq-2-Seq task, whether if each is a <em>$\alpha$-helix, or $\beta$-sheet, or a loop</em>:</p>
 
-<p><img src="DL_notes_part2/image-20220405170010835.png" alt="image-20220405170010835" style="zoom:67%;" /></p>
+<p><img src="/lectures/images/2022-04-21-COMS4995_Deep_Learning_part2/image-20220405170010835.png" alt="image-20220405170010835" style="zoom:67%;" /></p>
 
 <p>Once we have this structure, it can be served as “constraints/guidelines” for 3D and quatery structure:</p>
 
@@ -1490,7 +1541,7 @@ for $-d(f_\theta(x_q), c_k)$ basically is the <strong>distance</strong> between 
 
 <p>Then you can solve for the structure from the two above:</p>
 
-<p><img src="DL_notes_part2/image-20220405170309754.png" alt="image-20220405170309754" style="zoom: 33%;" /></p>
+<p><img src="/lectures/images/2022-04-21-COMS4995_Deep_Learning_part2/image-20220405170309754.png" alt="image-20220405170309754" style="zoom: 33%;" /></p>
 
 <p>However, you could have also</p>
 
@@ -1500,7 +1551,7 @@ for $-d(f_\theta(x_q), c_k)$ basically is the <strong>distance</strong> between 
 
 <p>So why was the distance matrix useful? One use was to enable the use of Resnet to process those matrix as images:</p>
 
-<p><img src="DL_notes_part2/image-20220405171147381.png" alt="image-20220405171147381" style="zoom: 33%;" /></p>
+<p><img src="/lectures/images/2022-04-21-COMS4995_Deep_Learning_part2/image-20220405171147381.png" alt="image-20220405171147381" style="zoom: 33%;" /></p>
 
 <p>where the final atom graph is solved by:</p>
 
@@ -1509,7 +1560,7 @@ for $-d(f_\theta(x_q), c_k)$ basically is the <strong>distance</strong> between 
   <li><strong>edges</strong> being the distance, and type of bond</li>
 </ul>
 
-<p><img src="DL_notes_part2/image-20220405171329672.png" alt="image-20220405171329672" style="zoom: 33%;" /></p>
+<p><img src="/lectures/images/2022-04-21-COMS4995_Deep_Learning_part2/image-20220405171329672.png" alt="image-20220405171329672" style="zoom: 33%;" /></p>
 
 <h3 id="protein-structure-prediction-system">Protein Structure Prediction System</h3>
 
@@ -1523,7 +1574,7 @@ for $-d(f_\theta(x_q), c_k)$ basically is the <strong>distance</strong> between 
 
 <p>Hence the pipeline looks like</p>
 
-<p><img src="DL_notes_part2/image-20220405170818185.png" alt="image-20220405170818185" style="zoom: 80%;" /></p>
+<p><img src="/lectures/images/2022-04-21-COMS4995_Deep_Learning_part2/image-20220405170818185.png" alt="image-20220405170818185" style="zoom: 80%;" /></p>
 
 <p>which is trained end-to-end. Notice that, alike this, it is often the case you will get <strong>many data modalities</strong> for your task (e.g. amino acids, secondary structure, etc):</p>
 
@@ -1545,7 +1596,7 @@ for $-d(f_\theta(x_q), c_k)$ basically is the <strong>distance</strong> between 
 
 <p>Average RMSD under 1 Angstrom</p>
 
-<p><img src="DL_notes_part2/image-20220405135836364.png" alt="image-20220405135836364" style="zoom: 80%;" /></p>
+<p><img src="/lectures/images/2022-04-21-COMS4995_Deep_Learning_part2/image-20220405135836364.png" alt="image-20220405135836364" style="zoom: 80%;" /></p>
 
 <h2 id="dl-for-combinatorial-optimization">DL for Combinatorial Optimization</h2>
 
@@ -1589,7 +1640,7 @@ for $-d(f_\theta(x_q), c_k)$ basically is the <strong>distance</strong> between 
       <li>if we randomly distribute notes, the TSP have a <strong>strong locality</strong>, hence there are approximations that can be done in polynomial time</li>
     </ul>
 
-    <p><img src="DL_notes_part2/image-20220405140400090.png" alt="image-20220405140400090" style="zoom:50%;" /></p>
+    <p><img src="/lectures/images/2022-04-21-COMS4995_Deep_Learning_part2/image-20220405140400090.png" alt="image-20220405140400090" style="zoom:50%;" /></p>
 
     <ul>
       <li>a one vehicle version of VRP</li>
@@ -1604,7 +1655,7 @@ for $-d(f_\theta(x_q), c_k)$ basically is the <strong>distance</strong> between 
 
 <p>The idea is ot <strong>represent the problem as a search tree</strong>. We already know that this problem can be solved by</p>
 
-<p><img src="DL_notes_part2/image-20220405173848697.png" alt="image-20220405173848697" /></p>
+<p><img src="/lectures/images/2022-04-21-COMS4995_Deep_Learning_part2/image-20220405173848697.png" alt="image-20220405173848697" /></p>
 
 <p>But visualizing the process:</p>
 
@@ -1617,8 +1668,8 @@ for $-d(f_\theta(x_q), c_k)$ basically is the <strong>distance</strong> between 
   </thead>
   <tbody>
     <tr>
-      <td style="text-align: center"><img src="DL_notes_part2/image-20220405173917326.png" alt="image-20220405173917326" /></td>
-      <td style="text-align: center"><img src="DL_notes_part2/image-20220405174021385.png" alt="image-20220405174021385" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2022-04-21-COMS4995_Deep_Learning_part2/image-20220405173917326.png" alt="image-20220405173917326" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2022-04-21-COMS4995_Deep_Learning_part2/image-20220405174021385.png" alt="image-20220405174021385" /></td>
     </tr>
   </tbody>
 </table>
@@ -1634,7 +1685,7 @@ for $-d(f_\theta(x_q), c_k)$ basically is the <strong>distance</strong> between 
 <blockquote>
   <p><strong>Note</strong> that this action of “<em>adding node</em>” is general, as you can switch the representation of node/edge if your task needs to find the edges instead.</p>
 
-  <p><img src="DL_notes_part2/image-20220405174423346.png" alt="image-20220405174423346" style="zoom: 33%;" /></p>
+  <p><img src="/lectures/images/2022-04-21-COMS4995_Deep_Learning_part2/image-20220405174423346.png" alt="image-20220405174423346" style="zoom: 33%;" /></p>
 
   <p>where in the above</p>
 
@@ -1648,7 +1699,7 @@ for $-d(f_\theta(x_q), c_k)$ basically is the <strong>distance</strong> between 
 
 <p>Essentially you have</p>
 
-<p><img src="DL_notes_part2/image-20220405174809069.png" alt="image-20220405174809069" /></p>
+<p><img src="/lectures/images/2022-04-21-COMS4995_Deep_Learning_part2/image-20220405174809069.png" alt="image-20220405174809069" /></p>
 
 <p>where here we separated into two types because:</p>
 
@@ -1661,7 +1712,7 @@ for $-d(f_\theta(x_q), c_k)$ basically is the <strong>distance</strong> between 
 
 <p>General pippeline</p>
 
-<p><img src="DL_notes_part2/image-20220407131850363.png" alt="image-20220407131850363" /></p>
+<p><img src="/lectures/images/2022-04-21-COMS4995_Deep_Learning_part2/image-20220407131850363.png" alt="image-20220407131850363" /></p>
 
 <p>where:</p>
 
@@ -1681,11 +1732,11 @@ for $-d(f_\theta(x_q), c_k)$ basically is the <strong>distance</strong> between 
 
 <p>Once we reconstructed the 3D model, we can obtain <strong>semantic information</strong> such as where are the lanes, traffic lights, etc:</p>
 
-<p><img src="DL_notes_part2/image-20220407132758480.png" alt="image-20220407132758480" /></p>
+<p><img src="/lectures/images/2022-04-21-COMS4995_Deep_Learning_part2/image-20220407132758480.png" alt="image-20220407132758480" /></p>
 
 <p>and finally this gives</p>
 
-<p><img src="DL_notes_part2/image-20220407133336224.png" alt="image-20220407133336224" /></p>
+<p><img src="/lectures/images/2022-04-21-COMS4995_Deep_Learning_part2/image-20220407133336224.png" alt="image-20220407133336224" /></p>
 
 <h3 id="perception-and-detection">Perception and Detection</h3>
 
@@ -1693,7 +1744,7 @@ for $-d(f_\theta(x_q), c_k)$ basically is the <strong>distance</strong> between 
 
 <p>For instance, from video input, we might want to know <em>where is the traffic light</em>, <em>other cars</em>, <em>etc</em></p>
 
-<p><img src="DL_notes_part2/image-20220407133347088.png" alt="image-20220407133347088" /></p>
+<p><img src="/lectures/images/2022-04-21-COMS4995_Deep_Learning_part2/image-20220407133347088.png" alt="image-20220407133347088" /></p>
 
 <p>where the bottom is the input video, and the top portion is what we want.</p>
 
@@ -1701,14 +1752,14 @@ for $-d(f_\theta(x_q), c_k)$ basically is the <strong>distance</strong> between 
   <li>
     <p>in terms of deep learning outputs, typically we need segmentations:</p>
 
-    <p><img src="DL_notes_part2/image-20220407133548442.png" alt="image-20220407133548442" /></p>
+    <p><img src="/lectures/images/2022-04-21-COMS4995_Deep_Learning_part2/image-20220407133548442.png" alt="image-20220407133548442" /></p>
   </li>
   <li>
     <p>And again, as today we have tons of data from all kinds of sensors, it becomes learning from multi-modal data (e.g. from Radar, Lidar, etc, as oposed to only vision form humans)</p>
   </li>
 </ul>
 
-<p><img src="DL_notes_part2/image-20220407133436845.png" alt="image-20220407133436845" /></p>
+<p><img src="/lectures/images/2022-04-21-COMS4995_Deep_Learning_part2/image-20220407133436845.png" alt="image-20220407133436845" /></p>
 
 <h3 id="self-driving-car-prediction">Self-Driving Car: Prediction</h3>
 
@@ -1725,11 +1776,11 @@ for $-d(f_\theta(x_q), c_k)$ basically is the <strong>distance</strong> between 
 
 <p>Our aim is to be able to see future trajectories of other objects, which is necessary for planning our own movement.</p>
 
-<p><img src="DL_notes_part2/image-20220407133816295.png" alt="image-20220407133816295" /></p>
+<p><img src="/lectures/images/2022-04-21-COMS4995_Deep_Learning_part2/image-20220407133816295.png" alt="image-20220407133816295" /></p>
 
 <p>Then from all the above information, we would be able to make good plannings:</p>
 
-<p><img src="DL_notes_part2/image-20220407134132639.png" alt="image-20220407134132639" /></p>
+<p><img src="/lectures/images/2022-04-21-COMS4995_Deep_Learning_part2/image-20220407134132639.png" alt="image-20220407134132639" /></p>
 
 <h4 id="self-driving-vehicle-trajectory-prediction">Self-Driving: Vehicle Trajectory Prediction</h4>
 
@@ -1749,8 +1800,8 @@ for $-d(f_\theta(x_q), c_k)$ basically is the <strong>distance</strong> between 
   </thead>
   <tbody>
     <tr>
-      <td style="text-align: center"><img src="DL_notes_part2/image-20220407154813207.png" alt="image-20220407154813207" style="zoom: 80%;" /></td>
-      <td style="text-align: center"><img src="DL_notes_part2/image-20220407154800380.png" alt="image-20220407154800380" style="zoom: 80%;" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2022-04-21-COMS4995_Deep_Learning_part2/image-20220407154813207.png" alt="image-20220407154813207" style="zoom: 80%;" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2022-04-21-COMS4995_Deep_Learning_part2/image-20220407154800380.png" alt="image-20220407154800380" style="zoom: 80%;" /></td>
     </tr>
   </tbody>
 </table>
@@ -1761,7 +1812,7 @@ for $-d(f_\theta(x_q), c_k)$ basically is the <strong>distance</strong> between 
 
 <p>Now, we want to plan our <strong>high level and low level actions based on our destination</strong>:</p>
 
-<p><img src="DL_notes_part2/image-20220407134324067.png" alt="image-20220407134324067" /></p>
+<p><img src="/lectures/images/2022-04-21-COMS4995_Deep_Learning_part2/image-20220407134324067.png" alt="image-20220407134324067" /></p>
 
 <p>where</p>
 
@@ -1796,7 +1847,7 @@ for $-d(f_\theta(x_q), c_k)$ basically is the <strong>distance</strong> between 
 
 <p>Then essentially it is a <strong>multi-task training</strong>:</p>
 
-<p><img src="DL_notes_part2/image-20220407155859481.png" alt="image-20220407155859481" /></p>
+<p><img src="/lectures/images/2022-04-21-COMS4995_Deep_Learning_part2/image-20220407155859481.png" alt="image-20220407155859481" /></p>
 
 <p>There are some paradigms:</p>
 
@@ -1808,7 +1859,7 @@ for $-d(f_\theta(x_q), c_k)$ basically is the <strong>distance</strong> between 
       <li>
         <p>uses <strong>environmental loss</strong>: each of the map is turned into a loss equation</p>
 
-        <p><img src="DL_notes_part2/image-20220407135925499.png" alt="image-20220407135925499" /></p>
+        <p><img src="/lectures/images/2022-04-21-COMS4995_Deep_Learning_part2/image-20220407135925499.png" alt="image-20220407135925499" /></p>
       </li>
       <li>
         <p>with multiple losses, you can fuse those losses and get a set of trajectories each with some given score/probability</p>
@@ -1832,7 +1883,7 @@ for $-d(f_\theta(x_q), c_k)$ basically is the <strong>distance</strong> between 
 
     <p>And the results</p>
 
-    <p><img src="DL_notes_part2/image-20220407140533101.png" alt="image-20220407140533101" /></p>
+    <p><img src="/lectures/images/2022-04-21-COMS4995_Deep_Learning_part2/image-20220407140533101.png" alt="image-20220407140533101" /></p>
   </li>
 </ul>
 

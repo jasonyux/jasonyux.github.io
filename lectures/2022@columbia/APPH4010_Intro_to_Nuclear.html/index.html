@@ -47,17 +47,22 @@
       <div class="wrapper">
         <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
   <head>
-	<script>
-		MathJax = {
-		  tex: {
-			inlineMath: [['$', '$'], ['\\(', '\\)']],
-			displayMath: [['$$', '$$'], ['\\[', '\\]']]
-		  }
-		};
-	</script>
-	<script id="MathJax-script" async
-		src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
-	</script>
+  <script>
+    MathJax = {
+      // 
+      loader: {
+        load: ['[tex]/ams', '[tex]/textmacros', '[tex]/boldsymbol']
+      },
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        packages: {'[+]': ['ams', 'textmacros', 'boldsymbol']}
+      }
+    };
+  </script>
+  <script id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+  </script>
   </head>
   <header class="post-header">
     <h1 class="post-title p-name" itemprop="name headline">APPH4010 Intro to Nuclear</h1>
@@ -143,7 +148,7 @@
     </tr>
     <tr>
       <td style="text-align: center">Binding Energy Curve</td>
-      <td style="text-align: left"><img src="nuclear_eq_n_concepts/image-20221013004334846.png" alt="image-20221013004334846" /></td>
+      <td style="text-align: left"><img src="/lectures/images/2022-12-20-APPH4010_Intro_to_Nuclear/image-20221013004334846.png" alt="image-20221013004334846" /></td>
       <td style="text-align: left">$B/A$ plotted because binding energy increases just as there are more proton to hold</td>
       <td style="text-align: left"> </td>
     </tr>
@@ -167,7 +172,7 @@
     </tr>
     <tr>
       <td style="text-align: center">Nuclide Stability Curve</td>
-      <td style="text-align: left"><img src="nuclear_eq_n_concepts/image-20221013005606999.png" alt="image-20221013005606999" /></td>
+      <td style="text-align: left"><img src="/lectures/images/2022-12-20-APPH4010_Intro_to_Nuclear/image-20221013005606999.png" alt="image-20221013005606999" /></td>
       <td style="text-align: left">more neutrons is needed for more protons, hence this stability curve in the middle</td>
       <td style="text-align: left"> </td>
     </tr>
@@ -257,7 +262,7 @@
     </tr>
     <tr>
       <td style="text-align: center"> </td>
-      <td style="text-align: left"><img src="nuclear_eq_n_concepts/image-20221013014759439.png" alt="image-20221013014759439" /></td>
+      <td style="text-align: left"><img src="/lectures/images/2022-12-20-APPH4010_Intro_to_Nuclear/image-20221013014759439.png" alt="image-20221013014759439" /></td>
       <td style="text-align: left">KE Spectrum of electron becomes continuous because you have three particles released</td>
       <td style="text-align: left"> </td>
     </tr>
@@ -370,19 +375,19 @@
     </tr>
     <tr>
       <td style="text-align: center"> </td>
-      <td style="text-align: left"><img src="nuclear_eq_n_concepts/image-20221013235440171.png" alt="image-20221013235440171" /></td>
+      <td style="text-align: left"><img src="/lectures/images/2022-12-20-APPH4010_Intro_to_Nuclear/image-20221013235440171.png" alt="image-20221013235440171" /></td>
       <td style="text-align: left">Bethe-Bloch Formula</td>
       <td style="text-align: left"> </td>
     </tr>
     <tr>
       <td style="text-align: center">Energy Dependence of Stopping Power</td>
-      <td style="text-align: left"><img src="nuclear_eq_n_concepts/image-20221013235351944.png" alt="image-20221013235351944" style="zoom:50%;" /></td>
+      <td style="text-align: left"><img src="/lectures/images/2022-12-20-APPH4010_Intro_to_Nuclear/image-20221013235351944.png" alt="image-20221013235351944" style="zoom:50%;" /></td>
       <td style="text-align: left">variation of stopping power with energy if incident proton. This general shape works for any charged ion</td>
       <td style="text-align: left"> </td>
     </tr>
     <tr>
       <td style="text-align: center"> </td>
-      <td style="text-align: left"><img src="nuclear_eq_n_concepts/image-20221025164843434.png" alt="image-20221025164843434" style="zoom: 33%;" /></td>
+      <td style="text-align: left"><img src="/lectures/images/2022-12-20-APPH4010_Intro_to_Nuclear/image-20221025164843434.png" alt="image-20221025164843434" style="zoom: 33%;" /></td>
       <td style="text-align: left"> </td>
       <td style="text-align: left"> </td>
     </tr>
@@ -394,7 +399,7 @@
     </tr>
     <tr>
       <td style="text-align: center"> </td>
-      <td style="text-align: left">$R=\int_{E}^0 dE/(dE/dx) \propto E^{k+1} $</td>
+      <td style="text-align: left">$R=\int_{E}^0 dE/(dE/dx) \propto E^{k+1}$</td>
       <td style="text-align: left">derived from above</td>
       <td style="text-align: left"> </td>
     </tr>
@@ -418,7 +423,7 @@
     </tr>
     <tr>
       <td style="text-align: center">Bragg Curve</td>
-      <td style="text-align: left"><img src="nuclear_eq_n_concepts/image-20221014000422271.png" alt="image-20221014000422271" /></td>
+      <td style="text-align: left"><img src="/lectures/images/2022-12-20-APPH4010_Intro_to_Nuclear/image-20221014000422271.png" alt="image-20221014000422271" /></td>
       <td style="text-align: left">utilize the fact that stopping power increases when energy decreases</td>
       <td style="text-align: left"> </td>
     </tr>
@@ -472,7 +477,7 @@
     </tr>
     <tr>
       <td style="text-align: center">Stopping Power v.s. Electron Energy</td>
-      <td style="text-align: left"><img src="nuclear_eq_n_concepts/image-20221014142135607.png" alt="image-20221014142135607" /></td>
+      <td style="text-align: left"><img src="/lectures/images/2022-12-20-APPH4010_Intro_to_Nuclear/image-20221014142135607.png" alt="image-20221014142135607" /></td>
       <td style="text-align: left">as electrons accelerate by rapidly changing directions, it emits a lot of Bremsstrahlung radiation meaning $-\frac{dE}{dx}_{\mathrm{rad}}$ contributes a lot to stopping power</td>
       <td style="text-align: left"> </td>
     </tr>
@@ -568,7 +573,7 @@
     </tr>
     <tr>
       <td style="text-align: center">Campton Scattering</td>
-      <td style="text-align: left"><img src="nuclear_eq_n_concepts/image-20221014150725380.png" alt="image-20221014150725380" /></td>
+      <td style="text-align: left"><img src="/lectures/images/2022-12-20-APPH4010_Intro_to_Nuclear/image-20221014150725380.png" alt="image-20221014150725380" /></td>
       <td style="text-align: left">$\gamma$ ray scattered off electron and hence we get an electron recoiling and a lower energy photon</td>
       <td style="text-align: left"> </td>
     </tr>
@@ -622,13 +627,13 @@
     </tr>
     <tr>
       <td style="text-align: center"> </td>
-      <td style="text-align: left"><img src="nuclear_eq_n_concepts/image-20221014151515070.png" alt="image-20221014151515070" /></td>
+      <td style="text-align: left"><img src="/lectures/images/2022-12-20-APPH4010_Intro_to_Nuclear/image-20221014151515070.png" alt="image-20221014151515070" /></td>
       <td style="text-align: left">can measure and find out attenuation dependence on the three mechanism</td>
       <td style="text-align: left"> </td>
     </tr>
     <tr>
       <td style="text-align: center"> </td>
-      <td style="text-align: left"><img src="nuclear_eq_n_concepts/image-20221014151526416.png" alt="image-20221014151526416" /></td>
+      <td style="text-align: left"><img src="/lectures/images/2022-12-20-APPH4010_Intro_to_Nuclear/image-20221014151526416.png" alt="image-20221014151526416" /></td>
       <td style="text-align: left">difficult to measure</td>
       <td style="text-align: left"> </td>
     </tr>
@@ -640,7 +645,7 @@
     </tr>
     <tr>
       <td style="text-align: center"> </td>
-      <td style="text-align: left">$\mu \equiv N\sigma $</td>
+      <td style="text-align: left">$\mu \equiv N\sigma$</td>
       <td style="text-align: left">linear attenuation coefficient</td>
       <td style="text-align: left"> </td>
     </tr>
@@ -664,7 +669,7 @@
     </tr>
     <tr>
       <td style="text-align: center">Photon Attenuation Coefficient Graph</td>
-      <td style="text-align: left"><img src="nuclear_eq_n_concepts/image-20221014152131327.png" alt="image-20221014152131327" /></td>
+      <td style="text-align: left"><img src="/lectures/images/2022-12-20-APPH4010_Intro_to_Nuclear/image-20221014152131327.png" alt="image-20221014152131327" /></td>
       <td style="text-align: left">again, there are three phenomenon contributing to $\sigma$ hence $\mu_m$</td>
       <td style="text-align: left"> </td>
     </tr>
@@ -802,7 +807,7 @@
     </tr>
     <tr>
       <td style="text-align: center"> </td>
-      <td style="text-align: left"><img src="nuclear_eq_n_concepts/image-20221014155430476.png" alt="image-20221014155430476" /></td>
+      <td style="text-align: left"><img src="/lectures/images/2022-12-20-APPH4010_Intro_to_Nuclear/image-20221014155430476.png" alt="image-20221014155430476" /></td>
       <td style="text-align: left">can collect that charge using an electric field = observe a current</td>
       <td style="text-align: left"> </td>
     </tr>
@@ -814,7 +819,7 @@
     </tr>
     <tr>
       <td style="text-align: center"> </td>
-      <td style="text-align: left"><img src="nuclear_eq_n_concepts/image-20221014155617597.png" alt="image-20221014155617597" /></td>
+      <td style="text-align: left"><img src="/lectures/images/2022-12-20-APPH4010_Intro_to_Nuclear/image-20221014155617597.png" alt="image-20221014155617597" /></td>
       <td style="text-align: left">In reality, since radiation is random, it is better described by Poisson statistics</td>
       <td style="text-align: left"> </td>
     </tr>
@@ -844,14 +849,14 @@
     </tr>
     <tr>
       <td style="text-align: center">Energy Resolution</td>
-      <td style="text-align: left"><img src="nuclear_eq_n_concepts/image-20221014161258795.png" alt="image-20221014161258795" /></td>
+      <td style="text-align: left"><img src="/lectures/images/2022-12-20-APPH4010_Intro_to_Nuclear/image-20221014161258795.png" alt="image-20221014161258795" /></td>
       <td style="text-align: left">$E_0$ peak is the source, the Gaussian curve is the fitted energy spectrum <em>measured</em></td>
       <td style="text-align: left"> </td>
     </tr>
     <tr>
       <td style="text-align: center"> </td>
       <td style="text-align: left">measures Full-Width at Half Maximum (FWHM)</td>
-      <td style="text-align: left"><img src="nuclear_eq_n_concepts/image-20221014161426020.png" alt="image-20221014161426020" /></td>
+      <td style="text-align: left"><img src="/lectures/images/2022-12-20-APPH4010_Intro_to_Nuclear/image-20221014161426020.png" alt="image-20221014161426020" /></td>
       <td style="text-align: left"> </td>
     </tr>
     <tr>
@@ -868,7 +873,7 @@
     </tr>
     <tr>
       <td style="text-align: center"> </td>
-      <td style="text-align: left"><img src="nuclear_eq_n_concepts/image-20221014161543558.png" alt="image-20221014161543558" /></td>
+      <td style="text-align: left"><img src="/lectures/images/2022-12-20-APPH4010_Intro_to_Nuclear/image-20221014161543558.png" alt="image-20221014161543558" /></td>
       <td style="text-align: left">in reality due to all different effects <em>reaching the device</em></td>
       <td style="text-align: left"> </td>
     </tr>
@@ -892,13 +897,13 @@
     </tr>
     <tr>
       <td style="text-align: center"> </td>
-      <td style="text-align: left"><img src="nuclear_eq_n_concepts/image-20221014161857546.png" alt="image-20221014161857546" /></td>
+      <td style="text-align: left"><img src="/lectures/images/2022-12-20-APPH4010_Intro_to_Nuclear/image-20221014161857546.png" alt="image-20221014161857546" /></td>
       <td style="text-align: left">depends on geometry of the device</td>
       <td style="text-align: left">if device is liquid so that source submerges in it, then it is $4\pi$ full coverage</td>
     </tr>
     <tr>
       <td style="text-align: center"> </td>
-      <td style="text-align: left"><img src="nuclear_eq_n_concepts/image-20221014161905351.png" alt="image-20221014161905351" /></td>
+      <td style="text-align: left"><img src="/lectures/images/2022-12-20-APPH4010_Intro_to_Nuclear/image-20221014161905351.png" alt="image-20221014161905351" /></td>
       <td style="text-align: left">actual performance, dependent on detector material and thickness, and radiation type and energy</td>
       <td style="text-align: left"> </td>
     </tr>
@@ -922,7 +927,7 @@
     </tr>
     <tr>
       <td style="text-align: center"> </td>
-      <td style="text-align: left"><img src="nuclear_eq_n_concepts/image-20221014162158239.png" alt="image-20221014162158239" /></td>
+      <td style="text-align: left"><img src="/lectures/images/2022-12-20-APPH4010_Intro_to_Nuclear/image-20221014162158239.png" alt="image-20221014162158239" /></td>
       <td style="text-align: left">so non-paralyzable can recover 4</td>
       <td style="text-align: left"> </td>
     </tr>
@@ -946,7 +951,7 @@
     </tr>
     <tr>
       <td style="text-align: center"> </td>
-      <td style="text-align: left"><img src="nuclear_eq_n_concepts/image-20221014162313018.png" alt="image-20221014162313018" /></td>
+      <td style="text-align: left"><img src="/lectures/images/2022-12-20-APPH4010_Intro_to_Nuclear/image-20221014162313018.png" alt="image-20221014162313018" /></td>
       <td style="text-align: left">when true radiation $n$ is high, paralyzable can mistake it for a low $m$!</td>
       <td style="text-align: left"> </td>
     </tr>
@@ -970,7 +975,7 @@
     </tr>
     <tr>
       <td style="text-align: center"> </td>
-      <td style="text-align: left"><img src="nuclear_eq_n_concepts/image-20221014162757533.png" alt="image-20221014162757533" /></td>
+      <td style="text-align: left"><img src="/lectures/images/2022-12-20-APPH4010_Intro_to_Nuclear/image-20221014162757533.png" alt="image-20221014162757533" /></td>
       <td style="text-align: left">ionizing particles creates ionized gas $\to$ have a high enough field to prevent recombination $\to$ those ions complete the circuit by having electron goes to anode and positive ion to cathode</td>
       <td style="text-align: left"> </td>
     </tr>
@@ -1000,7 +1005,7 @@
     </tr>
     <tr>
       <td style="text-align: center">Pulse Amplitude v.s. Voltage Applied in Gas Detector</td>
-      <td style="text-align: left"><img src="nuclear_eq_n_concepts/image-20221014163205531.png" alt="image-20221014163205531" /></td>
+      <td style="text-align: left"><img src="/lectures/images/2022-12-20-APPH4010_Intro_to_Nuclear/image-20221014163205531.png" alt="image-20221014163205531" /></td>
       <td style="text-align: left">the fundamental reason why we have three types of gas detectors</td>
       <td style="text-align: left"> </td>
     </tr>
@@ -1084,7 +1089,7 @@
     </tr>
     <tr>
       <td style="text-align: center"> </td>
-      <td style="text-align: left"><img src="nuclear_eq_n_concepts/image-20221014164005297.png" alt="image-20221014164005297" /></td>
+      <td style="text-align: left"><img src="/lectures/images/2022-12-20-APPH4010_Intro_to_Nuclear/image-20221014164005297.png" alt="image-20221014164005297" /></td>
       <td style="text-align: left"> </td>
       <td style="text-align: left"> </td>
     </tr>
@@ -1114,7 +1119,7 @@
     </tr>
     <tr>
       <td style="text-align: center"> </td>
-      <td style="text-align: left"><img src="nuclear_eq_n_concepts/image-20221021173557853.png" alt="image-20221021173557853" /></td>
+      <td style="text-align: left"><img src="/lectures/images/2022-12-20-APPH4010_Intro_to_Nuclear/image-20221021173557853.png" alt="image-20221021173557853" /></td>
       <td style="text-align: left"> </td>
       <td style="text-align: left"> </td>
     </tr>
@@ -1561,7 +1566,7 @@
     </tr>
     <tr>
       <td style="text-align: center"> </td>
-      <td style="text-align: left"><img src="nuclear_eq_n_concepts/image-20221214025855146.png" alt="image-20221214025855146" style="zoom:50%;" /></td>
+      <td style="text-align: left"><img src="/lectures/images/2022-12-20-APPH4010_Intro_to_Nuclear/image-20221214025855146.png" alt="image-20221214025855146" style="zoom:50%;" /></td>
       <td style="text-align: left">for very small separations, nucleons begin to repel = no clump</td>
       <td style="text-align: left"> </td>
     </tr>
@@ -1621,7 +1626,7 @@
     </tr>
     <tr>
       <td style="text-align: center">Semi-Empirical Mass Formula</td>
-      <td style="text-align: left"><img src="nuclear_eq_n_concepts/image-20221214030640303.png" alt="image-20221214030640303" /></td>
+      <td style="text-align: left"><img src="/lectures/images/2022-12-20-APPH4010_Intro_to_Nuclear/image-20221214030640303.png" alt="image-20221214030640303" /></td>
       <td style="text-align: left">estimating <strong>binding energy</strong>, which can then be used to estimate the <strong>actual nuclear masses</strong> for unknown nuclei (but known $A$ and $N$)</td>
       <td style="text-align: left"> </td>
     </tr>
@@ -1645,7 +1650,7 @@
     </tr>
     <tr>
       <td style="text-align: center"> </td>
-      <td style="text-align: left"><img src="nuclear_eq_n_concepts/image-20221214110550694.png" alt="image-20221214110550694" /></td>
+      <td style="text-align: left"><img src="/lectures/images/2022-12-20-APPH4010_Intro_to_Nuclear/image-20221214110550694.png" alt="image-20221214110550694" /></td>
       <td style="text-align: left">nucleons on the surface of the nucleus experience the nuclear force from nucleons inside the nucleus, but no force from the outside. hence reduced</td>
       <td style="text-align: left"> </td>
     </tr>
@@ -1699,7 +1704,7 @@
     </tr>
     <tr>
       <td style="text-align: center">Nuclear Fission Energy Barrier</td>
-      <td style="text-align: left"><img src="nuclear_eq_n_concepts/image-20221214111507480.png" alt="image-20221214111507480" /></td>
+      <td style="text-align: left"><img src="/lectures/images/2022-12-20-APPH4010_Intro_to_Nuclear/image-20221214111507480.png" alt="image-20221214111507480" /></td>
       <td style="text-align: left">barrier to fission is called the fission barrier or activation energy</td>
       <td style="text-align: left"> </td>
     </tr>
@@ -1723,7 +1728,7 @@
     </tr>
     <tr>
       <td style="text-align: center">Vibrational Model</td>
-      <td style="text-align: left"><img src="nuclear_eq_n_concepts/image-20221214112515740.png" alt="image-20221214112515740" /></td>
+      <td style="text-align: left"><img src="/lectures/images/2022-12-20-APPH4010_Intro_to_Nuclear/image-20221214112515740.png" alt="image-20221214112515740" /></td>
       <td style="text-align: left"><strong><em>SEMF assumed sphere shape,</em></strong> but in reality can deform</td>
       <td style="text-align: left"> </td>
     </tr>
@@ -1783,7 +1788,7 @@
     </tr>
     <tr>
       <td style="text-align: center">Spin-Orbital Potential</td>
-      <td style="text-align: left"><img src="nuclear_eq_n_concepts/image-20221214113711983.png" alt="image-20221214113711983" /></td>
+      <td style="text-align: left"><img src="/lectures/images/2022-12-20-APPH4010_Intro_to_Nuclear/image-20221214113711983.png" alt="image-20221214113711983" /></td>
       <td style="text-align: left">more complicated but <strong>accounted for more splittings</strong> of energy level</td>
       <td style="text-align: left"> </td>
     </tr>
@@ -1814,10 +1819,6 @@
       <th style="text-align: left">Definition/Equation</th>
       <th style="text-align: left">Notes</th>
       <th>Example</th>
-      <th> </th>
-      <th> </th>
-      <th> </th>
-      <th> </th>
     </tr>
   </thead>
   <tbody>
@@ -1826,49 +1827,29 @@
       <td style="text-align: left">Excited nucleus may de-excite through $\gamma$-emission</td>
       <td style="text-align: left">help understand why certain gamma decay have longer half-lives than another</td>
       <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
     </tr>
     <tr>
       <td style="text-align: center"> </td>
       <td style="text-align: left"> </td>
       <td style="text-align: left">gamma is “everywhere” in the sense that many radioactive decay accompanies gamma emission (see below, due to excited daughter nucleus)</td>
       <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
     </tr>
     <tr>
       <td style="text-align: center">Characteristic $\gamma$-emission</td>
       <td style="text-align: left"> </td>
       <td style="text-align: left">actually come from the transitions among the energy levels of the <strong>daughter</strong> nucleus.</td>
-      <td><img src="nuclear_eq_n_concepts/image-20221218182726846.png" alt="image-20221218182726846" style="zoom:67%;" /></td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
+      <td><img src="/lectures/images/2022-12-20-APPH4010_Intro_to_Nuclear/image-20221218182726846.png" alt="image-20221218182726846" style="zoom:67%;" /></td>
     </tr>
     <tr>
       <td style="text-align: center"> </td>
       <td style="text-align: left"> </td>
       <td style="text-align: left"> </td>
-      <td>the above means we have two decays:<br /><img src="nuclear_eq_n_concepts/image-20221218182834669.png" alt="image-20221218182834669" style="zoom: 15%;" />and then<img src="nuclear_eq_n_concepts/image-20221218182846700.png" alt="image-20221218182846700" style="zoom:10%;" /></td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
+      <td>the above means we have two decays:<br /><img src="/lectures/images/2022-12-20-APPH4010_Intro_to_Nuclear/image-20221218182834669.png" alt="image-20221218182834669" style="zoom: 15%;" />and then<img src="/lectures/images/2022-12-20-APPH4010_Intro_to_Nuclear/image-20221218182846700.png" alt="image-20221218182846700" style="zoom:10%;" /></td>
     </tr>
     <tr>
       <td style="text-align: center">Selection rules</td>
       <td style="text-align: left">derived from consideration of conservation of ==angular momentum and parity==, <strong><em>specify the allowable transitions</em></strong> among energy levels</td>
       <td style="text-align: left">answers: “why are some gamma more likely to happen than others?”</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
       <td> </td>
     </tr>
     <tr>
@@ -1876,49 +1857,29 @@
       <td style="text-align: left">1. Photon that carries away energy has angular momentum $L&gt;0$</td>
       <td style="text-align: left"> </td>
       <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
     </tr>
     <tr>
       <td style="text-align: center"> </td>
-      <td style="text-align: left">2. Conservation of Angular Momentum: $</td>
-      <td style="text-align: left">l_i - l_f</td>
-      <td>\le L \le</td>
-      <td>l_i + l_f</td>
-      <td>$</td>
-      <td>$l_i$, $l_f$ is the angular momentum of the initial and final nuclear state</td>
+      <td style="text-align: left">2. Conservation of Angular Momentum: $\vert l_i - l_f\vert \le L \le \vert l_i + l_f\vert$</td>
+      <td style="text-align: left">$l_i$, $l_f$ is the angular momentum of the initial and final nuclear state</td>
       <td> </td>
     </tr>
     <tr>
       <td style="text-align: center"> </td>
       <td style="text-align: left">3. Parity (wavefunction even or odd) is also conserved in EM transitions</td>
       <td style="text-align: left">whether or not a parity changed decides $\to$</td>
-      <td><img src="nuclear_eq_n_concepts/image-20221218204404711.png" alt="image-20221218204404711" style="zoom:50%;" /></td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
+      <td><img src="/lectures/images/2022-12-20-APPH4010_Intro_to_Nuclear/image-20221218204404711.png" alt="image-20221218204404711" style="zoom:50%;" /></td>
     </tr>
     <tr>
       <td style="text-align: center"> </td>
       <td style="text-align: left"> </td>
       <td style="text-align: left"> </td>
-      <td><img src="nuclear_eq_n_concepts/image-20221218204529542.png" alt="image-20221218204529542" style="zoom:50%;" /></td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
+      <td><img src="/lectures/images/2022-12-20-APPH4010_Intro_to_Nuclear/image-20221218204529542.png" alt="image-20221218204529542" style="zoom:50%;" /></td>
     </tr>
     <tr>
       <td style="text-align: center"> </td>
       <td style="text-align: left">do <strong><em>not</em></strong> provide information on the probability of its occurrence, only if it <em>can</em> occur</td>
       <td style="text-align: left"> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
       <td> </td>
     </tr>
     <tr>
@@ -1926,69 +1887,41 @@
       <td style="text-align: left">as gamma usually comes from de-excitaton, other processes such as de-excite with electron is competing (also comes from de-excitation)</td>
       <td style="text-align: left"> </td>
       <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
     </tr>
     <tr>
       <td style="text-align: center"> </td>
       <td style="text-align: left">e.g. Internal Conversion</td>
       <td style="text-align: left">transfer energy to an orbital electron (K-shell or further out), ejecting it from the nucleus</td>
       <td>another way to de-excite = the parent and child would be the same <em>as if performed gamma decay</em></td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
     </tr>
     <tr>
       <td style="text-align: center"> </td>
       <td style="text-align: left"> </td>
       <td style="text-align: left"><strong>Single energy peak</strong> for each orbital electron transition unlike continuous β spectrum.</td>
       <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
     </tr>
     <tr>
       <td style="text-align: center">$\gamma$ Transition Rates</td>
       <td style="text-align: left">Weisskopf Single Particle γ Transition Rates</td>
       <td style="text-align: left"> </td>
-      <td><img src="nuclear_eq_n_concepts/image-20221218204742112.png" alt="image-20221218204742112" /></td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
+      <td><img src="/lectures/images/2022-12-20-APPH4010_Intro_to_Nuclear/image-20221218204742112.png" alt="image-20221218204742112" /></td>
     </tr>
     <tr>
       <td style="text-align: center"> </td>
       <td style="text-align: left">$E_1$ is greatly favored</td>
       <td style="text-align: left"> </td>
       <td>Selection rules allow E2, M3, E4, M5, and E6 transitions, but the E2 radiation is strongly favored.</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
     </tr>
     <tr>
       <td style="text-align: center"> </td>
       <td style="text-align: left"> </td>
       <td style="text-align: left"> </td>
-      <td><img src="nuclear_eq_n_concepts/image-20221218214350669.png" alt="image-20221218214350669" /></td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
+      <td><img src="/lectures/images/2022-12-20-APPH4010_Intro_to_Nuclear/image-20221218214350669.png" alt="image-20221218214350669" /></td>
     </tr>
     <tr>
       <td style="text-align: center"> </td>
       <td style="text-align: left">If transitions have <em>high multipolarity</em>, T$_{1/2}$ may be considerable</td>
       <td style="text-align: left">basically for E6, M6, etc above,  the probabiility is low = long half lives</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
       <td> </td>
     </tr>
     <tr>
@@ -1996,29 +1929,17 @@
       <td style="text-align: left"> </td>
       <td style="text-align: left">can substantially <strong><em>raise the probability</em></strong> that a particular energy γ-ray will be emitted</td>
       <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
     </tr>
     <tr>
       <td style="text-align: center"> </td>
       <td style="text-align: left"> </td>
       <td style="text-align: left">can’t characterize transition probability using the single particle model</td>
       <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
     </tr>
     <tr>
       <td style="text-align: center">Beta Decay Equations</td>
-      <td style="text-align: left"><img src="nuclear_eq_n_concepts/image-20221218214832570.png" alt="image-20221218214832570" /></td>
+      <td style="text-align: left"><img src="/lectures/images/2022-12-20-APPH4010_Intro_to_Nuclear/image-20221218214832570.png" alt="image-20221218214832570" /></td>
       <td style="text-align: left"> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
       <td> </td>
     </tr>
     <tr>
@@ -2026,49 +1947,29 @@
       <td style="text-align: left">allowed reactions = conservation of <strong><em>energy/momentum/charge/lepton number</em></strong></td>
       <td style="text-align: left"> </td>
       <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
     </tr>
     <tr>
       <td style="text-align: center"> </td>
       <td style="text-align: left">can find the end point of the continous $\beta$ spectrum</td>
       <td style="text-align: left">recall that $Q$ gives the kinetic energy difference $Q = K_f - K_i = (m_i -m_f)c^2$</td>
       <td>$T_{end} = E_0 - m_e c^2$, the end point of the β spectrum. $E_0$ = total energy of the transition.</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
     </tr>
     <tr>
       <td style="text-align: center">Fermi’s Golden Rule</td>
       <td style="text-align: left">Probability of beta decay, determine the <em>transition rate</em> between an initial state (i) and a final state (f) for $\beta$ decay</td>
       <td style="text-align: left"> </td>
       <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
     </tr>
     <tr>
       <td style="text-align: center"> </td>
-      <td style="text-align: left"><img src="nuclear_eq_n_concepts/image-20221218220413602.png" alt="image-20221218220413602" /></td>
+      <td style="text-align: left"><img src="/lectures/images/2022-12-20-APPH4010_Intro_to_Nuclear/image-20221218220413602.png" alt="image-20221218220413602" /></td>
       <td style="text-align: left">$\lambda$ measures the transition probability</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
       <td> </td>
     </tr>
     <tr>
       <td style="text-align: center">Electron Capture</td>
-      <td style="text-align: left">competes with β+-decay when both modes are possible<img src="nuclear_eq_n_concepts/image-20221218220610791.png" alt="image-20221218220610791" style="zoom:25%;" /></td>
+      <td style="text-align: left">competes with β+-decay when both modes are possible<img src="/lectures/images/2022-12-20-APPH4010_Intro_to_Nuclear/image-20221218220610791.png" alt="image-20221218220610791" style="zoom:25%;" /></td>
       <td style="text-align: left">all $\beta$ are due to ==weak interaction==</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
       <td> </td>
     </tr>
     <tr>
@@ -2076,19 +1977,11 @@
       <td style="text-align: left">depends on the <strong>overlap</strong> of the electron’s and the nucleus’s wave functions</td>
       <td style="text-align: left"> </td>
       <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
     </tr>
     <tr>
       <td style="text-align: center"> </td>
       <td style="text-align: left">1. electron is most likely to be captured when it is <strong><em>closer</em></strong> to the nucleus</td>
       <td style="text-align: left"> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
       <td> </td>
     </tr>
     <tr>
@@ -2096,19 +1989,11 @@
       <td style="text-align: left">2. higher Z = being attracted more = size of $K$-orbit electrons orbit is smaller = being captured</td>
       <td style="text-align: left">EC importance over β+ decay increases with Z</td>
       <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
     </tr>
     <tr>
       <td style="text-align: center">Alpha Decay</td>
       <td style="text-align: left">common decay mode for <strong>heavy radionuclides</strong></td>
       <td style="text-align: left"> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
       <td> </td>
     </tr>
     <tr>
@@ -2116,19 +2001,11 @@
       <td style="text-align: left">Shed four units of mass (two neutrons and two protons) in one decay.</td>
       <td style="text-align: left"> </td>
       <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
     </tr>
     <tr>
       <td style="text-align: center">QM “tunneling” in Alpha Decay</td>
       <td style="text-align: left">heavy nucleus like uranium has barrier of 20MeV, but emitted alpha particle from it can be <em>as low as 5 MeV</em>. now we know it is due to non-zero wave function</td>
       <td style="text-align: left"> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
       <td> </td>
     </tr>
     <tr>
@@ -2136,19 +2013,11 @@
       <td style="text-align: left">requires $Q&gt;0$</td>
       <td style="text-align: left"> </td>
       <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
     </tr>
     <tr>
       <td style="text-align: center"> </td>
-      <td style="text-align: left"><img src="nuclear_eq_n_concepts/image-20221218221142073.png" alt="image-20221218221142073" /></td>
+      <td style="text-align: left"><img src="/lectures/images/2022-12-20-APPH4010_Intro_to_Nuclear/image-20221218221142073.png" alt="image-20221218221142073" /></td>
       <td style="text-align: left">explanation of QM tunneling</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
       <td> </td>
     </tr>
     <tr>
@@ -2156,19 +2025,11 @@
       <td style="text-align: left">for alpha decay to happen, you need to first form the alpha particle in the nucleus</td>
       <td style="text-align: left"> </td>
       <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
     </tr>
     <tr>
       <td style="text-align: center"> </td>
-      <td style="text-align: left"><img src="nuclear_eq_n_concepts/image-20221218221306606.png" alt="image-20221218221306606" /></td>
+      <td style="text-align: left"><img src="/lectures/images/2022-12-20-APPH4010_Intro_to_Nuclear/image-20221218221306606.png" alt="image-20221218221306606" /></td>
       <td style="text-align: left"> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
       <td> </td>
     </tr>
   </tbody>
@@ -2244,7 +2105,7 @@
     </tr>
     <tr>
       <td style="text-align: center"> </td>
-      <td style="text-align: left"><img src="nuclear_eq_n_concepts/image-20221218222924675.png" alt="image-20221218222924675" /></td>
+      <td style="text-align: left"><img src="/lectures/images/2022-12-20-APPH4010_Intro_to_Nuclear/image-20221218222924675.png" alt="image-20221218222924675" /></td>
       <td style="text-align: left"><strong>Discrete</strong> energy peaks at high energies from direct reactions</td>
       <td> </td>
     </tr>
@@ -2286,7 +2147,7 @@
     </tr>
     <tr>
       <td style="text-align: center"> </td>
-      <td style="text-align: left"><img src="nuclear_eq_n_concepts/image-20221218223426199.png" alt="image-20221218223426199" /></td>
+      <td style="text-align: left"><img src="/lectures/images/2022-12-20-APPH4010_Intro_to_Nuclear/image-20221218223426199.png" alt="image-20221218223426199" /></td>
       <td style="text-align: left">y-axis = prob of observing this</td>
       <td> </td>
     </tr>
@@ -2305,7 +2166,7 @@
     <tr>
       <td style="text-align: center"> </td>
       <td style="text-align: left"> </td>
-      <td style="text-align: left"><img src="nuclear_eq_n_concepts/image-20221218223905002.png" alt="image-20221218223905002" /></td>
+      <td style="text-align: left"><img src="/lectures/images/2022-12-20-APPH4010_Intro_to_Nuclear/image-20221218223905002.png" alt="image-20221218223905002" /></td>
       <td>DD reaction cross section = higher E better because this is <em>fusion</em></td>
     </tr>
     <tr>
@@ -2322,7 +2183,7 @@
     </tr>
     <tr>
       <td style="text-align: center">Classical Estimate of Uncharged Particles</td>
-      <td style="text-align: left"><img src="nuclear_eq_n_concepts/image-20221218224237587.png" alt="image-20221218224237587" style="zoom: 33%;" /></td>
+      <td style="text-align: left"><img src="/lectures/images/2022-12-20-APPH4010_Intro_to_Nuclear/image-20221218224237587.png" alt="image-20221218224237587" style="zoom: 33%;" /></td>
       <td style="text-align: left"> </td>
       <td> </td>
     </tr>
@@ -2334,7 +2195,7 @@
     </tr>
     <tr>
       <td style="text-align: center">Classical Estimates of Charged Particles</td>
-      <td style="text-align: left"><img src="nuclear_eq_n_concepts/image-20221218224450325.png" alt="image-20221218224450325" style="zoom:150%;" /></td>
+      <td style="text-align: left"><img src="/lectures/images/2022-12-20-APPH4010_Intro_to_Nuclear/image-20221218224450325.png" alt="image-20221218224450325" style="zoom:150%;" /></td>
       <td style="text-align: left"> </td>
       <td> </td>
     </tr>
@@ -2418,13 +2279,13 @@
     </tr>
     <tr>
       <td style="text-align: center"> </td>
-      <td style="text-align: left"><img src="nuclear_eq_n_concepts/image-20221218230238702.png" alt="image-20221218230238702" /></td>
+      <td style="text-align: left"><img src="/lectures/images/2022-12-20-APPH4010_Intro_to_Nuclear/image-20221218230238702.png" alt="image-20221218230238702" /></td>
       <td style="text-align: left"> </td>
       <td> </td>
     </tr>
     <tr>
       <td style="text-align: center">Cross Section Thresholds</td>
-      <td style="text-align: left"><img src="nuclear_eq_n_concepts/image-20221218230654380.png" alt="image-20221218230654380" /></td>
+      <td style="text-align: left"><img src="/lectures/images/2022-12-20-APPH4010_Intro_to_Nuclear/image-20221218230654380.png" alt="image-20221218230654380" /></td>
       <td style="text-align: left">each decay mode <em>also has its own ‘excitation energy’</em> required</td>
       <td> </td>
     </tr>
@@ -2459,7 +2320,7 @@
   <tbody>
     <tr>
       <td style="text-align: center">Why is Fission Energetic Useful?</td>
-      <td style="text-align: left"><img src="nuclear_eq_n_concepts/image-20221218235727825.png" alt="image-20221218235727825" style="zoom: 33%;" /></td>
+      <td style="text-align: left"><img src="/lectures/images/2022-12-20-APPH4010_Intro_to_Nuclear/image-20221218235727825.png" alt="image-20221218235727825" style="zoom: 33%;" /></td>
       <td style="text-align: left"> </td>
       <td> </td>
     </tr>
@@ -2489,7 +2350,7 @@
     </tr>
     <tr>
       <td style="text-align: center"> </td>
-      <td style="text-align: left"><img src="nuclear_eq_n_concepts/image-20221219000721638.png" alt="image-20221219000721638" style="zoom: 33%;" /></td>
+      <td style="text-align: left"><img src="/lectures/images/2022-12-20-APPH4010_Intro_to_Nuclear/image-20221219000721638.png" alt="image-20221219000721638" style="zoom: 33%;" /></td>
       <td style="text-align: left"> </td>
       <td> </td>
     </tr>
@@ -2501,14 +2362,14 @@
     </tr>
     <tr>
       <td style="text-align: center"> </td>
-      <td style="text-align: left"><img src="nuclear_eq_n_concepts/image-20221219000459450.png" alt="image-20221219000459450" style="zoom: 33%;" /></td>
+      <td style="text-align: left"><img src="/lectures/images/2022-12-20-APPH4010_Intro_to_Nuclear/image-20221219000459450.png" alt="image-20221219000459450" style="zoom: 33%;" /></td>
       <td style="text-align: left"> </td>
       <td> </td>
     </tr>
     <tr>
       <td style="text-align: center">Properties of Fission</td>
       <td style="text-align: left">Energetically preferred to have one heavy group and one light group as fission fragment</td>
-      <td style="text-align: left"><img src="nuclear_eq_n_concepts/image-20221219000902306.png" alt="image-20221219000902306" /></td>
+      <td style="text-align: left"><img src="/lectures/images/2022-12-20-APPH4010_Intro_to_Nuclear/image-20221219000902306.png" alt="image-20221219000902306" /></td>
       <td> </td>
     </tr>
     <tr>
@@ -2525,14 +2386,14 @@
     </tr>
     <tr>
       <td style="text-align: center"> </td>
-      <td style="text-align: left"><img src="nuclear_eq_n_concepts/image-20221219001726268.png" alt="image-20221219001726268" style="zoom:33%;" /></td>
+      <td style="text-align: left"><img src="/lectures/images/2022-12-20-APPH4010_Intro_to_Nuclear/image-20221219001726268.png" alt="image-20221219001726268" style="zoom:33%;" /></td>
       <td style="text-align: left">this radiation’s range, etc. can be measured by placing paraffin a distance away to <strong>perform (n,p) reaction</strong></td>
       <td> </td>
     </tr>
     <tr>
       <td style="text-align: center"> </td>
       <td style="text-align: left">the first ‘weird’ event that happened about this was: Walther Bothe and Herbert Becker = discovered that when energetic α-particles from the decay of polonium impinged on certain light materials, they would <strong><em>eject high energy, very penetrating, neutral radiation</em></strong>; they thought they were γ-rays</td>
-      <td style="text-align: left"><img src="nuclear_eq_n_concepts/image-20221219002009283.png" alt="image-20221219002009283" /></td>
+      <td style="text-align: left"><img src="/lectures/images/2022-12-20-APPH4010_Intro_to_Nuclear/image-20221219002009283.png" alt="image-20221219002009283" /></td>
       <td> </td>
     </tr>
     <tr>
@@ -2567,13 +2428,13 @@
     </tr>
     <tr>
       <td style="text-align: center">Types of Nuclear Weapons Mechanism</td>
-      <td style="text-align: left"><img src="nuclear_eq_n_concepts/image-20221219002342388.png" alt="image-20221219002342388" style="zoom: 25%;" /></td>
+      <td style="text-align: left"><img src="/lectures/images/2022-12-20-APPH4010_Intro_to_Nuclear/image-20221219002342388.png" alt="image-20221219002342388" style="zoom: 25%;" /></td>
       <td style="text-align: left">normal <strong>plutomium</strong> okay, but densely pressed is not = can go over critical mass</td>
       <td> </td>
     </tr>
     <tr>
       <td style="text-align: center"> </td>
-      <td style="text-align: left"><img src="nuclear_eq_n_concepts/image-20221219002349437.png" alt="image-20221219002349437" style="zoom:25%;" /></td>
+      <td style="text-align: left"><img src="/lectures/images/2022-12-20-APPH4010_Intro_to_Nuclear/image-20221219002349437.png" alt="image-20221219002349437" style="zoom:25%;" /></td>
       <td style="text-align: left">simply have separate halfs of sphere = explosion <strong>combine</strong> them = increase density = go react<br />now it is <strong>uranium</strong></td>
       <td> </td>
     </tr>
@@ -2604,7 +2465,7 @@
     <tr>
       <td style="text-align: center"> </td>
       <td style="text-align: left">2. delayed neutrons play a critical role in the control of nuclear fission reactions because they are emitted at a <em>slower rate than prompt neutrons</em>, which are emitted immediately following the fission event = helpful to make power change smoother = but still are neutrons</td>
-      <td style="text-align: left"><img src="nuclear_eq_n_concepts/image-20221219003325304.png" alt="image-20221219003325304" /></td>
+      <td style="text-align: left"><img src="/lectures/images/2022-12-20-APPH4010_Intro_to_Nuclear/image-20221219003325304.png" alt="image-20221219003325304" /></td>
       <td> </td>
     </tr>
     <tr>
@@ -2627,7 +2488,7 @@
     </tr>
     <tr>
       <td style="text-align: center">Chain Reaction</td>
-      <td style="text-align: left"><img src="nuclear_eq_n_concepts/image-20221219003615062.png" alt="image-20221219003615062" style="zoom:33%;" /></td>
+      <td style="text-align: left"><img src="/lectures/images/2022-12-20-APPH4010_Intro_to_Nuclear/image-20221219003615062.png" alt="image-20221219003615062" style="zoom:33%;" /></td>
       <td style="text-align: left"> </td>
       <td> </td>
     </tr>
@@ -2639,19 +2500,19 @@
     </tr>
     <tr>
       <td style="text-align: center"> </td>
-      <td style="text-align: left"><img src="nuclear_eq_n_concepts/image-20221219004107957.png" alt="image-20221219004107957" style="zoom: 25%;" /></td>
+      <td style="text-align: left"><img src="/lectures/images/2022-12-20-APPH4010_Intro_to_Nuclear/image-20221219004107957.png" alt="image-20221219004107957" style="zoom: 25%;" /></td>
       <td style="text-align: left"> </td>
       <td> </td>
     </tr>
     <tr>
       <td style="text-align: center"> </td>
-      <td style="text-align: left"><img src="nuclear_eq_n_concepts/image-20221219004140291.png" alt="image-20221219004140291" style="zoom:25%;" /></td>
+      <td style="text-align: left"><img src="/lectures/images/2022-12-20-APPH4010_Intro_to_Nuclear/image-20221219004140291.png" alt="image-20221219004140291" style="zoom:25%;" /></td>
       <td style="text-align: left"> </td>
       <td> </td>
     </tr>
     <tr>
       <td style="text-align: center"> </td>
-      <td style="text-align: left"><img src="nuclear_eq_n_concepts/image-20221219004201393.png" alt="image-20221219004201393" style="zoom:25%;" /></td>
+      <td style="text-align: left"><img src="/lectures/images/2022-12-20-APPH4010_Intro_to_Nuclear/image-20221219004201393.png" alt="image-20221219004201393" style="zoom:25%;" /></td>
       <td style="text-align: left">recall the section on neutron economics</td>
       <td> </td>
     </tr>
@@ -2663,7 +2524,7 @@
     </tr>
     <tr>
       <td style="text-align: center"> </td>
-      <td style="text-align: left"><img src="nuclear_eq_n_concepts/image-20221219004515942.png" alt="image-20221219004515942" /></td>
+      <td style="text-align: left"><img src="/lectures/images/2022-12-20-APPH4010_Intro_to_Nuclear/image-20221219004515942.png" alt="image-20221219004515942" /></td>
       <td style="text-align: left">basically $\sigma_f + \sigma_a = \sigma_T$</td>
       <td>if 99.3% U-238 and 0.7% U-235, then the ratio is<br />$\frac{0.7*\sigma_f(^{235}U)}{(0.7\sigma_T(^{235}U)+99.3\sigma_T(^{238}U))}$</td>
     </tr>
@@ -2675,7 +2536,7 @@
     </tr>
     <tr>
       <td style="text-align: center">Methods for U-235 Enrichment</td>
-      <td style="text-align: left"><img src="nuclear_eq_n_concepts/image-20221219005126907.png" alt="image-20221219005126907" style="zoom: 25%;" /></td>
+      <td style="text-align: left"><img src="/lectures/images/2022-12-20-APPH4010_Intro_to_Nuclear/image-20221219005126907.png" alt="image-20221219005126907" style="zoom: 25%;" /></td>
       <td style="text-align: left">Gaseous Diffusion Enrichment: since U238 is a <strong>little bit heavier</strong> (cannot separate them chemically as they are the same, but physicaly not). Therefore smaller would go through more readily at the top</td>
       <td> </td>
     </tr>
@@ -2687,7 +2548,7 @@
     </tr>
     <tr>
       <td style="text-align: center"> </td>
-      <td style="text-align: left"><img src="nuclear_eq_n_concepts/image-20221219005222054.png" alt="image-20221219005222054" style="zoom:25%;" /></td>
+      <td style="text-align: left"><img src="/lectures/images/2022-12-20-APPH4010_Intro_to_Nuclear/image-20221219005222054.png" alt="image-20221219005222054" style="zoom:25%;" /></td>
       <td style="text-align: left">Gas Centrifuge Enrichment: again, U238 is a little bit heavier than U235, so another approach is to spin it very fast</td>
       <td> </td>
     </tr>
@@ -2747,19 +2608,19 @@
     </tr>
     <tr>
       <td style="text-align: center">PWR and BWR</td>
-      <td style="text-align: left"><img src="nuclear_eq_n_concepts/image-20221219005748886.png" alt="image-20221219005748886" style="zoom: 33%;" /></td>
+      <td style="text-align: left"><img src="/lectures/images/2022-12-20-APPH4010_Intro_to_Nuclear/image-20221219005748886.png" alt="image-20221219005748886" style="zoom: 33%;" /></td>
       <td style="text-align: left">pressurized, transfer of heat energy</td>
       <td> </td>
     </tr>
     <tr>
       <td style="text-align: center"> </td>
-      <td style="text-align: left"><img src="nuclear_eq_n_concepts/image-20221219005817822.png" alt="image-20221219005817822" style="zoom: 33%;" /></td>
+      <td style="text-align: left"><img src="/lectures/images/2022-12-20-APPH4010_Intro_to_Nuclear/image-20221219005817822.png" alt="image-20221219005817822" style="zoom: 33%;" /></td>
       <td style="text-align: left">could have secondary radiation, but more efficient</td>
       <td> </td>
     </tr>
     <tr>
       <td style="text-align: center">PWR Schematic</td>
-      <td style="text-align: left"><img src="nuclear_eq_n_concepts/image-20221219005940524.png" alt="image-20221219005940524" style="zoom:50%;" /></td>
+      <td style="text-align: left"><img src="/lectures/images/2022-12-20-APPH4010_Intro_to_Nuclear/image-20221219005940524.png" alt="image-20221219005940524" style="zoom:50%;" /></td>
       <td style="text-align: left"> </td>
       <td> </td>
     </tr>
@@ -2787,7 +2648,7 @@
   <tbody>
     <tr>
       <td style="text-align: center">Why is Fusion Energetic Useful?</td>
-      <td style="text-align: left"><img src="nuclear_eq_n_concepts/image-20221219013327992.png" alt="image-20221219013327992" style="zoom:50%;" /></td>
+      <td style="text-align: left"><img src="/lectures/images/2022-12-20-APPH4010_Intro_to_Nuclear/image-20221219013327992.png" alt="image-20221219013327992" style="zoom:50%;" /></td>
       <td style="text-align: left"> </td>
       <td> </td>
     </tr>
@@ -2813,7 +2674,7 @@
       <td style="text-align: center"> </td>
       <td style="text-align: left">3. confinement time: amount of time that the plasma must be confined in order for the reactions to occur</td>
       <td style="text-align: left">later on will see that density and confinement determines how much energy can be gained</td>
-      <td><img src="nuclear_eq_n_concepts/image-20221219014048587.png" alt="image-20221219014048587" style="zoom: 50%;" /></td>
+      <td><img src="/lectures/images/2022-12-20-APPH4010_Intro_to_Nuclear/image-20221219014048587.png" alt="image-20221219014048587" style="zoom: 50%;" /></td>
     </tr>
     <tr>
       <td style="text-align: center">Magnetic Confinement Basics</td>
@@ -2830,7 +2691,7 @@
     <tr>
       <td style="text-align: center"> </td>
       <td style="text-align: left"> </td>
-      <td style="text-align: left"><img src="nuclear_eq_n_concepts/image-20221219015741263.png" alt="image-20221219015741263" style="zoom:33%;" /></td>
+      <td style="text-align: left"><img src="/lectures/images/2022-12-20-APPH4010_Intro_to_Nuclear/image-20221219015741263.png" alt="image-20221219015741263" style="zoom:33%;" /></td>
       <td> </td>
     </tr>
     <tr>
@@ -2847,7 +2708,7 @@
     </tr>
     <tr>
       <td style="text-align: center">Fusion Reaction Examples</td>
-      <td style="text-align: left"><img src="nuclear_eq_n_concepts/image-20221219014333643.png" alt="image-20221219014333643" /></td>
+      <td style="text-align: left"><img src="/lectures/images/2022-12-20-APPH4010_Intro_to_Nuclear/image-20221219014333643.png" alt="image-20221219014333643" /></td>
       <td style="text-align: left">Most uses isotopes of hydrogen to ==minimize repulsion==</td>
       <td> </td>
     </tr>
@@ -2896,7 +2757,7 @@
     <tr>
       <td style="text-align: center">Why would DT be preferred?</td>
       <td style="text-align: left">1. requires lower energy<br />2. produces more energy</td>
-      <td style="text-align: left"><img src="nuclear_eq_n_concepts/image-20221219015116694.png" alt="image-20221219015116694" /></td>
+      <td style="text-align: left"><img src="/lectures/images/2022-12-20-APPH4010_Intro_to_Nuclear/image-20221219015116694.png" alt="image-20221219015116694" /></td>
       <td> </td>
     </tr>
     <tr>
@@ -2944,7 +2805,7 @@
     <tr>
       <td style="text-align: center"> </td>
       <td style="text-align: left"> </td>
-      <td style="text-align: left"><img src="nuclear_eq_n_concepts/image-20221219015523087.png" alt="image-20221219015523087" /></td>
+      <td style="text-align: left"><img src="/lectures/images/2022-12-20-APPH4010_Intro_to_Nuclear/image-20221219015523087.png" alt="image-20221219015523087" /></td>
       <td> </td>
     </tr>
     <tr>
@@ -2962,7 +2823,7 @@
     <tr>
       <td style="text-align: center"> </td>
       <td style="text-align: left">3. <strong>Poloidal field</strong> (PF) – pass current around axis of torus. Compensates for weakening TF with increasing $r$</td>
-      <td style="text-align: left"><img src="nuclear_eq_n_concepts/image-20221219015910587.png" alt="image-20221219015910587" style="zoom: 25%;" /></td>
+      <td style="text-align: left"><img src="/lectures/images/2022-12-20-APPH4010_Intro_to_Nuclear/image-20221219015910587.png" alt="image-20221219015910587" style="zoom: 25%;" /></td>
       <td> </td>
     </tr>
     <tr>
@@ -2997,7 +2858,7 @@
     </tr>
     <tr>
       <td style="text-align: center"> </td>
-      <td style="text-align: left"><img src="nuclear_eq_n_concepts/image-20221219020446322.png" alt="image-20221219020446322" /></td>
+      <td style="text-align: left"><img src="/lectures/images/2022-12-20-APPH4010_Intro_to_Nuclear/image-20221219020446322.png" alt="image-20221219020446322" /></td>
       <td style="text-align: left">Laser pulse vaporizes the heavy metal case, generating intense <strong>x-rays inside the hohlraum</strong>, which compresses and heats the DT fuel</td>
       <td> </td>
     </tr>

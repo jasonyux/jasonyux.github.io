@@ -47,17 +47,22 @@
       <div class="wrapper">
         <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
   <head>
-	<script>
-		MathJax = {
-		  tex: {
-			inlineMath: [['$', '$'], ['\\(', '\\)']],
-			displayMath: [['$$', '$$'], ['\\[', '\\]']]
-		  }
-		};
-	</script>
-	<script id="MathJax-script" async
-		src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
-	</script>
+  <script>
+    MathJax = {
+      // 
+      loader: {
+        load: ['[tex]/ams', '[tex]/textmacros', '[tex]/boldsymbol']
+      },
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        packages: {'[+]': ['ams', 'textmacros', 'boldsymbol']}
+      }
+    };
+  </script>
+  <script id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+  </script>
   </head>
   <header class="post-header">
     <h1 class="post-title p-name" itemprop="name headline">CSEE4119 Computer Networks</h1>
@@ -73,7 +78,7 @@
 
 <p>The internet/networking system now evolves into including lots of applications.</p>
 
-<p><img src="notes/image-20210920082800394.png" alt="image-20210920082800394" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20210920082800394.png" alt="image-20210920082800394" /></p>
 
 <p>Additionally:</p>
 
@@ -145,7 +150,7 @@
 
 <h2 id="the-network-edge">The Network Edge</h2>
 
-<p><img src="notes/image-20210920143433724.png" alt="image-20210920143433724" style="zoom:80%;" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20210920143433724.png" alt="image-20210920143433724" style="zoom:80%;" /></p>
 
 <blockquote>
   <p><strong>End-system</strong>:</p>
@@ -159,7 +164,7 @@
 
 <h3 id="access-networks">Access Networks</h3>
 
-<p><img src="notes/image-20210920143826965.png" alt="image-20210920143826965" style="zoom:80%;" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20210920143826965.png" alt="image-20210920143826965" style="zoom:80%;" /></p>
 
 <blockquote>
   <p><strong>Access Network</strong></p>
@@ -169,7 +174,7 @@
 
 <h4 id="digital-subscriber-line">Digital Subscriber Line</h4>
 
-<p><img src="notes/image-20210920152827246.png" alt="image-20210920152827246" style="zoom:80%;" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20210920152827246.png" alt="image-20210920152827246" style="zoom:80%;" /></p>
 
 <p>A residence typically obtains DSL Internet access from the <strong>same local telephone company</strong> (telco) that provides its
 wired local phone access. Thus, when DSL is used, a customer’s telco is also its ISP.</p>
@@ -226,7 +231,7 @@ wired local phone access. Thus, when DSL is used, a customer’s telco is also i
 
 <p>Cable Internet access makes use of the <strong>cable television company’s existing cable</strong> television infrastructure. Therefore, A residence obtains cable Internet access from the same company that provides its cable television.</p>
 
-<p><img src="notes/image-20210920153727811.png" alt="image-20210920153727811" style="zoom:80%;" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20210920153727811.png" alt="image-20210920153727811" style="zoom:80%;" /></p>
 
 <p>some important components here are defined below</p>
 
@@ -263,7 +268,7 @@ wired local phone access. Thus, when DSL is used, a customer’s telco is also i
   <li>in the cable internet access case, coaxial cables were shared</li>
 </ul>
 
-<p><img src="notes/image-20210920154447611.png" alt="image-20210920154447611" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20210920154447611.png" alt="image-20210920154447611" /></p>
 
 <p>where we see that</p>
 
@@ -295,7 +300,7 @@ wired local phone access. Thus, when DSL is used, a customer’s telco is also i
 
 <h4 id="ethernet-and-wifi">Ethernet and WiFi</h4>
 
-<p><img src="notes/image-20210920155239301.png" alt="image-20210920155239301" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20210920155239301.png" alt="image-20210920155239301" /></p>
 
 <blockquote>
   <p><strong>Ethernet Switch</strong></p>
@@ -317,7 +322,7 @@ wired local phone access. Thus, when DSL is used, a customer’s telco is also i
 
 <p>Many homes <strong>combine broadband residential access</strong> (that is, cable modems or DSL) <strong>with these inexpensive wireless LAN</strong> technologies. In Figure 1.9 shows a typical home network.</p>
 
-<p><img src="notes/image-20210920155624985.png" alt="image-20210920155624985" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20210920155624985.png" alt="image-20210920155624985" /></p>
 
 <p>where here:</p>
 
@@ -330,7 +335,7 @@ wired local phone access. Thus, when DSL is used, a customer’s telco is also i
 
 <p>We have covered the edges used in our network. Figure 1.10 highlights the network core with thick, shaded lines.</p>
 
-<p><img src="notes/image-20210920161036673.png" alt="image-20210920161036673" style="zoom:80%;" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20210920161036673.png" alt="image-20210920161036673" style="zoom:80%;" /></p>
 
 <h2 id="performance-delay-loss-throughput">Performance (Delay, Loss, Throughput)</h2>
 
@@ -338,7 +343,7 @@ wired local phone access. Thus, when DSL is used, a customer’s telco is also i
 
 <p>First, we need to know how packet loss and delay occurs.</p>
 
-<p><img src="notes/image-20210922090255882.png" alt="image-20210922090255882" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20210922090255882.png" alt="image-20210922090255882" /></p>
 
 <p>So we get:</p>
 
@@ -351,9 +356,11 @@ wired local phone access. Thus, when DSL is used, a customer’s telco is also i
   <li>at B, we repeat the same step from 1-6</li>
 </ol>
 
-<p>Therefore, the ==most important delays== are
-\(d_{\text{total}}=d_{\text{proc}}+d_{\text{queue}}+d_{\text{trans}}+d_{\text{prop}}\)
-where:</p>
+<p>Therefore, the ==most important delays== are</p>
+
+\[d_{\text{total}}=d_{\text{proc}}+d_{\text{queue}}+d_{\text{trans}}+d_{\text{prop}}\]
+
+<p>where:</p>
 
 <ul>
   <li>
@@ -374,9 +381,13 @@ where:</p>
     <p>$d_{\text{trans}}$ the amount of time required to push (that is, transmit) all of the packet’s bits into the link. Therefore, it depends on the size of information and the bandwidth</p>
 
     <ul>
-      <li>this can be computed by:
-\(\text{transmission delay} = \frac{L}{R}\)
-where the length/size of the packet is $L$ bits, and the bandwidth/transmission rate of the route is $R$ bits/sec.</li>
+      <li>
+        <p>this can be computed by:</p>
+
+\[\text{transmission delay} = \frac{L}{R}\]
+
+        <p>where the length/size of the packet is $L$ bits, and the bandwidth/transmission rate of the route is $R$ bits/sec.</p>
+      </li>
     </ul>
   </li>
   <li>
@@ -403,7 +414,7 @@ where the length/size of the packet is $L$ bits, and the bandwidth/transmission 
 
 <p>An analogy of the above process would be:</p>
 
-<p><img src="notes/image-20210922095002446.png" alt="image-20210922095002446" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20210922095002446.png" alt="image-20210922095002446" /></p>
 
 <p>we know that:</p>
 
@@ -476,13 +487,13 @@ traceroute to nytimes.com <span class="o">(</span>151.101.1.164<span class="o">)
 
 <p>Suppose you are at <em>Orlando</em>. Upon using traceroute, you see:</p>
 
-<p><img src="notes/image-20210922142323659.png" style="zoom: 50%;" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20210922142323659.png" style="zoom: 50%;" /></p>
 
 <p>so that we have <em>wasted some routes</em> by going back to Florida.</p>
 
 <p>Now, the problem is that routes on the internet are often ==asymmetric==. So that going from Seattle to Orlando, we might have the path in purple:</p>
 
-<p><img src="notes/image-20210922144459861.png" alt="image-20210922144459861" style="zoom:50%;" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20210922144459861.png" alt="image-20210922144459861" style="zoom:50%;" /></p>
 
 <blockquote>
   <p>Therefore, due to the <strong>asymmetry</strong>:</p>
@@ -508,7 +519,7 @@ traceroute to nytimes.com <span class="o">(</span>151.101.1.164<span class="o">)
 
 <p>Suppose, for simplicity, that all packets consist of $L$ bits, and that on <em>average</em> you get $a$ packets per second. Suppose your transmission rate is $R$ (being pushed off the queue to the link):</p>
 
-<p><img src="notes/image-20210922100545698.png" alt="image-20210922100545698" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20210922100545698.png" alt="image-20210922100545698" /></p>
 
 <p>Here we notice that:</p>
 
@@ -524,9 +535,11 @@ traceroute to nytimes.com <span class="o">(</span>151.101.1.164<span class="o">)
     <p>$La/R$ is also called the <strong>traffic intensity</strong>.</p>
   </li>
   <li>
-    <p>this is assuming there is some <em><strong>distribution</strong> of incoming intensity instead of a <strong>uniform</strong> one</em>, e.g. the Poisson distribution of incoming intensity. As a result, there will be bursts of influxes at times and the queue would build up. The resulting formula would be:
-\(d \propto \frac{\rho}{1-\rho}\)
-where:</p>
+    <p>this is assuming there is some <em><strong>distribution</strong> of incoming intensity instead of a <strong>uniform</strong> one</em>, e.g. the Poisson distribution of incoming intensity. As a result, there will be bursts of influxes at times and the queue would build up. The resulting formula would be:</p>
+
+\[d \propto \frac{\rho}{1-\rho}\]
+
+    <p>where:</p>
 
     <ul>
       <li>$\rho \equiv La/R$ is the traffic incoming intensity.</li>
@@ -561,14 +574,17 @@ where:</p>
 
 <p>Consider the following two cases:</p>
 
-<p><img src="notes/image-20211004200340352.png" alt="image-20211004200340352" style="zoom:67%;" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211004200340352.png" alt="image-20211004200340352" style="zoom:67%;" /></p>
 
-<p><strong>For case a)</strong>, suppose we have $R_c$ for the bandwidth between router and client, and $R_s$ for the server. Then:
-\(\text{Throughput} = \min\{R_c,R_s\}\)
-due to bottlenecks.</p>
+<p><strong>For case a)</strong>, suppose we have $R_c$ for the bandwidth between router and client, and $R_s$ for the server. Then:</p>
 
-<p><strong>For case b)</strong>, let all 10 serves have the same $R_s = 2$ Mbps, and all clients have $R_c=1$ Mbps. Assume the shared link is fair to every server, and it has $R=5$ Mbps. Then we have:
-\(\text{Throughput} = \min{\{R_s, R/10, R\}} = 5/10 = 500 \text{ Kbps}\)</p>
+\[\text{Throughput} = \min\{R_c,R_s\}\]
+
+<p>due to bottlenecks.</p>
+
+<p><strong>For case b)</strong>, let all 10 serves have the same $R_s = 2$ Mbps, and all clients have $R_c=1$ Mbps. Assume the shared link is fair to every server, and it has $R=5$ Mbps. Then we have:</p>
+
+\[\text{Throughput} = \min{\{R_s, R/10, R\}} = 5/10 = 500 \text{ Kbps}\]
 
 <h2 id="protocol-layers-and-their-service-models">Protocol Layers and Their Service Models</h2>
 
@@ -589,7 +605,7 @@ due to bottlenecks.</p>
 
 <p>network designers organize <strong>protocols</strong> (tasks) - and the network hardware and software that implement the protocols - <strong>in layers</strong>. When taken together, the protocols of the various layers are called the <strong>protocol stack</strong>.</p>
 
-<p><img src="notes/image-20210920164306438.png" alt="image-20210920164306438" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20210920164306438.png" alt="image-20210920164306438" /></p>
 
 <p>where:</p>
 
@@ -725,7 +741,7 @@ due to bottlenecks.</p>
 
 <h3 id="encapsulation">Encapsulation</h3>
 
-<p><img src="notes/image-20210920091643011.png" alt="image-20210920091643011" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20210920091643011.png" alt="image-20210920091643011" /></p>
 
 <p>where:</p>
 
@@ -847,7 +863,7 @@ due to bottlenecks.</p>
   <li>For example, web application there are two distinct programs that communicate with each other: the browser program running in the user’s host (desktop, laptop, tablet, smartphone, and so on); and the Web server program running in the Web server host.</li>
 </ul>
 
-<p><img src="notes/image-20210927140904107.png" alt="image-20210927140904107" style="zoom:80%;" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20210927140904107.png" alt="image-20210927140904107" style="zoom:80%;" /></p>
 
 <p>The key idea here is that your ==don’t== write and don’t need to write application programs on <strong>network-core devices</strong> (e.g. switches), as they <em>never include application layer stuff</em> and are already “taken care” of.</p>
 
@@ -873,7 +889,7 @@ rapid development and deployment of a vast array of network applications</li>
 
 <p>A common example of network application would be a <strong>web browser</strong> which uses the following architecture</p>
 
-<p><img src="notes/image-20210927091606049.png" alt="image-20210927091606049" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20210927091606049.png" alt="image-20210927091606049" /></p>
 
 <p>where basically you have:</p>
 
@@ -918,7 +934,7 @@ rapid development and deployment of a vast array of network applications</li>
   <li>so a peer connects <strong>directly with another peer</strong></li>
 </ul>
 
-<p><img src="notes/image-20210927092217951.png" alt="image-20210927092217951" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20210927092217951.png" alt="image-20210927092217951" /></p>
 
 <p>where each node/device here is:</p>
 
@@ -982,7 +998,7 @@ rapid development and deployment of a vast array of network applications</li>
   <li>A socket is also referred to the Application Programming Interface (API) between the <em>application and the network</em></li>
 </ul>
 
-<p><img src="notes/image-20210927093148602.png" alt="image-20210927093148602" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20210927093148602.png" alt="image-20210927093148602" /></p>
 
 <p>where:</p>
 
@@ -1101,7 +1117,7 @@ rapid development and deployment of a vast array of network applications</li>
 
 <p><em>For Example</em></p>
 
-<p><img src="notes/image-20210927095247397.png" alt="image-20210927095247397" style="zoom:80%;" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20210927095247397.png" alt="image-20210927095247397" style="zoom:80%;" /></p>
 
 <hr />
 
@@ -1191,7 +1207,7 @@ rapid development and deployment of a vast array of network applications</li>
 
 <p>So UDP might be advantageous when the data to transfer is small (e.g. DNS), or when you really need a small overhead for transfer:</p>
 
-<p><img src="notes/image-20210929085258953.png" alt="image-20210929085258953" style="zoom: 80%;" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20210929085258953.png" alt="image-20210929085258953" style="zoom: 80%;" /></p>
 
 <h3 id="securing-tcp">Securing TCP</h3>
 
@@ -1258,7 +1274,7 @@ rapid development and deployment of a vast array of network applications</li>
   </li>
 </ul>
 
-<p><img src="notes/image-20210929091850365.png" alt="image-20210929091850365" style="zoom:80%;" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20210929091850365.png" alt="image-20210929091850365" style="zoom:80%;" /></p>
 
 <p>In Python, you then get for the <strong>client</strong>:</p>
 
@@ -1328,7 +1344,7 @@ rapid development and deployment of a vast array of network applications</li>
 
 <p>Therefore, the abstraction is:</p>
 
-<p><img src="notes/image-20210929093217927.png" alt="image-20210929093217927" style="zoom:80%;" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20210929093217927.png" alt="image-20210929093217927" style="zoom:80%;" /></p>
 
 <p>where we notice that:</p>
 
@@ -1410,7 +1426,7 @@ rapid development and deployment of a vast array of network applications</li>
   <li>
     <p>as well as how path names work</p>
 
-    <p><img src="notes/image-20211004085524529.png" alt="image-20211004085524529" /></p>
+    <p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211004085524529.png" alt="image-20211004085524529" /></p>
   </li>
 </ul>
 
@@ -1468,9 +1484,9 @@ rapid development and deployment of a vast array of network applications</li>
 
 <p>Consider the case when you entered <code class="language-plaintext highlighter-rouge">www.someSchool.edu/someDepartment/home.index</code></p>
 
-<p><img src="notes/image-20211004090817833.png" alt="image-20211004090817833" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211004090817833.png" alt="image-20211004090817833" /></p>
 
-<p><img src="notes/image-20211004090926457.png" alt="image-20211004090926457" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211004090926457.png" alt="image-20211004090926457" /></p>
 
 <p>So basically this is very wasteful.</p>
 
@@ -1482,7 +1498,7 @@ rapid development and deployment of a vast array of network applications</li>
   </ul>
 </blockquote>
 
-<p><img src="notes/image-20211004091258299.png" alt="image-20211004091258299" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211004091258299.png" alt="image-20211004091258299" /></p>
 
 <h4 id="persistent-http">Persistent HTTP</h4>
 
@@ -1515,7 +1531,7 @@ rapid development and deployment of a vast array of network applications</li>
 
 <p>Each <strong>request message looks like</strong></p>
 
-<p><img src="notes/image-20211004091730450.png" alt="image-20211004091730450" style="zoom: 33%;" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211004091730450.png" alt="image-20211004091730450" style="zoom: 33%;" /></p>
 
 <p>notice that:</p>
 
@@ -1535,7 +1551,7 @@ rapid development and deployment of a vast array of network applications</li>
 
 <p><em>Goal:</em> don’t send object if cache has up-to-date cached version</p>
 
-<p><img src="notes/image-20211004095110171.png" alt="image-20211004095110171" style="zoom: 50%;" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211004095110171.png" alt="image-20211004095110171" style="zoom: 50%;" /></p>
 
 <p>where if you get <code class="language-plaintext highlighter-rouge">304</code>, then no data is actually sent over.</p>
 
@@ -1543,7 +1559,7 @@ rapid development and deployment of a vast array of network applications</li>
 
 <p>An response message looks like:</p>
 
-<p><img src="notes/image-20211004093204431.png" alt="image-20211004093204431" style="zoom: 33%;" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211004093204431.png" alt="image-20211004093204431" style="zoom: 33%;" /></p>
 
 <p>where:</p>
 
@@ -1554,7 +1570,7 @@ rapid development and deployment of a vast array of network applications</li>
 
 <p>Additionally, some other status codes:</p>
 
-<p><img src="notes/image-20211004093719447.png" alt="image-20211004093719447" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211004093719447.png" alt="image-20211004093719447" /></p>
 
 <h3 id="maintaining-state-cookies">Maintaining State: Cookies</h3>
 
@@ -1573,7 +1589,7 @@ rapid development and deployment of a vast array of network applications</li>
 
 <p><em>For Example</em></p>
 
-<p><img src="notes/image-20211004094222058.png" alt="image-20211004094222058" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211004094222058.png" alt="image-20211004094222058" /></p>
 
 <p>where:</p>
 
@@ -1670,11 +1686,11 @@ rapid development and deployment of a vast array of network applications</li>
 
 <p>In HTTP 1.1, this is the order of data sent:</p>
 
-<p><img src="notes/image-20211004095404224.png" alt="image-20211004095404224" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211004095404224.png" alt="image-20211004095404224" /></p>
 
 <p>For <strong>HTTP 2:</strong></p>
 
-<p><img src="notes/image-20211004095423396.png" alt="image-20211004095423396" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211004095423396.png" alt="image-20211004095423396" /></p>
 
 <p>where basically you do a Round-Robin.</p>
 
@@ -1730,7 +1746,7 @@ rapid development and deployment of a vast array of network applications</li>
 
 <p>The basic diagram looks as follows, and the flow is simple:</p>
 
-<p><img src="notes/image-20211006212559970.png" alt="image-20211006212559970" style="zoom:67%;" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211006212559970.png" alt="image-20211006212559970" style="zoom:67%;" /></p>
 
 <p>Suppose you want to get <code class="language-plaintext highlighter-rouge">www.someschool.edu/campus.gif</code>. (You need to configure your web browser so that all of the user’s HTTP requests are first directed to the Web cache first).</p>
 
@@ -1850,7 +1866,7 @@ Address: 128.59.105.24
 
 <h3 id="overview-of-how-dns-works">Overview of How DNS Works</h3>
 
-<p><img src="notes/image-20211006092034706.png" alt="image-20211006092034706" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211006092034706.png" alt="image-20211006092034706" /></p>
 
 <p>where:</p>
 
@@ -1862,7 +1878,7 @@ Address: 128.59.105.24
       <li>There are more than 1000 root servers instances scattered all over the world, as shown in Figure 2.18. These root servers are <em><strong>copies</strong> of 13 different root servers</em>, managed by 12 different organizations.</li>
     </ul>
 
-    <p><img src="notes/image-20211006214111135.png" alt="image-20211006214111135" style="zoom:50%;" /></p>
+    <p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211006214111135.png" alt="image-20211006214111135" style="zoom:50%;" /></p>
   </li>
   <li>
     <p>the top level domain servers knows about <em>lower level/authoritative DNS servers</em></p>
@@ -1911,11 +1927,11 @@ Address: 128.59.105.24
 
 <h4 id="root-name-server">Root Name Server</h4>
 
-<p><img src="notes/image-20211006093248377.png" alt="image-20211006093248377" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211006093248377.png" alt="image-20211006093248377" /></p>
 
 <h4 id="top-level-domain-server">Top Level Domain Server</h4>
 
-<p><img src="notes/image-20211006093355630.png" alt="image-20211006093355630" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211006093355630.png" alt="image-20211006093355630" /></p>
 
 <p>Knows about authoritative DNS servers, who stores the actual mapping you need.</p>
 
@@ -1960,7 +1976,7 @@ Address: 128.59.105.24
 
 <p>Now we talk about how DNS actually works.</p>
 
-<p><img src="notes/image-20211006094150411.png" alt="image-20211006094150411" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211006094150411.png" alt="image-20211006094150411" /></p>
 
 <p>the <strong>advantage of this</strong> is:</p>
 
@@ -1970,7 +1986,7 @@ Address: 128.59.105.24
 
 <h4 id="recursive-query">Recursive Query</h4>
 
-<p><img src="notes/image-20211006094401758.png" alt="image-20211006094401758" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211006094401758.png" alt="image-20211006094401758" /></p>
 
 <p>this is rarely used due to its <strong>problem of</strong></p>
 
@@ -1990,7 +2006,7 @@ Address: 128.59.105.24
 
   <p>A single record is a four tuple</p>
 
-  <p><img src="notes/image-20211006214902859.png" alt="image-20211006214902859" /></p>
+  <p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211006214902859.png" alt="image-20211006214902859" /></p>
 
   <p>where:</p>
 
@@ -2058,7 +2074,7 @@ Address: 128.59.105.24
 
 <p>But both query and reply messages have the <strong>same format</strong></p>
 
-<p><img src="notes/image-20211006215624368.png" alt="image-20211006215624368" style="zoom:67%;" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211006215624368.png" alt="image-20211006215624368" style="zoom:67%;" /></p>
 
 <p>where:</p>
 
@@ -2238,7 +2254,7 @@ address of a TLD com server is not cached.)</li>
 
 <p>Consider for the simple case</p>
 
-<p><img src="notes/image-20211011142509446.png" alt="image-20211011142509446" style="zoom:50%;" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211011142509446.png" alt="image-20211011142509446" style="zoom:50%;" /></p>
 
 <p>the main problem we are facing is therefore:</p>
 
@@ -2249,7 +2265,7 @@ address of a TLD com server is not cached.)</li>
 
 <p>Then, ==in this model==, we have:</p>
 
-<p><img src="notes/image-20211011143001997.png" alt="image-20211011143001997" style="zoom: 67%;" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211011143001997.png" alt="image-20211011143001997" style="zoom: 67%;" /></p>
 
 <p>where:</p>
 
@@ -2267,7 +2283,7 @@ address of a TLD com server is not cached.)</li>
 
 <p>What happens yet in ==reality== is:</p>
 
-<p><img src="notes/image-20211011143250381.png" alt="image-20211011143250381" style="zoom: 50%;" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211011143250381.png" alt="image-20211011143250381" style="zoom: 50%;" /></p>
 
 <p>where:</p>
 
@@ -2401,7 +2417,7 @@ address of a TLD com server is not cached.)</li>
 
 <p>Suppose that you wanted to watch the film Transformers 7, which on <code class="language-plaintext highlighter-rouge">NetCinema.com</code> has the <code class="language-plaintext highlighter-rouge">url</code> of http://video.netcinema.com/6Y7B23V. Then, the following would happen:</p>
 
-<p><img src="notes/image-20211011151705329.png" alt="image-20211011151705329" style="zoom: 67%;" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211011151705329.png" alt="image-20211011151705329" style="zoom: 67%;" /></p>
 
 <ol>
   <li>The user visited the Web page at  <code class="language-plaintext highlighter-rouge">netcinema.com</code> and got http://video.netcinema.com/6Y7B23V</li>
@@ -2459,7 +2475,7 @@ address of a TLD com server is not cached.)</li>
   <li>(assumption that the Internet core has abundant bandwidth, implying that all of the bottlenecks are in access networks)</li>
 </ul>
 
-<p><img src="notes/image-20211013085615885.png" alt="image-20211013085615885" style="zoom: 50%;" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211013085615885.png" alt="image-20211013085615885" style="zoom: 50%;" /></p>
 
 <p>Then, we can compute that</p>
 
@@ -2478,10 +2494,15 @@ address of a TLD com server is not cached.)</li>
       </li>
     </ul>
 
-    <p>so distribution time is:
-\(D_{cs} \ge \max \left\{  \frac{NF}{u_s}, \frac{F}{d_{min}} \right\}\)
-notice that $NF/u_s$ increases with $N$ linearly</p>
+    <p>so distribution time is:</p>
   </li>
+</ul>
+
+\[D_{cs} \ge \max \left\{  \frac{NF}{u_s}, \frac{F}{d_{min}} \right\}\]
+
+<p>notice that $NF/u_s$ increases with $N$ linearly</p>
+
+<ul>
   <li>
     <p>Distribution time for <strong>P2P</strong>.</p>
 
@@ -2493,14 +2514,15 @@ notice that $NF/u_s$ increases with $N$ linearly</p>
       <li>The last case is when each host has some share of the file, then to make sure <strong>everyone</strong> has all $F$ bits, we need to have uploaded $NF$ bits (to each other) with no faster than $u_{\text{total}} =u_s + \sum u_i$. Therefore, in this case, the distribution time is $NF/(u_s + \sum u_i)$.</li>
     </ul>
 
-    <p>so performance is:
-\(D_{P2P} \ge \max \left\{  \frac{F}{u_s}, \frac{F}{d_{min}},\frac{NF}{u_s + \sum u_i}\right\}\)</p>
+    <p>so performance is:</p>
+
+\[D_{P2P} \ge \max \left\{  \frac{F}{u_s}, \frac{F}{d_{min}},\frac{NF}{u_s + \sum u_i}\right\}\]
   </li>
 </ul>
 
-<p>notice that the term $ NF/(u_s + \sum u_i)$ means increasing $N$ increases both $NF$ and $\sum u_i$. So eventually, this term <strong>flattens out</strong> even when $N$ is large.</p>
+<p>notice that the term $NF/(u_s + \sum u_i)$ means increasing $N$ increases both $NF$ and $\sum u_i$. So eventually, this term <strong>flattens out</strong> even when $N$ is large.</p>
 
-<p><img src="notes/image-20211013090824850.png" alt="image-20211013090824850" style="zoom:67%;" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211013090824850.png" alt="image-20211013090824850" style="zoom:67%;" /></p>
 
 <h3 id="p2p-file-distribution">P2P File Distribution</h3>
 
@@ -2522,7 +2544,7 @@ notice that $NF/u_s$ increases with $N$ linearly</p>
 
 <p>Then, how P2P works is:</p>
 
-<p><img src="notes/image-20211013091214206.png" alt="image-20211013091214206" style="zoom: 67%;" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211013091214206.png" alt="image-20211013091214206" style="zoom: 67%;" /></p>
 
 <p>where basically when Alice clicked the magnet link:</p>
 
@@ -2602,7 +2624,7 @@ notice that $NF/u_s$ increases with $N$ linearly</p>
   <li>the physical one could include many links in a path</li>
 </ul>
 
-<p><img src="notes/image-20211013173039437.png" alt="image-20211013173039437" style="zoom: 67%;" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211013173039437.png" alt="image-20211013173039437" style="zoom: 67%;" /></p>
 
 <p>where notice that:</p>
 
@@ -2636,7 +2658,7 @@ notice that $NF/u_s$ increases with $N$ linearly</p>
 
 <p><em>Household Analogy</em></p>
 
-<p><img src="notes/image-20211013094508750.png" alt="image-20211013094508750" style="zoom:67%;" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211013094508750.png" alt="image-20211013094508750" style="zoom:67%;" /></p>
 
 <p>So the idea is that</p>
 
@@ -2657,7 +2679,7 @@ notice that $NF/u_s$ increases with $N$ linearly</p>
   <li>for this purpose, each transport-layer segment has ==a set of fields== in the segment</li>
 </ul>
 
-<p><img src="notes/image-20211013194333151.png" alt="image-20211013194333151" style="zoom: 80%;" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211013194333151.png" alt="image-20211013194333151" style="zoom: 80%;" /></p>
 
 <blockquote>
   <p><strong>Demultiplexing</strong></p>
@@ -2699,7 +2721,7 @@ notice that $NF/u_s$ increases with $N$ linearly</p>
 
 <p>This is done by <strong>source port number</strong> and <strong>destination port number</strong>.</p>
 
-<p><img src="notes/image-20211013194631888.png" alt="image-20211013194631888" style="zoom: 80%;" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211013194631888.png" alt="image-20211013194631888" style="zoom: 80%;" /></p>
 
 <p>Then ==each socket in the host could be assigned a port number==, and when a segment arrives at the host, the transport layer examines the destination port number in the segment and directs the segment to the corresponding socket.</p>
 
@@ -2743,15 +2765,16 @@ Host B. Then</p>
   <li>If the segment arrives at the receiving Host B, the <strong>transport layer</strong> at the receiving host <strong>examines the destination port number</strong> in the segment (<code class="language-plaintext highlighter-rouge">46428</code>) and <strong>delivers the segment</strong> to its socket identified by port <code class="language-plaintext highlighter-rouge">46428</code>.</li>
 </ol>
 
-<p><img src="notes/image-20211013200348313.png" alt="image-20211013200348313" style="zoom: 80%;" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211013200348313.png" alt="image-20211013200348313" style="zoom: 80%;" /></p>
 
 <blockquote>
   <p><strong>To distinguish with Socket to Send</strong></p>
 
   <ul>
     <li>
-      <p>UDP socket is ==fully identified by a two-tuple== consisting of
-\((\text{destination IP}, \text{destination Port})\)</p>
+      <p>UDP socket is ==fully identified by a two-tuple== consisting of</p>
+
+\[(\text{destination IP}, \text{destination Port})\]
 
       <ul>
         <li>because we ==cannot send replies directly without starting a new connection!==</li>
@@ -2778,8 +2801,9 @@ Host B. Then</p>
 
   <ul>
     <li>
-      <p>TCP socket is ==fully identified by a four-tuple== consisting of
-\((\text{source IP}, \text{source Port}, \text{destination IP}, \text{destination Port})\)</p>
+      <p>TCP socket is ==fully identified by a four-tuple== consisting of</p>
+
+\[(\text{source IP}, \text{source Port}, \text{destination IP}, \text{destination Port})\]
 
       <ul>
         <li>because ==each client has its own persistent socket!==</li>
@@ -2796,7 +2820,7 @@ Host B. Then</p>
   </ul>
 </blockquote>
 
-<p><img src="notes/image-20211013200727856.png" alt="image-20211013200727856" style="zoom:80%;" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211013200727856.png" alt="image-20211013200727856" style="zoom:80%;" /></p>
 
 <ol>
   <li>
@@ -2931,7 +2955,7 @@ Host B. Then</p>
 
 <p>Therefore, following from the above discussion, the content looks like</p>
 
-<p><img src="notes/image-20211018091229396.png" alt="image-20211018091229396" style="zoom:50%;" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211018091229396.png" alt="image-20211018091229396" style="zoom:50%;" /></p>
 
 <p>where:</p>
 
@@ -2983,7 +3007,7 @@ on the destination end system</li>
 
 <p>Data is two lines of 16 bit numbers:</p>
 
-<p><img src="notes/image-20211018092111159.png" alt="image-20211018092111159" style="zoom:67%;" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211018092111159.png" alt="image-20211018092111159" style="zoom:67%;" /></p>
 
 <p>so technically there are errors that a checksum won’t detect. But the chances of that happening is low.</p>
 
@@ -3029,7 +3053,7 @@ as well. So here it is an <strong>abstraction of how to ensure reliability</stro
 
 <p>The idea of having this (before introducing TCP) is</p>
 
-<p><img src="notes/image-20211018143856980.png" alt="image-20211018143856980" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211018143856980.png" alt="image-20211018143856980" /></p>
 
 <p>In the above figure:</p>
 
@@ -3073,7 +3097,7 @@ as well. So here it is an <strong>abstraction of how to ensure reliability</stro
 
 <p>simplest case, in which the <strong>underlying channel is completely reliable.</strong></p>
 
-<p><img src="notes/image-20211018094626700.png" alt="image-20211018094626700" style="zoom:80%;" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211018094626700.png" alt="image-20211018094626700" style="zoom:80%;" /></p>
 
 <p>where:</p>
 
@@ -3133,7 +3157,7 @@ as well. So here it is an <strong>abstraction of how to ensure reliability</stro
 
 <p>The <strong>sender</strong> side FSM looks like:</p>
 
-<p><img src="notes/image-20211018145854632.png" alt="image-20211018145854632" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211018145854632.png" alt="image-20211018145854632" /></p>
 
 <p>where there are two states: waiting for data to be passed down from the upper layer; waiting for <code class="language-plaintext highlighter-rouge">ACK</code> or <code class="language-plaintext highlighter-rouge">NAK</code></p>
 
@@ -3168,7 +3192,7 @@ as well. So here it is an <strong>abstraction of how to ensure reliability</stro
 
 <p>On the <strong>receiver’s side</strong>:</p>
 
-<p><img src="notes/image-20211018145903944.png" alt="image-20211018145903944" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211018145903944.png" alt="image-20211018145903944" /></p>
 
 <p>basically here the idea is simple. There is just one state as you <strong>just need to reply with either an <code class="language-plaintext highlighter-rouge">ACK </code>or a <code class="language-plaintext highlighter-rouge">NAK</code></strong></p>
 
@@ -3201,7 +3225,7 @@ as well. So here it is an <strong>abstraction of how to ensure reliability</stro
 
 <p>Therefore, the state transition becomes, for the <strong>sender</strong></p>
 
-<p><img src="notes/image-20211020091020783.png" alt="image-20211020091020783" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211020091020783.png" alt="image-20211020091020783" /></p>
 
 <p>where here we just need 2 sequence numbers to disambiguate each packet, sequence number <code class="language-plaintext highlighter-rouge">0</code> or <code class="language-plaintext highlighter-rouge">1</code> (in this case)</p>
 
@@ -3212,7 +3236,7 @@ as well. So here it is an <strong>abstraction of how to ensure reliability</stro
 
 <p>The <strong>receiver</strong> now does:</p>
 
-<p><img src="notes/image-20211020091410485.png" alt="image-20211020091410485" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211020091410485.png" alt="image-20211020091410485" /></p>
 
 <p>where notice that, for the receiver to resend a feedback packet, we now have two scenarios:</p>
 
@@ -3274,7 +3298,7 @@ its most recently transmitted data packet, <code class="language-plaintext highl
   </li>
 </ul>
 
-<p><img src="notes/image-20211020141802140.png" alt="" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211020141802140.png" alt="" /></p>
 
 <p>where the only difference with RDT2.1 is that:</p>
 
@@ -3283,7 +3307,7 @@ its most recently transmitted data packet, <code class="language-plaintext highl
   <li>note that again, we are assuming no packet loss can happen yet, so it is only about packet corruption.</li>
 </ul>
 
-<p><img src="notes/image-20211020142139843.png" alt="image-20211020142139843" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211020142139843.png" alt="image-20211020142139843" /></p>
 
 <p>where:</p>
 
@@ -3333,7 +3357,7 @@ its most recently transmitted data packet, <code class="language-plaintext highl
 
 <p>For <strong>sender</strong></p>
 
-<p><img src="notes/image-20211020093800669.png" alt="image-20211020093800669" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211020093800669.png" alt="image-20211020093800669" /></p>
 
 <p>then basically:</p>
 
@@ -3358,7 +3382,7 @@ its most recently transmitted data packet, <code class="language-plaintext highl
   <li>
     <p>an exercise. Solution found online</p>
 
-    <p><img src="notes/rdt_30_receiver.png" alt="Interactive Problems, Computer Networking: A Top Down Approach" style="zoom:50%;" /></p>
+    <p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/rdt_30_receiver.png" alt="Interactive Problems, Computer Networking: A Top Down Approach" style="zoom:50%;" /></p>
   </li>
 </ul>
 
@@ -3386,19 +3410,19 @@ its most recently transmitted data packet, <code class="language-plaintext highl
 
 <p>When nothing went wrong:</p>
 
-<p><img src="notes/image-20211020093953419.png" alt="image-20211020093953419" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211020093953419.png" alt="image-20211020093953419" /></p>
 
 <p>When you have a packet loss:</p>
 
-<p><img src="notes/image-20211020094030067.png" alt="image-20211020094030067" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211020094030067.png" alt="image-20211020094030067" /></p>
 
 <p>When you have a <code class="language-plaintext highlighter-rouge">ACK</code> loss:</p>
 
-<p><img src="notes/image-20211020094130144.png" alt="image-20211020094130144" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211020094130144.png" alt="image-20211020094130144" /></p>
 
 <p>When your timeout is premature:</p>
 
-<p><img src="notes/image-20211020094414836.png" alt="image-20211020094414836" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211020094414836.png" alt="image-20211020094414836" /></p>
 
 <p>where the last case you do nothing because you have transmitted <code class="language-plaintext highlighter-rouge">pkt0</code> just now. You are waiting for <code class="language-plaintext highlighter-rouge">ACK0</code> already.</p>
 
@@ -3416,11 +3440,13 @@ its most recently transmitted data packet, <code class="language-plaintext highl
 
 <p>Then, the timeline of a normal RDT3.0 looks like, without any error:</p>
 
-<p><img src="notes/image-20211020145815480.png" alt="image-20211020145815480" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211020145815480.png" alt="image-20211020145815480" /></p>
 
-<p>where if you calculate the utilization of the sender’s link, we basically only used $0.008$ millisecond out of $30.008$ second.
-\(U_{\text{sender}} = \frac{L/R}{RTT+L/R} = \frac{0.008}{30.008}=0.00027\)
-Viewed another way, the sender was able to send only 1,000 bytes in $30.008$ milliseconds, an effective throughput of only $267$ kbps.</p>
+<p>where if you calculate the utilization of the sender’s link, we basically only used $0.008$ millisecond out of $30.008$ second.</p>
+
+\[U_{\text{sender}} = \frac{L/R}{RTT+L/R} = \frac{0.008}{30.008}=0.00027\]
+
+<p>Viewed another way, the sender was able to send only 1,000 bytes in $30.008$ milliseconds, an effective throughput of only $267$ kbps.</p>
 
 <blockquote>
   <p><strong>Utilization Time</strong></p>
@@ -3430,7 +3456,7 @@ Viewed another way, the sender was able to send only 1,000 bytes in $30.008$ mil
 
 <p>The solution to this is simple: Rather than operate in a stop-and-wait manner, the sender is allowed to ==send multiple packets without waiting for acknowledgments==.</p>
 
-<p><img src="notes/image-20211020150547421.png" alt="image-20211020150547421" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211020150547421.png" alt="image-20211020150547421" /></p>
 
 <p>note that more than 3 packets can be send simultaneously. This is just an illustration.</p>
 
@@ -3477,7 +3503,7 @@ Viewed another way, the sender was able to send only 1,000 bytes in $30.008$ mil
 
 <p>In the <strong>sender</strong>’s view of range of sequence number used in a GBN protocol (for buffering and resending):</p>
 
-<p><img src="notes/image-20211025081902482.png" alt="image-20211025081902482" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211025081902482.png" alt="image-20211025081902482" /></p>
 
 <p>where we defined:</p>
 
@@ -3506,7 +3532,7 @@ Viewed another way, the sender was able to send only 1,000 bytes in $30.008$ mil
 
 <p>Therefore, the FSM for <strong>sender</strong> looks like:</p>
 
-<p><img src="notes/image-20211025083618912.png" alt="image-20211025083618912" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211025083618912.png" alt="image-20211025083618912" /></p>
 
 <p>where notice that:</p>
 
@@ -3530,7 +3556,7 @@ Viewed another way, the sender was able to send only 1,000 bytes in $30.008$ mil
 
 <p>For <strong>receiver</strong>:</p>
 
-<p><img src="notes/image-20211025084634291.png" alt="image-20211025084634291" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211025084634291.png" alt="image-20211025084634291" /></p>
 
 <p>where:</p>
 
@@ -3546,7 +3572,7 @@ Viewed another way, the sender was able to send only 1,000 bytes in $30.008$ mil
 
 <p>Therefore, for the receiver, the sequence number space looks like:</p>
 
-<p><img src="notes/image-20211025091418699.png" alt="image-20211025091418699" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211025091418699.png" alt="image-20211025091418699" /></p>
 
 <blockquote>
   <p><strong>In Summary</strong></p>
@@ -3560,7 +3586,7 @@ Viewed another way, the sender was able to send only 1,000 bytes in $30.008$ mil
 
 <p>For a timeline series, GBN looks like:</p>
 
-<p><img src="notes/image-20211025091829311.png" alt="image-20211025091829311" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211025091829311.png" alt="image-20211025091829311" /></p>
 
 <p>where alternatively:</p>
 
@@ -3587,7 +3613,7 @@ Viewed another way, the sender was able to send only 1,000 bytes in $30.008$ mil
   <li>sender has <em>multiple timers</em>, each individually for unACKed packets</li>
 </ul>
 
-<p><img src="notes/image-20211025140007988.png" alt="image-20211025140007988" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211025140007988.png" alt="image-20211025140007988" /></p>
 
 <p>then for <strong>sender</strong>:</p>
 
@@ -3623,7 +3649,7 @@ Viewed another way, the sender was able to send only 1,000 bytes in $30.008$ mil
 
 <p>Time Series Example</p>
 
-<p><img src="notes/image-20211025095604763.png" alt="" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211025095604763.png" alt="" /></p>
 
 <p>where after the <code class="language-plaintext highlighter-rouge">ACK2</code> arrives, the sender will then shift the window all the way to packet <code class="language-plaintext highlighter-rouge">base=6</code></p>
 
@@ -3640,19 +3666,19 @@ Viewed another way, the sender was able to send only 1,000 bytes in $30.008$ mil
   </thead>
   <tbody>
     <tr>
-      <td style="text-align: center"><img src="notes/image-20211025094503005.png" alt="image-20211025094503005" /></td>
-      <td style="text-align: center"><img src="notes/image-20211025094527464.png" alt="image-20211025094527464" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211025094503005.png" alt="image-20211025094503005" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211025094527464.png" alt="image-20211025094527464" /></td>
     </tr>
   </tbody>
 </table>
 
 <p>So from the <strong>receiver’s</strong> point of view, this looks like:</p>
 
-<p><img src="notes/image-20211025094618839.png" alt="image-20211025094618839" style="zoom:67%;" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211025094618839.png" alt="image-20211025094618839" style="zoom:67%;" /></p>
 
 <p>This happened because the ==window size is smaller than the sequence size== (see figure below). The solution is to keep your <strong>sequence number $2N$ and above, for $N$ being window size</strong>.</p>
 
-<p><img src="notes/image-20211025142224250.png" alt="image-20211025142224250" style="zoom: 80%;" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211025142224250.png" alt="image-20211025142224250" style="zoom: 80%;" /></p>
 
 <ul>
   <li>so even if the problem case (which is the worst) happened, there is <strong>no overlap between the two windows in sequence number</strong>. Otherwise the receiver has no idea it the above is the next round of message or retransmission.</li>
@@ -3689,22 +3715,25 @@ Viewed another way, the sender was able to send only 1,000 bytes in $30.008$ mil
   <li>sender knows exactly what receiver needs</li>
 </ul>
 
-<p>Therefore, each pkt can be “examined” in isolation. Let $T_{SR}$ is the number of transmissions of <strong>one packet</strong>. Then:
-\(\begin{align*}
+<p>Therefore, each pkt can be “examined” in isolation. Let $T_{SR}$ is the number of transmissions of <strong>one packet</strong>. Then:</p>
+
+\[\begin{align*}
 P[T_{SR} &gt; i]
 &amp;= P[T_{SR} = i+1] +  P[T_{SR} = i+2]...\\
 &amp;= p^{i}[(1-p) + p(1-p) + p^2(1-p) + ...]\\
 &amp;= p^i (1-p)[1+p+p^2+...]\\
 &amp;= p^i (1-p)\frac{1}{1-p}\\
 &amp;= p^i
-\end{align*}\)
-Therefore, the <strong>average number of transmissions</strong> we need to do is:
-\(\begin{align*}
+\end{align*}\]
+
+<p>Therefore, the <strong>average number of transmissions</strong> we need to do is:</p>
+
+\[\begin{align*}
 \mathbb{E}[T_{SR}]
 &amp;= P(T_{SR}=1) + 2P(T_{SR}=2) + 3P(T_{SR}=3) + ...\\
 &amp;= P(T_{SR}&gt;0) + P(T_{SR}&gt;1) + P(T_{SR}&gt;2) + ...\\
 &amp;= \frac{1}{1-p}
-\end{align*}\)</p>
+\end{align*}\]
 
 <hr />
 
@@ -3717,45 +3746,59 @@ Therefore, the <strong>average number of transmissions</strong> we need to do is
   <li>==receiver== dumps any packet in window ==after a loss==.</li>
 </ul>
 
-<p>$S_N$= # pkts arriving in receive<strong>r before a loss</strong> occurred in window of $N$ (successful transmission). Then, for $ 0 \le i &lt; N$:
-\(\begin{align*}
+<p>$S_N$= # pkts arriving in receive<strong>r before a loss</strong> occurred in window of $N$ (successful transmission). Then, for $0 \le i &lt; N$:</p>
+
+\[\begin{align*}
 P[S_{N} &gt; i]
 &amp;= P[S_{N} = i+1] +  P[S_{N} = i+2]...\\
 &amp;= (1-p)^{i+1}
-\end{align*}\)
-basically at least the first $i+1$ packet is successfully transmitted.</p>
+\end{align*}\]
 
-<p>Then the 
-\(\begin{align*}
+<p>basically at least the first $i+1$ packet is successfully transmitted.</p>
+
+<p>Then the</p>
+
+\[\begin{align*}
 \mathbb{E}[S_{N}]
 &amp;= P(S_{N}=1) + 2P(S_{N}=2) + ...+NP(S_{N} = N)\\
 &amp;= P(S_{N}&gt;0) + P(S_{N}&gt;1) + ... + P(S_{N}&gt;N-1)\\
 &amp;= \frac{1-p-(1-p)^{N+1}}{p}\\
 &amp;= \frac{1-p}{p}(1-(1-p)^N)
-\end{align*}\)
-Notice that, plotting in desmos shows you that:
-\(\lim_{p \to 0}\frac{1-p}{p}(1-(1-p)^N) = N\)
-Then let there be $m$ rounds of transmission, that we slide the window $m$ times. Since the window size is $N$:
-\(\mathbb{E}[T_{GBN}]= \frac{\sum_{j=1}^mN}{\sum_{j=1}^mS_{N,j}}=\frac{\sum_{j=1}^mN/m}{\sum_{j=1}^mS_{N,j}/m}\)
-where $S_{N,j}$ be the number of packets accepted in the j-th round of transmission ($j$-th window slide).</p>
+\end{align*}\]
+
+<p>Notice that, plotting in desmos shows you that:</p>
+
+\[\lim_{p \to 0}\frac{1-p}{p}(1-(1-p)^N) = N\]
+
+<p>Then let there be $m$ rounds of transmission, that we slide the window $m$ times. Since the window size is $N$:</p>
+
+\[\mathbb{E}[T_{GBN}]= \frac{\sum_{j=1}^mN}{\sum_{j=1}^mS_{N,j}}=\frac{\sum_{j=1}^mN/m}{\sum_{j=1}^mS_{N,j}/m}\]
+
+<p>where $S_{N,j}$ be the number of packets accepted in the j-th round of transmission ($j$-th window slide).</p>
 
 <ul>
   <li>Notice that every time when a packet is lost, $S_{N,j} &lt; N$ so our number of messages transmitted is larger than $1$.</li>
 </ul>
 
-<p>Then, note that, since each <strong>round of transmission is independent</strong>:
-\(\lim_{m\to \infty}\frac{1}{m}\sum_{j=1}^mS_{N,j} = \mathbb{E}[S_N]\)
-this is because we are taking the mean of successful transmission in each round, then with the law of large numbers, we get the expected value. Similarly:
-\(\lim_{m\to \infty}\frac{1}{m}\sum_{j=1}^mN= N\)
-Hence we get:
-\(\mathbb{E}[T_{GBN}] = \frac{Np}{1-p-(1-p)^{N+1}}\)</p>
+<p>Then, note that, since each <strong>round of transmission is independent</strong>:</p>
+
+\[\lim_{m\to \infty}\frac{1}{m}\sum_{j=1}^mS_{N,j} = \mathbb{E}[S_N]\]
+
+<p>this is because we are taking the mean of successful transmission in each round, then with the law of large numbers, we get the expected value. Similarly:</p>
+
+\[\lim_{m\to \infty}\frac{1}{m}\sum_{j=1}^mN= N\]
+
+<p>Hence we get:</p>
+
+\[\mathbb{E}[T_{GBN}] = \frac{Np}{1-p-(1-p)^{N+1}}\]
 
 <hr />
 
-<p>Finally, graphing this, we can plot:
-\(\frac{\text{average tranmission per packet in GBN}}{\text{average tranmission per packet in SR}} = \frac{\mathbb{E}[T_{GBN}]}{\mathbb{E}[T_{SR}]}\)</p>
+<p>Finally, graphing this, we can plot:</p>
 
-<p><img src="notes/image-20211027090810879.png" alt="image-20211027090810879" style="zoom: 67%;" /></p>
+\[\frac{\text{average tranmission per packet in GBN}}{\text{average tranmission per packet in SR}} = \frac{\mathbb{E}[T_{GBN}]}{\mathbb{E}[T_{SR}]}\]
+
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211027090810879.png" alt="image-20211027090810879" style="zoom: 67%;" /></p>
 
 <p>note that:</p>
 
@@ -3837,7 +3880,7 @@ Hence we get:
 
 <p>After the connection is established, we basically send data with:</p>
 
-<p><img src="notes/image-20211103094339815.png" alt="image-20211103094339815" style="zoom:50%;" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211103094339815.png" alt="image-20211103094339815" style="zoom:50%;" /></p>
 
 <p>where basically:</p>
 
@@ -3892,7 +3935,7 @@ segments.</p>
 
 <p>A TCP segment looks like the following:</p>
 
-<p><img src="notes/image-20211103095229452.png" alt="image-20211103095229452" style="zoom:50%;" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211103095229452.png" alt="image-20211103095229452" style="zoom:50%;" /></p>
 
 <p>where we have:</p>
 
@@ -3941,7 +3984,7 @@ segments.</p>
 
 <p>Consider you are host A and you have 500,000 bytes, that the MSS is 1,000 bytes. Therefore, you need 500 segments. Suppose the <strong>first byte of the data stream is numbered 0</strong>.</p>
 
-<p><img src="notes/image-20211103140018084.png" alt="image-20211103140018084" style="zoom:50%;" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211103140018084.png" alt="image-20211103140018084" style="zoom:50%;" /></p>
 
 <p>the sender Host A to B will have:</p>
 
@@ -3995,7 +4038,7 @@ segments.</p>
 
 <p>Now, suppose your client <strong>start with sequence number $42$</strong>, and the <strong>server start with sequence number $79$</strong>. Then:</p>
 
-<p><img src="notes/image-20211103141907043.png" alt="image-20211103141907043" style="zoom:80%;" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211103141907043.png" alt="image-20211103141907043" style="zoom:80%;" /></p>
 
 <p>where:</p>
 
@@ -4039,9 +4082,11 @@ segments.</p>
   <p>As a result, a new value for <code class="language-plaintext highlighter-rouge">SampleRTT</code> is found approximately once every RTT time.</p>
 </blockquote>
 
-<p>Since RTT will fluctuate, some sort of average is taken to compute <code class="language-plaintext highlighter-rouge">EstimatedRTT</code>:
-\(\text{EstimatedRTT}':=(1-\alpha)\cdot \text{EstimatedRTT} + \alpha \cdot \text{SampleRTT}\)
-basically the new <code class="language-plaintext highlighter-rouge">EstimatedRTT</code> is the weighted sum of the previous estimate and the new data.</p>
+<p>Since RTT will fluctuate, some sort of average is taken to compute <code class="language-plaintext highlighter-rouge">EstimatedRTT</code>:</p>
+
+\[\text{EstimatedRTT}':=(1-\alpha)\cdot \text{EstimatedRTT} + \alpha \cdot \text{SampleRTT}\]
+
+<p>basically the new <code class="language-plaintext highlighter-rouge">EstimatedRTT</code> is the weighted sum of the previous estimate and the new data.</p>
 
 <ul>
   <li>In statistics, such an average is called an ==exponential weighted moving average (EWMA)==.</li>
@@ -4049,7 +4094,7 @@ basically the new <code class="language-plaintext highlighter-rouge">EstimatedRT
 
 <p>Graphically:</p>
 
-<p><img src="notes/image-20211103144628490.png" alt="image-20211103144628490" style="zoom: 33%;" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211103144628490.png" alt="image-20211103144628490" style="zoom: 33%;" /></p>
 
 <p>where pink would be our estimate, taking $\alpha=0.125$.</p>
 
@@ -4066,9 +4111,11 @@ basically the new <code class="language-plaintext highlighter-rouge">EstimatedRT
   <li>typically we take $\beta = 0.25$.</li>
 </ul>
 
-<p>Finally, we then have:
-\(\text{TimeoutInterval} = \text{EstimatedRTT} + 4\cdot \text{DevRTT}\)
-where an initial <code class="language-plaintext highlighter-rouge">TimeoutInterval </code>value of 1 second is recommended when there is no data in the beginning.</p>
+<p>Finally, we then have:</p>
+
+\[\text{TimeoutInterval} = \text{EstimatedRTT} + 4\cdot \text{DevRTT}\]
+
+<p>where an initial <code class="language-plaintext highlighter-rouge">TimeoutInterval </code>value of 1 second is recommended when there is no data in the beginning.</p>
 
 <blockquote>
   <p><strong>Note</strong></p>
@@ -4177,7 +4224,7 @@ where an initial <code class="language-plaintext highlighter-rouge">TimeoutInter
 
 <p>The following cases are bad, i.e. we have retranmissions:</p>
 
-<p>| <img src="notes/image-20211103150247080.png" alt="image-20211103150247080" style="zoom:50%;" /> | <img src="notes/image-20211103150205021.png" alt="image-20211103150205021" style="zoom:50%;" /> |
+<p>| <img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211103150247080.png" alt="image-20211103150247080" style="zoom:50%;" /> | <img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211103150205021.png" alt="image-20211103150205021" style="zoom:50%;" /> |
 | :———————————————————-: | :———————————————————-: |</p>
 
 <p>where on the left:</p>
@@ -4194,7 +4241,7 @@ where an initial <code class="language-plaintext highlighter-rouge">TimeoutInter
 
 <p>Yet in this case, there is no retransmission:</p>
 
-<p><img src="notes/image-20211103150316162.png" alt="image-20211103150316162" style="zoom:50%;" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211103150316162.png" alt="image-20211103150316162" style="zoom:50%;" /></p>
 
 <p>Note that in this case, there is no problem since we are using <strong>cumulative ACK</strong>:</p>
 
@@ -4208,7 +4255,7 @@ where an initial <code class="language-plaintext highlighter-rouge">TimeoutInter
 
 <p>Consider the following case where a packet is lost</p>
 
-<p><img src="notes/image-20211103150729198.png" alt="image-20211103150729198" style="zoom: 67%;" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211103150729198.png" alt="image-20211103150729198" style="zoom: 67%;" /></p>
 
 <p>where the sender has received <code class="language-plaintext highlighter-rouge">ACK=100</code> multiple times <strong>before timeout for <code class="language-plaintext highlighter-rouge">seq=100</code></strong>:</p>
 
@@ -4248,7 +4295,7 @@ where an initial <code class="language-plaintext highlighter-rouge">TimeoutInter
 ==buffer==</li>
 </ul>
 
-<p><img src="notes/image-20211103152243270.png" alt="image-20211103152243270" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211103152243270.png" alt="image-20211103152243270" /></p>
 
 <blockquote>
   <p><strong>Note</strong></p>
@@ -4260,7 +4307,7 @@ where an initial <code class="language-plaintext highlighter-rouge">TimeoutInter
 
 <p>The solution is to use the <strong>receive window</strong> field in our segment:</p>
 
-<p><img src="notes/image-20211103151740533.png" alt="image-20211103151740533" style="zoom:50%;" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211103151740533.png" alt="image-20211103151740533" style="zoom:50%;" /></p>
 
 <p>where:</p>
 
@@ -4271,7 +4318,7 @@ where an initial <code class="language-plaintext highlighter-rouge">TimeoutInter
 
 <p>Hence, basically the value restored in the field is the value of <code class="language-plaintext highlighter-rouge">rwnd</code>:</p>
 
-<p><img src="notes/image-20211103152505902.png" alt="image-20211103152505902" style="zoom:50%;" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211103152505902.png" alt="image-20211103152505902" style="zoom:50%;" /></p>
 
 <p>Now, suppose that <strong>Host A is sending data to Host B</strong>.</p>
 
@@ -4279,9 +4326,11 @@ where an initial <code class="language-plaintext highlighter-rouge">TimeoutInter
 
 <ul>
   <li>
-    <p>then <code class="language-plaintext highlighter-rouge">RcvBuffer</code> total space must be:
-\(\text{RcvBuffer} \ge \text{LastByteRcvd} - \text{LastByteRead}\)
-since TCP does not permit overflowing buffer.</p>
+    <p>then <code class="language-plaintext highlighter-rouge">RcvBuffer</code> total space must be:</p>
+
+\[\text{RcvBuffer} \ge \text{LastByteRcvd} - \text{LastByteRead}\]
+
+    <p>since TCP does not permit overflowing buffer.</p>
 
     <p>In reality, this can be set in your program via options <code class="language-plaintext highlighter-rouge">RcvBuffer</code>, and by default it is usually 4096 bytes.</p>
 
@@ -4290,8 +4339,9 @@ since TCP does not permit overflowing buffer.</p>
     </ul>
   </li>
   <li>
-    <p>the receive window is <code class="language-plaintext highlighter-rouge">rwnd</code> the <strong>free space left</strong> in the buffer:
-\(\text{rwnd} = \text{RcvBuffer} - (\text{LastByteRcvd} - \text{LastByteRead})\)</p>
+    <p>the receive window is <code class="language-plaintext highlighter-rouge">rwnd</code> the <strong>free space left</strong> in the buffer:</p>
+
+\[\text{rwnd} = \text{RcvBuffer} - (\text{LastByteRcvd} - \text{LastByteRead})\]
   </li>
 </ul>
 
@@ -4299,13 +4349,16 @@ since TCP does not permit overflowing buffer.</p>
 
 <ul>
   <li>
-    <p>the number of ==unacknowledged data byte== is (notice it is in the unit of byte)
-\(\text{LastByteSend} - \text{LastByteAcked}\)</p>
+    <p>the number of ==unacknowledged data byte== is (notice it is in the unit of byte)</p>
+
+\[\text{LastByteSend} - \text{LastByteAcked}\]
   </li>
   <li>
-    <p>to keep no overflowing at Host B, Host A can make sure that:
-\(\text{rwnd}_B \ge \text{LastByteSend} - \text{LastByteAcked}\)
-this is because we only have three cases for unacknowledged bytes:</p>
+    <p>to keep no overflowing at Host B, Host A can make sure that:</p>
+
+\[\text{rwnd}_B \ge \text{LastByteSend} - \text{LastByteAcked}\]
+
+    <p>this is because we only have three cases for unacknowledged bytes:</p>
 
     <ul>
       <li>segment loss - doesn’t harm receiver’s buffer since its lost</li>
@@ -4331,7 +4384,7 @@ this is because we only have three cases for unacknowledged bytes:</p>
 
 <p>On a high level, when the connection <strong>are established</strong>, we would have settled several variables such as <code class="language-plaintext highlighter-rouge">seq #</code>, which we need to decide during our handshaking procedure.</p>
 
-<p><img src="notes/image-20211108084856364.png" alt="image-20211108084856364" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211108084856364.png" alt="image-20211108084856364" /></p>
 
 <p>In general, there are multiple ways to do an establishment:</p>
 
@@ -4344,7 +4397,7 @@ this is because we only have three cases for unacknowledged bytes:</p>
 
 <p>Consider having a 2 way handshake, so the idea is that:</p>
 
-<p><img src="notes/image-20211108084927223.png" alt="image-20211108084927223" style="zoom:50%;" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211108084927223.png" alt="image-20211108084927223" style="zoom:50%;" /></p>
 
 <p>where the top half is the human analogy. This might seem to work, but in reality, consider the two cases:</p>
 
@@ -4352,7 +4405,7 @@ this is because we only have three cases for unacknowledged bytes:</p>
   <li>
     <p><strong>Half Open Connection</strong></p>
 
-    <p><img src="notes/image-20211108123200901.png" alt="image-20211108123200901" /></p>
+    <p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211108123200901.png" alt="image-20211108123200901" /></p>
 
     <p>where basically:</p>
 
@@ -4378,8 +4431,8 @@ this is because we only have three cases for unacknowledged bytes:</p>
       </thead>
       <tbody>
         <tr>
-          <td><img src="notes/image-20211108085345957.png" alt="image-20211108085345957" style="zoom:50%;" /></td>
-          <td><img src="notes/image-20211108123657313.png" alt="image-20211108123657313" style="zoom: 67%;" /></td>
+          <td><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211108085345957.png" alt="image-20211108085345957" style="zoom:50%;" /></td>
+          <td><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211108123657313.png" alt="image-20211108123657313" style="zoom: 67%;" /></td>
         </tr>
       </tbody>
     </table>
@@ -4405,7 +4458,7 @@ this is because we only have three cases for unacknowledged bytes:</p>
 
 <p>Basically we have the following:</p>
 
-<p><img src="notes/image-20211108110654242.png" alt="image-20211108110654242" style="zoom:67%;" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211108110654242.png" alt="image-20211108110654242" style="zoom:67%;" /></p>
 
 <ol>
   <li><strong>client</strong> sends a special TCP segment - ==a <code class="language-plaintext highlighter-rouge">SYN</code> segment== - to the server-side TCP. This special segment contains no application-layer data but a <code class="language-plaintext highlighter-rouge">SYN</code> bit set to <code class="language-plaintext highlighter-rouge">1</code>. In addition, the client <strong>randomly selects a sequence number</strong> <code class="language-plaintext highlighter-rouge">client_isn</code>, and put it in the segment as well.</li>
@@ -4427,7 +4480,7 @@ this is because we only have three cases for unacknowledged bytes:</p>
 
 <p>In a picture with more details:</p>
 
-<p><img src="notes/image-20211108085607528.png" alt="image-20211108085607528" style="zoom:80%;" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211108085607528.png" alt="image-20211108085607528" style="zoom:80%;" /></p>
 
 <p>this is useful because it can solve hanging connection problem</p>
 
@@ -4441,7 +4494,7 @@ this is because we only have three cases for unacknowledged bytes:</p>
 
 <p>For instance, suppose the <strong>client</strong> decides to close the connection</p>
 
-<p><img src="notes/image-20211108115402220.png" alt="image-20211108115402220" style="zoom:67%;" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211108115402220.png" alt="image-20211108115402220" style="zoom:67%;" /></p>
 
 <ol>
   <li>client start a special segment with <code class="language-plaintext highlighter-rouge">FIN </code>bit = 1</li>
@@ -4465,7 +4518,7 @@ this is because we only have three cases for unacknowledged bytes:</p>
 
 <p>For <strong>client</strong>:</p>
 
-<p><img src="notes/image-20211108120505183.png" alt="image-20211108120505183" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211108120505183.png" alt="image-20211108120505183" /></p>
 
 <p>where basically you start with the <code class="language-plaintext highlighter-rouge">CLOSED</code> state, then:</p>
 
@@ -4501,7 +4554,7 @@ this is because we only have three cases for unacknowledged bytes:</p>
 
 <p>For the <strong>server</strong></p>
 
-<p><img src="notes/image-20211108120911148.png" alt="image-20211108120911148" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211108120911148.png" alt="image-20211108120911148" /></p>
 
 <p>where here we are assuming the <strong>client initiated the tear down</strong>. Otherwise everything should be clear.</p>
 
@@ -4578,11 +4631,11 @@ this is because we only have three cases for unacknowledged bytes:</p>
   <li>==assume== no retransmission, no loss data, etc.</li>
 </ul>
 
-<p><img src="notes/image-20211108130238613.png" alt="image-20211108130238613" style="zoom:67%;" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211108130238613.png" alt="image-20211108130238613" style="zoom:67%;" /></p>
 
 <p>Then, if we measure the <strong>throughput</strong>, i.e. $\lambda_{out}$ as a function of $\lambda_{in}$ input, we see that:</p>
 
-<p><img src="notes/image-20211108130820859.png" alt="image-20211108130820859" style="zoom: 67%;" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211108130820859.png" alt="image-20211108130820859" style="zoom: 67%;" /></p>
 
 <p>so:</p>
 
@@ -4603,11 +4656,11 @@ this is because we only have three cases for unacknowledged bytes:</p>
   <li>hence while the application is sending at $\lambda_{in}$, <strong>TCP</strong> layer is actually sending at $\lambda_{in}’$ due to extra retransmission</li>
 </ul>
 
-<p><img src="notes/image-20211108091325030.png" alt="image-20211108091325030" style="zoom: 67%;" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211108091325030.png" alt="image-20211108091325030" style="zoom: 67%;" /></p>
 
 <p>Then, the upshot is that determining $\lambda_{in}$ and throughput $\lambda_{out}$ ==depend strongly on how retransmission is performed==.</p>
 
-<p><img src="notes/image-20211108131331111.png" alt="image-20211108131331111" style="zoom:80%;" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211108131331111.png" alt="image-20211108131331111" style="zoom:80%;" /></p>
 
 <p>where :</p>
 
@@ -4630,7 +4683,7 @@ this is because we only have three cases for unacknowledged bytes:</p>
 
       <p>So the Figure 3.46 b) could be:</p>
 
-      <p><img src="notes/image-20211108091613948.png" alt="image-20211108091613948" style="zoom:50%;" /></p>
+      <p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211108091613948.png" alt="image-20211108091613948" style="zoom:50%;" /></p>
 
       <p>where that unneeded retransmission is more annoying.</p>
     </li>
@@ -4651,7 +4704,7 @@ this is because we only have three cases for unacknowledged bytes:</p>
 
 <p>We have A sending to C, D sending to B over four routers</p>
 
-<p><img src="notes/image-20211108091805181.png" alt="image-20211108091805181" style="zoom: 50%;" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211108091805181.png" alt="image-20211108091805181" style="zoom: 50%;" /></p>
 
 <p>where notice that here we have another problem:</p>
 
@@ -4667,7 +4720,7 @@ this is because we only have three cases for unacknowledged bytes:</p>
 
 <p>Hence, in this unfortunate scenario, we get (e.g. for A-C in this case)</p>
 
-<p><img src="notes/image-20211108133533708.png" alt="image-20211108133533708" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211108133533708.png" alt="image-20211108133533708" /></p>
 
 <p>where:</p>
 
@@ -4688,23 +4741,23 @@ this is because we only have three cases for unacknowledged bytes:</p>
   <tbody>
     <tr>
       <td>throughput can never exceed capacity</td>
-      <td><img src="notes/image-20211108133920569.png" alt="image-20211108133920569" style="zoom: 67%;" /></td>
+      <td><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211108133920569.png" alt="image-20211108133920569" style="zoom: 67%;" /></td>
     </tr>
     <tr>
       <td>§delay increases as capacity approached</td>
-      <td><img src="notes/image-20211108133938863.png" alt="image-20211108133938863" /></td>
+      <td><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211108133938863.png" alt="image-20211108133938863" /></td>
     </tr>
     <tr>
       <td>loss/retransmission decreases effective throughput</td>
-      <td><img src="notes/image-20211108133955610.png" alt="image-20211108133955610" /></td>
+      <td><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211108133955610.png" alt="image-20211108133955610" /></td>
     </tr>
     <tr>
       <td>un-needed duplicates further decreases effective throughput</td>
-      <td><img src="notes/image-20211108134008793.png" alt="image-20211108134008793" /></td>
+      <td><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211108134008793.png" alt="image-20211108134008793" /></td>
     </tr>
     <tr>
       <td>upstream transmission capacity/buffering wasted for packets lost downstream</td>
-      <td><img src="notes/image-20211108134027959.png" alt="image-20211108134027959" /></td>
+      <td><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211108134027959.png" alt="image-20211108134027959" /></td>
     </tr>
   </tbody>
 </table>
@@ -4750,17 +4803,21 @@ this is because we only have three cases for unacknowledged bytes:</p>
 
 <p><strong>Throttling the Sender</strong></p>
 
-<p>This is done by TCP having an ==additional variable at the sender==, which is <code class="language-plaintext highlighter-rouge">cwnd</code> - <strong>congestion control window</strong>. Such that:
-\(\text{LastByteSend} - \text{LastByteAcked} \le \min \{ \text{cwnd}, \text{rwnd}  \}\)
-where notice that the LHS is just <strong>unacknowledged data</strong>.</p>
+<p>This is done by TCP having an ==additional variable at the sender==, which is <code class="language-plaintext highlighter-rouge">cwnd</code> - <strong>congestion control window</strong>. Such that:</p>
+
+\[\text{LastByteSend} - \text{LastByteAcked} \le \min \{ \text{cwnd}, \text{rwnd}  \}\]
+
+<p>where notice that the LHS is just <strong>unacknowledged data</strong>.</p>
 
 <ul>
   <li>==in practise, the window size is exactly $N \equiv \min{\text{cwnd}, \text{rwnd}}$==.</li>
 </ul>
 
-<p>Now, if we ==assume== that TCP receive buffer is so large that the receive-window constraint can be ignored; thus we only focus on <code class="language-plaintext highlighter-rouge">cwnd</code>, then approximately the sender sends at rate:
-\(\text{sending rate} \approx \frac{\text{cwnd}}{\text{RTT}} \text{ bytes/sec}\)
-because basically:</p>
+<p>Now, if we ==assume== that TCP receive buffer is so large that the receive-window constraint can be ignored; thus we only focus on <code class="language-plaintext highlighter-rouge">cwnd</code>, then approximately the sender sends at rate:</p>
+
+\[\text{sending rate} \approx \frac{\text{cwnd}}{\text{RTT}} \text{ bytes/sec}\]
+
+<p>because basically:</p>
 
 <ul>
   <li>at the beginning of every RTT, the constraint permits the sender to send <code class="language-plaintext highlighter-rouge">cwnd </code>bytes of data into the connection</li>
@@ -4769,7 +4826,7 @@ because basically:</p>
 
 <p>Graphically, your window size now is restricted by <code class="language-plaintext highlighter-rouge">cwnd</code>, so that you cannot send more than that:</p>
 
-<p><img src="notes/image-20211108140521422.png" alt="image-20211108140521422" style="zoom: 80%;" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211108140521422.png" alt="image-20211108140521422" style="zoom: 80%;" /></p>
 
 <hr />
 
@@ -4855,7 +4912,7 @@ because basically:</p>
 
     <p>graphically, this looks like</p>
 
-    <p><img src="notes/image-20211108142335426.png" alt="image-20211108142335426" style="zoom: 67%;" /></p>
+    <p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211108142335426.png" alt="image-20211108142335426" style="zoom: 67%;" /></p>
   </li>
 </ol>
 
@@ -4869,7 +4926,7 @@ because basically:</p>
 
 <p>Therefore, the ==full algorithm== can be also summarized in the FSM:</p>
 
-<p><img src="notes/image-20211108143509607.png" alt="image-20211108143509607" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211108143509607.png" alt="image-20211108143509607" /></p>
 
 <p>where you actually start with a non-zero <code class="language-plaintext highlighter-rouge">ssthresh</code>.</p>
 
@@ -4931,7 +4988,7 @@ because basically:</p>
 
 <p>Basically Reno implemented the Fast Recovery, where Tahoe didn’t and just cuts the <code class="language-plaintext highlighter-rouge">cwnd=1</code> every time when a timeout occurs.</p>
 
-<p><img src="notes/image-20211108145250921.png" alt="image-20211108145250921" style="zoom:67%;" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211108145250921.png" alt="image-20211108145250921" style="zoom:67%;" /></p>
 
 <p>then, the comparison is shown here:</p>
 
@@ -4949,11 +5006,11 @@ because basically:</p>
 
 <p>The TCP congestion control algorithm can be summarized in the FSM</p>
 
-<p><img src="notes/image-20211108143509607.png" alt="image-20211108143509607" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211108143509607.png" alt="image-20211108143509607" /></p>
 
 <p>But additionally, if we <strong>ignore the initial slow start period</strong> and ==assuming losses is only triple duplicates== (i.e. no timeouts, never went back to slow start), then you ==always== are either increasing linearly or halving the <code class="language-plaintext highlighter-rouge">cwnd</code>:</p>
 
-<p><img src="notes/image-20211108150006291.png" alt="image-20211108150006291" style="zoom:67%;" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211108150006291.png" alt="image-20211108150006291" style="zoom:67%;" /></p>
 
 <p>Therefore, TCP congestion control is often referred to as an <strong>additive-increase, multiplicative decrease</strong> (AIMD) form of congestion control.</p>
 
@@ -4980,7 +5037,7 @@ because basically:</p>
 
   <p>If we were to draw the performance graph, the one similar to economics</p>
 
-  <p><img src="notes/image-20211115090713999.png" alt="image-20211115090713999" style="zoom:50%;" /></p>
+  <p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211115090713999.png" alt="image-20211115090713999" style="zoom:50%;" /></p>
 
   <p>basically here we have two important lines:</p>
 
@@ -4991,7 +5048,7 @@ because basically:</p>
 
   <p>Then, what AIMD does is basically:</p>
 
-  <p><img src="notes/image-20211115090741987.png" alt="image-20211115090741987" style="zoom:50%;" /></p>
+  <p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211115090741987.png" alt="image-20211115090741987" style="zoom:50%;" /></p>
 
   <p>where we start with <em>non-equable/efficient</em> usage, but:</p>
 
@@ -5019,7 +5076,7 @@ because basically:</p>
 
 <p>Graphically, CUBID does the same thing for <strong>slow start</strong> and <strong>fast recovery</strong>, but ==differs in congestion avoidance==, resoling in:</p>
 
-<p><img src="notes/image-20211108095152573.png" alt="image-20211108095152573" style="zoom: 67%;" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211108095152573.png" alt="image-20211108095152573" style="zoom: 67%;" /></p>
 
 <p>where:</p>
 
@@ -5038,7 +5095,7 @@ because basically:</p>
 
 <p>Graphically:</p>
 
-<p><img src="notes/image-20211108150849139.png" alt="image-20211108150849139" style="zoom:80%;" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211108150849139.png" alt="image-20211108150849139" style="zoom:80%;" /></p>
 
 <p>where, again ==assuming loss = triple duplicate==:</p>
 
@@ -5062,7 +5119,7 @@ because basically:</p>
   <p><strong>ECN</strong> basically lets ==routers== use an <code class="language-plaintext highlighter-rouge">ECN</code> bit to indicate congestion (close to full packet). Then the sender should treat that <code class="language-plaintext highlighter-rouge">ECN</code> the same as a loss packet by reducing the window size to half - preventing from packet loss.</p>
 </blockquote>
 
-<p><img src="notes/image-20211115152538360.png" alt="image-20211115152538360" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211115152538360.png" alt="image-20211115152538360" /></p>
 
 <p>where, after a sender (Host A) sent something:</p>
 
@@ -5078,9 +5135,11 @@ because basically:</p>
         <p>the first bit of <code class="language-plaintext highlighter-rouge">ECN</code> is to inform routers whether if sender/receiver is <code class="language-plaintext highlighter-rouge">ECN</code> capable (==TODO: not sure if true==)</p>
       </li>
       <li>
-        <p>the probabilistic maner means it sets all packets with <code class="language-plaintext highlighter-rouge">ECN=11</code> with a probability of $p$ defined as:
-\(\frac{R}{N} =\frac{c}{\mathrm{RTT}\sqrt{p}}\)
-where:</p>
+        <p>the probabilistic maner means it sets all packets with <code class="language-plaintext highlighter-rouge">ECN=11</code> with a probability of $p$ defined as:</p>
+
+\[\frac{R}{N} =\frac{c}{\mathrm{RTT}\sqrt{p}}\]
+
+        <p>where:</p>
 
         <ul>
           <li>$R$ is the bandwidth it has, $N$ is the number of users using it. So $R/N$ is the ideal/fair throughput per user</li>
@@ -5112,7 +5171,7 @@ where:</p>
   </ul>
 </blockquote>
 
-<p><img src="notes/image-20211115092522354.png" alt="image-20211115092522354" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211115092522354.png" alt="image-20211115092522354" /></p>
 
 <h3 id="delay-based-congestion-control">Delay-Based Congestion Control</h3>
 
@@ -5128,8 +5187,9 @@ where:</p>
     <p>compute the minimum $\mathrm{RTT}_\min$, which represents the case with low congestion and low queuing delay</p>
   </li>
   <li>
-    <p>compute the <strong>uncongested throughput</strong> rate to be:
-\(\frac{\mathrm{cwnd}}{\mathrm{RTT}_\min}\)</p>
+    <p>compute the <strong>uncongested throughput</strong> rate to be:</p>
+
+\[\frac{\mathrm{cwnd}}{\mathrm{RTT}_\min}\]
   </li>
   <li>
     <p>so if current throughput is <em>close</em> to that, <em>increase</em> your $\mathrm{cwnd}$, i.e. network is uncongested now. Otherwise, if it is significantly less than it, decrease the sending rate similarly by doing multiplicative decrease.</p>
@@ -5150,7 +5210,7 @@ where:</p>
 
 <p>We can illustrate the above concept in a 2D example that easily generalizes into $K$ dimension:</p>
 
-<p><img src="notes/image-20211115162225090.png" alt="image-20211115162225090" style="zoom:80%;" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211115162225090.png" alt="image-20211115162225090" style="zoom:80%;" /></p>
 
 <p>Now, let us investigate if the TCP algorithms covered above are fair/efficient.</p>
 
@@ -5160,7 +5220,7 @@ where:</p>
 
 <p>Assume that we have two connections, and they have the <strong>same MSS and RTT</strong> (so that if they have the same congestion window size, then they have the same throughput). And suppose we ignore the slow start, such that they start at point $A$ in the graph below.</p>
 
-<p><img src="notes/image-20211115162758281.png" alt="image-20211115162758281" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211115162758281.png" alt="image-20211115162758281" /></p>
 
 <p>then notice that:</p>
 
@@ -5213,7 +5273,7 @@ where:</p>
 
 <p>For example:</p>
 
-<p><img src="notes/image-20211115094626231.png" alt="image-20211115094626231" style="zoom: 50%;" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211115094626231.png" alt="image-20211115094626231" style="zoom: 50%;" /></p>
 
 <p>So over times, as we have seen before, there are many variations to a TCP protocol, and now perhaps the only common features of these protocols is that they use the TCP segment format.</p>
 
@@ -5226,7 +5286,7 @@ where:</p>
   <li>technically, QUIC is an application protocol, but it is interesting how it <strong>implements some features of TCP</strong>, and then use UDP for transport layer</li>
 </ul>
 
-<p><img src="notes/image-20211115170016989.png" alt="image-20211115170016989" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211115170016989.png" alt="image-20211115170016989" /></p>
 
 <p>Some features of QUIC in the <strong>application layer</strong> include:</p>
 
@@ -5234,7 +5294,7 @@ where:</p>
   <li>
     <p><strong>Connection-Oriented and Secure</strong>: now it basically does handshake in application layer, where it combines the handshake for <em>connection establishment</em> AND <em>authentication + encryption</em> (see Figure 3.58 (a)). Hence, it only needs to do one handshake, which speeds up the connection establishment procedure.</p>
 
-    <p><img src="notes/image-20211115170339000.png" alt="image-20211115170339000" /></p>
+    <p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211115170339000.png" alt="image-20211115170339000" /></p>
   </li>
   <li><strong>Streams</strong>: QUIC allows several different application-level “==streams==” to be multiplexed through a single QUIC connection, and once a QUIC connection is established, new streams can be quickly added. This basically solves the Head of Line problem mentioned in HTTP 1.1.
     <ul>
@@ -5253,7 +5313,7 @@ where:</p>
 
 <p>Overview of QUIC protocol architecture:</p>
 
-<p><img src="notes/image-20211115170556343.png" alt="image-20211115170556343" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211115170556343.png" alt="image-20211115170556343" /></p>
 
 <p>Finally, the advantage of application layer protocol is that <strong>changes can be made to QUIC at “application-update timescales,”</strong> that is, much faster than TCP or UDP update timescales.</p>
 
@@ -5285,7 +5345,7 @@ where:</p>
 
 <p>Also notice that now we are at the ==network core==:</p>
 
-<p><img src="notes/image-20211120125452780.png" alt="image-20211120125452780" style="zoom:80%;" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211120125452780.png" alt="image-20211120125452780" style="zoom:80%;" /></p>
 
 <p>where:</p>
 
@@ -5312,7 +5372,7 @@ where:</p>
 
 <p>In particular, the data plane switches packet by using a key element in every network router is its ==forwarding table==:</p>
 
-<p><img src="notes/image-20211120131229860.png" alt="image-20211120131229860" style="zoom:80%;" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211120131229860.png" alt="image-20211120131229860" style="zoom:80%;" /></p>
 
 <ol>
   <li>examining the value of one or more fields in the arriving packet’s header (e.g. IP address)</li>
@@ -5350,7 +5410,7 @@ where:</p>
 
 <p>Graphically, the SDN looks like:</p>
 
-<p><img src="notes/image-20211120131122215.png" alt="image-20211120131122215" style="zoom:80%;" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211120131122215.png" alt="image-20211120131122215" style="zoom:80%;" /></p>
 
 <p>note that:</p>
 
@@ -5373,7 +5433,7 @@ where:</p>
 
 <p>However, in reality, the ==Internet’s network layer== provides basically none of them:</p>
 
-<p><img src="notes/image-20211120133357559.png" alt="image-20211120133357559" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211120133357559.png" alt="image-20211120133357559" /></p>
 
 <p>But it kind of works because</p>
 
@@ -5388,7 +5448,7 @@ where:</p>
 
 <p>Yet there are ofc algorithms that implements some of the service, but in reality the best effort one is the best</p>
 
-<p><img src="notes/image-20211120133948532.png" alt="image-20211120133948532" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211120133948532.png" alt="image-20211120133948532" /></p>
 
 <h2 id="inside-a-router">Inside A Router</h2>
 
@@ -5396,13 +5456,13 @@ where:</p>
 
 <p>First of all, a clarification of our previous abstraction:</p>
 
-<p><img src="notes/image-20211120134706510.png" alt="image-20211120134706510" style="zoom:67%;" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211120134706510.png" alt="image-20211120134706510" style="zoom:67%;" /></p>
 
 <p>basically we don’t have bidirectional links in reality between two routers.</p>
 
 <p>Now, it makes sense that a router has <strong>four components</strong></p>
 
-<p><img src="notes/image-20211120134925531.png" alt="image-20211120134925531" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211120134925531.png" alt="image-20211120134925531" /></p>
 
 <p>where here we assumed the router is connected to two routers, so we have two pairs of input/output port</p>
 
@@ -5421,7 +5481,7 @@ where:</p>
 
 <p>A more detailed view of input processing is shown in Figure below.</p>
 
-<p><img src="notes/image-20211120140008502.png" alt="image-20211120140008502" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211120140008502.png" alt="image-20211120140008502" /></p>
 
 <p>where basically the important part is the red part</p>
 
@@ -5436,7 +5496,7 @@ where:</p>
 
 <p>Let’s now consider the “simplest” case that the output port to which an incoming packet is to be switched is based on the packet’s destination address, i.e. the 32-bit IP. Then the table looks like:</p>
 
-<p><img src="notes/image-20211120140310107.png" alt="image-20211120140310107" style="zoom: 33%;" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211120140310107.png" alt="image-20211120140310107" style="zoom: 33%;" /></p>
 
 <p>where note that:</p>
 
@@ -5461,7 +5521,7 @@ where:</p>
 
 <p>Now, suppose the ranges don’t divide up so nicely, e.g. in a private network. Then:</p>
 
-<p><img src="notes/image-20211120141845962.png" alt="image-20211120141845962" style="zoom:80%;" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211120141845962.png" alt="image-20211120141845962" style="zoom:80%;" /></p>
 
 <p>The router can perform a ==longest prefix match==:</p>
 
@@ -5471,7 +5531,7 @@ where:</p>
 
 <p>Therefore, we see that router just need to <strong>store prefixes</strong>, and <strong>perform a longest prefix match</strong>. So routing table usually looks like this:</p>
 
-<p><img src="notes/image-20211120142231883.png" alt="image-20211120142231883" style="zoom: 50%;" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211120142231883.png" alt="image-20211120142231883" style="zoom: 50%;" /></p>
 
 <p>where notice that the length of prefix is variable, up to 32 bits.</p>
 
@@ -5507,7 +5567,7 @@ where:</p>
 
 <p>Once a packet’s output port/interface has been determined via the lookup, the packet can be <strong>sent into the switching fabric</strong>. In general, there three popular ways to do the switching:</p>
 
-<p><img src="notes/image-20211120144050113.png" alt="image-20211120144050113" style="zoom: 80%;" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211120144050113.png" alt="image-20211120144050113" style="zoom: 80%;" /></p>
 
 <p>where</p>
 
@@ -5537,7 +5597,7 @@ where:</p>
   </li>
 </ol>
 
-<p><img src="notes/image-20211120144737088.png" alt="image-20211120144737088" style="zoom:50%;" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211120144737088.png" alt="image-20211120144737088" style="zoom:50%;" /></p>
 
 <p>Therefore, for each single switching, we need to do <strong>2 memory operations</strong>.</p>
 
@@ -5556,7 +5616,7 @@ where:</p>
   <li>The matched output port removes the label, and you are done</li>
 </ol>
 
-<p><img src="notes/image-20211120145352036.png" alt="image-20211120145352036" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211120145352036.png" alt="image-20211120145352036" /></p>
 
 <p>However, similar as above, if multiple packets arrive to the router at the same time, each at a different input port, <strong>all but one must wait</strong> since only one packet can cross the bus at a time.</p>
 
@@ -5564,7 +5624,7 @@ where:</p>
 
 <p>Basically we want to be able to do simultaneous things, and the result is to consider the following:</p>
 
-<p><img src="notes/image-20211120150333127.png" alt="image-20211120150333127" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211120150333127.png" alt="image-20211120150333127" /></p>
 
 <p>where if we have $N$ input/output ports, we take $2N$ bus, such that we have $N^2$ ==intersections==. The idea is that each intersection can be ==opened or closed (packet can pass)== at any time by the switch fabric controller (this part of logic is part of the switching fabric itself)</p>
 
@@ -5579,7 +5639,7 @@ where:</p>
 
 <p>Therefore, this could cause Head of Line blocking</p>
 
-<p><img src="notes/image-20211122130406451.png" alt="image-20211122130406451" style="zoom: 67%;" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211122130406451.png" alt="image-20211122130406451" style="zoom: 67%;" /></p>
 
 <p>where basically:</p>
 
@@ -5588,13 +5648,15 @@ where:</p>
   <li>the net result is one of the output port is FREE even if there is a message destined for the second output port (under utilization)</li>
 </ul>
 
-<p>In fact, it is shown that due to HOL blocking, the input queue <strong>will grow</strong> to unbounded length (i.e. significant packet loss entails) if the <strong>packet arrival rate on input link reach</strong>
-\(2-\sqrt{2} \approx 58 \% \text{ of capacity }\)
-(basically you waste at least $42\%$ of the capacity)</p>
+<p>In fact, it is shown that due to HOL blocking, the input queue <strong>will grow</strong> to unbounded length (i.e. significant packet loss entails) if the <strong>packet arrival rate on input link reach</strong></p>
+
+\[2-\sqrt{2} \approx 58 \% \text{ of capacity }\]
+
+<p>(basically you waste at least $42\%$ of the capacity)</p>
 
 <p>To solve this issue, consider using virtual queue:</p>
 
-<p><img src="notes/image-20211122132613943.png" alt="image-20211122132613943" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211122132613943.png" alt="image-20211122132613943" /></p>
 
 <p>where now, no more HOL occurs and the for each clock cycle, you have 100% utilization.</p>
 
@@ -5619,7 +5681,7 @@ where:</p>
   </li>
 </ol>
 
-<p><img src="notes/image-20211122131403011.png" alt="image-20211122131403011" style="zoom:50%;" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211122131403011.png" alt="image-20211122131403011" style="zoom:50%;" /></p>
 
 <h3 id="queueing-in-router">Queueing in Router</h3>
 
@@ -5656,7 +5718,7 @@ where:</p>
 
 <p>Then, for that output port:</p>
 
-<p><img src="notes/image-20211122135038751.png" alt="image-20211122135038751" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211122135038751.png" alt="image-20211122135038751" /></p>
 
 <p>where basically:</p>
 
@@ -5674,9 +5736,11 @@ where:</p>
 
 <h4 id="buffer-length">Buffer Length</h4>
 
-<p>Then the question is how much buffer is good for a port. Given the link capacity coming into/out of the router is $C$, and the average RTT is about $\text{RTT}$, then:
-\(\text{buffer length} \approx \frac{\text{RTT}\cdot C}{\sqrt{N}}\)
-for $N$ being the number of input/output ports.</p>
+<p>Then the question is how much buffer is good for a port. Given the link capacity coming into/out of the router is $C$, and the average RTT is about $\text{RTT}$, then:</p>
+
+\[\text{buffer length} \approx \frac{\text{RTT}\cdot C}{\sqrt{N}}\]
+
+<p>for $N$ being the number of input/output ports.</p>
 
 <ul>
   <li>notice that this comes from the fact that “more buffering might not be better” as buffering can be used to <strong>absorb short-term statistical fluctuations</strong> in traffic but can also ==lead to increased queuing delay==. (large buffers means larger queueing delay, which might even be worse than dropping packets if you are gaming)</li>
@@ -5689,7 +5753,7 @@ for $N$ being the number of input/output ports.</p>
 
 <p>Consider the setup of a gamer’s house with a router being able to send a packet every $20 ms$. Suppose the RTT to the gaming server is $200ms$, and suppose there is no other queuing delay on the network except for the home router. Then:</p>
 
-<p><img src="notes/image-20211122142202532.png" alt="image-20211122142202532" style="zoom:67%;" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211122142202532.png" alt="image-20211122142202532" style="zoom:67%;" /></p>
 
 <ol>
   <li>suppose at $t=0$, router got 25 packets in a burst</li>
@@ -5703,7 +5767,7 @@ for $N$ being the number of input/output ports.</p>
 
 <p>Basically we need to consider the problem of determining the <strong>order which packets are transmitted</strong>. (Also related to which packets to drop)</p>
 
-<p><img src="notes/image-20211122143327165.png" alt="image-20211122143327165" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211122143327165.png" alt="image-20211122143327165" /></p>
 
 <p>Some basic ideas are:</p>
 
@@ -5718,7 +5782,7 @@ for $N$ being the number of input/output ports.</p>
 
 <p>Basically, assume that each packet takes three units of time to be transmitted. Under the FIFO discipline, packets leave in the same order in which they arrived.</p>
 
-<p><img src="notes/image-20211122143752183.png" alt="image-20211122143752183" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211122143752183.png" alt="image-20211122143752183" /></p>
 
 <h4 id="scheduling-priority">Scheduling: Priority</h4>
 
@@ -5726,7 +5790,7 @@ for $N$ being the number of input/output ports.</p>
 
 <p>Then, the idea is to transmit a packet from the <strong>highest priority class that has a nonempty queue</strong> (i.e. low priority only looked at when high priority are all gone - i.e. could be exhausted).</p>
 
-<p><img src="notes/image-20211122144044968.png" alt="image-20211122144044968" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211122144044968.png" alt="image-20211122144044968" /></p>
 
 <p>where in this example:</p>
 
@@ -5746,7 +5810,7 @@ for $N$ being the number of input/output ports.</p>
 
 <p>Therefore, assuming we have two classes (e.g. could be priority class):</p>
 
-<p><img src="notes/image-20211122144326007.png" alt="image-20211122144326007" style="zoom:80%;" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211122144326007.png" alt="image-20211122144326007" style="zoom:80%;" /></p>
 
 <p>where again:</p>
 
@@ -5757,11 +5821,13 @@ for $N$ being the number of input/output ports.</p>
 
 <h4 id="scheduling-wfq">Scheduling: WFQ</h4>
 
-<p>The principle is basically just a Weighted Round Robin, where you assign a weight $w_i$ to each class representing how important they are, so that class i will then be guaranteed to receive a fraction of service equal to:
-\(\frac{w_i}{\sum_i w_i} \text{ of the service time}\)
-Therefore, basically it circulates through all the classes but gives more time on more important classes.</p>
+<p>The principle is basically just a Weighted Round Robin, where you assign a weight $w_i$ to each class representing how important they are, so that class i will then be guaranteed to receive a fraction of service equal to:</p>
 
-<p><img src="notes/image-20211122144651509.png" alt="image-20211122144651509" /></p>
+\[\frac{w_i}{\sum_i w_i} \text{ of the service time}\]
+
+<p>Therefore, basically it circulates through all the classes but gives more time on more important classes.</p>
+
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211122144651509.png" alt="image-20211122144651509" /></p>
 
 <p>This is also implemented the most today.</p>
 
@@ -5783,13 +5849,13 @@ Therefore, basically it circulates through all the classes but gives more time o
 
 <p>A roadmap of where we are:</p>
 
-<p><img src="notes/image-20211122145857996.png" alt="image-20211122145857996" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211122145857996.png" alt="image-20211122145857996" /></p>
 
 <p>basically we have discussed how forwarding table works, and now we look at the content of packet in IP protocol.</p>
 
 <h3 id="ipv4-datagram-format">IPv4 Datagram Format</h3>
 
-<p><img src="notes/image-20211122150141727.png" alt="image-20211122150141727" style="zoom: 80%;" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211122150141727.png" alt="image-20211122150141727" style="zoom: 80%;" /></p>
 
 <p>where basically:</p>
 
@@ -5840,7 +5906,7 @@ Therefore, basically it circulates through all the classes but gives more time o
   <li>
     <p>dotted-decimal notation that IP uses:</p>
 
-    <p><img src="notes/image-20211122153023935.png" alt="image-20211122153023935" style="zoom:80%;" /></p>
+    <p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211122153023935.png" alt="image-20211122153023935" style="zoom:80%;" /></p>
 
     <p>where router basically use the <strong>binary form only</strong> (e.g. lookup table)</p>
   </li>
@@ -5864,7 +5930,7 @@ Therefore, basically it circulates through all the classes but gives more time o
   <li>IP address is not given randomly, a portion of an interface’s IP address will be determined by the ==subnet==</li>
 </ul>
 
-<p><img src="notes/image-20211122152557532.png" alt="image-20211122152557532" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211122152557532.png" alt="image-20211122152557532" /></p>
 
 <p>where notice that:</p>
 
@@ -5886,11 +5952,11 @@ Therefore, basically it circulates through all the classes but gives more time o
 
 <p>So the subnet structure of the Figure 4.18 is basically:</p>
 
-<p><img src="notes/image-20211122153553790.png" alt="image-20211122153553790" style="zoom:80%;" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211122153553790.png" alt="image-20211122153553790" style="zoom:80%;" /></p>
 
 <p>A more complicated example would be:</p>
 
-<p><img src="notes/image-20211122154229450.png" alt="image-20211122154229450" style="zoom:80%;" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211122154229450.png" alt="image-20211122154229450" style="zoom:80%;" /></p>
 
 <p>where now you have 6 subnets.</p>
 
@@ -5938,11 +6004,11 @@ Therefore, basically it circulates through all the classes but gives more time o
 
 <p>Therefore, when your laptop is connected to a subnet:</p>
 
-<p><img src="notes/image-20211122162927426.png" alt="image-20211122162927426" style="zoom:80%;" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211122162927426.png" alt="image-20211122162927426" style="zoom:80%;" /></p>
 
 <p>Detailed steps of what happened is shown here:</p>
 
-<p><img src="notes/image-20211122164318688.png" alt="image-20211122164318688" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211122164318688.png" alt="image-20211122164318688" /></p>
 
 <ol>
   <li><strong>DHCP server discovery</strong>. The first task of a newly arriving host is to find a DHCP server with which to interact. This is done using a DHCP discover message. This is done by a client send a UDP packet to port <code class="language-plaintext highlighter-rouge">67</code>.
@@ -6017,8 +6083,8 @@ Therefore, basically it circulates through all the classes but gives more time o
   </thead>
   <tbody>
     <tr>
-      <td style="text-align: center"><img src="notes/image-20211127163159823.png" alt="image-20211127163159823" style="zoom: 67%;" /></td>
-      <td style="text-align: center"><img src="notes/image-20211127163212978.png" alt="image-20211127163212978" style="zoom: 67%;" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211127163159823.png" alt="image-20211127163159823" style="zoom: 67%;" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211127163212978.png" alt="image-20211127163212978" style="zoom: 67%;" /></td>
     </tr>
   </tbody>
 </table>
@@ -6050,13 +6116,13 @@ Therefore, basically it circulates through all the classes but gives more time o
 
 <p>Graphically:</p>
 
-<p><img src="notes/image-20211122165523263.png" alt="image-20211122165523263" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211122165523263.png" alt="image-20211122165523263" /></p>
 
 <p>where we see that:</p>
 
 <ul>
   <li>all traffic leaving the home router for the larger Internet has a source IP address of <code class="language-plaintext highlighter-rouge">138.76.29.7</code>, and all traffic entering the home router must have a destination address of <code class="language-plaintext highlighter-rouge">138.76.29.7</code>.</li>
-  <li>use a NAT translation table to know finally <strong>which device to forward to</strong> by essentially ==port $\to $ IP + port==</li>
+  <li>use a NAT translation table to know finally <strong>which device to forward to</strong> by essentially ==port $\to$ IP + port==</li>
 </ul>
 
 <p>Note then this basically means we are using ==one IP for all your private devices!== (hence essentially saving some IP addresses for use)</p>
@@ -6094,7 +6160,7 @@ Therefore, basically it circulates through all the classes but gives more time o
 
 <p>The ISP may itself have been allocated the address block <code class="language-plaintext highlighter-rouge">200.23.16.0/20</code>. The ISP, in turn, could divide its address block into subspaces and give to organizations:</p>
 
-<p><img src="notes/image-20211122162127509.png" alt="image-20211122162127509" style="zoom:80%;" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211122162127509.png" alt="image-20211122162127509" style="zoom:80%;" /></p>
 
 <h3 id="ipv6">IPv6</h3>
 
@@ -6107,7 +6173,7 @@ Therefore, basically it circulates through all the classes but gives more time o
 
 <p>Then the datagram format looks like:</p>
 
-<p><img src="notes/image-20211122170228493.png" alt="image-20211122170228493" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211122170228493.png" alt="image-20211122170228493" /></p>
 
 <p>where:</p>
 
@@ -6144,14 +6210,14 @@ options field</li>
 
       <p>As a result, those packets look like:</p>
 
-      <p><img src="notes/image-20211122171400887.png" alt="image-20211122171400887" /></p>
+      <p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211122171400887.png" alt="image-20211122171400887" /></p>
     </li>
   </ul>
 </blockquote>
 
 <p>Then, what you do is:</p>
 
-<p><img src="notes/image-20211122171421378.png" alt="image-20211122171421378" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211122171421378.png" alt="image-20211122171421378" /></p>
 
 <p>where:</p>
 
@@ -6189,7 +6255,7 @@ options field</li>
   </ul>
 </blockquote>
 
-<p><img src="notes/image-20211127172425345.png" alt="image-20211127172425345" style="zoom:67%;" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211127172425345.png" alt="image-20211127172425345" style="zoom:67%;" /></p>
 
 <p>note that</p>
 
@@ -6211,7 +6277,7 @@ options field</li>
 
 <p>Then, in this chapter, we learn how those ==forwarding and flow tables are computed, maintained and installed.==</p>
 
-<p><img src="notes/image-20211129142506981.png" alt="image-20211129142506981" style="zoom:67%;" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211129142506981.png" alt="image-20211129142506981" style="zoom:67%;" /></p>
 
 <p>where:</p>
 
@@ -6232,7 +6298,7 @@ options field</li>
 
   <p>As we have discussed above, we could have also centralized everything</p>
 
-  <p><img src="notes/image-20211129142740023.png" alt="image-20211129142740023" style="zoom:50%;" /></p>
+  <p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211129142740023.png" alt="image-20211129142740023" style="zoom:50%;" /></p>
 
   <p>where here we:</p>
 
@@ -6258,7 +6324,7 @@ options field</li>
 
 <p>Here, we first formalize our discussion with graphs:</p>
 
-<p><img src="notes/image-20211129143610101.png" alt="image-20211129143610101" style="zoom:67%;" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211129143610101.png" alt="image-20211129143610101" style="zoom:67%;" /></p>
 
 <p>where we have $G=(N,E)$ being the set of nodes and weighted edges</p>
 
@@ -6563,8 +6629,8 @@ void dijkstra(Vertex s){
   </thead>
   <tbody>
     <tr>
-      <td style="text-align: center"><img src="notes/image-20211129143610101.png" alt="image-20211129143610101" style="zoom: 50%;" /></td>
-      <td style="text-align: center"><img src="notes/image-20211129152038665.png" alt="image-20211129152038665" style="zoom:50%;" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211129143610101.png" alt="image-20211129143610101" style="zoom: 50%;" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211129152038665.png" alt="image-20211129152038665" style="zoom:50%;" /></td>
     </tr>
   </tbody>
 </table>
@@ -6588,10 +6654,10 @@ void dijkstra(Vertex s){
   </thead>
   <tbody>
     <tr>
-      <td style="text-align: center"><img src="notes/image-20211201091426106.png" alt="image-20211201091426106" /></td>
-      <td style="text-align: center"><img src="notes/image-20211201091639130.png" alt="image-20211201091639130" /></td>
-      <td style="text-align: center"><img src="notes/image-20211201091646654.png" alt="image-20211201091646654" /></td>
-      <td style="text-align: center"><img src="notes/image-20211201091707710.png" alt="image-20211201091707710" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211201091426106.png" alt="image-20211201091426106" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211201091639130.png" alt="image-20211201091639130" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211201091646654.png" alt="image-20211201091646654" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211201091707710.png" alt="image-20211201091707710" /></td>
     </tr>
     <tr>
       <td style="text-align: center">least weight<code class="language-plaintext highlighter-rouge">C-B-A</code></td>
@@ -6638,9 +6704,11 @@ void dijkstra(Vertex s){
   <li>iterative: this process ==continues on until no more information is exchanged== between neighbors</li>
 </ul>
 
-<p>First thing to notice is that, for the Greedy Algorithm to work, we neede the <strong>Bellman-Ford Equation</strong> that, if $d_X(y)$ is the ==cost of least-cost path== from $x$ to $y$, then:
-\(d_x(y) = \min_v \{ c(x,v) + d_v(y) \}\)
-which makes sense as $d_v(y)$ is the min path, and we have positive edges only.</p>
+<p>First thing to notice is that, for the Greedy Algorithm to work, we neede the <strong>Bellman-Ford Equation</strong> that, if $d_X(y)$ is the ==cost of least-cost path== from $x$ to $y$, then:</p>
+
+\[d_x(y) = \min_v \{ c(x,v) + d_v(y) \}\]
+
+<p>which makes sense as $d_v(y)$ is the min path, and we have positive edges only.</p>
 
 <ul>
   <li>after traveling from $x$ to $v$, if we then take the least-cost path from $v$ to $y$, the path cost will be $c(x, v) + d_v(y)$.</li>
@@ -6650,12 +6718,12 @@ which makes sense as $d_v(y)$ is the min path, and we have positive edges only.<
 
 <p>Graphically, it is just doing:</p>
 
-<p><img src="notes/image-20211201121512568.png" alt="image-20211201121512568" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211201121512568.png" alt="image-20211201121512568" /></p>
 
 <p>where:</p>
 
 <ul>
-  <li>the best path from $D_u(z)$ would be $\min(\text{path to neighbor} + \text{path from neighbor to $z$})$</li>
+  <li>the best path from $D_u(z)$ would be $\min(\text{path to neighbor} + \text{path from neighbor to$z$})$</li>
   <li>therefore, this basically is done ==iteratively== for all nodes ==until no changes/all information propagated==</li>
 </ul>
 
@@ -6692,9 +6760,11 @@ forever
     <p>send your current $D_x(y)$ vector to your neighbor</p>
   </li>
   <li>
-    <p>receive $D_v(y)$ from your neighbor $v$, and update your $D_x(y)$ since you can now compute:
-\(D_x(y) \leftarrow \min_v \{ D_v(y) + c(x,v) \}\)
-where $c(x,v)$ you can directly measure by $x$ itself since $v$ are its neighbor</p>
+    <p>receive $D_v(y)$ from your neighbor $v$, and update your $D_x(y)$ since you can now compute:</p>
+
+\[D_x(y) \leftarrow \min_v \{ D_v(y) + c(x,v) \}\]
+
+    <p>where $c(x,v)$ you can directly measure by $x$ itself since $v$ are its neighbor</p>
   </li>
   <li>
     <p>send the $D_x(y)$ result that changed to your neighbors (so they can update)</p>
@@ -6706,7 +6776,7 @@ where $c(x,v)$ you can directly measure by $x$ itself since $v$ are its neighbor
 
 <p><em>For Example</em></p>
 
-<p><img src="notes/image-20211129154902953.png" alt="image-20211129154902953" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211129154902953.png" alt="image-20211129154902953" /></p>
 
 <p>where notice that:</p>
 
@@ -6727,8 +6797,8 @@ where $c(x,v)$ you can directly measure by $x$ itself since $v$ are its neighbor
   </thead>
   <tbody>
     <tr>
-      <td style="text-align: center"><img src="notes/image-20211201122833159.png" alt="image-20211201122833159" /></td>
-      <td style="text-align: center"><img src="notes/image-20211201122945603.png" alt="image-20211201122945603" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211201122833159.png" alt="image-20211201122833159" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211201122945603.png" alt="image-20211201122945603" /></td>
     </tr>
     <tr>
       <td style="text-align: center">Initialize the $D_x(y)$ and send</td>
@@ -6751,7 +6821,7 @@ where $c(x,v)$ you can directly measure by $x$ itself since $v$ are its neighbor
 
 <p><strong>Case 1: Good News</strong></p>
 
-<p><img src="notes/image-20211201124148017.png" alt="image-20211201124148017" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211201124148017.png" alt="image-20211201124148017" /></p>
 
 <p>We focus here ==only on <code class="language-plaintext highlighter-rouge">y</code>’ and <code class="language-plaintext highlighter-rouge">z</code>’s distance table== entries to destination <code class="language-plaintext highlighter-rouge">x</code>.</p>
 
@@ -6769,17 +6839,19 @@ where $c(x,v)$ you can directly measure by $x$ itself since $v$ are its neighbor
 
 <p><strong>Case 2: Bad News</strong></p>
 
-<p><img src="notes/image-20211201124228618.png" alt="image-20211201124228618" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211201124228618.png" alt="image-20211201124228618" /></p>
 
 <p>We focus here ==only on <code class="language-plaintext highlighter-rouge">y</code>’ and <code class="language-plaintext highlighter-rouge">z</code>’s distance table== entries to destination <code class="language-plaintext highlighter-rouge">x</code>.</p>
 
 <p>Before the link cost changes, $D_y(x) = 4, D_y(z) = 1, D_z(y) = 1$, and $D_z(x) = 5$ globally.</p>
 
 <ol>
-  <li>At $t=0$, y detects the link-cost change (the cost has changed from $c(y,x)=4$ to $c(y,x)=60$). y computes its new minimum-cost path to x to have a cost of
-   \(D_y(x) = \min \{ c(y,x)+D_x(x); c(y,z)+D_z(x) \} = \min \{60+0; 1+5\}=  6\)
-   which is ==wrong temporarily== (recall that it is correct only when converged) because the only information node y has is that its direct cost to x is 60 and that ==z has last told y that $D_z(x)=5$==, which is the wrong one.</li>
+  <li>At $t=0$, y detects the link-cost change (the cost has changed from $c(y,x)=4$ to $c(y,x)=60$). y computes its new minimum-cost path to x to have a cost of</li>
 </ol>
+
+\[D_y(x) = \min \{ c(y,x)+D_x(x); c(y,z)+D_z(x) \} = \min \{60+0; 1+5\}=  6\]
+
+<p>which is ==wrong temporarily== (recall that it is correct only when converged) because the only information node y has is that its direct cost to x is 60 and that ==z has last told y that $D_z(x)=5$==, which is the wrong one.</p>
 
 <ul>
   <li>notice that this happens because a actually $D_z(x)=5\iff z-y-x$, but this ==path information is hidden/not conveyed!== Now, if we picked $D_y(x)=6 \iff y - z - y -x$ will cause a ==routing loop for $y-z-y$== until the forwarding tables are changed.</li>
@@ -6788,18 +6860,22 @@ where $c(x,v)$ you can directly measure by $x$ itself since $v$ are its neighbor
 
 <ol>
   <li>
-    <p>At $t=1$​, z receives the update, which indicates that y’s minimum cost to x is $D_y(x)=6$. z knows it can get to y with a cost of 1 and hence computes a new least cost to x of:
-\(D_z(x) = \min \{50 + 0,1 + 6 \} = 7\)
-which is ==wrong temporarily again==, due to the same reason that it didn’t knw $D_y(x)=6 \iff y - z - y -x$. So z will ==still route through $y$==.</p>
+    <p>At $t=1$​, z receives the update, which indicates that y’s minimum cost to x is $D_y(x)=6$. z knows it can get to y with a cost of 1 and hence computes a new least cost to x of:</p>
+
+\[D_z(x) = \min \{50 + 0,1 + 6 \} = 7\]
+
+    <p>which is ==wrong temporarily again==, due to the same reason that it didn’t knw $D_y(x)=6 \iff y - z - y -x$. So z will ==still route through $y$==.</p>
 
     <ul>
       <li>since z’s cost increased/changed, it sends the update to its neighbor</li>
     </ul>
   </li>
   <li>
-    <p>At $t=2$, y receives the update and now the path is
-\(D_y(x) = \min \{ c(y,x)+D_x(x); c(y,z)+D_z(x) \} = \min \{60+0; 1+7\}=  8\)
-and sends to node z</p>
+    <p>At $t=2$, y receives the update and now the path is</p>
+
+\[D_y(x) = \min \{ c(y,x)+D_x(x); c(y,z)+D_z(x) \} = \min \{60+0; 1+7\}=  8\]
+
+    <p>and sends to node z</p>
   </li>
   <li>
     <p>At $t=3$, z receives the update and find $D_z(x)=9$, and etc.</p>
@@ -6823,7 +6899,7 @@ and sends to node z</p>
 
 <p><em>Example: Poisoned Reverse</em>:</p>
 
-<p><img src="notes/image-20211201124228618.png" alt="image-20211201124228618" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211201124228618.png" alt="image-20211201124228618" /></p>
 
 <p>Now using poisoned reverse:</p>
 
@@ -6867,7 +6943,7 @@ and sends to node z</p>
 
 <h3 id="comparison-between-ls-and-dv">Comparison between LS and DV</h3>
 
-<p><img src="notes/image-20211201133912427.png" alt="" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211201133912427.png" alt="" /></p>
 
 <p>where what is important here is that:</p>
 
@@ -6905,7 +6981,7 @@ and sends to node z</p>
 
 <p>Hence, on a high level it looks like:</p>
 
-<p><img src="notes/image-20211129085638840.png" alt="image-20211129085638840" style="zoom:67%;" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211129085638840.png" alt="image-20211129085638840" style="zoom:67%;" /></p>
 
 <p>where the gateway routers (<code class="language-plaintext highlighter-rouge">3a</code>, <code class="language-plaintext highlighter-rouge">1c</code>, <code class="language-plaintext highlighter-rouge">1b</code>, and <code class="language-plaintext highlighter-rouge">2a</code>) will <strong>contain entries:</strong></p>
 
@@ -6943,7 +7019,7 @@ and sends to node z</p>
   <li>each node has detailed area topology; only knows direction to reach other destinations</li>
 </ul>
 
-<p><img src="notes/image-20211129090713835.png" alt="image-20211129090713835" style="zoom:67%;" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211129090713835.png" alt="image-20211129090713835" style="zoom:67%;" /></p>
 
 <p>then, the last thing you need to do is to configure connection between gateway routes of your backbone and those areas.</p>
 
@@ -6964,9 +7040,11 @@ and sends to node z</p>
 
 <p>In BGP, packets are not routed to a specific destination address, but instead to CIDRized prefixes such as <code class="language-plaintext highlighter-rouge">138.16.68/22</code>.</p>
 
-<p>Therefore, a router’s forwarding table using BGP will include something like:
-\((\text{prefix}, \text{output})=(138.16.68/22, 3)\)
-where $3$ means this is for output port.</p>
+<p>Therefore, a router’s forwarding table using BGP will include something like:</p>
+
+\[(\text{prefix}, \text{output})=(138.16.68/22, 3)\]
+
+<p>where $3$ means this is for output port.</p>
 
 <p>Hence BGP does two things:</p>
 
@@ -6979,7 +7057,7 @@ where $3$ means this is for output port.</p>
 
 <p>Consider the following topology, where subnet with prefix <code class="language-plaintext highlighter-rouge">x</code> joined Autonomous System 3.</p>
 
-<p><img src="notes/image-20211129162437291.png" alt="image-20211129162437291" style="zoom:67%;" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211129162437291.png" alt="image-20211129162437291" style="zoom:67%;" /></p>
 
 <p>Then, to advertise <code class="language-plaintext highlighter-rouge">x</code> existence, we need to:</p>
 
@@ -7018,7 +7096,7 @@ where $3$ means this is for output port.</p>
 
 <p>(so BGP exchange routing information over ==semi-permanent TCP connections== using port <code class="language-plaintext highlighter-rouge">179</code>.)</p>
 
-<p><img src="notes/image-20211129162829411.png" alt="image-20211129162829411" style="zoom:67%;" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211129162829411.png" alt="image-20211129162829411" style="zoom:67%;" /></p>
 
 <p>In this process,</p>
 
@@ -7030,7 +7108,7 @@ where $3$ means this is for output port.</p>
 
 <p>So it looks more like:</p>
 
-<p><img src="notes/image-20211129170529844.png" alt="image-20211129170529844" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211129170529844.png" alt="image-20211129170529844" /></p>
 
 <p>notice that:</p>
 
@@ -7045,7 +7123,7 @@ where $3$ means this is for output port.</p>
 
   <p>Also, notice that then gateway routes need to run <strong>both eBGP and iBGP</strong></p>
 
-  <p><img src="notes/image-20211129091912479.png" alt="image-20211129091912479" style="zoom:67%;" /></p>
+  <p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211129091912479.png" alt="image-20211129091912479" style="zoom:67%;" /></p>
 </blockquote>
 
 <h3 id="determining-the-best-routes">Determining the Best Routes</h3>
@@ -7094,15 +7172,17 @@ where $3$ means this is for output port.</p>
 
 <p>For instance, consider <code class="language-plaintext highlighter-rouge">1d</code> receiving advertisement to subnet with prefix <code class="language-plaintext highlighter-rouge">x</code>:</p>
 
-<p><img src="notes/image-20211129164111542.png" alt="image-20211129164111542" style="zoom:80%;" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211129164111542.png" alt="image-20211129164111542" style="zoom:80%;" /></p>
 
-<p>In this case, it will receive two entries:
-\(\text{NEXT-HOP; AS PATH; destination prefix} =
+<p>In this case, it will receive two entries:</p>
+
+\[\text{NEXT-HOP; AS PATH; destination prefix} =
 \begin{cases}
 \text{IP address of leftmost interface for router 2a; AS2-AS3; x}\\
 \text{IP address of leftmost interface of router 3d; AS3; x}
-\end{cases}\)
-Then, with this information, we finally discuss two algorithms used for BGP routing:</p>
+\end{cases}\]
+
+<p>Then, with this information, we finally discuss two algorithms used for BGP routing:</p>
 
 <ul>
   <li><strong>hot potato routing</strong></li>
@@ -7119,7 +7199,7 @@ Then, with this information, we finally discuss two algorithms used for BGP rout
   <li>recall that ==BGP is used when we want to send data outside of AS==</li>
 </ul>
 
-<p><img src="notes/image-20211129164111542.png" alt="image-20211129164111542" style="zoom:80%;" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211129164111542.png" alt="image-20211129164111542" style="zoom:80%;" /></p>
 
 <p>here we have two paths that <code class="language-plaintext highlighter-rouge">1b</code> is looking at:</p>
 
@@ -7140,7 +7220,7 @@ Then, with this information, we finally discuss two algorithms used for BGP rout
       <li>
         <p>then from ==OSPF== of the intra-AS algorithm, <code class="language-plaintext highlighter-rouge">1d</code> knows how to get to <code class="language-plaintext highlighter-rouge">1c</code></p>
 
-        <p><img src="notes/image-20211129094243523.png" alt="image-20211129094243523" /></p>
+        <p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211129094243523.png" alt="image-20211129094243523" /></p>
       </li>
     </ul>
   </li>
@@ -7243,7 +7323,7 @@ Then, with this information, we finally discuss two algorithms used for BGP rout
 
 <p>Here we discuss how local preferences/polices can be used to prevent unintentional network traffic flowing through due to BGP.</p>
 
-<p><img src="notes/image-20211129171834468.png" alt="image-20211129171834468" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211129171834468.png" alt="image-20211129171834468" /></p>
 
 <p>where:</p>
 
@@ -7289,8 +7369,8 @@ Then, with this information, we finally discuss two algorithms used for BGP rout
   </thead>
   <tbody>
     <tr>
-      <td style="text-align: center"><img src="notes/image-20211129142740023.png" alt="image-20211129142740023" style="zoom: 80%;" /></td>
-      <td style="text-align: center"><img src="notes/image-20211201150246606.png" alt="image-20211201150246606" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211129142740023.png" alt="image-20211129142740023" style="zoom: 80%;" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211201150246606.png" alt="image-20211201150246606" /></td>
     </tr>
   </tbody>
 </table>
@@ -7335,7 +7415,7 @@ Then, with this information, we finally discuss two algorithms used for BGP rout
 
 <p>In short, the controller part needs to do three things:</p>
 
-<p><img src="notes/image-20211201152101418.png" alt="image-20211201152101418" style="zoom:80%;" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211201152101418.png" alt="image-20211201152101418" style="zoom:80%;" /></p>
 
 <p>where basically:</p>
 
@@ -7384,7 +7464,7 @@ Then, with this information, we finally discuss two algorithms used for BGP rout
 
 <p>Consider the case that <strong>router <code class="language-plaintext highlighter-rouge">S1</code> and <code class="language-plaintext highlighter-rouge">S2</code> link is suddenly down</strong>. Then:</p>
 
-<p><img src="notes/image-20211201153458008.png" alt="image-20211201153458008" style="zoom:80%;" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211201153458008.png" alt="image-20211201153458008" style="zoom:80%;" /></p>
 
 <ol>
   <li>Switch s1, experiencing a link failure between itself and s2, ==notifies the SDN controller== of the link-state change using the ==OpenFlow <em>port-status</em> message==</li>
@@ -7435,7 +7515,7 @@ Then, with this information, we finally discuss two algorithms used for BGP rout
   </li>
 </ul>
 
-<p><img src="notes/image-20211206141546724.png" alt="image-20211206141546724" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211206141546724.png" alt="image-20211206141546724" /></p>
 
 <blockquote>
   <p><strong>Note</strong></p>
@@ -7505,7 +7585,7 @@ Then, with this information, we finally discuss two algorithms used for BGP rout
 
 <p>Basically we have some network managers controlling a <strong>managing server</strong>, which can in turn collect statistics of the devices (not only routers) in the particular AS.</p>
 
-<p><img src="notes/image-20211206143745053.png" alt="image-20211206143745053" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211206143745053.png" alt="image-20211206143745053" /></p>
 
 <p>where:</p>
 
@@ -7588,8 +7668,8 @@ Then, with this information, we finally discuss two algorithms used for BGP rout
   </thead>
   <tbody>
     <tr>
-      <td style="text-align: center"><img src="notes/image-20211206145541927.png" alt="image-20211206145541927" style="zoom:80%;" /></td>
-      <td style="text-align: center"><img src="notes/image-20211206145537156.png" alt="image-20211206145537156" style="zoom:80%;" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211206145541927.png" alt="image-20211206145541927" style="zoom:80%;" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211206145537156.png" alt="image-20211206145537156" style="zoom:80%;" /></td>
     </tr>
   </tbody>
 </table>
@@ -7603,7 +7683,7 @@ Then, with this information, we finally discuss two algorithms used for BGP rout
 
 <p>Then, SNMPv3 defines ==seven types of messages==, known generically as <strong>protocol data units—PDUs—</strong>as shown in the table and figure below.</p>
 
-<p><img src="notes/image-20211206090036845.png" alt="image-20211206090036845" style="zoom:50%;" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211206090036845.png" alt="image-20211206090036845" style="zoom:50%;" /></p>
 
 <p>where notice that:</p>
 
@@ -7613,7 +7693,7 @@ Then, with this information, we finally discuss two algorithms used for BGP rout
 
 <p>And a PDU that is the packet actually sent looks like</p>
 
-<p><img src="notes/image-20211206150008722.png" alt="image-20211206150008722" style="zoom: 80%;" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211206150008722.png" alt="image-20211206150008722" style="zoom: 80%;" /></p>
 
 <h3 id="netconf-and-yang">NETCONF and YANG</h3>
 
@@ -7628,7 +7708,7 @@ Then, with this information, we finally discuss two algorithms used for BGP rout
 
   <p>A remote procedure call is simply</p>
 
-  <p><img src="notes/image-20211206150947876.png" alt="image-20211206150947876" style="zoom: 67%;" /></p>
+  <p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211206150947876.png" alt="image-20211206150947876" style="zoom: 67%;" /></p>
 
   <p>the take-away message is that:</p>
 
@@ -7639,7 +7719,7 @@ Then, with this information, we finally discuss two algorithms used for BGP rout
 
 <p>Under the hood, it is basically doing this</p>
 
-<p><img src="notes/image-20211206150504344.png" alt="image-20211206150504344" style="zoom: 67%;" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211206150504344.png" alt="image-20211206150504344" style="zoom: 67%;" /></p>
 
 <p>where we are using a ==connection-oriented session of TLS over TCP==, and:</p>
 
@@ -7651,7 +7731,7 @@ Then, with this information, we finally discuss two algorithms used for BGP rout
 
 <p>Then some actoins that NETCONF can take is</p>
 
-<p><img src="notes/image-20211206151335371.png" alt="image-20211206151335371" style="zoom:80%;" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211206151335371.png" alt="image-20211206151335371" style="zoom:80%;" /></p>
 
 <p>notice the emphasis on <strong>configuration of devices</strong>.</p>
 
@@ -7739,7 +7819,7 @@ Then, with this information, we finally discuss two algorithms used for BGP rout
   <li>variables, loops, etc to do configuration</li>
 </ul>
 
-<p><img src="notes/image-20211206090522407.png" alt="image-20211206090522407" style="zoom:50%;" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211206090522407.png" alt="image-20211206090522407" style="zoom:50%;" /></p>
 
 <h1 id="chapter-6-link-layer">Chapter 6 Link Layer</h1>
 
@@ -7774,7 +7854,7 @@ Then, with this information, we finally discuss two algorithms used for BGP rout
 
 <p>For example, sending from a laptop (host) to some server across the network:</p>
 
-<p><img src="notes/image-20211206155454952.png" alt="image-20211206155454952" style="zoom:80%;" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211206155454952.png" alt="image-20211206155454952" style="zoom:80%;" /></p>
 
 <p>where again, we relied on the network layer to figure out the route</p>
 
@@ -7866,7 +7946,7 @@ Then, with this information, we finally discuss two algorithms used for BGP rout
   </ul>
 </blockquote>
 
-<p><img src="notes/image-20211206092528986.png" alt="image-20211206092528986" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211206092528986.png" alt="image-20211206092528986" /></p>
 
 <p>where basically the red parts are the link-layer’s job.</p>
 
@@ -7876,7 +7956,7 @@ Then, with this information, we finally discuss two algorithms used for BGP rout
 
 <p><strong>In a host</strong>, e.g. your laptop <strong>link layer</strong> is implemented on a ==chip== called the ==network adapter==</p>
 
-<p><img src="notes/image-20211206162255593.png" alt="image-20211206162255593" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211206162255593.png" alt="image-20211206162255593" /></p>
 
 <p>where:</p>
 
@@ -7921,7 +8001,7 @@ Then, with this information, we finally discuss two algorithms used for BGP rout
 
 <p>Essentially, given the new frame <code class="language-plaintext highlighter-rouge">D'</code>, <code class="language-plaintext highlighter-rouge">EDC'</code>:</p>
 
-<p><img src="notes/image-20211206163423570.png" alt="image-20211206163423570" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211206163423570.png" alt="image-20211206163423570" /></p>
 
 <p>where:</p>
 
@@ -7957,7 +8037,7 @@ Then, with this information, we finally discuss two algorithms used for BGP rout
   </li>
 </ol>
 
-<p><img src="notes/image-20211206164141950.png" alt="image-20211206164141950" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211206164141950.png" alt="image-20211206164141950" /></p>
 
 <p>However, this is not used in reality because:</p>
 
@@ -7977,7 +8057,7 @@ Then, with this information, we finally discuss two algorithms used for BGP rout
   <li>A parity value is computed <strong>for each row and for each column</strong>.</li>
 </ul>
 
-<p><img src="notes/image-20211206164648195.png" alt="image-20211206164648195" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211206164648195.png" alt="image-20211206164648195" /></p>
 
 <p>where:</p>
 
@@ -7996,8 +8076,8 @@ Then, with this information, we finally discuss two algorithms used for BGP rout
   </thead>
   <tbody>
     <tr>
-      <td style="text-align: center"><img src="notes/image-20211206093539516.png" alt="image-20211206093539516" /></td>
-      <td style="text-align: center"><img src="notes/image-20211206093604751.png" alt="image-20211206093604751" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211206093539516.png" alt="image-20211206093539516" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211206093604751.png" alt="image-20211206093604751" /></td>
     </tr>
   </tbody>
 </table>
@@ -8074,7 +8154,7 @@ Then, with this information, we finally discuss two algorithms used for BGP rout
 
 <p>Then, the idea is as follows:</p>
 
-<p><img src="notes/image-20211206174103664.png" alt="image-20211206174103664" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211206174103664.png" alt="image-20211206174103664" /></p>
 
 <ol>
   <li>For a given piece of data, $D$, the <strong>sender</strong> will choose $r$ additional bits, $R$, and append them to $D$ ==such that the resulting $d + r$ bit== pattern (interpreted as a binary number) ==is exactly divisible by $G$==</li>
@@ -8111,11 +8191,13 @@ Then, with this information, we finally discuss two algorithms used for BGP rout
         <li>
           <p>an example of division looks like the follows</p>
 
-          <p><img src="notes/image-20211206174020936.png" alt="image-20211206174020936" /></p>
+          <p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211206174020936.png" alt="image-20211206174020936" /></p>
 
-          <p>where basically:
-\(101110000 \div 1001 = 101011 ... 011\)
-where $R=011$ is a remainder.</p>
+          <p>where basically:</p>
+
+\[101110000 \div 1001 = 101011 ... 011\]
+
+          <p>where $R=011$ is a remainder.</p>
         </li>
       </ul>
     </li>
@@ -8124,21 +8206,25 @@ where $R=011$ is a remainder.</p>
 
 <p>Now, given the division above, you will see that what is sent is eventually:</p>
 
-<p><img src="notes/image-20211206174529155.png" alt="image-20211206174529155" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211206174529155.png" alt="image-20211206174529155" /></p>
 
-<p>In other words, choose $R$ such that:
-\(nG = D \cdot 2^r - R = D \cdot 2^r  \text{ XOR } R\)
-where $G,r,D$ are given in the setup. So our task is to <em>*figure out what is $R$.</em>, such that our data is divisible by $G$.</p>
+<p>In other words, choose $R$ such that:</p>
 
-<p>Then, since we know $(A \text{ XOR }B) \text{ XOR }B = A$, then:
-\(\begin{align*}
+\[nG = D \cdot 2^r - R = D \cdot 2^r  \text{ XOR } R\]
+
+<p>where $G,r,D$ are given in the setup. So our task is to <em>*figure out what is $R$.</em>, such that our data is divisible by $G$.</p>
+
+<p>Then, since we know $(A \text{ XOR }B) \text{ XOR }B = A$, then:</p>
+
+\[\begin{align*}
 D \cdot 2^r  \text{ XOR } R 
 &amp;= nG\\
 D\cdot 2^r
 &amp;= nG  \text{ XOR } R\\
 \text{remainder} \frac{D\cdot 2^r}{G} &amp;= R
-\end{align*}\)
-where the last equality comes from the fact that $D\cdot 2^r= nG  \text{ XOR } R$ means $R$ is the remainder if you divide $D\cdot 2^r$ by $nG$.</p>
+\end{align*}\]
+
+<p>where the last equality comes from the fact that $D\cdot 2^r= nG  \text{ XOR } R$ means $R$ is the remainder if you divide $D\cdot 2^r$ by $nG$.</p>
 
 <ul>
   <li>see Figure 6.7 above which basically has $r=3$, $G=1011$ and $D=1011101$ as an example.</li>
@@ -8153,9 +8239,11 @@ where the last equality comes from the fact that $D\cdot 2^r= nG  \text{ XOR } R
   </ul>
 </blockquote>
 
-<p>International standards have been defined for 8-, 12-, 16-, and 32-bit generators, $G$. The CRC-32 32-bit standard, which has been adopted in a number of link-level IEEE protocols, uses:
-\(G_{CRC-32} = 100000100110000010001110110110111\)
-where</p>
+<p>International standards have been defined for 8-, 12-, 16-, and 32-bit generators, $G$. The CRC-32 32-bit standard, which has been adopted in a number of link-level IEEE protocols, uses:</p>
+
+\[G_{CRC-32} = 100000100110000010001110110110111\]
+
+<p>where</p>
 
 <ul>
   <li>in addition to detect any $r$ bit or fewer consecutive errors, each of the CRC standards can detect any <strong>odd number of bit errors</strong></li>
@@ -8201,8 +8289,8 @@ where</p>
   </thead>
   <tbody>
     <tr>
-      <td style="text-align: center"><img src="notes/image-20211206182220081.png" alt="image-20211206182220081" /></td>
-      <td style="text-align: center"><img src="notes/image-20211206182327468.png" alt="image-20211206182327468" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211206182220081.png" alt="image-20211206182220081" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211206182327468.png" alt="image-20211206182327468" /></td>
     </tr>
   </tbody>
 </table>
@@ -8253,7 +8341,7 @@ where</p>
 
 <p>Basically there are two protocols used: TDM which divides by timeslot, and FDM which divides by frequency.</p>
 
-<p><img src="notes/image-20211208145422269.png" alt="image-20211208145422269" style="zoom: 80%;" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211208145422269.png" alt="image-20211208145422269" style="zoom: 80%;" /></p>
 
 <p>For the below discussion, let channel <strong>supports $N$ nodes</strong> and that the <strong>transmission rate of the channel is $R$ bps.</strong></p>
 
@@ -8261,7 +8349,7 @@ where</p>
 
 <p><strong>TDMA</strong>: time division multiple access</p>
 
-<p><img src="notes/image-20211208145631472.png" alt="image-20211208145631472" style="zoom:80%;" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211208145631472.png" alt="image-20211208145631472" style="zoom:80%;" /></p>
 
 <ol>
   <li>TDM divides time into ==time frames== (nothing to do with “frame” of a link layer packet) and further divides each time frame into ==$N$ time slots==</li>
@@ -8284,7 +8372,7 @@ where</p>
 
 <p><strong>FDMA</strong>: frequency division multiple access</p>
 
-<p><img src="notes/image-20211208150203906.png" alt="image-20211208150203906" style="zoom: 80%;" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211208150203906.png" alt="image-20211208150203906" style="zoom: 80%;" /></p>
 
 <ol>
   <li>FDM divides the $R$ bps channel into different <strong>frequencies</strong> (each with a bandwidth of $R/N$)</li>
@@ -8358,7 +8446,7 @@ where</p>
   <li>
     <p>many time slots will be wasted if more than one active nodes:</p>
 
-    <p><img src="notes/image-20211208085721161.png" alt="image-20211208085721161" style="zoom: 50%;" /></p>
+    <p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211208085721161.png" alt="image-20211208085721161" style="zoom: 50%;" /></p>
 
     <p>in this example, only 3 slots were “successful”, and 6 were wasted.</p>
 
@@ -8381,9 +8469,11 @@ where</p>
   <li>Because there are $N$ nodes, the probability that <strong>any one of the $N$ nodes</strong> has a success is $Np(1 - p)^{N-1}$. (multiply by ${n \choose 1} = N$)</li>
 </ul>
 
-<p>Therefore, efficiency with $N$ active nodes is:
-\(Np(1 - p)^{N-1}\)
-Let $p^*$ be the probability that maximizes this:</p>
+<p>Therefore, efficiency with $N$ active nodes is:</p>
+
+\[Np(1 - p)^{N-1}\]
+
+<p>Let $p^*$ be the probability that maximizes this:</p>
 
 <ul>
   <li>take derivatives to find best $p^*$</li>
@@ -8401,7 +8491,7 @@ Let $p^*$ be the probability that maximizes this:</p>
 
 <p>Basically without the slotted ALOHA without clock synchronization, such that they transmit/retransmit immediately if coin toss is successful.</p>
 
-<p><img src="notes/image-20211208090143684.png" alt="image-20211208090143684" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211208090143684.png" alt="image-20211208090143684" /></p>
 
 <p><strong>Operation</strong></p>
 
@@ -8423,8 +8513,9 @@ Let $p^*$ be the probability that maximizes this:</p>
       <li>no other node begins transmission during $[t_0, t_0+1]$. This happens also with $(1-p)^{N-1}$</li>
     </ul>
 
-    <p>therefore, it is successful only when <strong>both events happen</strong>, hence one node success is:
-\((1-p)^{2(N-1)}\)</p>
+    <p>therefore, it is successful only when <strong>both events happen</strong>, hence one node success is:</p>
+
+\[(1-p)^{2(N-1)}\]
   </li>
   <li>
     <p>then for $N$ nodes, multiply this by ${n \choose 1} = N$</p>
@@ -8452,7 +8543,7 @@ Let $p^*$ be the probability that maximizes this:</p>
       <li>
         <p>e.g. if you have 4 nodes, two nodes $B,D$ wants to transmit something</p>
 
-        <p><img src="notes/image-20211208154849308.png" alt="image-20211208154849308" style="zoom:67%;" /></p>
+        <p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211208154849308.png" alt="image-20211208154849308" style="zoom:67%;" /></p>
 
         <p>notice that $t_0$, $B$ didn’t hear anything, and at $t_1$, $D$ also didn’t hear anything yet.</p>
       </li>
@@ -8496,7 +8587,7 @@ Let $p^*$ be the probability that maximizes this:</p>
   </li>
 </ol>
 
-<p><img src="notes/image-20211208160053926.png" alt="image-20211208160053926" style="zoom:80%;" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211208160053926.png" alt="image-20211208160053926" style="zoom:80%;" /></p>
 
 <p>In this way, we can basically start the next cycle of wait and transmit earlier = more efficient. But one problem is <strong>what is a good interval of time for backoff</strong> (after abort)?</p>
 
@@ -8508,9 +8599,11 @@ Let $p^*$ be the probability that maximizes this:</p>
 <blockquote>
   <p><strong>Binary Exponential Backoff Algorithm</strong></p>
 
-  <p>when transmitting a frame that has already experienced $n$ collisions, a node ==chooses the value of $K$ at random== from:
-\(\{0,1,2,..., 2^{n}-1\}\)
-where the maximum/range it can choose grows exponentially.</p>
+  <p>when transmitting a frame that has already experienced $n$ collisions, a node ==chooses the value of $K$ at random== from:</p>
+
+\[\{0,1,2,..., 2^{n}-1\}\]
+
+  <p>where the maximum/range it can choose grows exponentially.</p>
 
   <ul>
     <li>thus, the <strong>more collisions</strong> experienced by a frame, the <strong>larger the interval</strong> from which $K$ is chosen.</li>
@@ -8538,9 +8631,11 @@ where the maximum/range it can choose grows exponentially.</p>
 
 <p><strong>Efficiency of CSMA/CD</strong></p>
 
-<p>Basically derivattion is skipped, and we were computing for the long-run ==fraction of time== during which frames are transmitted without collisions.
-\(\text{Efficiency} = \frac{1}{1+5d_{\mathrm{prop}}/d_{\text{trans}}}\)
-where:</p>
+<p>Basically derivattion is skipped, and we were computing for the long-run ==fraction of time== during which frames are transmitted without collisions.</p>
+
+\[\text{Efficiency} = \frac{1}{1+5d_{\mathrm{prop}}/d_{\text{trans}}}\]
+
+<p>where:</p>
 
 <ul>
   <li>$d_{\mathrm{prop}}$ is the <strong>maximum</strong> time it takes for a signal energy to propagate between two adapters</li>
@@ -8571,7 +8666,7 @@ where:</p>
 
 <p><strong>Polling Protocol Operation</strong></p>
 
-<p><img src="notes/image-20211208162158384.png" alt="image-20211208162158384" style="zoom:80%;" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211208162158384.png" alt="image-20211208162158384" style="zoom:80%;" /></p>
 
 <ol>
   <li>one of the nodes to be designated as a master node</li>
@@ -8626,7 +8721,7 @@ where:</p>
 
 <p>Recall that the basic architecture looks like</p>
 
-<p><img src="notes/image-20211208163354678.png" alt="image-20211208163354678" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211208163354678.png" alt="image-20211208163354678" /></p>
 
 <p>where</p>
 
@@ -8637,7 +8732,7 @@ where:</p>
 
 <p>In a simpler view:</p>
 
-<p><img src="notes/image-20211208163536230.png" alt="image-20211208163536230" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211208163536230.png" alt="image-20211208163536230" /></p>
 
 <p>where:</p>
 
@@ -8675,7 +8770,7 @@ where:</p>
 
 <p>Figure 6.15 shows a! switched local network connecting three departments, two servers and a router with! four switches.</p>
 
-<p><img src="notes/image-20211208164613193.png" alt="image-20211208164613193" style="zoom:80%;" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211208164613193.png" alt="image-20211208164613193" style="zoom:80%;" /></p>
 
 <p>where here:</p>
 
@@ -8712,16 +8807,18 @@ where:</p>
   <li>no two adapters have the same address. It is ==globally unique.== (IEEE manages the MAC address space)</li>
 </ul>
 
-<p>E.g. a MAC address could look like:
-\(\text{1A-2F-BB-76-09-AD
-}\)
-moreover:</p>
+<p>E.g. a MAC address could look like:</p>
+
+\[\text{1A-2F-BB-76-09-AD
+}\]
+
+<p>moreover:</p>
 
 <ul>
   <li>An adapter’s MAC address has a <strong>flat structure</strong> (as opposed to a hierarchical structure) and doesn’t change no matter where the adapter goes</li>
 </ul>
 
-<p><img src="notes/image-20211208170657622.png" alt="image-20211208170657622" style="zoom:80%;" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211208170657622.png" alt="image-20211208170657622" style="zoom:80%;" /></p>
 
 <p>notice that a switch has no MAC addresses, but routers/hosts do.</p>
 
@@ -8787,7 +8884,7 @@ moreover:</p>
 
 <p>For this example, we ==assume transmitting within the same subnet==. Now, suppose that the host with IP address <code class="language-plaintext highlighter-rouge">222.222.222.220 </code> wants to send an IP datagram to host <code class="language-plaintext highlighter-rouge">222.222.222.222</code>:</p>
 
-<p><img src="notes/image-20211208172320504.png" alt="image-20211208172320504" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211208172320504.png" alt="image-20211208172320504" /></p>
 
 <ol>
   <li>
@@ -8798,7 +8895,7 @@ moreover:</p>
 
     <p>For <code class="language-plaintext highlighter-rouge">222.222.222.220</code>, it might have:</p>
 
-    <p><img src="notes/image-20211208172530487.png" alt="image-20211208172530487" /></p>
+    <p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211208172530487.png" alt="image-20211208172530487" /></p>
   </li>
   <li>
     <p>Using ARP protocol, first the sender <strong>constructs a special packet called an ARP packet</strong>.</p>
@@ -8842,7 +8939,7 @@ moreover:</p>
 
   <p>If we are sending from different host to different output, obviously you have to buffer as each link can only transmit one thing at a time.</p>
 
-  <p><img src="notes/image-20211208094829689.png" alt="image-20211208094829689" style="zoom:50%;" /></p>
+  <p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211208094829689.png" alt="image-20211208094829689" style="zoom:50%;" /></p>
 
   <p>e.g. if both 1 and 2 sends to 4, then you need to buffer.</p>
 
@@ -8879,7 +8976,7 @@ moreover:</p>
 
 <p>Consider the case you want to deliver from <code class="language-plaintext highlighter-rouge">111.111.111.111</code> to <code class="language-plaintext highlighter-rouge">222.222.222.222</code></p>
 
-<p><img src="notes/image-20211208174529497.png" alt="image-20211208174529497" style="zoom: 50%;" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211208174529497.png" alt="image-20211208174529497" style="zoom: 50%;" /></p>
 
 <p>note that routers have MAC addresses, as they are the ones bridging <strong>between subnets</strong> and possibly the outside world. Also one important point is: ==link layer treats router and hosts as the same==. As their job is to realize the host-router or host-host delivery.</p>
 
@@ -8898,7 +8995,7 @@ moreover:</p>
   <li>
     <p>Construct the packet with MAC address of <code class="language-plaintext highlighter-rouge">R</code>, and sends the frame into Subnet 1</p>
 
-    <p><img src="notes/image-20211208174420759.png" alt="image-20211208174420759" /></p>
+    <p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211208174420759.png" alt="image-20211208174420759" /></p>
   </li>
   <li>
     <p>Router <code class="language-plaintext highlighter-rouge">R</code> sees that the link-layer frame is addressed to it, and therefore passes the frame to the network layer of the router</p>
@@ -8917,12 +9014,12 @@ moreover:</p>
   <li>
     <p>Use <code class="language-plaintext highlighter-rouge">ARP</code> to determine the MAC address of <code class="language-plaintext highlighter-rouge">222.222.222.222</code>, then the packet is finally formed</p>
 
-    <p><img src="notes/image-20211208175240582.png" alt="image-20211208175240582" /></p>
+    <p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211208175240582.png" alt="image-20211208175240582" /></p>
   </li>
   <li>
     <p>The router’s adapter send it to the subnet 2, and <code class="language-plaintext highlighter-rouge">222.222.222.222</code>’s ==adapter== will correctly receive it</p>
 
-    <p><img src="notes/image-20211208175323208.png" alt="image-20211208175323208" /></p>
+    <p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211208175323208.png" alt="image-20211208175323208" /></p>
   </li>
 </ol>
 
@@ -8934,7 +9031,7 @@ moreover:</p>
 
 <p>Switched ethernet is more popular today</p>
 
-<p><img src="notes/image-20211208094530797.png" alt="image-20211208094530797" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211208094530797.png" alt="image-20211208094530797" /></p>
 
 <p>Skipped.</p>
 
@@ -8967,7 +9064,7 @@ moreover:</p>
 
 <p>Switch filtering and forwarding are done with a <strong>switch table</strong>. The switch table contains entries for some, but not necessarily all, of the <strong>hosts and routers on a LAN</strong>.</p>
 
-<p><img src="notes/image-20211208194203579.png" alt="image-20211208194203579" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211208194203579.png" alt="image-20211208194203579" /></p>
 
 <p>where this idea is indeed similar to a forwarding table of a router.</p>
 
@@ -8996,13 +9093,13 @@ moreover:</p>
 
 <p><em>Example</em>: The situation with upper switch in Figure 6.15.</p>
 
-<p><img src="notes/image-20211208201224236.png" alt="image-20211208201224236" style="zoom:80%;" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211208201224236.png" alt="image-20211208201224236" style="zoom:80%;" /></p>
 
 <ul>
   <li>
     <p>Suppose that a frame with destination address <code class="language-plaintext highlighter-rouge">62-FEF7-11-89-A3</code> arrives at the switch from interface <code class="language-plaintext highlighter-rouge">1</code>. Suppose we already have the table:</p>
 
-    <p><img src="notes/image-20211208194203579.png" alt="image-20211208194203579" /></p>
+    <p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211208194203579.png" alt="image-20211208194203579" /></p>
 
     <p>then, it sees interface is still <code class="language-plaintext highlighter-rouge">1</code>, so it filters/discards it. (stops the frame to flood to the other subnets!)</p>
   </li>
@@ -9043,7 +9140,7 @@ moreover:</p>
 
 <p><em>Example</em></p>
 
-<p><img src="notes/image-20211208201929051.png" alt="image-20211208201929051" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211208201929051.png" alt="image-20211208201929051" /></p>
 
 <ul>
   <li>Suppose at time 9:39 a frame with ==source== address <code class="language-plaintext highlighter-rouge">01-12-23-34-45-56</code> arrives from interface 2. Suppose that this address is not in the switch table. Then the switch ==adds a new entry to the table==, as shown in Figure 6.23</li>
@@ -9074,7 +9171,7 @@ moreover:</p>
 
 <p>Consider the following setup</p>
 
-<p><img src="notes/image-20211211144312026.png" alt="image-20211211144312026" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211211144312026.png" alt="image-20211211144312026" /></p>
 
 <p>and suppose Host <code class="language-plaintext highlighter-rouge">A</code> already know the MAC address of Host <code class="language-plaintext highlighter-rouge">B</code></p>
 
@@ -9089,14 +9186,14 @@ moreover:</p>
   <li>
     <p>Sender <code class="language-plaintext highlighter-rouge">A</code> composes a frame with destination IP and MAC filled to be <code class="language-plaintext highlighter-rouge">BB-BB-BB-BB</code>, and  send to the blue switch</p>
 
-    <p><img src="notes/image-20211211144809637.png" alt="image-20211211144809637" /></p>
+    <p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211211144809637.png" alt="image-20211211144809637" /></p>
   </li>
   <li>
     <p>frame arrives on the blue switch. Empty MAC table, so blue switch ==learns the MAC address== <code class="language-plaintext highlighter-rouge">aaaa.aaaa.aaaa</code> exists on port <code class="language-plaintext highlighter-rouge">1</code>.</p>
   </li>
 </ol>
 
-<p><img src="notes/image-20211211144817844.png" alt="image-20211211144817844" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211211144817844.png" alt="image-20211211144817844" /></p>
 
 <ol>
   <li>
@@ -9111,8 +9208,8 @@ moreover:</p>
       </thead>
       <tbody>
         <tr>
-          <td style="text-align: center"><img src="notes/image-20211211145037034.png" alt="image-20211211145037034" /></td>
-          <td style="text-align: center"><img src="notes/image-20211211145046096.png" alt="image-20211211145046096" /></td>
+          <td style="text-align: center"><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211211145037034.png" alt="image-20211211145037034" /></td>
+          <td style="text-align: center"><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211211145046096.png" alt="image-20211211145046096" /></td>
         </tr>
       </tbody>
     </table>
@@ -9122,7 +9219,7 @@ moreover:</p>
   <li>
     <p>The frame will also arrive on the green switch. Just like the other switch, the first thing the green switch will do is ==learn== that it received a frame on port <code class="language-plaintext highlighter-rouge">4</code> with a source MAC address of <code class="language-plaintext highlighter-rouge">aaaa.aaaa.aaaa</code>.</p>
 
-    <p><img src="notes/image-20211211145146475.png" alt="image-20211211145146475" /></p>
+    <p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211211145146475.png" alt="image-20211211145146475" /></p>
   </li>
   <li>
     <p>Just like the other switch, the green switch does not know where the MAC address <code class="language-plaintext highlighter-rouge">bbbb.bbbb.bbbb</code> exists, so the frame will again be duplicated and ==flood== out each switch port.</p>
@@ -9136,8 +9233,8 @@ moreover:</p>
       </thead>
       <tbody>
         <tr>
-          <td style="text-align: center"><img src="notes/image-20211211145244660.png" alt="image-20211211145244660" /></td>
-          <td style="text-align: center"><img src="notes/image-20211211145251717.png" alt="image-20211211145251717" /></td>
+          <td style="text-align: center"><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211211145244660.png" alt="image-20211211145244660" /></td>
+          <td style="text-align: center"><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211211145251717.png" alt="image-20211211145251717" /></td>
         </tr>
       </tbody>
     </table>
@@ -9153,35 +9250,35 @@ moreover:</p>
   <li>
     <p>In the response frame sent by Host B to Host A, the Layer2 header will have a Source MAC address of <code class="language-plaintext highlighter-rouge">bbbb.bbbb.bbbb</code> and a Destination MAC address of <code class="language-plaintext highlighter-rouge">aaaa.aaaa.aaaa</code>. Then host <code class="language-plaintext highlighter-rouge">B</code> sends to the green switch</p>
 
-    <p><img src="notes/image-20211211145633334.png" alt="image-20211211145633334" /></p>
+    <p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211211145633334.png" alt="image-20211211145633334" /></p>
   </li>
   <li>
     <p>The response frame will first arrive on the green switch on port <code class="language-plaintext highlighter-rouge">6</code>. Therefore, the green switch will ==learn== that the MAC address <code class="language-plaintext highlighter-rouge">bbbb.bbbb.bbbb</code> exists out port <code class="language-plaintext highlighter-rouge">6</code>.</p>
 
-    <p><img src="notes/image-20211211145658842.png" alt="image-20211211145658842" /></p>
+    <p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211211145658842.png" alt="image-20211211145658842" /></p>
   </li>
   <li>
     <p>green switch then consults its MAC address table to determine that the frame destined to <code class="language-plaintext highlighter-rouge">aaaa.aaaa.aaaa</code> should be ==forwarded== out port <code class="language-plaintext highlighter-rouge">4</code>. (notice how we <strong>don’t have flooding now</strong>, since we know where to send!)</p>
 
-    <p><img src="notes/image-20211211145741148.png" alt="image-20211211145741148" /></p>
+    <p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211211145741148.png" alt="image-20211211145741148" /></p>
   </li>
   <li>
     <p>blue switch will ==learn== the MAC address <code class="language-plaintext highlighter-rouge">bbbb.bbbb.bbbb</code> exists out port <code class="language-plaintext highlighter-rouge">3</code>.</p>
   </li>
 </ol>
 
-<p><img src="notes/image-20211211145803542.png" alt="image-20211211145803542" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211211145803542.png" alt="image-20211211145803542" /></p>
 
 <ol>
   <li>
     <p>blue switch then consults its MAC address table to determine that the frame destined to <code class="language-plaintext highlighter-rouge">aaaa.aaa.aaaa</code> should be ==forwarded== out to port <code class="language-plaintext highlighter-rouge">1</code>. (again, <strong>no need to flood!</strong>)</p>
 
-    <p><img src="notes/image-20211211145855606.png" alt="image-20211211145855606" /></p>
+    <p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211211145855606.png" alt="image-20211211145855606" /></p>
   </li>
   <li>
     <p>Host <code class="language-plaintext highlighter-rouge">A</code> received the packet</p>
 
-    <p><img src="notes/image-20211211145912032.png" alt="image-20211211145912032" /></p>
+    <p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211211145912032.png" alt="image-20211211145912032" /></p>
   </li>
 </ol>
 
@@ -9196,7 +9293,7 @@ moreover:</p>
 
 <p>Consider the following case</p>
 
-<p><img src="notes/image-20211213132537943.png" alt="image-20211213132537943" style="zoom:80%;" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211213132537943.png" alt="image-20211213132537943" style="zoom:80%;" /></p>
 
 <p>But now, we would like to solve the following problem:</p>
 
@@ -9231,7 +9328,7 @@ moreover:</p>
 
 <p>However, this does not solve the second and third problem. So in general, the <strong>solutions is to use VLAN (virtual local area network)+ embedded router</strong>.</p>
 
-<p><img src="notes/image-20211213133214385.png" alt="image-20211213133214385" style="zoom:80%;" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211213133214385.png" alt="image-20211213133214385" style="zoom:80%;" /></p>
 
 <p>where <strong>in a single switch</strong></p>
 
@@ -9274,7 +9371,7 @@ moreover:</p>
 
 <p>Then, you come up with two solutions:</p>
 
-<p><img src="notes/image-20211213134329136.png" alt="image-20211213134329136" style="zoom:80%;" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211213134329136.png" alt="image-20211213134329136" style="zoom:80%;" /></p>
 
 <ul>
   <li>solution A: for each VLAN group, use a cable to connect them. This means if you have $N$ VLAN groups and two switches, you need $2N$ ports <strong>dedicates to do just that</strong>. Hence this doesn’t scale!</li>
@@ -9288,7 +9385,7 @@ moreover:</p>
 
 <p>The extended ethernet frame therefore looks like this:</p>
 
-<p><img src="notes/image-20211213085900344.png" alt="image-20211213085900344" style="zoom:67%;" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211213085900344.png" alt="image-20211213085900344" style="zoom:67%;" /></p>
 
 <p>where it is specifically used for VLAN trunking:</p>
 
@@ -9334,7 +9431,7 @@ moreover:</p>
   <li>
     <p>So, it looks like this.</p>
 
-    <p><img src="notes/image-20211213090515586.png" alt="image-20211213090515586" style="zoom:50%;" /></p>
+    <p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211213090515586.png" alt="image-20211213090515586" style="zoom:50%;" /></p>
 
     <p>where</p>
 
@@ -9351,11 +9448,11 @@ moreover:</p>
 
 <p>Then, remember that we need to eventually deal with connections in between hosts. So we also need switches that interconnect the TOR switches:</p>
 
-<p><img src="notes/image-20211213140538866.png" alt="image-20211213140538866" style="zoom:50%;" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211213140538866.png" alt="image-20211213140538866" style="zoom:50%;" /></p>
 
 <p>Then, since there are lot of them, we need another layer</p>
 
-<p><img src="notes/image-20211213140548455.png" alt="image-20211213140548455" style="zoom:50%;" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211213140548455.png" alt="image-20211213140548455" style="zoom:50%;" /></p>
 
 <p>where:</p>
 
@@ -9372,7 +9469,7 @@ moreover:</p>
 
 <p>We finish the topology by putting ==border routers== which can connect to the outer world</p>
 
-<p><img src="notes/image-20211213090749838.png" alt="image-20211213090749838" style="zoom:50%;" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211213090749838.png" alt="image-20211213090749838" style="zoom:50%;" /></p>
 
 <p>notice that:</p>
 
@@ -9385,7 +9482,7 @@ moreover:</p>
 
 <p>Often we <strong>also have load balancer</strong> servers in the network so we can sustain the millions of request coming everyday</p>
 
-<p><img src="notes/image-20211213141335669.png" alt="image-20211213141335669" style="zoom:80%;" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211213141335669.png" alt="image-20211213141335669" style="zoom:80%;" /></p>
 
 <p>where obviously the job of load balancer is to <strong>simply decide and forward requests/traffic</strong> so that the load is balanced in your network.</p>
 
@@ -9395,7 +9492,7 @@ moreover:</p>
 
 <p>Therefore, when a request comes, this happens:</p>
 
-<p><img src="notes/image-20211213141609371.png" alt="image-20211213141609371" style="zoom: 67%;" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211213141609371.png" alt="image-20211213141609371" style="zoom: 67%;" /></p>
 
 <ol>
   <li>the ==load balancer== <strong>forwards</strong> it to one of the hosts that handles the application. (red line)
@@ -9426,7 +9523,7 @@ moreover:</p>
 
 <p>In real life, a bit <strong>more</strong> is happening that the figure below:</p>
 
-<p><img src="notes/image-20211213142211943.png" alt="image-20211213142211943" style="zoom: 67%;" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211213142211943.png" alt="image-20211213142211943" style="zoom: 67%;" /></p>
 
 <p>where:</p>
 
@@ -9456,9 +9553,11 @@ moreover:</p>
   <li>notice that all racks 1-4 above are <strong>in the same Tier 2 switch</strong>!</li>
 </ul>
 
-<p>If each flow evenly shares a link’s capacity with other flows traversing that link, then the 40 flows crossing the 100 Gbps A-to-B link (as well as the 100 Gbps B-to-C link) will each only receive:
-\(100 \text{ Gbps } / 40 = 2.5 \text{ Gbps }\)
-which is less than 10 Gbps of the TOR link can handle at max.</p>
+<p>If each flow evenly shares a link’s capacity with other flows traversing that link, then the 40 flows crossing the 100 Gbps A-to-B link (as well as the 100 Gbps B-to-C link) will each only receive:</p>
+
+\[100 \text{ Gbps } / 40 = 2.5 \text{ Gbps }\]
+
+<p>which is less than 10 Gbps of the TOR link can handle at max.</p>
 
 <p>There are many solutions, but the common one used is to <strong>provide multiple path</strong> by <strong>increase connectivity in the graph</strong></p>
 
@@ -9466,7 +9565,7 @@ which is less than 10 Gbps of the TOR link can handle at max.</p>
   <li>e.g. each TOR switch could be connected to two tier-2 switches, which then provide for multiple link- and switch-disjoint paths between racks</li>
 </ul>
 
-<p><img src="notes/image-20211213143343055.png" alt="image-20211213143343055" style="zoom:80%;" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211213143343055.png" alt="image-20211213143343055" style="zoom:80%;" /></p>
 
 <p>Therefore, now you have:</p>
 
@@ -9578,7 +9677,7 @@ which is less than 10 Gbps of the TOR link can handle at max.</p>
       </li>
     </ol>
 
-    <p><img src="notes/image-20211213144705877.png" alt="image-20211213144705877" /></p>
+    <p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211213144705877.png" alt="image-20211213144705877" /></p>
   </li>
   <li>
     <p>Then, when Bob types the URL for www.google.com into his Web browser. To in the end connect to the server with a TCP socket, we we want to do <strong>DNS query</strong> to find out the ==IP address first==</p>
@@ -9606,7 +9705,7 @@ which is less than 10 Gbps of the TOR link can handle at max.</p>
       </li>
     </ol>
 
-    <p><img src="notes/image-20211213145840050.png" alt="image-20211213145840050" style="zoom:80%;" /></p>
+    <p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211213145840050.png" alt="image-20211213145840050" style="zoom:80%;" /></p>
   </li>
   <li>
     <p>Finally, Bob can send the DNS query with the packet information complete. Now we need to ==route the packet==</p>
@@ -9678,7 +9777,7 @@ which is less than 10 Gbps of the TOR link can handle at max.</p>
       <li>
         <p>Google does the same thing to respond</p>
 
-        <p><img src="notes/image-20211213151942489.png" alt="image-20211213151942489" style="zoom:80%;" /></p>
+        <p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211213151942489.png" alt="image-20211213151942489" style="zoom:80%;" /></p>
       </li>
     </ol>
   </li>
@@ -9694,7 +9793,7 @@ which is less than 10 Gbps of the TOR link can handle at max.</p>
 
 <p>The basic structure of this is:</p>
 
-<p><img src="notes/image-20211004153011588.png" alt="image-20211004153011588" style="zoom:67%;" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211004153011588.png" alt="image-20211004153011588" style="zoom:67%;" /></p>
 
 <p>where the packet sniffer, is shown within the dashed rectangle in Figure 1</p>
 
@@ -9734,13 +9833,13 @@ which is less than 10 Gbps of the TOR link can handle at max.</p>
   <li>
     <p>if you clicked the wrong one accidentally, you can change it here:</p>
 
-    <p><img src="notes/image-20211004155422153.png" alt="image-20211004155422153" style="zoom:67%;" /></p>
+    <p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211004155422153.png" alt="image-20211004155422153" style="zoom:67%;" /></p>
   </li>
 </ul>
 
 <p>Then, your screen looks like this</p>
 
-<p><img src="notes/image-20211004155103491.png" alt="image-20211004155103491" style="zoom: 50%;" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211004155103491.png" alt="image-20211004155103491" style="zoom: 50%;" /></p>
 
 <p>where basically:</p>
 
@@ -9759,7 +9858,7 @@ which is less than 10 Gbps of the TOR link can handle at max.</p>
 
 <p>The simplest idea:</p>
 
-<p><img src="notes/image-20211027091343938.png" alt="image-20211027091343938" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211027091343938.png" alt="image-20211027091343938" /></p>
 
 <p>where if you do a exhaustive search, then if only $K$ out of $N$ nodes have the information, your <strong>expected search cost</strong> is at least $N/K$ searches, which is $O(N)$.</p>
 
@@ -9778,11 +9877,13 @@ which is less than 10 Gbps of the TOR link can handle at max.</p>
 
 <h3 id="dht-step-1-the-hash">DHT Step 1: The Hash</h3>
 
-<p>First we need to design a hash function $h$, that hashes the ==content being searched for to a identifier==.
-\(h(\text{"movie xxx"}) = 8045\)
-Then distribute that range of hash function (==responsibility==) among all nodes.</p>
+<p>First we need to design a hash function $h$, that hashes the ==content being searched for to a identifier==.</p>
 
-<p><img src="notes/image-20211027091942729.png" alt="image-20211027091942729" style="zoom:67%;" /></p>
+\[h(\text{"movie xxx"}) = 8045\]
+
+<p>Then distribute that range of hash function (==responsibility==) among all nodes.</p>
+
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211027091942729.png" alt="image-20211027091942729" style="zoom:67%;" /></p>
 
 <p>note that multiple nodes can hold the same content ofc.</p>
 
@@ -9834,7 +9935,7 @@ Then distribute that range of hash function (==responsibility==) among all nodes
   <li>each node is responsible for a <strong>volume of hash value/points</strong> in the space</li>
 </ul>
 
-<p><img src="notes/image-20211027092737370.png" alt="image-20211027092737370" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211027092737370.png" alt="image-20211027092737370" /></p>
 
 <p>where basically:</p>
 
@@ -9853,7 +9954,7 @@ Then distribute that range of hash function (==responsibility==) among all nodes
 
 <p>Consider in this case that <code class="language-plaintext highlighter-rouge">1</code> wants to get the information <code class="language-plaintext highlighter-rouge">X</code> which is in the lower half of node <code class="language-plaintext highlighter-rouge">8</code>.</p>
 
-<p><img src="notes/image-20211027093515847.png" alt="image-20211027093515847" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211027093515847.png" alt="image-20211027093515847" /></p>
 
 <ol>
   <li>compute the cartesian distance to the data <code class="language-plaintext highlighter-rouge">X</code>. In this case, the route through <code class="language-plaintext highlighter-rouge">2</code> is the shortest due to the wrap around.</li>
@@ -9872,7 +9973,7 @@ Then distribute that range of hash function (==responsibility==) among all nodes
   <li>the node will then split its space into half by ==dimension== (i.e. along some axis)</li>
 </ol>
 
-<p><img src="notes/image-20211027093839613.png" alt="image-20211027093839613" style="zoom:67%;" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211027093839613.png" alt="image-20211027093839613" style="zoom:67%;" /></p>
 
 <p>So basically every new node will take <em>half of the space</em> of some existing node. This can therefore <strong>achieve load balancing</strong>, since for node with high responsibility = large area = high probability of being shared when a node joined.</p>
 
@@ -9880,7 +9981,7 @@ Then distribute that range of hash function (==responsibility==) among all nodes
 
 <p>Basically like balancing a tree. In general, there are two situations:</p>
 
-<p><img src="notes/image-20211107110845558.png" alt="image-20211107110845558" style="zoom: 67%;" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211107110845558.png" alt="image-20211107110845558" style="zoom: 67%;" /></p>
 
 <ol>
   <li>
@@ -9900,7 +10001,7 @@ Then distribute that range of hash function (==responsibility==) among all nodes
       <li>
         <p>basically it looks like balancing a tree</p>
 
-        <p>| <img src="notes/image-20211107111317602.png" alt="image-20211107111317602" style="zoom: 67%;" /> | <img src="notes/image-20211027094614867.png" alt="image-20211027094614867" /> |
+        <p>| <img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211107111317602.png" alt="image-20211107111317602" style="zoom: 67%;" /> | <img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211027094614867.png" alt="image-20211027094614867" /> |
 | :———————————————————-: | :———————————————————-: |</p>
 
         <p>so the ==algorithm== basically becomes the follows. Suppose node <code class="language-plaintext highlighter-rouge">s</code> is leaving:</p>
@@ -9937,7 +10038,7 @@ Then distribute that range of hash function (==responsibility==) among all nodes
 
 <p>The only difference here is basically we are having nodes <strong>all in a 1-dimensional space</strong>. Therefore, instead of hashes that gives some d-dimensional coordinate, this gives a <strong>one dimensional <code class="language-plaintext highlighter-rouge">ID</code></strong>.</p>
 
-<p><img src="notes/image-20211027094640836.png" alt="image-20211027094640836" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211027094640836.png" alt="image-20211027094640836" /></p>
 
 <p>where the chord is basically wrapped around to form a circle.</p>
 
@@ -9958,7 +10059,7 @@ Then distribute that range of hash function (==responsibility==) among all nodes
 
 <p>First we need decide the “<strong>neighbors each node knows</strong>”. In this case, each node knows <em>several other nodes beside its immediate neighbor</em> (in contrast to CAN).</p>
 
-<p><img src="notes/image-20211107124907695.png" alt="image-20211107124907695" style="zoom:50%;" /></p>
+<p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211107124907695.png" alt="image-20211107124907695" style="zoom:50%;" /></p>
 
 <p>where here, we are node 2345, and we:</p>
 
@@ -9979,9 +10080,11 @@ Then distribute that range of hash function (==responsibility==) among all nodes
 
 <ul>
   <li>
-    <p>A node <code class="language-plaintext highlighter-rouge">t</code>’s neighbor as the ==closest== node to:
-\(t + \text{mod}_H(2^i )\)
-for some $i$. Basically this ==ensures that there is at most $\log_2 H \to \log_2 N$== neighbors, since we only have $N$ nodes in the chord. (In contrast to CAN, which is independent of $N$).</p>
+    <p>A node <code class="language-plaintext highlighter-rouge">t</code>’s neighbor as the ==closest== node to:</p>
+
+\[t + \text{mod}_H(2^i )\]
+
+    <p>for some $i$. Basically this ==ensures that there is at most $\log_2 H \to \log_2 N$== neighbors, since we only have $N$ nodes in the chord. (In contrast to CAN, which is independent of $N$).</p>
   </li>
   <li>
     <p>notice that the length of the chord between two nodes is proportional to the probability of being picked when a new node inserts. This basically achieves <strong>load balancing</strong>.</p>
@@ -9990,7 +10093,7 @@ for some $i$. Basically this ==ensures that there is at most $\log_2 H \to \log_
 
 <p>For instance, if you are node <code class="language-plaintext highlighter-rouge">67</code>, iterating all the <code class="language-plaintext highlighter-rouge">i</code>’s gives you:</p>
 
-<p>| <img src="notes/image-20211107130027908.png" alt="image-20211107130027908" style="zoom:50%;" /> | <img src="notes/image-20211107130128866.png" alt="image-20211107130128866" style="zoom:67%;" /> |
+<p>| <img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211107130027908.png" alt="image-20211107130027908" style="zoom:50%;" /> | <img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211107130128866.png" alt="image-20211107130128866" style="zoom:67%;" /> |
 | :———————————————————-: | :———————————————————-: |</p>
 
 <p>where here we took $H=100$, then:</p>
@@ -10009,12 +10112,12 @@ for some $i$. Basically this ==ensures that there is at most $\log_2 H \to \log_
   <li>
     <p>First we need find the <code class="language-plaintext highlighter-rouge">82</code>’s predecessor, which is basically node <code class="language-plaintext highlighter-rouge">72</code></p>
 
-    <p><img src="notes/image-20211107132227347.png" alt="image-20211107132227347" style="zoom:67%;" /></p>
+    <p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211107132227347.png" alt="image-20211107132227347" style="zoom:67%;" /></p>
   </li>
   <li>
     <p>Then, we can <strong>set the finger table for node <code class="language-plaintext highlighter-rouge">82</code></strong> by ==computing from node <code class="language-plaintext highlighter-rouge">72</code>== (i.e. let node <code class="language-plaintext highlighter-rouge">72</code> compute the data and put it in node <code class="language-plaintext highlighter-rouge">82</code>):</p>
 
-    <p><img src="notes/image-20211107132411474.png" alt="image-20211107132411474" style="zoom:50%;" /></p>
+    <p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211107132411474.png" alt="image-20211107132411474" style="zoom:50%;" /></p>
 
     <p>where basically:</p>
 
@@ -10030,7 +10133,7 @@ for some $i$. Basically this ==ensures that there is at most $\log_2 H \to \log_
       <li>
         <p>Go to the largest node before or at ID $82 - 2^i$, and let us call that node <code class="language-plaintext highlighter-rouge">t</code>.</p>
 
-        <p><img src="notes/image-20211107132933786.png" alt="image-20211107132933786" style="zoom:50%;" /></p>
+        <p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211107132933786.png" alt="image-20211107132933786" style="zoom:50%;" /></p>
 
         <p>e.g., for $i=1$, we will reach node <code class="language-plaintext highlighter-rouge">72</code>, which we know <strong>should update its finger table</strong>.</p>
       </li>
@@ -10046,7 +10149,7 @@ for some $i$. Basically this ==ensures that there is at most $\log_2 H \to \log_
 
             <p>e.g. for $i=3$, we will need to update the red highlighted nodes:</p>
 
-            <p><img src="notes/image-20211107134036337.png" alt="image-20211107134036337" style="zoom:67%;" /></p>
+            <p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211107134036337.png" alt="image-20211107134036337" style="zoom:67%;" /></p>
 
             <p>where basically:</p>
 
@@ -10084,7 +10187,7 @@ for some $i$. Basically this ==ensures that there is at most $\log_2 H \to \log_
 
     <p>e.g. if we are at $i=3$ now, then we compute $82-2^3$</p>
 
-    <p><img src="notes/image-20211107135216932.png" alt="image-20211107135216932" style="zoom:67%;" /></p>
+    <p><img src="/lectures/images/2021-12-16-CSEE4119_Computer_Networks/image-20211107135216932.png" alt="image-20211107135216932" style="zoom:67%;" /></p>
 
     <p>where notice that we are computing $82-2^3$ ==at node <code class="language-plaintext highlighter-rouge">86</code>==:</p>
 

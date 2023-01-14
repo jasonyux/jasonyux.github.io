@@ -47,17 +47,22 @@
       <div class="wrapper">
         <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
   <head>
-	<script>
-		MathJax = {
-		  tex: {
-			inlineMath: [['$', '$'], ['\\(', '\\)']],
-			displayMath: [['$$', '$$'], ['\\[', '\\]']]
-		  }
-		};
-	</script>
-	<script id="MathJax-script" async
-		src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
-	</script>
+  <script>
+    MathJax = {
+      // 
+      loader: {
+        load: ['[tex]/ams', '[tex]/textmacros', '[tex]/boldsymbol']
+      },
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        packages: {'[+]': ['ams', 'textmacros', 'boldsymbol']}
+      }
+    };
+  </script>
+  <script id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+  </script>
   </head>
   <header class="post-header">
     <h1 class="post-title p-name" itemprop="name headline">MATH3027 ODE</h1>
@@ -115,8 +120,11 @@
 <p><img src="\lectures\images\typora-user-images\image-20200909000838216.png" alt="image-20200909000838216" style="zoom: 67%;" /></p>
 
 <ul>
-  <li>Solution:
-\(p(t) = Ae^{rt+b}\)</li>
+  <li>
+    <p>Solution:</p>
+
+\[p(t) = Ae^{rt+b}\]
+  </li>
 </ul>
 
 <hr />
@@ -167,8 +175,9 @@
 
 <h2 id="linear-ordinary-differential-equations-and-the-method">Linear ordinary differential equations and the method</h2>
 
-<p>First consider the example of:
-\(x^\prime (t) = ax(t)\)</p>
+<p>First consider the example of:</p>
+
+\[x^\prime (t) = ax(t)\]
 
 <p>Now consider the more general</p>
 
@@ -188,10 +197,6 @@
       <th>Condition/Definitions</th>
       <th>Key Steps</th>
       <th>Theorem/Solution Equation</th>
-      <th> </th>
-      <th> </th>
-      <th> </th>
-      <th> </th>
       <th> </th>
       <th> </th>
       <th> </th>
@@ -233,20 +238,12 @@
       <td> </td>
       <td> </td>
       <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
     </tr>
     <tr>
       <td> </td>
       <td> </td>
       <td> </td>
       <td>\(\phi=\int a(t)dt\)</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
@@ -287,20 +284,12 @@
       <td> </td>
       <td> </td>
       <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
     </tr>
     <tr>
       <td> </td>
       <td> </td>
       <td> </td>
       <td>\(\phi'(x) = \frac{1}{f(x)}\)</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
@@ -341,16 +330,8 @@
       <td> </td>
       <td> </td>
       <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
     </tr>
     <tr>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
@@ -395,10 +376,6 @@
       <td>A</td>
       <td> </td>
       <td>_{op}$$</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
     </tr>
     <tr>
       <td> </td>
@@ -416,10 +393,6 @@
       <td>\hat{x}</td>
       <td> </td>
       <td>=1}$$</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
@@ -449,10 +422,6 @@
       <td> </td>
       <td> </td>
       <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
     </tr>
     <tr>
       <td>6</td>
@@ -460,10 +429,6 @@
       <td>If \(A\) commutes with \(B\)</td>
       <td> </td>
       <td>\(e^{A+B}=e^A e^B\)</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
@@ -503,10 +468,6 @@
       <td> </td>
       <td> </td>
       <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
     </tr>
     <tr>
       <td>8</td>
@@ -514,10 +475,6 @@
       <td> </td>
       <td>\(e^{hA}-I=hA+\sum\limits_{k=0}^{\infty}\frac{h^{k+2}}{(k+2)!}A^{k+2}\)</td>
       <td>\(\frac{d}{dt}e^{tA}=Ae^{tA}\)</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
@@ -557,10 +514,6 @@
       <td> </td>
       <td> </td>
       <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
     </tr>
     <tr>
       <td>10</td>
@@ -568,10 +521,6 @@
       <td>\(e^{tD}\), \(D\) is diagonal</td>
       <td> </td>
       <td>\(e^{tD}= \begin{bmatrix}e^{t\lambda_1} &amp; 0 &amp; 0 &amp;... \\ 0 &amp; e^{t\lambda_2} &amp; 0 &amp; ...\\... &amp; ... &amp; ... &amp; ...\\... &amp; ... &amp;... &amp;e^{t\lambda_1}\end{bmatrix}\)</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
@@ -611,10 +560,6 @@
       <td> </td>
       <td> </td>
       <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
     </tr>
     <tr>
       <td>12</td>
@@ -638,20 +583,12 @@
       <td> </td>
       <td> </td>
       <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
     </tr>
     <tr>
       <td>13</td>
       <td>LN Decomposition</td>
       <td>\(A=L+N\) for any \(A\), and \(L,N\) commute</td>
       <td>\(L\vec{x}=\lambda_i \vec{x}\), for \(\vec{x}\in ker(A-\lambda_iI)^{\nu_i}\)</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
@@ -692,10 +629,6 @@
       <td> </td>
       <td> </td>
       <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
     </tr>
     <tr>
       <td>14</td>
@@ -719,20 +652,12 @@
       <td> </td>
       <td> </td>
       <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
     </tr>
     <tr>
       <td> </td>
       <td> </td>
       <td>$\lambda$ are the generalized eigenvalues, $\vec{x}$ in generalized eigenspace</td>
       <td>and $e^{t(\lambda_i I)}\to 0$ much faster as all $Re(\lambda)&lt;0$</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
@@ -773,21 +698,13 @@
       <td> </td>
       <td> </td>
       <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
     </tr>
     <tr>
       <td> </td>
       <td> </td>
       <td>$\lambda$ are the generalized eigenvalues, $\vec{x}$ in generalized eigenspace</td>
-      <td>$\vec{x}’(t)-\bar{x}’(t_{\tau})=A(\vec{x}(t)-\bar{x}(t_{\tau}))$. Therefore: $ \vec{x}(t)-\bar{x}(t_{\tau}) = e^{At}(\vec{x}(t)-\bar{x}(t_{\tau}))$, and $e^{At}\to 0$ if all $Re(\lambda)&lt;0$</td>
+      <td>$\vec{x}’(t)-\bar{x}’(t_{\tau})=A(\vec{x}(t)-\bar{x}(t_{\tau}))$. Therefore: $\vec{x}(t)-\bar{x}(t_{\tau}) = e^{At}(\vec{x}(t)-\bar{x}(t_{\tau}))$, and $e^{At}\to 0$ if all $Re(\lambda)&lt;0$</td>
       <td>There can be other solutions $\vec{x}(t)$, but they will tend to $\bar{x}(t_{\tau})$ as $t \to \infty$</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
@@ -827,20 +744,12 @@
       <td> </td>
       <td> </td>
       <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
     </tr>
     <tr>
       <td> </td>
       <td> </td>
       <td>Assumes <strong>no purely imaginary eigenvalues</strong></td>
       <td>$ker(p_{-}A)$ is the <strong>generalized eigenspace for negative (real part) generalized eigenvalues</strong>, and vice versa</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
@@ -881,10 +790,6 @@
       <td> </td>
       <td> </td>
       <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
     </tr>
     <tr>
       <td> </td>
@@ -892,10 +797,6 @@
       <td> </td>
       <td>Do the same analysis as (16) and (14)</td>
       <td>$e^{tA}\vec{x}$ is bounded if $\vec{x}\in ker(p_{-}A)\bigoplus ker(A-\lambda_jI)$, for all $Re(\nu_j)=0$</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
@@ -935,24 +836,16 @@
       <td> </td>
       <td> </td>
       <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
     </tr>
     <tr>
       <td> </td>
       <td> </td>
       <td> </td>
-      <td>Then we can bound: <br /> $</td>
+      <td>Then we can bound: <br /> $\vert \vert \vec{F}(\vec{x})\vert \vert \le M$ and $\vert \vert D\vec{F}(\vec{x})\vert \vert _{op}\le L$, <br />where $D\vec{F}$ would be the <strong>Jacobian</strong> on $\vec{F}$</td>
       <td> </td>
-      <td>\vec{F}(\vec{x})</td>
       <td> </td>
-      <td>\le M$ and $</td>
       <td> </td>
-      <td>D\vec{F}(\vec{x})</td>
       <td> </td>
-      <td>_{op}\le L$, <br />where $D\vec{F}$ would be the <strong>Jacobian</strong> on $\vec{F}$</td>
       <td> </td>
       <td> </td>
       <td> </td>
@@ -970,11 +863,7 @@
     <tr>
       <td>19</td>
       <td>Convergence of Picard Iterates</td>
-      <td>$</td>
-      <td> </td>
-      <td>\vec{x}_{k+1}-\vec{x}_k</td>
-      <td> </td>
-      <td>\le 2^{-k}r$</td>
+      <td>$\vert \vert \vec{x}_{k+1}-\vec{x}_k\vert \vert  \le 2^{-k}r$</td>
       <td>Then define $\vec{x}=\lim\limits_{k\to\infty}\vec{x}_k$</td>
       <td>Solution can be obtained from Picard Iterates: $\vec{x}=\lim\limits_{k\to\infty}\vec{x}_k$</td>
       <td> </td>
@@ -998,15 +887,11 @@
       <td> </td>
       <td> </td>
       <td> </td>
-      <td>Calculate $</td>
+      <td>Calculate $\vert \vert \vec{x}<em>m-\vec{x}_l\vert \vert  \le \sum\limits</em>{k=l+1}^m \vert \vert \vec{x}<em>{k}-\vec{x}</em>{k-1}\vert \vert  \le \sum\limits_{k=l+1}^m 2^{-k+1}r \le 2^{-l+1}r$Now send $m\to \infty$, still bounded by $2^{-l+1}r$</td>
       <td> </td>
-      <td>\vec{x}_m-\vec{x}_l</td>
       <td> </td>
-      <td>\le \sum\limits_{k=l+1}^m</td>
       <td> </td>
-      <td>\vec{x}<em>{k}-\vec{x}</em>{k-1}</td>
       <td> </td>
-      <td>\le \sum\limits_{k=l+1}^m 2^{-k+1}r \le 2^{-l+1}r$Now send $m\to \infty$, still bounded by $2^{-l+1}r$</td>
       <td> </td>
       <td> </td>
       <td> </td>
@@ -1026,10 +911,6 @@
       <td> </td>
       <td> </td>
       <td>Therefore, $\vec{F}(\vec{x})=\lim\limits_{k\to\infty}\vec{F}(\vec{x}<em>k)$, hence the solution $\lim\limits</em>{k\to\infty}\vec{x}<em>k=\lim\limits</em>{k\to\infty}(\vec{x}<em>0+\int\limits_0^tF(x</em>{l-1}(s))ds)=\vec{x}_0+\int\limits_0^tF(x(s))ds)=\vec{x}$</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
@@ -1070,20 +951,12 @@
       <td> </td>
       <td> </td>
       <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
     </tr>
     <tr>
       <td> </td>
       <td> </td>
       <td> </td>
       <td>i.e. Lipschitz continuous function is limited in how fast it can change</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
@@ -1124,10 +997,6 @@
       <td> </td>
       <td> </td>
       <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
     </tr>
     <tr>
       <td> </td>
@@ -1151,21 +1020,13 @@
       <td> </td>
       <td> </td>
       <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
     </tr>
     <tr>
       <td>21</td>
       <td>Unique Maximal Domain for Solution</td>
       <td>$\begin{cases}\vec{x}’(t)=\vec{F}(\vec{x}) \ \vec{x}(0)=\vec{x}_0\end{cases}$</td>
       <td>This complements the previous theorem (20), saying the solution will uniquely <strong>solve up to some time</strong> $\beta$</td>
-      <td>If $\beta &lt; \infty$, then it <strong>must be</strong> that $</td>
-      <td> </td>
-      <td>\vec{x}</td>
-      <td> </td>
-      <td>\to \infty$ as $t\to \beta$</td>
+      <td>If $\beta &lt; \infty$, then it <strong>must be</strong> that $\vert \vert \vec{x}\vert \vert \to \infty$ as $t\to \beta$</td>
       <td> </td>
       <td> </td>
       <td> </td>
@@ -1205,19 +1066,11 @@
       <td> </td>
       <td> </td>
       <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
     </tr>
     <tr>
       <td>22</td>
       <td>Definition of Flow</td>
       <td>For each point $(x_0,t_0)\in \Omega$, we have:</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
@@ -1259,29 +1112,21 @@
       <td> </td>
       <td> </td>
       <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
     </tr>
     <tr>
       <td>23</td>
       <td>Bounded Neighborhood Solution (Part 1)</td>
-      <td>If we have <strong>another initial condition</strong> $y_0$ s.t. $</td>
+      <td>If we have <strong>another initial condition</strong> $y_0$ s.t. $\vert \vert x_0 - y_0\vert \vert  \le e^{-Lt_1}r$, <br />where $t_1$ is the <strong>closed upper bound for maximal defined time interval</strong></td>
       <td> </td>
-      <td>x_0 - y_0</td>
+      <td>$\vert \vert \Phi(x_0, t)-\Phi(y_0, t)\vert \vert \le 2e^{Lt}\vert \vert x_0 - y_0\vert \vert$where $0\le t\le t_1$.</td>
       <td> </td>
-      <td>\le e^{-Lt_1}r$, <br />where $t_1$ is the <strong>closed upper bound for maximal defined time interval</strong></td>
       <td> </td>
-      <td>$</td>
       <td> </td>
-      <td>\Phi(x_0, t)-\Phi(y_0, t)</td>
       <td> </td>
-      <td>\le 2e^{Lt}</td>
       <td> </td>
-      <td>x_0 - y_0</td>
       <td> </td>
-      <td>$where $0\le t\le t_1$.</td>
+      <td> </td>
+      <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
@@ -1313,19 +1158,11 @@
       <td> </td>
       <td> </td>
       <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
     </tr>
     <tr>
       <td>24</td>
       <td>Interval for Neighborhood Solution</td>
-      <td>If we have <strong>another initial condition</strong> $y_0$ s.t. $</td>
-      <td> </td>
-      <td>x_0 - y_0</td>
-      <td> </td>
-      <td>\le e^{-Lt_1}r$, <br />where $t_1$ is the <strong>closed upper bound for maximal defined time interval</strong></td>
+      <td>If we have <strong>another initial condition</strong> $y_0$ s.t. $\vert \vert x_0 - y_0\vert \vert  \le e^{-Lt_1}r$, <br />where $t_1$ is the <strong>closed upper bound for maximal defined time interval</strong></td>
       <td> </td>
       <td>$\Phi(y_0,t)$ is <strong>defined <em>at least</em> in the same interval</strong> of $\Phi(x_0,t)$, where $0 \le t \le t_1$</td>
       <td> </td>
@@ -1348,40 +1185,32 @@
     <tr>
       <td>25</td>
       <td>Bounded Neighborhood Solution (Part 2)</td>
-      <td>If we have <strong>another initial condition</strong> $y_0$ s.t. $</td>
+      <td>If we have <strong>another initial condition</strong> $y_0$ s.t. $\vert \vert x_0 - y_0\vert \vert  \le e^{-Lt_1}r$, <br />where $t_1$ is the <strong>closed upper bound for maximal defined time interval</strong></td>
+      <td>$\vert \vert \Phi(x_0, t)-\Phi(x_0, t_0)\vert \vert \le M\vert t-t_0\vert$</td>
+      <td>$\vert \vert \Phi(x_0, t_0)-\Phi(y_0, t)\vert \vert \le 2e^{Lt}\vert \vert x_0 - y_0\vert \vert +M\vert t_0-t\vert$ where we <strong>only have an initial point</strong> $(x_0,t_0)$, and we <strong>bound another solution</strong> up to time $t\in[0,t_1]$</td>
       <td> </td>
-      <td>x_0 - y_0</td>
       <td> </td>
-      <td>\le e^{-Lt_1}r$, <br />where $t_1$ is the <strong>closed upper bound for maximal defined time interval</strong></td>
-      <td>$</td>
       <td> </td>
-      <td>\Phi(x_0, t)-\Phi(x_0, t_0)</td>
       <td> </td>
-      <td>\le M</td>
-      <td>t-t_0</td>
-      <td>$</td>
-      <td>$</td>
       <td> </td>
-      <td>\Phi(x_0, t_0)-\Phi(y_0, t)</td>
       <td> </td>
-      <td>\le 2e^{Lt}</td>
       <td> </td>
-      <td>x_0 - y_0</td>
       <td> </td>
-      <td>+M</td>
-      <td>t_0-t</td>
-      <td>$ where we <strong>only have an initial point</strong> $(x_0,t_0)$, and we <strong>bound another solution</strong> up to time $t\in[0,t_1]$</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
     </tr>
     <tr>
       <td>26</td>
       <td>Differentiability of Flow and Linearized Solution</td>
       <td>Given an ODE: $\vec{x}’(t)=\vec{F}(\vec{x})$, and its <strong>Flow</strong>: $\vec{x}(t)=\Phi(x_0,t)$</td>
-      <td>The final goal is to show that $\lim\limits_{y \to x_0} \frac{|\varphi_{t_0}(x_0)-\varphi_{t_0}(y)-M(t_0)(x_0-y)|}{|x_0-y|} = 0$,where we get $M(t_0)$ being the <strong>derivative on the “initial condition $x_0$”</strong> (the only other variable is time, whose derivative would be the trivial).</td>
+      <td>The final goal is to show that $\lim\limits_{y \to x_0} \frac{\vert \varphi_{t_0}(x_0)-\varphi_{t_0}(y)-M(t_0)(x_0-y)\vert }{\vert x_0-y\vert } = 0$,where we get $M(t_0)$ being the <strong>derivative on the “initial condition $x_0$”</strong> (the only other variable is time, whose derivative would be the trivial).</td>
       <td>$\vec{x}(t)=\Phi(x_0,t)$ is differentiable at $\vec{x}<em>0$ which is given by $D\phi</em>{t_0}(x_0)=M(t_0)$</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
@@ -1421,10 +1250,6 @@
       <td> </td>
       <td> </td>
       <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
     </tr>
     <tr>
       <td>27</td>
@@ -1448,20 +1273,12 @@
       <td> </td>
       <td> </td>
       <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
     </tr>
     <tr>
       <td> </td>
       <td> </td>
       <td> </td>
-      <td><strong>Induction proof</strong> that, if $M_0(t)=I$, $|A(t)|<em>{op}\le L$ for all $t\in[0,T]$, and $M</em>{k+1}(t) = I + \int\limits_0^t A(s) M_k(s) \, ds$</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
+      <td><strong>Induction proof</strong> that, if $M_0(t)=I$, $\vert A(t)\vert <em>{op}\le L$ for all $t\in[0,T]$, and $M</em>{k+1}(t) = I + \int\limits_0^t A(s) M_k(s) \, ds$</td>
       <td> </td>
       <td> </td>
       <td> </td>
@@ -1484,11 +1301,7 @@
       <td> </td>
       <td> </td>
       <td> </td>
-      <td><strong>Then</strong> $|M_k(t)-M_{k-1}(t)|<em>{\text{op}} \leq \frac{(Lt)^k}{k!}$, hence <strong>convergence</strong> of $|M(t)-M_l(t)|</em>{\text{op}} \leq \sum\limits_{k=l+1}^\infty |M_k(t)-M_{k-1}(t)|<em>{\text{op}} \leq \sum\limits</em>{k=l+1}^\infty \frac{(Lt)^k}{k!}$</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
+      <td><strong>Then</strong> $\vert M_k(t)-M_{k-1}(t)\vert <em>{\text{op}} \leq \frac{(Lt)^k}{k!}$, hence <strong>convergence</strong> of $\vert M(t)-M_l(t)\vert _{\text{op}} \leq \sum\limits</em>{k=l+1}^\infty \vert M_k(t)-M_{k-1}(t)\vert <em>{\text{op}} \leq \sum\limits</em>{k=l+1}^\infty \frac{(Lt)^k}{k!}$</td>
       <td> </td>
       <td> </td>
       <td> </td>
@@ -1529,10 +1342,6 @@
       <td> </td>
       <td> </td>
       <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
     </tr>
     <tr>
       <td> </td>
@@ -1556,21 +1365,13 @@
       <td> </td>
       <td> </td>
       <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
     </tr>
     <tr>
       <td>29</td>
       <td> </td>
       <td> </td>
       <td> </td>
-      <td>$\frac{d}{dt}det(M(t))</td>
-      <td>_{t_0} = tr(A(t_0))det(M(t_0))$</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
+      <td>$\frac{d}{dt}det(M(t))\vert _{t_0} = tr(A(t_0))det(M(t_0))$</td>
       <td> </td>
       <td> </td>
       <td> </td>
@@ -1610,10 +1411,6 @@
       <td> </td>
       <td> </td>
       <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
     </tr>
     <tr>
       <td>31</td>
@@ -1621,10 +1418,6 @@
       <td>If $F$ is a divergence free vector field (for the nonlinear differential system)</td>
       <td>$detD\varphi_{t_0}(x_0)=detM(t_0)=detM(0)=1$</td>
       <td>The flow $\varphi_{t_0}$ preserves volume (i.e. two solution $\varphi_{t_0}(x_0),\varphi_{t_0}(y_0)$ <strong>occupies the same volume in space</strong>)</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
@@ -1664,10 +1457,6 @@
       <td> </td>
       <td> </td>
       <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
     </tr>
     <tr>
       <td>33</td>
@@ -1675,10 +1464,6 @@
       <td>For an equilibrium point $\bar{x}$, if $DF(\bar{x})$ has eigenvalues with <strong>only</strong> negative real parts</td>
       <td> </td>
       <td>$\bar{x}$ is asymptotically stable</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
@@ -1718,10 +1503,6 @@
       <td> </td>
       <td> </td>
       <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
     </tr>
     <tr>
       <td>35</td>
@@ -1729,10 +1510,6 @@
       <td>For an equilibrium point $\bar{x}$, if $DF(\bar{x})$ has eigenvalues with <strong>at least one</strong> purely imaginary</td>
       <td> </td>
       <td>inconclusive</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
@@ -1772,10 +1549,6 @@
       <td> </td>
       <td> </td>
       <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
     </tr>
     <tr>
       <td>37</td>
@@ -1783,10 +1556,6 @@
       <td>If we can find a function $L$, such that: <br /> $L(\bar{x})$ is a strict local minimum, <strong>and</strong> $\nabla L(x) \cdot F(x) &lt; 0$ for all $x$ near $\bar{x}$</td>
       <td> </td>
       <td>$\bar{x}$ is asymptotically stable</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
@@ -1826,10 +1595,6 @@
       <td> </td>
       <td> </td>
       <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
     </tr>
     <tr>
       <td> </td>
@@ -1837,10 +1602,6 @@
       <td> </td>
       <td>If the function $V$ is found to be $\nabla V(x)\cdot F(x) &lt; 0$</td>
       <td>$\bar{x}$ is an asymptotically stable equilibrium point</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
@@ -1880,19 +1641,11 @@
       <td> </td>
       <td> </td>
       <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
     </tr>
     <tr>
       <td> </td>
       <td> </td>
       <td>$J=\begin{bmatrix}0 &amp; 1&amp; \ -1 &amp; 0 &amp;  \ &amp; &amp; 0 &amp; 1\ &amp; &amp; -1 &amp; 0\&amp;&amp;&amp;&amp;… &amp; \&amp;&amp;&amp;&amp;&amp;0&amp;1\&amp;&amp;&amp;&amp;&amp;-1&amp;0\end{bmatrix}$</td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
@@ -1934,10 +1687,6 @@
       <td> </td>
       <td> </td>
       <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
     </tr>
     <tr>
       <td> </td>
@@ -1961,6 +1710,25 @@
       <td> </td>
       <td> </td>
       <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
@@ -1988,43 +1756,8 @@
       <td> </td>
       <td> </td>
       <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
     </tr>
     <tr>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-    </tr>
-    <tr>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>

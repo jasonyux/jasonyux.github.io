@@ -47,17 +47,22 @@
       <div class="wrapper">
         <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
   <head>
-	<script>
-		MathJax = {
-		  tex: {
-			inlineMath: [['$', '$'], ['\\(', '\\)']],
-			displayMath: [['$$', '$$'], ['\\[', '\\]']]
-		  }
-		};
-	</script>
-	<script id="MathJax-script" async
-		src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
-	</script>
+  <script>
+    MathJax = {
+      // 
+      loader: {
+        load: ['[tex]/ams', '[tex]/textmacros', '[tex]/boldsymbol']
+      },
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        packages: {'[+]': ['ams', 'textmacros', 'boldsymbol']}
+      }
+    };
+  </script>
+  <script id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+  </script>
   </head>
   <header class="post-header">
     <h1 class="post-title p-name" itemprop="name headline">COMS3157 Advanced Programming</h1>
@@ -806,7 +811,7 @@
 <span class="nv">CFLAGS</span> <span class="o">=</span> <span class="nt">-Wall</span> <span class="nt">-g</span>
 
 <span class="nl">hello.o</span><span class="o">:</span> <span class="nf">hello.c myadd.h</span>
-		<span class="p">${</span>CC<span class="p">}</span> <span class="nt">-c</span> <span class="p">${</span>CFLAGS<span class="p">}</span> hello.c
+		<span class="p">${</span>CC<span class="p">}</span> <span class="nt">-c</span><span class="p">${</span>CFLAGS<span class="p">}</span> hello.c
 </code></pre></div></div>
 
 <p>In fact, <code class="language-plaintext highlighter-rouge">make</code> by default works smartly to know what you want to do by looking at the <strong>ingredient file types</strong>.</p>
@@ -821,7 +826,7 @@
 
 <p>and <code class="language-plaintext highlighter-rouge">make</code> will execute the following</p>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">${</span><span class="nv">CC</span><span class="k">}</span> <span class="nt">-c</span> <span class="k">${</span><span class="nv">CFLAGS</span><span class="k">}</span> <span class="nt">-o</span> hello.o hello.c
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">${</span><span class="nv">CC</span><span class="k">}</span> <span class="nt">-c</span><span class="k">${</span><span class="nv">CFLAGS</span><span class="k">}</span> <span class="nt">-o</span> hello.o hello.c
 </code></pre></div></div>
 
 <p>where:</p>
@@ -879,7 +884,7 @@
 # Note that we did not specify the linking rule.
 # Instead, we rely on one of make’s implicit rules:
 #
-# $(CC) $(LDFLAGS) &lt;all-dependent-.o-files&gt; $(LDLIBS)
+# $(CC)$(LDFLAGS) &lt;all-dependent-.o-files&gt; $(LDLIBS)
 #
 # Also note that make assumes that main depends on main.o,
 # so we can omit it if we want to.
@@ -894,7 +899,7 @@
 # make uses the following implicit rule to compile a .c file into a .o
 # file:
 #
-# $(CC) -c $(CFLAGS) &lt;the-.c-file&gt;
+# $(CC) -c$(CFLAGS) &lt;the-.c-file&gt;
 #
 </span><span class="nl">main.o</span><span class="o">:</span> <span class="nf">main.c myadd.h</span>
 <span class="c"># And myadd.o depends on myadd.c and myadd.h.
@@ -1924,9 +1929,11 @@
 <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="n">diff</span> <span class="o">=</span> <span class="n">p2</span> <span class="o">-</span> <span class="n">p1</span><span class="p">;</span> <span class="c1">// gives 3, meaning 3 cells of int away</span>
 </code></pre></div></div>
 
-<p>Therefore, in general, address arithmetic for pointers work as:
-\(p_2 - p_1 = \frac{\text{address of $p_2-$ address of $p_1$ }}{\text{size pointer type}}=\text{#elements away}\)
-For example:</p>
+<p>Therefore, in general, address arithmetic for pointers work as:</p>
+
+\[p_2 - p_1 = \frac{\text{address of $p_2-$ address of $p_1$ }}{\text{size pointer type}}=\text{#elements away}\]
+
+<p>For example:</p>
 
 <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">char</span> <span class="o">*</span><span class="n">a</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span> <span class="s">""</span><span class="p">,</span> <span class="s">"A"</span><span class="p">,</span> <span class="s">"BC"</span><span class="p">,</span> <span class="s">"DEF"</span> <span class="p">};</span>
 <span class="kt">int</span> <span class="n">diff</span> <span class="o">=</span> <span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">-</span> <span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="p">)(</span><span class="n">a</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span> <span class="c1">// gives 1</span>
@@ -6879,9 +6886,10 @@ Fetching /mnt/disks/students209/xy2437/test.c to test.c
           <li>
             <p>$Y⋅GCD(A,B)=B$</p>
 
-            <p>Hence:
-\(X⋅GCD(A,B) - Y⋅GCD(A,B) = C\\
-(X - Y)⋅GCD(A,B) = C\)</p>
+            <p>Hence:</p>
+
+\[X⋅GCD(A,B) - Y⋅GCD(A,B) = C\\
+(X - Y)⋅GCD(A,B) = C\]
           </li>
           <li>
             <p>so <code class="language-plaintext highlighter-rouge">GCD(A,B)</code> evenly divides C</p>

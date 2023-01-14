@@ -47,17 +47,22 @@
       <div class="wrapper">
         <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
   <head>
-	<script>
-		MathJax = {
-		  tex: {
-			inlineMath: [['$', '$'], ['\\(', '\\)']],
-			displayMath: [['$$', '$$'], ['\\[', '\\]']]
-		  }
-		};
-	</script>
-	<script id="MathJax-script" async
-		src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
-	</script>
+  <script>
+    MathJax = {
+      // 
+      loader: {
+        load: ['[tex]/ams', '[tex]/textmacros', '[tex]/boldsymbol']
+      },
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        packages: {'[+]': ['ams', 'textmacros', 'boldsymbol']}
+      }
+    };
+  </script>
+  <script id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+  </script>
   </head>
   <header class="post-header">
     <h1 class="post-title p-name" itemprop="name headline">PHYS2801 Accelerated Physics</h1>
@@ -82,11 +87,13 @@ v(t) = v(t_0) + \int_{t_0}^{t} \frac{dv}{dt^\prime} dt^{\prime}\]
   </ul>
 </blockquote>
 
-<p>Now, consider <strong>functions such as $v(x)$ or $a(v)$</strong> instead of $v(t)$ or $a(t)$:
-\(\frac{dx}{dt} = v(x) \\
+<p>Now, consider <strong>functions such as $v(x)$ or $a(v)$</strong> instead of $v(t)$ or $a(t)$:</p>
+
+\[\frac{dx}{dt} = v(x) \\
 \frac{dx}{v(x)} = dt	\\
-\int_{x_0}^{x(t)}\frac{1}{v(x)}dx**^{\prime}** = \int_{t_0}^{t} dt^{\prime}\)
-After solving this, you will get an expression of $x(t)$.</p>
+\int_{x_0}^{x(t)}\frac{1}{v(x)}dx**^{\prime}** = \int_{t_0}^{t} dt^{\prime}\]
+
+<p>After solving this, you will get an expression of $x(t)$.</p>
 
 <hr />
 
@@ -97,13 +104,15 @@ After solving this, you will get an expression of $x(t)$.</p>
     <p>Question: Consider Linear Drag: $a = -bv$, where $b$ is a constant. Solve for the expression of $v$ as a function of $t$. (take $t_0 = 0$)</p>
   </li>
   <li>
-    <p>Solution:
-\(\frac{dv}{dt} = -bv	\\
+    <p>Solution:</p>
+
+\[\frac{dv}{dt} = -bv	\\
 \frac{1}{v}dv = -b\, dt	\\
 \int_{v_0}^{v(t)}\frac{1}{v^{\prime}}dv^{\prime} = \int_{t_0=0}^{t} -b\, dt^{\prime}	\\
 ln\left(\frac{v(t)}{v_0}\right) = -bt	\\
-v(t) = v_0e^{-bt}\)
-And here you see the exponential decaying velocity caused by the drag. As $t \rightarrow \infty$, $v \rightarrow 0$.</p>
+v(t) = v_0e^{-bt}\]
+
+    <p>And here you see the exponential decaying velocity caused by the drag. As $t \rightarrow \infty$, $v \rightarrow 0$.</p>
   </li>
 </ul>
 
