@@ -161,7 +161,7 @@
         <li>
           <p>Kernel = Core part of an OS</p>
 
-          <p><img src="D:\Dropbox\SEAS2020\Spring Semester\OS I\notes\images\Snipaste_2021-01-11_22-44-19.png" style="zoom: 25%;" /></p>
+          <p><img src="/lectures/images/2022-01-04-COMS4118_Operating_Systems/Snipaste_2021-01-11_22-44-19.png" style="zoom: 25%;" /></p>
 
           <p>where:</p>
 
@@ -186,7 +186,7 @@
   <li><strong>run</strong> a program (<strong>process</strong>)</li>
 </ul>
 
-<p><img src="D:\Dropbox\SEAS2020\Spring Semester\OS I\notes\images\Snipaste_2021-01-13_21-36-13.png" alt="" /></p>
+<p><img src="/lectures/images/2022-01-04-COMS4118_Operating_Systems/Snipaste_2021-01-13_21-36-13.png" alt="" /></p>
 
 <blockquote>
   <p><strong>Reminder:</strong></p>
@@ -195,7 +195,7 @@
     <li>
       <p>To run that process, the OS needs to manage the Unix Address Space</p>
 
-      <p><img src="D:\Dropbox\SEAS2020\Spring Semester\OS I\notes\images\Snipaste_2021-01-11_22-48-32.png" style="zoom: 33%;" /></p>
+      <p><img src="/lectures/images/2022-01-04-COMS4118_Operating_Systems/Snipaste_2021-01-11_22-48-32.png" style="zoom: 33%;" /></p>
 
       <p>where:</p>
 
@@ -308,7 +308,7 @@
   <li>
     <p>the difference between user space and kernel space is:</p>
 
-    <p><img src="D:\Dropbox\SEAS2020\Spring Semester\OS I\notes\images\Snipaste_2021-01-11_22-54-52.png" style="zoom: 33%;" /></p>
+    <p><img src="/lectures/images/2022-01-04-COMS4118_Operating_Systems/Snipaste_2021-01-11_22-54-52.png" style="zoom: 33%;" /></p>
   </li>
 </ul>
 
@@ -355,7 +355,7 @@
 
 <p>However, <strong>for most of the other cases</strong>, this is what happens:</p>
 
-<p><img src="D:\Dropbox\SEAS2020\Spring Semester\OS I\notes\images\Snipaste_2021-01-13_21-55-33.png" style="zoom:50%;" /></p>
+<p><img src="/lectures/images/2022-01-04-COMS4118_Operating_Systems/Snipaste_2021-01-13_21-55-33.png" style="zoom:50%;" /></p>
 
 <p>where:</p>
 
@@ -396,7 +396,7 @@
     <li>After calling <code class="language-plaintext highlighter-rouge">fork()</code> during one of your process, it will <strong><em>create another process:</em></strong></li>
   </ul>
 
-  <p><img src="D:\Dropbox\SEAS2020\Spring Semester\OS I\notes\images\Snipaste_2021-01-13_22-13-28.png" style="zoom: 33%;" /></p>
+  <p><img src="/lectures/images/2022-01-04-COMS4118_Operating_Systems/Snipaste_2021-01-13_22-13-28.png" style="zoom: 33%;" /></p>
 </blockquote>
 
 <h2 id="booting-an-os">Booting an OS</h2>
@@ -451,7 +451,7 @@
   </ul>
 </blockquote>
 
-<p><img src="D:\Dropbox\SEAS2020\Spring Semester\OS I\notes\images\Snipaste_2021-01-20_23-39-08.png" alt="" /></p>
+<p><img src="/lectures/images/2022-01-04-COMS4118_Operating_Systems/Snipaste_2021-01-20_23-39-08.png" alt="" /></p>
 
 <h2 id="questions">Questions</h2>
 
@@ -495,7 +495,7 @@
         <li>
           <p><strong>this means that to do I/O</strong>, you will need to use a <strong>Memory Mapped I/O</strong>, which basically maps <em>addresses of an I/O device to your RAM</em>, so that you have a way to <strong>directly read/write data into the I/O</strong></p>
 
-          <p><img src="D:\Dropbox\SEAS2020\Spring Semester\OS I\notes\images\Snipaste_2021-01-20_22-11-32.png" style="zoom: 50%;" /></p>
+          <p><img src="/lectures/images/2022-01-04-COMS4118_Operating_Systems/Snipaste_2021-01-20_22-11-32.png" style="zoom: 50%;" /></p>
         </li>
         <li>
           <p>However, when the OS booted up, it is <strong>in 16-bit mode</strong>, so that you can only address up to <code class="language-plaintext highlighter-rouge">0xFFFF</code></p>
@@ -503,7 +503,7 @@
         <li>
           <p><strong>Therefore, to access addresses outside of that</strong>, we need to use <strong>segmentation</strong>:</p>
 
-          <p><img src="D:\Dropbox\SEAS2020\Spring Semester\OS I\notes\images\Snipaste_2021-01-20_22-20-21.png" style="zoom: 33%;" /></p>
+          <p><img src="/lectures/images/2022-01-04-COMS4118_Operating_Systems/Snipaste_2021-01-20_22-20-21.png" style="zoom: 33%;" /></p>
 
           <p>So <strong>addresses</strong> are calculated with:</p>
 
@@ -554,7 +554,7 @@ movb $1, (0xff0) # accesses 0xf0ff0
 
 <p><strong>In between your instructions</strong>, the <em>CPU checks</em> from the interrupt line, <strong><em>whether there has been an interrupt</em></strong>, and will handle that before proceeding.</p>
 
-<p><img src="D:\Dropbox\SEAS2020\Spring Semester\OS I\notes\images\Snipaste_2021-01-20_22-52-55.png" style="zoom: 33%;" /></p>
+<p><img src="/lectures/images/2022-01-04-COMS4118_Operating_Systems/Snipaste_2021-01-20_22-52-55.png" style="zoom: 33%;" /></p>
 
 <p>where:</p>
 
@@ -668,11 +668,11 @@ movb $1, (0xff0) # accesses 0xf0ff0
 
 <p>Each process is represented in the operating system by a <strong>process control block (PCB)</strong>—also called a task control block:</p>
 
-<p><img src="D:\Dropbox\SEAS2020\Spring Semester\OS I\notes\images\Snipaste_2021-01-26_21-47-53.png" style="zoom:50%;" /></p>
+<p><img src="/lectures/images/2022-01-04-COMS4118_Operating_Systems/Snipaste_2021-01-26_21-47-53.png" style="zoom:50%;" /></p>
 
 <h3 id="life-cycle-of-a-process">Life Cycle of a Process</h3>
 
-<p><img src="D:\Dropbox\SEAS2020\Spring Semester\OS I\notes\images\Snipaste_2021-02-16_12-05-42.png" alt="" /></p>
+<p><img src="/lectures/images/2022-01-04-COMS4118_Operating_Systems/Snipaste_2021-02-16_12-05-42.png" alt="" /></p>
 
 <ol>
   <li>
@@ -759,7 +759,7 @@ movb $1, (0xff0) # accesses 0xf0ff0
 
 <h3 id="process-scheduling">Process Scheduling</h3>
 
-<p><img src="D:\Dropbox\SEAS2020\Spring Semester\OS I\notes\images\Snipaste_2021-01-26_21-44-40.png" style="zoom:50%;" /></p>
+<p><img src="/lectures/images/2022-01-04-COMS4118_Operating_Systems/Snipaste_2021-01-26_21-44-40.png" style="zoom:50%;" /></p>
 
 <p>where:</p>
 
@@ -808,7 +808,7 @@ movb $1, (0xff0) # accesses 0xf0ff0
 
 <p>Once the system has booted, the <code class="language-plaintext highlighter-rouge">init</code> process can also create various user processes, such as a web or print server, an <code class="language-plaintext highlighter-rouge">ssh</code> server, and the like</p>
 
-<p><img src="D:\Dropbox\SEAS2020\Spring Semester\OS I\notes\images\Snipaste_2021-01-26_22-20-07.png" style="zoom: 67%;" /></p>
+<p><img src="/lectures/images/2022-01-04-COMS4118_Operating_Systems/Snipaste_2021-01-26_22-20-07.png" style="zoom: 67%;" /></p>
 
 <p>When a process creates a <strong>new process</strong>, two possibilities for <strong>execution</strong> exist:</p>
 <ol>
@@ -878,7 +878,7 @@ movb $1, (0xff0) # accesses 0xf0ff0
   <li><strong>shared memory</strong></li>
 </ul>
 
-<p><img src="D:\Dropbox\SEAS2020\Spring Semester\OS I\notes\images\Snipaste_2021-02-02_10-21-17.png" style="zoom: 50%;" /></p>
+<p><img src="/lectures/images/2022-01-04-COMS4118_Operating_Systems/Snipaste_2021-02-02_10-21-17.png" style="zoom: 50%;" /></p>
 
 <h4 id="message-passing">Message Passing</h4>
 
@@ -889,7 +889,7 @@ movb $1, (0xff0) # accesses 0xf0ff0
     <li>
       <p>This is</p>
 
-      <p><img src="D:\Dropbox\SEAS2020\Spring Semester\OS I\notes\images\Snipaste_2021-02-02_10-27-54.png" style="zoom:33%;" /></p>
+      <p><img src="/lectures/images/2022-01-04-COMS4118_Operating_Systems/Snipaste_2021-02-02_10-27-54.png" style="zoom:33%;" /></p>
 
       <p>where:</p>
 
@@ -1057,7 +1057,7 @@ movb $1, (0xff0) # accesses 0xf0ff0
   <li>
     <p>a thread provides <strong>better code/data/file sharing between other threads</strong>, which is much more efficient than the <em>message passing/memory sharing</em> technique between processes</p>
 
-    <p><img src="D:\Dropbox\SEAS2020\Spring Semester\OS I\notes\images\Snipaste_2021-01-30_14-14-21.png" style="zoom:150%;" /></p>
+    <p><img src="/lectures/images/2022-01-04-COMS4118_Operating_Systems/Snipaste_2021-01-30_14-14-21.png" style="zoom:150%;" /></p>
   </li>
 </ul>
 
@@ -1084,7 +1084,7 @@ movb $1, (0xff0) # accesses 0xf0ff0
         <li>so you basically have the <em>same address space</em></li>
       </ul>
 
-      <p><img src="D:\Dropbox\SEAS2020\Spring Semester\OS I\notes\images\Snipaste_2021-02-04_12-05-39.png" style="zoom: 50%;" /></p>
+      <p><img src="/lectures/images/2022-01-04-COMS4118_Operating_Systems/Snipaste_2021-02-04_12-05-39.png" style="zoom: 50%;" /></p>
 
       <p>where:</p>
 
@@ -1120,7 +1120,7 @@ movb $1, (0xff0) # accesses 0xf0ff0
   <li>
     <p><strong>one to one model</strong></p>
 
-    <p><img src="D:\Dropbox\SEAS2020\Spring Semester\OS I\notes\images\Snipaste_2021-01-30_14-29-29.png" /></p>
+    <p><img src="/lectures/images/2022-01-04-COMS4118_Operating_Systems/Snipaste_2021-01-30_14-29-29.png" /></p>
 
     <p>currently used by many OS.</p>
 
@@ -1131,7 +1131,7 @@ movb $1, (0xff0) # accesses 0xf0ff0
   <li>
     <p><strong>many to one model</strong></p>
 
-    <p><img src="D:\Dropbox\SEAS2020\Spring Semester\OS I\notes\images\Snipaste_2021-01-30_14-30-55.png" alt="" /></p>
+    <p><img src="/lectures/images/2022-01-04-COMS4118_Operating_Systems/Snipaste_2021-01-30_14-30-55.png" alt="" /></p>
 
     <ul>
       <li><em>Disadvantage</em>: no parallelism, only concurrency. Also, if one thread invoked a blocking system call, <em>all the rest of the threads are blocked as well</em>.</li>
@@ -1140,7 +1140,7 @@ movb $1, (0xff0) # accesses 0xf0ff0
   <li>
     <p><strong>many to many model</strong></p>
 
-    <p><img src="D:\Dropbox\SEAS2020\Spring Semester\OS I\notes\images\Snipaste_2021-01-30_14-32-27.png" alt="" /></p>
+    <p><img src="/lectures/images/2022-01-04-COMS4118_Operating_Systems/Snipaste_2021-01-30_14-32-27.png" alt="" /></p>
   </li>
 </ul>
 
@@ -1580,7 +1580,7 @@ movb $1, (0xff0) # accesses 0xf0ff0
     <li>
       <p>The Linux Kernel is the first thing that your OS loads:</p>
 
-      <p><img src="D:\Dropbox\SEAS2020\Spring Semester\OS I\notes\images\Snipaste_2021-01-20_23-39-08.png" alt="" /></p>
+      <p><img src="/lectures/images/2022-01-04-COMS4118_Operating_Systems/Snipaste_2021-01-20_23-39-08.png" alt="" /></p>
     </li>
     <li>
       <p><em>System calls</em> provide userland processes a way to <em>request services from the kernel</em>. Those services are managed by operating system like storage, memory, network, process management etc.</p>
@@ -1589,7 +1589,7 @@ movb $1, (0xff0) # accesses 0xf0ff0
         <li>For example if a user process wants to read a file, it will have to make <code class="language-plaintext highlighter-rouge">open</code> and <code class="language-plaintext highlighter-rouge">rea</code> system calls. Generally system calls are not called by processes directly. <em>C library provides an interface to all system calls</em>.</li>
       </ul>
 
-      <p><img src="D:\Dropbox\SEAS2020\Spring Semester\OS I\notes\images\Snipaste_2021-01-13_21-55-33.png" style="zoom:50%;" /></p>
+      <p><img src="/lectures/images/2022-01-04-COMS4118_Operating_Systems/Snipaste_2021-01-13_21-55-33.png" style="zoom:50%;" /></p>
     </li>
   </ul>
 </blockquote>
@@ -1762,7 +1762,7 @@ movb $1, (0xff0) # accesses 0xf0ff0
     <li>
       <p>this is what happens in the virtual memory space:</p>
 
-      <p><img src="D:\Dropbox\SEAS2020\Spring Semester\OS I\notes\images\Snipaste_2021-01-28_09-55-25.png" style="zoom:50%;" /></p>
+      <p><img src="/lectures/images/2022-01-04-COMS4118_Operating_Systems/Snipaste_2021-01-28_09-55-25.png" style="zoom:50%;" /></p>
 
       <p>where:</p>
 
@@ -1894,7 +1894,7 @@ movb $1, (0xff0) # accesses 0xf0ff0
 
 <p>Consider the case (<strong>thread race</strong>):</p>
 
-<p><img src="D:\Dropbox\SEAS2020\Spring Semester\OS I\notes\images\Snipaste_2021-02-04_13-36-40.png" style="zoom: 67%;" /></p>
+<p><img src="/lectures/images/2022-01-04-COMS4118_Operating_Systems/Snipaste_2021-02-04_13-36-40.png" style="zoom: 67%;" /></p>
 
 <p>the result has the following possibility:</p>
 
@@ -1947,14 +1947,14 @@ movb $1, (0xff0) # accesses 0xf0ff0
     <li>
       <p><em>for example</em>, to make <code class="language-plaintext highlighter-rouge">x++</code> atomic with locks:</p>
 
-      <p><img src="D:\Dropbox\SEAS2020\Spring Semester\OS I\notes\images\Snipaste_2021-02-04_13-27-33.png" style="zoom: 33%;" /></p>
+      <p><img src="/lectures/images/2022-01-04-COMS4118_Operating_Systems/Snipaste_2021-02-04_13-27-33.png" style="zoom: 33%;" /></p>
     </li>
   </ul>
 </blockquote>
 
 <p>In general, this is what we need to do:</p>
 
-<p><img src="D:\Dropbox\SEAS2020\Spring Semester\OS I\notes\images\Snipaste_2021-02-08_20-29-22.png" style="zoom: 67%;" /></p>
+<p><img src="/lectures/images/2022-01-04-COMS4118_Operating_Systems/Snipaste_2021-02-08_20-29-22.png" style="zoom: 67%;" /></p>
 
 <p>This is actually very important if you have <em>multiprocessor CPUs</em>:</p>
 
@@ -1973,7 +1973,7 @@ movb $1, (0xff0) # accesses 0xf0ff0
   <li>not guaranteed to work on <em>modern</em> computer architectures.</li>
 </ul>
 
-<p><img src="D:\Dropbox\SEAS2020\Spring Semester\OS I\notes\images\Snipaste_2021-02-08_23-22-27.png" alt="" /></p>
+<p><img src="/lectures/images/2022-01-04-COMS4118_Operating_Systems/Snipaste_2021-02-08_23-22-27.png" alt="" /></p>
 
 <p>where:</p>
 
@@ -3553,7 +3553,7 @@ write as soon as possible
     <li>
       <p>Schematic Idea:</p>
 
-      <p><img src="D:\Dropbox\SEAS2020\Spring Semester\OS I\notes\images\Snipaste_2021-02-16_13-06-00.png" alt="" /></p>
+      <p><img src="/lectures/images/2022-01-04-COMS4118_Operating_Systems/Snipaste_2021-02-16_13-06-00.png" alt="" /></p>
     </li>
   </ul>
 </blockquote>
@@ -3711,7 +3711,7 @@ write as soon as possible
   <li>but there is one chop stick for each</li>
 </ul>
 
-<p><img src="D:\Dropbox\SEAS2020\Spring Semester\OS I\notes\images\Snipaste_2021-02-18_11-39-28.png" style="zoom:50%;" /></p>
+<p><img src="/lectures/images/2022-01-04-COMS4118_Operating_Systems/Snipaste_2021-02-18_11-39-28.png" style="zoom:50%;" /></p>
 
 <p>and:</p>
 
@@ -3792,13 +3792,13 @@ system</li>
 
 <p><em>For Example</em></p>
 
-<p><img src="D:\Dropbox\SEAS2020\Spring Semester\OS I\notes\images\Snipaste_2021-02-18_20-49-43.png" style="zoom:80%;" /></p>
+<p><img src="/lectures/images/2022-01-04-COMS4118_Operating_Systems/Snipaste_2021-02-18_20-49-43.png" style="zoom:80%;" /></p>
 
 <p>which is fine</p>
 
 <p><em>For Example: Dead Lock</em></p>
 
-<p><img src="D:\Dropbox\SEAS2020\Spring Semester\OS I\notes\images\Snipaste_2021-02-18_20-51-12.png" style="zoom:80%;" /></p>
+<p><img src="/lectures/images/2022-01-04-COMS4118_Operating_Systems/Snipaste_2021-02-18_20-51-12.png" style="zoom:80%;" /></p>
 
 <p>which has a deadlock.</p>
 
@@ -3817,7 +3817,7 @@ system</li>
 
 <p><em>For Example: Cycle without Deadlock</em></p>
 
-<p><img src="D:\Dropbox\SEAS2020\Spring Semester\OS I\notes\images\Snipaste_2021-02-18_20-55-16.png" style="zoom:80%;" /></p>
+<p><img src="/lectures/images/2022-01-04-COMS4118_Operating_Systems/Snipaste_2021-02-18_20-55-16.png" style="zoom:80%;" /></p>
 
 <h4 id="handling-deadlocks">Handling Deadlocks</h4>
 
@@ -4318,7 +4318,7 @@ is already initialized in header file*/</span>
     </li>
   </ul>
 
-  <p><img src="D:\Dropbox\SEAS2020\Spring Semester\OS I\notes\images\Snipaste_2021-03-03_21-24-50.png" style="zoom:50%;" /></p>
+  <p><img src="/lectures/images/2022-01-04-COMS4118_Operating_Systems/Snipaste_2021-03-03_21-24-50.png" style="zoom:50%;" /></p>
 </blockquote>
 
 <p>Typically:</p>
@@ -4478,11 +4478,11 @@ turnaround time.</p>
 
 <p>Consider the following set of processes that <em>arrive at time 0</em>, with the length of the <em>CPU burst</em> given in milliseconds:</p>
 
-<p><img src="D:\Dropbox\SEAS2020\Spring Semester\OS I\notes\images\Snipaste_2021-03-04_11-22-54.png" alt="" /></p>
+<p><img src="/lectures/images/2022-01-04-COMS4118_Operating_Systems/Snipaste_2021-03-04_11-22-54.png" alt="" /></p>
 
 <p>If the processes <em>arrive in the order P1, P2, P3</em>, and are served in FCFS order, we get the result shown in the following <strong>Gantt chart</strong> (which is a bar chart that illustrates a particular schedule)</p>
 
-<p><img src="D:\Dropbox\SEAS2020\Spring Semester\OS I\notes\images\Snipaste_2021-03-04_11-23-47.png" alt="" /></p>
+<p><img src="/lectures/images/2022-01-04-COMS4118_Operating_Systems/Snipaste_2021-03-04_11-23-47.png" alt="" /></p>
 
 <p>where:</p>
 
@@ -4492,7 +4492,7 @@ turnaround time.</p>
 
 <p>If the processes <em>arrive in the order P2, P3, P1</em>, however, the results will be as shown in the following Gantt chart</p>
 
-<p><img src="D:\Dropbox\SEAS2020\Spring Semester\OS I\notes\images\Snipaste_2021-03-04_11-25-06.png" alt="" /></p>
+<p><img src="/lectures/images/2022-01-04-COMS4118_Operating_Systems/Snipaste_2021-03-04_11-25-06.png" alt="" /></p>
 
 <p>where:</p>
 
@@ -4552,7 +4552,7 @@ turnaround time.</p>
 
 <p>Taking $\alpha=1/2$ and $\tau_0 = 10$</p>
 
-<p><img src="D:\Dropbox\SEAS2020\Spring Semester\OS I\notes\images\Snipaste_2021-03-04_13-02-53.png" style="zoom:80%;" /></p>
+<p><img src="/lectures/images/2022-01-04-COMS4118_Operating_Systems/Snipaste_2021-03-04_13-02-53.png" style="zoom:80%;" /></p>
 
 <hr />
 
@@ -4560,11 +4560,11 @@ turnaround time.</p>
 
 <p>Consider the following four processes with <strong>next burst</strong> time:</p>
 
-<p><img src="D:\Dropbox\SEAS2020\Spring Semester\OS I\notes\images\Snipaste_2021-03-04_13-05-22.png" alt="" /></p>
+<p><img src="/lectures/images/2022-01-04-COMS4118_Operating_Systems/Snipaste_2021-03-04_13-05-22.png" alt="" /></p>
 
 <p>Then, the <em>preemptive SJF</em> will do:</p>
 
-<p><img src="D:\Dropbox\SEAS2020\Spring Semester\OS I\notes\images\Snipaste_2021-03-04_13-05-55.png" alt="" /></p>
+<p><img src="/lectures/images/2022-01-04-COMS4118_Operating_Systems/Snipaste_2021-03-04_13-05-55.png" alt="" /></p>
 
 <p>where:</p>
 
@@ -4641,11 +4641,11 @@ of a process. For example, time limits, memory requirements, etc.</li>
 
 <p>Consider the following setup, assumed to have arrived at time 0 in the order $P_1, P_2,…, P_5$.</p>
 
-<p><img src="D:\Dropbox\SEAS2020\Spring Semester\OS I\notes\images\Snipaste_2021-03-04_14-16-02.png" alt="" /></p>
+<p><img src="/lectures/images/2022-01-04-COMS4118_Operating_Systems/Snipaste_2021-03-04_14-16-02.png" alt="" /></p>
 
 <p>then the Gantt Chart gives:</p>
 
-<p><img src="D:\Dropbox\SEAS2020\Spring Semester\OS I\notes\images\Snipaste_2021-03-04_14-16-51.png" alt="" /></p>
+<p><img src="/lectures/images/2022-01-04-COMS4118_Operating_Systems/Snipaste_2021-03-04_14-16-51.png" alt="" /></p>
 
 <p>and the average waiting time is 8.2 milliseconds</p>
 
@@ -4680,7 +4680,7 @@ of a process. For example, time limits, memory requirements, etc.</li>
     <li>
       <p>One problem here is that we might need to <em>search through the array to find the largest priority task</em>. However, since there is a <em>discrete number of priority</em>, this is how it becomes implemented commonly:</p>
 
-      <p><img src="D:\Dropbox\SEAS2020\Spring Semester\OS I\notes\images\Snipaste_2021-03-09_12-18-58.png" style="zoom:80%;" /></p>
+      <p><img src="/lectures/images/2022-01-04-COMS4118_Operating_Systems/Snipaste_2021-03-09_12-18-58.png" style="zoom:80%;" /></p>
 
       <p>where we see that:</p>
 
@@ -4724,7 +4724,7 @@ of a process. For example, time limits, memory requirements, etc.</li>
     <li>
       <p>Notice that the <em>circular ready queue</em> makes it work such that if there is only <em>one runnable process</em> in total, it will “look like” this is happening:</p>
 
-      <p><img src="D:\Dropbox\SEAS2020\Spring Semester\OS I\notes\images\Snipaste_2021-03-04_14-45-28.png" alt="" /></p>
+      <p><img src="/lectures/images/2022-01-04-COMS4118_Operating_Systems/Snipaste_2021-03-04_14-45-28.png" alt="" /></p>
     </li>
   </ul>
 </blockquote>
@@ -4733,11 +4733,11 @@ of a process. For example, time limits, memory requirements, etc.</li>
 
 <p>Consider the following set of processes that arrive at time 0, with the length of the CPU burst given in milliseconds:</p>
 
-<p><img src="D:\Dropbox\SEAS2020\Spring Semester\OS I\notes\images\Snipaste_2021-03-04_14-48-34.png" alt="" /></p>
+<p><img src="/lectures/images/2022-01-04-COMS4118_Operating_Systems/Snipaste_2021-03-04_14-48-34.png" alt="" /></p>
 
 <p>If I use a <strong>time quantum of 4 seconds</strong>:</p>
 
-<p><img src="D:\Dropbox\SEAS2020\Spring Semester\OS I\notes\images\Snipaste_2021-03-04_14-49-14.png" alt="" /></p>
+<p><img src="/lectures/images/2022-01-04-COMS4118_Operating_Systems/Snipaste_2021-03-04_14-49-14.png" alt="" /></p>
 
 <p>where:</p>
 
@@ -4829,7 +4829,7 @@ of a process. For example, time limits, memory requirements, etc.</li>
 
 <p>Consider at <code class="language-plaintext highlighter-rouge">t=0</code>, three processes comes in with <code class="language-plaintext highlighter-rouge">weight=3,2,1</code> respectively:</p>
 
-<p><img src="D:\Dropbox\SEAS2020\Spring Semester\OS I\notes\images\Snipaste_2021-03-11_15-54-01.png" style="zoom: 33%;" /></p>
+<p><img src="/lectures/images/2022-01-04-COMS4118_Operating_Systems/Snipaste_2021-03-11_15-54-01.png" style="zoom: 33%;" /></p>
 
 <p>where you will see that:</p>
 
@@ -4922,7 +4922,7 @@ of a process. For example, time limits, memory requirements, etc.</li>
 
 <p>Then:</p>
 
-<p><img src="D:\Dropbox\SEAS2020\Spring Semester\OS I\notes\images\Snipaste_2021-03-04_16-14-42.png" style="zoom: 80%;" /></p>
+<p><img src="/lectures/images/2022-01-04-COMS4118_Operating_Systems/Snipaste_2021-03-04_16-14-42.png" style="zoom: 80%;" /></p>
 
 <p>where, in this case of a <em>fixed-priority preemptive scheduling among queues</em></p>
 
@@ -4952,7 +4952,7 @@ of a process. For example, time limits, memory requirements, etc.</li>
 
 <p>Consider the following setup, with the top queue with the highest priority, and going down:</p>
 
-<p><img src="D:\Dropbox\SEAS2020\Spring Semester\OS I\notes\images\Snipaste_2021-03-05_09-40-39.png" style="zoom:80%;" /></p>
+<p><img src="/lectures/images/2022-01-04-COMS4118_Operating_Systems/Snipaste_2021-03-05_09-40-39.png" style="zoom:80%;" /></p>
 
 <p>where, <strong>same</strong> as multilevel queue scheduling:</p>
 
@@ -5154,7 +5154,7 @@ The contention takes place among <em>all (KLT) threads in the system</em>. In th
     <li>The <strong>data most recently accessed</strong> by the process <strong>populate the cache</strong> for the processor. As a result, successive memory accesses by the process are often satisfied in cache memory</li>
   </ul>
 
-  <p><img src="D:\Dropbox\SEAS2020\Spring Semester\OS I\notes\images\Snipaste_2021-03-05_12-00-34.png" style="zoom:80%;" /></p>
+  <p><img src="/lectures/images/2022-01-04-COMS4118_Operating_Systems/Snipaste_2021-03-05_12-00-34.png" style="zoom:80%;" /></p>
 </blockquote>
 
 <p>Now consider what happens if the <em>process migrates to another processor</em>.</p>
@@ -5252,7 +5252,7 @@ The contention takes place among <em>all (KLT) threads in the system</em>. In th
     <li>Therefore, recent hardware designs multithreaded processor cores in which <strong>two (or more) hardware threads are assigned to each core</strong>. That way, if one thread stalls while waiting for memory <code class="language-plaintext highlighter-rouge">M</code>, the core can switch to another thread.</li>
   </ul>
 
-  <p><img src="D:\Dropbox\SEAS2020\Spring Semester\OS I\notes\images\Snipaste_2021-03-05_12-43-25.png" style="zoom:80%;" /></p>
+  <p><img src="/lectures/images/2022-01-04-COMS4118_Operating_Systems/Snipaste_2021-03-05_12-43-25.png" style="zoom:80%;" /></p>
 </blockquote>
 
 <p>However, this also means that <strong>multithreaded multicore processor</strong> actually <strong>requires two different levels of scheduling</strong>.</p>
@@ -5302,7 +5302,7 @@ The contention takes place among <em>all (KLT) threads in the system</em>. In th
     <li>When an event occurs, the system must respond to and service it as quickly as possible. We refer to <strong>event latency</strong> as the <em>amount of time that elapses from when an event occurs to when it is serviced</em></li>
   </ul>
 
-  <p><img src="D:\Dropbox\SEAS2020\Spring Semester\OS I\notes\images\Snipaste_2021-03-05_14-59-01.png" style="zoom:80%;" /></p>
+  <p><img src="/lectures/images/2022-01-04-COMS4118_Operating_Systems/Snipaste_2021-03-05_14-59-01.png" style="zoom:80%;" /></p>
 </blockquote>
 
 <p><strong>Two types of latencies</strong> affect the performance of real-time systems:</p>
@@ -5328,7 +5328,7 @@ The contention takes place among <em>all (KLT) threads in the system</em>. In th
     </li>
   </ul>
 
-  <p><img src="D:\Dropbox\SEAS2020\Spring Semester\OS I\notes\images\Snipaste_2021-03-05_15-01-10.png" style="zoom:80%;" /></p>
+  <p><img src="/lectures/images/2022-01-04-COMS4118_Operating_Systems/Snipaste_2021-03-05_15-01-10.png" style="zoom:80%;" /></p>
 </blockquote>
 
 <blockquote>
@@ -5351,7 +5351,7 @@ The contention takes place among <em>all (KLT) threads in the system</em>. In th
     </li>
   </ul>
 
-  <p><img src="D:\Dropbox\SEAS2020\Spring Semester\OS I\notes\images\Snipaste_2021-03-05_15-05-11.png" style="zoom:80%;" /></p>
+  <p><img src="/lectures/images/2022-01-04-COMS4118_Operating_Systems/Snipaste_2021-03-05_15-05-11.png" style="zoom:80%;" /></p>
 
   <p>where the <em>conflict phase</em> of dispatch latency has <strong>two components</strong>:</p>
 
@@ -5397,7 +5397,7 @@ The contention takes place among <em>all (KLT) threads in the system</em>. In th
     </li>
   </ol>
 
-  <p><img src="D:\Dropbox\SEAS2020\Spring Semester\OS I\notes\images\Snipaste_2021-03-06_12-11-02.png" style="zoom:80%;" /></p>
+  <p><img src="/lectures/images/2022-01-04-COMS4118_Operating_Systems/Snipaste_2021-03-06_12-11-02.png" style="zoom:80%;" /></p>
 </blockquote>
 
 <p>Therefore, this form of scheduling means a <em>process may have to announce its deadline requirements</em> to the scheduler.</p>
@@ -5444,7 +5444,7 @@ The contention takes place among <em>all (KLT) threads in the system</em>. In th
 
 <p>Now suppose we use rate-monotonic scheduling, in which we assign $P_1$ a <strong>higher priority</strong> than $P_2$ because the period of $P_1$ is shorter than that of $P_2$.</p>
 
-<p><img src="D:\Dropbox\SEAS2020\Spring Semester\OS I\notes\images\Snipaste_2021-03-06_12-19-45.png" alt="" /></p>
+<p><img src="/lectures/images/2022-01-04-COMS4118_Operating_Systems/Snipaste_2021-03-06_12-19-45.png" alt="" /></p>
 
 <p>where we see that it works:</p>
 
@@ -5515,7 +5515,7 @@ CPU system is idle until time $100$, when $P_1$ is scheduled again.</li>
   <li>note that rate-monotonic algorithm actually <em>cannot</em> solve this problem</li>
 </ul>
 
-<p><img src="D:\Dropbox\SEAS2020\Spring Semester\OS I\notes\images\Snipaste_2021-03-06_12-43-54.png" alt="" /></p>
+<p><img src="/lectures/images/2022-01-04-COMS4118_Operating_Systems/Snipaste_2021-03-06_12-43-54.png" alt="" /></p>
 
 <p>where we see that:</p>
 
@@ -5603,7 +5603,7 @@ CPU system is idle until time $100$, when $P_1$ is scheduled again.</li>
 
 <p>Since this is <em>priority-based preemption</em>, this is how the processes are structured using a red-black tree (priority queue)</p>
 
-<p><img src="D:\Dropbox\SEAS2020\Spring Semester\OS I\notes\images\Snipaste_2021-03-06_13-10-35.png" style="zoom:80%;" /></p>
+<p><img src="/lectures/images/2022-01-04-COMS4118_Operating_Systems/Snipaste_2021-03-06_13-10-35.png" style="zoom:80%;" /></p>
 
 <p>where tasks that have been given more processing time (<em>lower priority</em>) are on the <em>right side</em></p>
 
@@ -5630,7 +5630,7 @@ CPU system is idle until time $100$, when $P_1$ is scheduled again.</li>
 and a second for normal tasks.</li>
   </ul>
 
-  <p><img src="D:\Dropbox\SEAS2020\Spring Semester\OS I\notes\images\Snipaste_2021-03-06_13-17-01.png" style="zoom:80%;" /></p>
+  <p><img src="/lectures/images/2022-01-04-COMS4118_Operating_Systems/Snipaste_2021-03-06_13-17-01.png" style="zoom:80%;" /></p>
 
   <ul>
     <li><strong>Normal</strong> tasks are assigned a priority based on their <strong><code class="language-plaintext highlighter-rouge">nice</code> values</strong>, where a value of $–20$ maps to priority $100$ and a nice value of $+19$ maps to $139$</li>
@@ -5980,7 +5980,7 @@ and a second for normal tasks.</li>
     <li>
       <p>In general (also mentioned above), there will be a <strong>private run queue per scheduler</strong></p>
 
-      <p><img src="D:\Dropbox\SEAS2020\Spring Semester\OS I\notes\images\Snipaste_2021-03-09_11-33-24.png" alt="" /></p>
+      <p><img src="/lectures/images/2022-01-04-COMS4118_Operating_Systems/Snipaste_2021-03-09_11-33-24.png" alt="" /></p>
 
       <p>this is very common, because:</p>
 
@@ -6723,7 +6723,7 @@ and a second for normal tasks.</li>
             <li>
               <p>One possibility is as follows: if <code class="language-plaintext highlighter-rouge">rq1</code> wants to do some load balancing, <strong>and at the same time</strong> <code class="language-plaintext highlighter-rouge">rq2</code> also wants to do some load balancing, this <strong>deadlock</strong> might happen:</p>
 
-              <p><img src="D:\Dropbox\SEAS2020\Spring Semester\OS I\notes\images\Snipaste_2021-03-11_14-49-27.png" style="zoom: 33%;" /></p>
+              <p><img src="/lectures/images/2022-01-04-COMS4118_Operating_Systems/Snipaste_2021-03-11_14-49-27.png" style="zoom: 33%;" /></p>
 
               <p>where we see the <strong>solution is to</strong> grab the lock in the <strong>same order</strong>:</p>
 
@@ -6962,7 +6962,7 @@ and a second for normal tasks.</li>
     <li>
       <p>To do the mapping, a simple idea would be from the <em>load time idea</em></p>
 
-      <p><img src="D:\Dropbox\SEAS2020\Spring Semester\OS I\notes\images\image-20210315233900485.png" style="zoom:50%;" /></p>
+      <p><img src="/lectures/images/2022-01-04-COMS4118_Operating_Systems/image-20210315233900485.png" style="zoom:50%;" /></p>
 
       <p>where:</p>
 
@@ -6975,7 +6975,7 @@ and a second for normal tasks.</li>
 
 <p>In reality, there is a page table:</p>
 
-<p><img src="D:\Dropbox\SEAS2020\Spring Semester\OS I\notes\images\Snipaste_2021-03-15_23-46-18.png" style="zoom:50%;" /></p>
+<p><img src="/lectures/images/2022-01-04-COMS4118_Operating_Systems/Snipaste_2021-03-15_23-46-18.png" style="zoom:50%;" /></p>
 
 <p>This is actually <strong>done in hardware</strong>.</p>
 
@@ -7011,7 +7011,7 @@ and a second for normal tasks.</li>
     <li>
       <p>The <em>virtual address</em> will be split into two parts, <strong>page number</strong> and <strong>offset</strong>:</p>
 
-      <p><img src="D:\Dropbox\SEAS2020\Spring Semester\OS I\notes\images\Snipaste_2021-03-16_11-18-37.png" alt="" /></p>
+      <p><img src="/lectures/images/2022-01-04-COMS4118_Operating_Systems/Snipaste_2021-03-16_11-18-37.png" alt="" /></p>
 
       <p>where:</p>
 
@@ -7068,7 +7068,7 @@ and a second for normal tasks.</li>
 
 <p>So a full picture looks like:</p>
 
-<p><img src="D:\Dropbox\SEAS2020\Spring Semester\OS I\notes\images\Snipaste_2021-03-16_11-16-38.png" style="zoom: 67%;" /></p>
+<p><img src="/lectures/images/2022-01-04-COMS4118_Operating_Systems/Snipaste_2021-03-16_11-16-38.png" style="zoom: 67%;" /></p>
 
 <blockquote>
   <p><strong>Note</strong></p>
@@ -7102,7 +7102,7 @@ and a second for normal tasks.</li>
 
 <p>Then the mapping looks like this:</p>
 
-<p><img src="D:\Dropbox\SEAS2020\Spring Semester\OS I\notes\images\Snipaste_2021-03-16_11-23-13.png" style="zoom: 80%;" /></p>
+<p><img src="/lectures/images/2022-01-04-COMS4118_Operating_Systems/Snipaste_2021-03-16_11-23-13.png" style="zoom: 80%;" /></p>
 
 <p>where:</p>
 
@@ -7192,7 +7192,7 @@ and a second for normal tasks.</li>
         <li>
           <p>however, remember, not all addresses is used in a virtual address space:</p>
 
-          <p><img src="D:\Dropbox\SEAS2020\Spring Semester\OS I\notes\images\Snipaste_2021-03-16_11-46-16.png" style="zoom:50%;" /></p>
+          <p><img src="/lectures/images/2022-01-04-COMS4118_Operating_Systems/Snipaste_2021-03-16_11-46-16.png" style="zoom:50%;" /></p>
 
           <p>where there is a <em>big hole between heap and stack</em></p>
 
@@ -7247,7 +7247,7 @@ and a second for normal tasks.</li>
   <li>we need a <strong>two level paging</strong></li>
 </ul>
 
-<p><img src="D:\Dropbox\SEAS2020\Spring Semester\OS I\notes\images\Snipaste_2021-03-16_23-59-03.png" style="zoom: 67%;" /></p>
+<p><img src="/lectures/images/2022-01-04-COMS4118_Operating_Systems/Snipaste_2021-03-16_23-59-03.png" style="zoom: 67%;" /></p>
 
 <p>To solve this, <strong>always keep this in mind</strong></p>
 
@@ -7289,7 +7289,7 @@ and a second for normal tasks.</li>
       <li>
         <p>but working from this level (<em>first level paging</em>), we get this:</p>
 
-        <p><img src="D:\Dropbox\SEAS2020\Spring Semester\OS I\notes\images\Snipaste_2021-03-17_00-30-57.png" style="zoom:67%;" /></p>
+        <p><img src="/lectures/images/2022-01-04-COMS4118_Operating_Systems/Snipaste_2021-03-17_00-30-57.png" style="zoom:67%;" /></p>
 
         <p>where:</p>
 
@@ -7860,7 +7860,7 @@ and a second for normal tasks.</li>
 
 <p><em>For Example: Program Structure</em></p>
 
-<p><img src="D:\Dropbox\SEAS2020\Spring Semester\OS I\notes\images\Snipaste_2021-03-30_16-23-23.png" style="zoom:50%;" /></p>
+<p><img src="/lectures/images/2022-01-04-COMS4118_Operating_Systems/Snipaste_2021-03-30_16-23-23.png" style="zoom:50%;" /></p>
 
 <p>where the <strong>number needs of accessing different pages</strong> (could also <em>increase page faults if limited memory left/cache miss</em>) is different depending on:</p>
 
@@ -9586,7 +9586,7 @@ and a second for normal tasks.</li>
 
 <p>On a large picture, we are dealing with:</p>
 
-<p><img src="D:\Dropbox\SEAS2020\Spring Semester\OS I\notes\images\Snipaste_2021-04-06_15-07-03.png" style="zoom: 50%;" /></p>
+<p><img src="/lectures/images/2022-01-04-COMS4118_Operating_Systems/Snipaste_2021-04-06_15-07-03.png" style="zoom: 50%;" /></p>
 
 <p>where:</p>
 
@@ -9644,7 +9644,7 @@ and a second for normal tasks.</li>
 
 <h3 id="hard-disk-mechanics">Hard Disk Mechanics</h3>
 
-<p><img src="D:\Dropbox\SEAS2020\Spring Semester\OS I\notes\images\Snipaste_2021-04-06_15-18-03.png" style="zoom: 67%;" /></p>
+<p><img src="/lectures/images/2022-01-04-COMS4118_Operating_Systems/Snipaste_2021-04-06_15-18-03.png" style="zoom: 67%;" /></p>
 
 <p>where some components include:</p>
 
@@ -9675,7 +9675,7 @@ and a second for normal tasks.</li>
 
 <p>When you do a <code class="language-plaintext highlighter-rouge">read()</code> or <code class="language-plaintext highlighter-rouge">write()</code>, if you needed something from the <strong>disk</strong>, Linux will do it by ==submitting an I/O Request==</p>
 
-<p><img src="D:\Dropbox\SEAS2020\Spring Semester\OS I\notes\images\Snipaste_2021-04-08_14-16-32.png" style="zoom:67%;" /></p>
+<p><img src="/lectures/images/2022-01-04-COMS4118_Operating_Systems/Snipaste_2021-04-08_14-16-32.png" style="zoom:67%;" /></p>
 
 <p>where:</p>
 
@@ -9732,7 +9732,7 @@ and a second for normal tasks.</li>
         <li>
           <p>deadline is computed from $\text{submission time}+\Delta$. Some example $\Delta$ values are:</p>
 
-          <p><img src="D:\Dropbox\SEAS2020\Spring Semester\OS I\notes\images\Snipaste_2021-04-08_14-26-13.png" alt="" /></p>
+          <p><img src="/lectures/images/2022-01-04-COMS4118_Operating_Systems/Snipaste_2021-04-08_14-26-13.png" alt="" /></p>
 
           <p>where we are basically dealing with <code class="language-plaintext highlighter-rouge">read()</code> more often, because they are the <em>time consuming ones</em> that would <em>block the program</em></p>
         </li>
@@ -9784,7 +9784,7 @@ and a second for normal tasks.</li>
     <li>
       <p>maintains a <strong>request queue per process</strong></p>
 
-      <p><img src="D:\Dropbox\SEAS2020\Spring Semester\OS I\notes\images\Snipaste_2021-04-08_14-44-02.png" alt="" /></p>
+      <p><img src="/lectures/images/2022-01-04-COMS4118_Operating_Systems/Snipaste_2021-04-08_14-44-02.png" alt="" /></p>
     </li>
     <li>
       <p>maintains an <strong>overall round-robin request queue</strong></p>
@@ -9839,7 +9839,7 @@ and a second for normal tasks.</li>
     <li>
       <p>the problem is now that, since I/O are <em>faster</em> with SSD, and we only had a <strong>single shared I/O queue</strong>, we need to face the problem of <strong>much time spending on lock contention</strong></p>
 
-      <p><img src="D:\Dropbox\SEAS2020\Spring Semester\OS I\notes\images\Snipaste_2021-04-08_15-03-13.png" style="zoom: 33%;" /></p>
+      <p><img src="/lectures/images/2022-01-04-COMS4118_Operating_Systems/Snipaste_2021-04-08_15-03-13.png" style="zoom: 33%;" /></p>
 
       <p>where:</p>
 
@@ -9853,7 +9853,7 @@ and a second for normal tasks.</li>
 
 <p>Therefore, the natural solution (e.g. from process scheduling) is to have <strong>private I/O queues per CPU</strong></p>
 
-<p><img src="D:\Dropbox\SEAS2020\Spring Semester\OS I\notes\images\Snipaste_2021-04-08_14-59-46.png" style="zoom:50%;" /></p>
+<p><img src="/lectures/images/2022-01-04-COMS4118_Operating_Systems/Snipaste_2021-04-08_14-59-46.png" style="zoom:50%;" /></p>
 
 <p>which is now <strong>an OK approach because</strong></p>
 
@@ -9889,7 +9889,7 @@ and a second for normal tasks.</li>
 
 <p>Consider a file:</p>
 
-<p><img src="D:\Dropbox\SEAS2020\Spring Semester\OS I\notes\images\Snipaste_2021-04-08_15-17-24.png" style="zoom: 67%;" /></p>
+<p><img src="/lectures/images/2022-01-04-COMS4118_Operating_Systems/Snipaste_2021-04-08_15-17-24.png" style="zoom: 67%;" /></p>
 
 <p>Some ways to store data on disk that ==does not work== are</p>
 
@@ -9907,7 +9907,7 @@ and a second for normal tasks.</li>
     <li>
       <p>Instead of having the <em>linked list</em> in each block, keep a <strong>global table that stores all links</strong></p>
 
-      <p><img src="D:\Dropbox\SEAS2020\Spring Semester\OS I\notes\images\Snipaste_2021-04-08_15-24-13.png" style="zoom:50%;" /></p>
+      <p><img src="/lectures/images/2022-01-04-COMS4118_Operating_Systems/Snipaste_2021-04-08_15-24-13.png" style="zoom:50%;" /></p>
 
       <p>where:</p>
 
@@ -9935,7 +9935,7 @@ and a second for normal tasks.</li>
 <blockquote>
   <p><strong>inode</strong></p>
 
-  <p><img src="D:\Dropbox\SEAS2020\Spring Semester\OS I\notes\images\Snipaste_2021-04-08_15-47-41.png" style="zoom: 67%;" /></p>
+  <p><img src="/lectures/images/2022-01-04-COMS4118_Operating_Systems/Snipaste_2021-04-08_15-47-41.png" style="zoom: 67%;" /></p>
 
   <ul>
     <li>For each file, we have an <strong>inode</strong>, which contains <strong>many entries</strong>
@@ -10002,7 +10002,7 @@ and a second for normal tasks.</li>
 
 <p>Usually, this is <strong>how it looks like on Disk</strong></p>
 
-<p><img src="D:\Dropbox\SEAS2020\Spring Semester\OS I\notes\images\Snipaste_2021-04-08_16-02-49.png" style="zoom:67%;" /></p>
+<p><img src="/lectures/images/2022-01-04-COMS4118_Operating_Systems/Snipaste_2021-04-08_16-02-49.png" style="zoom:67%;" /></p>
 
 <p>where:</p>
 
@@ -10027,7 +10027,7 @@ and a second for normal tasks.</li>
 
 <p><em><u>For Example: Fast FS</u></em></p>
 
-<p><img src="D:\Dropbox\SEAS2020\Spring Semester\OS I\notes\images\Snipaste_2021-04-08_16-12-05.png" style="zoom:50%;" /></p>
+<p><img src="/lectures/images/2022-01-04-COMS4118_Operating_Systems/Snipaste_2021-04-08_16-12-05.png" style="zoom:50%;" /></p>
 
 <p>where:</p>
 
@@ -10043,7 +10043,7 @@ and a second for normal tasks.</li>
 
 <p>This also has a <strong>performance boost</strong> since:</p>
 
-<p><img src="D:\Dropbox\SEAS2020\Spring Semester\OS I\notes\images\Snipaste_2021-04-08_16-11-05.png" style="zoom: 33%;" /></p>
+<p><img src="/lectures/images/2022-01-04-COMS4118_Operating_Systems/Snipaste_2021-04-08_16-11-05.png" style="zoom: 33%;" /></p>
 
 <p>where:</p>
 
@@ -10063,7 +10063,7 @@ and a second for normal tasks.</li>
 
 <p><em><u>For Example: EXT3/4</u></em></p>
 
-<p><img src="D:\Dropbox\SEAS2020\Spring Semester\OS I\notes\images\Snipaste_2021-04-09_00-25-00.png" style="zoom:33%;" /></p>
+<p><img src="/lectures/images/2022-01-04-COMS4118_Operating_Systems/Snipaste_2021-04-09_00-25-00.png" style="zoom:33%;" /></p>
 
 <p>where:</p>
 
@@ -10096,7 +10096,7 @@ and a second for normal tasks.</li>
     <li>
       <p>if there is a corruption/pressed power off without syncing, then we would:</p>
 
-      <p><img src="D:\Dropbox\SEAS2020\Spring Semester\OS I\notes\images\Snipaste_2021-04-09_00-42-37.png" style="zoom:67%;" /></p>
+      <p><img src="/lectures/images/2022-01-04-COMS4118_Operating_Systems/Snipaste_2021-04-09_00-42-37.png" style="zoom:67%;" /></p>
 
       <ol>
         <li>go to the last <em>commit</em></li>
@@ -10179,7 +10179,7 @@ and a second for normal tasks.</li>
 <blockquote>
   <p><strong>Cleaning/Compaction</strong></p>
 
-  <p><img src="D:\Dropbox\SEAS2020\Spring Semester\OS I\notes\images\Snipaste_2021-04-13_16-46-40.png" style="zoom:50%;" /></p>
+  <p><img src="/lectures/images/2022-01-04-COMS4118_Operating_Systems/Snipaste_2021-04-13_16-46-40.png" style="zoom:50%;" /></p>
 
   <ul>
     <li>periodically cleans up unneeded data of a region of the memory</li>
@@ -10316,7 +10316,7 @@ and a second for normal tasks.</li>
             <li>sometimes, the same file might be saved on multiple disks so that we can have higher <em>parallel read performances</em></li>
           </ul>
 
-          <p><img src="D:\Dropbox\SEAS2020\Spring Semester\OS I\notes\images\Snipaste_2021-04-14_13-55-13.png" style="zoom:50%;" /></p>
+          <p><img src="/lectures/images/2022-01-04-COMS4118_Operating_Systems/Snipaste_2021-04-14_13-55-13.png" style="zoom:50%;" /></p>
         </li>
         <li>
           <p>doubling the writes/space</p>
@@ -10358,7 +10358,7 @@ and a second for normal tasks.</li>
         <li>
           <p>striping/spreading the <strong>parity across disks</strong></p>
 
-          <p><img src="D:\Dropbox\SEAS2020\Spring Semester\OS I\notes\images\Snipaste_2021-04-14_13-59-13.png" style="zoom:67%;" /></p>
+          <p><img src="/lectures/images/2022-01-04-COMS4118_Operating_Systems/Snipaste_2021-04-14_13-59-13.png" style="zoom:67%;" /></p>
         </li>
       </ul>
     </li>
@@ -12373,7 +12373,7 @@ and a second for normal tasks.</li>
 
 <p>Some important hardware elements are:</p>
 
-<p><img src="D:\Dropbox\SEAS2020\Spring Semester\OS I\notes\images\Snipaste_2021-04-14_17-05-15.png" style="zoom:67%;" /></p>
+<p><img src="/lectures/images/2022-01-04-COMS4118_Operating_Systems/Snipaste_2021-04-14_17-05-15.png" style="zoom:67%;" /></p>
 
 <ul>
   <li>==Port== - device communicates with the machine via a <strong>connection point</strong>, or port
@@ -12455,7 +12455,7 @@ address.</li>
 
 <p>The mechanism is as follows:</p>
 
-<p><img src="D:\Dropbox\SEAS2020\Spring Semester\OS I\notes\images\Snipaste_2021-04-14_17-23-57.png" style="zoom:67%;" /></p>
+<p><img src="/lectures/images/2022-01-04-COMS4118_Operating_Systems/Snipaste_2021-04-14_17-23-57.png" style="zoom:67%;" /></p>
 
 <p>where:</p>
 
@@ -12525,7 +12525,7 @@ address.</li>
     <li>
       <p>When the entire transfer is finished, the DMA controller <strong>interrupts</strong> the CPU</p>
 
-      <p><img src="D:\Dropbox\SEAS2020\Spring Semester\OS I\notes\images\Snipaste_2021-04-14_17-30-20.png" style="zoom:67%;" /></p>
+      <p><img src="/lectures/images/2022-01-04-COMS4118_Operating_Systems/Snipaste_2021-04-14_17-30-20.png" style="zoom:67%;" /></p>
     </li>
   </ol>
 </blockquote>
