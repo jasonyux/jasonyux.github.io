@@ -71,6 +71,90 @@
       </time></p>
   </header>
 
+  <div class="section-nav" id="toc-all">
+    <button type="button" id="toc-close" class="toc_collapsible" title="collapse">
+      <span><strong>Table of Contents</strong></span>
+    </button>
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" mirror-in-rtl="true" fill="#000000" style="width: 18px;" id="toc-reopen" class="toc_collapsible hidden">
+      <g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <circle fill="#494c4e" cx="2" cy="2" r="2"></circle> <circle fill="#494c4e" cx="2" cy="8" r="2"></circle> <circle fill="#494c4e" cx="2" cy="20" r="2"></circle> <circle fill="#494c4e" cx="2" cy="14" r="2"></circle> <path fill="#494c4e" d="M23.002 3H7.998C7.448 3 7 2.55 7 2.002v-.004c0-.55.45-.998.998-.998H23c.55 0 1 .45 1 .998V2c0 .55-.45 1-.998 1zM23.002 9H7.998C7.448 9 7 8.55 7 8.002v-.004c0-.55.45-.998.998-.998H23c.55 0 1 .45 1 .998V8c0 .55-.45 1-.998 1zM23.002 15H7.998c-.55 0-.998-.45-.998-.998V14c0-.55.45-1 .998-1H23c.55 0 1 .45 1 .998V14c0 .55-.45 1-.998 1zM23.002 21H7.998c-.55 0-.998-.45-.998-.998V20c0-.55.45-1 .998-1H23c.55 0 1 .45 1 .998V20c0 .55-.45 1-.998 1z"></path> </g>
+    </svg>
+    <ul id="toc" class="section-nav">
+<li class="toc-entry toc-h1"><a href="#introduction-to-rl">Introduction to RL</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#rl-history">RL History</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#bandit-problem-and-mdp">Bandit Problem and MDP</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#bandit-problem">Bandit Problem</a></li>
+<li class="toc-entry toc-h2"><a href="#markov-decision-process">Markov Decision Process</a></li>
+<li class="toc-entry toc-h2"><a href="#optimal-value-functions-and-policies">Optimal Value Functions and Policies</a></li>
+<li class="toc-entry toc-h2"><a href="#extended-mdp">Extended MDP</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#model-based-rl">Model-based RL</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#introduction-of-dynamic-programming">Introduction of Dynamic Programming</a></li>
+<li class="toc-entry toc-h2"><a href="#prediction-policy-evaluation">Prediction: Policy Evaluation</a></li>
+<li class="toc-entry toc-h2"><a href="#control-policy-improvement-and-policy-interation">Control: Policy Improvement and Policy Interation</a></li>
+<li class="toc-entry toc-h2"><a href="#control-value-iteration">Control: Value Iteration</a></li>
+<li class="toc-entry toc-h2"><a href="#summary-synchronous-dp">Summary: Synchronous DP</a></li>
+<li class="toc-entry toc-h2"><a href="#asynchronous-dp">Asynchronous DP</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#in-place-dp">In-place DP</a></li>
+<li class="toc-entry toc-h3"><a href="#prioritized-sweeping">Prioritized Sweeping</a></li>
+<li class="toc-entry toc-h3"><a href="#real-time-dp">Real-Time DP</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#generalized-policy-iteration">Generalized Policy Iteration</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#model-free-rl">Model-free RL</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#monte-carlo-learning">Monte Carlo Learning</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#firstevery-visit-mc-policy-evaluation">First/Every Visit MC Policy Evaluation</a></li>
+<li class="toc-entry toc-h3"><a href="#mc-for-non-stationary-state">MC for Non-Stationary State</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#monte-carlo-control">Monte Carlo Control</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#greedy-in-the-limit-with-infinite-exploration">Greedy in the Limit with Infinite Exploration</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#off-policy-evaluation">Off-Policy Evaluation</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#importance-sampling">Importance Sampling</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#td-learning">TD Learning</a></li>
+<li class="toc-entry toc-h2"><a href="#mc-vs-td-methods">MC v.s. TD Methods</a></li>
+<li class="toc-entry toc-h2"><a href="#td-control">TD Control</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#sarsa">SARSA</a></li>
+<li class="toc-entry toc-h3"><a href="#q-learning">Q-Learning</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#dp-vs-td-methods">DP v.s. TD Methods</a></li>
+<li class="toc-entry toc-h2"><a href="#tdlambda-and-eligibility-traces">TD($\lambda$) and Eligibility Traces</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#tdlambda">TD($\lambda$)</a></li>
+<li class="toc-entry toc-h3"><a href="#eligibility-trace">Eligibility Trace</a></li>
+<li class="toc-entry toc-h3"><a href="#offline-equivalent-of-forward-and-backward-views">Offline Equivalent of Forward and Backward Views</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#tdlambda-control">TD($\lambda$) Control</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#sarsalambda">SARSA($\lambda$)</a></li>
+<li class="toc-entry toc-h3"><a href="#qlambda-learning">Q($\lambda$)-Learning</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#unified-view-of-rl-solutions">Unified View of RL Solutions</a></li>
+</ul>
+</li>
+</ul>
+  </div>
+
   <div class="post-content e-content" itemprop="articleBody">
     <p>Reinforcement Learning</p>
 
@@ -2507,6 +2591,7 @@ G_t^{(n)}
 </ul>
 
   </div><a class="u-url" href="/lectures/2022@columbia/ELEN6885_Reinforcement_Learning.html/" hidden></a>
+  <script src="/lectures/assets/js/my_navigation.js"></script>
 </article>
       </div>
     </main><footer class="site-footer h-card">

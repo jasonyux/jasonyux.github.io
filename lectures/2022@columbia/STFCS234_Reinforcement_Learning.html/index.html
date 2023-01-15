@@ -71,6 +71,236 @@
       </time></p>
   </header>
 
+  <div class="section-nav" id="toc-all">
+    <button type="button" id="toc-close" class="toc_collapsible" title="collapse">
+      <span><strong>Table of Contents</strong></span>
+    </button>
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" mirror-in-rtl="true" fill="#000000" style="width: 18px;" id="toc-reopen" class="toc_collapsible hidden">
+      <g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <circle fill="#494c4e" cx="2" cy="2" r="2"></circle> <circle fill="#494c4e" cx="2" cy="8" r="2"></circle> <circle fill="#494c4e" cx="2" cy="20" r="2"></circle> <circle fill="#494c4e" cx="2" cy="14" r="2"></circle> <path fill="#494c4e" d="M23.002 3H7.998C7.448 3 7 2.55 7 2.002v-.004c0-.55.45-.998.998-.998H23c.55 0 1 .45 1 .998V2c0 .55-.45 1-.998 1zM23.002 9H7.998C7.448 9 7 8.55 7 8.002v-.004c0-.55.45-.998.998-.998H23c.55 0 1 .45 1 .998V8c0 .55-.45 1-.998 1zM23.002 15H7.998c-.55 0-.998-.45-.998-.998V14c0-.55.45-1 .998-1H23c.55 0 1 .45 1 .998V14c0 .55-.45 1-.998 1zM23.002 21H7.998c-.55 0-.998-.45-.998-.998V20c0-.55.45-1 .998-1H23c.55 0 1 .45 1 .998V20c0 .55-.45 1-.998 1z"></path> </g>
+    </svg>
+    <ul id="toc" class="section-nav">
+<li class="toc-entry toc-h1"><a href="#introductions">Introductions</a></li>
+<li class="toc-entry toc-h1"><a href="#intro-to-sequential-decision-making">Intro to Sequential Decision Making</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#markov-assumption-and-mdp">Markov Assumption and MDP</a></li>
+<li class="toc-entry toc-h2"><a href="#types-of-sequential-decision-process">Types of Sequential Decision Process</a></li>
+<li class="toc-entry toc-h2"><a href="#example-of-mdp">Example of MDP</a></li>
+<li class="toc-entry toc-h2"><a href="#types-of-rl-agents">Types of RL Agents</a></li>
+<li class="toc-entry toc-h2"><a href="#key-challenges-in-making-decisions">Key Challenges in Making Decisions</a></li>
+<li class="toc-entry toc-h2"><a href="#important-components-in-rl">Important Components in RL</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#mdps-and-mrps">MDPs and MRPs</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#markov-processchain">Markov Process/Chain</a></li>
+<li class="toc-entry toc-h2"><a href="#markov-reward-process">Markov Reward Process</a></li>
+<li class="toc-entry toc-h2"><a href="#markov-decision-process">Markov Decision Process</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#mdp-policy-evaluation">MDP Policy Evaluation</a></li>
+<li class="toc-entry toc-h3"><a href="#mdp-control">MDP Control</a></li>
+<li class="toc-entry toc-h3"><a href="#mdp-policy-iteration">MDP Policy Iteration</a></li>
+<li class="toc-entry toc-h3"><a href="#mdp-value-iteration">MDP Value Iteration</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#policy-iteration-as-bellman-operations">Policy Iteration as Bellman Operations</a></li>
+<li class="toc-entry toc-h4"><a href="#contraction-operator">Contraction Operator</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#policy-evaluation-with-unknown-world">Policy Evaluation with Unknown World</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#monte-carlo-policy-evaluation">Monte Carlo Policy Evaluation</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#first-visit-mc-on-policy-evaluation">First Visit MC On Policy Evaluation</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#bias-variance-and-mse-recap">Bias, Variance and MSE Recap</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h3"><a href="#every-visit-mc-on-policy-evaluation">Every Visit MC On Policy Evaluation</a></li>
+<li class="toc-entry toc-h3"><a href="#incremental-mc-on-policy-evaluation">Incremental MC On Policy Evaluation</a></li>
+<li class="toc-entry toc-h3"><a href="#mc-on-policy-example">MC On Policy Example</a></li>
+<li class="toc-entry toc-h3"><a href="#mc-on-policy-evaluation-key-limitations">MC On Policy Evaluation Key Limitations</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#temporal-difference-learning">Temporal Difference Learning</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#td0-learning">TD(0) Learning</a></li>
+<li class="toc-entry toc-h3"><a href="#td0-learning-example">TD(0) Learning Example</a></li>
+<li class="toc-entry toc-h3"><a href="#td-learning-key-limitations">TD Learning Key Limitations</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#comparison-between-dpmc-and-td">Comparison Between DP,MC and TD</a></li>
+<li class="toc-entry toc-h2"><a href="#batch-mc-and-td">Batch MC and TD</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#properties-of-batch-md-and-td">Properties of Batch MD and TD</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#model-free-control">Model Free Control</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#mc-on-policy-policy-iteration">MC On-Policy Policy Iteration</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#mc-for-on-policy-q-evaluation">MC for On Policy Q Evaluation</a></li>
+<li class="toc-entry toc-h3"><a href="#policy-evaluation-with-exploration">Policy Evaluation with Exploration</a></li>
+<li class="toc-entry toc-h3"><a href="#epsilon-greedy-policy-improvement">$\epsilon$-greedy Policy Improvement</a></li>
+<li class="toc-entry toc-h3"><a href="#mc-on-policy-improvementcontrol">MC On Policy Improvement/Control</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#td-on-policy-policy-iteration">TD On-Policy Policy Iteration</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#sarsa">SARSA</a></li>
+<li class="toc-entry toc-h3"><a href="#convergence-properties-of-sarsa">Convergence Properties of SARSA</a></li>
+<li class="toc-entry toc-h3"><a href="#q-learning">Q-Learning</a></li>
+<li class="toc-entry toc-h3"><a href="#convergence-properties-of-q-learning">Convergence Properties of Q-Learning</a></li>
+<li class="toc-entry toc-h3"><a href="#maximization-bias">Maximization Bias</a></li>
+<li class="toc-entry toc-h3"><a href="#double-q-learning">Double Q-Learning</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#value-function-approximation">Value Function Approximation</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#vfa-for-policy-evaluation">VFA for Policy Evaluation</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#vfa-for-policy-evaluation-with-oracle">VFA for Policy Evaluation with Oracle</a></li>
+<li class="toc-entry toc-h3"><a href="#model-free-vfa-policy-evaluation">Model Free VFA Policy Evaluation</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#mc-value-function-approximation">MC Value Function Approximation</a></li>
+<li class="toc-entry toc-h4"><a href="#convergence-for-mc-linear-value-function-approximation">Convergence for MC Linear Value Function Approximation</a></li>
+<li class="toc-entry toc-h4"><a href="#batch-mc-value-function-approximation">Batch MC Value Function Approximation</a></li>
+<li class="toc-entry toc-h4"><a href="#td-learning-with-value-function-approximation">TD Learning with Value Function Approximation</a></li>
+<li class="toc-entry toc-h4"><a href="#convergence-for-td-linear-value-function-approximation">Convergence for TD Linear Value Function Approximation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#control-using-vfa">Control using VFA</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#action-value-function-approximation-with-an-oracle">Action-Value Function Approximation with an Oracle</a></li>
+<li class="toc-entry toc-h3"><a href="#model-free-vfa-control">Model Free VFA Control</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#convergence-of-vfa-control">Convergence of VFA Control</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#deep-reinforcement-learning">Deep Reinforcement Learning</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#deep-q-learning">Deep Q Learning</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#dqns-experience-replay">DQNs: Experience Replay</a></li>
+<li class="toc-entry toc-h3"><a href="#dqns-fixed-q-target">DQNs: Fixed Q-Target</a></li>
+<li class="toc-entry toc-h3"><a href="#dqn-ablation-study">DQN Ablation Study</a></li>
+<li class="toc-entry toc-h3"><a href="#dqn-summary">DQN Summary</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#double-dqn">Double DQN</a></li>
+<li class="toc-entry toc-h2"><a href="#prioritized-replay">Prioritized Replay</a></li>
+<li class="toc-entry toc-h2"><a href="#dueling-dqn-advantage-function">Dueling DQN: Advantage Function</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#identifiability-of-advantage-function">Identifiability of Advantage Function</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#imitation-learning">Imitation Learning</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#learning-from-demonstrations">Learning from Demonstrations</a></li>
+<li class="toc-entry toc-h2"><a href="#behavior-cloning">Behavior Cloning</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#dagger-dataset-aggregation">DAGGER: Dataset Aggregation</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#inverse-reinforcement-learning">Inverse Reinforcement Learning</a></li>
+<li class="toc-entry toc-h2"><a href="#apprenticeship-learning">Apprenticeship Learning</a></li>
+<li class="toc-entry toc-h2"><a href="#imitation-learning-summary">Imitation Learning Summary</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#policy-gradient">Policy Gradient</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#policy-objective-functions">Policy Objective Functions</a></li>
+<li class="toc-entry toc-h2"><a href="#policy-gradient-methods">Policy Gradient Methods</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#gradients-by-finite-differences">Gradients by Finite Differences</a></li>
+<li class="toc-entry toc-h3"><a href="#likelihood-ratioscore-function-policy-gradient">Likelihood Ratio/Score Function Policy Gradient</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#reducing-variance-in-policy-gradient">Reducing Variance in Policy Gradient</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#policy-gradient-use-temporal-structure">Policy Gradient: Use Temporal Structure</a></li>
+<li class="toc-entry toc-h3"><a href="#reinforce-algorithm">REINFORCE Algorithm</a></li>
+<li class="toc-entry toc-h3"><a href="#differentiable-policy-classes">Differentiable Policy Classes</a></li>
+<li class="toc-entry toc-h3"><a href="#policy-gradient-introduce-baseline">Policy Gradient: Introduce Baseline</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#vanilla-policy-gradient-algorithm-and-auto-differentiation">Vanilla Policy Gradient Algorithm and Auto Differentiation</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h3"><a href="#policy-gradient-actor-critic-methods">Policy Gradient: Actor-Critic Methods</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#n-step-estimators">N-step Estimators</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#automatic-step-size-tuning">Automatic Step Size Tuning</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#evaluating-off-policy-value-function">Evaluating Off-Policy Value Function</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#mm-objective-and-trust-regions">MM Objective and Trust Regions</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#trust-region-constraints">Trust Region Constraints</a></li>
+<li class="toc-entry toc-h3"><a href="#trust-region-policy-optimization">Trust Region Policy Optimization</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#monte-carlo-tree-search">Monte Carlo Tree Search</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#model-learning">Model Learning</a></li>
+<li class="toc-entry toc-h2"><a href="#planning-with-a-model">Planning with a Model</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#forward-search">Forward Search</a></li>
+<li class="toc-entry toc-h3"><a href="#simulation-based-search">Simulation-Based Search</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#simple-monte-carlo-search">Simple Monte-Carlo Search</a></li>
+<li class="toc-entry toc-h4"><a href="#monte-carlo-tree-search-1">Monte-Carlo Tree Search</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#case-study-go">Case Study: GO</a></li>
+<li class="toc-entry toc-h2"><a href="#off-policy-policy-evaluation">Off Policy Policy Evaluation</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#mc-off-policy-evaluation">MC Off Policy Evaluation</a></li>
+<li class="toc-entry toc-h3"><a href="#importance-sampling-for-policy-evaluation">Importance Sampling for Policy Evaluation</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#high-confidence-off-policy-policy-evaluation">High confidence Off-policy Policy Evaluation</a></li>
+<li class="toc-entry toc-h2"><a href="#safe-policy-improvement">Safe Policy Improvement</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#general-offline-rl-algorithms">General Offline RL Algorithms</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#conservative-q-learning-methods">Conservative Q-Learning Methods</a></li>
+<li class="toc-entry toc-h2"><a href="#model-based-offline-rl">Model-Based Offline RL</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#model-based-offline-policy-optimization">Model-based Offline Policy Optimization</a></li>
+<li class="toc-entry toc-h3"><a href="#conservative-model-based-rl">Conservative Model-Based RL</a></li>
+<li class="toc-entry toc-h3"><a href="#trajectory-transformer">Trajectory Transformer</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#summaries-and-directions-on-offline-rl">Summaries and Directions on Offline RL</a></li>
+</ul>
+</li>
+</ul>
+  </div>
+
   <div class="post-content e-content" itemprop="articleBody">
     <p>Stanford Reinforcement Learning:</p>
 
@@ -5884,6 +6114,7 @@ which is the probabiliy under the behavioral policy.</p>
 </ul>
 
   </div><a class="u-url" href="/lectures/2022@columbia/STFCS234_Reinforcement_Learning.html/" hidden></a>
+  <script src="/lectures/assets/js/my_navigation.js"></script>
 </article>
       </div>
     </main><footer class="site-footer h-card">

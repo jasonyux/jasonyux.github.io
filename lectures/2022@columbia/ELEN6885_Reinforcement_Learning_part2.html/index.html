@@ -71,6 +71,113 @@
       </time></p>
   </header>
 
+  <div class="section-nav" id="toc-all">
+    <button type="button" id="toc-close" class="toc_collapsible" title="collapse">
+      <span><strong>Table of Contents</strong></span>
+    </button>
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" mirror-in-rtl="true" fill="#000000" style="width: 18px;" id="toc-reopen" class="toc_collapsible hidden">
+      <g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <circle fill="#494c4e" cx="2" cy="2" r="2"></circle> <circle fill="#494c4e" cx="2" cy="8" r="2"></circle> <circle fill="#494c4e" cx="2" cy="20" r="2"></circle> <circle fill="#494c4e" cx="2" cy="14" r="2"></circle> <path fill="#494c4e" d="M23.002 3H7.998C7.448 3 7 2.55 7 2.002v-.004c0-.55.45-.998.998-.998H23c.55 0 1 .45 1 .998V2c0 .55-.45 1-.998 1zM23.002 9H7.998C7.448 9 7 8.55 7 8.002v-.004c0-.55.45-.998.998-.998H23c.55 0 1 .45 1 .998V8c0 .55-.45 1-.998 1zM23.002 15H7.998c-.55 0-.998-.45-.998-.998V14c0-.55.45-1 .998-1H23c.55 0 1 .45 1 .998V14c0 .55-.45 1-.998 1zM23.002 21H7.998c-.55 0-.998-.45-.998-.998V20c0-.55.45-1 .998-1H23c.55 0 1 .45 1 .998V20c0 .55-.45 1-.998 1z"></path> </g>
+    </svg>
+    <ul id="toc" class="section-nav">
+<li class="toc-entry toc-h1"><a href="#rl-packages">RL packages</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#openai-gym">OpenAI Gym</a></li>
+<li class="toc-entry toc-h2"><a href="#using-openai-gym">Using OpenAI Gym</a></li>
+<li class="toc-entry toc-h2"><a href="#stable-baselines-3">Stable-Baselines-3</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#function-approximation">Function Approximation</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#value-function-approximation">Value Function Approximation</a></li>
+<li class="toc-entry toc-h2"><a href="#rl-prediction-with-value-approximation">RL Prediction with Value Approximation</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#linear-function-approximation">Linear Function Approximation</a></li>
+<li class="toc-entry toc-h3"><a href="#mc-with-value-function-approximation">MC with Value Function Approximation</a></li>
+<li class="toc-entry toc-h3"><a href="#td0-with-value-function-approximation">TD(0) with Value Function Approximation</a></li>
+<li class="toc-entry toc-h3"><a href="#tdlambda-with-value-function-approximation">TD($\lambda$) with Value Function Approximation</a></li>
+<li class="toc-entry toc-h3"><a href="#convergence-of-prediction-algorithms">Convergence of Prediction Algorithms</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#rl-control-with-function-approximation">RL Control with Function Approximation</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#convergence-of-control-algorithms">Convergence of Control Algorithms</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#batch-method-for-rl-applications">Batch Method for RL Applications</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#policy-gradient">Policy Gradient</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#policy-objective-functions">Policy Objective Functions</a></li>
+<li class="toc-entry toc-h2"><a href="#policy-gradient-theorem">Policy Gradient Theorem</a></li>
+<li class="toc-entry toc-h2"><a href="#mc-policy-gradient-reinforce">MC Policy Gradient (REINFORCE)</a></li>
+<li class="toc-entry toc-h2"><a href="#actor-critic-methods">Actor-Critic Methods</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#compatible-function-approximation-theorem">Compatible Function Approximation Theorem</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#policy-gradient-with-advantage-function">Policy Gradient with Advantage Function</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#actor-and-critic-at-different-time-scales">Actor and Critic at Different Time Scales</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#summary-of-policy-gradient-algorithms">Summary of Policy Gradient Algorithms</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#planning-and-learning">Planning and Learning</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#rollout-algorithms-and-tree-search">Rollout Algorithms and Tree Search</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#upper-confidence-bounds">Upper Confidence Bounds</a></li>
+<li class="toc-entry toc-h3"><a href="#monte-carlo-tree-search">Monte Carlo Tree Search</a></li>
+<li class="toc-entry toc-h3"><a href="#alphago">AlphaGO</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#sample-based-planning">Sample-Based Planning</a></li>
+<li class="toc-entry toc-h2"><a href="#integrating-learning-and-planning">Integrating Learning and Planning</a></li>
+<li class="toc-entry toc-h2"><a href="#unified-view-of-planning-and-learning">Unified View of Planning and Learning</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#deep-reinforcement-learning">Deep Reinforcement Learning</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#dl-for-value-functions">DL for Value Functions</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#deep-q-network-dqn">Deep Q-Network (DQN)</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#dl-for-policy-functions">DL for Policy Functions</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#deterministic-policy-gradient">Deterministic Policy Gradient</a></li>
+<li class="toc-entry toc-h3"><a href="#deep-deterministic-policy-gradient">Deep Deterministic Policy Gradient</a></li>
+<li class="toc-entry toc-h3"><a href="#asynchronous-advantage-actor-critic-a3c">Asynchronous Advantage Actor-Critic (A3C)</a></li>
+<li class="toc-entry toc-h3"><a href="#trust-region-policy-optimization-trpo">Trust Region Policy Optimization (TRPO)</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#dl-for-model-functions">DL for Model Functions</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#alphago-zero">AlphaGo Zero</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#other-rl-topics">Other RL Topics</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#more-on-exploration-and-exploitation">More on Exploration and Exploitation</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#optimistic-initialization">Optimistic Initialization</a></li>
+<li class="toc-entry toc-h3"><a href="#regret">Regret</a></li>
+<li class="toc-entry toc-h3"><a href="#upper-confidence-bound">Upper Confidence Bound</a></li>
+<li class="toc-entry toc-h3"><a href="#baysesian-bandits">Baysesian Bandits</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#federated-reinforcement-learning">Federated Reinforcement Learning</a></li>
+<li class="toc-entry toc-h2"><a href="#multi-agent-reinforcement-learning">Multi-Agent Reinforcement Learning</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#rl-part-2-review">RL Part 2 Review</a></li>
+</ul>
+  </div>
+
   <div class="post-content e-content" itemprop="articleBody">
     <h1 id="rl-packages">RL packages</h1>
 
@@ -2155,6 +2262,7 @@ L_t
 </ul>
 
   </div><a class="u-url" href="/lectures/2022@columbia/ELEN6885_Reinforcement_Learning_part2.html/" hidden></a>
+  <script src="/lectures/assets/js/my_navigation.js"></script>
 </article>
       </div>
     </main><footer class="site-footer h-card">

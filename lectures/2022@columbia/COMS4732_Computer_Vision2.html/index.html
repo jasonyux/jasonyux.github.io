@@ -71,6 +71,238 @@
       </time></p>
   </header>
 
+  <div class="section-nav" id="toc-all">
+    <button type="button" id="toc-close" class="toc_collapsible" title="collapse">
+      <span><strong>Table of Contents</strong></span>
+    </button>
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" mirror-in-rtl="true" fill="#000000" style="width: 18px;" id="toc-reopen" class="toc_collapsible hidden">
+      <g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <circle fill="#494c4e" cx="2" cy="2" r="2"></circle> <circle fill="#494c4e" cx="2" cy="8" r="2"></circle> <circle fill="#494c4e" cx="2" cy="20" r="2"></circle> <circle fill="#494c4e" cx="2" cy="14" r="2"></circle> <path fill="#494c4e" d="M23.002 3H7.998C7.448 3 7 2.55 7 2.002v-.004c0-.55.45-.998.998-.998H23c.55 0 1 .45 1 .998V2c0 .55-.45 1-.998 1zM23.002 9H7.998C7.448 9 7 8.55 7 8.002v-.004c0-.55.45-.998.998-.998H23c.55 0 1 .45 1 .998V8c0 .55-.45 1-.998 1zM23.002 15H7.998c-.55 0-.998-.45-.998-.998V14c0-.55.45-1 .998-1H23c.55 0 1 .45 1 .998V14c0 .55-.45 1-.998 1zM23.002 21H7.998c-.55 0-.998-.45-.998-.998V20c0-.55.45-1 .998-1H23c.55 0 1 .45 1 .998V20c0 .55-.45 1-.998 1z"></path> </g>
+    </svg>
+    <ul id="toc" class="section-nav">
+<li class="toc-entry toc-h1"><a href="#introduction">Introduction</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#applications">Applications</a></li>
+<li class="toc-entry toc-h2"><a href="#perceiving-images">Perceiving Images</a></li>
+<li class="toc-entry toc-h2"><a href="#evolution-of-vision">Evolution of Vision</a></li>
+<li class="toc-entry toc-h2"><a href="#syllabus">Syllabus</a></li>
+<li class="toc-entry toc-h2"><a href="#optical-illusions">Optical Illusions</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#convolution">Convolution</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#linear-filter">Linear Filter</a></li>
+<li class="toc-entry toc-h2"><a href="#convolution-filter">Convolution Filter</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#convolution-properties">Convolution Properties</a></li>
+<li class="toc-entry toc-h3"><a href="#gaussian-filter">Gaussian Filter</a></li>
+<li class="toc-entry toc-h3"><a href="#computation-complexity">Computation Complexity</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#human-visual-system">Human Visual System</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#gabor-filters">Gabor Filters</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#image-gradients">Image Gradients</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#edge-detection-idea">Edge Detection: Idea</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#laplacian-filter">Laplacian Filter</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h3"><a href="#object-detection-idea">Object Detection: Idea</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#fourier-transform">Fourier Transform</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#backgrounds">Backgrounds</a></li>
+<li class="toc-entry toc-h2"><a href="#fourier-transform-1">Fourier Transform</a></li>
+<li class="toc-entry toc-h2"><a href="#convolution-with-ft">Convolution with FT</a></li>
+<li class="toc-entry toc-h2"><a href="#hybrid-image">Hybrid Image</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#machine-learning">Machine Learning</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#regression-review">Regression Review</a></li>
+<li class="toc-entry toc-h2"><a href="#convolution-layer-review">Convolution Layer Review</a></li>
+<li class="toc-entry toc-h2"><a href="#width-vs-depth">Width vs Depth</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#object-recognition">Object Recognition</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#classical-view-of-categories">Classical View of Categories</a></li>
+<li class="toc-entry toc-h2"><a href="#two-extremes-of-vision">Two Extremes of Vision</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#exemplar-svm">Exemplar SVM</a></li>
+<li class="toc-entry toc-h3"><a href="#deformable-part-models">Deformable Part Models</a></li>
+<li class="toc-entry toc-h3"><a href="#r-cnn">R-CNN</a></li>
+<li class="toc-entry toc-h3"><a href="#segmentation-examples">Segmentation Examples</a></li>
+<li class="toc-entry toc-h3"><a href="#residual-networks">Residual Networks</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#video-recognition">Video Recognition</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#human-behaviors">Human Behaviors</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#behavior-continuum">Behavior Continuum</a></li>
+<li class="toc-entry toc-h3"><a href="#human-brain-video-recognition">Human Brain Video Recognition</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#recurrent-neural-network">Recurrent Neural Network</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#gru-and-lstm">GRU and LSTM</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#action-classification">Action Classification</a></li>
+<li class="toc-entry toc-h2"><a href="#action-prediction">Action Prediction</a></li>
+<li class="toc-entry toc-h2"><a href="#predicting-in-eucliean-space">Predicting in Eucliean Space</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#hyperbolic-geometry">Hyperbolic Geometry</a></li>
+<li class="toc-entry toc-h3"><a href="#distortoin-of-space">Distortoin of Space</a></li>
+<li class="toc-entry toc-h3"><a href="#predicting-in-hyperbolic-space">Predicting in Hyperbolic Space</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#action-regression">Action Regression</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#object-tracking">Object Tracking</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#learning-optic-flow">Learning Optic Flow</a></li>
+<li class="toc-entry toc-h2"><a href="#tracking-dynamics">Tracking Dynamics</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#human-perception-of-color">Human Perception of Color</a></li>
+<li class="toc-entry toc-h3"><a href="#color-mapping-for-tracking">Color Mapping for Tracking</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#interpretability">Interpretability</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#grandmother-neurons-in-human">Grandmother Neurons in Human</a></li>
+<li class="toc-entry toc-h2"><a href="#deep-net-electrophysiology">Deep Net Electrophysiology</a></li>
+<li class="toc-entry toc-h2"><a href="#similarity-analysis">Similarity Analysis</a></li>
+<li class="toc-entry toc-h2"><a href="#saliency-by-occlusion">Saliency by Occlusion</a></li>
+<li class="toc-entry toc-h2"><a href="#guided-backpropagation">Guided Backpropagation</a></li>
+<li class="toc-entry toc-h2"><a href="#gradient-ascentadversarial-attack">Gradient Ascent/Adversarial Attack</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#self-supervised-learning">Self-Supervised Learning</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#common-self-supervised-tasks">Common Self-Supervised Tasks</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#using-autoencoder">Using Autoencoder</a></li>
+<li class="toc-entry toc-h3"><a href="#using-audio-data">Using Audio Data</a></li>
+<li class="toc-entry toc-h3"><a href="#using-context-prediction">Using Context Prediction</a></li>
+<li class="toc-entry toc-h3"><a href="#using-counts">Using Counts</a></li>
+<li class="toc-entry toc-h3"><a href="#using-tracked-videos">Using Tracked Videos</a></li>
+<li class="toc-entry toc-h3"><a href="#learnt-kernels-from-unsupervised-learning">Learnt Kernels from Unsupervised Learning</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#contrastive-learning">Contrastive Learning</a></li>
+<li class="toc-entry toc-h2"><a href="#causal-interpretation">Causal Interpretation</a></li>
+<li class="toc-entry toc-h2"><a href="#learning-visual-shortcuts">Learning Visual Shortcuts</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#chromatic-aberration-and-vignetting">Chromatic Aberration and Vignetting</a></li>
+<li class="toc-entry toc-h3"><a href="#using-shortcuts">Using Shortcuts</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#to-reinforcement-learning">To Reinforcement Learning</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#synthesis">Synthesis</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#view-of-generative-models">View of Generative Models</a></li>
+<li class="toc-entry toc-h2"><a href="#generation-with-vae">Generation with VAE</a></li>
+<li class="toc-entry toc-h2"><a href="#generation-with-gan">Generation with GAN</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#mode-collapse">Mode Collapse</a></li>
+<li class="toc-entry toc-h3"><a href="#cycle-gan">Cycle GAN</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#ethics-and-bias">Ethics and Bias</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#unconscious-understanding">Unconscious Understanding</a></li>
+<li class="toc-entry toc-h2"><a href="#racism-with-motion-tracking">Racism with Motion Tracking</a></li>
+<li class="toc-entry toc-h2"><a href="#film-and-beauty-cards">Film and Beauty Cards</a></li>
+<li class="toc-entry toc-h2"><a href="#image-processing-and-lena">Image Processing and Lena</a></li>
+<li class="toc-entry toc-h2"><a href="#tay-chatbot">Tay Chatbot</a></li>
+<li class="toc-entry toc-h2"><a href="#facial-bias">Facial Bias</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#criminality-and-sexual-orientation">Criminality and Sexual Orientation</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#fairness-and-ml">Fairness and ML</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#vision-and-sound">Vision and Sound</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#human-ear">Human Ear</a></li>
+<li class="toc-entry toc-h2"><a href="#sound-in-computer">Sound in Computer</a></li>
+<li class="toc-entry toc-h2"><a href="#learning-to-hear">Learning to Hear</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#cocktail-party-problem">Cocktail Party Problem</a></li>
+<li class="toc-entry toc-h3"><a href="#interpreting-soundnet">Interpreting SoundNet</a></li>
+<li class="toc-entry toc-h3"><a href="#clustering-sound">Clustering sound</a></li>
+<li class="toc-entry toc-h3"><a href="#denoising">Denoising</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#vision-and-language">Vision and Language</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#trial-architecture">Trial Architecture</a></li>
+<li class="toc-entry toc-h2"><a href="#compositional-vqa">Compositional VQA</a></li>
+<li class="toc-entry toc-h2"><a href="#relational-network">Relational Network</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#3d-vision">3D Vision</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#human-vision-and-applications">Human Vision and Applications</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#depth-without-objects-recognition">Depth without Objects Recognition</a></li>
+<li class="toc-entry toc-h3"><a href="#important-of-depth-information">Important of Depth Information</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#perceive-depth-with-machines">Perceive Depth with Machines</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#applications-of-using-depth">Applications of Using Depth</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#representation-of-3d-information">Representation of 3D Information</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#voxel-representation">Voxel Representation</a></li>
+<li class="toc-entry toc-h3"><a href="#point-cloud-representation">Point Cloud Representation</a></li>
+<li class="toc-entry toc-h3"><a href="#mesh-representation">Mesh Representation</a></li>
+<li class="toc-entry toc-h3"><a href="#implicit-surface-representation">Implicit Surface Representation</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#learnig-with-3d-represnetation">Learnig with 3D Represnetation</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#learning-with-point-clouds">Learning with Point Clouds</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#pointnet-architecture">PointNet Architecture</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h3"><a href="#learning-with-implicit-surface">Learning with Implicit Surface</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#training-scene-representation">Training Scene Representation</a></li>
+<li class="toc-entry toc-h4"><a href="#neural-radiance-fields---nerf">Neural Radiance Fields - NERF</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#final-exam">Final Exam</a></li>
+</ul>
+  </div>
+
   <div class="post-content e-content" itemprop="articleBody">
     <h1 id="introduction">Introduction</h1>
 
@@ -5587,6 +5819,7 @@ y_i = g(w_y^T h_i)\]
 </ul>
 
   </div><a class="u-url" href="/lectures/2022@columbia/COMS4732_Computer_Vision2.html/" hidden></a>
+  <script src="/lectures/assets/js/my_navigation.js"></script>
 </article>
       </div>
     </main><footer class="site-footer h-card">

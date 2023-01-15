@@ -71,6 +71,499 @@
       </time></p>
   </header>
 
+  <div class="section-nav" id="toc-all">
+    <button type="button" id="toc-close" class="toc_collapsible" title="collapse">
+      <span><strong>Table of Contents</strong></span>
+    </button>
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" mirror-in-rtl="true" fill="#000000" style="width: 18px;" id="toc-reopen" class="toc_collapsible hidden">
+      <g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <circle fill="#494c4e" cx="2" cy="2" r="2"></circle> <circle fill="#494c4e" cx="2" cy="8" r="2"></circle> <circle fill="#494c4e" cx="2" cy="20" r="2"></circle> <circle fill="#494c4e" cx="2" cy="14" r="2"></circle> <path fill="#494c4e" d="M23.002 3H7.998C7.448 3 7 2.55 7 2.002v-.004c0-.55.45-.998.998-.998H23c.55 0 1 .45 1 .998V2c0 .55-.45 1-.998 1zM23.002 9H7.998C7.448 9 7 8.55 7 8.002v-.004c0-.55.45-.998.998-.998H23c.55 0 1 .45 1 .998V8c0 .55-.45 1-.998 1zM23.002 15H7.998c-.55 0-.998-.45-.998-.998V14c0-.55.45-1 .998-1H23c.55 0 1 .45 1 .998V14c0 .55-.45 1-.998 1zM23.002 21H7.998c-.55 0-.998-.45-.998-.998V20c0-.55.45-1 .998-1H23c.55 0 1 .45 1 .998V20c0 .55-.45 1-.998 1z"></path> </g>
+    </svg>
+    <ul id="toc" class="section-nav">
+<li class="toc-entry toc-h1"><a href="#chapter-1-basics">Chapter 1 Basics</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#the-network-edge">The Network Edge</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#access-networks">Access Networks</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#digital-subscriber-line">Digital Subscriber Line</a></li>
+<li class="toc-entry toc-h4"><a href="#cable-internet-access">Cable Internet Access</a></li>
+<li class="toc-entry toc-h4"><a href="#fiber-to-home">Fiber to Home</a></li>
+<li class="toc-entry toc-h4"><a href="#ethernet-and-wifi">Ethernet and WiFi</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#network-core">Network Core</a></li>
+<li class="toc-entry toc-h2"><a href="#performance-delay-loss-throughput">Performance (Delay, Loss, Throughput)</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#traceroute">Traceroute</a></li>
+<li class="toc-entry toc-h3"><a href="#queuing-delay-and-packet-loss">Queuing Delay and Packet Loss</a></li>
+<li class="toc-entry toc-h3"><a href="#throughput">Throughput</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#protocol-layers-and-their-service-models">Protocol Layers and Their Service Models</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#protocol-layering">Protocol Layering</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#application-layer">Application Layer</a></li>
+<li class="toc-entry toc-h4"><a href="#transport-layer">Transport Layer</a></li>
+<li class="toc-entry toc-h4"><a href="#network-layer">Network Layer</a></li>
+<li class="toc-entry toc-h4"><a href="#link-layer">Link Layer</a></li>
+<li class="toc-entry toc-h4"><a href="#physical-layer">Physical Layer</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h3"><a href="#encapsulation">Encapsulation</a></li>
+<li class="toc-entry toc-h3"><a href="#protocol-stack-variants">Protocol Stack Variants</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#chapter-2-application-layer">Chapter 2 Application Layer</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#principles-of-network-applications">Principles of Network Applications</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#application-architecture">Application Architecture</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#client-server-architecture">Client-Server Architecture</a></li>
+<li class="toc-entry toc-h4"><a href="#p2p-architecture">P2P Architecture</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h3"><a href="#processes-communicating">Processes Communicating</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#interface-between-process-and-computer-network">Interface between Process and Computer Network</a></li>
+<li class="toc-entry toc-h4"><a href="#addressing-processes">Addressing Processes</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h3"><a href="#transport-services-available-to-applications">Transport Services Available to Applications</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#transport-services-provided-by-the-internet">Transport Services Provided by the Internet</a>
+<ul>
+<li class="toc-entry toc-h5"><a href="#tcp-services">TCP Services</a></li>
+<li class="toc-entry toc-h5"><a href="#udp-services">UDP Services</a></li>
+<li class="toc-entry toc-h5"><a href="#tcp-vs-udp">TCP vs UDP</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-entry toc-h3"><a href="#securing-tcp">Securing TCP</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#socket-programming">Socket Programming</a></li>
+<li class="toc-entry toc-h2"><a href="#web-and-http">Web and HTTP</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#http-overview">HTTP Overview</a></li>
+<li class="toc-entry toc-h3"><a href="#http-connections">HTTP Connections</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#non-persistent-http-example">Non-persistent HTTP: example</a></li>
+<li class="toc-entry toc-h4"><a href="#persistent-http">Persistent HTTP</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h3"><a href="#http-message-format">HTTP Message Format</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#http-request-message">HTTP Request Message</a>
+<ul>
+<li class="toc-entry toc-h5"><a href="#conditional-get">Conditional GET</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h4"><a href="#http-response-message">HTTP Response Message</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h3"><a href="#maintaining-state-cookies">Maintaining State: Cookies</a></li>
+<li class="toc-entry toc-h3"><a href="#http2">HTTP/2</a></li>
+<li class="toc-entry toc-h3"><a href="#http3">HTTP/3</a></li>
+<li class="toc-entry toc-h3"><a href="#web-caching">Web Caching</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#dns-domain-name-system">DNS: Domain Name System</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#dns-services">DNS Services</a></li>
+<li class="toc-entry toc-h3"><a href="#overview-of-how-dns-works">Overview of How DNS Works</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#root-name-server">Root Name Server</a></li>
+<li class="toc-entry toc-h4"><a href="#top-level-domain-server">Top Level Domain Server</a></li>
+<li class="toc-entry toc-h4"><a href="#local-name-server">Local Name Server</a></li>
+<li class="toc-entry toc-h4"><a href="#iterative-query">Iterative Query</a></li>
+<li class="toc-entry toc-h4"><a href="#recursive-query">Recursive Query</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h3"><a href="#dns-records-and-messages">DNS Records and Messages</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#dns-messages">DNS Messages</a></li>
+<li class="toc-entry toc-h4"><a href="#inserting-records-into-dns-database">Inserting Records into DNS Database</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h3"><a href="#dns-security">DNS Security</a></li>
+<li class="toc-entry toc-h3"><a href="#facebook-dns-outrage">Facebook DNS Outrage</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#video-streaming-and-content-distribution-networks">Video Streaming and Content Distribution Networks</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#internet-video">Internet Video.</a></li>
+<li class="toc-entry toc-h3"><a href="#http-streaming-and-dash">HTTP Streaming and DASH</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#dash---dynamic-adaptative-streaming-over-http">DASH - Dynamic Adaptative Streaming over HTTP</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h3"><a href="#cdn---content-distribution-networks">CDN - Content Distribution Networks</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#cdn-operation">CDN Operation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#peer-to-peer-file-distribution">Peer-to-Peer File Distribution</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#scalability-of-p2p-architecture">Scalability of P2P Architecture</a></li>
+<li class="toc-entry toc-h3"><a href="#p2p-file-distribution">P2P File Distribution</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#chapter-3-transport-layer">Chapter 3 Transport Layer</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#transport-services-and-protocol">Transport Services and Protocol</a></li>
+<li class="toc-entry toc-h2"><a href="#multiplexing-and-demultiplexing">Multiplexing and Demultiplexing</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#udp-demultiplexing">UDP (De)Multiplexing</a></li>
+<li class="toc-entry toc-h3"><a href="#tcp-demultiplexing">TCP (De)Multiplexing</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#user-datagram-protocol">User Datagram Protocol</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#udp-action">UDP Action</a></li>
+<li class="toc-entry toc-h3"><a href="#udp-segment-structure">UDP Segment Structure</a></li>
+<li class="toc-entry toc-h3"><a href="#udp-checksum">UDP Checksum</a></li>
+<li class="toc-entry toc-h3"><a href="#udp-summary">UDP Summary</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#principle-of-reliable-data-transfer">Principle of Reliable Data Transfer</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#building-a-reliable-data-transfer-protocol">Building a Reliable Data Transfer Protocol</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#simplest-case-rdt10">Simplest Case: RDT1.0</a></li>
+<li class="toc-entry toc-h4"><a href="#bit-error-rdt20">Bit Error: RDT2.0</a></li>
+<li class="toc-entry toc-h4"><a href="#feedback-corrupted-rdt21">Feedback Corrupted: RDT2.1</a></li>
+<li class="toc-entry toc-h4"><a href="#nak-free-rdt22">NAK-Free: RDT2.2</a></li>
+<li class="toc-entry toc-h4"><a href="#error-and-loss-rdt30">Error and Loss: RDT3.0</a></li>
+<li class="toc-entry toc-h4"><a href="#rdt30-timeline">RDT3.0: Timeline</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h3"><a href="#stop-and-wait-vs-pipelining">Stop-and-Wait vs Pipelining</a></li>
+<li class="toc-entry toc-h3"><a href="#go-back-n-gbn">Go-Back-N (GBN)</a></li>
+<li class="toc-entry toc-h3"><a href="#selective-repeat-sr">Selective Repeat (SR)</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#dilemma-with-selective-repeat">Dilemma with Selective Repeat</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h3"><a href="#gbn-vs-sr-model">GBN vs SR Model</a></li>
+<li class="toc-entry toc-h3"><a href="#summary">Summary</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#tcp">TCP</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#the-tcp-connection">The TCP Connection</a></li>
+<li class="toc-entry toc-h3"><a href="#tcp-segment-structure">TCP Segment Structure</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#sequence-and-acknowledgement-number">Sequence and Acknowledgement Number</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h3"><a href="#round-trip-time-estimation-and-timeout">Round-Trip Time Estimation and Timeout</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#estimating-rtt">Estimating RTT</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h3"><a href="#tcp-reliable-data-transfer">TCP Reliable Data Transfer</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#tcp-sender">TCP Sender</a></li>
+<li class="toc-entry toc-h4"><a href="#tcp-receiver">TCP Receiver</a></li>
+<li class="toc-entry toc-h4"><a href="#tcp-retransmissions">TCP Retransmissions</a>
+<ul>
+<li class="toc-entry toc-h5"><a href="#fast-retransmit">Fast Retransmit</a></li>
+<li class="toc-entry toc-h5"><a href="#doubling-timeout-interval">Doubling Timeout Interval</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-entry toc-h3"><a href="#tcp-flow-control">TCP Flow Control</a></li>
+<li class="toc-entry toc-h3"><a href="#tcp-connection-management">TCP Connection Management</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#2-way-handshake">2 Way Handshake</a></li>
+<li class="toc-entry toc-h4"><a href="#3-way-handshake">3 Way Handshake</a></li>
+<li class="toc-entry toc-h4"><a href="#closing-tcp-connection">Closing TCP Connection</a></li>
+<li class="toc-entry toc-h4"><a href="#tcp-states">TCP States</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h3"><a href="#principles-of-congestion-control">Principles of Congestion Control</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#causes-and-the-costs-of-congestion">Causes and the Costs of Congestion</a>
+<ul>
+<li class="toc-entry toc-h5"><a href="#summary-of-congestion-situations">Summary of Congestion Situations</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-entry toc-h3"><a href="#tcp-congestion-control">TCP Congestion Control</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#classic-tcp-congestion-control">Classic TCP Congestion Control</a></li>
+<li class="toc-entry toc-h4"><a href="#tcp-congestion-control-algorithms">TCP Congestion-Control Algorithms</a>
+<ul>
+<li class="toc-entry toc-h5"><a href="#component-slow-start">Component: Slow Start</a></li>
+<li class="toc-entry toc-h5"><a href="#component-congestion-avoidance">Component: Congestion Avoidance</a></li>
+<li class="toc-entry toc-h5"><a href="#component-fast-recovery">Component: Fast Recovery</a></li>
+<li class="toc-entry toc-h5"><a href="#summary-aimd">Summary: AIMD</a></li>
+<li class="toc-entry toc-h5"><a href="#tcp-cubic">TCP CUBIC</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#network-assisted-and-delay-based-algorithm">Network Assisted and Delay-Based Algorithm</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#explicit-congestion-notification">Explicit Congestion Notification</a></li>
+<li class="toc-entry toc-h3"><a href="#delay-based-congestion-control">Delay-Based Congestion Control</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#fairness">Fairness</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#fairness-and-udp">Fairness and UDP</a></li>
+<li class="toc-entry toc-h3"><a href="#fairness-and-parallel-tcp">Fairness and Parallel TCP</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#evolving-transport-layer-functionality">Evolving Transport Layer Functionality</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#quic-quick-udp-internet-connections">QUIC: Quick UDP Internet Connections</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#chapter-4-network-layer-data-plane">Chapter 4 Network Layer: Data Plane</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#overview">Overview</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#quick-overview-of-control-plane">Quick Overview of Control Plane</a></li>
+<li class="toc-entry toc-h3"><a href="#overview-of-services">Overview of Services</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#inside-a-router">Inside A Router</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#input-port-processing">Input Port Processing</a></li>
+<li class="toc-entry toc-h3"><a href="#switching-fabric">Switching Fabric</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#switching-via-memory">Switching via Memory</a></li>
+<li class="toc-entry toc-h4"><a href="#switching-via-bus">Switching via Bus</a></li>
+<li class="toc-entry toc-h4"><a href="#switching-via-interconnection-network">Switching via Interconnection Network</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h3"><a href="#output-port-processing">Output Port Processing</a></li>
+<li class="toc-entry toc-h3"><a href="#queueing-in-router">Queueing in Router</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#input-port-queueing">Input Port Queueing</a></li>
+<li class="toc-entry toc-h4"><a href="#output-port-queueing">Output Port Queueing</a></li>
+<li class="toc-entry toc-h4"><a href="#buffer-length">Buffer Length</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h3"><a href="#packet-scheduling">Packet Scheduling</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#scheduling-fifo">Scheduling: FIFO</a></li>
+<li class="toc-entry toc-h4"><a href="#scheduling-priority">Scheduling: Priority</a></li>
+<li class="toc-entry toc-h4"><a href="#scheduling-rr">Scheduling: RR</a></li>
+<li class="toc-entry toc-h4"><a href="#scheduling-wfq">Scheduling: WFQ</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#the-ip-protocol-ipv4-ipv6-and-more">The IP Protocol: IPv4, IPv6 and more</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#ipv4-datagram-format">IPv4 Datagram Format</a></li>
+<li class="toc-entry toc-h3"><a href="#ipv4-addressing">IPv4 Addressing</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#obtaining-host-address-dhcp">Obtaining Host Address: DHCP</a></li>
+<li class="toc-entry toc-h4"><a href="#obtaining-network-address-address-aggregation">Obtaining Network Address: Address Aggregation</a></li>
+<li class="toc-entry toc-h4"><a href="#network-address-translation-nat">Network Address Translation: NAT</a></li>
+<li class="toc-entry toc-h4"><a href="#obtaining-block-of-address">Obtaining Block of Address</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h3"><a href="#ipv6">IPv6</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#tunning-from-ipv4-to-ipv6">Tunning from IPv4 to IPv6</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#generalized-forwarding-and-sdn">Generalized Forwarding and SDN</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#chapter-5-network-layer-control-plane">Chapter 5 Network Layer: Control Plane</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#routing-algorithms">Routing Algorithms</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#link-state-routing-algorithm">Link-State Routing Algorithm</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#oscillations-of-dijkstras-algorithm">Oscillations of Dijkstra’s Algorithm</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h3"><a href="#distance-vector-routing-algorithm">Distance-Vector Routing Algorithm</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#link-cost-changes-and-link-failure">Link Cost Changes and Link Failure</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h3"><a href="#comparison-between-ls-and-dv">Comparison between LS and DV</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#intra-as-routing-in-the-internet-ospf">Intra-AS Routing in the Internet: OSPF</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#ospf">OSPF</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#inter-as-routing-bgp">Inter-AS Routing: BGP</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#advertising-bgp-route-information">Advertising BGP Route Information</a></li>
+<li class="toc-entry toc-h3"><a href="#determining-the-best-routes">Determining the Best Routes</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#hot-potato-routing">Hot Potato Routing</a></li>
+<li class="toc-entry toc-h4"><a href="#route-selection-algorithm">Route-Selection Algorithm</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h3"><a href="#routing-policy">Routing Policy</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#software-defined-network">Software Defined Network</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#sdn-controller-architecture">SDN Controller Architecture</a></li>
+<li class="toc-entry toc-h3"><a href="#openflow-protocol">OpenFlow Protocol</a></li>
+<li class="toc-entry toc-h3"><a href="#interaction-with-network-application-layer">Interaction with Network Application Layer</a></li>
+<li class="toc-entry toc-h3"><a href="#sdn-challenges">SDN Challenges</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#icmp-internet-control-message-protocol">ICMP: Internet Control Message Protocol</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#icmp-messages">ICMP Messages</a></li>
+<li class="toc-entry toc-h3"><a href="#examples-of-icmp-usages">Examples of ICMP Usages</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#network-management-snmp-and-netconfyang">Network Management, SNMP, and NETCONF/YANG</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#network-management-framework">Network Management Framework</a></li>
+<li class="toc-entry toc-h3"><a href="#snmp-and-mib">SNMP and MIB</a></li>
+<li class="toc-entry toc-h3"><a href="#netconf-and-yang">NETCONF and YANG</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#yang">YANG</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#chapter-6-link-layer">Chapter 6 Link Layer</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#introduction-to-the-link-layer">Introduction to the Link Layer</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#link-layer-services">Link Layer Services</a></li>
+<li class="toc-entry toc-h3"><a href="#where-is-the-link-layer-implemented">Where Is the Link Layer Implemented</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#error-detection-and-correction">Error Detection and Correction</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#parity-checks">Parity Checks</a></li>
+<li class="toc-entry toc-h3"><a href="#checksumming-methods">Checksumming Methods</a></li>
+<li class="toc-entry toc-h3"><a href="#cyclic-redundancy-check-crc">Cyclic Redundancy Check (CRC)</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#multiple-access-links-and-protocols">Multiple Access Links and Protocols</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#channel-partitioning">Channel Partitioning</a></li>
+<li class="toc-entry toc-h3"><a href="#random-access-protocol">Random Access Protocol</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#slotted-aloha">Slotted ALOHA</a></li>
+<li class="toc-entry toc-h4"><a href="#pure-aloha">Pure ALOHA</a></li>
+<li class="toc-entry toc-h4"><a href="#csma">CSMA</a></li>
+<li class="toc-entry toc-h4"><a href="#csmacd">CSMA/CD</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h3"><a href="#taking-turns-protocols">Taking-Turns Protocols</a></li>
+<li class="toc-entry toc-h3"><a href="#docsis-protocol-for-cable-access">DOCSIS: Protocol for Cable Access</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#switched-local-area-network">Switched Local Area Network</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#link-layer-addressing-and-arp">Link-Layer Addressing and ARP</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#mac-addresses">MAC Addresses</a></li>
+<li class="toc-entry toc-h4"><a href="#arp-address-resolution">ARP: Address Resolution</a></li>
+<li class="toc-entry toc-h4"><a href="#routing-to-another-subnet">Routing to Another Subnet</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h3"><a href="#ethernet">Ethernet</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#link-layer-switches">Link-Layer Switches</a>
+<ul>
+<li class="toc-entry toc-h5"><a href="#forwarding-and-filtering">Forwarding and Filtering</a></li>
+<li class="toc-entry toc-h5"><a href="#self-learning">Self-Learning</a></li>
+<li class="toc-entry toc-h5"><a href="#properties-of-switches">Properties of Switches</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-entry toc-h3"><a href="#switched-network-example">Switched Network Example</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#vlans">VLANS</a></li>
+<li class="toc-entry toc-h2"><a href="#data-center-networking">Data Center Networking</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#data-center-architectures">Data Center Architectures</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#load-balancing-in-data-centers">Load Balancing in Data Centers</a></li>
+<li class="toc-entry toc-h4"><a href="#hierarchical-structure-in-real-life">Hierarchical structure in Real life</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h3"><a href="#datacenter-networks-protocol-innovations">Datacenter Networks: Protocol Innovations</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#a-day-in-life-of-web-page-request">A Day in Life of Web Page Request</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#miscellaneous">Miscellaneous</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#wireshark">Wireshark</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#intro-to-wireshark">Intro to Wireshark</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#distributed-hash-tables">Distributed Hash Tables</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#dht-step-1-the-hash">DHT Step 1: The Hash</a></li>
+<li class="toc-entry toc-h3"><a href="#dht-step-2-routing">DHT Step 2: Routing</a></li>
+<li class="toc-entry toc-h3"><a href="#case-studies">Case Studies</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#can">CAN</a>
+<ul>
+<li class="toc-entry toc-h5"><a href="#can-routing">CAN Routing</a></li>
+<li class="toc-entry toc-h5"><a href="#can-node-insertion">CAN Node Insertion</a></li>
+<li class="toc-entry toc-h5"><a href="#can-removal-process">CAN Removal Process</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h4"><a href="#chord">Chord</a>
+<ul>
+<li class="toc-entry toc-h5"><a href="#chord-routing">Chord Routing</a></li>
+<li class="toc-entry toc-h5"><a href="#chord-node-insertion">Chord Node Insertion</a></li>
+<li class="toc-entry toc-h5"><a href="#chord-node-deletion">Chord Node Deletion</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#using-newudpl">Using newudpl</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#errors-encounted">Errors Encounted</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+  </div>
+
   <div class="post-content e-content" itemprop="articleBody">
     <style type="text/css">@page { margin-left: 2in; margin-right: -0.25in; } img{ width: 60%; }</style>
 
@@ -10313,6 +10806,7 @@ I got from Darwin I got Xiaos-MBP.lan1, <span class="o">(</span>null<span class=
 
 
   </div><a class="u-url" href="/lectures/2021@columbia/CSEE4119_Computer_Networks.html/" hidden></a>
+  <script src="/lectures/assets/js/my_navigation.js"></script>
 </article>
       </div>
     </main><footer class="site-footer h-card">

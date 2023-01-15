@@ -71,6 +71,224 @@
       </time></p>
   </header>
 
+  <div class="section-nav" id="toc-all">
+    <button type="button" id="toc-close" class="toc_collapsible" title="collapse">
+      <span><strong>Table of Contents</strong></span>
+    </button>
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" mirror-in-rtl="true" fill="#000000" style="width: 18px;" id="toc-reopen" class="toc_collapsible hidden">
+      <g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <circle fill="#494c4e" cx="2" cy="2" r="2"></circle> <circle fill="#494c4e" cx="2" cy="8" r="2"></circle> <circle fill="#494c4e" cx="2" cy="20" r="2"></circle> <circle fill="#494c4e" cx="2" cy="14" r="2"></circle> <path fill="#494c4e" d="M23.002 3H7.998C7.448 3 7 2.55 7 2.002v-.004c0-.55.45-.998.998-.998H23c.55 0 1 .45 1 .998V2c0 .55-.45 1-.998 1zM23.002 9H7.998C7.448 9 7 8.55 7 8.002v-.004c0-.55.45-.998.998-.998H23c.55 0 1 .45 1 .998V8c0 .55-.45 1-.998 1zM23.002 15H7.998c-.55 0-.998-.45-.998-.998V14c0-.55.45-1 .998-1H23c.55 0 1 .45 1 .998V14c0 .55-.45 1-.998 1zM23.002 21H7.998c-.55 0-.998-.45-.998-.998V20c0-.55.45-1 .998-1H23c.55 0 1 .45 1 .998V20c0 .55-.45 1-.998 1z"></path> </g>
+    </svg>
+    <ul id="toc" class="section-nav">
+<li class="toc-entry toc-h1"><a href="#week-1---logistics-and-intro">Week 1 - Logistics and Intro</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#introduction">Introduction</a></li>
+<li class="toc-entry toc-h2"><a href="#overview-of-database-design">Overview of Database Design</a></li>
+<li class="toc-entry toc-h2"><a href="#er-diagram-basics">ER Diagram Basics</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#key-and-participation-constraints">Key and Participation Constraints</a></li>
+<li class="toc-entry toc-h3"><a href="#weak-entities">Weak Entities</a></li>
+<li class="toc-entry toc-h3"><a href="#is-a-hierarchy">“Is A” Hierarchy</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#week-2">Week 2</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#er-diagram-continued">ER Diagram Continued</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#aggregation">Aggregation</a></li>
+<li class="toc-entry toc-h3"><a href="#conceptual-design-using-er-model">Conceptual Design Using ER Model</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#entity-vs-attribute">Entity vs. Attribute</a></li>
+<li class="toc-entry toc-h4"><a href="#entity-vs-relationship">Entity vs. Relationship</a></li>
+<li class="toc-entry toc-h4"><a href="#binary-vs-ternary-relationship">Binary vs. Ternary Relationship</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h3"><a href="#summaries-on-er-model">Summaries on ER Model</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#relational-model-and-database">Relational Model and Database</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#definitions">Definitions</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#basic-sql-query-language">Basic SQL Query Language</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#crud-relationstables-in-sql">CRUD Relations/Tables in SQL</a></li>
+<li class="toc-entry toc-h3"><a href="#integrity-constraints">Integrity Constraints</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#primary-key-constraint">Primary Key Constraint</a></li>
+<li class="toc-entry toc-h4"><a href="#primaryuniquenot-null">Primary/Unique/Not null</a></li>
+<li class="toc-entry toc-h4"><a href="#foreign-keys">Foreign Keys</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h3"><a href="#views">Views</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#week-3">Week 3</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#er-to-relational-database">ER to Relational Database</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#entity-sets-to-tables">Entity Sets to Tables</a></li>
+<li class="toc-entry toc-h3"><a href="#relationship-sets-to-tables">Relationship Sets to Tables</a></li>
+<li class="toc-entry toc-h3"><a href="#weak-entity-to-tables">Weak Entity to Tables</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#compact-sql-notation">Compact SQL Notation</a></li>
+<li class="toc-entry toc-h2"><a href="#isa-hierarchies">ISA Hierarchies</a></li>
+<li class="toc-entry toc-h2"><a href="#er-design-examples">ER Design Examples</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#orders-example-1">Orders example #1</a></li>
+<li class="toc-entry toc-h3"><a href="#orders-example-2">Orders example #2</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#relational-query-languages">Relational Query Languages</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#relational-algebra">Relational Algebra</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#operators-definitions">Operators Definitions</a></li>
+<li class="toc-entry toc-h4"><a href="#example">Example</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#sql-queries">SQL Queries</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#basic-sql-structures">Basic SQL Structures</a></li>
+<li class="toc-entry toc-h2"><a href="#join-syntax">Join Syntax</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#inner-join">Inner Join</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#expression-and-strings">Expression and Strings</a></li>
+<li class="toc-entry toc-h2"><a href="#set-operations">Set Operations</a></li>
+<li class="toc-entry toc-h2"><a href="#nested-queries">Nested Queries</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#nested-queries-and-in">Nested Queries and IN</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#rewriting-intersect-with-in">Rewriting INTERSECT with IN</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h3"><a href="#nested-queries-and-from">Nested Queries and FROM</a></li>
+<li class="toc-entry toc-h3"><a href="#multi-level-nested-queries">Multi-level Nested Queries</a></li>
+<li class="toc-entry toc-h3"><a href="#nested-queries-with-correlation">Nested Queries with Correlation</a></li>
+<li class="toc-entry toc-h3"><a href="#nested-queries-with-set-comparison">Nested Queries with Set Comparison</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#division-in-sql">Division in SQL</a></li>
+<li class="toc-entry toc-h2"><a href="#aggregate-operators">Aggregate Operators</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#advanced-sql-constraints">Advanced SQL Constraints</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#check-constraints">CHECK Constraints</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#check-with-sql-queries">CHECK with SQL Queries</a></li>
+<li class="toc-entry toc-h3"><a href="#check-with-assertion">CHECK with Assertion</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#using-assertion-for-total-participation">Using Assertion for Total Participation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#advanced-sql-queries">Advanced SQL Queries</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#group-by">Group By</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#group-by-with-correlated-queries">Group By With Correlated Queries</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#null-values">Null Values</a></li>
+<li class="toc-entry toc-h2"><a href="#other-joins">Other Joins</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#outer-joins">Outer Joins</a></li>
+<li class="toc-entry toc-h3"><a href="#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#values">Values</a></li>
+<li class="toc-entry toc-h2"><a href="#building-up-complicated-sql-statements">Building up Complicated SQL Statements</a></li>
+<li class="toc-entry toc-h2"><a href="#with---auxiliary-sql">With - Auxiliary SQL</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#security-and-authorization">Security and Authorization</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#access-control">Access Control</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#grant-and-revoke">GRANT and Revoke</a></li>
+<li class="toc-entry toc-h3"><a href="#grant-and-revoke-on-views">Grant and Revoke on Views</a></li>
+<li class="toc-entry toc-h3"><a href="#views-and-security">Views and Security</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#authorization-graph">Authorization Graph</a></li>
+<li class="toc-entry toc-h2"><a href="#role-based-authorization">Role-Based Authorization</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#database-application-development">Database Application Development</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#sql-in-application-code">SQL in Application Code</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#embedded-sql">Embedded SQL</a></li>
+<li class="toc-entry toc-h3"><a href="#cursor">Cursor</a></li>
+<li class="toc-entry toc-h3"><a href="#dynamic-sql">Dynamic SQL</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#drivers-and-database-apis">Drivers and Database APIs</a></li>
+<li class="toc-entry toc-h2"><a href="#stored-procedures">Stored Procedures</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#sqlpsm">SQL/PSM</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#triggers---server-programming">Triggers - Server Programming</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#order-of-execution">Order of Execution</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#condition-in-triggers">Condition in Triggers</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#examples-of-triggers">Examples of Triggers</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#normal-forms">Normal Forms</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#functional-dependency">Functional Dependency</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#properties-of-functional-dependency">Properties of Functional Dependency</a></li>
+<li class="toc-entry toc-h3"><a href="#reduction-factor">Reduction Factor</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#lock-based-concurrency-control">Lock-Based Concurrency Control</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#deadlocks">Deadlocks</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#final">Final</a></li>
+<li class="toc-entry toc-h1"><a href="#beyond-cs4111">Beyond CS4111</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#samples-of-newer-dbms">Samples of Newer DBMS</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#useful-tricks">Useful Tricks</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#good-queries">Good Queries</a></li>
+<li class="toc-entry toc-h2"><a href="#check-constraint">Check Constraint</a></li>
+<li class="toc-entry toc-h2"><a href="#function">Function</a></li>
+<li class="toc-entry toc-h2"><a href="#trigger">Trigger</a></li>
+<li class="toc-entry toc-h2"><a href="#composite-type">Composite Type</a></li>
+</ul>
+</li>
+</ul>
+  </div>
+
   <div class="post-content e-content" itemprop="articleBody">
     <style type="text/css">@page { margin-left: 12em; } img {width: 50%;}</style>
 
@@ -6164,6 +6382,7 @@ Excluded: all other topics, namely, Normalization (deck 07), and Embedded SQL, A
 </blockquote>
 
   </div><a class="u-url" href="/lectures/2021@columbia/COMS4111_Intro_to_Databases.html/" hidden></a>
+  <script src="/lectures/assets/js/my_navigation.js"></script>
 </article>
       </div>
     </main><footer class="site-footer h-card">

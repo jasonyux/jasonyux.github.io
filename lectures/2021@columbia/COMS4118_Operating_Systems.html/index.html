@@ -71,6 +71,389 @@
       </time></p>
   </header>
 
+  <div class="section-nav" id="toc-all">
+    <button type="button" id="toc-close" class="toc_collapsible" title="collapse">
+      <span><strong>Table of Contents</strong></span>
+    </button>
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" mirror-in-rtl="true" fill="#000000" style="width: 18px;" id="toc-reopen" class="toc_collapsible hidden">
+      <g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <circle fill="#494c4e" cx="2" cy="2" r="2"></circle> <circle fill="#494c4e" cx="2" cy="8" r="2"></circle> <circle fill="#494c4e" cx="2" cy="20" r="2"></circle> <circle fill="#494c4e" cx="2" cy="14" r="2"></circle> <path fill="#494c4e" d="M23.002 3H7.998C7.448 3 7 2.55 7 2.002v-.004c0-.55.45-.998.998-.998H23c.55 0 1 .45 1 .998V2c0 .55-.45 1-.998 1zM23.002 9H7.998C7.448 9 7 8.55 7 8.002v-.004c0-.55.45-.998.998-.998H23c.55 0 1 .45 1 .998V8c0 .55-.45 1-.998 1zM23.002 15H7.998c-.55 0-.998-.45-.998-.998V14c0-.55.45-1 .998-1H23c.55 0 1 .45 1 .998V14c0 .55-.45 1-.998 1zM23.002 21H7.998c-.55 0-.998-.45-.998-.998V20c0-.55.45-1 .998-1H23c.55 0 1 .45 1 .998V20c0 .55-.45 1-.998 1z"></path> </g>
+    </svg>
+    <ul id="toc" class="section-nav">
+<li class="toc-entry toc-h1"><a href="#week-1---introduction">Week 1 - Introduction</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#os-1-logistics">OS 1 Logistics</a></li>
+<li class="toc-entry toc-h2"><a href="#what-is-an-os">What is an OS</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#what-os-do">What OS Do</a></li>
+<li class="toc-entry toc-h3"><a href="#system-calls">System Calls</a></li>
+<li class="toc-entry toc-h3"><a href="#creating-a-process">Creating a Process</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#booting-an-os">Booting an OS</a></li>
+<li class="toc-entry toc-h2"><a href="#questions">Questions</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#week-2">Week 2</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#using-your-computer-system">Using your Computer System</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#interrupts">Interrupts</a></li>
+<li class="toc-entry toc-h3"><a href="#exception">Exception</a></li>
+<li class="toc-entry toc-h3"><a href="#cpu-modes">CPU Modes</a></li>
+<li class="toc-entry toc-h3"><a href="#init-process">Init Process</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#week-3---4">Week 3 - 4</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#processes">Processes</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#life-cycle-of-a-process">Life Cycle of a Process</a></li>
+<li class="toc-entry toc-h3"><a href="#process-scheduling">Process Scheduling</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#context-switch">Context Switch</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h3"><a href="#process-creation">Process Creation</a></li>
+<li class="toc-entry toc-h3"><a href="#process-termination">Process Termination</a></li>
+<li class="toc-entry toc-h3"><a href="#process-communication">Process Communication</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#message-passing">Message Passing</a></li>
+<li class="toc-entry toc-h4"><a href="#shared-memory">Shared Memory</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#threads-and-cores">Threads and Cores</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#multithreading-models">Multithreading Models</a></li>
+<li class="toc-entry toc-h3"><a href="#linux-implementation-of-threads">Linux Implementation of Threads</a>
+<ul>
+<li class="toc-entry toc-h5"><a href="#forking-implementation">Forking Implementation</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h3"><a href="#threading-apis">Threading APIs</a></li>
+<li class="toc-entry toc-h3"><a href="#thread-pools">Thread Pools</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#os-control">OS Control</a></li>
+<li class="toc-entry toc-h2"><a href="#kernel">Kernel</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#kernel-system-calls">Kernel System Calls</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#system-call-example">System Call Example</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#week-5">Week 5</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#process-synchronization">Process Synchronization</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#race-condition-and-lock">Race Condition and Lock</a></li>
+<li class="toc-entry toc-h3"><a href="#petersons-solution">Peterson’s Solution</a></li>
+<li class="toc-entry toc-h3"><a href="#hardware-implementation">Hardware Implementation</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#other-atomic-instructions">Other Atomic Instructions</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h3"><a href="#spin-locks">Spin Locks</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#test-and-set-spin-lock">Test and Set Spin Lock</a></li>
+<li class="toc-entry toc-h4"><a href="#compare-and-swap-spin-lock">Compare and Swap Spin Lock</a></li>
+<li class="toc-entry toc-h4"><a href="#try-lock">Try Lock</a></li>
+<li class="toc-entry toc-h4"><a href="#kernel-code-examples">Kernel Code Examples</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h3"><a href="#blocking-locks">Blocking Locks</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#blocking-semaphore">Blocking Semaphore</a></li>
+<li class="toc-entry toc-h4"><a href="#mutex-locks">Mutex Locks</a></li>
+<li class="toc-entry toc-h4"><a href="#priority-inversion">Priority Inversion</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h3"><a href="#classical-synchronization-problems">Classical Synchronization Problems</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#bounded-buffer">Bounded Buffer</a></li>
+<li class="toc-entry toc-h4"><a href="#reader-writer-problem">Reader-Writer Problem</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h3"><a href="#rcu---read-copy-update">RCU - Read Copy Update</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#kernel-code-examples-1">Kernel Code Examples</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h3"><a href="#wait-queues">Wait Queues</a></li>
+<li class="toc-entry toc-h3"><a href="#kernel-schedule-function">Kernel Schedule Function</a></li>
+<li class="toc-entry toc-h3"><a href="#monitor">Monitor</a></li>
+<li class="toc-entry toc-h3"><a href="#deadlocks">Deadlocks</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#dining-philosophers-problem">Dining Philosophers Problem</a></li>
+<li class="toc-entry toc-h4"><a href="#system-model">System Model</a></li>
+<li class="toc-entry toc-h4"><a href="#resource-allocation-graph">Resource Allocation Graph</a></li>
+<li class="toc-entry toc-h4"><a href="#handling-deadlocks">Handling Deadlocks</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#midterm-solution">Midterm Solution</a></li>
+<li class="toc-entry toc-h1"><a href="#week-6---process-scheduling">Week 6 - Process Scheduling</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#process-scheduling-1">Process Scheduling</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#cpu-scheduler">CPU Scheduler</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#cpu-io-burst-cycle">CPU-I/O Burst Cycle</a></li>
+<li class="toc-entry toc-h4"><a href="#preemptive-scheduling">Preemptive Scheduling</a></li>
+<li class="toc-entry toc-h4"><a href="#dispatcher">Dispatcher</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h3"><a href="#scheduling-criteria">Scheduling Criteria</a></li>
+<li class="toc-entry toc-h3"><a href="#scheduling-algorithms">Scheduling Algorithms</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#first-come-first-served-scheduling">First-Come, First Served Scheduling</a></li>
+<li class="toc-entry toc-h4"><a href="#shortest-job-first-scheduling">Shortest-Job-First Scheduling</a></li>
+<li class="toc-entry toc-h4"><a href="#priority-scheduling">Priority Scheduling</a></li>
+<li class="toc-entry toc-h4"><a href="#round-robin-scheduling">Round-Robin Scheduling</a></li>
+<li class="toc-entry toc-h4"><a href="#weighted-rr-and-weighted-fq">Weighted RR and Weighted FQ</a></li>
+<li class="toc-entry toc-h4"><a href="#multilevel-queue-scheduling">Multilevel Queue Scheduling</a></li>
+<li class="toc-entry toc-h4"><a href="#multilevel-feedback-queue-scheduling">Multilevel Feedback Queue Scheduling</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h3"><a href="#thread-scheduling">Thread Scheduling</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#contention-scope">Contention Scope</a></li>
+<li class="toc-entry toc-h4"><a href="#pthread-scheduling">Pthread Scheduling</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h3"><a href="#multi-processor-scheduling">Multi-Processor Scheduling</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#approaches-to-multiple-processor-scheduling">Approaches to Multiple-Processor Scheduling</a></li>
+<li class="toc-entry toc-h4"><a href="#processor-affinity">Processor Affinity</a></li>
+<li class="toc-entry toc-h4"><a href="#load-balancing">Load Balancing</a></li>
+<li class="toc-entry toc-h4"><a href="#multicore-processors">Multicore Processors</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h3"><a href="#real-time-cpu-scheduling">Real-Time CPU Scheduling</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#minimizing-latency">Minimizing Latency</a></li>
+<li class="toc-entry toc-h4"><a href="#priority-based-scheduling">Priority-Based Scheduling</a></li>
+<li class="toc-entry toc-h4"><a href="#rate-monotonic-scheduling">Rate-Monotonic Scheduling</a></li>
+<li class="toc-entry toc-h4"><a href="#earliest-deadline-first-scheduling">Earliest-Deadline-First Scheduling</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h3"><a href="#os-scheduling-examples">OS Scheduling Examples</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#linux-scheduling">Linux Scheduling</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h3"><a href="#actual-linux-implementation">Actual Linux Implementation</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#related-schedh">Related sched.h</a></li>
+<li class="toc-entry toc-h4"><a href="#real-time-sched-class-implementation">Real-time sched class Implementation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#week-7---memory-management">Week 7 - Memory Management</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#memory-mapping">Memory Mapping</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#multilevel-page-table">Multilevel Page Table</a></li>
+<li class="toc-entry toc-h3"><a href="#cachetlb">Cache/TLB</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#tlb-optimization">TLB Optimization</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#accessing-memory">Accessing Memory</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#malloc">Malloc</a></li>
+<li class="toc-entry toc-h3"><a href="#mmap">Mmap</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#kernel-space-memory">Kernel Space Memory</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#buddy-algorithm">Buddy Algorithm</a></li>
+<li class="toc-entry toc-h3"><a href="#slab">Slab</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#page-replacement">Page Replacement</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#fifo">FIFO</a></li>
+<li class="toc-entry toc-h3"><a href="#furthest-in-the-future">Furthest In the Future</a></li>
+<li class="toc-entry toc-h3"><a href="#least-recently-used">Least Recently Used</a></li>
+<li class="toc-entry toc-h3"><a href="#lru-approximation">LRU Approximation</a></li>
+<li class="toc-entry toc-h3"><a href="#thrashing">Thrashing</a></li>
+<li class="toc-entry toc-h3"><a href="#improve-page-performance">Improve Page Performance</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#actual-linux-implementation-1">Actual Linux Implementation</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#linux-memory-management">Linux Memory Management</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#struct-mm_struct">struct mm_struct</a></li>
+<li class="toc-entry toc-h4"><a href="#struct-pgd_t">struct pgd_t</a></li>
+<li class="toc-entry toc-h4"><a href="#struct-page">struct page</a></li>
+<li class="toc-entry toc-h4"><a href="#func-do_page_fault">func do_page_fault()</a>
+<ul>
+<li class="toc-entry toc-h5"><a href="#access-error">Access Error</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h4"><a href="#func-copy_process">func copy_process()</a></li>
+<li class="toc-entry toc-h4"><a href="#func-create_huge_pud">func create_huge_pud()</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h3"><a href="#linux-page-replacement">Linux Page Replacement</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#buddy-algorithm-1">Buddy Algorithm</a></li>
+<li class="toc-entry toc-h4"><a href="#translations-between-different-structs">translations between different structs</a></li>
+<li class="toc-entry toc-h4"><a href="#func-dup_task_struct">func dup_task_struct</a></li>
+<li class="toc-entry toc-h4"><a href="#func-__do_kmalloc">func __do_kmalloc</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#week-8---10---file-system">Week 8 - 10 - File System</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#virtual-file-system">Virtual File System</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#objects-in-vfs">Objects in VFS</a></li>
+<li class="toc-entry toc-h3"><a href="#zero-page">Zero Page</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#disk-and-disk-io">Disk and Disk I/O</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#hard-disk-mechanics">Hard Disk Mechanics</a></li>
+<li class="toc-entry toc-h3"><a href="#io-request">I/O Request</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#deadline-elevator-io-scheduling">Deadline Elevator I/O Scheduling</a></li>
+<li class="toc-entry toc-h4"><a href="#anticipatory-io-scheduling">Anticipatory I/O Scheduling</a></li>
+<li class="toc-entry toc-h4"><a href="#cfq-elevator-io-scheduling">CFQ Elevator I/O Scheduling</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h3"><a href="#solid-state-disk-mechanis">Solid State Disk Mechanis</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#data-organization-on-hdd">Data Organization on HDD</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#file-allocation-table">File Allocation Table</a></li>
+<li class="toc-entry toc-h3"><a href="#index-node">Index Node</a></li>
+<li class="toc-entry toc-h3"><a href="#examples-of-unix-file-systems">Examples of Unix File Systems</a></li>
+<li class="toc-entry toc-h3"><a href="#journaling">Journaling</a></li>
+<li class="toc-entry toc-h3"><a href="#log-structured-file-system">Log Structured File System</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#data-organization-on-ssd">Data Organization on SSD</a></li>
+<li class="toc-entry toc-h2"><a href="#hdd-and-raid">HDD and RAID</a></li>
+<li class="toc-entry toc-h2"><a href="#file-system-review">File System Review</a></li>
+<li class="toc-entry toc-h2"><a href="#actual-linux-implementation-2">Actual Linux Implementation</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#linux-file-system">Linux File System</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#struct-inode-in-memory">struct inode (in memory)</a></li>
+<li class="toc-entry toc-h4"><a href="#struct-file-in-memory">struct file (in memory)</a></li>
+<li class="toc-entry toc-h4"><a href="#struct-superblock-in-memory">struct superblock (in memory)</a></li>
+<li class="toc-entry toc-h4"><a href="#struct-dentry-in-memory">struct dentry (in memory)</a></li>
+<li class="toc-entry toc-h4"><a href="#struct-task_struct-in-memory">struct task_struct (in memory)</a></li>
+<li class="toc-entry toc-h4"><a href="#c-libfsc-generic">c libfs.c (generic)</a>
+<ul>
+<li class="toc-entry toc-h5"><a href="#func-simple_fill_super">func simple_fill_super()</a></li>
+<li class="toc-entry toc-h5"><a href="#func-simple_lookup">func simple_lookup()</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h4"><a href="#c-initc">c init.c</a>
+<ul>
+<li class="toc-entry toc-h5"><a href="#func-vfs_caches_init">func vfs_caches_init()</a></li>
+<li class="toc-entry toc-h5"><a href="#func-arch_call_rest_init">func arch_call_rest_init()</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h4"><a href="#func-do_mount">func do_mount()</a></li>
+<li class="toc-entry toc-h4"><a href="#func-legacy_get_tree">func legacy_get_tree()</a></li>
+<li class="toc-entry toc-h4"><a href="#c-fsopenc">c fs/open.c</a>
+<ul>
+<li class="toc-entry toc-h5"><a href="#func-do_sys_open">func do_sys_open</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h4"><a href="#func-dcache_dir_open">func dcache_dir_open</a></li>
+<li class="toc-entry toc-h4"><a href="#func-dcache_readdir">func dcache_readdir</a></li>
+<li class="toc-entry toc-h4"><a href="#func-d_alloc_name">func d_alloc_name()</a></li>
+<li class="toc-entry toc-h4"><a href="#snippet-sub-dir-iteration">snippet sub-dir iteration</a></li>
+<li class="toc-entry toc-h4"><a href="#snippet-iget_locked">snippet iget_locked</a></li>
+<li class="toc-entry toc-h4"><a href="#snippet-create-filefolder">snippet create file/folder</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h3"><a href="#linux-disk-io">Linux Disk I/O</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#func-wakeup_flusher_threads">func wakeup_flusher_threads()</a></li>
+<li class="toc-entry toc-h4"><a href="#c-fsread_writec">c fs/read_write.c</a>
+<ul>
+<li class="toc-entry toc-h5"><a href="#func-ksys_read">func ksys_read()</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#week-11---io-system">Week 11 - I/O System</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#io-hardware">I/O Hardware</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#io-port-communication">I/O Port Communication</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#polling-io">Polling I/O</a></li>
+<li class="toc-entry toc-h4"><a href="#interrupt-driven-io">Interrupt Driven I/O</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h3"><a href="#direct-memory-access">Direct Memory Access</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#kernel-io-subsystem">Kernel I/O Subsystem</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#buffering">Buffering</a></li>
+<li class="toc-entry toc-h3"><a href="#caching">Caching</a></li>
+<li class="toc-entry toc-h3"><a href="#spooling">Spooling</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#useful-kernel-data-structures">Useful Kernel Data Structures</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#tips-of-c-programming-in-kernel">Tips of C Programming in Kernel</a></li>
+<li class="toc-entry toc-h2"><a href="#defining-system-calls">Defining System Calls</a></li>
+<li class="toc-entry toc-h2"><a href="#defining-compilation-modules">Defining Compilation Modules</a></li>
+<li class="toc-entry toc-h2"><a href="#linked-list-in-kernel">Linked List in Kernel</a></li>
+<li class="toc-entry toc-h2"><a href="#red-black-tree-in-kernel">Red Black Tree in Kernel</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#insert">Insert</a></li>
+<li class="toc-entry toc-h3"><a href="#traverse-and-free-the-tree">Traverse and Free the Tree</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#hashmap-in-kernel">HashMap in Kernel</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#useful-things-to-know">Useful Things to Know</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#setting-up-serial-log-for-vm">Setting up Serial Log for VM</a></li>
+<li class="toc-entry toc-h2"><a href="#expanding-vm-disk">Expanding VM Disk</a></li>
+<li class="toc-entry toc-h2"><a href="#checkpatchpl">Checkpatch.pl</a></li>
+</ul>
+</li>
+</ul>
+  </div>
+
   <div class="post-content e-content" itemprop="articleBody">
     <style type="text/css">@page { margin-left: 0em; } img {width: 60%;}</style>
 
@@ -13230,6 +13613,7 @@ LIST_HEAD(fox_list);
 </ul>
 
   </div><a class="u-url" href="/lectures/2021@columbia/COMS4118_Operating_Systems.html/" hidden></a>
+  <script src="/lectures/assets/js/my_navigation.js"></script>
 </article>
       </div>
     </main><footer class="site-footer h-card">

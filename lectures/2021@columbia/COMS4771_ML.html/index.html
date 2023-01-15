@@ -7,8 +7,8 @@
 <meta name="generator" content="Jekyll v4.3.1" />
 <meta property="og:title" content="COMS4771 Machine Learning" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="Logistics”2021 Columbia”" />
-<meta property="og:description" content="Logistics”2021 Columbia”" />
+<meta name="description" content="Logistics" />
+<meta property="og:description" content="Logistics" />
 <link rel="canonical" href="/lectures/2021@columbia/COMS4771_ML.html/" />
 <meta property="og:url" content="/lectures/2021@columbia/COMS4771_ML.html/" />
 <meta property="og:site_name" content="Lecture Notes" />
@@ -17,7 +17,7 @@
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="COMS4771 Machine Learning" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2021-12-09T00:00:00-05:00","datePublished":"2021-12-09T00:00:00-05:00","description":"Logistics”2021 Columbia”","headline":"COMS4771 Machine Learning","mainEntityOfPage":{"@type":"WebPage","@id":"/lectures/2021@columbia/COMS4771_ML.html/"},"url":"/lectures/2021@columbia/COMS4771_ML.html/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2021-12-09T00:00:00-05:00","datePublished":"2021-12-09T00:00:00-05:00","description":"Logistics","headline":"COMS4771 Machine Learning","mainEntityOfPage":{"@type":"WebPage","@id":"/lectures/2021@columbia/COMS4771_ML.html/"},"url":"/lectures/2021@columbia/COMS4771_ML.html/"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/lectures/assets/main.css"><link type="application/atom+xml" rel="alternate" href="/lectures/feed.xml" title="Lecture Notes" /></head>
 <body><header class="site-header">
@@ -71,8 +71,197 @@
       </time></p>
   </header>
 
+  <div class="section-nav" id="toc-all">
+    <button type="button" id="toc-close" class="toc_collapsible" title="collapse">
+      <span><strong>Table of Contents</strong></span>
+    </button>
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" mirror-in-rtl="true" fill="#000000" style="width: 18px;" id="toc-reopen" class="toc_collapsible hidden">
+      <g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <circle fill="#494c4e" cx="2" cy="2" r="2"></circle> <circle fill="#494c4e" cx="2" cy="8" r="2"></circle> <circle fill="#494c4e" cx="2" cy="20" r="2"></circle> <circle fill="#494c4e" cx="2" cy="14" r="2"></circle> <path fill="#494c4e" d="M23.002 3H7.998C7.448 3 7 2.55 7 2.002v-.004c0-.55.45-.998.998-.998H23c.55 0 1 .45 1 .998V2c0 .55-.45 1-.998 1zM23.002 9H7.998C7.448 9 7 8.55 7 8.002v-.004c0-.55.45-.998.998-.998H23c.55 0 1 .45 1 .998V8c0 .55-.45 1-.998 1zM23.002 15H7.998c-.55 0-.998-.45-.998-.998V14c0-.55.45-1 .998-1H23c.55 0 1 .45 1 .998V14c0 .55-.45 1-.998 1zM23.002 21H7.998c-.55 0-.998-.45-.998-.998V20c0-.55.45-1 .998-1H23c.55 0 1 .45 1 .998V20c0 .55-.45 1-.998 1z"></path> </g>
+    </svg>
+    <ul id="toc" class="section-nav">
+<li class="toc-entry toc-h1"><a href="#logistics">Logistics</a></li>
+<li class="toc-entry toc-h1"><a href="#basics-and-mle">Basics and MLE</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#statistical-modelling-approach">Statistical Modelling Approach</a></li>
+<li class="toc-entry toc-h2"><a href="#maximum-likelihood-estimation">Maximum Likelihood Estimation</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#multivariate-gaussian">Multivariate Gaussian</a></li>
+<li class="toc-entry toc-h3"><a href="#mle-to-classification">MLE to Classification</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#naïve-bayes-classifier">Naïve Bayes Classifier</a></li>
+<li class="toc-entry toc-h2"><a href="#evaluating-quality-of-classifier">Evaluating Quality of Classifier</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#bias">Bias</a></li>
+<li class="toc-entry toc-h3"><a href="#consistency">Consistency</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#nearest-neighbors-and-decision-trees">Nearest Neighbors and Decision Trees</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#nearest-neighbor-classifier">Nearest Neighbor Classifier</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#computing-distance">Computing Distance</a></li>
+<li class="toc-entry toc-h3"><a href="#computing-similarity">Computing Similarity</a></li>
+<li class="toc-entry toc-h3"><a href="#computing-using-domain-expertise">Computing Using Domain Expertise</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#generative-vs-discriminative-approach">Generative vs Discriminative Approach</a></li>
+<li class="toc-entry toc-h2"><a href="#k-nn-optimality">k-NN Optimality</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#issues-with-k-nn-classification">Issues with k-NN Classification</a></li>
+<li class="toc-entry toc-h3"><a href="#speed-issue-with-k-nn">Speed Issue with k-NN</a></li>
+<li class="toc-entry toc-h3"><a href="#measurement-space-issue-with-k-nn">Measurement Space Issue with k-NN</a></li>
+<li class="toc-entry toc-h3"><a href="#space-issues-with-k-nn">Space Issues with k-NN</a></li>
+<li class="toc-entry toc-h3"><a href="#k-nn-summary">k-NN Summary</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#decision-tree-tree-based-classification">Decision Tree (Tree Based Classification)</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#measuring-label-uncertainty">Measuring Label Uncertainty</a></li>
+<li class="toc-entry toc-h3"><a href="#problems-with-decision-tree">Problems with Decision Tree</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#overfitting">Overfitting</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#perceptron-and-kernelization">Perceptron and Kernelization</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#linear-decision-boundary">Linear Decision Boundary</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#dealing-with-w_0">Dealing with $w_0$</a></li>
+<li class="toc-entry toc-h3"><a href="#linear-classifier">Linear Classifier</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#learning-the-weights">Learning the Weights</a></li>
+<li class="toc-entry toc-h4"><a href="#perceptron-algorithm">Perceptron Algorithm</a></li>
+<li class="toc-entry toc-h4"><a href="#perceptron-algorithm-guarantees">Perceptron Algorithm Guarantees</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#non-linear-classifier">Non-Linear Classifier</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#generalizing-linear-classification">Generalizing Linear Classification</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#transformation-for-quadratic-boundaries">Transformation for Quadratic Boundaries</a></li>
+<li class="toc-entry toc-h4"><a href="#theorem-for-linear-separability">Theorem for Linear Separability</a></li>
+<li class="toc-entry toc-h4"><a href="#kernel-trick">Kernel Trick</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h3"><a href="#using-kernel-trick-in-perceptron">Using Kernel Trick in Perceptron</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#support-vector-machine">Support Vector Machine</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#perceptron-and-linear-separability">Perceptron and Linear Separability</a></li>
+<li class="toc-entry toc-h2"><a href="#svm-formulation">SVM Formulation</a></li>
+<li class="toc-entry toc-h2"><a href="#slacked-svm">Slacked SVM</a></li>
+<li class="toc-entry toc-h2"><a href="#finding-minimization">Finding Minimization</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#constrained-optimization">Constrained Optimization</a></li>
+<li class="toc-entry toc-h3"><a href="#lagrange-penalty-method">Lagrange (Penalty) Method</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#convexity">Convexity</a></li>
+<li class="toc-entry toc-h4"><a href="#convex-optimization">Convex Optimization</a></li>
+<li class="toc-entry toc-h4"><a href="#weakstrong-duality-theorem">Weak/Strong Duality Theorem</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h3"><a href="#optimizing-svm">Optimizing SVM</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#solving-svm-dual-problem">Solving SVM Dual Problem</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#regression">Regression</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#parametric-vs-non-parametric-regression">Parametric vs Non-Parametric Regression</a></li>
+<li class="toc-entry toc-h2"><a href="#linear-regression">Linear Regression</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#solving-linear-regression">Solving Linear Regression</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#geometric-view-of-linear-regression">Geometric View of Linear Regression</a></li>
+<li class="toc-entry toc-h4"><a href="#statistical-view-of-linear-regression">Statistical View of Linear Regression</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#logistic-regression">Logistic Regression</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#statistical-interpretation">Statistical Interpretation</a></li>
+<li class="toc-entry toc-h3"><a href="#solving-logistic-regression">Solving Logistic Regression</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#variations-of-linear-regression">Variations of Linear Regression</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#ridge-regression">Ridge Regression</a></li>
+<li class="toc-entry toc-h3"><a href="#lasso-regression">Lasso Regression</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#regression-optimality">Regression Optimality</a></li>
+<li class="toc-entry toc-h2"><a href="#non-parametric-regression">Non-Parametric Regression</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#kernel-regression">Kernel Regression</a></li>
+<li class="toc-entry toc-h3"><a href="#consistency-theorem">Consistency Theorem</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#statistical-learning-theory">Statistical Learning Theory</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#pac-learning">PAC Learning</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#simple-pac-learning-erm-algorithm">Simple PAC Learning: ERM Algorithm</a></li>
+<li class="toc-entry toc-h3"><a href="#vc-theory">VC Theory</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#no-free-lunch">No Free Lunch</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#unsupervised-learning">Unsupervised Learning</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#clustering">Clustering</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#k-means">$k$-means</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#lloyds-method">Lloyd’s method</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h3"><a href="#hierachical-clustering">Hierachical Clustering</a></li>
+<li class="toc-entry toc-h3"><a href="#clustering-via-probabilities-mixture-modelling">Clustering via Probabilities Mixture Modelling</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#gaussian-mixture-modelling-gmm">Gaussian Mixture Modelling (GMM)</a></li>
+<li class="toc-entry toc-h4"><a href="#learning-gmm-parameters---em-algorithm">Learning GMM Parameters - EM Algorithm</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#dimensionality-reduction">Dimensionality Reduction</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#principal-components-analysis-pca">Principal Components Analysis (PCA)</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#eigen-decomposition">Eigen Decomposition</a></li>
+<li class="toc-entry toc-h4"><a href="#normalizing-data-in-pca">Normalizing Data in PCA</a></li>
+<li class="toc-entry toc-h4"><a href="#maximum-covariance-interpretation">Maximum Covariance Interpretation</a></li>
+<li class="toc-entry toc-h4"><a href="#generalization-to-k1">Generalization to $k&gt;1$</a></li>
+<li class="toc-entry toc-h4"><a href="#examples-of-pca">Examples of PCA</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#future-classes">Future Classes</a></li>
+</ul>
+  </div>
+
   <div class="post-content e-content" itemprop="articleBody">
-    <h1 id="logistics2021-columbia">Logistics”2021 Columbia”</h1>
+    <h1 id="logistics">Logistics</h1>
 
 <p>Homework:</p>
 
@@ -6183,6 +6372,7 @@ v_1 &amp; ... &amp; v_n\\
 
 
   </div><a class="u-url" href="/lectures/2021@columbia/COMS4771_ML.html/" hidden></a>
+  <script src="/lectures/assets/js/my_navigation.js"></script>
 </article>
       </div>
     </main><footer class="site-footer h-card">

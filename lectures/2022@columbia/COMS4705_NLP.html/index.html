@@ -71,6 +71,230 @@
       </time></p>
   </header>
 
+  <div class="section-nav" id="toc-all">
+    <button type="button" id="toc-close" class="toc_collapsible" title="collapse">
+      <span><strong>Table of Contents</strong></span>
+    </button>
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" mirror-in-rtl="true" fill="#000000" style="width: 18px;" id="toc-reopen" class="toc_collapsible hidden">
+      <g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <circle fill="#494c4e" cx="2" cy="2" r="2"></circle> <circle fill="#494c4e" cx="2" cy="8" r="2"></circle> <circle fill="#494c4e" cx="2" cy="20" r="2"></circle> <circle fill="#494c4e" cx="2" cy="14" r="2"></circle> <path fill="#494c4e" d="M23.002 3H7.998C7.448 3 7 2.55 7 2.002v-.004c0-.55.45-.998.998-.998H23c.55 0 1 .45 1 .998V2c0 .55-.45 1-.998 1zM23.002 9H7.998C7.448 9 7 8.55 7 8.002v-.004c0-.55.45-.998.998-.998H23c.55 0 1 .45 1 .998V8c0 .55-.45 1-.998 1zM23.002 15H7.998c-.55 0-.998-.45-.998-.998V14c0-.55.45-1 .998-1H23c.55 0 1 .45 1 .998V14c0 .55-.45 1-.998 1zM23.002 21H7.998c-.55 0-.998-.45-.998-.998V20c0-.55.45-1 .998-1H23c.55 0 1 .45 1 .998V20c0 .55-.45 1-.998 1z"></path> </g>
+    </svg>
+    <ul id="toc" class="section-nav">
+<li class="toc-entry toc-h1"><a href="#logistics-and-introduction">Logistics and Introduction</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#applications-of-nlp">Applications of NLP</a></li>
+<li class="toc-entry toc-h2"><a href="#current-progress-in-nlp">Current Progress in NLP</a></li>
+<li class="toc-entry toc-h2"><a href="#difficulties-in-nlp">Difficulties in NLP</a></li>
+<li class="toc-entry toc-h2"><a href="#overall-syllabus">Overall Syllabus</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#basic-text-processing">Basic Text Processing</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#regular-expressions">Regular Expressions</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#simple-models">Simple Models</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#word-tokenization">Word Tokenization</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#types-and-tokens">Types and Tokens</a></li>
+<li class="toc-entry toc-h3"><a href="#issues">Issues</a></li>
+<li class="toc-entry toc-h3"><a href="#byte-pair-encoding-for-tokenization">Byte-Pair Encoding for Tokenization</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#normalization-lemmatization-and-stemming">Normalization, Lemmatization, and Stemming</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#lemmatization">Lemmatization</a></li>
+<li class="toc-entry toc-h3"><a href="#stemming">Stemming</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#porters-algorithm">Porter’s Algorithm</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#sentence-segmentation">Sentence Segmentation</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#minimum-edit-distance">Minimum Edit Distance</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#minimum-edit-distance-algorithm">Minimum Edit Distance Algorithm</a></li>
+<li class="toc-entry toc-h2"><a href="#alignment">Alignment</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#language-models">Language Models</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#n-grams">N-Grams</a></li>
+<li class="toc-entry toc-h2"><a href="#evaluating-language-models">Evaluating Language Models</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#perplexity">Perplexity</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#sampling-sentence-from-lm">Sampling Sentence from LM</a></li>
+<li class="toc-entry toc-h2"><a href="#generalization-and-zeros">Generalization and Zeros</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#unknown-words">Unknown Words</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#smoothing">Smoothing</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#laplace-smoothing">Laplace Smoothing</a></li>
+<li class="toc-entry toc-h3"><a href="#add-k-smoothing">Add-k Smoothing</a></li>
+<li class="toc-entry toc-h3"><a href="#backoff-and-interpolation">Backoff and Interpolation</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#kneser-ney-smoothing">Kneser-Ney Smoothing</a></li>
+<li class="toc-entry toc-h2"><a href="#huge-web-scale-n-grams">Huge Web-Scale N-grams</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#stupid-backoff">Stupid Backoff</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#summary">Summary</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#spelling-correction">Spelling Correction</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#noisy-channel">Noisy Channel</a></li>
+<li class="toc-entry toc-h2"><a href="#real-word-spelling-errors">Real-Word Spelling Errors</a></li>
+<li class="toc-entry toc-h2"><a href="#noisy-channel-model-the-state-of-the-art">Noisy Channel Model: The State of the Art</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#neural-networks-in-nlp">Neural Networks in NLP</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#architecture-for-neural-language-model">Architecture for Neural Language Model</a></li>
+<li class="toc-entry toc-h2"><a href="#comments-on-modeltraining">Comments on Model/Training</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#rnn-and-lstm">RNN and LSTM</a></li>
+<li class="toc-entry toc-h1"><a href="#transformers">Transformers</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#transformer-models">Transformer Models</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#vector-semantics-and-embeddings">Vector Semantics and Embeddings</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#lexical-semantics">Lexical Semantics</a></li>
+<li class="toc-entry toc-h2"><a href="#vector-semantics">Vector Semantics</a></li>
+<li class="toc-entry toc-h2"><a href="#words-and-vectors">Words and Vectors</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#vectors-and-documents">Vectors and Documents</a></li>
+<li class="toc-entry toc-h3"><a href="#term-context-matrix">Term-Context Matrix</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#tf-idf">TF-IDF</a></li>
+<li class="toc-entry toc-h2"><a href="#ppmi">PPMI</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#weighted-pmi">Weighted PMI</a></li>
+<li class="toc-entry toc-h3"><a href="#laplace-smoothing-1">Laplace Smoothing</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#cosine-distance">Cosine Distance</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#other-similarity-measures">Other Similarity Measures</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#using-syntax">Using Syntax</a></li>
+<li class="toc-entry toc-h2"><a href="#word-embeddings">Word Embeddings</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#svd">SVD</a></li>
+<li class="toc-entry toc-h3"><a href="#pca">PCA</a></li>
+<li class="toc-entry toc-h3"><a href="#skip-gram-embedding">Skip-Gram Embedding</a></li>
+<li class="toc-entry toc-h3"><a href="#sgns-embeddings">SGNS Embeddings</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#sgns-classifier">SGNS Classifier</a></li>
+<li class="toc-entry toc-h4"><a href="#learning-the-embedding">Learning the Embedding</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h3"><a href="#cbow-embedding">CBOW Embedding</a></li>
+<li class="toc-entry toc-h3"><a href="#other-embeddings">Other Embeddings</a></li>
+<li class="toc-entry toc-h3"><a href="#properties-of-embedding">Properties of Embedding</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#sequence-labeling-for-pos-and-named-entities">Sequence Labeling for POS and Named Entities</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#english-pos">English POS</a></li>
+<li class="toc-entry toc-h2"><a href="#pos-tagging">POS Tagging</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#problems-with-sequence-labeling">Problems with Sequence Labeling</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#tagging-with-hmm">Tagging with HMM</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#markov-chain">Markov Chain</a></li>
+<li class="toc-entry toc-h3"><a href="#hidden-markov-model">Hidden Markov Model</a></li>
+<li class="toc-entry toc-h3"><a href="#observation-likelihood">Observation Likelihood</a></li>
+<li class="toc-entry toc-h3"><a href="#decoding-the-viterbi-algorithm">Decoding: The Viterbi Algorithm</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#unsupervised-hmm">Unsupervised HMM</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#semi-supervised-hmm">Semi-Supervised HMM</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#constituency-grammar-and-parsing">Constituency Grammar and Parsing</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#context-free-grammar">Context Free Grammar</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#syntax-and-cfg">Syntax and CFG</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#grammar-equivalence-and-normal-form">Grammar Equivalence and Normal Form</a></li>
+<li class="toc-entry toc-h2"><a href="#partial-parsing">Partial Parsing</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#chunking-algorithms">Chunking Algorithms</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#brute-force-parsing">Brute Force Parsing</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#top-down-parsing">Top-Down Parsing</a></li>
+<li class="toc-entry toc-h3"><a href="#bottom-up-parsing">Bottom-Up Parsing</a></li>
+<li class="toc-entry toc-h3"><a href="#top-down-bottom-up-comparison">Top-down Bottom-Up Comparison</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#cky-algorithm">CKY Algorithm</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#cky-recognition">CKY Recognition</a></li>
+<li class="toc-entry toc-h3"><a href="#cky-parser">CKY Parser</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#problems-with-cfg">Problems with CFG</a></li>
+<li class="toc-entry toc-h2"><a href="#statistical-parsing">Statistical Parsing</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#pcfg-most-likely-derivation">PCFG Most Likely Derivation</a></li>
+<li class="toc-entry toc-h3"><a href="#pcfg-observation-likelihood">PCFG Observation Likelihood</a></li>
+<li class="toc-entry toc-h3"><a href="#pcfg-learning">PCFG Learning</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#problems-with-pcfg">Problems with PCFG</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#pcfg-independence-assumptions">PCFG Independence Assumptions</a></li>
+<li class="toc-entry toc-h3"><a href="#pcfg-lexical-dependencies-problem">PCFG Lexical Dependencies Problem</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#pcfg-with-splitting-non-terminals">PCFG with Splitting Non-terminals</a></li>
+<li class="toc-entry toc-h2"><a href="#pcfg-with-lexicalization">PCFG with Lexicalization</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#simplified-collins-parser">Simplified Collins Parser</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#evaluating-parsers">Evaluating Parsers</a></li>
+<li class="toc-entry toc-h2"><a href="#human-parsing">Human Parsing</a></li>
+<li class="toc-entry toc-h2"><a href="#other-grammars">Other Grammars</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#midterm">Midterm</a></li>
+<li class="toc-entry toc-h1"><a href="#dependency-parsing">Dependency Parsing</a></li>
+<li class="toc-entry toc-h1"><a href="#neural-shift-reduce-parser">Neural Shift-Reduce Parser</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#shift-reduce-parsing">Shift Reduce Parsing</a></li>
+<li class="toc-entry toc-h2"><a href="#neural-dependency-parser">Neural Dependency Parser</a></li>
+</ul>
+</li>
+</ul>
+  </div>
+
   <div class="post-content e-content" itemprop="articleBody">
     <h1 id="logistics-and-introduction">Logistics and Introduction</h1>
 
@@ -5678,6 +5902,7 @@ NP_{\text{object}} \to PR\]
 <p>Use  features (words, POS tags, arc labels) extracted from the current stack, buffer, and arcs as context.</p>
 
   </div><a class="u-url" href="/lectures/2022@columbia/COMS4705_NLP.html/" hidden></a>
+  <script src="/lectures/assets/js/my_navigation.js"></script>
 </article>
       </div>
     </main><footer class="site-footer h-card">

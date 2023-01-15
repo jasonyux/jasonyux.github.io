@@ -71,6 +71,326 @@
       </time></p>
   </header>
 
+  <div class="section-nav" id="toc-all">
+    <button type="button" id="toc-close" class="toc_collapsible" title="collapse">
+      <span><strong>Table of Contents</strong></span>
+    </button>
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" mirror-in-rtl="true" fill="#000000" style="width: 18px;" id="toc-reopen" class="toc_collapsible hidden">
+      <g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <circle fill="#494c4e" cx="2" cy="2" r="2"></circle> <circle fill="#494c4e" cx="2" cy="8" r="2"></circle> <circle fill="#494c4e" cx="2" cy="20" r="2"></circle> <circle fill="#494c4e" cx="2" cy="14" r="2"></circle> <path fill="#494c4e" d="M23.002 3H7.998C7.448 3 7 2.55 7 2.002v-.004c0-.55.45-.998.998-.998H23c.55 0 1 .45 1 .998V2c0 .55-.45 1-.998 1zM23.002 9H7.998C7.448 9 7 8.55 7 8.002v-.004c0-.55.45-.998.998-.998H23c.55 0 1 .45 1 .998V8c0 .55-.45 1-.998 1zM23.002 15H7.998c-.55 0-.998-.45-.998-.998V14c0-.55.45-1 .998-1H23c.55 0 1 .45 1 .998V14c0 .55-.45 1-.998 1zM23.002 21H7.998c-.55 0-.998-.45-.998-.998V20c0-.55.45-1 .998-1H23c.55 0 1 .45 1 .998V20c0 .55-.45 1-.998 1z"></path> </g>
+    </svg>
+    <ul id="toc" class="section-nav">
+<li class="toc-entry toc-h1"><a href="#semantic-role-labeling">Semantic Role Labeling</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#semantic-roles">Semantic Roles</a></li>
+<li class="toc-entry toc-h2"><a href="#the-proposition-bank">The Proposition Bank</a></li>
+<li class="toc-entry toc-h2"><a href="#framenet">FrameNet</a></li>
+<li class="toc-entry toc-h2"><a href="#semantic-role-labeling-models">Semantic Role Labeling Models</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#feature-based-algorithm-for-srl">Feature-based Algorithm for SRL</a></li>
+<li class="toc-entry toc-h3"><a href="#neural-algorithm-for-srl">Neural Algorithm for SRL</a></li>
+<li class="toc-entry toc-h3"><a href="#evaluation-metric-for-srl">Evaluation Metric for SRL</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#selectional-restrictions">Selectional Restrictions</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#selectional-preferences">Selectional Preferences</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#advanced-semantics">Advanced Semantics</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#simple-transfer-learning">Simple Transfer Learning</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#problems-with-pre-trained-word-embeddings">Problems with Pre-trained Word Embeddings</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#neural-language-model">Neural Language Model</a></li>
+<li class="toc-entry toc-h2"><a href="#lms-and-transfer-learning">LMs and Transfer Learning</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#architecture-choices">Architecture Choices</a></li>
+<li class="toc-entry toc-h3"><a href="#architecture-examples">Architecture Examples</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#future-of-pretrained-models">Future of Pretrained Models</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#machine-translation">Machine Translation</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#language-divergence">Language Divergence</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#word-order-typology">Word Order Typology</a></li>
+<li class="toc-entry toc-h3"><a href="#lexical-divergences">Lexical Divergences</a></li>
+<li class="toc-entry toc-h3"><a href="#morphological-typology">Morphological Typology</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#rule-based-mt-model">Rule-Based MT Model</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#direct-transfer">Direct Transfer</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#statistical-mt">Statistical MT</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#noisy-channel-model">Noisy Channel Model</a></li>
+<li class="toc-entry toc-h3"><a href="#word-alignment-for-mt">Word Alignment for MT</a></li>
+<li class="toc-entry toc-h3"><a href="#ibm-model-1">IBM Model 1</a></li>
+<li class="toc-entry toc-h3"><a href="#hmm-based-word-alignment">HMM-Based Word Alignment</a></li>
+<li class="toc-entry toc-h3"><a href="#training-word-alignment-models">Training Word Alignment Models</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#neural-machine-translation">Neural Machine Translation</a></li>
+<li class="toc-entry toc-h2"><a href="#evaluating-mt">Evaluating MT</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#bleu">BLEU</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#challenges-and-futures-in-mt">Challenges and Futures in MT</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#sentiment-analysis-and-classification">Sentiment Analysis and Classification</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#scherer-typology-of-affective-states">Scherer Typology of Affective States</a></li>
+<li class="toc-entry toc-h2"><a href="#sentiment-analysis-and-attitudes">Sentiment Analysis and Attitudes</a></li>
+<li class="toc-entry toc-h2"><a href="#sentiment-classification">Sentiment Classification</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#baseline-multinomial-naïve-bayes">Baseline: Multinomial Naïve Bayes</a></li>
+<li class="toc-entry toc-h3"><a href="#improvements-from-baseline">Improvements From Baseline</a></li>
+<li class="toc-entry toc-h3"><a href="#problems-in-sentiment-classification">Problems in Sentiment Classification</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#polarity-in-sentiment-analysis">Polarity in Sentiment Analysis</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#logical-negation-and-polarity">Logical Negation and Polarity</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#learning-sentiment-lexicons">Learning Sentiment Lexicons</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#turney-algorithm">Turney Algorithm</a></li>
+<li class="toc-entry toc-h3"><a href="#summary-on-learning-lexicon">Summary on Learning Lexicon</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#other-sentiment-task">Other Sentiment Task</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#finding-targetaspect-of-a-sentiment">Finding Target/Aspect of a Sentiment</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#explaining-sentiment-classification">Explaining Sentiment Classification</a></li>
+<li class="toc-entry toc-h2"><a href="#summary-on-sentiment-classification">Summary on Sentiment Classification</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#statistical-significance-testing">Statistical Significance Testing</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#the-paired-bootstrap-test">The Paired Bootstrap Test</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#information-extraction-and-ner">Information Extraction and NER</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#named-entity-recognition">Named Entity Recognition</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#bio-based-ner">BIO-based NER</a></li>
+<li class="toc-entry toc-h3"><a href="#span-based-ner">Span-based NER</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#relation-extraction">Relation Extraction</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#relation-extraction-algorithms">Relation Extraction Algorithms</a></li>
+<li class="toc-entry toc-h3"><a href="#using-patterns-to-extract-relations">Using Patterns to Extract Relations</a></li>
+<li class="toc-entry toc-h3"><a href="#relation-extraction-via-supervised-learning">Relation Extraction via Supervised Learning</a></li>
+<li class="toc-entry toc-h3"><a href="#semi-supervised-relation-extraction">Semi-supervised Relation Extraction</a></li>
+<li class="toc-entry toc-h3"><a href="#unsupervised-relation-extraction">Unsupervised Relation Extraction</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#template-filling">Template Filling</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#supervised-approach-to-template-filling">Supervised Approach to Template Filling</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#ie-examples">IE Examples</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#muc">MUC</a></li>
+<li class="toc-entry toc-h3"><a href="#medline-corpus">Medline Corpus</a></li>
+<li class="toc-entry toc-h3"><a href="#web-extraction">Web Extraction</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#evaluating-ie-accuracy">Evaluating IE Accuracy</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#question-answering">Question Answering</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#information-retrieval">Information Retrieval</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#term-weighting-and-document-scoring">Term weighting and document scoring</a></li>
+<li class="toc-entry toc-h3"><a href="#document-scoring">Document Scoring</a></li>
+<li class="toc-entry toc-h3"><a href="#inverted-index">Inverted Index</a></li>
+<li class="toc-entry toc-h3"><a href="#ir-with-dense-vectors">IR with Dense Vectors</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#ir-based-factoid-qa">IR-Based Factoid QA</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#ir-based-qa-datasets">IR-based QA: Datasets</a></li>
+<li class="toc-entry toc-h3"><a href="#ir-based-qa-reader">IR-based QA: Reader</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#knowledge-based-qa">Knowledge-based QA</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#entity-linking">Entity Linking</a></li>
+<li class="toc-entry toc-h3"><a href="#knowledge-based-qa-from-rdf-stores">Knowledge-Based QA from RDF stores</a></li>
+<li class="toc-entry toc-h3"><a href="#knowledge-based-qa-by-semantic-parsing">Knowledge-Based QA by Semantic Parsing</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#using-language-models">Using Language Models</a></li>
+<li class="toc-entry toc-h2"><a href="#evaluation-of-factoid-answers">Evaluation of Factoid Answers</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#language-generation">Language Generation</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#e2e-challenge">E2E Challenge</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#e2e-datasets">E2E Datasets</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#text-generation-modelling">Text Generation Modelling</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#generating-using-seq-2-seq">Generating using Seq-2-Seq</a></li>
+<li class="toc-entry toc-h3"><a href="#problems-with-seq-2-seq">Problems with Seq-2-Seq</a></li>
+<li class="toc-entry toc-h3"><a href="#e2e-data-augmentation">E2E Data Augmentation</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#delexicalization">Delexicalization</a></li>
+<li class="toc-entry toc-h4"><a href="#noise-injection-and-self-training">Noise Injection and Self-Training</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h3"><a href="#e2e-metrics-and-baseline">E2E Metrics and Baseline</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#next-word-sampling">Next Word Sampling</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#top-k-sampling">Top-k Sampling</a></li>
+<li class="toc-entry toc-h3"><a href="#temperature-sampling">Temperature Sampling</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#text-summarization">Text Summarization</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#types-of-summarization">Types of Summarization</a></li>
+<li class="toc-entry toc-h2"><a href="#extractive-summarization">Extractive Summarization</a></li>
+<li class="toc-entry toc-h2"><a href="#abstractive-summarization">Abstractive Summarization</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#attention-based-summarizer">Attention Based Summarizer</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#baseline-bow-encoder">Baseline BoW Encoder</a></li>
+<li class="toc-entry toc-h4"><a href="#convolutional-encoder">Convolutional Encoder</a></li>
+<li class="toc-entry toc-h4"><a href="#attention-based-encoder">Attention Based Encoder</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#bart">BART</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#comparison-against-gpt-and-bert">Comparison Against GPT and BERT</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#chatbots--dialogue-systems">Chatbots &amp; Dialogue Systems</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#properties-of-human-conversation">Properties of Human Conversation</a></li>
+<li class="toc-entry toc-h2"><a href="#chatbots">Chatbots</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#corpus-based-chatbots">Corpus-based Chatbots</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#gus-simple-frame-based-dialogue-systems">GUS: Simple Frame-based Dialogue Systems</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#control-structure-for-frame-based-dialogue">Control structure for frame-based dialogue</a></li>
+<li class="toc-entry toc-h3"><a href="#determining-domain-intent-and-slot-fillers-in-gus">Determining Domain, Intent, and Slot fillers in GUS</a></li>
+<li class="toc-entry toc-h3"><a href="#generation-in-gus">Generation in GUS</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#the-dialogue-state-architecture">The Dialogue-State Architecture</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#dialogue-acts">Dialogue Acts</a></li>
+<li class="toc-entry toc-h3"><a href="#slot-filling">Slot Filling</a></li>
+<li class="toc-entry toc-h3"><a href="#dialogue-state-tracking">Dialogue State Tracking</a></li>
+<li class="toc-entry toc-h3"><a href="#dialogue-policy">Dialogue Policy</a></li>
+<li class="toc-entry toc-h3"><a href="#natural-language-generation-module">Natural Language Generation Module</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#persuasive-system">Persuasive System</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#challenges-in-persuasion">Challenges in Persuasion</a></li>
+<li class="toc-entry toc-h3"><a href="#dialog-data-collection">Dialog Data Collection</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#hierarchical-intent-annotation">Hierarchical Intent Annotation</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h3"><a href="#classic-modular-dialog-system">Classic Modular Dialog System</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#modular-training-drawbacks">Modular Training Drawbacks</a></li>
+<li class="toc-entry toc-h4"><a href="#end-to-end-drawbacks">End-to-End Drawbacks</a></li>
+<li class="toc-entry toc-h4"><a href="#moss-a-combination">MOSS: A combination</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h3"><a href="#human-evaluation-on-persuasion">Human Evaluation on Persuasion</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#error-analysis-unfaithful-outputs">Error Analysis: Unfaithful Outputs</a></li>
+<li class="toc-entry toc-h4"><a href="#error-analysis-persuasion-strategies">Error Analysis: Persuasion Strategies</a></li>
+<li class="toc-entry toc-h4"><a href="#error-analysis-personality-adaptation">Error Analysis: Personality Adaptation</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h3"><a href="#dialogs-is-more-than-nlp">Dialogs is More than NLP</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#ethnical-consideration-of-chatbots">Ethnical Consideration of Chatbots</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#meta-learning-in-nlp">Meta Learning in NLP</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#what-is-meta-learning">What is Meta-Learning</a></li>
+<li class="toc-entry toc-h2"><a href="#meta-learning-algorithms">Meta-Learning Algorithms</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#model-agnostic-meta-learning">Model Agnostic Meta Learning</a></li>
+<li class="toc-entry toc-h3"><a href="#metric-based-network">Metric-Based Network</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#applications-in-nlp">Applications in NLP</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#meta-leanring-for-dialog">Meta Leanring for Dialog</a></li>
+<li class="toc-entry toc-h3"><a href="#meta-learning-for-machine-translatoin">Meta Learning for Machine Translatoin</a></li>
+<li class="toc-entry toc-h3"><a href="#meta-in-context-learning">Meta In Context Learning</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#in-context-tuning">In Context Tuning</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#bias-in-nlp">Bias in NLP</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#bias-in-word-embeddings">Bias in Word Embeddings</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#implicit-association-test-and-weat">Implicit Association Test and WEAT</a></li>
+<li class="toc-entry toc-h3"><a href="#effect-of-bias-on-nlp">Effect of Bias on NLP</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#bias-in-sentence-embeddings">Bias in Sentence Embeddings</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#abw-and-double-bind">ABW and Double Bind</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#debiasing">Debiasing</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#de-bias-via-post-processing">De-bias via Post Processing</a></li>
+<li class="toc-entry toc-h3"><a href="#de-bias-via-loss-function">De-bias via Loss Function</a></li>
+<li class="toc-entry toc-h3"><a href="#hidden-bias-via-clustering">Hidden Bias via Clustering</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+  </div>
+
   <div class="post-content e-content" itemprop="articleBody">
     <p>Continuation from: NLP_part_1</p>
 
@@ -6119,6 +6439,7 @@ h_r = \text{BERT}_R(r)[CLS]\]
 </blockquote>
 
   </div><a class="u-url" href="/lectures/2022@columbia/COMS4705_NLP_part2.html/" hidden></a>
+  <script src="/lectures/assets/js/my_navigation.js"></script>
 </article>
       </div>
     </main><footer class="site-footer h-card">

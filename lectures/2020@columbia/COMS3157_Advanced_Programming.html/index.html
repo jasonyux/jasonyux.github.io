@@ -71,6 +71,367 @@
       </time></p>
   </header>
 
+  <div class="section-nav" id="toc-all">
+    <button type="button" id="toc-close" class="toc_collapsible" title="collapse">
+      <span><strong>Table of Contents</strong></span>
+    </button>
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" mirror-in-rtl="true" fill="#000000" style="width: 18px;" id="toc-reopen" class="toc_collapsible hidden">
+      <g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <circle fill="#494c4e" cx="2" cy="2" r="2"></circle> <circle fill="#494c4e" cx="2" cy="8" r="2"></circle> <circle fill="#494c4e" cx="2" cy="20" r="2"></circle> <circle fill="#494c4e" cx="2" cy="14" r="2"></circle> <path fill="#494c4e" d="M23.002 3H7.998C7.448 3 7 2.55 7 2.002v-.004c0-.55.45-.998.998-.998H23c.55 0 1 .45 1 .998V2c0 .55-.45 1-.998 1zM23.002 9H7.998C7.448 9 7 8.55 7 8.002v-.004c0-.55.45-.998.998-.998H23c.55 0 1 .45 1 .998V8c0 .55-.45 1-.998 1zM23.002 15H7.998c-.55 0-.998-.45-.998-.998V14c0-.55.45-1 .998-1H23c.55 0 1 .45 1 .998V14c0 .55-.45 1-.998 1zM23.002 21H7.998c-.55 0-.998-.45-.998-.998V20c0-.55.45-1 .998-1H23c.55 0 1 .45 1 .998V20c0 .55-.45 1-.998 1z"></path> </g>
+    </svg>
+    <ul id="toc" class="section-nav">
+<li class="toc-entry toc-h1"><a href="#logistics">Logistics</a></li>
+<li class="toc-entry toc-h1"><a href="#week-1">Week 1</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#unix-cli-basics">UNIX CLI Basics</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#week-2">Week 2</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#compiling-and-linking">Compiling and Linking</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#linking">Linking</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#declaring-a-prototype">Declaring a Prototype</a></li>
+<li class="toc-entry toc-h4"><a href="#include">#include</a></li>
+<li class="toc-entry toc-h4"><a href="#header-file">Header File</a></li>
+<li class="toc-entry toc-h4"><a href="#standard-library">Standard Library</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h3"><a href="#compiling">Compiling</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#linking-problem">Linking Problem</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#makefile">Makefile</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#simple-example">Simple Example</a></li>
+<li class="toc-entry toc-h3"><a href="#making-multiple-targets">Making Multiple Targets</a></li>
+<li class="toc-entry toc-h3"><a href="#managing-dependencies">Managing Dependencies</a></li>
+<li class="toc-entry toc-h3"><a href="#variables">Variables</a></li>
+<li class="toc-entry toc-h3"><a href="#phony">.PHONY</a></li>
+<li class="toc-entry toc-h3"><a href="#full-example">Full Example</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#week-3">Week 3</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#-in-c"># in C</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#define">#define</a></li>
+<li class="toc-entry toc-h3"><a href="#ifdefifndefelseendif">#ifdef/#ifndef/#else/#endif</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#data-types-in-c">Data Types in C</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#single-quote-vs-double-quote">Single Quote vs Double Quote</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#expression">Expression</a></li>
+<li class="toc-entry toc-h2"><a href="#statement">Statement</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#exam-note">Exam Note</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#operators-in-c">Operators in C</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#">==</a></li>
+<li class="toc-entry toc-h3"><a href="#bitwise-operators-in-c">Bitwise Operators in C</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#-and-">&amp; and |</a></li>
+<li class="toc-entry toc-h4"><a href="#-and--1">&lt;&lt; and &gt;&gt;</a></li>
+<li class="toc-entry toc-h4"><a href="#-1">~</a></li>
+<li class="toc-entry toc-h4"><a href="#sample-combinations">Sample Combinations</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#operator-associativity">Operator Associativity</a></li>
+<li class="toc-entry toc-h2"><a href="#variable-scope">Variable Scope</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#local-variable">Local Variable</a></li>
+<li class="toc-entry toc-h3"><a href="#static-variable">Static Variable</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#global-static-variable">Global Static Variable</a></li>
+<li class="toc-entry toc-h4"><a href="#file-static-variable">File Static Variable</a></li>
+<li class="toc-entry toc-h4"><a href="#function-static-variable">Function Static Variable</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#week-4">Week 4</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#process-address-space">Process Address Space</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#virtual-memory-vs-physical-memory">Virtual Memory vs Physical Memory</a></li>
+<li class="toc-entry toc-h3"><a href="#stack-vs-heap">Stack vs Heap</a></li>
+<li class="toc-entry toc-h3"><a href="#hierarchy-example">Hierarchy Example</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#pointers">Pointers</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#related-operators">Related Operators</a></li>
+<li class="toc-entry toc-h3"><a href="#pointer-data-type">Pointer Data Type</a></li>
+<li class="toc-entry toc-h3"><a href="#pointers-and-function-arguments">Pointers and Function Arguments</a></li>
+<li class="toc-entry toc-h3"><a href="#doublenested-pointers">Double/Nested Pointers</a></li>
+<li class="toc-entry toc-h3"><a href="#generic-pointer">Generic Pointer</a></li>
+<li class="toc-entry toc-h3"><a href="#null-pointer">Null Pointer</a></li>
+<li class="toc-entry toc-h3"><a href="#pointers-to-tf">Pointers to T/F</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#sizeof">sizeof</a></li>
+<li class="toc-entry toc-h2"><a href="#pointer-arithmetic">Pointer Arithmetic</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#adding-and-subtracting-pointers">Adding and Subtracting Pointers</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#arrays">Arrays</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#pointing-to-an-array">“Pointing” to an Array</a></li>
+<li class="toc-entry toc-h3"><a href="#automatic-type-conversion-of-array">Automatic Type Conversion of Array</a></li>
+<li class="toc-entry toc-h3"><a href="#passing-array-into-functions">Passing Array into Functions</a></li>
+<li class="toc-entry toc-h3"><a href="#grand-unified-theory-of-arrays">Grand Unified Theory of Arrays</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#heap">Heap</a></li>
+<li class="toc-entry toc-h2"><a href="#string">String</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#empty-string">Empty String</a></li>
+<li class="toc-entry toc-h3"><a href="#example-string-copy">Example: String Copy</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#safer-string-copy">Safer String Copy</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h3"><a href="#example-string-concat">Example: String Concat</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#safer-string-concat">Safer String Concat</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#command-line-arguments">Command Line Arguments</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#week-5">Week 5</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#const">const</a></li>
+<li class="toc-entry toc-h2"><a href="#pointers-to-functions">Pointers to Functions</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#parsing-a-pointer-function">Parsing a Pointer Function</a></li>
+<li class="toc-entry toc-h3"><a href="#using-a-function-pointer">Using a Function Pointer</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#inline-functions">inline Functions</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#week-6">Week 6</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#struct">struct</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#inside-struct">Inside struct</a></li>
+<li class="toc-entry toc-h3"><a href="#struct-variables">struct variables</a></li>
+<li class="toc-entry toc-h3"><a href="#example-linkedlist">Example: LinkedList</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#createnode">createNode()</a></li>
+<li class="toc-entry toc-h4"><a href="#assert">assert()</a></li>
+<li class="toc-entry toc-h4"><a href="#create2nodes">create2Nodes()</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h3"><a href="#struct-as-value">struct as Value</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#exam-notes">Exam Notes</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#week-7">Week 7</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#standard-io">Standard IO</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#redirection">Redirection</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#redirecting-valgrind">Redirecting Valgrind</a></li>
+<li class="toc-entry toc-h4"><a href="#perror">perror</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h3"><a href="#pipeline">Pipeline</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#tail">Tail</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#file-io">File IO</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#ncat">ncat</a></li>
+<li class="toc-entry toc-h3"><a href="#fopen">fopen</a></li>
+<li class="toc-entry toc-h3"><a href="#opaque-handle">Opaque Handle</a></li>
+<li class="toc-entry toc-h3"><a href="#fgets">fgets()</a></li>
+<li class="toc-entry toc-h3"><a href="#fputs">fputs()</a></li>
+<li class="toc-entry toc-h3"><a href="#fclose">fclose()</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#week-8">Week 8</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#formatted-io">Formatted IO</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#sscanf">sscanf()</a></li>
+<li class="toc-entry toc-h3"><a href="#sprintf">sprintf()</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#buffering-on-io">Buffering on IO</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#flushing-buffer">Flushing Buffer</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#standard-io-for-binary-files">Standard IO for Binary Files</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#opening-binary-files">Opening Binary Files</a></li>
+<li class="toc-entry toc-h3"><a href="#writing-to-binary-files">Writing to Binary Files</a></li>
+<li class="toc-entry toc-h3"><a href="#reading-from-binary-files">Reading from Binary Files</a></li>
+<li class="toc-entry toc-h3"><a href="#positioning-in-the-file">Positioning in the File</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#week-9">Week 9</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#numeric-ids-in-unix">Numeric IDs in UNIX</a></li>
+<li class="toc-entry toc-h2"><a href="#fork">fork()</a></li>
+<li class="toc-entry toc-h2"><a href="#shell">shell</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#execl">execl</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#week-10">Week 10</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#netcat">netcat</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#connecting-devices-to-a-program">Connecting devices to a Program</a></li>
+<li class="toc-entry toc-h3"><a href="#named-pipe">Named Pipe</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#internet">Internet</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#osi-model">OSI Model</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#application-layer">Application Layer</a></li>
+<li class="toc-entry toc-h4"><a href="#transport-layer">Transport Layer</a></li>
+<li class="toc-entry toc-h4"><a href="#network-layer">Network Layer</a></li>
+<li class="toc-entry toc-h4"><a href="#data-link-layer">(Data) Link Layer</a>
+<ul>
+<li class="toc-entry toc-h5"><a href="#ethernet-frame">Ethernet Frame</a></li>
+<li class="toc-entry toc-h5"><a href="#mac-address">MAC Address</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h4"><a href="#physical-layer">Physical Layer</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#shell-scripts">Shell Scripts</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#terminologies">Terminologies</a></li>
+<li class="toc-entry toc-h3"><a href="#writing-a-shell-script">Writing a Shell Script</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#file-permissions">File Permissions</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#s-permission">s Permission</a></li>
+<li class="toc-entry toc-h3"><a href="#binary-encoding-of-file-permissions">Binary Encoding of File Permissions</a></li>
+<li class="toc-entry toc-h3"><a href="#changing-permission">Changing Permission</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#file-descriptors">File Descriptors</a></li>
+<li class="toc-entry toc-h2"><a href="#endianness">Endianness</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#week-11">Week 11</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#socket-api">Socket API</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#socket">Socket</a></li>
+<li class="toc-entry toc-h3"><a href="#socket-api-summary">Socket API Summary</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#socket-1">socket()</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h3"><a href="#listening-socket-vs-connected-socket">Listening Socket vs Connected Socket</a></li>
+<li class="toc-entry toc-h3"><a href="#socket-api-examples">Socket API Examples</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#tcp-echo-client">tcp-echo-client</a></li>
+<li class="toc-entry toc-h4"><a href="#tcp-echo-server">tcp-echo-server</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#week-12">Week 12</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#http">HTTP</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#imitating-http-using-netcat">Imitating HTTP using netcat</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#week-13">Week 13</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#socket-api-continued">Socket API (Continued)</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#tcp-sender">tcp-sender</a></li>
+<li class="toc-entry toc-h3"><a href="#tcp-recver">tcp-recver</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#dynamic-html">Dynamic HTML</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#3-tier-architecture">3-Tier Architecture</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#week-14">Week 14</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#from-c-to-c">From C to C++</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#changes-in-c">Changes in C++</a></li>
+<li class="toc-entry toc-h3"><a href="#methods-and-constructors">Methods and Constructors</a></li>
+<li class="toc-entry toc-h3"><a href="#difference-between-c-and-java">Difference between C++ and Java</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#miscellaneous">Miscellaneous</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#using-sftp">Using sftp</a></li>
+<li class="toc-entry toc-h2"><a href="#gcd-with-euclidean-algorithm">GCD with Euclidean Algorithm</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#algorithm">Algorithm</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#useful-git-commands">Useful Git Commands</a></li>
+<li class="toc-entry toc-h2"><a href="#valgrind">valgrind</a></li>
+<li class="toc-entry toc-h2"><a href="#sed">sed</a></li>
+<li class="toc-entry toc-h2"><a href="#making-own-library">Making Own Library</a></li>
+<li class="toc-entry toc-h2"><a href="#cut">cut</a></li>
+<li class="toc-entry toc-h2"><a href="#sort">sort</a></li>
+<li class="toc-entry toc-h2"><a href="#uniq">uniq</a></li>
+<li class="toc-entry toc-h2"><a href="#wget">wget</a></li>
+<li class="toc-entry toc-h2"><a href="#cmp">cmp</a></li>
+<li class="toc-entry toc-h2"><a href="#rsync">rsync</a></li>
+</ul>
+</li>
+</ul>
+  </div>
+
   <div class="post-content e-content" itemprop="articleBody">
     <style type="text/css">@page { margin-left: 2in; margin-right: -0.25in; }</style>
 
@@ -7142,6 +7503,7 @@ Fetching /mnt/disks/students209/xy2437/test.c to test.c
 </ul>
 
   </div><a class="u-url" href="/lectures/2020@columbia/COMS3157_Advanced_Programming.html/" hidden></a>
+  <script src="/lectures/assets/js/my_navigation.js"></script>
 </article>
       </div>
     </main><footer class="site-footer h-card">

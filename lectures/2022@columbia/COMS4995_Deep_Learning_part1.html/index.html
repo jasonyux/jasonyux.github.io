@@ -71,6 +71,491 @@
       </time></p>
   </header>
 
+  <div class="section-nav" id="toc-all">
+    <button type="button" id="toc-close" class="toc_collapsible" title="collapse">
+      <span><strong>Table of Contents</strong></span>
+    </button>
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" mirror-in-rtl="true" fill="#000000" style="width: 18px;" id="toc-reopen" class="toc_collapsible hidden">
+      <g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <circle fill="#494c4e" cx="2" cy="2" r="2"></circle> <circle fill="#494c4e" cx="2" cy="8" r="2"></circle> <circle fill="#494c4e" cx="2" cy="20" r="2"></circle> <circle fill="#494c4e" cx="2" cy="14" r="2"></circle> <path fill="#494c4e" d="M23.002 3H7.998C7.448 3 7 2.55 7 2.002v-.004c0-.55.45-.998.998-.998H23c.55 0 1 .45 1 .998V2c0 .55-.45 1-.998 1zM23.002 9H7.998C7.448 9 7 8.55 7 8.002v-.004c0-.55.45-.998.998-.998H23c.55 0 1 .45 1 .998V8c0 .55-.45 1-.998 1zM23.002 15H7.998c-.55 0-.998-.45-.998-.998V14c0-.55.45-1 .998-1H23c.55 0 1 .45 1 .998V14c0 .55-.45 1-.998 1zM23.002 21H7.998c-.55 0-.998-.45-.998-.998V20c0-.55.45-1 .998-1H23c.55 0 1 .45 1 .998V20c0 .55-.45 1-.998 1z"></path> </g>
+    </svg>
+    <ul id="toc" class="section-nav">
+<li class="toc-entry toc-h1"><a href="#logistics-and-introduction">Logistics and Introduction</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#human-brain-deep-learning">Human Brain Deep Learning</a></li>
+<li class="toc-entry toc-h2"><a href="#intro-transformers">Intro: Transformers</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#example-application">Example Application</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#dl-timeline">DL Timeline</a></li>
+<li class="toc-entry toc-h2"><a href="#supervised-deep-learning-example">Supervised Deep Learning Example</a></li>
+<li class="toc-entry toc-h2"><a href="#representations-sharing-weights">Representations Sharing Weights</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#forward-and-back-propagation">Forward and Back Propagation</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#neural-networks">Neural Networks</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#neuron-layer">Neuron Layer</a></li>
+<li class="toc-entry toc-h3"><a href="#activation-functions">Activation Functions</a></li>
+<li class="toc-entry toc-h3"><a href="#loss-functions">Loss Functions</a></li>
+<li class="toc-entry toc-h3"><a href="#regularization">Regularization</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#forward-propagation">Forward Propagation</a></li>
+<li class="toc-entry toc-h2"><a href="#back-propagation">Back Propagation</a></li>
+<li class="toc-entry toc-h2"><a href="#weight-initialization">Weight Initialization</a></li>
+<li class="toc-entry toc-h2"><a href="#problems-with-nn">Problems with NN</a></li>
+<li class="toc-entry toc-h2"><a href="#example-implementation">Example Implementation</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#optimization">Optimization</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#overview">Overview</a></li>
+<li class="toc-entry toc-h2"><a href="#derivative-and-gradient">Derivative and Gradient</a></li>
+<li class="toc-entry toc-h2"><a href="#first-order-methods">First Order Methods</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#gradient-descent">Gradient Descent</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#adaptive-step-size">Adaptive Step Size</a></li>
+<li class="toc-entry toc-h4"><a href="#mini-batch-gradient-descent">Mini-Batch Gradient Descent</a></li>
+<li class="toc-entry toc-h4"><a href="#stochastic-gradient-descent">Stochastic Gradient Descent</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h3"><a href="#adaptive-gradient-descent">Adaptive Gradient Descent</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#momentum">Momentum</a></li>
+<li class="toc-entry toc-h4"><a href="#adagrad">AdaGrad</a></li>
+<li class="toc-entry toc-h4"><a href="#adam">Adam</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h3"><a href="#hyper-gradient-descent">Hyper-gradient Descent</a></li>
+<li class="toc-entry toc-h3"><a href="#vanishingexploding-gradient">Vanishing/Exploding Gradient</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#second-order-methods">Second Order Methods</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#newtons-method">Newton’s Method</a></li>
+<li class="toc-entry toc-h3"><a href="#quasi-newton-methods">Quasi-Newton Methods</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#sr1-update">SR1 Update</a></li>
+<li class="toc-entry toc-h4"><a href="#other-approximations">Other Approximations</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#evolution-strategies">Evolution Strategies</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#simple-gaussian-evolution-strategies">Simple Gaussian Evolution Strategies</a></li>
+<li class="toc-entry toc-h3"><a href="#covariance-matrix-adaptation">Covariance Matrix Adaptation</a></li>
+<li class="toc-entry toc-h3"><a href="#natural-evolution-strategies">Natural Evolution Strategies</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#regularization-1">Regularization</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#generalization">Generalization</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#cross-validation">Cross Validation</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#regularization-methods">Regularization Methods</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#vector-norms">Vector Norms</a></li>
+<li class="toc-entry toc-h3"><a href="#regularized-loss-functions">Regularized Loss Functions</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#ridge-and-lasso-regression">Ridge and Lasso Regression</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h3"><a href="#dropout-regularization">Dropout Regularization</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#least-square-dropout">Least Square Dropout</a></li>
+<li class="toc-entry toc-h4"><a href="#least-squares-with-noise-input">Least Squares with Noise Input</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h3"><a href="#data-augmentation">Data Augmentation</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#input-normalization">Input Normalization</a></li>
+<li class="toc-entry toc-h4"><a href="#batch-normalization">Batch Normalization</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#uncertainty-in-dnns">Uncertainty in DNNs</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#convolutional-neural-networks">Convolutional Neural Networks</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#convolution">Convolution</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#one-dimensional-convolution">One-Dimensional Convolution</a></li>
+<li class="toc-entry toc-h3"><a href="#multi-dimensional-convolution">Multi-Dimensional Convolution</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#three-dimensional-convolution">Three Dimensional Convolution</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h3"><a href="#properties-of-convolution">Properties of Convolution</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#separable-kernels">Separable Kernels</a></li>
+<li class="toc-entry toc-h4"><a href="#composition">Composition</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#convolutional-layers">Convolutional Layers</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#pooling">Pooling</a></li>
+<li class="toc-entry toc-h3"><a href="#simple-convolutional-layer">Simple Convolutional Layer</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#architectures">Architectures</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#cnn">CNN</a></li>
+<li class="toc-entry toc-h3"><a href="#resnet">ResNet</a></li>
+<li class="toc-entry toc-h3"><a href="#densenet">DenseNet</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#understanding-cnns">Understanding CNNs</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#input-maximizing-activation">Input Maximizing Activation</a></li>
+<li class="toc-entry toc-h3"><a href="#transfer-learning">Transfer Learning</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#sequence-models">Sequence Models</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#natural-language-models">Natural Language Models</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#bag-of-words">Bag of Words</a></li>
+<li class="toc-entry toc-h3"><a href="#feature-vector">Feature Vector</a></li>
+<li class="toc-entry toc-h3"><a href="#n-gram-model">N-Gram Model</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#rnn">RNN</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#state-machine">State Machine</a></li>
+<li class="toc-entry toc-h3"><a href="#recurrent-neural-network">Recurrent Neural Network</a></li>
+<li class="toc-entry toc-h3"><a href="#rnn-architecture">RNN Architecture</a></li>
+<li class="toc-entry toc-h3"><a href="#loss-function">Loss Function</a></li>
+<li class="toc-entry toc-h3"><a href="#deep-rnn">Deep RNN</a></li>
+<li class="toc-entry toc-h3"><a href="#bidirectional-rnn">Bidirectional RNN</a></li>
+<li class="toc-entry toc-h3"><a href="#backpropagation-through-time">Backpropagation Through Time</a></li>
+<li class="toc-entry toc-h3"><a href="#rnn-as-language-models">RNN as Language Models</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#gated-recurrent-unit">Gated Recurrent Unit</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#update-gate">Update Gate</a></li>
+<li class="toc-entry toc-h3"><a href="#reset-gate">Reset Gate</a></li>
+<li class="toc-entry toc-h3"><a href="#function">Function</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#long-short-term-memory">Long Short-Term Memory</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#forget-gate">Forget Gate</a></li>
+<li class="toc-entry toc-h3"><a href="#input-gate">Input Gate</a></li>
+<li class="toc-entry toc-h3"><a href="#memory-cell">Memory Cell</a></li>
+<li class="toc-entry toc-h3"><a href="#output-gate">Output Gate</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#gru-vs-lstm">GRU vs LSTM</a></li>
+<li class="toc-entry toc-h2"><a href="#sequence-to-sequence">Sequence to Sequence</a></li>
+<li class="toc-entry toc-h2"><a href="#adding-attention">Adding Attention</a></li>
+<li class="toc-entry toc-h2"><a href="#sgns-embeddings">SGNS Embeddings</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#sgns-classifier">SGNS Classifier</a></li>
+<li class="toc-entry toc-h3"><a href="#learning-the-embedding">Learning the Embedding</a></li>
+<li class="toc-entry toc-h3"><a href="#other-embeddings">Other Embeddings</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#graph-neural-network">Graph Neural Network</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#definitions">Definitions</a></li>
+<li class="toc-entry toc-h2"><a href="#problem-using-graphs">Problem using Graphs</a></li>
+<li class="toc-entry toc-h2"><a href="#node-embeddings">Node Embeddings</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#shallow-embedding">Shallow Embedding</a></li>
+<li class="toc-entry toc-h3"><a href="#node-similarity">Node Similarity</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#adjacency-based-similarity">Adjacency-based Similarity</a></li>
+<li class="toc-entry toc-h4"><a href="#multi-hop-similarity">Multi-hop Similarity</a></li>
+<li class="toc-entry toc-h4"><a href="#overlap-similarity">Overlap Similarity</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h3"><a href="#random-walk-embeddings">Random Walk Embeddings</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#graph-embedding">Graph Embedding</a></li>
+<li class="toc-entry toc-h2"><a href="#neighborhood-aggregation">Neighborhood Aggregation</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#supervised-node-classification">Supervised Node Classification</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#gnn-architecture">GNN Architecture</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#graph-convolution-network">Graph Convolution Network</a></li>
+<li class="toc-entry toc-h3"><a href="#grated-graph-neural-networks">Grated Graph Neural Networks</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#transformers">Transformers</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#self-attention">Self-Attention</a></li>
+<li class="toc-entry toc-h2"><a href="#transformer-blocks">Transformer Blocks</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#multihead-attention">Multihead Attention</a></li>
+<li class="toc-entry toc-h3"><a href="#positional-embedding">Positional Embedding</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#encoder-and-decoder">Encoder and Decoder</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#attention">Attention</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#word-embeddings">Word Embeddings</a></li>
+<li class="toc-entry toc-h2"><a href="#beam-search">Beam Search</a></li>
+<li class="toc-entry toc-h2"><a href="#encoder-decoder-with-transformers">Encoder-Decoder with Transformers</a></li>
+<li class="toc-entry toc-h2"><a href="#transformer-models">Transformer Models</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#bert">BERT</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#training-bert">Training BERT</a></li>
+<li class="toc-entry toc-h4"><a href="#transfer-learning-through-fine-tuning">Transfer Learning through Fine-Tuning</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h3"><a href="#gpt-2">GPT-2</a></li>
+<li class="toc-entry toc-h3"><a href="#efficient-transformers">Efficient Transformers</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#generative-adversarial-network">Generative Adversarial Network</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#minimax-optimization">Minimax Optimization</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#mode-collapse">Mode Collapse</a></li>
+<li class="toc-entry toc-h3"><a href="#convergence-problem">Convergence Problem</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#divergence-between-distributions">Divergence between Distributions</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#kl-divergence">KL Divergence</a></li>
+<li class="toc-entry toc-h3"><a href="#jensen-shannon-divergence">Jensen-Shannon Divergence</a></li>
+<li class="toc-entry toc-h3"><a href="#bregman-divergence">Bregman divergence</a></li>
+<li class="toc-entry toc-h3"><a href="#optimal-objective-value">Optimal Objective Value</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#gradient-descent-ascent">Gradient Descent Ascent</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#optimistic-gradient-descent-ascent">Optimistic Gradient Descent Ascent</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#gan-training">GAN Training</a></li>
+<li class="toc-entry toc-h2"><a href="#gan-losses">GAN Losses</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#wasserstein-gan">Wasserstein GAN</a></li>
+<li class="toc-entry toc-h3"><a href="#loss-function-summaries">Loss Function Summaries</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#gan-architectures">GAN Architectures</a></li>
+<li class="toc-entry toc-h2"><a href="#evaluation-and-application">Evaluation and Application</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#deep-variational-inference">Deep Variational Inference</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#markov-chain-monte-carlo">Markov Chain Monte Carlo</a></li>
+<li class="toc-entry toc-h2"><a href="#variational-inference">Variational Inference</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#optimizing-for-q_phi">Optimizing for $q_\phi$</a></li>
+<li class="toc-entry toc-h3"><a href="#score-function-gradient">Score Function Gradient</a></li>
+<li class="toc-entry toc-h3"><a href="#reparameterization-gradient">Reparameterization Gradient</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#autoencoders">Autoencoders</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#variational-autoencoder">Variational Autoencoder</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#probabilistic-programming">Probabilistic Programming</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#reinforcement-learning">Reinforcement Learning</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#multi-armed-bandit">Multi-Armed Bandit</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#varepsilon-greedy-approach">$\varepsilon$-greedy Approach</a></li>
+<li class="toc-entry toc-h3"><a href="#upper-confidence">Upper Confidence</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#state-machines">State Machines</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#markov-processes">Markov Processes</a></li>
+<li class="toc-entry toc-h3"><a href="#markov-decision-processes">Markov Decision Processes</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#value-functions">Value Functions</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#optimal-value-functions">Optimal Value Functions</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#iterative-dp-methods">Iterative DP Methods</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#policy-evaluation">Policy Evaluation</a></li>
+<li class="toc-entry toc-h3"><a href="#policy-improvement">Policy Improvement</a></li>
+<li class="toc-entry toc-h3"><a href="#policy-iteration">Policy Iteration</a></li>
+<li class="toc-entry toc-h3"><a href="#value-iteration">Value Iteration</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#monte-carlo-methods">Monte Carlo Methods</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#monte-carlo-prediction">Monte Carlo Prediction</a></li>
+<li class="toc-entry toc-h3"><a href="#backup-diagram-for-mc-method">Backup Diagram for MC Method</a></li>
+<li class="toc-entry toc-h3"><a href="#mc-for-action-values">MC for Action Values</a></li>
+<li class="toc-entry toc-h3"><a href="#monte-carlo-control">Monte Carlo Control</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#temporal-difference-learning">Temporal-Difference Learning</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#td-prediction">TD Prediction</a></li>
+<li class="toc-entry toc-h3"><a href="#td-vs-mc-methods">TD vs MC Methods</a></li>
+<li class="toc-entry toc-h3"><a href="#td-lambda">TD lambda</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#onoff-policy-learning">On/Off Policy Learning</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#sarsa">SARSA</a></li>
+<li class="toc-entry toc-h3"><a href="#q-learning">Q-Learning</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#maximum-entropy-rl">Maximum Entropy RL</a></li>
+<li class="toc-entry toc-h2"><a href="#summary-of-rl-models">Summary of RL Models</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#deep-reinforcement-learning">Deep Reinforcement Learning</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#function-approximations">Function Approximations</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#state-value-function-approximation">State Value Function Approximation</a></li>
+<li class="toc-entry toc-h3"><a href="#action-value-function-approximation">Action-Value Function Approximation</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#model-free-methods">Model-Free Methods</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#experience-replay">Experience Replay</a></li>
+<li class="toc-entry toc-h3"><a href="#neural-fitted-q-learning">Neural Fitted Q-Learning</a></li>
+<li class="toc-entry toc-h3"><a href="#deep-q-network">Deep Q-Network</a></li>
+<li class="toc-entry toc-h3"><a href="#prioritized-replay">Prioritized Replay</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#policy-based-methods">Policy-based Methods</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#policy-gradient">Policy Gradient</a></li>
+<li class="toc-entry toc-h3"><a href="#reinforce-algorithm">REINFORCE Algorithm</a></li>
+<li class="toc-entry toc-h3"><a href="#score-function-generality">Score Function Generality</a></li>
+<li class="toc-entry toc-h3"><a href="#policy-gradient-baseline">Policy Gradient Baseline</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#actor-critic-methods">Actor-Critic Methods</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#advantage-actor-critic">Advantage Actor-Critic</a></li>
+<li class="toc-entry toc-h3"><a href="#natural-policy-gradient">Natural Policy Gradient</a></li>
+<li class="toc-entry toc-h3"><a href="#trust-region-policy-optimization-trpo">Trust Region Policy Optimization (TRPO)</a></li>
+<li class="toc-entry toc-h3"><a href="#proximal-policy-optimization-ppo">Proximal Policy Optimization (PPO)</a></li>
+<li class="toc-entry toc-h3"><a href="#deep-deterministic-policy-gradient-ddpg">Deep Deterministic Policy Gradient (DDPG)</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#model-based-reinforcement-learning">Model-based Reinforcement Learning</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#monte-carlo-tree-search">Monte-Carlo Tree Search</a></li>
+<li class="toc-entry toc-h3"><a href="#expert-iteration-and-alphazero">Expert Iteration and AlphaZero</a></li>
+<li class="toc-entry toc-h3"><a href="#world-models">World Models</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#imitation-learning">Imitation Learning</a></li>
+<li class="toc-entry toc-h2"><a href="#maintaining-exploration">Maintaining Exploration</a></li>
+<li class="toc-entry toc-h2"><a href="#multiagent-system">Multiagent System</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#strategic-game">Strategic Game</a></li>
+<li class="toc-entry toc-h3"><a href="#nash-equilibrium">Nash Equilibrium</a></li>
+<li class="toc-entry toc-h3"><a href="#counterfactual-regret-minimization">Counterfactual Regret Minimization</a></li>
+<li class="toc-entry toc-h3"><a href="#unification">Unification</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#optional">Optional</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#adversarial-attacks">Adversarial Attacks</a></li>
+<li class="toc-entry toc-h2"><a href="#problem-solving-with-dl">Problem Solving with DL</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#tutorials">Tutorials</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#remote-jupyter">Remote Jupyter</a></li>
+<li class="toc-entry toc-h2"><a href="#pytorch">PyTorch</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#part-i">Part I</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#pytorch-and-numpy">PyTorch and Numpy</a></li>
+<li class="toc-entry toc-h4"><a href="#cuda-tensors">CUDA Tensors</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h3"><a href="#part-2">Part 2</a></li>
+<li class="toc-entry toc-h3"><a href="#part-3">Part 3</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#preparing-data">Preparing Data</a></li>
+<li class="toc-entry toc-h4"><a href="#create-nn">Create NN</a></li>
+<li class="toc-entry toc-h4"><a href="#training-nn">Training NN</a></li>
+<li class="toc-entry toc-h4"><a href="#evaluating-nn">Evaluating NN</a></li>
+<li class="toc-entry toc-h4"><a href="#create-own-dset">Create Own Dset</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#tensorflow">Tensorflow</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#basics">Basics</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#variables-and-constants">Variables and Constants</a></li>
+<li class="toc-entry toc-h4"><a href="#gradients">Gradients</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h3"><a href="#training">Training</a></li>
+<li class="toc-entry toc-h3"><a href="#note">Note</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#keras">Keras</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#sequential-model">Sequential Model</a></li>
+<li class="toc-entry toc-h3"><a href="#callbacks">Callbacks</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#tensorboard">TensorBoard</a></li>
+<li class="toc-entry toc-h4"><a href="#early-stopping">Early Stopping</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h3"><a href="#autokeras">AutoKeras</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#cnn-with-tf">CNN with TF</a></li>
+<li class="toc-entry toc-h2"><a href="#gnn-withdglai">GNN withdgl.ai</a></li>
+<li class="toc-entry toc-h2"><a href="#pyro">Pyro</a></li>
+<li class="toc-entry toc-h2"><a href="#gan">GAN</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#competitions">Competitions</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#detr">DETR</a></li>
+<li class="toc-entry toc-h2"><a href="#data-augmentations">Data Augmentations</a></li>
+</ul>
+</li>
+</ul>
+  </div>
+
   <div class="post-content e-content" itemprop="articleBody">
     <h1 id="logistics-and-introduction">Logistics and Introduction</h1>
 
@@ -12154,6 +12639,7 @@ Graph time: 6.057469765000064
 
 
   </div><a class="u-url" href="/lectures/2022@columbia/COMS4995_Deep_Learning_part1.html/" hidden></a>
+  <script src="/lectures/assets/js/my_navigation.js"></script>
 </article>
       </div>
     </main><footer class="site-footer h-card">
