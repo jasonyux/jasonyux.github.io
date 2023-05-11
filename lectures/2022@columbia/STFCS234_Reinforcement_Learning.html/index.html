@@ -5716,6 +5716,7 @@ Is there a way to avoid OOD actions while learning the Q function? This serves f
   
   
   
+  
   $$
   (explaination of expectile loss seen in the next paragraph) but this have a drawback, and that is since each update sample contains $(s,a,s')$, it includes the stochasticity of a sample getting high reward because of *lucky* transition to $s'$ instead of doing the correct action $a$. This we do not want to have in our learned critic/policy.
 - using expectile loss to first fit a value function $V$:
@@ -5725,7 +5726,9 @@ Is there a way to avoid OOD actions while learning the Q function? This serves f
   
   
   
+  
   L_V(\psi) = \mathbb{E}_{(s,a) \sim D} \left[ L_2^{\tau}(Q_{\hat{\theta}}(s,a) - V_\psi(s)) \right]
+  
   
   
   
@@ -5739,7 +5742,9 @@ Is there a way to avoid OOD actions while learning the Q function? This serves f
   
   
   
+  
   L_Q(\theta) = \mathbb{E}_{(s,a,s')\sim D} \left[ ( r(s,a) +\gamma V_\psi(s')- Q_\theta(s,a))^{2} \right]
+  
   
   
   

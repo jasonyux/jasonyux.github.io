@@ -3655,8 +3655,8 @@ p(y=0|x) &amp;=1- \frac{1}{1+e^{-\theta^T x}}
 
 \[\begin{align*}
 \phi_y &amp;= \frac{\sum_{i=1}^m 1\{y^{(i)}=1\}}{m} \\
-\phi_{j|y=1} &amp;= \frac{\sum_{i=1}^m1\{x_j^{(i)}=1 \and y^{(i)}=1\}}{\sum_{i=1}^m1\{y^{(i)}=1\}}\\
-\phi_{j|y=0} &amp;= \frac{\sum_{i=1}^m1\{x_j^{(i)}=1 \and y^{(i)}=0\}}{\sum_{i=1}^m1\{y^{(i)}=0\}}
+\phi_{j|y=1} &amp;= \frac{\sum_{i=1}^m1\{x_j^{(i)}=1 \land y^{(i)}=1\}}{\sum_{i=1}^m1\{y^{(i)}=1\}}\\
+\phi_{j|y=0} &amp;= \frac{\sum_{i=1}^m1\{x_j^{(i)}=1 \land y^{(i)}=0\}}{\sum_{i=1}^m1\{y^{(i)}=0\}}
 \end{align*}\]
 
       <p>where the results are easy to interpret</p>
@@ -3776,8 +3776,8 @@ p(y=1|x) &amp;= \frac{p(x|y=1)\,p(y=1)}{p(x)}\\
 
 \[\begin{align*}
 \phi_y &amp;= \frac{\sum_{i=1}^m 1\{y^{(i)}=1\}}{m} \\
-\phi_{j|y=1} &amp;= \frac{\sum_{i=1}^m1\{x_j^{(i)}=1 \and y^{(i)}=1\} + 1}{\sum_{i=1}^m1\{y^{(i)}=1\} + 2}\\
-\phi_{j|y=0} &amp;= \frac{\sum_{i=1}^m1\{x_j^{(i)}=1 \and y^{(i)}=0\} + 1}{\sum_{i=1}^m1\{y^{(i)}=0\} + 2}
+\phi_{j|y=1} &amp;= \frac{\sum_{i=1}^m1\{x_j^{(i)}=1 \land y^{(i)}=1\} + 1}{\sum_{i=1}^m1\{y^{(i)}=1\} + 2}\\
+\phi_{j|y=0} &amp;= \frac{\sum_{i=1}^m1\{x_j^{(i)}=1 \land y^{(i)}=0\} + 1}{\sum_{i=1}^m1\{y^{(i)}=0\} + 2}
 \end{align*}\]
 
 <p>and notice that:</p>
@@ -3860,8 +3860,8 @@ p(y=1|x) &amp;= \frac{p(x|y=1)\,p(y=1)}{p(x)}\\
       <p>Maximizing the <strong>likelihood estimates</strong> we get:</p>
 
 \[\begin{align*}
-\phi_{k|y=1} &amp;= \frac{\sum_{i=1}^m \sum_{j=1}^{n_i}1\{x_j^{(i)}=k \and y^{(i)} = 1\}}{\sum_i^m 1\{y^{(i)}=1\}n_i}\\
-\phi_{k|y=0} &amp;= \frac{\sum_{i=1}^m \sum_{j=1}^{n_i}1\{x_j^{(i)}=k \and y^{(i)} = 0\}}{\sum_i^m 1\{y^{(i)}=0\}n_i}\\
+\phi_{k|y=1} &amp;= \frac{\sum_{i=1}^m \sum_{j=1}^{n_i}1\{x_j^{(i)}=k \land y^{(i)} = 1\}}{\sum_i^m 1\{y^{(i)}=1\}n_i}\\
+\phi_{k|y=0} &amp;= \frac{\sum_{i=1}^m \sum_{j=1}^{n_i}1\{x_j^{(i)}=k \land y^{(i)} = 0\}}{\sum_i^m 1\{y^{(i)}=0\}n_i}\\
 \phi_{y} &amp;= \frac{\sum_{i=1}^m 1\{y^{(i)}=1\} }{m}\\
 \end{align*}\]
 
@@ -3875,7 +3875,7 @@ p(y=1|x) &amp;= \frac{p(x|y=1)\,p(y=1)}{p(x)}\\
     <li>
       <p>Using Laplace Smoothing, if our dictionary is of size $10,000$ words, then:</p>
 
-\[\phi_{k|y=1} = \frac{1+\sum_{i=1}^m \sum_{j=1}^{n_i}1\{x_j^{(i)}=k \and y^{(i)} = 1\}}{10,000 + \sum_i^m 1\{y^{(i)}=1\}n_i}\]
+\[\phi_{k|y=1} = \frac{1+\sum_{i=1}^m \sum_{j=1}^{n_i}1\{x_j^{(i)}=k \land y^{(i)} = 1\}}{10,000 + \sum_i^m 1\{y^{(i)}=1\}n_i}\]
 
       <p>because:</p>
 

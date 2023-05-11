@@ -258,14 +258,14 @@
       <p>note that the <strong>Truth Table</strong> above basically lays out all the possible “scenarios”</p>
     </li>
     <li>
-      <p><strong>conjunction</strong> (and): $p \and q$.</p>
+      <p><strong>conjunction</strong> (and): $p \land q$.</p>
 
       <p><img src="/lectures/images/2023-05-11-COMS3203_Discrete_Math/image-20230119110900415.png" alt="image-20230119110900415" style="zoom:50%;" /></p>
 
       <p>now that there are 2 “variables”, we have $2^2$ possibilities</p>
     </li>
     <li>
-      <p><strong>dis-junction</strong> (or): $p \or q$.</p>
+      <p><strong>dis-junction</strong> (or): $p \lor q$.</p>
 
       <p><img src="/lectures/images/2023-05-11-COMS3203_Discrete_Math/image-20230119111803562.png" alt="image-20230119111803562" style="zoom:50%;" /></p>
     </li>
@@ -287,11 +287,11 @@
       </ul>
     </li>
     <li>
-      <p><strong>if and only if</strong> (iff) $p \iff q$. Basically this means a conjunction to two implications $(p \to q)\and (q \to p)$</p>
+      <p><strong>if and only if</strong> (iff) $p \iff q$. Basically this means a conjunction to two implications $(p \to q)\land (q \to p)$</p>
 
       <p><img src="/lectures/images/2023-05-11-COMS3203_Discrete_Math/image-20230124102509957.png" alt="image-20230124102509957" style="zoom: 43%;" /></p>
 
-      <p>where the last one has $(p \to q)=T$ and $(q \to p)=T$ due to benefit of doubt. Hence $(p \iff q) = (T \and T) = T$. Notice that basically $p \iff q$ is true when $p,q$ are equivalently true or equivalently false.</p>
+      <p>where the last one has $(p \to q)=T$ and $(q \to p)=T$ due to benefit of doubt. Hence $(p \iff q) = (T \land T) = T$. Notice that basically $p \iff q$ is true when $p,q$ are equivalently true or equivalently false.</p>
     </li>
   </ul>
 </blockquote>
@@ -304,8 +304,8 @@
     <ol>
       <li>$()$ processed from inside to outside</li>
       <li>$\neg$ negation</li>
-      <li>$\and$ and</li>
-      <li>$\or,\oplus$</li>
+      <li>$\land$ and</li>
+      <li>$\lor,\oplus$</li>
       <li>$\to$ implies</li>
       <li>$\iff$</li>
       <li>left to right</li>
@@ -327,7 +327,7 @@
 
 <hr />
 
-<p><em>For Example</em>, consider $p \or q \implies \neg r$.</p>
+<p><em>For Example</em>, consider $p \lor q \implies \neg r$.</p>
 
 <p>First of all, how many rows will there be? Since there are three variables, $2^3=8$ rows.</p>
 
@@ -339,7 +339,7 @@
 
 <ul>
   <li>
-    <p><strong>negation of implication</strong>: $\neg (p \to q)$ is $p \and \neg q$.</p>
+    <p><strong>negation of implication</strong>: $\neg (p \to q)$ is $p \land \neg q$.</p>
 
     <ul>
       <li>for instance $\neg$(hit$\to$hurt) is (hit$\to\neg$hurt)</li>
@@ -416,7 +416,7 @@
   <p>we will mostly use $\equiv$. Note that this is <em>not a connective</em>, but rather a <em>relation</em>.</p>
 </blockquote>
 
-<p>Now you can show that $\neg (p \to q) \equiv p \and \neg q$</p>
+<p>Now you can show that $\neg (p \to q) \equiv p \land \neg q$</p>
 
 <table>
   <thead>
@@ -425,7 +425,7 @@
       <th style="text-align: left">q</th>
       <th style="text-align: center">$p \to q$</th>
       <th style="text-align: center">$\neg (p \to q)$</th>
-      <th style="text-align: center">$p\and \neg q$</th>
+      <th style="text-align: center">$p\land \neg q$</th>
     </tr>
   </thead>
   <tbody>
@@ -462,7 +462,7 @@
 
 <p>And similarly, you can show that:</p>
 
-\[p \to q \equiv \neg p \or q \equiv \neg q \to \neg p\]
+\[p \to q \equiv \neg p \lor q \equiv \neg q \to \neg p\]
 
 <p>So implication is just a <mark>disjunction</mark>! This is very important to know!</p>
 
@@ -471,7 +471,7 @@
 </ul>
 
 <blockquote>
-  <p><strong>Tautology</strong>: a proposition is always true is called a <em>tautology</em>. For example, $p \or \neg p$ is a tautology as no matter what value $p$ takes, <em>every</em> row in the truth table is <em>true</em>.</p>
+  <p><strong>Tautology</strong>: a proposition is always true is called a <em>tautology</em>. For example, $p \lor \neg p$ is a tautology as no matter what value $p$ takes, <em>every</em> row in the truth table is <em>true</em>.</p>
 </blockquote>
 
 <p>A more interesting example would be</p>
@@ -482,7 +482,7 @@
 </ul>
 
 <blockquote>
-  <p><strong>Fallacy/Contradiction</strong>: a proposition that is always false. For example, $p \and \neg p$.</p>
+  <p><strong>Fallacy/Contradiction</strong>: a proposition that is always false. For example, $p \land \neg p$.</p>
 </blockquote>
 
 <blockquote>
@@ -519,21 +519,21 @@
 <p>where the most important ones are highlighted. Most of them has something to do with simplifying $\land$ and $\lor$</p>
 
 <ul>
-  <li><strong>associativity</strong>: has to be used on the <em>same</em> connective (e.g. $(p\lor q)\and r$ has to be done in a distributive case)</li>
+  <li><strong>associativity</strong>: has to be used on the <em>same</em> connective (e.g. $(p\lor q)\land r$ has to be done in a distributive case)</li>
   <li><strong>distributivity</strong>: you can also show that $(q \lor r) \land p \equiv (q \land p) \lor (r \land p)$ by using the <em>commutativity law</em> and the first row in Distributive law</li>
   <li><strong>absorption</strong>: note that this is different from “Idempotence law”</li>
   <li><strong>DeMorgan’s</strong>: how to distribute <strong>negation</strong></li>
 </ul>
 
-<p><strong><em>Proof</em></strong> of $p \or (p \land q) \equiv p$.</p>
+<p><strong><em>Proof</em></strong> of $p \lor (p \land q) \equiv p$.</p>
 
 <p>To get only $p$ on the RHS, we can consider $p \land T = p$ or $p \lor p = p$ as the last step. Here we use the first one:</p>
 
-\[p \or (p \land q) = (p \land T) \lor (p \land q) = p \land (T \lor q) = p \land T = p\]
+\[p \lor (p \land q) = (p \land T) \lor (p \land q) = p \land (T \lor q) = p \land T = p\]
 
 <p><strong><em>Proof</em></strong> of $p \land (p \lor q) \equiv p$</p>
 
-\[p \land (p \lor q) = (p \lor F) \land (p \lor q) = p \or (F \land q) =  p \lor F = p\]
+\[p \land (p \lor q) = (p \lor F) \land (p \lor q) = p \lor (F \land q) =  p \lor F = p\]
 
 <p>which we already know is $p$ from the previous proof.</p>
 
@@ -604,7 +604,7 @@
 
 \[\frac{p \quad q}{p \land q}\]
 
-    <p>basically means $(p \land q) \to (p \and q)$</p>
+    <p>basically means $(p \land q) \to (p \land q)$</p>
   </li>
   <li>
     <p><strong>simplification</strong>:</p>

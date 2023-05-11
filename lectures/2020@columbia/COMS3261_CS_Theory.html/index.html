@@ -6121,6 +6121,7 @@ x \notin A \Rarr \forall c, &amp; V(x,c)\,rejects
   
   
   
+  
 $$
 </code></pre></div>      </div>
     </li>
@@ -6928,7 +6929,7 @@ where:</p>
       <li>a boolean formula includes
         <ul>
           <li>variables $(x_1, x_2, …x_n)$</li>
-          <li>operators $(\and, \or, \neg)$</li>
+          <li>operators $(\land, \lor, \neg)$</li>
         </ul>
       </li>
       <li>$\varphi$ is satisfiable if there <strong>exists</strong> a $T/F$ assignment to each variable, <strong>such that the output $\varphi$ will be</strong> $True$</li>
@@ -6970,21 +6971,21 @@ where:</p>
           <li>literals $(x_i, \overline{x_i})$</li>
           <li><strong>clauses</strong>: composed of literals $l_i$
             <ul>
-              <li>takes the form $(l_1 \or l_2 \or l_3 …)$</li>
-              <li>only $\or$ (OR) are included</li>
+              <li>takes the form $(l_1 \lor l_2 \lor l_3 …)$</li>
+              <li>only $\lor$ (OR) are included</li>
             </ul>
           </li>
         </ul>
       </li>
       <li>$\varphi$ is a CNF form is it is composed of clauses $C_i$
         <ul>
-          <li>$\varphi = C_1 \and C_2 \and C_3 …$</li>
-          <li>only $\and$ (AND) are included between clauses</li>
+          <li>$\varphi = C_1 \land C_2 \land C_3 …$</li>
+          <li>only $\land$ (AND) are included between clauses</li>
         </ul>
       </li>
       <li>for example:
         <ul>
-          <li>$(x_1 \or \overline{x_2}) \and (x_2 \or \overline{x_3} \or x_4)$ is a CNF</li>
+          <li>$(x_1 \lor \overline{x_2}) \land (x_2 \lor \overline{x_3} \lor x_4)$ is a CNF</li>
         </ul>
       </li>
     </ul>
@@ -7021,7 +7022,7 @@ where:</p>
     <ul>
       <li>$3CNF$ is basically the CNF of a boolean formula, except that:
         <ul>
-          <li><strong>each</strong> clauses of $\varphi = C_1 \and C_2 …$ <strong>consists of exactly $3$ literals</strong></li>
+          <li><strong>each</strong> clauses of $\varphi = C_1 \land C_2 …$ <strong>consists of exactly $3$ literals</strong></li>
         </ul>
       </li>
     </ul>
