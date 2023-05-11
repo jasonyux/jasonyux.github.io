@@ -13,11 +13,11 @@
 <meta property="og:url" content="/lectures/2022@columbia/STFCS234_Reinforcement_Learning.html/" />
 <meta property="og:site_name" content="Lecture Notes" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2022-09-30T00:00:00-04:00" />
+<meta property="article:published_time" content="2022-09-30T00:00:00+00:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="STFCS234 Reinforcement Learning" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2022-09-30T00:00:00-04:00","datePublished":"2022-09-30T00:00:00-04:00","description":"Stanford Reinforcement Learning:","headline":"STFCS234 Reinforcement Learning","mainEntityOfPage":{"@type":"WebPage","@id":"/lectures/2022@columbia/STFCS234_Reinforcement_Learning.html/"},"url":"/lectures/2022@columbia/STFCS234_Reinforcement_Learning.html/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2022-09-30T00:00:00+00:00","datePublished":"2022-09-30T00:00:00+00:00","description":"Stanford Reinforcement Learning:","headline":"STFCS234 Reinforcement Learning","mainEntityOfPage":{"@type":"WebPage","@id":"/lectures/2022@columbia/STFCS234_Reinforcement_Learning.html/"},"url":"/lectures/2022@columbia/STFCS234_Reinforcement_Learning.html/"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/lectures/assets/main.css"><link type="application/atom+xml" rel="alternate" href="/lectures/feed.xml" title="Lecture Notes" /></head>
 <body><header class="site-header">
@@ -66,7 +66,7 @@
   </head>
   <header class="post-header">
     <h1 class="post-title p-name" itemprop="name headline">STFCS234 Reinforcement Learning</h1>
-    <p class="post-meta"><time class="dt-published" datetime="2022-09-30T00:00:00-04:00" itemprop="datePublished">
+    <p class="post-meta"><time class="dt-published" datetime="2022-09-30T00:00:00+00:00" itemprop="datePublished">
         Sep 30, 2022
       </time></p>
   </header>
@@ -372,7 +372,7 @@
 
 <ul>
   <li>
-    <p><strong>Goal</strong>: Select actions to maximize total ==expected== future ==reward==</p>
+    <p><strong>Goal</strong>: Select actions to maximize total <mark>expected</mark> future <mark>reward</mark></p>
   </li>
   <li>
     <p>May require balancing immediate &amp; long term rewards</p>
@@ -501,7 +501,7 @@
 
 <ul>
   <li>
-    <p><strong>Model</strong>: Representation of how the ==world== changes in response to agent’s action</p>
+    <p><strong>Model</strong>: Representation of how the <mark>world</mark> changes in response to agent’s action</p>
 
     <ul>
       <li>
@@ -541,11 +541,11 @@
     </ul>
   </li>
   <li>
-    <p><strong>Value function</strong>: ==Future rewards== from being in a state and/or action when following a particular policy</p>
+    <p><strong>Value function</strong>: <mark>Future rewards</mark> from being in a state and/or action when following a particular policy</p>
 
     <ul>
       <li>
-        <p>we consider the ==expected== discounted sum of future rewards <strong>under/given a particular policy $\pi$</strong></p>
+        <p>we consider the <mark>expected</mark> discounted sum of future rewards <strong>under/given a particular policy $\pi$</strong></p>
 
 \[V_\pi(s_t=s) = \mathbb{E}_\pi [r_t + \gamma r_{t+1} + \gamma^2 r_{t+2}+...|s_t=s]\]
 
@@ -854,7 +854,7 @@ P(s_1|s_N) &amp; P(s_2|s_N) &amp; \dots &amp; P(s_N|s_N)\\
 
 <hr />
 
-<p>How do we ==compute== the state function in reality?</p>
+<p>How do we <mark>compute</mark> the state function in reality?</p>
 
 <ul>
   <li>
@@ -902,7 +902,7 @@ V(s_N)
 
 </blockquote>
 
-<p>Note that both $R, P$ is known. All we need is to ==solve for $V$==. This can be solved in two ways:</p>
+<p>Note that both $R, P$ is known. All we need is to <mark>solve for $V$</mark>. This can be solved in two ways:</p>
 
 <ul>
   <li>directly with liner algebra</li>
@@ -948,7 +948,7 @@ V &amp;= (I-\gamma P)^{-1}R
   <ul>
     <li>a set of finite states $s \in S$</li>
     <li>a finite set of actions $a \in A$</li>
-    <li>a dynamics/transition model $P$ ==for each action== that specifies $p(s_{t+1}=s’ \vert  s_t=s, a_t=a)$.</li>
+    <li>a dynamics/transition model $P$ <mark>for each action</mark> that specifies $p(s_{t+1}=s’ \vert  s_t=s, a_t=a)$.</li>
     <li>a reward function $R(s_t=s,a_t=a) \equiv \mathbb{E}[r_t \vert  s_t=s,a_t=a]$</li>
     <li>allow for a discount factor $\gamma \in [0,1]$</li>
   </ul>
@@ -985,7 +985,7 @@ V &amp;= (I-\gamma P)^{-1}R
   <p>Basically a conditional distribution of actions on current state</p>
 </blockquote>
 
-<p>Note that once you ==specified a policy==, you can ==convert MDP + policy to a Markov Reward Process==, so that</p>
+<p>Note that once you <mark>specified a policy</mark>, you can <mark>convert MDP + policy to a Markov Reward Process</mark>, so that</p>
 
 \[R^\pi (s) = \sum_{a \in A} \pi(a|s)R(s,a)\]
 
@@ -1062,7 +1062,7 @@ V^\pi_{k+1}(s_6) &amp;= r(s_6, a_1) + \gamma [0.5 * V_k(s_6) + 0.5 * V_k(s_7)]\\
 
 \[\pi \ge \pi' \iff V_\pi(s) \ge V_{\pi'}(s),\quad \forall s\]
 
-  <p>which means its expected return is greater than or equal to that of $\pi’$ <strong>for all states</strong>. And there is ==always at least one policy that is better== than or equal to all other policies as a policy is essentially a mapping.</p>
+  <p>which means its expected return is greater than or equal to that of $\pi’$ <strong>for all states</strong>. And there is <mark>always at least one policy that is better</mark> than or equal to all other policies as a policy is essentially a mapping.</p>
 </blockquote>
 
 <p>Then, it turns out that</p>
@@ -1098,7 +1098,7 @@ V^\pi_{k+1}(s_6) &amp;= r(s_6, a_1) + \gamma [0.5 * V_k(s_6) + 0.5 * V_k(s_7)]\\
 
 <hr />
 
-<p>So how do we search for the ==best policy==?</p>
+<p>So how do we search for the <mark>best policy</mark>?</p>
 
 <ul>
   <li><strong>enumeration</strong>: compute for all $\vert A\vert ^{\vert S\vert }$ possible deterministic policy and pick best one</li>
@@ -1149,7 +1149,7 @@ V^\pi_{k+1}(s_6) &amp;= r(s_6, a_1) + \gamma [0.5 * V_k(s_6) + 0.5 * V_k(s_7)]\\
 \[Q^{\pi_i}(s,a) = R(s,a) + \gamma \sum_{s' \in S} P(s'|s,a)V^{\pi_i}(s')\]
   </li>
   <li>
-    <p>compute the ==new policy $\pi_{i+1}$ by==</p>
+    <p>compute the <mark>new policy $\pi_{i+1}$ by</mark></p>
 
 \[\pi_{i+1}(s) = \arg\max_a Q^{\pi_i}(s,a),\quad \forall s\in S\]
 
@@ -1194,7 +1194,7 @@ V^{\pi_i}(s)
     <p>the third equality comes from the fact that we know $\pi_{i+1}(s) = \arg\max_a Q^{\pi_i}(s,a)$ which spits out the action for maximizing $Q$</p>
   </li>
   <li>the fifth equality is basically doing the same as doing everything from the first to the third equality</li>
-  <li>hence essentially we are expanding and pushing $\pi_{i+1}$ to a future step, ==until we are using $\pi_{i+1}$ for all steps==</li>
+  <li>hence essentially we are expanding and pushing $\pi_{i+1}$ to a future step, <mark>until we are using $\pi_{i+1}$ for all steps</mark></li>
 </ul>
 
 <blockquote>
@@ -1218,7 +1218,7 @@ V^{\pi_i}(s)
 <p>so we are computing a different thing here, but the final answer will be the same.</p>
 
 <blockquote>
-  <p><em>Recall</em> that value of a policy ==has to satisfy== the Bellman equation</p>
+  <p><em>Recall</em> that value of a policy <mark>has to satisfy</mark> the Bellman equation</p>
 
 \[\begin{align*}
 V^\pi(s) 
@@ -1416,7 +1416,7 @@ V^\pi(s)
 
 \[V^\pi(s) \leftarrow r(s,\pi(s)) + \gamma \sum_{s' \in S} p(s'|s, \pi(s))V_{k-1}(s')\]
 
-    <p>to update the value functions. Notice that for this to make sense we need to ==assume infinite horizon==, since we are treating $V^\pi(s)$ being stationary for each state, i.e. not a function of time step.</p>
+    <p>to update the value functions. Notice that for this to make sense we need to <mark>assume infinite horizon</mark>, since we are treating $V^\pi(s)$ being stationary for each state, i.e. not a function of time step.</p>
   </li>
   <li>
     <p>therefore we are bootstrapping as we are taking the value function from previous iteration.</p>
@@ -1428,7 +1428,7 @@ V^\pi(s)
 
 <hr />
 
-<p>Now, what happens if we ==do not know the world/model==?</p>
+<p>Now, what happens if we <mark>do not know the world/model</mark>?</p>
 
 <p><strong>In the framework of MC Policy Evaluation</strong>, the idea is to notice that</p>
 
@@ -1486,7 +1486,7 @@ V^\pi(s)
         <p>for each state $s$ visited in the episode $i$</p>
 
         <ol>
-          <li>for the ==first time== $t$ that state $s$ is visited
+          <li>for the <mark>first time</mark> $t$ that state $s$ is visited
             <ol>
               <li>increment counter of total first visits for that state $N(s)=N(s)+1$</li>
               <li>increment total return $G(s)=G(s)+G_{i,t}$</li>
@@ -1576,7 +1576,7 @@ V^\pi(s)
         <p>for each state $s$ visited in the episode $i$</p>
 
         <ol>
-          <li>for the ==every time== $t$ that state $s$ is visited
+          <li>for the <mark>every time</mark> $t$ that state $s$ is visited
             <ol>
               <li>increment counter of total first visits for that state $N(s)=N(s)+1$</li>
               <li>increment total return $G(s)=G(s)+G_{i,t}$</li>
@@ -1635,7 +1635,7 @@ V^\pi(s)
 
 \[V^\pi(s)=V^\pi(s)\frac{N(s)-1}{N(s)} + \frac{G_{i,t}}{N(s)}=V^\pi(s)+\frac{G_{i,t}-V^\pi(s)}{N(s)}\]
 
-    <p>for basically ==adding a “correction term”== of $(G_{i,t}-V^\pi(s))/N(s)$</p>
+    <p>for basically <mark>adding a "correction term"</mark> of $(G_{i,t}-V^\pi(s))/N(s)$</p>
   </li>
 </ol>
 
@@ -1662,7 +1662,7 @@ V^\pi(s)
 
         <ol>
           <li>
-            <p>for the ==every time== $t$ that state $s$ is visited</p>
+            <p>for the <mark>every time</mark> $t$ that state $s$ is visited</p>
 
             <ol>
               <li>
@@ -1770,11 +1770,11 @@ V^\pi(s)
   <p><strong>Aim</strong>: estimate $V^\pi(s)$ given sampled episodes $(s_1,a_1,r_1,s_2,a_2,r_2,…)$ generated under policy $\pi$</p>
 </blockquote>
 
-<p>this is the ==same== as MC on Policy Evaluation. But recall that if we are having a MDP model, the <strong>Bellman Operator can be used to perform an update</strong> of the $V(s)$:</p>
+<p>this is the <mark>same</mark> as MC on Policy Evaluation. But recall that if we are having a MDP model, the <strong>Bellman Operator can be used to perform an update</strong> of the $V(s)$:</p>
 
 \[\mathbb{B}^\pi  V(s) = R^\pi(s) + \gamma \sum_{s'\in S} P^\pi(s'|s)V(s')\]
 
-<p>which basically ==takes the current reward== and ==averages over the value of next state==. From this, we consider</p>
+<p>which basically <mark>takes the current reward</mark> and <mark>averages over the value of next state</mark>. From this, we consider</p>
 
 <blockquote>
   <p><strong>Insight</strong>: given some current estimate of $V^\pi$, we can update using</p>
@@ -1787,10 +1787,10 @@ V^\pi(s)
 
   <ul>
     <li>
-      <p>this target is basically also ==takes the current reward== and ==looks at the value of next state==.</p>
+      <p>this target is basically also <mark>takes the current reward</mark> and <mark>looks at the value of next state</mark>.</p>
     </li>
     <li>
-      <p>we are bootstrapping again, instead of waiting until end of episode, we use previous estimate $V^\pi(s)$ to compute our target $r_t+\gamma V^\pi(s_{t+1})$ and updates ==at each time step==. Therefore we also don’t need episodic requirement.</p>
+      <p>we are bootstrapping again, instead of waiting until end of episode, we use previous estimate $V^\pi(s)$ to compute our target $r_t+\gamma V^\pi(s_{t+1})$ and updates <mark>at each time step</mark>. Therefore we also don’t need episodic requirement.</p>
     </li>
   </ul>
 </blockquote>
@@ -1875,7 +1875,7 @@ V^\pi(s)
 
 <ul>
   <li>$[1,0,0,0,0,0,0]$. Notice that here we have forgotten the previous history/<strong>did not propagate</strong> the information of reward at $s_1$ to other states in a single episode.</li>
-  <li>to propagate this information to $s_2$, we need <strong>another episode</strong> which had the tuple $s_2 \to s_1$. To propagate to $s_3$, we need yet another episode that contains $s_3 \to s_2$, etc. So this ==propagation is slow==</li>
+  <li>to propagate this information to $s_2$, we need <strong>another episode</strong> which had the tuple $s_2 \to s_1$. To propagate to $s_3$, we need yet another episode that contains $s_3 \to s_2$, etc. So this <mark>propagation is slow</mark></li>
 </ul>
 
 <h3 id="td-learning-key-limitations">TD Learning Key Limitations</h3>
@@ -1962,7 +1962,7 @@ V^\pi(s)
 </ul>
 
 <blockquote>
-  <p>Note that here we are still living in the world of <strong>tabular state space</strong>, i.e. our state space is discrete. Once we move on to the case of having <strong>continuous state space</strong>, we will cover <strong>function approximation</strong> methods and a lot of them ==does not== guarantee convergence.</p>
+  <p>Note that here we are still living in the world of <strong>tabular state space</strong>, i.e. our state space is discrete. Once we move on to the case of having <strong>continuous state space</strong>, we will cover <strong>function approximation</strong> methods and a lot of them <mark>does not</mark> guarantee convergence.</p>
 </blockquote>
 
 <p>In addition:</p>
@@ -1998,7 +1998,7 @@ V^\pi(s)
     <li>Apply MC or TD(0) to the sampled episode</li>
   </ul>
 
-  <p>The question is, ==what will MC and TD(0) converge to==?</p>
+  <p>The question is, <mark>what will MC and TD(0) converge to</mark>?</p>
 </blockquote>
 
 <p>Consider the following example:</p>
@@ -2049,8 +2049,8 @@ V^\pi(s)
 <p>How does an agent <strong>learn to act</strong> when it does not know how the world works, and does not aim to construct a model (model-free).</p>
 
 <ul>
-  <li>Previous section: ==Policy evaluation== with no knowledge of how the world works = how good is a specific policy?</li>
-  <li>This section: ==Control (making decisions)== without a model of how the world works = how can we <strong>learn a good policy</strong>?</li>
+  <li>Previous section: <mark>Policy evaluation</mark> with no knowledge of how the world works = how good is a specific policy?</li>
+  <li>This section: <mark>Control (making decisions)</mark> without a model of how the world works = how can we <strong>learn a good policy</strong>?</li>
 </ul>
 
 <p>Many applications can be modeled as a MDP:</p>
@@ -2123,10 +2123,10 @@ V^\pi(s)
 </ol>
 
 <blockquote>
-  <p>Now, we want to do the above two steps without access to the true dynamics and reward models. Notice that essentially policy improvement does $\arg \max_a Q^\pi$, so we want to find a way to ==estimate $Q^\pi$ directly without knowing world==.</p>
+  <p>Now, we want to do the above two steps without access to the true dynamics and reward models. Notice that essentially policy improvement does $\arg \max_a Q^\pi$, so we want to find a way to <mark>estimate $Q^\pi$ directly without knowing world</mark>.</p>
 
   <ul>
-    <li>previously we have only discussed how to do policy evaluation $V^\pi$ without the world, but ==not== how to improve it</li>
+    <li>previously we have only discussed how to do policy evaluation $V^\pi$ without the world, but <mark>not</mark> how to improve it</li>
   </ul>
 </blockquote>
 
@@ -2186,7 +2186,7 @@ V^\pi(s)
         <p>for each <strong>state-action pair</strong> $(s,a)$ visited in the episode $i$</p>
 
         <ol>
-          <li>for the ==first time or every time== $t$ that the pair $(s,a)$ is visited
+          <li>for the <mark>first time or every time</mark> $t$ that the pair $(s,a)$ is visited
             <ol>
               <li>increment counter of total first visits for that state $N(s,a)=N(s,a)+1$</li>
               <li>increment total return $G(s,a)=G(s,a)+G_{i,t}$</li>
@@ -2200,16 +2200,16 @@ V^\pi(s)
 </ol>
 
 <blockquote>
-  <p>Notice that a ==problem== with this algorithm: we can only evaluate $Q^\pi(s,a)$ for <strong>state-action pairs that we have experienced</strong>. And if $\pi$ is deterministic, we can’t compute $Q^\pi(s,a)$ for any $a\neq \pi(s)$. This means that we cannot say anything about new actions.</p>
+  <p>Notice that a <mark>problem</mark> with this algorithm: we can only evaluate $Q^\pi(s,a)$ for <strong>state-action pairs that we have experienced</strong>. And if $\pi$ is deterministic, we can’t compute $Q^\pi(s,a)$ for any $a\neq \pi(s)$. This means that we cannot say anything about new actions.</p>
 
   <p>The same problem goes with improvement, $\pi_{i+1} = \arg\max_a Q^{\pi_i}(s,a)$ since we have initialized $Q^\pi(s,a)=0,\forall a \in A,\forall s \in S$.</p>
 
   <ul>
-    <li>one solution to deal with this is optimistic initialization so we initialize a high $Q^\pi(s,a)$ to promote ==exploration==</li>
+    <li>one solution to deal with this is optimistic initialization so we initialize a high $Q^\pi(s,a)$ to promote <mark>exploration</mark></li>
   </ul>
 </blockquote>
 
-<p>This means that our policy improvement will only look at actions we have taken, i.e. it ==will not explore new state-action pairs== so that</p>
+<p>This means that our policy improvement will only look at actions we have taken, i.e. it <mark>will not explore new state-action pairs</mark> so that</p>
 
 \[\pi_{i+1} = \arg\max_a Q^{\pi_i}(s,a)\]
 
@@ -2228,7 +2228,7 @@ V^\pi(s)
 <p>so to <strong>find a good evaluation</strong> of $Q^\pi(s,a)$, we need to:</p>
 
 <ul>
-  <li>==explore== every possible action $a$ from state $s$, to record $R(s,a)$</li>
+  <li><mark>explore</mark> every possible action $a$ from state $s$, to record $R(s,a)$</li>
   <li>after that, follow policy $\pi$ to get $\gamma \sum_{s’ \in S}P(s’\vert s,a)V^\pi(s’)$</li>
 </ul>
 
@@ -2240,7 +2240,7 @@ V^\pi(s)
 a \in A, &amp; p = \epsilon / |A|
 \end{cases}\]
 
-  <p>which is called the ==epsilon-greedy policy== <strong>w.r.t a deterministic policy $\pi(s)$.</strong></p>
+  <p>which is called the <mark>epsilon-greedy policy</mark> <strong>w.r.t a deterministic policy $\pi(s)$.</strong></p>
 </blockquote>
 
 <p>This also means we can also define $\epsilon$-greedy policy <strong>w.r.t. a state-action value $Q(s,a)$</strong></p>
@@ -2308,7 +2308,7 @@ r(\cdot, a_2) = [0,0,0,0,0,0,5]\]
   </li>
 </ol>
 
-<p>And we had the <strong>problem</strong> of $Q^\pi(s,a)$ only containing updates for very small set of $(s,a)$ pairs that we followed a deterministic $\pi(s)$. This means that policy improvement will ==not try new actions==.</p>
+<p>And we had the <strong>problem</strong> of $Q^\pi(s,a)$ only containing updates for very small set of $(s,a)$ pairs that we followed a deterministic $\pi(s)$. This means that policy improvement will <mark>not try new actions</mark>.</p>
 
 <blockquote>
   <p>Now, the idea is to replace the update step <strong>w.r.t the stochastic $\epsilon$-greedy policy $\pi_i$,</strong> so that we consider from a $Q^{\pi_i}$ that:</p>
@@ -2318,7 +2318,7 @@ r(\cdot, a_2) = [0,0,0,0,0,0,5]\]
 a \in A, &amp; p = \epsilon / |A|
 \end{cases}\]
 
-  <p>being the ==new update rule==, which now can cover a wider range of $(s,a)$ pairs hence our updated $\pi_{i+1}$ will also contain ==new actions==.</p>
+  <p>being the <mark>new update rule</mark>, which now can cover a wider range of $(s,a)$ pairs hence our updated $\pi_{i+1}$ will also contain <mark>new actions</mark>.</p>
 </blockquote>
 
 <p>But does this actually provide a monotonic improvement as well (as in the determinstic case)?</p>
@@ -2342,7 +2342,7 @@ a \in A, &amp; p = \epsilon / |A|
   <li>in the last equality, we basically cancelled out the $1-\epsilon$ again and obtained our result</li>
   <li>this of course <strong>assumes that you know exactly $Q^{\pi_i}$ for a policy $\pi_i$</strong>.
     <ul>
-      <li>in case when you have an ==estimate== of $Q^{\pi_i}$, then there is ==no guarantee== of monotonic policy improvement. This will happen a lot in function approximation when we have a continuous state space.</li>
+      <li>in case when you have an <mark>estimate</mark> of $Q^{\pi_i}$, then there is <mark>no guarantee</mark> of monotonic policy improvement. This will happen a lot in function approximation when we have a continuous state space.</li>
     </ul>
   </li>
 </ul>
@@ -2487,7 +2487,7 @@ a \in A, &amp; p = 1/6
 
     <ol>
       <li>
-        <p>policy <strong>evaluation ==using TD==</strong>: compute $Q^{\pi_i}(s,a)$</p>
+        <p>policy <strong>evaluation <mark>using TD</mark></strong>: compute $Q^{\pi_i}(s,a)$</p>
       </li>
       <li>
         <p>policy <strong>improvement (same as MC)</strong>: update $\pi_{i+1}$ using $Q^{\pi_i}$ by</p>
@@ -2518,7 +2518,7 @@ a \in A, &amp; p = 1/6
     <p>therefore, notice that the policy are updated much more frequently as well (as compared to the MC case)</p>
   </li>
   <li>
-    <p>the $\alpha$ used is also often called the ==learning rate== in this context</p>
+    <p>the $\alpha$ used is also often called the <mark>learning rate</mark> in this context</p>
   </li>
 </ul>
 
@@ -2567,7 +2567,7 @@ a \in A, &amp; p = 1/6
 
 <ul>
   <li>
-    <p>instead of taking $a_{t+1}\sim \pi(a\vert s_{t+1})$, which is being ==realistic== (in SARSA), we are being ==optimistic== so that we update our $Q(s_t,a_t)$ by the <strong>best value we could possibly get</strong> using $\max_{a’} Q(s_{t+1},a’)$</p>
+    <p>instead of taking $a_{t+1}\sim \pi(a\vert s_{t+1})$, which is being <mark>realistic</mark> (in SARSA), we are being <mark>optimistic</mark> so that we update our $Q(s_t,a_t)$ by the <strong>best value we could possibly get</strong> using $\max_{a’} Q(s_{t+1},a’)$</p>
   </li>
   <li>
     <p>this means that in cases where we have lots of negative reward/risks in <strong>early stages</strong> (e.g. cliff walking), SARSA would produce better policy whereas Q-Learning would produce more risky policy</p>
@@ -2674,10 +2674,10 @@ a \in A, &amp; p = 1/6
 
 <ul>
   <li>learning a good policy from experience (sampled episodes)</li>
-  <li>update $Q$ estimate using a ==tabular representation==: ==finite== number of state-action pair</li>
+  <li>update $Q$ estimate using a <mark>tabular representation</mark>: <mark>finite</mark> number of state-action pair</li>
 </ul>
 
-<p>However, as you can imagine many real world problems have <strong>enormous state and/or action space</strong> so that we cannot really tabulate all possible values. So we need to somehow ==generalize== to those unknown state-actions.</p>
+<p>However, as you can imagine many real world problems have <strong>enormous state and/or action space</strong> so that we cannot really tabulate all possible values. So we need to somehow <mark>generalize</mark> to those unknown state-actions.</p>
 
 <blockquote>
   <p><strong>Aim</strong>: even if we encounter state-action pairs <em>not</em> met before, we want to make <em>good decisions</em> by past experience.</p>
@@ -2740,7 +2740,7 @@ a \in A, &amp; p = 1/6
 
 <ul>
   <li>given a policy $\pi$ to evaluate</li>
-  <li>assume that there is an ==oracle== that returns the <strong>true value for $V^\pi(s)$</strong></li>
+  <li>assume that there is an <mark>oracle</mark> that returns the <strong>true value for $V^\pi(s)$</strong></li>
 </ul>
 
 <p>so we basically want our function approximation to look like the true $V^\pi(s)$ in our space.</p>
@@ -2813,7 +2813,7 @@ a \in A, &amp; p = 1/6
 <hr />
 
 <blockquote>
-  <p>In VFA, we can basically ==change the update step== to be ==fitting the function approximation== (e.g. gradient descent)</p>
+  <p>In VFA, we can basically <mark>change the update step</mark> to be <mark>fitting the function approximation</mark> (e.g. gradient descent)</p>
 </blockquote>
 
 <p>This means that we need to have prepared:</p>
@@ -2830,7 +2830,7 @@ x_n(s)
 \end{bmatrix}\]
 
     <p>for instance, for robot navigation, it can be a 180-dimensional vector, with each cell representing the distance to the first detected obstacle. 
-However, notice that this representation also means that it is ==not markov==, as in different hallways (true states) you could have the same feature vector. But it could be still a ==good representation to condition our decision on==.</p>
+However, notice that this representation also means that it is <mark>not markov</mark>, as in different hallways (true states) you could have the same feature vector. But it could be still a <mark>good representation to condition our decision on</mark>.</p>
   </li>
   <li>
     <p>choose a class of function approximators to approximate the value function</p>
@@ -2847,7 +2847,7 @@ However, notice that this representation also means that it is ==not markov==, a
 
 \[V^\pi(s)=V^\pi(s)+\alpha\left( G_{i,t}-V^\pi(s) \right)\]
 
-<p>so that our ==target is $G_t$==, which is an <strong>unbiased</strong> but noisy estimate of the true value of $V^\pi(s_t)$.</p>
+<p>so that our <mark>target is $G_t$</mark>, which is an <strong>unbiased</strong> but noisy estimate of the true value of $V^\pi(s_t)$.</p>
 <blockquote>
   <p><strong>Idea</strong>: therere we treat $G_t$ being the “oracle” fo $V^\pi(s_t)$, from which we can get a loss and update our approximator.</p>
 </blockquote>
@@ -2867,7 +2867,7 @@ However, notice that this representation also means that it is ==not markov==, a
 <p>and then just use $\vec{w} := \vec{w} - \alpha \nabla_w L(w)$ to do descent.</p>
 
 <blockquote>
-  <p>This means that we essentially reduce MC VFA to doing ==supervised learning== on a set of (state,return) pairs: $(s_1, G_1), (s_2, G_2), …, (s_T, G_t)$</p>
+  <p>This means that we essentially reduce MC VFA to doing <mark>supervised learning</mark> on a set of (state,return) pairs: $(s_1, G_1), (s_2, G_2), …, (s_T, G_t)$</p>
 </blockquote>
 
 <p>Therefore our algorithm with MC updates looks like</p>
@@ -2923,7 +2923,7 @@ However, notice that this representation also means that it is ==not markov==, a
   </li>
 </ul>
 
-<p>But does such an update ==converge to the right thing==?</p>
+<p>But does such an update <mark>converge to the right thing</mark>?</p>
 
 <h4 id="convergence-for-mc-linear-value-function-approximation">Convergence for MC Linear Value Function Approximation</h4>
 
@@ -2939,14 +2939,14 @@ However, notice that this representation also means that it is ==not markov==, a
 
 <p>must hold, if the markov process has ran long enough.</p>
 
-<p>Using this distribution, we can consider the ==mean square error== of our estimators for a particular policy $\pi$:</p>
+<p>Using this distribution, we can consider the <mark>mean square error</mark> of our estimators for a particular policy $\pi$:</p>
 
 \[MSVE(\vec{w}) = \sum_{s\in S} d(s)\cdot (V^\pi(s) - \hat{V}^\pi(s;\vec{w}))^2\]
 
 <p>for a linear function, we use $\hat{V}^\pi(s;\vec{w}) = \vec{x}(s)^T \vec{w}$.</p>
 
 <blockquote>
-  <p><strong>Theorem</strong>: MC policy evaluation with VFA converges to the weights $\vec{w}_{MC}$ which has the ==minimum mean squared error== possible:</p>
+  <p><strong>Theorem</strong>: MC policy evaluation with VFA converges to the weights $\vec{w}_{MC}$ which has the <mark>minimum mean squared error</mark> possible:</p>
 
 \[MSVE(\vec{w}_{MC}) = \min_w \sum_{s\in S} d(s)\cdot (V^\pi(s) - \hat{V}^\pi(s;\vec{w}))^2\]
 
@@ -2977,7 +2977,7 @@ However, notice that this representation also means that it is ==not markov==, a
 
 \[V^\pi(s) = V^\pi(s) + \alpha (r + \gamma V^\pi(s') - V^\pi(s))\]
 
-<p>with the ==target== being $r+\gamma V^\pi(s’)$, which is a biased estimate of the true $V^\pi$.</p>
+<p>with the <mark>target</mark> being $r+\gamma V^\pi(s’)$, which is a biased estimate of the true $V^\pi$.</p>
 
 <blockquote>
   <p><strong>Idea</strong>: use function to represent $V^\pi$, and use boostrapping + sampling in TD method, with the same update rule shown above.</p>
@@ -3062,7 +3062,7 @@ However, notice that this representation also means that it is ==not markov==, a
 <p>for a linear function, we use $\hat{V}^\pi(s;\vec{w}) = \vec{x}(s)^T \vec{w}$.</p>
 
 <blockquote>
-  <p><strong>Theorem</strong>: TD policy evaluation with VFA converges to the weights $\vec{w}_{TD}$ is ==within a constant factor== of minmum mean squared error possible:</p>
+  <p><strong>Theorem</strong>: TD policy evaluation with VFA converges to the weights $\vec{w}_{TD}$ is <mark>within a constant factor</mark> of minmum mean squared error possible:</p>
 
 \[MSVE(\vec{w}_{TD}) \le \frac{1}{1-\gamma} \min_w \sum_{s\in S} d(s)\cdot (V^\pi(s) - \hat{V}^\pi(s;\vec{w}))^2\]
 
@@ -3162,7 +3162,7 @@ However, notice that this representation also means that it is ==not markov==, a
 
 <h3 id="model-free-vfa-control">Model Free VFA Control</h3>
 
-<p>Similar to how we did <a href="#Model Free VFA Policy Evaluation">Model Free VFA Policy Evaluation</a>, the idea is to approximate the oracle with ==some target==.</p>
+<p>Similar to how we did <a href="#Model Free VFA Policy Evaluation">Model Free VFA Policy Evaluation</a>, the idea is to approximate the oracle with <mark>some target</mark>.</p>
 <ul>
   <li>
     <p>in MC methods, the target is simply $G_t$, so we consider:</p>
@@ -3347,7 +3347,7 @@ However, notice that this representation also means that it is ==not markov==, a
 <h3 id="dqns-experience-replay">DQNs: Experience Replay</h3>
 
 <blockquote>
-  <p>To help remove correlations, store dataset (called a ==replay buffer==) $D$ from prior experience. So that instead of having updates in the same order as the episode = high correlation, we sample from the buffer.</p>
+  <p>To help remove correlations, store dataset (called a <mark>replay buffer</mark>) $D$ from prior experience. So that instead of having updates in the same order as the episode = high correlation, we sample from the buffer.</p>
 </blockquote>
 
 <p><img src="/lectures/images/2022-09-30-STFCS234_Reinforcement_Learning/image-20220522161057736.png" alt="image-20220522161057736" style="zoom:80%;" /></p>
@@ -3472,7 +3472,7 @@ However, notice that this representation also means that it is ==not markov==, a
   <li>first pick the fourth tuple $(s_1,a_1,1,T)$ so that $V(s_1)=1+\gamma * 0 = 1$</li>
   <li>then pick the third tuple $(s_2,a_1,0,s_1)$, because we know that $V(s_1)=1$, so that $V(s_2)= 0 + \gamma * 1$ gets <strong>propagated</strong></li>
   <li>finally pick the first tuple, $(s_3,a_1,0,s_2)$, because we know that $V(s_2)=\gamma$, and so we can further propagate back to $s_3$.</li>
-  <li>for $\gamma =1$, this results in $V = [1,0,0,0,0,0,0]$. Notice that it would be ==the same as MC update==!</li>
+  <li>for $\gamma =1$, this results in $V = [1,0,0,0,0,0,0]$. Notice that it would be <mark>the same as MC update</mark>!</li>
 </ul>
 
 <hr />
@@ -3484,7 +3484,7 @@ However, notice that this representation also means that it is ==not markov==, a
 <p>However, computing the exact ordering is intractable in practice.</p>
 
 <blockquote>
-  <p>Therefore, the idea is to consider some ordering based on how big the error is. Consider a sample being $(s_i,a_i,r_i,s_{i+1})$, then we consider the ==priority== of such tuple $i$ being:</p>
+  <p>Therefore, the idea is to consider some ordering based on how big the error is. Consider a sample being $(s_i,a_i,r_i,s_{i+1})$, then we consider the <mark>priority</mark> of such tuple $i$ being:</p>
 
 \[p_i \equiv \left|  \underbrace{r + \gamma \max_{a'}Q(s_{t+1},a';\vec{w}^-)}_{\text{TD target}&gt;  }- Q(s_i,a_i;\vec{w}) \right|\]
 
@@ -3504,7 +3504,7 @@ However, notice that this representation also means that it is ==not markov==, a
   <li>But not necessarily in indicating <strong>relative benefit of taking different actions</strong> in a state</li>
 </ul>
 
-<p>Therefore, we do not care about the value of a state, but about ==which actions at state $s$ has a better value==, which can be done by looking at the advantage function</p>
+<p>Therefore, we do not care about the value of a state, but about <mark>which actions at state $s$ has a better value</mark>, which can be done by looking at the advantage function</p>
 
 \[A^\pi(s,a) \equiv Q^\pi(s,a) - V^\pi(s) = Q^{\pi}(s,a) - Q^{\pi}(s,\pi(s))\]
 
@@ -3531,14 +3531,14 @@ However, notice that this representation also means that it is ==not markov==, a
 <ul>
   <li>Dueling DQN keeps one estimate of $V(s)$ from the network and another for the advantage function</li>
   <li>then, it is recombined back to $Q(s,a) = A^{\pi}(s,a) - V^{\pi}(s,a)$ to perform the control algorithm.</li>
-  <li>notice that we are having ==another set of features== to represent $A(s,a)$, which reiterates the point that we might need different features for approximating the advantage than the value function $V\left(s,a\right)$.</li>
+  <li>notice that we are having <mark>another set of features</mark> to represent $A(s,a)$, which reiterates the point that we might need different features for approximating the advantage than the value function $V\left(s,a\right)$.</li>
 </ul>
 
 <p>When compared to Double DQN with Prioritized Replay, this <strong>already has a big improvement</strong>:</p>
 
 <p><img src="/lectures/images/2022-09-30-STFCS234_Reinforcement_Learning/image-20220522173022329.png" alt="image-20220522173022329" /></p>
 
-<p>also note that the performance for “Montezuma’s Revenge” was still ==not improved==, i.e. those families of improvements mainly aimed at improving reward propagation, but not for games that require <strong>a high exploration</strong>.</p>
+<p>also note that the performance for “Montezuma’s Revenge” was still <mark>not improved</mark>, i.e. those families of improvements mainly aimed at improving reward propagation, but not for games that require <strong>a high exploration</strong>.</p>
 
 <h3 id="identifiability-of-advantage-function">Identifiability of Advantage Function</h3>
 
@@ -3572,7 +3572,7 @@ However, notice that this representation also means that it is ==not markov==, a
 <p>So it is important to remember that:</p>
 
 <blockquote>
-  <p>Reinforcement Learning: Learning policies guided by (often ==sparse==) rewards (e.g. win the game or not):</p>
+  <p>Reinforcement Learning: Learning policies guided by (often <mark>sparse</mark>) rewards (e.g. win the game or not):</p>
   <ul>
     <li>Good: as a simple, cheap form of supervision</li>
     <li>Bad: requires high sample complexity for finding a good policy</li>
@@ -3584,7 +3584,7 @@ However, notice that this representation also means that it is ==not markov==, a
   <li>in simulation where data is cheap and parallelization is easy</li>
 </ul>
 
-<p>==Not== when:</p>
+<p><mark>Not</mark> when:</p>
 <ul>
   <li>Execution of actions is slow</li>
   <li>Very expensive or not tolerable to fail (e.g. learning to fly a helicopter will require crashing many times)</li>
@@ -3648,7 +3648,7 @@ However, notice that this representation also means that it is ==not markov==, a
 
 <h2 id="behavior-cloning">Behavior Cloning</h2>
 
-<p>The idea of this is simple. Since we need to learn the teacher’s policy $\pi^{*}$, all we need to do is to ==learn the mapping from state to action==.</p>
+<p>The idea of this is simple. Since we need to learn the teacher’s policy $\pi^{*}$, all we need to do is to <mark>learn the mapping from state to action</mark>.</p>
 
 <blockquote>
   <p>Therefore, this can be formulated as a <strong>supervised machine learning</strong> problem:</p>
@@ -3658,7 +3658,7 @@ However, notice that this representation also means that it is ==not markov==, a
   </ul>
 </blockquote>
 
-<p>However, remember that supervised learning ==assumes iid. $(s, a)$ pairs==. This means that</p>
+<p>However, remember that supervised learning <mark>assumes iid. $(s, a)$ pairs</mark>. This means that</p>
 <ul>
   <li>supervised learning assumes the <strong>state distribution</strong> you will get in any future (e.g. after taking some actions) is the <strong>same</strong> as the ones in the past (iid)</li>
   <li>however, in MDP processes, the state distribution would change after you take some actions.</li>
@@ -3697,7 +3697,7 @@ However, notice that this representation also means that it is ==not markov==, a
   <li>note that we technically <em>don’t need to know the teacher’s policy $\pi^{</em>}$*, we just need to query something to get the gold standard action.</li>
 </ul>
 
-<p>So in this technique we need to have an expert, kind of like ==human in the loop==. Therefore in many cases this could be very label intensive.</p>
+<p>So in this technique we need to have an expert, kind of like <mark>human in the loop</mark>. Therefore in many cases this could be very label intensive.</p>
 
 <h2 id="inverse-reinforcement-learning">Inverse Reinforcement Learning</h2>
 
@@ -3791,12 +3791,12 @@ However, notice that this representation also means that it is ==not markov==, a
 
 \[||\vec{\mu}(\pi) - \vec{\mu}(\pi^*)||_1 \le \epsilon\]
 
-<p>then for ==all $\vec{w}$== with $\vert \vert \vec{w}_\infty \vert \vert  \le 1$ :</p>
+<p>then for <mark>all $\vec{w}$</mark> with $\vert \vert \vec{w}_\infty \vert \vert  \le 1$ :</p>
 
 \[||\vec{w}^T\vec{\mu}(\pi) - \vec{w}^{T}\vec{\mu}(\pi^*)||_1 \le \epsilon\]
 
 <blockquote>
-  <p>So that we can find the ==optimal policy== $\pi^{*}$ without needing to know the reward weight $\vec{w}$ by finding a policy $\pi$ such that:</p>
+  <p>So that we can find the <mark>optimal policy</mark> $\pi^{*}$ without needing to know the reward weight $\vec{w}$ by finding a policy $\pi$ such that:</p>
 
 \[||\vec{\mu}(\pi) - \vec{\mu}(\pi^*)||_1 \le \epsilon\]
 
@@ -3845,7 +3845,7 @@ However, notice that this representation also means that it is ==not markov==, a
 
 \[\pi_{\theta} (s,a) \equiv P_\theta[a|s]\]
 
-    <p>and the ==aim is to find a policy $\pi$ with the highest value function $V^{\pi}$==.</p>
+    <p>and the <mark>aim is to find a policy $\pi$ with the highest value function $V^{\pi}$</mark>.</p>
   </li>
   <li>of course we will do it in a model-free approach (i.e. without transition/reward function)</li>
 </ul>
@@ -3902,7 +3902,7 @@ However, notice that this representation also means that it is ==not markov==, a
 
         <p><img src="/lectures/images/2022-09-30-STFCS234_Reinforcement_Learning/image-20220605211409890.png" alt="image-20220605211409890" style="zoom:67%;" /></p>
 
-        <p>the problem that states cannot be distinguished is also called ==aliasing==. In this case using stochastic policy in grey states is a good idea/has a higher value.</p>
+        <p>the problem that states cannot be distinguished is also called <mark>aliasing</mark>. In this case using stochastic policy in grey states is a good idea/has a higher value.</p>
       </li>
       <li>
         <p>Not very useful when: in a tabular MDP problem, optimal policy is deterministic</p>
@@ -3916,7 +3916,7 @@ However, notice that this representation also means that it is ==not markov==, a
 
 <p>Disadvantages:</p>
 <ul>
-  <li>Typically ==converge to a local rather than global optimum==</li>
+  <li>Typically <mark>converge to a local rather than global optimum</mark></li>
   <li><strong>Evaluating</strong> a policy (from which we compute gradient) is typically sample inefficient and high variance</li>
 </ul>
 
@@ -3945,7 +3945,7 @@ However, notice that this representation also means that it is ==not markov==, a
 
 </blockquote>
 
-<p>Now, we have a goal function from which we can ==optimize==. Therefore, it becomes an optimization problem and we can consider:</p>
+<p>Now, we have a goal function from which we can <mark>optimize</mark>. Therefore, it becomes an optimization problem and we can consider:</p>
 
 <ul>
   <li>gradient free optimization (useful when not differentiable, but not used often now)
@@ -3974,11 +3974,11 @@ However, notice that this representation also means that it is ==not markov==, a
   <li>assume episodic MDPs</li>
 </ul>
 
-<p>Then policy search/gradient considers ==gradient ascent== w.r.t parameter $\theta$:</p>
+<p>Then policy search/gradient considers <mark>gradient ascent</mark> w.r.t parameter $\theta$:</p>
 
 \[\nabla \theta = +\alpha \nabla_{\theta} V(\theta)\]
 
-<p>But the question is, ==what is $\nabla_{\theta} V(\theta)$==</p>
+<p>But the question is, <mark>what is $\nabla_{\theta} V(\theta)$</mark></p>
 
 \[\nabla_{\theta} V(\theta) = \begin{bmatrix}
   \frac{\partial V(\theta)}{\partial \theta_1} \\
@@ -3987,7 +3987,7 @@ However, notice that this representation also means that it is ==not markov==, a
   \frac{\partial V(\theta)}{\partial \theta_n}
 \end{bmatrix}\]
 
-<p>==when our parameter is on $\pi_\theta$?==</p>
+<p><mark>when our parameter is on $\pi_\theta$?</mark></p>
 
 <h3 id="gradients-by-finite-differences">Gradients by Finite Differences</h3>
 
@@ -4057,7 +4057,7 @@ However, notice that this representation also means that it is ==not markov==, a
   <li>denote a trajectory as $\tau = (s_{0}, a_{0} , r_{0} , … , s_{T-1},a_{T-1},r_{T-1},s_{T},a_{T},r_{T})$.</li>
   <li>denote the reward of the trajectory as $R(\tau) \equiv \sum\limits_{t=0}^{T} R(s_t, a_t)$</li>
   <li>
-    <p>then define the ==policy value== as:</p>
+    <p>then define the <mark>policy value</mark> as:</p>
 
 \[V(\theta) \equiv \sum\limits_{\tau} P_{\pi_\theta}(\tau) R(\tau) = \mathbb{E}_{\pi_{\theta}} \left[ \sum\limits_{t=0}^{T} R(s_{t} , a_{t} ) \right]\]
 
@@ -4080,8 +4080,8 @@ However, notice that this representation also means that it is ==not markov==, a
 <p>which seems to have done nothing, but we will soon see that</p>
 
 <ul>
-  <li>since we are doing model free, ==this trick helps us to compute $\nabla_\theta \log P(\tau; \theta)$ without knowing the world==.</li>
-  <li>to evaluate $\sum\limits_{\tau}$ and $R(\tau)$, we can just ==sample== a bunch of trajectories!</li>
+  <li>since we are doing model free, <mark>this trick helps us to compute $\nabla_\theta \log P(\tau; \theta)$ without knowing the world</mark>.</li>
+  <li>to evaluate $\sum\limits_{\tau}$ and $R(\tau)$, we can just <mark>sample</mark> a bunch of trajectories!</li>
 </ul>
 
 <p>Therefore, first we approximate this by:</p>
@@ -4111,7 +4111,7 @@ However, notice that this representation also means that it is ==not markov==, a
 
 <p><img src="/lectures/images/2022-09-30-STFCS234_Reinforcement_Learning/image-20220605232719619.png" alt="image-20220605232719619" style="zoom:67%;" /></p>
 
-<p>notice that from this we ==only need to know $\nabla_{\theta} \log \pi_\theta$==! This term also gets a (relatively useless) name of ==score function==.</p>
+<p>notice that from this we <mark>only need to know $\nabla_{\theta} \log \pi_\theta$</mark>! This term also gets a (relatively useless) name of <mark>score function</mark>.</p>
 
 <blockquote>
   <p><strong>Score Function Policy Gradient:</strong></p>
@@ -4153,7 +4153,7 @@ the policy gradient is:</li>
 
 \[\nabla_{\theta} V(\theta) \approx \frac{1}{m} \sum\limits_{n=1}^{m} R(\tau^{(i)}) \sum_{t=0}^{T-1} \nabla_\theta \log \pi_\theta(a_t^{(i)}|s_t^{(i)})\]
 
-<p>for letting the objective function being $J = V(\theta)$. However, although this is an ==unbiased estimate of the gradient==, it is ==noisy (high variance) in practice==. Fixes include:</p>
+<p>for letting the objective function being $J = V(\theta)$. However, although this is an <mark>unbiased estimate of the gradient</mark>, it is <mark>noisy (high variance) in practice</mark>. Fixes include:</p>
 
 <ul>
   <li>temporal structure/bootstrapping methods (reduces variance)</li>
@@ -4195,7 +4195,7 @@ the policy gradient is:</li>
 
 <p>Notice that</p>
 <ul>
-  <li>as compared to the previous form $\nabla_{\theta} V(\theta) \approx \frac{1}{m} \sum\limits_{n=1}^{m} R(\tau^{(i)}) \sum_{t=0}^{T-1} \nabla_\theta \log \pi_\theta(a_t^{(i)}\vert s_t^{(i)})$, we multiply each $\nabla_\theta \log \pi_\theta(a_t^{(i)}\vert s_t^{(i)})$ by its own expected reward $G_t^{(i)}$ instead of the constant episodic reward $R(\tau^{(u)})$. This ==reduces the variance== of the gradient estimate.</li>
+  <li>as compared to the previous form $\nabla_{\theta} V(\theta) \approx \frac{1}{m} \sum\limits_{n=1}^{m} R(\tau^{(i)}) \sum_{t=0}^{T-1} \nabla_\theta \log \pi_\theta(a_t^{(i)}\vert s_t^{(i)})$, we multiply each $\nabla_\theta \log \pi_\theta(a_t^{(i)}\vert s_t^{(i)})$ by its own expected reward $G_t^{(i)}$ instead of the constant episodic reward $R(\tau^{(u)})$. This <mark>reduces the variance</mark> of the gradient estimate.</li>
   <li>since this uses $G_t$, it is a MC estimate.</li>
 </ul>
 
@@ -4221,12 +4221,12 @@ the policy gradient is:</li>
 
 \[\pi_\theta(a|s)  = \mathrm{Softmax}\left( \phi(s,a)^{T} \theta \right)\]
 
-    <p>which outputs a probability per ==discrete action==. The score function for this type of model is:</p>
+    <p>which outputs a probability per <mark>discrete action</mark>. The score function for this type of model is:</p>
 
 \[\nabla_{\theta} \log \pi_{\theta} (a|s) = \phi(s,a) - \mathbb{E}_{\pi_{\theta}} [\phi(s, \cdot )]\]
   </li>
   <li>
-    <p><strong>Gaussian Policy</strong>: very useful for ==continuos action space==, which we can parametrize by:</p>
+    <p><strong>Gaussian Policy</strong>: very useful for <mark>continuos action space</mark>, which we can parametrize by:</p>
 
 \[\pi_\theta(a|s) \sim N( \mu(s), \sigma^{2})\]
 
@@ -4252,7 +4252,7 @@ the policy gradient is:</li>
 \[\nabla_{\theta} V(\theta) = \nabla_{\theta} \mathbb{E}_\tau [R] 
   = \mathbb{E}_\tau \left[ \sum\limits_{t=0}^{T-1} \nabla_\theta \log \pi_\theta(a_t|s_t) \left( \sum\limits_{t'=t}^{T-1} r_{t'} - b(s_t) \right)\right]\]
 
-<p>which is still an ==unbiased== estimate:</p>
+<p>which is still an <mark>unbiased</mark> estimate:</p>
 
 <ul>
   <li>a near optimal choice is to consider $b(s_t)$ as the expected return $b(s_{t}) \approx \mathbb{E}[r_{t} + r_{t+1} + … + r_{T-1}]$.</li>
@@ -4313,11 +4313,11 @@ the policy gradient is:</li>
 
 \[\nabla_\theta \log \pi_\theta(a_t|s_t) \hat{A}_t\]
 
-  <p>we can just define a ==surrogate loss function==:</p>
+  <p>we can just define a <mark>surrogate loss function</mark>:</p>
 
 \[L(\theta) \equiv \sum_t \log \pi_\theta(a_t|s_t) \hat{A}_t\]
 
-  <p>And then let ==auto differentiation== compute the gradient:</p>
+  <p>And then let <mark>auto differentiation</mark> compute the gradient:</p>
 
 \[\hat{g} = \nabla_\theta L(\theta)\]
 
@@ -4332,7 +4332,7 @@ the policy gradient is:</li>
 <p>having $R(\tau^{(i)})$ as a target we know leads to high variance but is unbiased (MC updates). But we can then reduce variance by introducing bias using <strong>bootstrapping</strong> and <strong>function approximation</strong> (e.g. TD vs MC)</p>
 
 <blockquote>
-  <p><strong>Actor-Critic Methods</strong>: Estimate the value function $V$ or $Q$, called ==critic==. Therefore, it maintains an explicit representation of ==both the policy and the value function==, and update both. (e.g. A3C model)</p>
+  <p><strong>Actor-Critic Methods</strong>: Estimate the value function $V$ or $Q$, called <mark>critic</mark>. Therefore, it maintains an explicit representation of <mark>both the policy and the value function</mark>, and update both. (e.g. A3C model)</p>
 </blockquote>
 
 <p>Therefore, in the actor-critic case, we consider instead of:</p>
@@ -4367,7 +4367,7 @@ the policy gradient is:</li>
   <li>$\hat{R}<em>t^{(\infty)} = r</em>{t} + \gamma r_{t+1} + \gamma^{2}r_{t+2} + … = G_t$ being MC</li>
 </ul>
 
-<p>From this , ths means hhat the ==critic can model $V$ and choose between==:</p>
+<p>From this , ths means hhat the <mark>critic can model $V$ and choose between</mark>:</p>
 
 <ul>
   <li>$\hat{A}<em>t^{(1)} = r</em>{t} + \gamma V(s_{t+1}) - V(s_t)$</li>
@@ -4381,13 +4381,13 @@ the policy gradient is:</li>
 \[\nabla_{\theta} V(\theta)  
   = \mathbb{E}_\tau \left[ \sum\limits_{t=0}^{T-1} \nabla_\theta \log \pi_\theta(a_t|s_t) \hat{A}^{\pi} (s_{t}, a_t) \right]\]
 
-<p>and of course $\hat{A}_t^{(1)}$ would have <strong>low variance</strong> but high bias, and $\hat{A}_t^{(\infty)}$ would have high variance but low bias. Such models are also called ==Advantage Actor-Critic Methods== (A2C).</p>
+<p>and of course $\hat{A}_t^{(1)}$ would have <strong>low variance</strong> but high bias, and $\hat{A}_t^{(\infty)}$ would have high variance but low bias. Such models are also called <mark>Advantage Actor-Critic Methods</mark> (A2C).</p>
 
 <h2 id="automatic-step-size-tuning">Automatic Step Size Tuning</h2>
 
-<p>In supervised learning case, we can overshoot the gradient if our step size is too big. However, it is not too bad because at least the ==data is fixed==, i.e. you might recover the local minima later.</p>
+<p>In supervised learning case, we can overshoot the gradient if our step size is too big. However, it is not too bad because at least the <mark>data is fixed</mark>, i.e. you might recover the local minima later.</p>
 
-<p>However, in Reinforcement Learning cases, <strong>changing policy changes the data</strong>, this means that if you overshoot and obtain bad policies, then you might have ==no data that can learn towards optimas==.</p>
+<p>However, in Reinforcement Learning cases, <strong>changing policy changes the data</strong>, this means that if you overshoot and obtain bad policies, then you might have <mark>no data that can learn towards optimas</mark>.</p>
 
 <ul>
   <li>previously we have been experimenting with different target values (MC vs TD target, etc)</li>
@@ -4435,7 +4435,7 @@ the policy gradient is:</li>
   &amp;= V(\theta) + \sum\limits_{s} \mu_{\tilde{\theta}}(s) \sum\limits_{a} \pi_{\tilde{\theta}}(a|s) A_{\pi_\theta} (s_{t}, a_t) \\
 \end{align*}\]
 
-<p>therefore, the only unknown is $\mu_{\tilde{\theta}}(s)$ which is a ==stationary distribution of states under new policy $\pi_{\tilde{\theta}}$== as we don’t have new trajectories.</p>
+<p>therefore, the only unknown is $\mu_{\tilde{\theta}}(s)$ which is a <mark>stationary distribution of states under new policy $\pi_{\tilde{\theta}}$</mark> as we don’t have new trajectories.</p>
 
 <p>However, we do know $\mu_{\theta}(s)$ from the old policy $\pi_\theta$, and it turns out that the following <strong>approximation</strong> would provide a good lower bound estimate:</p>
 
@@ -4459,7 +4459,7 @@ the policy gradient is:</li>
   <p>meaning the RHS is the lower bound of the true value we want $V^{\pi_{new}}$. And notice that all quantities on the RHS are computable/known!</p>
 </blockquote>
 
-<p>The above need a mixture of policy for the new policy. Can we make it even better? It turns out that we can have a lower bound of ==any stochastic policy== by:</p>
+<p>The above need a mixture of policy for the new policy. Can we make it even better? It turns out that we can have a lower bound of <mark>any stochastic policy</mark> by:</p>
 
 <blockquote>
   <p><strong>Lower Bound in General Stochastic Policy</strong>: for any new stochastic polict $\pi_{new}$, the following holds:</p>
@@ -4484,11 +4484,11 @@ the policy gradient is:</li>
 <p>Finally, how do we use this result to make sure we are having monotonic policy improvement?</p>
 
 <blockquote>
-  <p><strong>Guaranteed Improvement</strong>: recall that the goal is to make sure that the new policy $\pi_{i+1}$ (e.g. after gradient descent updates) have a better value than the old policy $\pi_i$. To achieve this, if we consider defineing a ==metric==:</p>
+  <p><strong>Guaranteed Improvement</strong>: recall that the goal is to make sure that the new policy $\pi_{i+1}$ (e.g. after gradient descent updates) have a better value than the old policy $\pi_i$. To achieve this, if we consider defineing a <mark>metric</mark>:</p>
 
 \[M_i(\pi) \equiv  L_{\pi_{i}} (\pi) - \frac{4 \epsilon \gamma}{(1-\gamma)^2} D_{KL}^{\max} (\pi_{i}, \pi)\]
 
-  <p>Then, we realize that if we ==ensure improvement in this metric==:</p>
+  <p>Then, we realize that if we <mark>ensure improvement in this metric</mark>:</p>
 
 \[\begin{align*}
 M_i(\pi_{i+1}) - M_i(\pi_i) &amp;&gt; 0\\
@@ -4513,7 +4513,7 @@ V^{\pi_{i+1}} - M_i(\pi_i) = V^{\pi_{i+1}} - V^{\pi_i} &amp;&gt; 0
   </ul>
 </blockquote>
 
-<p>This means that if the ==new policy has a higher $M_i$, then my new policy has to be improving==.</p>
+<p>This means that if the <mark>new policy has a higher $M_i$, then my new policy has to be improving</mark>.</p>
 
 <ul>
   <li>
@@ -4524,7 +4524,7 @@ V^{\pi_{i+1}} - M_i(\pi_i) = V^{\pi_{i+1}} - V^{\pi_i} &amp;&gt; 0
     <p>would be difficult. So next we show some practical algorithms that “approximate” this.</p>
   </li>
   <li>
-    <p>in general, algorithms that uses this type of objective will be called ==Minorization-Maximization (MM) algorithm==</p>
+    <p>in general, algorithms that uses this type of objective will be called <mark>Minorization-Maximization (MM) algorithm</mark></p>
   </li>
 </ul>
 
@@ -4534,7 +4534,7 @@ V^{\pi_{i+1}} - M_i(\pi_i) = V^{\pi_{i+1}} - V^{\pi_i} &amp;&gt; 0
 
 \[\nabla_{\theta} V(\theta) \approx \frac{1}{m} \sum\limits_{n=1}^{m} R(\tau^{(i)}) \sum_{t=0}^{T-1} \nabla_\theta \log \pi_\theta(a_t^{(i)}|s_t^{(i)})\]
 
-<p>But from the previous section, we found a way to guarantee the improvement of the policy by looking at the lower bound of $V^{\pi_{i+1}}$. This means that we can also ==directly optimize over the lower bound==:</p>
+<p>But from the previous section, we found a way to guarantee the improvement of the policy by looking at the lower bound of $V^{\pi_{i+1}}$. This means that we can also <mark>directly optimize over the lower bound</mark>:</p>
 
 \[M_{\theta_i}(\theta) \equiv L_{\theta_{i}} (\theta) - \frac{4 \epsilon \gamma}{(1-\gamma)^2} D_{KL}^{\max} (\theta_{i}, \theta)\]
 
@@ -4579,7 +4579,7 @@ we then make there further substitutions to make this more computable:
 
 <p>\sum\limits_{s} \mu_{\theta_{old}}\to \frac{1}{1-\gamma} \mathbb{E}<em>{s\sim \mu</em>{\theta_{old}}}</p>
 
-\[- use ==importance sampling== to estimate the desired sum, which enables the use of an **alternate sampling distribution $q$** (other than the new policy $\pi_\theta$):\]
+\[- use &lt;mark&gt;importance sampling&lt;/mark&gt; to estimate the desired sum, which enables the use of an **alternate sampling distribution $q$** (other than the new policy $\pi_\theta$):\]
 
 <table>
   <tbody>
@@ -4599,7 +4599,7 @@ we then make there further substitutions to make this more computable:
 
 <p>$$</p>
 <ul>
-  <li>Note that these 3 substitutions ==do not change the solution== to the above optimization problem, but make them more computable.</li>
+  <li>Note that these 3 substitutions <mark>do not change the solution</mark> to the above optimization problem, but make them more computable.</li>
 </ul>
 
 <p>Therefore, this gives the following reformulation of the same objective:</p>
@@ -4649,7 +4649,7 @@ and often we take $q(a\vert s)=\pi_{old}$.</p>
 
 <p><img src="/lectures/images/2022-09-30-STFCS234_Reinforcement_Learning/image-20220608141633.png" style="zoom:50%;" /></p>
 
-<p>where the trick of this against the Model-Free approach is that, when finding the next action, we ==do not have to compute the full value function/policy== (as in Model-Free approaches). We only need to find the ==next single action==, which is exploited by the MCTS algorithm.</p>
+<p>where the trick of this against the Model-Free approach is that, when finding the next action, we <mark>do not have to compute the full value function/policy</mark> (as in Model-Free approaches). We only need to find the <mark>next single action</mark>, which is exploited by the MCTS algorithm.</p>
 
 <p><strong>Advantages</strong>:</p>
 <ul>
@@ -4793,7 +4793,7 @@ $$</p>
   <li>essentially the difference arises because TD assumes/factors in the MDP process, whereas the MC method does not.</li>
 </ul>
 
-<p>However, if we used our simulated model and ==sampled from it==, you could see the following data</p>
+<p>However, if we used our simulated model and <mark>sampled from it</mark>, you could see the following data</p>
 
 <table>
   <thead>
@@ -4866,7 +4866,7 @@ $$</p>
 </ul>
 
 <blockquote>
-  <p>Why might this be helpful? Notice that we don’t need to solve whole MDP, just ==sub-MDP starting from the current state==!</p>
+  <p>Why might this be helpful? Notice that we don’t need to solve whole MDP, just <mark>sub-MDP starting from the current state</mark>!</p>
 </blockquote>
 
 <p>However, to compute this at every step would be expensive. Do we have other approaches?</p>
@@ -4926,7 +4926,7 @@ $$</p>
     <p>a_{t} = \arg\max_{a} Q^{\pi}(s_t,a)</p>
 
     <p>$$
-which is like ==one-step of policy improvement==</p>
+which is like <mark>one-step of policy improvement</mark></p>
   </li>
 </ol>
 
@@ -4934,7 +4934,7 @@ which is like ==one-step of policy improvement==</p>
 
 <h4 id="monte-carlo-tree-search-1">Monte-Carlo Tree Search</h4>
 
-<p><em>Recall</em> that we can compute the optimal policy by considering the ==expectimax tree== that we have shown before:</p>
+<p><em>Recall</em> that we can compute the optimal policy by considering the <mark>expectimax tree</mark> that we have shown before:</p>
 
 <p><img src="/lectures/images/2022-09-30-STFCS234_Reinforcement_Learning/image-20220608154845.png" style="zoom:50%;" /></p>
 
@@ -4985,7 +4985,7 @@ note that as the policy $\pi$ genearing those trajectories improves, eventually 
 
 \[a_{ik}=\arg\max U(s,a,i)\]
 
-<p>This implies that the ==policy== used to simulate episodes with (and expand/update the tree) can ==change across each episode==.</p>
+<p>This implies that the <mark>policy</mark> used to simulate episodes with (and expand/update the tree) can <mark>change across each episode</mark>.</p>
 
 <p>All in all, we will sample new episodes by:</p>
 
@@ -5060,7 +5060,7 @@ As we have known so far, RL algorithms updates/improves itself via interacting w
 &lt;img src='/lectures/images/2022-09-30-STFCS234_Reinforcement_Learning/image-20220821203131.png' style='zoom:50%;'/&gt;
 
 
-&gt; Therefore, the aim of offline RL is to ==reuse previously collected datasets== (e.g. ImageNet) to create a data-driven RL framework.
+&gt; Therefore, the aim of offline RL is to &lt;mark&gt;reuse previously collected datasets&lt;/mark&gt; (e.g. ImageNet) to create a data-driven RL framework.
 
 Recall that some techniques we covered so far:
 
@@ -5090,7 +5090,7 @@ where essentially:
 
 In addition to produing a new policy:
 
-&gt; ==Safe Offline/Batch RL== considers the following guarantee. Given past experience from some current policy $\pi$, we want to produce a new policy $\pi_\beta$ that
+&gt; &lt;mark&gt;Safe Offline/Batch RL&lt;/mark&gt; considers the following guarantee. Given past experience from some current policy $\pi$, we want to produce a new policy $\pi_\beta$ that
 &gt; - with the probability at least $1 - \delta$, will not be worse than $\pi_\beta$
 &gt; - guarantee should not contingent on tuning any hyperparamters
 &gt; 
@@ -5100,7 +5100,7 @@ This is particularly useful in high stakes domain (e.g. medicine).
 
 Finally, just to make the task clear:
 
-&gt; **Task**: given some dataset $D$, we want to learn the ==best possible policy $\pi_e$== from it. Notice that sometimes learning a very good policy might not even be possible if $D$ contains no good data (e.g. only visiting the first few rooms in Montezuma's Revenge). In general, it depends on the coverage and will be discussed in section [Importance Sampling for Policy Evaluation](#Importance Sampling for Policy Evaluation).
+&gt; **Task**: given some dataset $D$, we want to learn the &lt;mark&gt;best possible policy $\pi_e$&lt;/mark&gt; from it. Notice that sometimes learning a very good policy might not even be possible if $D$ contains no good data (e.g. only visiting the first few rooms in Montezuma's Revenge). In general, it depends on the coverage and will be discussed in section [Importance Sampling for Policy Evaluation](#Importance Sampling for Policy Evaluation).
 
 ## Safe Offline RL Formulation
 
@@ -5162,7 +5162,7 @@ Or, more commonly, we could consider some external baselines $V_{\min}$ as well,
 
 <h3 id="mc-off-policy-evaluation">MC Off Policy Evaluation</h3>
 
-<p>Once mentioned unbiased, we should think of MC methods (as opposed to TD methods, which does sampling + bootstrapping). Additionally, this ==does not require the world to be Markov==, which in realiy is often not the case!</p>
+<p>Once mentioned unbiased, we should think of MC methods (as opposed to TD methods, which does sampling + bootstrapping). Additionally, this <mark>does not require the world to be Markov</mark>, which in realiy is often not the case!</p>
 
 <p>First, we realize that because the policies are different $\pi_{1} \neq \pi_{2}$, we have <strong>two different distribution of states $\tau_{\pi_1}\neq  \tau_{\pi_2}$</strong> (otherwise the policies have the same value)</p>
 
@@ -5181,7 +5181,7 @@ Or, more commonly, we could consider some external baselines $V_{\min}$ as well,
   </tbody>
 </table>
 
-<p>Suppose that $\pi_{1}, \tau_{\pi_1}$ is known/collected. The idea is: how do we change the distribution to that they look alike? ==Importance Sampling==!</p>
+<p>Suppose that $\pi_{1}, \tau_{\pi_1}$ is known/collected. The idea is: how do we change the distribution to that they look alike? <mark>Importance Sampling</mark>!</p>
 <ul>
   <li>essentially reweight the samples from $\tau_{\pi_2}$ so that samples from $\tau_{\pi_1}$</li>
 </ul>
@@ -5216,7 +5216,7 @@ $$</p>
   &amp;\approx \frac{1}{n} \sum\limits_{i} \frac{q(x_i)}{p(x_i)}f(x_i),\quad x_i\sim p(x) 
 \end{align</em>}</p>
 
-\[so that essentially we sample data $x$ from $p(x)$, but ==reweigh== the probability so that it looks the same as if the came from $x\sim q(x)$
+\[so that essentially we sample data $x$ from $p(x)$, but &lt;mark&gt;reweigh&lt;/mark&gt; the probability so that it looks the same as if the came from $x\sim q(x)$
 
 Therefore, back in the case of RL, let $T_j$ be the episode $j$ of states actions and rewards (that are collected/sampled by $p(x)$):\]
 
@@ -5252,7 +5252,7 @@ Therefore, back in the case of RL, let $T_j$ be the episode $j$ of states action
 Notice that the interpretation here is simple. Consider comparing the value of the policy using its start state, then:
 - we have a bunch of trajectories and computed expected rewards $(T_1,G_1),(T_2,G_2),...,(T_n,G_n)$ sampled from following $\pi_b$
 - then the value of this policy $\pi_b$ can be estimated by $(1/n)\sum\limits G_i$
-- but to estimate the value of $\pi_e$, we ==reweigh the probabilities by thinking how likely those trajectories are to be generated by $\pi_e$==. So that if it is more likely, i.e. $p(T_j\vert \pi_e)&gt;p(T_j\vert \pi_b)$, we will increase the weight using the above ratio.
+- but to estimate the value of $\pi_e$, we &lt;mark&gt;reweigh the probabilities by thinking how likely those trajectories are to be generated by $\pi_e$&lt;/mark&gt;. So that if it is more likely, i.e. $p(T_j\vert \pi_e)&gt;p(T_j\vert \pi_b)$, we will increase the weight using the above ratio.
 
 In general, $s_{j,1}$ can be any state as you can just rederive the above by considering $p(T_j\vert \pi_e,s=s_{j,1})$.
 
@@ -5278,7 +5278,7 @@ Now, what are the assumptions used to make IS work? You might notice the term $\
 
 &gt; **Importance Sampling Assumptions**: since we are reweighing samples from $\pi_b$, if we have distributions that are non-overlapping, then this will obviously not work.
 &gt; - in particular, if we have any single case that $\pi_b(a\vert s)=0$ but $\pi_e(a\vert s)&gt;0$, then this will not work.
-&gt; - therefore, for this to work, we want to have a large ==coverage==: so that for $\forall a,s$ such that $\pi_e(a\vert s)&gt;0$, you want $\pi_b(a\vert s)&gt;0$.
+&gt; - therefore, for this to work, we want to have a large &lt;mark&gt;coverage&lt;/mark&gt;: so that for $\forall a,s$ such that $\pi_e(a\vert s)&gt;0$, you want $\pi_b(a\vert s)&gt;0$.
 
 Intuively, this means that if $\pi_e$ is not too far off from $\pi_b$, then the importance sampling would work reasonably.
 
@@ -5301,7 +5301,7 @@ Now, we want to show that in many cases we can use some tricks to reduce the var
 
 <p>\mathrm{Var}[\hat{\mu}] = \mathrm{Var}[X-Y+\mathbb{E}[Y]]=\mathrm{Var}[X-Y] = \mathrm{Var}[X] + \mathrm{Var}[Y] - 2 \mathrm{Cov}(X,Y)</p>
 
-\[therefore, ==we just need $2\mathrm{Cov}(X,Y) &gt; \mathrm{Var}[Y]$== to lower the variance in total while not introducing bias. Note that this might sound like some free lunch, but it is not because we are using $Y$ that has some information about $X$ since $2\mathrm{Cov}(X,Y) &gt; \mathrm{Var}[Y]$.
+\[therefore, &lt;mark&gt;we just need $2\mathrm{Cov}(X,Y) &gt; \mathrm{Var}[Y]$&lt;/mark&gt; to lower the variance in total while not introducing bias. Note that this might sound like some free lunch, but it is not because we are using $Y$ that has some information about $X$ since $2\mathrm{Cov}(X,Y) &gt; \mathrm{Var}[Y]$.
 
 ---
 
@@ -5448,11 +5448,11 @@ with some confidence intervals</p>
 <ul>
   <li>$D = {(s_i, a_i, s_i^{\prime}, r_i}$ the same as before</li>
   <li>$\pi_b$ is the behavior policy creating the data $D$, so that $s \sim \mu_{\pi_b}(s)$ and $a \sim \pi_b(a\vert s)$</li>
-  <li>however, now we generally assume that ==$\pi_b$ is NOT known==</li>
+  <li>however, now we generally assume that <mark>$\pi_b$ is NOT known</mark></li>
   <li>we want to find a new policy $\pi_{\mathrm{new}}$ that can combine good decisions</li>
 </ul>
 
-<p>And, as mentioned before, since $\pi_b \neq \pi_\mathrm{new}$ for $\pi_\mathrm{new}$ we want to learn, there is a problem of ==distribution shift==</p>
+<p>And, as mentioned before, since $\pi_b \neq \pi_\mathrm{new}$ for $\pi_\mathrm{new}$ we want to learn, there is a problem of <mark>distribution shift</mark></p>
 
 <blockquote>
   <p><strong>Distribution Shift for learning Value Functions in Offline RL</strong>: consider we are learning a value function $Q$. Idealy, if we want to learn $Q^{\pi_{b}}$, we consider the objective:
@@ -5547,7 +5547,7 @@ so that KL-divergence would work the best. This means we consider the support co
 
 ---
 
-Finally, here we show some examples of how to ==explicitly include policy constraints== in practice:
+Finally, here we show some examples of how to &lt;mark&gt;explicitly include policy constraints&lt;/mark&gt; in practice:
 
 1. consider the case of using Actor Critic methods, where the actor $\pi_\theta(a\vert s)$ has the objective:\]
 
@@ -5601,7 +5601,7 @@ Finally, here we show some examples of how to ==explicitly include policy constr
   </tbody>
 </table>
 
-\[which can not only makes current behavior more consistent, but also accounts for future behavior/divergence. This form of approach is called ==Behavior Regularized Offline RL==
+\[which can not only makes current behavior more consistent, but also accounts for future behavior/divergence. This form of approach is called &lt;mark&gt;Behavior Regularized Offline RL&lt;/mark&gt;
 
 But again, generally best offline RL algorithms today do not use these methods.
 
@@ -5712,18 +5712,38 @@ Is there a way to avoid OOD actions while learning the Q function? This serves f
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  L(\theta) =  \mathbb{E}_{(s,a,s')\sim D} \left[ L_2^\tau( r(s,a) +\gamma \max_{\pi_b(a'|s')&gt;0}Q_{\hat{\theta}} - Q_\theta(s,a)) \right]
   
+  
+  
+  
+  
   $$
   (explaination of expectile loss seen in the next paragraph) but this have a drawback, and that is since each update sample contains $(s,a,s')$, it includes the stochasticity of a sample getting high reward because of *lucky* transition to $s'$ instead of doing the correct action $a$. This we do not want to have in our learned critic/policy.
 - using expectile loss to first fit a value function $V$:
   $$
   
+  
+  
+  
+  
   L_V(\psi) = \mathbb{E}_{(s,a) \sim D} \left[ L_2^{\tau}(Q_{\hat{\theta}}(s,a) - V_\psi(s)) \right]
+  
+  
+  
+  
   
   $$
   which uses expectile because we want $V_\psi$ to learn the upper end in the distribution to approximate $\max Q_{\hat{\theta}}$, and then we simply use that and do:
   $$
   
+  
+  
+  
+  
   L_Q(\theta) = \mathbb{E}_{(s,a,s')\sim D} \left[ ( r(s,a) +\gamma V_\psi(s')- Q_\theta(s,a))^{2} \right]
+  
+  
+  
+  
   
   $$
   which notice that we do avoided the case of lucky transition while we are training the $V_\psi$ approximation function.
@@ -5933,7 +5953,7 @@ so that:</p>
 <p>| <img src="/lectures/images/2022-09-30-STFCS234_Reinforcement_Learning/image-20220827161524.png" style="zoom:50%;" /> | <img src="/lectures/images/2022-09-30-STFCS234_Reinforcement_Learning/image-20220827161544.png" style="zoom:50%;" /> |
 | :—: | :—: |</p>
 
-<p>so that essentially we are facing the same problem as those OOD actions in Q value estimates: now we are facing the threat that ==our policy could adversarially pick actions and transit to OOD states which the model could have some erroneously high values==.</p>
+<p>so that essentially we are facing the same problem as those OOD actions in Q value estimates: now we are facing the threat that <mark>our policy could adversarially pick actions and transit to OOD states which the model could have some erroneously high values</mark>.</p>
 
 <p>Therefore, the general intuition for this is to apply some kind of penalty for policys that exploit too many OOD states/actions.</p>
 

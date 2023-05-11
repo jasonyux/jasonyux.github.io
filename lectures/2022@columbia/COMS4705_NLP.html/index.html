@@ -13,11 +13,11 @@
 <meta property="og:url" content="/lectures/2022@columbia/COMS4705_NLP.html/" />
 <meta property="og:site_name" content="Lecture Notes" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2022-03-30T00:00:00-04:00" />
+<meta property="article:published_time" content="2022-03-30T00:00:00+00:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="COMS4705 NLP part1" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2022-03-30T00:00:00-04:00","datePublished":"2022-03-30T00:00:00-04:00","description":"Logistics and Introduction","headline":"COMS4705 NLP part1","mainEntityOfPage":{"@type":"WebPage","@id":"/lectures/2022@columbia/COMS4705_NLP.html/"},"url":"/lectures/2022@columbia/COMS4705_NLP.html/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2022-03-30T00:00:00+00:00","datePublished":"2022-03-30T00:00:00+00:00","description":"Logistics and Introduction","headline":"COMS4705 NLP part1","mainEntityOfPage":{"@type":"WebPage","@id":"/lectures/2022@columbia/COMS4705_NLP.html/"},"url":"/lectures/2022@columbia/COMS4705_NLP.html/"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/lectures/assets/main.css"><link type="application/atom+xml" rel="alternate" href="/lectures/feed.xml" title="Lecture Notes" /></head>
 <body><header class="site-header">
@@ -66,7 +66,7 @@
   </head>
   <header class="post-header">
     <h1 class="post-title p-name" itemprop="name headline">COMS4705 NLP part1</h1>
-    <p class="post-meta"><time class="dt-published" datetime="2022-03-30T00:00:00-04:00" itemprop="datePublished">
+    <p class="post-meta"><time class="dt-published" datetime="2022-03-30T00:00:00+00:00" itemprop="datePublished">
         Mar 30, 2022
       </time></p>
   </header>
@@ -614,13 +614,13 @@
     <li>Matching strings that we <strong>should not have matched</strong> (there, then, other)
       <ul>
         <li>False positives (Type I)</li>
-        <li>==accuracy== or ==precision== (minimizing false positives)</li>
+        <li><mark>accuracy</mark> or <mark>precision</mark> (minimizing false positives)</li>
       </ul>
     </li>
     <li><strong>Not matching</strong> things that we should have matched (The)
       <ul>
         <li>False negatives (Type II)</li>
-        <li>Increasing ==coverage== or ==recall== (minimizing false negatives)</li>
+        <li>Increasing <mark>coverage</mark> or <mark>recall</mark> (minimizing false negatives)</li>
       </ul>
     </li>
   </ul>
@@ -643,7 +643,7 @@
 
 <h2 id="word-tokenization">Word Tokenization</h2>
 
-<p>Every NLP task needs to do ==text tokenization==:</p>
+<p>Every NLP task needs to do <mark>text tokenization</mark>:</p>
 
 <blockquote>
   <p>Tokenization is essentially <strong>splitting a phrase, sentence, paragraph, or an entire text document into smaller units</strong>, such as individual words or terms. Each of these smaller units are called tokens.</p>
@@ -795,7 +795,7 @@
   <li>however, a problem is, say we had words such as $\text{low}, \text{new}, \text{newer}$, but see $\text{lower}$ in the test corpus. What should we do?</li>
 </ul>
 
-<p>To deal with this unknown word problem, modern tokenizers often automatically ==induce== sets of tokens that include tokens smaller than words, called <strong>subwords</strong>.</p>
+<p>To deal with this unknown word problem, modern tokenizers often automatically <mark>induce</mark> sets of tokens that include tokens smaller than words, called <strong>subwords</strong>.</p>
 
 <ul>
   <li>Subwords can be arbitrary substrings, or they can be meaning-bearing units like the <strong>morphemes</strong>, e.g. $\text{-est, -er}$
@@ -809,8 +809,8 @@
 <p>In general, this is done in two steps:</p>
 
 <ol>
-  <li>a token <strong>learner</strong>: takes a raw training corpus (sometimes roughly pre-separated into words, for example by whitespace) and ==induces a vocabulary== of tokens that will be used</li>
-  <li>a token <strong>segmenter</strong>, takes a raw test sentence and ==segments== it into the tokens <strong>using the vocabulary</strong></li>
+  <li>a token <strong>learner</strong>: takes a raw training corpus (sometimes roughly pre-separated into words, for example by whitespace) and <mark>induces a vocabulary</mark> of tokens that will be used</li>
+  <li>a token <strong>segmenter</strong>, takes a raw test sentence and <mark>segments</mark> it into the tokens <strong>using the vocabulary</strong></li>
 </ol>
 
 <p>Three algorithms are widely used:</p>
@@ -855,7 +855,7 @@ Search: Windows, windows, window</li>
 
 \[\text{US} \iff \text{us}\]
 
-<p>for different applications, we need to ==think about whether if this is appropriate==</p>
+<p>for different applications, we need to <mark>think about whether if this is appropriate</mark></p>
 
 <ul>
   <li>helpful for <strong>generalization</strong> in many tasks, such as information retrieval and speech recognition (uses tend to use lower case more often)</li>
@@ -894,7 +894,7 @@ Search: Windows, windows, window</li>
     <p>another helpful case for this would be doing Machine Translation (MT)</p>
   </li>
   <li>
-    <p>how is this done? The most sophisticated methods for lemmatization involve complete ==morphological parsing of the word==.</p>
+    <p>how is this done? The most sophisticated methods for lemmatization involve complete <mark>morphological parsing of the word</mark>.</p>
   </li>
 </ul>
 
@@ -913,7 +913,7 @@ Search: Windows, windows, window</li>
 
 <h3 id="stemming">Stemming</h3>
 
-<p>Lemmatization algorithms can be complex. For this reason we sometimes make use of a simpler but cruder method, which mainly consists of <strong>chopping off word-final</strong> ==stemming== affixes. This naive version of morphological analysis is called <strong>stemming</strong>.</p>
+<p>Lemmatization algorithms can be complex. For this reason we sometimes make use of a simpler but cruder method, which mainly consists of <strong>chopping off word-final</strong> <mark>stemming</mark> affixes. This naive version of morphological analysis is called <strong>stemming</strong>.</p>
 
 <blockquote>
   <p><strong>Stemming</strong> refers to a <strong><em>simpler</em></strong> version of <strong>lemmatization</strong> in which we mainly just strip suffixes from the end of the word</p>
@@ -1016,7 +1016,7 @@ Search: Windows, windows, window</li>
     <li>e.g. $\text{graffe}$ with $\text{giraffe}$</li>
   </ul>
 
-  <p><strong>Minimum edit distance</strong> between two strings is defined as the ==minimum number of (weighted) editing operations== (operations like insertion, deletion, substitution) needed to transform one string into another.</p>
+  <p><strong>Minimum edit distance</strong> between two strings is defined as the <mark>minimum number of (weighted) editing operations</mark> (operations like insertion, deletion, substitution) needed to transform one string into another.</p>
 
   <ul>
     <li>e.g.  $\text{graffe}$ to $\text{giraffe}$ would require one</li>
@@ -1050,7 +1050,7 @@ Search: Windows, windows, window</li>
   <li>We can also assign a particular cost or weight to each of these operations. The <strong>Levenshtein distance</strong> between two sequences is the simplest weighting factor in which each of the three operations has a cost of $1$</li>
   <li>An alternative version of his metric in which each insertion or deletion has a cost of $1$ and <strong>substitutions are not allowed.</strong>
     <ul>
-      <li>This is equivalent to allowing substitution, but giving each substitution a ==cost of $2$== since any substitution can be represented by one insertion and one deletion</li>
+      <li>This is equivalent to allowing substitution, but giving each substitution a <mark>cost of $2$</mark> since any substitution can be represented by one insertion and one deletion</li>
     </ul>
   </li>
 </ul>
@@ -1064,7 +1064,7 @@ Search: Windows, windows, window</li>
 
   <p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220126190229994.png" alt="image-20220126190229994" /></p>
 
-  <p>Imagine some string (perhaps it is $\text{exention}$) that is ==in this optimal path== (whatever it is).</p>
+  <p>Imagine some string (perhaps it is $\text{exention}$) that is <mark>in this optimal path</mark> (whatever it is).</p>
 
   <ul>
     <li>if $\text{exention}$ is in the optimal operation list, then the optimal sequence must also <strong>include the optimal path</strong> from
@@ -1204,7 +1204,7 @@ $\text{intention }$ to $\text{exention}$.</li>
 
 \[\text{Please turn your homework ...}\]
 
-<p>In the following sections we will formalize this intuition by introducing models that assign a ==probability to each possible next word==. The same models will also serve to assign a probability to an entire sentence. So that:</p>
+<p>In the following sections we will formalize this intuition by introducing models that assign a <mark>probability to each possible next word</mark>. The same models will also serve to assign a probability to an entire sentence. So that:</p>
 
 \[P(\text{all of a sudden I notice three guys}) &gt; P(\text{guys all I of notice three a sudden})\]
 
@@ -1223,7 +1223,7 @@ $\text{intention }$ to $\text{exention}$.</li>
 </ul>
 
 <blockquote>
-  <p>Models that ==assign probabilities== to sequences of words are called <strong>language model</strong>, or <strong>LMs</strong>.</p>
+  <p>Models that <mark>assign probabilities</mark> to sequences of words are called <strong>language model</strong>, or <strong>LMs</strong>.</p>
 </blockquote>
 
 <p>In this chapter we introduce the simplest model that assigns probabilties to sentences and sequences of words, the <strong>n-gram</strong>.</p>
@@ -1236,7 +1236,7 @@ $\text{intention }$ to $\text{exention}$.</li>
     <li>a 3-gram (a trigram) is a three-word sequence of words like $\text{please turn your}$, or $\text{turn your homework}$.</li>
   </ul>
 
-  <p>We will see how ==n-gram models== to <strong>estimate the probability of the last word</strong> of an n-gram given the previous words, and also to assign probabilities to entire sequences.</p>
+  <p>We will see how <mark>n-gram models</mark> to <strong>estimate the probability of the last word</strong> of an n-gram given the previous words, and also to assign probabilities to entire sequences.</p>
 </blockquote>
 
 <h2 id="n-grams">N-Grams</h2>
@@ -1248,7 +1248,7 @@ $\text{intention }$ to $\text{exention}$.</li>
 <p>for assigning probability to a given <strong>sequence of words</strong>.</p>
 
 <ul>
-  <li>note that this is a ==joint== probability, which means ==order matters==. e,g. $P(X_1 = 1,X_2 =0) \neq P(X_1=0,X_2=1)$</li>
+  <li>note that this is a <mark>joint</mark> probability, which means <mark>order matters</mark>. e,g. $P(X_1 = 1,X_2 =0) \neq P(X_1=0,X_2=1)$</li>
 </ul>
 
 <p>For predicting <strong>next</strong> word:</p>
@@ -1289,10 +1289,10 @@ P(X_1,...,X_n)
 
 <p>So the <strong>same problem persist</strong>.</p>
 
-<p>Yet we can ==approximate== this using <strong>Markov’s Assumption</strong></p>
+<p>Yet we can <mark>approximate</mark> this using <strong>Markov’s Assumption</strong></p>
 
 <blockquote>
-  <p><strong>Markov models</strong> are the class of probabilistic models that assume we can predict the probability of some future unit ==without looking too far into the past==.</p>
+  <p><strong>Markov models</strong> are the class of probabilistic models that assume we can predict the probability of some future unit <mark>without looking too far into the past</mark>.</p>
 
   <ul>
     <li>
@@ -1418,7 +1418,7 @@ P(X_1,...,X_m)
 
 <h3 id="perplexity">Perplexity</h3>
 
-<p>In practice we don’t use <strong>raw probability</strong> as our metric for evaluating language model, but a variant called ==perplexity==</p>
+<p>In practice we don’t use <strong>raw probability</strong> as our metric for evaluating language model, but a variant called <mark>perplexity</mark></p>
 
 <blockquote>
   <p><strong>Perplexity</strong></p>
@@ -1593,7 +1593,7 @@ PP(W)
 <p>This brings the <strong>following problems of LM</strong>:</p>
 
 <ul>
-  <li>One implication of this is that the probabilities often ==encode specific facts== about a given ==training corpus==.
+  <li>One implication of this is that the probabilities often <mark>encode specific facts</mark> about a given <mark>training corpus</mark>.
     <ul>
       <li>e.g. if the corpus is about food, then most of the vocabs/structures will be steered towards that</li>
     </ul>
@@ -1601,7 +1601,7 @@ PP(W)
   <li>Another implication is that $n$-grams do a better and better job of modeling the training corpus as we <strong>increase the value of $N$</strong>.
     <ul>
       <li>i.e. <strong>higher order $N$-gram</strong> models tends to perform better</li>
-      <li>however, this then requires a ==larger training corpus== or a ==larger storage== for the probability matrix, which could go $O(V^N)$ for a corpus with $V$ vocab and $N$-gram is used.
+      <li>however, this then requires a <mark>larger training corpus</mark> or a <mark>larger storage</mark> for the probability matrix, which could go $O(V^N)$ for a corpus with $V$ vocab and $N$-gram is used.
         <ul>
           <li>though this can be optimized as we are having a sparse matrix</li>
         </ul>
@@ -1656,8 +1656,8 @@ hurt the performance of any application we want to run on this data.</li>
 <blockquote>
   <p>In a <strong>closed vocabulary</strong> system the test set can vocabulary only contain words from this lexicon, and there will be no unknown words</p>
 
-  <p>An <strong>open vocabulary</strong> system vocabulary is one in which we model these potential unknown words in the test set by ==adding a==
-==pseudo-word== called <code class="language-plaintext highlighter-rouge">&lt;UNK&gt;</code>.</p>
+  <p>An <strong>open vocabulary</strong> system vocabulary is one in which we model these potential unknown words in the test set by <mark>adding a</mark>
+<mark>pseudo-word</mark> called <code class="language-plaintext highlighter-rouge">&lt;UNK&gt;</code>.</p>
 
   <ul>
     <li>The percentage of OOV (out of vocabulary) open words that appear in the test set is called the OOV rate.</li>
@@ -1671,7 +1671,7 @@ hurt the performance of any application we want to run on this data.</li>
     <ol>
       <li>Choose a vocabulary (word list) that is fixed <strong>in advance</strong> (without looking at the training set)</li>
       <li><strong>Convert</strong> in the training set any word that is not in this set (<strong>any OOV word</strong>) to the unknown word token <code class="language-plaintext highlighter-rouge">&lt;UNK&gt;</code> in a text normalization step.</li>
-      <li>Estimate the ==probabilities for <code class="language-plaintext highlighter-rouge">&lt;UNK&gt;</code> from its counts== just like any other regular word in the training set.</li>
+      <li>Estimate the <mark>probabilities for `<UNK>` from its counts&lt;/mark&gt; just like any other regular word in the training set.</UNK></mark></li>
     </ol>
   </li>
   <li>Second alternative, in situations where we don’t have a prior vocabulary in advance, is to create such a vocabulary implicitly
@@ -1695,7 +1695,7 @@ hurt the performance of any application we want to run on this data.</li>
 <p>However, The exact choice of <code class="language-plaintext highlighter-rouge">&lt;UNK&gt;</code> model does <strong>have an effect on metrics</strong> like perplexity.</p>
 
 <ul>
-  <li>A language model can achieve <strong>low perplexity</strong> by choosing a small vocabulary and ==assigning the unknown word a high probability==.</li>
+  <li>A language model can achieve <strong>low perplexity</strong> by choosing a small vocabulary and <mark>assigning the unknown word a high probability</mark>.</li>
   <li>For this reason, perplexities should only be compared across language models with the same vocabularies</li>
 </ul>
 
@@ -1709,7 +1709,7 @@ hurt the performance of any application we want to run on this data.</li>
   <p>To keep a language model from assigning zero probability to these unseen events, we’ll have to shift a bit of probability mass <strong>from</strong> some more frequent events and <strong>give it to the events we’ve never seen</strong>.</p>
 
   <ul>
-    <li>This modification is called ==smoothing== or ==discounting==</li>
+    <li>This modification is called <mark>smoothing</mark> or <mark>discounting</mark></li>
   </ul>
 </blockquote>
 
@@ -1729,7 +1729,7 @@ hurt the performance of any application we want to run on this data.</li>
 
 <h3 id="laplace-smoothing">Laplace Smoothing</h3>
 
-<p>In reality, one ==simple== way is to use <strong>Laplace Smoothing</strong></p>
+<p>In reality, one <mark>simple</mark> way is to use <strong>Laplace Smoothing</strong></p>
 
 <blockquote>
   <p><strong>Laplace Smoothing</strong>: add one to all the n-gram counts, before we normalize them into probabilities..</p>
@@ -1747,7 +1747,7 @@ hurt the performance of any application we want to run on this data.</li>
 <p>we needed $\sum \text{Count}(w_i,w_{i-1})$ because it is $\text{Count}(w_i,w_{i-1})$, i.e. the element in our bigram frequency matrix that gets <strong>added 1</strong>.</p>
 
 <ul>
-  <li>also notice that we <strong>don’t need gradient descent</strong> type algorithm, as this is a ==probabilistic model==</li>
+  <li>also notice that we <strong>don’t need gradient descent</strong> type algorithm, as this is a <mark>probabilistic model</mark></li>
 </ul>
 
 <p>Therefore, the Add-1 estimate is simply:</p>
@@ -1840,7 +1840,7 @@ hurt the performance of any application we want to run on this data.</li>
     <li>“back off” to a lower-order n-gram if we have zero evidence</li>
   </ul>
 
-  <p>In <strong>interpolation</strong>, we always ==mix the probability estimates== from all the n-gram estimators</p>
+  <p>In <strong>interpolation</strong>, we always <mark>mix the probability estimates</mark> from all the n-gram estimators</p>
 
   <ul>
     <li>e.g. produced a weighting and combining the trigram, bigram, and unigram counts</li>
@@ -1865,7 +1865,7 @@ hurt the performance of any application we want to run on this data.</li>
 
 <p><em>For Example</em>: More sophisticated Linear Interpolation</p>
 
-<p>If we have particularly accurate counts for a particular bigram, we assume that the counts of the trigrams ==based on this bigram== will be more trustworthy, so we can make the ls for those trigrams higher.</p>
+<p>If we have particularly accurate counts for a particular bigram, we assume that the counts of the trigrams <mark>based on this bigram</mark> will be more trustworthy, so we can make the ls for those trigrams higher.</p>
 
 <ul>
   <li>i.e. $\lambda$s differ based on which bigram $w_{n-2}w_{n-1}$ we are conditioning on</li>
@@ -1959,7 +1959,7 @@ P^*(w_n | w_{n-N+1:n-1}), &amp; \text{if Count}(w_{n-N+1:n}) &gt; 0\\
 </ul>
 
 <blockquote>
-  <p><strong>Kneser-Ney discounting</strong> (Kneser and Ney, 1995) augments absolute discounting with a more ==sophisticated way== to handle the ==lower-order unigram distribution==.</p>
+  <p><strong>Kneser-Ney discounting</strong> (Kneser and Ney, 1995) augments absolute discounting with a more <mark>sophisticated way</mark> to handle the <mark>lower-order unigram distribution</mark>.</p>
 
   <p>Essentially instead of blindly picking the most probable $P(w_i)$ if you don’t know what to do next, pick the $w_i$ that is <strong>likely to appear in a new/novel context</strong></p>
 </blockquote>
@@ -1974,7 +1974,7 @@ P^*(w_n | w_{n-N+1:n-1}), &amp; \text{if Count}(w_{n-N+1:n}) &gt; 0\\
   <li>if we basically used $P(w_i)$ for interpolation, then words like $\text{Kong}$ might appear more often as a unigram than $\text{glasses}$</li>
   <li>basically, if we are only to guess the next word, use the one that <strong>appears more context</strong>/has a wider distribution
     <ul>
-      <li>i.e. $\text{Kong}$ could have only appeared after $\text{Hong}$, but $\text{glasses}$ would have appeared ==after many different types of words==</li>
+      <li>i.e. $\text{Kong}$ could have only appeared after $\text{Hong}$, but $\text{glasses}$ would have appeared <mark>after many different types of words</mark></li>
     </ul>
   </li>
 </ul>
@@ -2054,7 +2054,7 @@ P^*(w_n | w_{n-N+1:n-1}), &amp; \text{if Count}(w_{n-N+1:n}) &gt; 0\\
   <p><strong>Bloom filters</strong>: approximate language models</p>
 </blockquote>
 
-<p>All of those are used to improve <strong>efficiency</strong> of our model when exposed to ==large corpus==</p>
+<p>All of those are used to improve <strong>efficiency</strong> of our model when exposed to <mark>large corpus</mark></p>
 
 <h3 id="stupid-backoff">Stupid Backoff</h3>
 
@@ -2064,11 +2064,11 @@ P^*(w_n | w_{n-N+1:n-1}), &amp; \text{if Count}(w_{n-N+1:n}) &gt; 0\\
   <li>this algorithm for computing probability is called <strong>stupid backoff</strong></li>
 </ul>
 
-<p>Notice that all modifications of the basic N-gram language model is ==modifying this term==:</p>
+<p>Notice that all modifications of the basic N-gram language model is <mark>modifying this term</mark>:</p>
 
 \[P(w_i | w_{i-n+1:i-1})\]
 
-<p>Stupid backoff basically ==gives up== the idea of trying to make the above quantity a ==true probability distribution== (i.e. sums up to 1).</p>
+<p>Stupid backoff basically <mark>gives up</mark> the idea of trying to make the above quantity a <mark>true probability distribution</mark> (i.e. sums up to 1).</p>
 
 <ul>
   <li>no discounting of the higher-order probabilities.</li>
@@ -2144,8 +2144,8 @@ P^*(w_n | w_{n-N+1:n-1}), &amp; \text{if Count}(w_{n-N+1:n}) &gt; 0\\
   <p>Then, the task involves:</p>
 
   <ul>
-    <li>Non-word errors are ==detected== by looking for any word <strong>not found in a dictionary</strong>. (modern systems often use enormous dictionaries derived from the web.)</li>
-    <li>==corrected== by first generate <strong>candidates</strong>: real words that have <em>a similar letter sequence</em> to the error</li>
+    <li>Non-word errors are <mark>detected</mark> by looking for any word <strong>not found in a dictionary</strong>. (modern systems often use enormous dictionaries derived from the web.)</li>
+    <li><mark>corrected</mark> by first generate <strong>candidates</strong>: real words that have <em>a similar letter sequence</em> to the error</li>
   </ul>
 </blockquote>
 
@@ -2160,8 +2160,8 @@ P^*(w_n | w_{n-N+1:n-1}), &amp; \text{if Count}(w_{n-N+1:n}) &gt; 0\\
   <p>Then, the task involves:</p>
 
   <ul>
-    <li>==detection== is a much more difficult task, since <strong>any word</strong> in the input text could be an error</li>
-    <li>==correction== will use the noisy channel to find <strong>candidates</strong> for <strong>each word $w$ typed by the user</strong>, and rank the correction that is most likely to have been the user’s original intention
+    <li><mark>detection</mark> is a much more difficult task, since <strong>any word</strong> in the input text could be an error</li>
+    <li><mark>correction</mark> will use the noisy channel to find <strong>candidates</strong> for <strong>each word $w$ typed by the user</strong>, and rank the correction that is most likely to have been the user’s original intention
       <ul>
         <li>the trick is to <strong>include the word typed by the user</strong> itself in the <strong>candidate set</strong></li>
       </ul>
@@ -2194,7 +2194,7 @@ P^*(w_n | w_{n-N+1:n-1}), &amp; \text{if Count}(w_{n-N+1:n}) &gt; 0\\
 
 \[w' = w + \epsilon\]
 
-    <p>where $w$ is the word we <strong>observe</strong>, $w$ is the <strong>true word</strong>, $\epsilon$ is some random noise we ==want to model==</p>
+    <p>where $w$ is the word we <strong>observe</strong>, $w$ is the <strong>true word</strong>, $\epsilon$ is some random noise we <mark>want to model</mark></p>
   </li>
   <li>
     <p>we need to find the word $w$ that generated this misspelled word $w’$.</p>
@@ -2230,7 +2230,7 @@ P^*(w_n | w_{n-N+1:n-1}), &amp; \text{if Count}(w_{n-N+1:n}) &gt; 0\\
       <li>this would be approximated from the training corpus (which contains <strong>both a misspelled version and the correct version</strong>)</li>
     </ul>
   </li>
-  <li><strong>prior</strong> probability of a hidden word is modeled by $P(w)$. This represents the probability of seeing the word $w$ ==at that location/in place of $x$==. This hints at us to use Language models such as Bigram, Trigram, etc.</li>
+  <li><strong>prior</strong> probability of a hidden word is modeled by $P(w)$. This represents the probability of seeing the word $w$ <mark>at that location/in place of $x$</mark>. This hints at us to use Language models such as Bigram, Trigram, etc.</li>
 </ul>
 
 <p>Now, sometimes instead of going over the <strong>full dictionary $V$</strong>, we can</p>
@@ -2256,7 +2256,7 @@ P^*(w_n | w_{n-N+1:n-1}), &amp; \text{if Count}(w_{n-N+1:n}) &gt; 0\\
       <li>prior in general is computed using <strong>language model</strong>, such as unigram to trigram or 4-gram.</li>
     </ul>
   </li>
-  <li>Analysis of spelling error data has shown that the <strong>majority of spelling errors consist of a single-letter change</strong> and so we often make the simplifying ==assumption== that these candidates have an edit distance of $1$ from the error word</li>
+  <li>Analysis of spelling error data has shown that the <strong>majority of spelling errors consist of a single-letter change</strong> and so we often make the simplifying <mark>assumption</mark> that these candidates have an edit distance of $1$ from the error word</li>
   <li>we use extended edit distance so that in addition to insertions, deletions, and substitutions, we’ll add a fourth type of edit, <strong>transpositions</strong>. This version is also called <strong>Damerau-Levenshtein edit distance</strong></li>
 </ul>
 
@@ -2268,7 +2268,7 @@ P^*(w_n | w_{n-N+1:n-1}), &amp; \text{if Count}(w_{n-N+1:n}) &gt; 0\\
 
 <p>A <strong>perfect</strong> model of the probability that a word will be mistyped would condition on all sorts of factors: who the typist was, whether the typist was lefthanded or right-handed, and so on. However, it turns out that we can do pretty well by just looking at the <strong>local context</strong>.</p>
 
-<p>==A simple model== might estimate, for example, $P( \text{acress}\vert  \text{across})$ just using the number of times that <strong>the letter $e$ was substituted for the letter $o$</strong> in some large corpus of errors.</p>
+<p><mark>A simple model</mark> might estimate, for example, $P( \text{acress}\vert  \text{across})$ just using the number of times that <strong>the letter $e$ was substituted for the letter $o$</strong> in some large corpus of errors.</p>
 
 <ul>
   <li>to compute the probability for each edit we’ll need a <strong>confusion matrix</strong> that contains counts of errors.</li>
@@ -2305,7 +2305,7 @@ P^*(w_n | w_{n-N+1:n-1}), &amp; \text{if Count}(w_{n-N+1:n}) &gt; 0\\
 <ul>
   <li>$w_i$ is the $i$th character of the correct word $w$, $x_i$ is the $i$th character of the misspelled word</li>
   <li>notice that we are assuming again a <strong>single character/operation error</strong>, as our candidates are only 1 edit-distance away</li>
-  <li>notice that we are ==not caring about the context== in this part!</li>
+  <li>notice that we are <mark>not caring about the context</mark> in this part!</li>
 </ul>
 
 <p>Example computations look like</p>
@@ -2408,18 +2408,18 @@ P^*(w_n | w_{n-N+1:n-1}), &amp; \text{if Count}(w_{n-N+1:n}) &gt; 0\\
       <p>takes the input sentence $X = {x1 , x_2 , …, x_n }$</p>
     </li>
     <li>
-      <p>Generates a large set of ==candidate correction sentences== $C(X)$</p>
+      <p>Generates a large set of <mark>candidate correction sentences</mark> $C(X)$</p>
 
       <ol>
         <li>
-          <p>start by generating a set of ==candidate words== $C(x_i)$ for each input word $x_i$, e.g. within edit distance 1</p>
+          <p>start by generating a set of <mark>candidate words</mark> $C(x_i)$ for each input word $x_i$, e.g. within edit distance 1</p>
         </li>
         <li>
           <p>generate possible sentences from those words. For instance, if the input is $\text{two of thew}$:</p>
 
           <p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220202161842395.png" alt="image-20220202161842395" style="zoom: 33%;" /></p>
 
-          <p>where we already see <strong>a lot of possibility</strong>. To simplify, we ==assume== that every sentence has only one error. Then we have:</p>
+          <p>where we already see <strong>a lot of possibility</strong>. To simplify, we <mark>assume</mark> that every sentence has only one error. Then we have:</p>
 
           <p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220202213018817.png" alt="image-20220202213018817" /></p>
         </li>
@@ -2442,7 +2442,7 @@ P^*(w_n | w_{n-N+1:n-1}), &amp; \text{if Count}(w_{n-N+1:n}) &gt; 0\\
   <li>$P(W)$ - this can be done using a <strong>language model</strong>, essentially like we are generating sentences from it. (e.g. use a Trigram)</li>
 </ul>
 
-<p>Now, the problem is $P(X\vert W)$. Since we ==assume only one word error==, then we can assume:</p>
+<p>Now, the problem is $P(X\vert W)$. Since we <mark>assume only one word error</mark>, then we can assume:</p>
 
 \[P(X|W) = P(x_1, ..., x_n | w_1, ..., w_n) = \prod_{i=1}^n P(x_i|w_i)\]
 
@@ -2498,7 +2498,7 @@ P^*(w_n | w_{n-N+1:n-1}), &amp; \text{if Count}(w_{n-N+1:n}) &gt; 0\\
 
     <ul>
       <li>Google solves this by using a <strong>blacklist</strong>, forbidding certain tokens (like numbers, punctuation, and single letter words) from being changed</li>
-      <li>Instead of just choosing a candidate correction if it has a higher probability $P(w\vert x)$ than the word itself, these more careful systems choose to <strong>suggest</strong> a correction $w$ over keeping the non-correction $x$ only if the ==difference in probabilities is sufficiently great==.</li>
+      <li>Instead of just choosing a candidate correction if it has a higher probability $P(w\vert x)$ than the word itself, these more careful systems choose to <strong>suggest</strong> a correction $w$ over keeping the non-correction $x$ only if the <mark>difference in probabilities is sufficiently great</mark>.</li>
     </ul>
   </li>
   <li>
@@ -2532,7 +2532,7 @@ P^*(w_n | w_{n-N+1:n-1}), &amp; \text{if Count}(w_{n-N+1:n}) &gt; 0\\
 <p>Basically the same content as <strong>ML</strong>: review <strong>Perceptron</strong>. This include:</p>
 
 <ul>
-  <li>how the does the ==update rule== in a <strong>single perceptron work</strong>?</li>
+  <li>how the does the <mark>update rule</mark> in a <strong>single perceptron work</strong>?</li>
   <li>perceptron as a <strong>linear classifier</strong></li>
   <li>(maybe checkout SVM)</li>
 </ul>
@@ -2544,7 +2544,7 @@ P^*(w_n | w_{n-N+1:n-1}), &amp; \text{if Count}(w_{n-N+1:n}) &gt; 0\\
   <li>activation functions</li>
   <li>backpropagation
     <ul>
-      <li>==this will be tested on Midterm==</li>
+      <li><mark>this will be tested on Midterm</mark></li>
     </ul>
   </li>
 </ul>
@@ -2739,10 +2739,10 @@ the transformed space. (e.g. for CNNs, edges, textures, etc.)
 
 <ul>
   <li>representing a word as a <strong>vector</strong> (e.g. in 3D space)</li>
-  <li><strong>define the meaning</strong> of a word by its ==distribution in language use==, meaning its neighboring words or grammatical environments</li>
+  <li><strong>define the meaning</strong> of a word by its <mark>distribution in language use</mark>, meaning its neighboring words or grammatical environments</li>
 </ul>
 
-<p>Therefore, our task is to represent a word as a point in a <strong>multidimensional semantic space</strong> that is <strong>derived</strong> (in ways we’ll see) from the ==distributions of embeddings word neighbors==.</p>
+<p>Therefore, our task is to represent a word as a point in a <strong>multidimensional semantic space</strong> that is <strong>derived</strong> (in ways we’ll see) from the <mark>distributions of embeddings word neighbors</mark>.</p>
 
 <blockquote>
   <p>Vectors for representing words are called <strong>embeddings</strong> (although the term is sometimes more strictly applied only to <strong>dense</strong> vectors like word2vec (Section 6.8), rather than sparse TF-IDF or PPMI vectors</p>
@@ -2763,7 +2763,7 @@ the transformed space. (e.g. for CNNs, edges, textures, etc.)
 
 <h2 id="words-and-vectors">Words and Vectors</h2>
 
-<p>Vector or <strong>distributional models of meaning</strong> (mentioned above) are generally based on a ==co-occurrence matrix,== a way of representing how often words co-occur. Two popular matrices related to this is:</p>
+<p>Vector or <strong>distributional models of meaning</strong> (mentioned above) are generally based on a <mark>co-occurrence matrix,</mark> a way of representing how often words co-occur. Two popular matrices related to this is:</p>
 
 <ul>
   <li>term-document matrix</li>
@@ -2848,7 +2848,7 @@ the transformed space. (e.g. for CNNs, edges, textures, etc.)
   <li>in general, the <strong>shorter the window size</strong> captures <strong>more syntactic representation</strong>, and the <strong>longer the window</strong>, the more <strong>semantic representation</strong> (e.g. $L=4\sim 10$)</li>
 </ul>
 
-<p>However, this is problematic in reality because if we have <strong>vocabulary size of $50,000$</strong>, then this means that the matrix will have dimension $\mathbb{R}^{50,000 \times 50,000}$, and it will be ==sparse==!</p>
+<p>However, this is problematic in reality because if we have <strong>vocabulary size of $50,000$</strong>, then this means that the matrix will have dimension $\mathbb{R}^{50,000 \times 50,000}$, and it will be <mark>sparse</mark>!</p>
 
 <h2 id="tf-idf">TF-IDF</h2>
 
@@ -3172,7 +3172,7 @@ count(obj(cell,absorb)) + ...}\]
 
 <ul>
   <li>PPMI and context vectors are all <strong>sparse vectors</strong></li>
-  <li>we want to save space/encode information by a ==dense vector== - which is often called the ==word embedding==</li>
+  <li>we want to save space/encode information by a <mark>dense vector</mark> - which is often called the <mark>word embedding</mark></li>
 </ul>
 
 <p>Some common techniques to obtain a dense representation would be:</p>
@@ -3193,7 +3193,7 @@ count(obj(cell,absorb)) + ...}\]
 
 <h3 id="svd">SVD</h3>
 
-<p>==will not be on the exam==</p>
+<p><mark>will not be on the exam</mark></p>
 
 <blockquote>
   <p><strong>Goal</strong>:</p>
@@ -3280,7 +3280,7 @@ count(obj(cell,absorb)) + ...}\]
 
   <ul>
     <li>but then we’re not actually going to use that neural network for the task we trained it on!</li>
-    <li>Instead, the goal is actually just to ==learn the weights of the hidden layer== - we’ll see that these ==weights== are actually the “<strong>word embeddings</strong>” that we’re trying to learn.</li>
+    <li>Instead, the goal is actually just to <mark>learn the weights of the hidden layer</mark> - we’ll see that these <mark>weights</mark> are actually the “<strong>word embeddings</strong>” that we’re trying to learn.</li>
   </ul>
 
   <p>Additionally:</p>
@@ -3306,13 +3306,13 @@ count(obj(cell,absorb)) + ...}\]
   <li>given an input target word (e.g. <em>Soviet</em>)
     <ul>
       <li>also perhaps specify a window size (e.g. $L=5$)</li>
-      <li>==input== will be a <strong>one-hot encoded vector</strong> of dimension $\vert V\vert$</li>
+      <li><mark>input</mark> will be a <strong>one-hot encoded vector</strong> of dimension $\vert V\vert$</li>
     </ul>
   </li>
   <li>output probability for each word $w_i \in V$ to be <strong>next to the input word</strong>, within the specified window
     <ul>
       <li>e.g. output probabilities are going to be much higher for words like “<em>Union</em>” and “<em>Russia</em>” than for unrelated words like “<em>watermelon</em>” and “<em>kangaroo</em>”.</li>
-      <li>==output== will <strong>also be vector of dimension $\vert V\vert$</strong>, but values are the <strong>probability that word will be inside the window</strong></li>
+      <li><mark>output</mark> will <strong>also be vector of dimension $\vert V\vert$</strong>, but values are the <strong>probability that word will be inside the window</strong></li>
     </ul>
   </li>
   <li>We’ll run the model once per context word within the window defined by $L$</li>
@@ -3359,19 +3359,19 @@ count(obj(cell,absorb)) + ...}\]
     <p>where we can see that:</p>
 
     <ul>
-      <li>the $e_i = W^T x_i$ for one-hot vector $x_i$ shows that the $i$-th <strong>column of $W$</strong> is the ==word/input embedding for word $w_i$==</li>
-      <li>then $o[k] \propto C^Te_i[k]$ for an embedded target word $w_i$ means the <strong>$k$-th row of $C$</strong> is the ==context embedding of $w_k$ relative to $w_i$ being the target==</li>
+      <li>the $e_i = W^T x_i$ for one-hot vector $x_i$ shows that the $i$-th <strong>column of $W$</strong> is the <mark>word/input embedding for word $w_i$</mark></li>
+      <li>then $o[k] \propto C^Te_i[k]$ for an embedded target word $w_i$ means the <strong>$k$-th row of $C$</strong> is the <mark>context embedding of $w_k$ relative to $w_i$ being the target</mark></li>
     </ul>
   </li>
 </ul>
 
-<p>Therefore, ==interpretation== of the output would be:</p>
+<p>Therefore, <mark>interpretation</mark> of the output would be:</p>
 
 \[p(w_k | w_t) = \frac{\exp(c_k \cdot e_t)}{\sum_{k \in |V|} \exp(c_k \cdot e_t)}\]
 
 <p>is like a <strong>bigram probability</strong>, but here it signified the probability of word $w_k$ being <strong>within the window of $w_t$</strong>.</p>
 
-<p>Finally, we need to define a loss. Our ==objective== is to maximize the probability of the <strong>entire sentence</strong>.</p>
+<p>Finally, we need to define a loss. Our <mark>objective</mark> is to maximize the probability of the <strong>entire sentence</strong>.</p>
 
 \[\begin{align*}
 &amp;\quad\arg\max_\theta \prod_{t=1}^T P(w_{t-L},...,w_{t-1},w_{t+1},...,w_{t+L})\\
@@ -3386,7 +3386,7 @@ count(obj(cell,absorb)) + ...}\]
     <p>$T$ is the length of the entire sequence/sentence, $L$ is the window size</p>
   </li>
   <li>
-    <p>essentially this is <strong>negative loss likelihood</strong>, which is the same as ==cross entropy loss==, which recall is basically the loss if you used $q(x)$ to approximate $p(x)$:</p>
+    <p>essentially this is <strong>negative loss likelihood</strong>, which is the same as <mark>cross entropy loss</mark>, which recall is basically the loss if you used $q(x)$ to approximate $p(x)$:</p>
   </li>
 </ul>
 
@@ -3437,14 +3437,14 @@ count(obj(cell,absorb)) + ...}\]
 <blockquote>
   <p><em>Intuition</em></p>
 
-  <p>The intuition of ==word2vec== is to train a <strong>classifier</strong> on a binary prediction task: given a word $w$, <strong>how likely is it to show up near another word</strong> $w_i$, e.g. apricot?</p>
+  <p>The intuition of <mark>word2vec</mark> is to train a <strong>classifier</strong> on a binary prediction task: given a word $w$, <strong>how likely is it to show up near another word</strong> $w_i$, e.g. apricot?</p>
 
   <ul>
     <li>essentially training a logistic regression classifier</li>
     <li>however, now we also try to include <strong>negative samples</strong> to make our model/embedding more robust</li>
   </ul>
 
-  <p>Then, ==while we are learning the likelihood==, we would have ==needed/learnt some representation $\vec{w}$ for a word $w$==, which will be our ==embedding==!</p>
+  <p>Then, <mark>while we are learning the likelihood</mark>, we would have <mark>needed/learnt some representation $\vec{w}$ for a word $w$</mark>, which will be our <mark>embedding</mark>!</p>
 </blockquote>
 
 <p>Therefore, the model is simple:</p>
@@ -3507,7 +3507,7 @@ count(obj(cell,absorb)) + ...}\]
   </li>
 </ul>
 
-<p>Then, the question is how do we model such probability? We assumed that <strong>words next to each other</strong> should have ==similar embeddings==. This means that:</p>
+<p>Then, the question is how do we model such probability? We assumed that <strong>words next to each other</strong> should have <mark>similar embeddings</mark>. This means that:</p>
 
 \[\text{Similarity}(w,c) \approx \vec{w} \cdot \vec{c}\]
 
@@ -3586,7 +3586,7 @@ count(obj(cell,absorb)) + ...}\]
   </li>
 </ul>
 
-<p>Then, <strong>given a positive pair and the $k$ negative pairs</strong>, our ==loss function to minimize would be==</p>
+<p>Then, <strong>given a positive pair and the $k$ negative pairs</strong>, our <mark>loss function to minimize would be</mark></p>
 
 \[L_{CE} = -\log{\left[ P(+|w,c_{pos}) \cdot \prod_{i=1}^k P(- |w,c_{neg})\right]} = - \left[ \log \sigma(c_{pos} \cdot w) + \sum_{i=1}^k  \log \sigma(-c_{neg} \cdot w) \right]\]
 
@@ -3698,7 +3698,7 @@ count(obj(cell,absorb)) + ...}\]
 
 \[\text{&lt;wh, whe, her, ere, re&gt;}\]
 
-    <p>then a skipgram embedding is learned for each constituent n-gram, and the word <code class="language-plaintext highlighter-rouge">where</code> is represented by the <strong>sum of all of the embeddings of its constituent n-grams</strong>. Therefore, ==Unknown words== can then be presented only by the sum of the constituent n-grams!</p>
+    <p>then a skipgram embedding is learned for each constituent n-gram, and the word <code class="language-plaintext highlighter-rouge">where</code> is represented by the <strong>sum of all of the embeddings of its constituent n-grams</strong>. Therefore, <mark>Unknown words</mark> can then be presented only by the sum of the constituent n-grams!</p>
   </li>
   <li>
     <p><strong>GloVe</strong>: GloVe model is based on capturing <strong>global corpus statistics</strong>. GloVe is based on ratios of probabilities from the word-word cooccurrence matrix, combining the intuitions of count-based models like PPMI while also capturing the linear structures used by methods like word2vec.</p>
@@ -3720,10 +3720,10 @@ count(obj(cell,absorb)) + ...}\]
 
 <ul>
   <li>
-    <p>Knowing whether a word is a <strong>noun or a verb</strong> tells us about likely neighboring words (nouns in English are preceded by determiners and adjectives, verbs by nouns) and syntactic structure (verbs have dependency links to nouns), making part-of-speech tagging a key aspect of ==parsing==</p>
+    <p>Knowing whether a word is a <strong>noun or a verb</strong> tells us about likely neighboring words (nouns in English are preceded by determiners and adjectives, verbs by nouns) and syntactic structure (verbs have dependency links to nouns), making part-of-speech tagging a key aspect of <mark>parsing</mark></p>
   </li>
   <li>
-    <p>Knowing if a <strong>named entity</strong> like Washington is a name of a person, a place, or a university is important to many natural language processing tasks like ==question answering==, ==stance detection==, or ==information extraction==:</p>
+    <p>Knowing if a <strong>named entity</strong> like Washington is a name of a person, a place, or a university is important to many natural language processing tasks like <mark>question answering</mark>, <mark>stance detection</mark>, or <mark>information extraction</mark>:</p>
 
     <table>
       <thead>
@@ -3752,7 +3752,7 @@ count(obj(cell,absorb)) + ...}\]
 <blockquote>
   <p><strong>In general</strong></p>
 
-  <p>Such tasks in which we assign, to each word $x_i$ in an input word sequence, a label $y_i$, so that the output sequence $Y$ has the same length as the input sequence $X$ are called ==sequence labeling tasks.==</p>
+  <p>Such tasks in which we assign, to each word $x_i$ in an input word sequence, a label $y_i$, so that the output sequence $Y$ has the same length as the input sequence $X$ are called <mark>sequence labeling tasks.</mark></p>
 </blockquote>
 
 <p>This section covers models including:</p>
@@ -3842,7 +3842,7 @@ count(obj(cell,absorb)) + ...}\]
   <p>POS tagging would be useful for subsequent syntactic <strong>parsing</strong> and <strong>word sense disambiguation</strong> (i.e. knowing the correct meaning of the word in different contexts).</p>
 </blockquote>
 
-<p>Tagging is a ==disambiguation== task, because words are ambiguous—have more than one possible part-of-speech:</p>
+<p>Tagging is a <mark>disambiguation</mark> task, because words are ambiguous—have more than one possible part-of-speech:</p>
 
 <ul>
   <li><em>book</em> can be a <code class="language-plaintext highlighter-rouge">verb</code> (<em>book</em> that flight) or a <code class="language-plaintext highlighter-rouge">noun </code>(hand me that <em>book</em>).</li>
@@ -3892,13 +3892,13 @@ count(obj(cell,absorb)) + ...}\]
 
 <p>Some techniques applied today to beat the baseline include:</p>
 
-<p>==Rule-Based==: Human crafted rules based on lexical and other linguistic knowledge.</p>
+<p><mark>Rule-Based</mark>: Human crafted rules based on lexical and other linguistic knowledge.</p>
 
 <ul>
   <li>e.g. token after a verb will be a noun</li>
 </ul>
 
-<p>==Learning-Based==: Trained on human annotated corpora like the Penn Treebank.</p>
+<p><mark>Learning-Based</mark>: Trained on human annotated corpora like the Penn Treebank.</p>
 
 <ul>
   <li>
@@ -3967,7 +3967,7 @@ count(obj(cell,absorb)) + ...}\]
   <li>Figure 8.8b shows a Markov chain for assigning a <strong>probability to a sequence of words</strong> $w_1,…,w_t$
     <ul>
       <li>e.g. sequence <code class="language-plaintext highlighter-rouge">hot hot hot</code> would have a probability of $0.1 \times 0.6 \times 0.6$</li>
-      <li>therefore, a Markov chain is useful when we need to compute a ==probability for a sequence of observable events==</li>
+      <li>therefore, a Markov chain is useful when we need to compute a <mark>probability for a sequence of observable events</mark></li>
     </ul>
   </li>
 </ul>
@@ -3993,7 +3993,7 @@ count(obj(cell,absorb)) + ...}\]
 
 <h3 id="hidden-markov-model">Hidden Markov Model</h3>
 
-<p>The reason why we now want to consider <strong>hidden Markova model</strong> is that in reality, our <strong>observation are not states $q_i$</strong>. In fact, we observe words ($o_i$), but we will be interested in the ==sequence of states $q_i$ that most likely generated the sequence of words/observations==.</p>
+<p>The reason why we now want to consider <strong>hidden Markova model</strong> is that in reality, our <strong>observation are not states $q_i$</strong>. In fact, we observe words ($o_i$), but we will be interested in the <mark>sequence of states $q_i$ that most likely generated the sequence of words/observations</mark>.</p>
 
 <ul>
   <li>
@@ -4073,7 +4073,7 @@ count(obj(cell,absorb)) + ...}\]
   <li>the $A$ probability are the $a_{ij}\to P(t_i \vert t_{i-1})$, and the $B$ probability $P(w_i\vert t_i)$</li>
   <li>therefore, the total <strong>number of parameters</strong> with $\lambda = {A,B}$</li>
   <li>you might want to do <strong>smoothing techniques</strong> here as well, as you are doing counts</li>
-  <li>so essentially the hidden state $q_i=t_i$ is <strong>what we are interested in</strong>, and we want to find out the ==best sequence of hidden state==, hence tagging, when ==given a sequence of observations==</li>
+  <li>so essentially the hidden state $q_i=t_i$ is <strong>what we are interested in</strong>, and we want to find out the <mark>best sequence of hidden state</mark>, hence tagging, when <mark>given a sequence of observations</mark></li>
 </ul>
 
 <p>Formalizing this mathematically, given an observation of $n$ words:</p>
@@ -4095,12 +4095,12 @@ count(obj(cell,absorb)) + ...}\]
 
 <ul>
   <li>
-    <p>the third equality ==assumed== independence of neighboring words and tags</p>
+    <p>the third equality <mark>assumed</mark> independence of neighboring words and tags</p>
 
 \[P(t_1,...,t_n|w_1,...,w_n) \approx \prod_{i=1}^nP(w_i|t_i)\]
   </li>
   <li>
-    <p>the fourth equality ==assumed== bigram for tags</p>
+    <p>the fourth equality <mark>assumed</mark> bigram for tags</p>
 
 \[P(t_1,...,t_n) \approx \prod_{i=1}^n P(t_i|t_{i-1})\]
   </li>
@@ -4108,7 +4108,7 @@ count(obj(cell,absorb)) + ...}\]
     <p>the second last equality <strong>is not a nested product</strong>, hence we can simply rewrite it as a single product</p>
   </li>
   <li>
-    <p>now, notice that $P(w_i\vert t_i)$ and $P(t_i\vert t_{i-1})$ are ==known probabilities== (emission and transition). So we can actually compute this task!</p>
+    <p>now, notice that $P(w_i\vert t_i)$ and $P(t_i\vert t_{i-1})$ are <mark>known probabilities</mark> (emission and transition). So we can actually compute this task!</p>
   </li>
 </ul>
 
@@ -4118,7 +4118,7 @@ count(obj(cell,absorb)) + ...}\]
 
 <p><em>For Example</em>: HMM Generation</p>
 
-<p>Using this model, we can also ==generate a sequence of $T$ observations== (i.e. words)</p>
+<p>Using this model, we can also <mark>generate a sequence of $T$ observations</mark> (i.e. words)</p>
 
 <ol>
   <li>Start from some initial state $q_0$, specified by the $\pi$ distribution</li>
@@ -4169,7 +4169,7 @@ count(obj(cell,absorb)) + ...}\]
 <p>Our first problem is to compute the <strong>likelihood of a particular observation</strong> sequence $O={o_1,…,o_n}$</p>
 
 <blockquote>
-  <p><strong>Computing Likelihood</strong>: Given an HMM $\lambda = (A,B)$, i.e. the probabilities, and an observation sequence $O$, ==determine the likelihood $P(O\vert \lambda) \equiv P_\lambda(O)$.==</p>
+  <p><strong>Computing Likelihood</strong>: Given an HMM $\lambda = (A,B)$, i.e. the probabilities, and an observation sequence $O$, <mark>determine the likelihood $P(O\vert \lambda) \equiv P_\lambda(O)$.</mark></p>
 
   <ul>
     <li>this can then be used for classifying which sequence has a higher likelihood, for instance</li>
@@ -4184,7 +4184,7 @@ count(obj(cell,absorb)) + ...}\]
 
 \[P(O|\lambda)=P_\lambda(O) = \prod_{i=1}^N P(o_i|o_{i-1})\]
 
-<p>however, in a HMM, emitting $o_i$ means we need to ==first know $q_i$==, which we don’t know.</p>
+<p>however, in a HMM, emitting $o_i$ means we need to <mark>first know $q_i$</mark>, which we don’t know.</p>
 
 <ul>
   <li>i.e. we don’t know the hidden sequence that generates the sequence $O$</li>
@@ -4207,7 +4207,7 @@ count(obj(cell,absorb)) + ...}\]
   </li>
 </ul>
 
-<p>Suppose we are given the observed sequence $O={o_1=3,o_2=1,o_3=3}$. The question is: ==what is the probability of this happening, i.e. $P_\lambda(O)$==?</p>
+<p>Suppose we are given the observed sequence $O={o_1=3,o_2=1,o_3=3}$. The question is: <mark>what is the probability of this happening, i.e. $P_\lambda(O)$</mark>?</p>
 
 <p>Since we only know $P(o_i\vert q_i)$, i.e. $P(1 \vert  \text{hot})=0.2$, we do know the following:</p>
 
@@ -4223,7 +4223,7 @@ count(obj(cell,absorb)) + ...}\]
 
 \[P(O) = \sum_Q P(O|Q)P(Q)\]
 
-<p>where $\sum_Q$ means summing over ==all possible sequences==.</p>
+<p>where $\sum_Q$ means summing over <mark>all possible sequences</mark>.</p>
 
 <p>Therefore, notice that we now only need $P(Q)$:</p>
 
@@ -4242,7 +4242,7 @@ count(obj(cell,absorb)) + ...}\]
 \[P(3,1,3) = P(3,1,3, \text{cold, cold, cold})+P(3,1,3, \text{cold, cold, hot})+...\]
   </li>
   <li>
-    <p>for an HMM with $N$ hidden states and an observation sequence of $T$ observations, <strong>there are $N^T$ possible observations.</strong> In practice this would be a pain to compute directly, so we have the following ==forward algorithm==.</p>
+    <p>for an HMM with $N$ hidden states and an observation sequence of $T$ observations, <strong>there are $N^T$ possible observations.</strong> In practice this would be a pain to compute directly, so we have the following <mark>forward algorithm</mark>.</p>
   </li>
 </ul>
 
@@ -4257,14 +4257,14 @@ count(obj(cell,absorb)) + ...}\]
 <p>where the key idea is to realize that they are <strong>sharing the same path</strong>:</p>
 
 <ul>
-  <li>therefore, the key insight to speed up computation is to realize that each cell at $t=2$ ==only depends on the previous cells== $t=1$.</li>
+  <li>therefore, the key insight to speed up computation is to realize that each cell at $t=2$ <mark>only depends on the previous cells</mark> $t=1$.</li>
 </ul>
 
 <p>Let us represent:</p>
 
 <ul>
   <li>
-    <p>$\alpha_{t}(j)$ being the probability of <strong>being in state $j$ after the first $t$ observations</strong> = ==emitting $o_t$ at $q_t=j$== This means that:</p>
+    <p>$\alpha_{t}(j)$ being the probability of <strong>being in state $j$ after the first $t$ observations</strong> = <mark>emitting $o_t$ at $q_t=j$</mark> This means that:</p>
 
 \[\alpha_{t}(j) = P_\lambda(o_1,...,o_t,q_t = j)\]
 
@@ -4368,10 +4368,10 @@ count(obj(cell,absorb)) + ...}\]
 
 \[\hat{t}_{1:n} = \arg\max_{t_1,...,t_n} P(t_1,...,t_n|w_1,...,w_n)\]
 
-<p>which can be generalized to the task of <strong>sequence labeling</strong>/==most likely sequence==</p>
+<p>which can be generalized to the task of <strong>sequence labeling</strong>/<mark>most likely sequence</mark></p>
 
 <blockquote>
-  <p><strong>Decoding</strong>: Given as input an HMM $\lambda = (A,B)$ and a sequence of observations $O = o_1,…,o_T$ , find the ==most probable sequence of states $Q=q_1,…,q_T$ .==</p>
+  <p><strong>Decoding</strong>: Given as input an HMM $\lambda = (A,B)$ and a sequence of observations $O = o_1,…,o_T$ , find the <mark>most probable sequence of states $Q=q_1,...,q_T$ .</mark></p>
 </blockquote>
 
 <p>Consider again the example of number of ice-cream eaten per day:</p>
@@ -4381,7 +4381,7 @@ count(obj(cell,absorb)) + ...}\]
     <p>give a sequence $3,1,3$, what is the best likely weather sequence? e.g. $P(H,H,H\vert 3,1,3)=?$</p>
   </li>
   <li>
-    <p>For <strong>each possible sequence</strong>, e.g. $(HHH, HHC, HCH)$, we could run the forward algorithm and compute the likelihood of the observation sequence given that hidden state sequence. This is brute force and takes an ==exponentially large number of state sequences==.</p>
+    <p>For <strong>each possible sequence</strong>, e.g. $(HHH, HHC, HCH)$, we could run the forward algorithm and compute the likelihood of the observation sequence given that hidden state sequence. This is brute force and takes an <mark>exponentially large number of state sequences</mark>.</p>
   </li>
 </ul>
 
@@ -4503,7 +4503,7 @@ bt_t(j)&amp; = \arg\max_{i=1...N}\,\, v_{t-1}(i)a_{ij}b_j(o_t),\quad 1 \le j \le
     <p>Initialize the parameters arbitrarily</p>
   </li>
   <li>
-    <p>Given the current setting of parameters find the <strong>best (soft) assignment</strong> of data samples to the clusters (==Expectation-step==)</p>
+    <p>Given the current setting of parameters find the <strong>best (soft) assignment</strong> of data samples to the clusters (<mark>Expectation-step</mark>)</p>
 
     <ul>
       <li>
@@ -4523,11 +4523,11 @@ bt_t(j)&amp; = \arg\max_{i=1...N}\,\, v_{t-1}(i)a_{ij}b_j(o_t),\quad 1 \le j \le
     </ul>
   </li>
   <li>
-    <p><strong>Update all the parameters $\theta$ with respect to the current (soft) assignment</strong> that maximizes the likelihood (==Maximization-step==)</p>
+    <p><strong>Update all the parameters $\theta$ with respect to the current (soft) assignment</strong> that maximizes the likelihood (<mark>Maximization-step</mark>)</p>
 
     <ul>
       <li>same idea as Lloyd’s algorithm</li>
-      <li>this is now basically ==MLE==</li>
+      <li>this is now basically <mark>MLE</mark></li>
     </ul>
   </li>
   <li>
@@ -4619,7 +4619,7 @@ bt_t(j)&amp; = \arg\max_{i=1...N}\,\, v_{t-1}(i)a_{ij}b_j(o_t),\quad 1 \le j \le
   <p>Use of additional unlabeled data improves on supervised learning when amount of <strong>labeled data is very small</strong> and amount of unlabeled data is large.</p>
 
   <ul>
-    <li>otherwise, if unlabelled data is small, it <strong>could degrade performance</strong> when there is sufficient when unsupervised learning tends to create labels that are ==incompatible with the labelled/desired ones==.</li>
+    <li>otherwise, if unlabelled data is small, it <strong>could degrade performance</strong> when there is sufficient when unsupervised learning tends to create labels that are <mark>incompatible with the labelled/desired ones</mark>.</li>
   </ul>
 </blockquote>
 
@@ -4771,7 +4771,7 @@ bt_t(j)&amp; = \arg\max_{i=1...N}\,\, v_{t-1}(i)a_{ij}b_j(o_t),\quad 1 \le j \le
 
 <ul>
   <li>
-    <p><strong>generating</strong> sentences/==derivation==.</p>
+    <p><strong>generating</strong> sentences/<mark>derivation</mark>.</p>
 
     <p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220221190302536.png" alt="image-20220221190302536" style="zoom:33%;" /></p>
   </li>
@@ -5121,7 +5121,7 @@ X \to CD
 
 <h2 id="cky-algorithm">CKY Algorithm</h2>
 
-<p>The CKY algorithm ==requires== grammars to first be in Chomsky Normal Form (CNF).</p>
+<p>The CKY algorithm <mark>requires</mark> grammars to first be in Chomsky Normal Form (CNF).</p>
 
 <ul>
   <li>productions must have either exactly 2 non-terminal symbols on the RHS or 1 terminal symbol (lexicon rules).</li>
@@ -5139,7 +5139,7 @@ X \to CD
       <p>if $A \Rightarrow^* B$ by a chain of one or more unit productions and $B \to \gamma$ is a non-unit production in our grammar, then we add $A \to \gamma$ <strong>for each such rule</strong> int he grammar and discard all the intervening unit productions.</p>
     </li>
     <li>
-      <p>Rules with <strong>right-hand sides longer than 2</strong> are normalized through the introduction of ==new non-terminals==</p>
+      <p>Rules with <strong>right-hand sides longer than 2</strong> are normalized through the introduction of <mark>new non-terminals</mark></p>
 
       <p>This is simple, if you have $A \to BC\gamma$, then:</p>
 
@@ -5248,7 +5248,7 @@ X \to BC\]
 <p>Then, returning</p>
 
 <ul>
-  <li>an arbitrary single parse consists of choosing an $S$ from cell $[0,n]$, i.e. the ==last cell on top right==.</li>
+  <li>an arbitrary single parse consists of choosing an $S$ from cell $[0,n]$, i.e. the <mark>last cell on top right</mark>.</li>
   <li>then recursively retrieving its component constituents from the table</li>
 </ul>
 
@@ -5353,7 +5353,7 @@ X \to BC\]
       <p>$\Sigma$ is a set of <strong>terminal symbols</strong>/an alphabet (finite). This is <strong>disjoint from $N$</strong>.</p>
     </li>
     <li>
-      <p>$R$ is a finite set of ==probabalistic rules== of the form:</p>
+      <p>$R$ is a finite set of <mark>probabalistic rules</mark> of the form:</p>
 
 \[A \to \beta[p],\, p\equiv p(A \to \beta |A); \quad \,A\in N;\,\,\beta \in(V\cup\Sigma)^*\]
 
@@ -5375,7 +5375,7 @@ X \to BC\]
 
 <p>and notice that, for instance $\sum_\beta p(S \to \beta \vert S)=1$ is the first three rows of the table.</p>
 
-<p>This would be useful because we can define the ==probability of a particular parse tree $T$== of a setnence $S$ being:</p>
+<p>This would be useful because we can define the <mark>probability of a particular parse tree $T$</mark> of a setnence $S$ being:</p>
 
 \[P(T,S)=P(T)=\prod_{i=1}^nP(\text{RHS}_i|\text{LHS}_i)\]
 
@@ -5432,7 +5432,7 @@ X \to BC\]
     <p>Convert the rules to CNF, so that right-hand side of each rule must expand to either two non-terminals or to a single terminal. This is non-trivial as it involves also <strong>converting probabilities</strong> while breaking into CNF.</p>
   </li>
   <li>
-    <p>For probabilistic CKY, it’s slightly simpler to think of the each cell in the matrix $M[i,j,A]$ as constituting a ==third dimension== of maximum length $V$: corresponds to <strong>each non-terminal that can be placed in this cell</strong>, e.g. $A_1 \to BC$ being a cell in the third dimension, then next $A_2 \to DE$, etc.</p>
+    <p>For probabilistic CKY, it’s slightly simpler to think of the each cell in the matrix $M[i,j,A]$ as constituting a <mark>third dimension</mark> of maximum length $V$: corresponds to <strong>each non-terminal that can be placed in this cell</strong>, e.g. $A_1 \to BC$ being a cell in the third dimension, then next $A_2 \to DE$, etc.</p>
 
     <p>The value of the cell is then a <strong>probability</strong> for that nonterminal/constituent (then of course many of those cells in the third dimension will have value $0$ since most rules cannot produce the constituent $S[i:j]$).</p>
   </li>
@@ -5489,7 +5489,7 @@ X \to BC\]
 <p>If we can quantify the probability of a parse tree, we can also quantify the probability of a sentence. Hence we can directly <strong>assign scores to a sentence!</strong></p>
 
 <blockquote>
-  <p>The probability of an ambiguous sentence is the ==sum of the probabilities of all the parse trees== for the sentence</p>
+  <p>The probability of an ambiguous sentence is the <mark>sum of the probabilities of all the parse trees</mark> for the sentence</p>
 </blockquote>
 
 \[P(S) = \sum_{T} P(T,S) = \sum_T P(T)\]
@@ -5647,13 +5647,13 @@ NP_{\text{object}} \to PR\]
   <li>In addition to splitting these phrasal nodes, we can also improve a PCFG by splitting the pre-terminal part-of-speech nodes.</li>
 </ul>
 
-<p>However, node-splitting is not without problems; it ==increases the size of the grammar== and hence reduces the amount of training data available for each grammar rule, leading to ==overfitting==. Thus, it is important to split to just the correct level of granularity for a particular training set.</p>
+<p>However, node-splitting is not without problems; it <mark>increases the size of the grammar</mark> and hence reduces the amount of training data available for each grammar rule, leading to <mark>overfitting</mark>. Thus, it is important to split to just the correct level of granularity for a particular training set.</p>
 
 <h2 id="pcfg-with-lexicalization">PCFG with Lexicalization</h2>
 
 <p>Recall that another problem is to capture the fact that <strong>which production rule is better</strong> (disambiguation) also depends on the specific <strong>tokens/words/phrase</strong>, e.g. whether if <code class="language-plaintext highlighter-rouge">PP</code> should follow <code class="language-plaintext highlighter-rouge">NP</code> or <code class="language-plaintext highlighter-rouge">VP</code>.</p>
 
-<p>Instead of using the above idea of <strong>splitting non-terminals = adding more syntax rules</strong>, here we add/allow for ==lexicalized rules==.</p>
+<p>Instead of using the above idea of <strong>splitting non-terminals = adding more syntax rules</strong>, here we add/allow for <mark>lexicalized rules</mark>.</p>
 
 <ul>
   <li>The resulting family of lexicalized parsers includes the Collins parser (Collins, 1999) and the Charniak parser (Charniak, 1997).</li>
@@ -5697,7 +5697,7 @@ NP_{\text{object}} \to PR\]
 <p>but obviously this is <strong>too specific</strong>. The idea of lexicalized parsing is to make some further <strong>independence assumptions</strong> to break down each rule so that we would estimate the probability, and an example would be the <strong>Collins Parser</strong>.</p>
 
 <blockquote>
-  <p>Although this can make <strong>disambiguation</strong> between parses work even better, accurately estimating parameters (i.e. probability of each of those production rules) on such a large number of very specialized productions could ==require enormous amounts of treebank data==.</p>
+  <p>Although this can make <strong>disambiguation</strong> between parses work even better, accurately estimating parameters (i.e. probability of each of those production rules) on such a large number of very specialized productions could <mark>require enormous amounts of treebank data</mark>.</p>
 </blockquote>
 
 <h3 id="simplified-collins-parser">Simplified Collins Parser</h3>
@@ -5787,7 +5787,7 @@ NP_{\text{object}} \to PR\]
   <p>where the last word should come pretty fast.</p>
 </blockquote>
 
-<p>Then, modeling these effects requires an ==incremental statistical parser== that incorporates one word at a time into a continuously growing parse tree.</p>
+<p>Then, modeling these effects requires an <mark>incremental statistical parser</mark> that incorporates one word at a time into a continuously growing parse tree.</p>
 
 <p>Some additional problems that we need to consider due to “human effects” are:</p>
 
@@ -5849,7 +5849,7 @@ NP_{\text{object}} \to PR\]
 
 <h1 id="dependency-parsing">Dependency Parsing</h1>
 
-<p>The focus of the two previous chapters has been on context-free grammars and <strong>constituent-based</strong> representations. Here we present another important family of grammar formalisms called ==dependency grammars==.</p>
+<p>The focus of the two previous chapters has been on context-free grammars and <strong>constituent-based</strong> representations. Here we present another important family of grammar formalisms called <mark>dependency grammars</mark>.</p>
 
 <blockquote>
   <p>Here, syntactic structure of a sentence is described solely in terms of <strong>directed binary grammatical relations</strong> between the words, as in the following dependency parse:</p>
@@ -5883,7 +5883,7 @@ NP_{\text{object}} \to PR\]
 
 <h2 id="shift-reduce-parsing">Shift Reduce Parsing</h2>
 
-<p>==TODO==</p>
+<p><mark>TODO</mark></p>
 
 <p>When each verb is encountered in the stack,</p>
 

@@ -13,11 +13,11 @@
 <meta property="og:url" content="/lectures/2021@columbia/STFCS229_Machine_Learning.html/" />
 <meta property="og:site_name" content="Lecture Notes" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2022-01-18T00:00:00-05:00" />
+<meta property="article:published_time" content="2022-01-18T00:00:00+00:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="STFCS229 Machine Learning" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2022-01-18T00:00:00-05:00","datePublished":"2022-01-18T00:00:00-05:00","description":"Machine Learning - MIT6.036","headline":"STFCS229 Machine Learning","mainEntityOfPage":{"@type":"WebPage","@id":"/lectures/2021@columbia/STFCS229_Machine_Learning.html/"},"url":"/lectures/2021@columbia/STFCS229_Machine_Learning.html/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2022-01-18T00:00:00+00:00","datePublished":"2022-01-18T00:00:00+00:00","description":"Machine Learning - MIT6.036","headline":"STFCS229 Machine Learning","mainEntityOfPage":{"@type":"WebPage","@id":"/lectures/2021@columbia/STFCS229_Machine_Learning.html/"},"url":"/lectures/2021@columbia/STFCS229_Machine_Learning.html/"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/lectures/assets/main.css"><link type="application/atom+xml" rel="alternate" href="/lectures/feed.xml" title="Lecture Notes" /></head>
 <body><header class="site-header">
@@ -66,7 +66,7 @@
   </head>
   <header class="post-header">
     <h1 class="post-title p-name" itemprop="name headline">STFCS229 Machine Learning</h1>
-    <p class="post-meta"><time class="dt-published" datetime="2022-01-18T00:00:00-05:00" itemprop="datePublished">
+    <p class="post-meta"><time class="dt-published" datetime="2022-01-18T00:00:00+00:00" itemprop="datePublished">
         Jan 18, 2022
       </time></p>
   </header>
@@ -273,7 +273,7 @@
 
 <h1 id="introduction-and-fundamentals">Introduction and Fundamentals</h1>
 
-<p>Machine Learning is about, on a high level, ==making decisions or predictions based on data==. So the conceptual basis of learning from data is the problem of <strong>induction</strong>.</p>
+<p>Machine Learning is about, on a high level, <mark>making decisions or predictions based on data</mark>. So the conceptual basis of learning from data is the problem of <strong>induction</strong>.</p>
 
 <ul>
   <li>Great examples are <strong>face detection</strong> and <strong>speech recognition</strong> and many kinds of language-processing tasks.</li>
@@ -295,7 +295,7 @@
   <li><strong>generalization:</strong> How can we predict results of a situation or experiment that we have <em>never encountered before in our data set</em>?</li>
 </ul>
 
-<p>In a more concrete manner, we can ==describe== ==problems== and their ==solutions== ==using six characteristics==, three of which characterize the problem and three of which characterize the solution:</p>
+<p>In a more concrete manner, we can <mark>describe</mark> <mark>problems</mark> and their <mark>solutions</mark> <mark>using six characteristics</mark>, three of which characterize the problem and three of which characterize the solution:</p>
 
 <ol>
   <li><strong>Problem class:</strong> What is the nature of the training data and what kinds of queries will be made at testing time?</li>
@@ -324,7 +324,7 @@
 
   <ul>
     <li>
-      <p>The learning system is given ==both== inputs and (the correct) outputs. The goal is then to predict an output for a future, unknown input.</p>
+      <p>The learning system is given <mark>both</mark> inputs and (the correct) outputs. The goal is then to predict an output for a future, unknown input.</p>
 
       <p>In other words, the <strong>training dataset $D_n$</strong> is the form of pairs:</p>
 
@@ -333,8 +333,8 @@
       <p>where:</p>
 
       <ul>
-        <li>$x^{(i)}$ are ==vectors== in $d$ dimensions.</li>
-        <li>$y^{(i)}$ are ==elements== of a discrete set of values.</li>
+        <li>$x^{(i)}$ are <mark>vectors</mark> in $d$ dimensions.</li>
+        <li>$y^{(i)}$ are <mark>elements</mark> of a discrete set of values.</li>
         <li>$x^{(i)}$ represents an <strong>input/object to be classified</strong></li>
         <li>$y^{(i)}$ represents an <strong>output/target values</strong></li>
       </ul>
@@ -348,12 +348,12 @@
 <p>Additionally, we divide up supervised learning based on whether:</p>
 
 <ul>
-  <li>the ==outputs== are drawn from a small <strong>finite</strong> set (<strong>classification</strong>)
+  <li>the <mark>outputs</mark> are drawn from a small <strong>finite</strong> set (<strong>classification</strong>)
     <ul>
       <li>A classification problem is <em>binary</em> or <em>two-class</em> if $y^{(i)}$ is drawn from a set of two possible values, $y^{(i)} \in {+1,-1}$ .Otherwise, it is called <em>multi-class</em>.</li>
     </ul>
   </li>
-  <li>or the ==outputs== are a <strong>large</strong> finite or <strong>continuous</strong> set (<strong>regression</strong>).
+  <li>or the <mark>outputs</mark> are a <strong>large</strong> finite or <strong>continuous</strong> set (<strong>regression</strong>).
     <ul>
       <li>Regression is similar, except that $y^{(i)} \in \mathbb{R}^k$</li>
     </ul>
@@ -433,7 +433,7 @@
   <li>repeats</li>
 </ol>
 
-<p>The goal is to find a policy $\pi$, mapping $x$ to $y$, (that is, states to actions) such that ==some long-term sum== or ==average of rewards== $r$ is ==maximized==.</p>
+<p>The goal is to find a policy $\pi$, mapping $x$ to $y$, (that is, states to actions) such that <mark>some long-term sum</mark> or <mark>average of rewards</mark> $r$ is <mark>maximized</mark>.</p>
 
 <h3 id="sequence-learning">Sequence Learning</h3>
 
@@ -444,8 +444,8 @@
     <li>In sequence learning, the goal is to learn a mapping from <em>input sequences</em> $x_0,…,x_n$ to <em>output sequences</em> $y_1,…,y_m$.</li>
     <li>The mapping is typically represented as a <strong>state machine</strong>:
       <ul>
-        <li>with one function $f$ used to compute the ==next hidden internal state== given the input</li>
-        <li>and another function $g$ used to compute the ==output given the current hidden state==.</li>
+        <li>with one function $f$ used to compute the <mark>next hidden internal state</mark> given the input</li>
+        <li>and another function $g$ used to compute the <mark>output given the current hidden state</mark>.</li>
       </ul>
     </li>
   </ul>
@@ -464,12 +464,12 @@
 \[\mathcal{D}_n = \{ (x^{(1)}, y^{(1)}), ..., (x^{(n)}, y^{(n)}) \}\]
 
     <ul>
-      <li>each data point, $x^{(i)}, i \in {1,…,n}$ is a ==feature vector==, so that $x^{(i)} \in \mathbb{R}^d$
+      <li>each data point, $x^{(i)}, i \in {1,…,n}$ is a <mark>feature vector</mark>, so that $x^{(i)} \in \mathbb{R}^d$
         <ul>
           <li>for example, $x^{(i)}_1$ could represent the amount of oxygen the baby is breathing, and $x^{(i)}_2$ could represent the amount of movement the baby has</li>
         </ul>
       </li>
-      <li>each data point, $x^{(i)}$ has a corresponding ==label==, $y^{(i)} \in {-1,+1}$, so that
+      <li>each data point, $x^{(i)}$ has a corresponding <mark>label</mark>, $y^{(i)} \in {-1,+1}$, so that
         <ul>
           <li>$-1$ means newborn baby $i$ did not have a seizure</li>
           <li>and $+1$ means newborn baby $i$ did have a seizure</li>
@@ -487,7 +487,7 @@
 
 <p><img src="/lectures/images/2022-01-18-STFCS229_Machine_Learning/image-20210701231519528.png" alt="image-20210701231519528" /></p>
 
-<p>==Questions to Answer==</p>
+<p><mark>Questions to Answer</mark></p>
 
 <ol>
   <li>How can we label those points?</li>
@@ -498,7 +498,7 @@
 
 <ol>
   <li>
-    <p>Labeling ==Hypothesis==: we need a “function” $h$ that does:</p>
+    <p>Labeling <mark>Hypothesis</mark>: we need a “function” $h$ that does:</p>
 
 \[h: \mathbb{R}^d \mapsto \{-1, +1\}\]
   </li>
@@ -547,7 +547,7 @@
       <p>represents the <strong>projection of $x$ onto $\theta$</strong>.</p>
     </li>
     <li>
-      <p>Therefore, an ==important point== is that:</p>
+      <p>Therefore, an <mark>important point</mark> is that:</p>
 
       <p><img src="/lectures/images/2022-01-18-STFCS229_Machine_Learning/image-20210701234326496.png" alt="image-20210701234326496" style="zoom: 67%;" /></p>
 
@@ -575,7 +575,7 @@ x : \frac{\theta \cdot x}{||\theta||} &amp;= -b
   </ul>
 </blockquote>
 
-<p>Therefore, we can say that for we can describe ==any line in 2 dimension== as:</p>
+<p>Therefore, we can say that for we can describe <mark>any line in 2 dimension</mark> as:</p>
 
 \[\begin{align*}
 \frac{\theta^T x}{||\theta||} &amp;= -b \\
@@ -585,7 +585,7 @@ x : \frac{\theta \cdot x}{||\theta||} &amp;= -b
 
 <p><img src="/lectures/images/2022-01-18-STFCS229_Machine_Learning/image-20210703001004237.png" alt="image-20210703001004237" style="zoom: 67%;" /></p>
 
-<p>So the linear classifier can just look at the ==sign of $x$ relative to the line==</p>
+<p>So the linear classifier can just look at the <mark>sign of $x$ relative to the line</mark></p>
 
 \[h(x) = h(x; \theta, \theta_0)=\text{sign}(\theta^T x + \theta_0) = \begin{cases}
 +1, &amp; \text{if } \theta^T x + \theta_0 &gt; 0\\
@@ -630,7 +630,7 @@ x : \frac{\theta \cdot x}{||\theta||} &amp;= -b
 
 <hr />
 
-<p>To be able to determine if a hypothesis is good or not, we can look at the ==loss function==:</p>
+<p>To be able to determine if a hypothesis is good or not, we can look at the <mark>loss function</mark>:</p>
 
 \[L(g,a)\]
 
@@ -639,7 +639,7 @@ x : \frac{\theta \cdot x}{||\theta||} &amp;= -b
 <ul>
   <li>$g$ means the <strong>our guess from hypothesis</strong></li>
   <li>$a$ means the <strong>actual value</strong></li>
-  <li><em>note that</em> it ==does not depend on input==, since this basically just describes how bad it is ==if we guessed incorrectly==</li>
+  <li><em>note that</em> it <mark>does not depend on input</mark>, since this basically just describes how bad it is <mark>if we guessed incorrectly</mark></li>
 </ul>
 
 <p><em>For Example</em>:</p>
@@ -679,7 +679,7 @@ x : \frac{\theta \cdot x}{||\theta||} &amp;= -b
       <p>where basically:</p>
 
       <ul>
-        <li>we are ==averaging== over the loss function, and the <strong>guess</strong> comes from the <strong>hypothesis $h$</strong></li>
+        <li>we are <mark>averaging</mark> over the loss function, and the <strong>guess</strong> comes from the <strong>hypothesis $h$</strong></li>
       </ul>
     </li>
   </ul>
@@ -703,7 +703,7 @@ x : \frac{\theta \cdot x}{||\theta||} &amp;= -b
   </ul>
 </blockquote>
 
-<p>Then, we can say I ==prefer hypothesis $h$ over $\bar{h}$== if (for example):</p>
+<p>Then, we can say I <mark>prefer hypothesis $h$ over $\bar{h}$</mark> if (for example):</p>
 
 \[\mathcal{E}_n(h) &lt; \mathcal{E}_n(\bar{h})\]
 
@@ -725,7 +725,7 @@ x : \frac{\theta \cdot x}{||\theta||} &amp;= -b
   <li>the output of your algorithm is a <strong>hypothesis</strong>, which is basically a <strong>function</strong> that can give you predicted output based on some input</li>
 </ul>
 
-<p>where we can use a ==learning algorithm to spit out a <em>good</em> classifier== by:</p>
+<p>where we can use a <mark>learning algorithm to spit out a *good* classifier</mark> by:</p>
 
 <ul>
   <li>
@@ -746,7 +746,7 @@ x : \frac{\theta \cdot x}{||\theta||} &amp;= -b
 
 <p>where basically you get a <em>trillion hypothesis</em>.</p>
 
-<p>A ==simple== learning algorithm would be:</p>
+<p>A <mark>simple</mark> learning algorithm would be:</p>
 
 <p><img src="/lectures/images/2022-01-18-STFCS229_Machine_Learning/image-20210704225554171.png" alt="image-20210704225554171" style="zoom:67%;" /></p>
 
@@ -883,7 +883,7 @@ x : \frac{\theta \cdot x}{||\theta||} &amp;= -b
   </ul>
 </blockquote>
 
-<p>In other cases, we might want get some ==continuous output==. For example, the real-time temperature in a room. Then we usually use regression</p>
+<p>In other cases, we might want get some <mark>continuous output</mark>. For example, the real-time temperature in a room. Then we usually use regression</p>
 
 <blockquote>
   <p><strong>Regression</strong></p>
@@ -967,8 +967,8 @@ x : \frac{\theta \cdot x}{||\theta||} &amp;= -b
 <p><strong>Note</strong>:</p>
 
 <ul>
-  <li>sometimes, feature functions $\phi(x)$ are just <strong>referred to as features $\phi$</strong>, since it is usually the ==resulting value/vector== that we care about in ML</li>
-  <li>Those feature functions does ==not== have to be reversible</li>
+  <li>sometimes, feature functions $\phi(x)$ are just <strong>referred to as features $\phi$</strong>, since it is usually the <mark>resulting value/vector</mark> that we care about in ML</li>
+  <li>Those feature functions does <mark>not</mark> have to be reversible</li>
 </ul>
 
 <hr />
@@ -1002,7 +1002,7 @@ x : \frac{\theta \cdot x}{||\theta||} &amp;= -b
 <p><strong>Note that:</strong></p>
 
 <ul>
-  <li>Even if we have the <em>input features</em> ready, we need to find some way to ==convert string (non-numeric) information== to numbers. Otherwise we cannot use our established models</li>
+  <li>Even if we have the <em>input features</em> ready, we need to find some way to <mark>convert string (non-numeric) information</mark> to numbers. Otherwise we cannot use our established models</li>
 </ul>
 
 <hr />
@@ -1040,11 +1040,11 @@ x : \frac{\theta \cdot x}{||\theta||} &amp;= -b
             <p>where:</p>
 
             <ul>
-              <li>this is also called a ==one hot encoding==</li>
+              <li>this is also called a <mark>one hot encoding</mark></li>
             </ul>
           </li>
           <li>
-            <p>and ==factored encoding== (since there are <strong>overlaps</strong>):</p>
+            <p>and <mark>factored encoding</mark> (since there are <strong>overlaps</strong>):</p>
 
             <p><img src="/lectures/images/2022-01-18-STFCS229_Machine_Learning/image-20210708003803602.png" alt="image-20210708003803602" style="zoom: 33%;" /></p>
           </li>
@@ -1094,7 +1094,7 @@ x : \frac{\theta \cdot x}{||\theta||} &amp;= -b
 
         <p><img src="/lectures/images/2022-01-18-STFCS229_Machine_Learning/image-20210708003122522.png" alt="image-20210708003122522" style="zoom: 33%;" /></p>
 
-        <p>then the advantage is that you can ==always “separate/group”== those categories as they are always “apart”</p>
+        <p>then the advantage is that you can <mark>always "separate/group"</mark> those categories as they are always “apart”</p>
 
         <p><img src="/lectures/images/2022-01-18-STFCS229_Machine_Learning/image-20210708003414544.png" alt="image-20210708003414544" style="zoom: 67%;" /></p>
       </li>
@@ -1148,7 +1148,7 @@ x : \frac{\theta \cdot x}{||\theta||} &amp;= -b
     </ul>
   </li>
   <li>
-    <p><strong>Ordinal Data</strong>: ==order== on data values, but ==differences not meaningful== without some processing</p>
+    <p><strong>Ordinal Data</strong>: <mark>order</mark> on data values, but <mark>differences not meaningful</mark> without some processing</p>
 
     <ul>
       <li>
@@ -1200,7 +1200,7 @@ x : \frac{\theta \cdot x}{||\theta||} &amp;= -b
 
 <ul>
   <li>in this case, “Weekly # Garlic Clove Eaten” is useless</li>
-  <li>maybe ==ask some experts on this==. This might be important unless you are sure.</li>
+  <li>maybe <mark>ask some experts on this</mark>. This might be important unless you are sure.</li>
 </ul>
 
 <hr />
@@ -1245,13 +1245,13 @@ x : \frac{\theta \cdot x}{||\theta||} &amp;= -b
 <p>where the advantage of this is that:</p>
 
 <ul>
-  <li>such classifier would be ==independent of the scale of axis== that you chose to plot at</li>
+  <li>such classifier would be <mark>independent of the scale of axis</mark> that you chose to plot at</li>
   <li>also, it would sometimes be <strong>easier to interpret the result/classifier</strong></li>
 </ul>
 
 <hr />
 
-<p>Therefore, we could ==further== encode the example in the previous lecture to be:</p>
+<p>Therefore, we could <mark>further</mark> encode the example in the previous lecture to be:</p>
 
 <table>
   <thead>
@@ -1282,7 +1282,7 @@ x : \frac{\theta \cdot x}{||\theta||} &amp;= -b
 
 <ul>
   <li>
-    <p>Recall that a plane can be defined ==a point $\vec{r}_0$ in the plane AND its normal vector $\vec{n}$==:</p>
+    <p>Recall that a plane can be defined <mark>a point $\vec{r}_0$ in the plane AND its normal vector $\vec{n}$</mark>:</p>
 
 \[\begin{align*}
 \vec{n} \cdot (\vec{r}-\vec{r}_0) &amp;= 0 \\
@@ -1368,7 +1368,7 @@ x : \frac{\theta \cdot x}{||\theta||} &amp;= -b
     <p><strong>input</strong>/<strong>feature</strong> $x=\begin{bmatrix} 1 \x_1 \x_2 \ \end{bmatrix}=\begin{bmatrix} x_0 \x_1 \x_2 \ \end{bmatrix}$</p>
   </li>
   <li>
-    <p><strong>parameter</strong> $\theta = \begin{bmatrix} \theta_0 \\theta_1 \\theta_2 \ \end{bmatrix}$ would be the ==job of Learning Algorithm to choose==</p>
+    <p><strong>parameter</strong> $\theta = \begin{bmatrix} \theta_0 \\theta_1 \\theta_2 \ \end{bmatrix}$ would be the <mark>job of Learning Algorithm to choose</mark></p>
   </li>
 </ul>
 
@@ -1401,7 +1401,7 @@ x : \frac{\theta \cdot x}{||\theta||} &amp;= -b
       </ul>
     </li>
     <li>
-      <p>Therefore, now the aim is to ==choose $\theta$ to minimize $J(\theta)$==</p>
+      <p>Therefore, now the aim is to <mark>choose $\theta$ to minimize $J(\theta)$</mark></p>
     </li>
   </ul>
 </blockquote>
@@ -1443,7 +1443,7 @@ x : \frac{\theta \cdot x}{||\theta||} &amp;= -b
         <li>$:=$ is the <strong>assignment</strong>, which takes value from the right and assign it to the left</li>
         <li>$\alpha$ is called the <strong>learning rate</strong>, usually set to $0.01$ and manipulate around</li>
         <li>the $-\alpha$ indicates that we are <strong>moving DOWN the slope to minima</strong>.</li>
-        <li>This method looks at <em>every data point</em> in the entire training set for each step (of computing the next $\theta_j$ value), and is called ==batch gradient descent== (i.e. so a batch here would mean the entire dataset $\mathcal{D}_m$).</li>
+        <li>This method looks at <em>every data point</em> in the entire training set for each step (of computing the next $\theta_j$ value), and is called <mark>batch gradient descent</mark> (i.e. so a batch here would mean the entire dataset $\mathcal{D}_m$).</li>
       </ul>
     </li>
     <li>
@@ -1451,12 +1451,12 @@ x : \frac{\theta \cdot x}{||\theta||} &amp;= -b
 
       <ul>
         <li>
-          <p>notice that the definition of $J$ would cause our function to only have ==one global minimum==. Therefore with appropriate $\alpha$, you should <strong>always</strong> get your data to converge</p>
+          <p>notice that the definition of $J$ would cause our function to only have <mark>one global minimum</mark>. Therefore with appropriate $\alpha$, you should <strong>always</strong> get your data to converge</p>
 
 \[J(\theta) = \frac{1}{2} \sum_{i=1}^{m}\left( h_\theta(x^{(i)})-y^{(i)} \right)^2\]
 
           <ul>
-            <li>note that this is a convex function. This is because the <em>sum of convex function</em> $\left( h_\theta(x^{(i)})-y^{(i)} \right)^2$ is ==still== a convex function. (for a simple case, consider the sum of quadratics still being a quadratic)</li>
+            <li>note that this is a convex function. This is because the <em>sum of convex function</em> $\left( h_\theta(x^{(i)})-y^{(i)} \right)^2$ is <mark>still</mark> a convex function. (for a simple case, consider the sum of quadratics still being a quadratic)</li>
           </ul>
 
           <p>Therefore $J$ typically looks like:</p>
@@ -1488,7 +1488,7 @@ x : \frac{\theta \cdot x}{||\theta||} &amp;= -b
     </ul>
   </li>
   <li>
-    <p>This also implies some ==choice of $\alpha$==</p>
+    <p>This also implies some <mark>choice of $\alpha$</mark></p>
 
     <ul>
       <li>if you choose your $\alpha$ to be too large, then the last steps might <strong>overshoot</strong> pass the minima</li>
@@ -1563,7 +1563,7 @@ x : \frac{\theta \cdot x}{||\theta||} &amp;= -b
       </ul>
     </li>
     <li>
-      <p>However, the upshot of this is that it ==may never converge==, since you are now only updating per each data point</p>
+      <p>However, the upshot of this is that it <mark>may never converge</mark>, since you are now only updating per each data point</p>
 
       <ul>
         <li>this could be “minimized” by continuously <strong>decreasing the learning rate $\alpha$</strong>, so that the oscillation would be slower</li>
@@ -1588,7 +1588,7 @@ resorting to an iterative algorithm.</p>
 
 <ul>
   <li>
-    <p>if you have $J(\theta)$, where ==input== $\theta \in \mathbb{R}^{m+1}$, then, if for example $m=2$, we have:</p>
+    <p>if you have $J(\theta)$, where <mark>input</mark> $\theta \in \mathbb{R}^{m+1}$, then, if for example $m=2$, we have:</p>
 
 \[\nabla_\theta J(\theta) = \begin{bmatrix}
 \frac{\partial }{\partial \theta_1}J\\
@@ -1597,7 +1597,7 @@ resorting to an iterative algorithm.</p>
 \end{bmatrix}\]
   </li>
   <li>
-    <p>now, you can also have input as <strong>matrix</strong>, e.g. ==input== being $A \in \mathbb{R}^{2 \times 2}$ sand that a function $f$ maps $f:\mathbb{R}^{2\times 2} \to \mathbb{R}$</p>
+    <p>now, you can also have input as <strong>matrix</strong>, e.g. <mark>input</mark> being $A \in \mathbb{R}^{2 \times 2}$ sand that a function $f$ maps $f:\mathbb{R}^{2\times 2} \to \mathbb{R}$</p>
 
 \[\nabla_A f(A) = \begin{bmatrix}
 \frac{\partial f}{\partial A_{11}} &amp; \frac{\partial f}{\partial A_{12}}\\
@@ -1809,8 +1809,8 @@ X^T X\theta
 <p>The idea for both is common but <em>straight-forward</em></p>
 
 <ul>
-  <li>==Underfitting==: model has <strong>not captured</strong> the structure for data in the training set</li>
-  <li>==Overfitting==: model imitated the data <strong>but NOT the structure</strong>. i.e. the data is distributed in $x^2$, but $x^3$, or $x^4$ is used.</li>
+  <li><mark>Underfitting</mark>: model has <strong>not captured</strong> the structure for data in the training set</li>
+  <li><mark>Overfitting</mark>: model imitated the data <strong>but NOT the structure</strong>. i.e. the data is distributed in $x^2$, but $x^3$, or $x^4$ is used.</li>
 </ul>
 
 <p><em>For Example</em>:</p>
@@ -1840,7 +1840,7 @@ X^T X\theta
   <li>first figure is <em>underfitted</em> as we only imagined $y = \theta_0 + \theta_1 x$​​.</li>
   <li>third figure is <em>overfitting</em> as we imaged $y=\theta_0 + \theta_1 x + \theta_2 x^2 + … + \theta_5 x^5$
     <ul>
-      <li>we could interpret this as having ==five features==, $x_1 = x,\,x_2 = x^2,\,x_3=x^3,\,…\,x_5=x^5$,and fitting them all in a linear manner</li>
+      <li>we could interpret this as having <mark>five features</mark>, $x_1 = x,\,x_2 = x^2,\,x_3=x^3,\,…\,x_5=x^5$,and fitting them all in a linear manner</li>
     </ul>
   </li>
   <li>These notions will be formalized later.</li>
@@ -1850,7 +1850,7 @@ X^T X\theta
   <p><strong>Take-away Message</strong></p>
 
   <ul>
-    <li>the ==choice of features/hypothesis== is important to ensuring good performance of a learning algorithm. (When we talk about model selection, we’ll also see algorithms for automatically choosing a good set of features.)</li>
+    <li>the <mark>choice of features/hypothesis</mark> is important to ensuring good performance of a learning algorithm. (When we talk about model selection, we’ll also see algorithms for automatically choosing a good set of features.)</li>
   </ul>
 </blockquote>
 
@@ -1860,17 +1860,17 @@ X^T X\theta
   <p><strong>Advantage for Overfitting</strong></p>
 
   <ul>
-    <li>One advantage of locally weighted linear regression (LWR) algorithm is, <strong>assuming</strong> there is sufficient training data, makes the choice of features <strong>less</strong> critical. (==as it is a local model==)</li>
+    <li>One advantage of locally weighted linear regression (LWR) algorithm is, <strong>assuming</strong> there is sufficient training data, makes the choice of features <strong>less</strong> critical. (<mark>as it is a local model</mark>)</li>
   </ul>
 </blockquote>
 
-<p>The Linear Regression discussed in section <a href="#Linear_Regression">Linear Regression</a> is a type of <strong>“Parametric” Learning Algorithm</strong>, because the output/aim is a ==fixed size of parameters $\theta =  \begin{bmatrix} \theta_0 \\vdots\\theta_n \ \end{bmatrix}$ to a dataset==</p>
+<p>The Linear Regression discussed in section <a href="#Linear_Regression">Linear Regression</a> is a type of <strong>“Parametric” Learning Algorithm</strong>, because the output/aim is a <mark>fixed size of parameters $\theta =  \begin{bmatrix} \theta_0 \\\vdots\\\theta_n \\ \end{bmatrix}$ to a dataset</mark></p>
 
 <ul>
   <li>this means that the <em>output</em> ($\theta$) is constant in size for any dataset</li>
 </ul>
 
-<p>However, the LWR (Locally Weighted Linear Regression) would be <strong>“Non-parametric” Learning Algorithm</strong>, because the output/aim are ==parameters that grows/increases linearly with size of dataset==</p>
+<p>However, the LWR (Locally Weighted Linear Regression) would be <strong>“Non-parametric” Learning Algorithm</strong>, because the output/aim are <mark>parameters that grows/increases linearly with size of dataset</mark></p>
 
 <ul>
   <li>this means that you <em>can easily fit nonlinear dataset</em>, but the <em>output</em> might be large for large dataset</li>
@@ -1920,7 +1920,7 @@ X^T X\theta
       <p>Therefore, performing $J(\theta)$ means:</p>
 
       <ul>
-        <li>we are “only” ==computing prediction errors near input point $x$==</li>
+        <li>we are “only” <mark>computing prediction errors near input point $x$</mark></li>
       </ul>
     </li>
   </ul>
@@ -1938,7 +1938,7 @@ X^T X\theta
 
 <p><img src="/lectures/images/2022-01-18-STFCS229_Machine_Learning/image-20210710150713957.png" alt="image-20210710150713957" style="zoom:67%;" /></p>
 
-<p>And ==assuming== the ==actual distribution of data is==:</p>
+<p>And <mark>assuming</mark> the <mark>actual distribution of data is</mark>:</p>
 
 \[y^{(i)} = \theta^T x^{(i)} + \epsilon^{(i)}\]
 
@@ -1970,7 +1970,7 @@ X^T X\theta
   </tbody>
 </table>
 
-<p>And that we ==assume== the error term $\epsilon^{(i)}$ is distributed ==IID== (independently and identically distributed according to a <strong>Gaussian Distribution</strong>, also called a Normal Distribution):</p>
+<p>And that we <mark>assume</mark> the error term $\epsilon^{(i)}$ is distributed <mark>IID</mark> (independently and identically distributed according to a <strong>Gaussian Distribution</strong>, also called a Normal Distribution):</p>
 
 \[\epsilon^{(i)} \sim  \mathcal{N}(0, \sigma^2)\]
 
@@ -1982,11 +1982,11 @@ X^T X\theta
   <li>in general, for those types of data, the distributions would be Gaussian due to the <em>Central Limit Theorem</em></li>
 </ul>
 
-<p>So that this means the ==density== of $\epsilon^{(i)}$ is given by:</p>
+<p>So that this means the <mark>density</mark> of $\epsilon^{(i)}$ is given by:</p>
 
 \[p(\epsilon^{(i)}) = \frac{1}{\sqrt{2\pi} \sigma} \exp{\left( - \frac{(\epsilon^{(i)})^2}{2 \sigma^2} \right)}\]
 
-<p>Therefore, since now we know the density of $\epsilon^{(i)}$ <strong>and we know $y^{(i)} = \theta^T x^{(i)} + \epsilon^{(i)}$</strong>, this ==gives==:</p>
+<p>Therefore, since now we know the density of $\epsilon^{(i)}$ <strong>and we know $y^{(i)} = \theta^T x^{(i)} + \epsilon^{(i)}$</strong>, this <mark>gives</mark>:</p>
 
 \[p(y^{(i)} | x^{(i)}; \theta) = \frac{1}{\sqrt{2\pi} \sigma} \exp{\left( - \frac{(y^{(i)} - \theta^T x^{(i)})^2}{2 \sigma^2} \right)}\]
 
@@ -2007,14 +2007,14 @@ X^T X\theta
   </li>
 </ul>
 
-<p>Now, the important step is to ask: ==given the input/design matrix $X$, what is the distribution of $y^{(i)}$?== i.e. How probable is each of the $y^{(i)}$ in your dataset?</p>
+<p>Now, the important step is to ask: <mark>given the input/design matrix $X$, what is the distribution of $y^{(i)}$?</mark> i.e. How probable is each of the $y^{(i)}$ in your dataset?</p>
 
 <ul>
   <li>
     <p>By definition, this quantity is <strong>typically</strong> viewed a function of $\vec{y}$ (and perhaps $X$), for a fixed value of $\theta$.</p>
   </li>
   <li>
-    <p>However, remember that our aim is to get $\theta$, so we want to ==view== it as a <strong>function of $\theta$</strong>, i.e. the <strong>likelihood function $L(\theta)$</strong>:</p>
+    <p>However, remember that our aim is to get $\theta$, so we want to <mark>view</mark> it as a <strong>function of $\theta$</strong>, i.e. the <strong>likelihood function $L(\theta)$</strong>:</p>
 
 \[L(\theta) = L(\theta; X, \vec{y}) = p(\vec{y}|X;\theta)\]
   </li>
@@ -2029,7 +2029,7 @@ L(\theta)
 &amp;= \prod_{i=1}^m \frac{1}{\sqrt{2\pi} \sigma} \exp{\left( - \frac{(y^{(i)} - \theta^T x^{(i)})^2}{2 \sigma^2} \right)}
 \end{align*}\]
 
-<p>Therefore, all we need to do it to get the ==maximum likelihood for $\theta$==.</p>
+<p>Therefore, all we need to do it to get the <mark>maximum likelihood for $\theta$</mark>.</p>
 
 <ol>
   <li>
@@ -2045,7 +2045,7 @@ l(\theta)
 \end{align*}\]
   </li>
   <li>
-    <p>Therefore, to maximize $l(\theta)$ is the same as ==minimizing==:</p>
+    <p>Therefore, to maximize $l(\theta)$ is the same as <mark>minimizing</mark>:</p>
 
 \[\frac{1}{2}\sum_{i=1}^m (y^{(i)} - \theta^T x^{(i)})^2 = J(\theta)\]
   </li>
@@ -2055,8 +2055,8 @@ l(\theta)
   <p>Therefore, the take away message is that:</p>
 
   <ul>
-    <li>the Least Square Algorithm defining $J(\theta)=\frac{1}{2}\sum_{i=1}^m (y^{(i)} - \theta^T x^{(i)})^2$ is <strong>equivalent as saying that</strong> the ==error term== $\epsilon$ from $y^{(i)} = \theta^T x^{(i)} + \epsilon^{(i)}$ is ==distributed IDD==</li>
-    <li>therefore, the aim of minimizing $J(\theta)$ is the same as ==maximizing likelihood $L(\theta)$== given $X, \vec{y}$</li>
+    <li>the Least Square Algorithm defining $J(\theta)=\frac{1}{2}\sum_{i=1}^m (y^{(i)} - \theta^T x^{(i)})^2$ is <strong>equivalent as saying that</strong> the <mark>error term</mark> $\epsilon$ from $y^{(i)} = \theta^T x^{(i)} + \epsilon^{(i)}$ is <mark>distributed IDD</mark></li>
+    <li>therefore, the aim of minimizing $J(\theta)$ is the same as <mark>maximizing likelihood $L(\theta)$</mark> given $X, \vec{y}$</li>
   </ul>
 </blockquote>
 
@@ -2064,7 +2064,7 @@ l(\theta)
 
 <p>Let’s now talk about the classification problem. This is just like the regression problem, except that the values $y$ we now want to predict take on only a <strong>small set of discrete values</strong>.</p>
 
-<p>For now, we will focus on the ==binary classification problem== in which $y$ can take on only two values, 0 and 1.</p>
+<p>For now, we will focus on the <mark>binary classification problem</mark> in which $y$ can take on only two values, 0 and 1.</p>
 
 <ul>
   <li>However, most of what we say here will also <em>generalize to the multiple-class case</em>.</li>
@@ -2118,30 +2118,30 @@ g'(z)
 
 \[h_\theta(x)=g(\theta^T x)=\frac{1}{1+e^{-\theta^T x}}\]
 
-<p>And the task now is to find out a good ==cost function==.</p>
+<p>And the task now is to find out a good <mark>cost function</mark>.</p>
 
 <blockquote>
   <p><strong>Heuristics</strong></p>
 
   <ul>
     <li>
-      <p>Recall that for linear regression, we used least squares error which could be derived using the ==probabilistic model== as the <strong>maximum likelihood estimator</strong> under a set of assumptions, by the following setups:</p>
+      <p>Recall that for linear regression, we used least squares error which could be derived using the <mark>probabilistic model</mark> as the <strong>maximum likelihood estimator</strong> under a set of assumptions, by the following setups:</p>
 
       <ol>
         <li>
-          <p>In the linear regression model, <em>assume</em> the distribution data ==follows== <em>the form of our hypothesis</em></p>
+          <p>In the linear regression model, <em>assume</em> the distribution data <mark>follows</mark> <em>the form of our hypothesis</em></p>
 
 \[y^{(i)} = \theta^T x^{(i)} + \epsilon^{(i)}\]
 
           <p>where $\epsilon$ is the perturbation which basically introduces the second step</p>
         </li>
         <li>
-          <p><em>Assuming</em> the perturbation being IID, consider the ==probability of actually getting $y$ from some $x$==:</p>
+          <p><em>Assuming</em> the perturbation being IID, consider the <mark>probability of actually getting $y$ from some $x$</mark>:</p>
 
 \[p(y^{(i)} | x^{(i)}; \theta) = \frac{1}{\sqrt{2\pi} \sigma} \exp{\left( - \frac{(y^{(i)} - \theta^T x^{(i)})^2}{2 \sigma^2} \right)}\]
         </li>
         <li>
-          <p>==Maximize== the probability of $p(y^{(i)}\vert  x^{(i)};\theta)$ by optimizing $\theta$, which reaches the conclusion of <em>minimizing</em>:</p>
+          <p><mark>Maximize</mark> the probability of $p(y^{(i)}\vert  x^{(i)};\theta)$ by optimizing $\theta$, which reaches the conclusion of <em>minimizing</em>:</p>
 
 \[\frac{1}{2}\sum_{i=1}^m (y^{(i)} - \theta^T x^{(i)})^2 = J(\theta)\]
 
@@ -2184,7 +2184,7 @@ P(y = 0 | x; \theta)&amp;= 1 - h_\theta(x)
 
 \[p(y | x; \theta) = (h_\theta(x))^y(1-h_\theta(x))^{1-y}\]
 
-    <p>which is also called the ==Bernoulli Distribution==, which has</p>
+    <p>which is also called the <mark>Bernoulli Distribution</mark>, which has</p>
 
     <ul>
       <li>the <em>probability mass function</em> being $f(k;\phi) = \phi^k(1-\phi)^{1-k}$ for $k \in {0,1}$</li>
@@ -2192,7 +2192,7 @@ P(y = 0 | x; \theta)&amp;= 1 - h_\theta(x)
     </ul>
   </li>
   <li>
-    <p><strong>Assuming</strong> that the training samples are generated IID, such that we have the ==likelihood of parameter/probability of data== being given by:</p>
+    <p><strong>Assuming</strong> that the training samples are generated IID, such that we have the <mark>likelihood of parameter/probability of data</mark> being given by:</p>
 
 \[\begin{align*}
 L(\theta) &amp;= p(\vec{y} | X; \theta) \\
@@ -2213,7 +2213,7 @@ L(\theta) &amp;= p(\vec{y} | X; \theta) \\
     </blockquote>
   </li>
   <li>
-    <p>Now, to ==maximize== the (log) likelihood:</p>
+    <p>Now, to <mark>maximize</mark> the (log) likelihood:</p>
 
     <ul>
       <li>
@@ -2360,13 +2360,13 @@ so we see that the differences are:</p>
           <ul>
             <li>a data point is <em>not on the line AND current prediction is wrong</em></li>
             <li>a data point is <em>on the line</em></li>
-            <li>==initial step/loop== of iteration</li>
+            <li><mark>initial step/loop</mark> of iteration</li>
           </ul>
 
-          <p>Therefore this actually specifies ==incorrect prediction of a data point==</p>
+          <p>Therefore this actually specifies <mark>incorrect prediction of a data point</mark></p>
         </li>
         <li>
-          <p>The part that updates $\theta, \theta_0$ basically does aims to ==improve $y^{(i)}\cdot (\theta^T x^{(i)} + \theta_0) \le 0$==. So that the next iteration looks like:</p>
+          <p>The part that updates $\theta, \theta_0$ basically does aims to <mark>improve $y^{(i)}\cdot (\theta^T x^{(i)} + \theta_0) \le 0$</mark>. So that the next iteration looks like:</p>
 
 \[\begin{align*}
 y^{(i)}\cdot \left((\theta + y^{(i)}x^{(i)})^Tx^{(i)} +(\theta_0 + y^{(i)})\right) 
@@ -2403,7 +2403,7 @@ y^{(i)}\cdot \left((\theta + y^{(i)}x^{(i)})^Tx^{(i)} +(\theta_0 + y^{(i)})\righ
 \theta^T x + \theta_0 &amp;= 0
 \end{align*}\]
 
-    <p>so that the <strong>more positive the $\theta_0$</strong>, the ==lower/downwards== we are moving the line</p>
+    <p>so that the <strong>more positive the $\theta_0$</strong>, the <mark>lower/downwards</mark> we are moving the line</p>
   </li>
   <li>
     <p>notice the sign on $\theta_0$ update:</p>
@@ -2413,15 +2413,15 @@ y^{(i)}\cdot \left((\theta + y^{(i)}x^{(i)})^Tx^{(i)} +(\theta_0 + y^{(i)})\righ
     <p>this means that if <strong>we predicted wrong</strong> and that</p>
 
     <ul>
-      <li>$y^{(i)} &gt; 0$, then we need to ==move the line downwards==</li>
-      <li>$y^{(i)} &lt; 0$, then we need to ==move the line upwards==</li>
+      <li>$y^{(i)} &gt; 0$, then we need to <mark>move the line downwards</mark></li>
+      <li>$y^{(i)} &lt; 0$, then we need to <mark>move the line upwards</mark></li>
     </ul>
   </li>
   <li>
     <p>the $\theta$ update:</p>
 
     <ul>
-      <li>rotate the current vector $\theta$ ==towards== the correct/actual result</li>
+      <li>rotate the current vector $\theta$ <mark>towards</mark> the correct/actual result</li>
     </ul>
   </li>
 </ul>
@@ -2439,10 +2439,10 @@ y^{(i)}\cdot \left((\theta + y^{(i)}x^{(i)})^Tx^{(i)} +(\theta_0 + y^{(i)})\righ
 <ul>
   <li>we finished when $t=1, i=44$ (#steps=44)</li>
   <li>the “random alg train” in the bottom plot is the $\mathrm{ExLearningAlg}(\mathcal{D}_n;k)$ mentioned before</li>
-  <li><strong>note that</strong> having more steps ==might increase train error==, since
+  <li><strong>note that</strong> having more steps <mark>might increase train error</mark>, since
     <ul>
       <li>$\text{ExLearningAlg}(\mathcal{D}_n;k)$ is iterating a step per hypothesis</li>
-      <li>$\text{Perceptron}(\mathcal{D}_n; \tau)$ here is iterating over $\tau$ <strong>and</strong> each point in dataset, and that the ==adjustment in $\theta, \theta_0$== only moves more towards the ==current== data point</li>
+      <li>$\text{Perceptron}(\mathcal{D}_n; \tau)$ here is iterating over $\tau$ <strong>and</strong> each point in dataset, and that the <mark>adjustment in $\theta, \theta_0$</mark> only moves more towards the <mark>current</mark> data point</li>
     </ul>
   </li>
 </ul>
@@ -2465,7 +2465,7 @@ y^{(i)}\cdot \left((\theta + y^{(i)}x^{(i)})^Tx^{(i)} +(\theta_0 + y^{(i)})\righ
   </ul>
 </blockquote>
 
-<p>==TODO: How do we prove that if a training set is NOT linearly separable?==</p>
+<p><mark>TODO: How do we prove that if a training set is NOT linearly separable?</mark></p>
 
 <p><em>For Example</em>:</p>
 
@@ -2483,7 +2483,7 @@ y^{(i)}\cdot \left((\theta + y^{(i)}x^{(i)})^Tx^{(i)} +(\theta_0 + y^{(i)})\righ
 
     <p><img src="/lectures/images/2022-01-18-STFCS229_Machine_Learning/image-20210705232626944.png" alt="image-20210705232626944" style="zoom:67%;" /></p>
 
-    <p>This green part is ==equivalent to== the <em>purple part minus the orange part</em>:</p>
+    <p>This green part is <mark>equivalent to</mark> the <em>purple part minus the orange part</em>:</p>
 
     <p><img src="/lectures/images/2022-01-18-STFCS229_Machine_Learning/image-20210705233058717.png" alt="image-20210705233058717" style="zoom:67%;" /></p>
 
@@ -2532,15 +2532,15 @@ y^{(i)}\cdot \left((\theta + y^{(i)}x^{(i)})^Tx^{(i)} +(\theta_0 + y^{(i)})\righ
 
   <ul>
     <li>
-      <p>The margin of a training set $\mathcal{D}_n$ with respect to a <em>==hyperplane==</em> defined by $\theta, \theta_0$ is:</p>
+      <p>The margin of a training set $\mathcal{D}_n$ with respect to a <em><mark>hyperplane</mark></em> defined by $\theta, \theta_0$ is:</p>
 
 \[\min_{i \in \{1,...,n\}}y^{(i)}\left(\frac{\theta^T x^* + \theta_0}{||\theta||}\right)\]
 
       <p>where notice that:</p>
 
       <ul>
-        <li>if ==any== data point is ==misclassified==, then the margin would be ==negative==</li>
-        <li>if ==all== data points are classified ==correctly==, then the margin would be ==positive==</li>
+        <li>if <mark>any</mark> data point is <mark>misclassified</mark>, then the margin would be <mark>negative</mark></li>
+        <li>if <mark>all</mark> data points are classified <mark>correctly</mark>, then the margin would be <mark>positive</mark></li>
       </ul>
     </li>
     <li>
@@ -2556,7 +2556,7 @@ y^{(i)}\cdot \left((\theta + y^{(i)}x^{(i)})^Tx^{(i)} +(\theta_0 + y^{(i)})\righ
 
   <ul>
     <li>
-      <p>The perceptron algorithm will make ==at most $(R/\gamma)^2$ updates to $\theta$== (i.e. rotate the hyperplane at most $(R/\gamma)^2$ times) util it hits the solution hypothesis, if and only if the following <strong>assumptions holds true</strong>:</p>
+      <p>The perceptron algorithm will make <mark>at most $(R/\gamma)^2$ updates to $\theta$</mark> (i.e. rotate the hyperplane at most $(R/\gamma)^2$ times) util it hits the solution hypothesis, if and only if the following <strong>assumptions holds true</strong>:</p>
 
       <ol>
         <li>
@@ -2748,7 +2748,7 @@ f'(\theta_0) &amp;= \frac{f(\theta_0)}{\Delta}\\
 
 <hr />
 
-<p>==Terminologies==</p>
+<p><mark>Terminologies</mark></p>
 
 <ul>
   <li><strong>Probability Mass Function</strong>: distribution for <strong>discrete values</strong>.
@@ -2871,7 +2871,7 @@ f'(\theta_0) &amp;= \frac{f(\theta_0)}{\Delta}\\
   <li>e.g. you would like to build a model to estimate the number $y$ of customers arriving in your store (or number of page-views on your website) in any given hour, based on certain features $x$ such as store promotions, recent advertising, weather, day-of-week, etc. (you might think about <strong>Poisson Distribution</strong>, but that is also a GLM)</li>
 </ul>
 
-<p>To <strong>derive a GLM</strong> for a problem, we will make the following ==three assumptions== about the conditional distribution of $y$ given $x$ and about our model:</p>
+<p>To <strong>derive a GLM</strong> for a problem, we will make the following <mark>three assumptions</mark> about the conditional distribution of $y$ given $x$ and about our model:</p>
 
 <ol>
   <li>The <strong>distribution</strong> is in the exponential family, such that $y\vert x;\theta \sim \text{Exponential Family}(\eta)$</li>
@@ -2918,7 +2918,7 @@ f'(\theta_0) &amp;= \frac{f(\theta_0)}{\Delta}\\
 
 \[\theta_j := \theta_j + \alpha (y^{(i)} - h_\theta(x^{(i)})) x^{(i)}_j\]
 
-        <p>note that this holds for ==any distribution in exponential family== (or you could use the <em>Batch Gradient Descent</em>, which adds a summation, or the <em>Newton’s Method</em> that we covered above)</p>
+        <p>note that this holds for <mark>any distribution in exponential family</mark> (or you could use the <em>Batch Gradient Descent</em>, which adds a summation, or the <em>Newton’s Method</em> that we covered above)</p>
       </li>
     </ul>
   </li>
@@ -2928,7 +2928,7 @@ f'(\theta_0) &amp;= \frac{f(\theta_0)}{\Delta}\\
 
 <hr />
 
-<p>==Terminologies==</p>
+<p><mark>Terminologies</mark></p>
 
 <ul>
   <li>$\mu = E[y; \eta]= g(\eta)$ is called the <strong>canonical response function</strong>
@@ -2939,8 +2939,8 @@ f'(\theta_0) &amp;= \frac{f(\theta_0)}{\Delta}\\
   <li>$\eta = g^{-1}(\mu)$ is called the <strong>canonical link function</strong></li>
   <li>Here, we have <strong>three types of parameters</strong> involved in the GLM,:
     <ul>
-      <li><strong>model parameter</strong> $\theta$, which we ==learn in model==</li>
-      <li><strong>natural parameter</strong> $\eta$, which is ==assumed== $\eta = \theta^T x$ to be linear</li>
+      <li><strong>model parameter</strong> $\theta$, which we <mark>learn in model</mark></li>
+      <li><strong>natural parameter</strong> $\eta$, which is <mark>assumed</mark> $\eta = \theta^T x$ to be linear</li>
       <li><strong>canonical parameter</strong>, $\phi$ for Bernoulli, $\mu,\sigma$ for Gaussian, $\lambda$ for Poisson, …
         <ul>
           <li>use $g(\eta)$ to get those canonical parameters <em>from</em> natural parameter</li>
@@ -3101,14 +3101,14 @@ and exponential family distributions.</li>
 
     <p><img src="/lectures/images/2022-01-18-STFCS229_Machine_Learning/image-20210717231419649.png" alt="image-20210717231419649" style="zoom:50%;" /></p>
 
-    <p>Therefore, this means that given an input $x$, we are ==outputting a probability distribution==</p>
+    <p>Therefore, this means that given an input $x$, we are <mark>outputting a probability distribution</mark></p>
   </li>
   <li>
     <p>Now, suppose that the actual answer for that $x$ is a triangle, so that $[0,1,0]^T$ is the correct answer. We can convert the answer/label into a distribution as:</p>
 
     <p><img src="/lectures/images/2022-01-18-STFCS229_Machine_Learning/image-20210717231828115.png" alt="image-20210717231828115" style="zoom: 50%;" /></p>
 
-    <p>Therefore, then the ==task/learning algorithm== needs to ==minimize== the ==”difference/distance”=cross entropy between the following two==:</p>
+    <p>Therefore, then the <mark>task/learning algorithm</mark> needs to <mark>minimize</mark> the <mark>"difference/distance"=cross entropy between the following two</mark>:</p>
 
     <table>
       <thead>
@@ -3153,7 +3153,7 @@ and exponential family distributions.</li>
       </ul>
     </li>
     <li>
-      <p>Our ==goal== is to minimize this quantity, and then we just use ==gradient descent==</p>
+      <p>Our <mark>goal</mark> is to minimize this quantity, and then we just use <mark>gradient descent</mark></p>
     </li>
   </ul>
 </blockquote>
@@ -3188,7 +3188,7 @@ and exponential family distributions.</li>
 
 <h2 id="gaussian-discriminative-analysis">Gaussian Discriminative Analysis</h2>
 
-<p>The big assumptions in this model is that $p(x\vert y)$ are distributed as a <strong>Gaussian</strong>. In other words, if you have many features for $x \in \mathbb{R}^n$ (notice we dropped $x_0=1$ since we are now learning $x$ from $y$), then we assume that $p(x\vert y)$ is distributed as a ==Multivariate Gaussian==.</p>
+<p>The big assumptions in this model is that $p(x\vert y)$ are distributed as a <strong>Gaussian</strong>. In other words, if you have many features for $x \in \mathbb{R}^n$ (notice we dropped $x_0=1$ since we are now learning $x$ from $y$), then we assume that $p(x\vert y)$ is distributed as a <mark>Multivariate Gaussian</mark>.</p>
 
 <h3 id="the-multivariate-normal-distribution">The Multivariate Normal Distribution</h3>
 
@@ -3327,7 +3327,7 @@ and exponential family distributions.</li>
 
 <p>Consider the case when we have classification for <em>benign tumors</em> $y=0$ and <em>malignant tumors</em> $y=1$ based on a set of features $x$.</p>
 
-<p>Then if the input features are <em>continuous variables</em>, we start by ==assuming== the following distribution:</p>
+<p>Then if the input features are <em>continuous variables</em>, we start by <mark>assuming</mark> the following distribution:</p>
 
 \[\begin{align*}
 y &amp;\sim \text{Bernoulli}(\phi) \\
@@ -3409,7 +3409,7 @@ l(\phi, \Sigma, \mu_0, \mu_1)
       </ul>
     </li>
     <li>
-      <p>Therefore, to make a ==prediction given some $x$==, we compute the quantity:</p>
+      <p>Therefore, to make a <mark>prediction given some $x$</mark>, we compute the quantity:</p>
 
 \[\arg\max_y p(y|x) = \arg\max_y \frac{p(x|y)p(y)}{p(x)} =  \arg\max_y p(x|y)p(y)\]
 
@@ -3556,7 +3556,7 @@ x|y =0 &amp;\sim \mathcal{N}(\mu_0, \Sigma) \\
 x|y =1 &amp;\sim \mathcal{N}(\mu_1, \Sigma)
 \end{align*}\]
 
-      <p>then $p(y\vert x)$ ==necessarily== follows a logistic function:</p>
+      <p>then $p(y\vert x)$ <mark>necessarily</mark> follows a logistic function:</p>
 
 \[\begin{align*}
 p(y=1|x) &amp;= \frac{1}{1+e^{-\theta^T x}}\\
@@ -3566,7 +3566,7 @@ p(y=0|x) &amp;=1- \frac{1}{1+e^{-\theta^T x}}
       <p>(in fact, this is true for any pair of distributions from the <em>exponential family</em>)</p>
     </li>
     <li>
-      <p>The ==converse==, however, is ==not true==. So in a way the GDA algorithm makes a <strong>stronger set of assumptions</strong>.</p>
+      <p>The <mark>converse</mark>, however, is <mark>not true</mark>. So in a way the GDA algorithm makes a <strong>stronger set of assumptions</strong>.</p>
 
       <ul>
         <li>but this means that if assumptions in GDA are <em>correct</em>, then GDA does <strong>better</strong> than logistic regression since you are telling it more information.</li>
@@ -3618,14 +3618,14 @@ p(y=0|x) &amp;=1- \frac{1}{1+e^{-\theta^T x}}
 
   <ul>
     <li>
-      <p>==assume== that $x_i$ are <strong>conditionally independent</strong> given $y$:</p>
+      <p><mark>assume</mark> that $x_i$ are <strong>conditionally independent</strong> given $y$:</p>
 
 \[p(x_1, x_2, ...,x_{10,000} | y) = p(x_1|y)\,p(x_2|y)\,p(x_3|y)...p(x_{10,000}|y) = \prod_{i=1}^{10000}p(x_i|y)\]
 
       <p>which means that:</p>
 
       <ul>
-        <li>given a $y$, e.g. the email being a spam, the chance of the word $\text{buy}$ appearing ==does not depend on== whether if the word $\text{price}$ has appeared in the email (in reality this is usually not true)</li>
+        <li>given a $y$, e.g. the email being a spam, the chance of the word $\text{buy}$ appearing <mark>does not depend on</mark> whether if the word $\text{price}$ has appeared in the email (in reality this is usually not true)</li>
       </ul>
 
       <p>This assumption is also called the <strong>Naïve Bayes Assumption</strong></p>
@@ -3666,7 +3666,7 @@ p(y=0|x) &amp;=1- \frac{1}{1+e^{-\theta^T x}}
       </ul>
     </li>
     <li>
-      <p>==Finally==, now if we need to <strong>compute probability $y=1$</strong> given $x$, we just need to consider:</p>
+      <p><mark>Finally</mark>, now if we need to <strong>compute probability $y=1$</strong> given $x$, we just need to consider:</p>
 
 \[\begin{align*}
 p(y=1|x) &amp;= \frac{p(x|y=1)\,p(y=1)}{p(x)}\\
@@ -3916,7 +3916,7 @@ p(y=1|x) &amp;= \frac{p(x|y=1)\,p(y=1)}{p(x)}\\
 
   <ul>
     <li>
-      <p>Consider the case for a <em>logistic regression</em>, where we defined $g(z) = \frac{1}{1+e^{-z}}$ and that $h_\theta(x) = g(\theta^Tx)$. Since the output of this model is between $(0,1)$, then we would ==want== that, <strong>for a training sample $x$</strong>:</p>
+      <p>Consider the case for a <em>logistic regression</em>, where we defined $g(z) = \frac{1}{1+e^{-z}}$ and that $h_\theta(x) = g(\theta^Tx)$. Since the output of this model is between $(0,1)$, then we would <mark>want</mark> that, <strong>for a training sample $x$</strong>:</p>
 
 \[\begin{cases}
 \theta^T x \gg 0, &amp;\text{if $y$ turns out to be $1$}\\
@@ -3975,7 +3975,7 @@ p(y=1|x) &amp;= \frac{p(x|y=1)\,p(y=1)}{p(x)}\\
 <p>Now we can <strong>formalize</strong> the idea of functional and geometrical margins.</p>
 
 <ul>
-  <li>for this section, we ==assume== that the data is ==linear separable==</li>
+  <li>for this section, we <mark>assume</mark> that the data is <mark>linear separable</mark></li>
 </ul>
 
 <blockquote>
@@ -4074,7 +4074,7 @@ p(y=1|x) &amp;= \frac{p(x|y=1)\,p(y=1)}{p(x)}\\
 
 <h2 id="the-optimal-margin-classifier">The Optimal Margin Classifier</h2>
 
-<p>Again, for now we ==assume== that the data is ==linearly separable==.</p>
+<p>Again, for now we <mark>assume</mark> that the data is <mark>linearly separable</mark>.</p>
 
 <p>Now, the sensible idea for a <em>good</em> fit is to find a decision boundary that <strong>maximizes</strong> the <strong>geometric margin</strong>.</p>
 
@@ -4117,7 +4117,7 @@ p(y=1|x) &amp;= \frac{p(x|y=1)\,p(y=1)}{p(x)}\\
 
 <p>which introduced the problem to the $\max$ statement.</p>
 
-<p>Now, recall that scaling $w,b$​ has the same as scaling $\hat{\gamma}$​ without changing anything. Therefore, we can impose a <strong>scaling constraint on $w,b$​</strong> w.r.t. the training set such that the <strong>functional margin $\hat{\gamma}$​ must be 1</strong>. Now we can change the problem to ==forcing $\vert \vert w\vert \vert  = 1/ \gamma$​​==. Therefore, the problem becomes:</p>
+<p>Now, recall that scaling $w,b$​ has the same as scaling $\hat{\gamma}$​ without changing anything. Therefore, we can impose a <strong>scaling constraint on $w,b$​</strong> w.r.t. the training set such that the <strong>functional margin $\hat{\gamma}$​ must be 1</strong>. Now we can change the problem to <mark>forcing $\vert \vert w\vert \vert  = 1/ \gamma$​​</mark>. Therefore, the problem becomes:</p>
 
 \[\begin{align*}
 \max_{\gamma, w,b} &amp;\quad \frac{1}{||w||}\\
@@ -4149,7 +4149,7 @@ p(y=1|x) &amp;= \frac{p(x|y=1)\,p(y=1)}{p(x)}\\
 
 <hr />
 
-<p>Now, what if the size of feature is much much greater than we thought? Consider the case that $x \in \mathbb{R}^{10,000}$​. To do something with this, we need to ==assume== that the <strong>parameter $w$</strong> is some linear combination of data points $x^{(i)}$:</p>
+<p>Now, what if the size of feature is much much greater than we thought? Consider the case that $x \in \mathbb{R}^{10,000}$​. To do something with this, we need to <mark>assume</mark> that the <strong>parameter $w$</strong> is some linear combination of data points $x^{(i)}$:</p>
 
 \[w = \sum_{i=1}^m \alpha_i y^{(i)} x^{(i)}\]
 
@@ -4205,7 +4205,7 @@ p(y=1|x) &amp;= \frac{p(x|y=1)\,p(y=1)}{p(x)}\\
 <p>notice that:</p>
 
 <ul>
-  <li>here the parts that relates to the input is the <strong>inner product</strong> $\lang x^{(i)},x^{(j)} \rang$​. Therefore, if we could somehow compute this part <em>efficiently​</em>, then we would be able to ==compute this even if features are in infinite dimension==.</li>
+  <li>here the parts that relates to the input is the <strong>inner product</strong> $\lang x^{(i)},x^{(j)} \rang$​. Therefore, if we could somehow compute this part <em>efficiently​</em>, then we would be able to <mark>compute this even if features are in infinite dimension</mark>.</li>
   <li>the only parameter now is $\alpha$ instead of $w, b$</li>
 </ul>
 
@@ -4223,7 +4223,7 @@ p(y=1|x) &amp;= \frac{p(x|y=1)\,p(y=1)}{p(x)}\\
 
 \[b^* = -\frac{ \max_{i:y^{(i)}=-1} w^{*^T}x^{(i)} + \min_{i:y^{(i)}=1}w^{*^T}x^{(i)}}{2}\]
 
-<p>where notice that the first equation was the ==”assumption” we made that the <strong>parameter $w$</strong> is some linear combination of data points $x^{(i)}$==. (To see the whole proof, see section <a href="#Lagrange Duality">Lagrange Duality</a>)</p>
+<p>where notice that the first equation was the <mark>"assumption" we made that the **parameter $w$** is some linear combination of data points $x^{(i)}$</mark>. (To see the whole proof, see section <a href="#Lagrange Duality">Lagrange Duality</a>)</p>
 
 <blockquote>
   <p><strong>Optimal Margin Classifier</strong></p>
@@ -4298,11 +4298,11 @@ w^Tx + b
 
 \[\left.dF\right|_{p}(\Delta x, \Delta y, \Delta z) = \lang \left.\frac{\partial F}{\partial x}\right|_p, \left.\frac{\partial F}{\partial y}\right|_p, \left.\frac{\partial F}{\partial z}\right|_p \rang \cdot \lang \Delta x, \Delta y, \Delta z \rang\]
 
-<p>Therefore, we can <strong>define</strong> ==gradient vector== at $p$ to be $\nabla F\vert _p = \lang \left.\frac{\partial F}{\partial x}\right\vert _p, \left.\frac{\partial F}{\partial y}\right\vert _p, \left.\frac{\partial F}{\partial z}\right\vert _p \rang$​. Since $p$ can be any point, we get that in general:</p>
+<p>Therefore, we can <strong>define</strong> <mark>gradient vector</mark> at $p$ to be $\nabla F\vert _p = \lang \left.\frac{\partial F}{\partial x}\right\vert _p, \left.\frac{\partial F}{\partial y}\right\vert _p, \left.\frac{\partial F}{\partial z}\right\vert _p \rang$​. Since $p$ can be any point, we get that in general:</p>
 
 \[\nabla F = \lang \frac{\partial F}{\partial x},  \frac{\partial F}{\partial y}, \frac{\partial F}{\partial z}\rang\]
 
-<p>and hence, the ==total derivative is the DOT PRODUCT== of:</p>
+<p>and hence, the <mark>total derivative is the DOT PRODUCT</mark> of:</p>
 
 \[dF|_p (\vec{\mathrm{v}}) = \nabla F|_p \cdot \vec{\mathrm{v}}\]
 
@@ -4447,7 +4447,7 @@ f(w) &amp;\text{if $w$ satisfies primal constraints} \\
   </ul>
 </blockquote>
 
-<p>Now, the interesting part comes. ==Under some conditions==, we will have:</p>
+<p>Now, the interesting part comes. <mark>Under some conditions</mark>, we will have:</p>
 
 \[d^* = p^*\]
 
@@ -4460,7 +4460,7 @@ f(w) &amp;\text{if $w$ satisfies primal constraints} \\
     <li>
       <p>The idea is that: suppose $f,g_i$ are convex, and $h_i$ are affine functions. Suppose further that the constraints $g_i$ are (strictly) feasible. This means that there exists some $w$ so that $g_i(w) &lt; 0$ for all $i$.</p>
 
-      <p>Under the above assumptions, there <strong>must</strong> exist some $w^<em>, \alpha^</em>, \beta^<em>$ so that $w^</em>$ is the solution to the primal problem; $\alpha^<em>, \beta^</em>$​ is the solution to the dual problem, and that $p^<em>=d^</em>=\mathcal{L}(w^<em>,\alpha^</em>,\beta^*)$. Moreover, these value would ==satisfy the KKT conditions==:</p>
+      <p>Under the above assumptions, there <strong>must</strong> exist some $w^<em>, \alpha^</em>, \beta^<em>$ so that $w^</em>$ is the solution to the primal problem; $\alpha^<em>, \beta^</em>$​ is the solution to the dual problem, and that $p^<em>=d^</em>=\mathcal{L}(w^<em>,\alpha^</em>,\beta^*)$. Moreover, these value would <mark>satisfy the KKT conditions</mark>:</p>
 
 \[\frac{\partial }{\partial w_i} \mathcal{L}(w^*, \alpha^*, \beta^*) = 0,\quad i=1,...,n\]
 
@@ -4475,7 +4475,7 @@ f(w) &amp;\text{if $w$ satisfies primal constraints} \\
       <p>where the 3rd equation (123) from above is called the <strong>KKT dual complementarity</strong> condition. This will be used later for SVM.</p>
     </li>
     <li>
-      <p>Moreover, if some $w^<em>, \alpha^</em>, \beta^*$ satisfy the KKT conditions, then it is also a solution to the ==primal and dual problem==.</p>
+      <p>Moreover, if some $w^<em>, \alpha^</em>, \beta^*$ satisfy the KKT conditions, then it is also a solution to the <mark>primal and dual problem</mark>.</p>
     </li>
   </ul>
 </blockquote>
@@ -4532,7 +4532,7 @@ x_3x_3\\
 <p>so basically  if $x\in \mathbb{R}^n$, then  $\phi(x) \in \mathbb{R}^{n^2}$​. This means that:</p>
 
 <ul>
-  <li>if we need to compute $K(x,z) = \phi(x)^T \phi(z)$ ==explicitly==, then we need $O(n^2)$ time.</li>
+  <li>if we need to compute $K(x,z) = \phi(x)^T \phi(z)$ <mark>explicitly</mark>, then we need $O(n^2)$ time.</li>
 </ul>
 
 <p>However, it turns out that <strong>in this definition of $\phi$</strong>:</p>
@@ -4617,7 +4617,7 @@ form $x_{i_1}x_{i_2}\dots x_{i_k}$​ that are up to order $d$​​​.</p>
   </ul>
 </blockquote>
 
-<p>Now, the only problem is to thinking about <strong>making those kernel functions directly</strong>, alternatively, ==does a mapping $\phi$ exists for a given kernel $K$==.</p>
+<p>Now, the only problem is to thinking about <strong>making those kernel functions directly</strong>, alternatively, <mark>does a mapping $\phi$ exists for a given kernel $K$</mark>.</p>
 
 <p>Intuitively, since kernels comes from “dot products”, you might think that if $\phi(x),\phi(z)$ are <strong>close</strong> to each other (geographically), then $K(x,z)=\phi(x)^T\phi(z)$ should be <strong>large</strong>. Otherwise, the kernel should be small.</p>
 
@@ -4670,7 +4670,7 @@ form $x_{i_1}x_{i_2}\dots x_{i_k}$​ that are up to order $d$​​​.</p>
 
 <h2 id="regularization-and-the-non-separable-case">Regularization and the Non-Separable Case</h2>
 
-<p>However, the algorithms above still have the ==assumption== that data is <strong>separable in some higher dimensions</strong>. What if due to some noise in the data, they are (<em>intrinsically</em>) not separable (or you want to prevent it from overfitting)?</p>
+<p>However, the algorithms above still have the <mark>assumption</mark> that data is <strong>separable in some higher dimensions</strong>. What if due to some noise in the data, they are (<em>intrinsically</em>) not separable (or you want to prevent it from overfitting)?</p>
 
 <p>e.g. data with some noise:</p>
 
@@ -4860,7 +4860,7 @@ relationship between $x$ and $y$.</li>
 
 <p>To start off, we restrict our attention to binary classification in which the labels are $y\in {0,1}$. Though everything here can be generalized to others, including regression and multi-class classification.</p>
 
-<p>Consider a training set $S = { (x^{(i)},y^{(i)}) }_{i=1}^m$​, where the training samples are drawn ==IID from the same distribution $\mathcal{D}$​==. Then for a hypothesis $h$​, we can define the ==training error== (also called the <strong>empirical risk</strong> or <strong>empirical error</strong>) to be:</p>
+<p>Consider a training set $S = { (x^{(i)},y^{(i)}) }_{i=1}^m$​, where the training samples are drawn <mark>IID from the same distribution $\mathcal{D}$​</mark>. Then for a hypothesis $h$​, we can define the <mark>training error</mark> (also called the <strong>empirical risk</strong> or <strong>empirical error</strong>) to be:</p>
 
 \[\hat{\varepsilon}_S(h) = \hat{\varepsilon}(h) = \frac{1}{m} \sum_{i=1}^m 1\{h(x^{(i)}) \neq y^{(i)}\}\]
 
@@ -4870,7 +4870,7 @@ relationship between $x$ and $y$.</li>
   <li>note that we used $\hat{\varepsilon}_S(h)$ because this also depends on the dataset we are using for training</li>
 </ul>
 
-<p>Then, we define the ==generalization error== to be:</p>
+<p>Then, we define the <mark>generalization error</mark> to be:</p>
 
 \[\varepsilon(h) = P_{(x,y) \sim \mathcal{D}} (h(x) \neq y)\]
 
@@ -4911,9 +4911,9 @@ relationship between $x$ and $y$.</li>
 <p>Given some hypothesis class $\mathcal{H}$, and some data set $\mathcal{D}$, consider some best possible hypothesis $g$​ (e.g. having the smallest generalization error, which <em>might not be $0$</em>). Then, we define the following:</p>
 
 <ul>
-  <li>$\varepsilon(g)$​ = Bayes Error/ ==Irreducible== Error</li>
-  <li>$\varepsilon(h^*) - \varepsilon(g)$ = ==Approximation== Error</li>
-  <li>$\varepsilon(\hat{h})  - \varepsilon(h^*)$ = ==Estimation== Error</li>
+  <li>$\varepsilon(g)$​ = Bayes Error/ <mark>Irreducible</mark> Error</li>
+  <li>$\varepsilon(h^*) - \varepsilon(g)$ = <mark>Approximation</mark> Error</li>
+  <li>$\varepsilon(\hat{h})  - \varepsilon(h^*)$ = <mark>Estimation</mark> Error</li>
   <li>therefore $\varepsilon(\hat{h}) = \text{Estimation Error} + \text{Approximation Error} + \text{Irreducible Error}$​</li>
 </ul>
 
@@ -4977,7 +4977,7 @@ relationship between $x$ and $y$.</li>
 
 <ul>
   <li>
-    <p>we sampled ==some randomly sampled== dataset $\mathcal{D}$ from the distribution, and for all hypothesis $h \in \mathcal{H}$, we calculated the <strong>generalization error</strong> $\varepsilon$ and the <strong>training error</strong> based on the sampled dataset $\hat{\varepsilon}_S$​</p>
+    <p>we sampled <mark>some randomly sampled</mark> dataset $\mathcal{D}$ from the distribution, and for all hypothesis $h \in \mathcal{H}$, we calculated the <strong>generalization error</strong> $\varepsilon$ and the <strong>training error</strong> based on the sampled dataset $\hat{\varepsilon}_S$​</p>
   </li>
   <li>
     <p>for any hypothesis $h_i$, we can say that, if we do the sampling of dataset many times and for each time compute the training error, we will get:</p>
@@ -5038,8 +5038,8 @@ P(\exists h \in \mathcal{H}, |\varepsilon(h_i) - \hat{\varepsilon}(h_i) | &gt; \
 
 \[P(\exists h \in \mathcal{H}, |\varepsilon(h_i) - \hat{\varepsilon}(h_i) | \le \gamma) \ge 1- 2k \exp(-2\gamma^2  m)\]
 
-<p>so that with at least $1-2k \exp(-2\gamma^2  m)$​ probability we will get $\varepsilon(h)$​ within $\gamma$​ to $\hat{\varepsilon}(h)$​ <strong>for all $h \in \mathcal{H}$​​​</strong>. This is called a ==uniform==
-==convergence result==, because this is a bound that holds simultaneously for all (as opposed to just one) $h \in H$​​.</p>
+<p>so that with at least $1-2k \exp(-2\gamma^2  m)$​ probability we will get $\varepsilon(h)$​ within $\gamma$​ to $\hat{\varepsilon}(h)$​ <strong>for all $h \in \mathcal{H}$​​​</strong>. This is called a <mark>uniform</mark>
+<mark>convergence result</mark>, because this is a bound that holds simultaneously for all (as opposed to just one) $h \in H$​​.</p>
 
 <p>So the important parameters here would be:</p>
 
@@ -5063,7 +5063,7 @@ P(\exists h \in \mathcal{H}, |\varepsilon(h_i) - \hat{\varepsilon}(h_i) | &gt; \
 
 <ul>
   <li>with probability at least $1-\delta$, we have $\vert \varepsilon(h_i) - \hat{\varepsilon}(h_i) \vert  &gt; \gamma$ for $\forall h \in \mathcal{H}$​.</li>
-  <li>This bound tells us how many training examples we need in order make a guarantee, which is also called the ==sample complexity==.</li>
+  <li>This bound tells us how many training examples we need in order make a guarantee, which is also called the <mark>sample complexity</mark>.</li>
 </ul>
 
 <hr />
@@ -5083,7 +5083,7 @@ P(\exists h \in \mathcal{H}, |\varepsilon(h_i) - \hat{\varepsilon}(h_i) | &gt; \
 <ul>
   <li>The first line used the fact that $\vert \varepsilon(\hat{h}) - \hat{\varepsilon}(\hat{h})\vert  \le \gamma$​ (by our uniform convergence assumption).</li>
   <li>The second line used the fact that $\hat{h}$ minimizes training error</li>
-  <li>The third line used the <em>uniform convergence again</em>, since this ==$\gamma$​ is “shared” across all hypothesis==.</li>
+  <li>The third line used the <em>uniform convergence again</em>, since this <mark>$\gamma$​ is "shared" across all hypothesis</mark>.</li>
 </ul>
 
 <p>We can solve for $\gamma$ using the equation 141 above, and this gives the thorem:</p>
@@ -5190,7 +5190,7 @@ P(\exists h \in \mathcal{H}, |\varepsilon(h_i) - \hat{\varepsilon}(h_i) | &gt; \
 &amp;= \arg\max_{\theta}\left( \prod_{i=1}^m p(y^{(i)}|x^{(i)}, \theta) \right)p(\theta)
 \end{align*}\]
 
-<p>and ==assuming== probability of $\theta$ being distributed normally:</p>
+<p>and <mark>assuming</mark> probability of $\theta$ being distributed normally:</p>
 
 \[p(\theta): \theta \sim \mathcal{N}(0, \tau^2 I)\]
 
@@ -5256,10 +5256,10 @@ P(\exists h \in \mathcal{H}, |\varepsilon(h_i) - \hat{\varepsilon}(h_i) | &gt; \
       </ul>
     </li>
     <li>Train each model $M_i$ on $S_{\mathrm{train}}$ only, to get some hypothesis $h_i$</li>
-    <li>Select and output the hypothesis with smallest error ==on $S_{\mathrm{cv}}$​==, such that $\hat{\varepsilon}<em>{S</em>{\mathrm{cv}}}(h_i)$​ is smallest.</li>
+    <li>Select and output the hypothesis with smallest error <mark>on $S_{\mathrm{cv}}$​</mark>, such that $\hat{\varepsilon}<em>{S</em>{\mathrm{cv}}}(h_i)$​ is smallest.</li>
     <li>(Optionally) If you need to publish your result/use it somewhere, you can then compare the hypothesis by putting them through $S_{\mathrm{test}}$​
       <ul>
-        <li>the take-away message is that your $S_{\mathrm{test}}$ set should ==not be seen== any where in the training/decision of your models. Otherwise such evaluation metrics is meaningless as you are fitting your data towards it.</li>
+        <li>the take-away message is that your $S_{\mathrm{test}}$ set should <mark>not be seen</mark> any where in the training/decision of your models. Otherwise such evaluation metrics is meaningless as you are fitting your data towards it.</li>
       </ul>
     </li>
   </ol>
@@ -5387,7 +5387,7 @@ P(\exists h \in \mathcal{H}, |\varepsilon(h_i) - \hat{\varepsilon}(h_i) | &gt; \
   <li>this splitting splits the region $R_p$ into two regions $R_1, R_2$</li>
 </ul>
 
-<p>To decide <em>which split</em> to take on, we need to define a ==loss for each split==, and then pick the smallest lost. First we need to define a few things to make this formal:</p>
+<p>To decide <em>which split</em> to take on, we need to define a <mark>loss for each split</mark>, and then pick the smallest lost. First we need to define a few things to make this formal:</p>
 
 <ul>
   <li>$L(R)$ is the <strong>loss</strong> on a region $R$</li>
@@ -5395,7 +5395,7 @@ P(\exists h \in \mathcal{H}, |\varepsilon(h_i) - \hat{\varepsilon}(h_i) | &gt; \
   <li>$\hat{p}_c$ is the <strong>proportion</strong> of data in $R$​ that are in the class $c$</li>
 </ul>
 
-<p>In our tree model, we would have ==for each node==:</p>
+<p>In our tree model, we would have <mark>for each node</mark>:</p>
 
 \[\max_{j,t}(L(R_p) - (L(R_1) + L(R_2)))\]
 
@@ -5411,7 +5411,7 @@ P(\exists h \in \mathcal{H}, |\varepsilon(h_i) - \hat{\varepsilon}(h_i) | &gt; \
 
 <p><em>For Example: Simple Misclassification Loss</em></p>
 
-<p>Then a one naive way of ==minimizing misclassification== is to define:</p>
+<p>Then a one naive way of <mark>minimizing misclassification</mark> is to define:</p>
 
 \[L_{\mathrm{misclass}} = \text{number of misclassified data}\]
 
@@ -5434,7 +5434,7 @@ P(\exists h \in \mathcal{H}, |\varepsilon(h_i) - \hat{\varepsilon}(h_i) | &gt; \
 
 <hr />
 
-<p>Therefore, we need one possibility would be something like ==cross-entropy loss==:</p>
+<p>Therefore, we need one possibility would be something like <mark>cross-entropy loss</mark>:</p>
 
 \[L_\mathrm{cross} = - \sum_c \hat{p}_c \log_2 \hat{p}_c\]
 
@@ -5450,7 +5450,7 @@ P(\exists h \in \mathcal{H}, |\varepsilon(h_i) - \hat{\varepsilon}(h_i) | &gt; \
   <li>the change in loss $\max_{j,t}(L(R_p) - (L(R_1) + L(R_2)))$ would be the gap drawn in the figure.</li>
 </ul>
 
-<p>Another would be the ==Gini loss==:</p>
+<p>Another would be the <mark>Gini loss</mark>:</p>
 
 \[\sum_c \hat{p}_c (1-\hat{p}_c)\]
 
@@ -5461,7 +5461,7 @@ P(\exists h \in \mathcal{H}, |\varepsilon(h_i) - \hat{\varepsilon}(h_i) | &gt; \
 
   <ul>
     <li>
-      <p>decision trees like this face a problem of <strong>overfitting</strong> if you let the tree grow freely, such that it will have eventually <strong>each node itself being a region</strong>. This demonstrates the ==high variance== nature of decision tree. To solve this issue, check out the section <a href="#Regularization of Decision Trees">Regularization of Decision Trees</a></p>
+      <p>decision trees like this face a problem of <strong>overfitting</strong> if you let the tree grow freely, such that it will have eventually <strong>each node itself being a region</strong>. This demonstrates the <mark>high variance</mark> nature of decision tree. To solve this issue, check out the section <a href="#Regularization of Decision Trees">Regularization of Decision Trees</a></p>
     </li>
     <li>
       <p>Another problem is that it has <strong>no additive structure</strong>. If you have a data generated where the separation is simply a <em>slant line</em>, then decision tree would need to do <em>lots of work</em>.</p>
@@ -5536,7 +5536,7 @@ P(\exists h \in \mathcal{H}, |\varepsilon(h_i) - \hat{\varepsilon}(h_i) | &gt; \
 
 <ul>
   <li>commonly $d &lt; log_2n$​</li>
-  <li>train time is $O(nfd)$ because the cost of <strong>each sample at each node</strong> is $O(f)$, since you basically just need try $f$ questions, and <strong>each sample</strong> is part of $O(d)$​​ nodes (do it $O(d)$ times), i.e. your data ==matrix== would be $nf$​.</li>
+  <li>train time is $O(nfd)$ because the cost of <strong>each sample at each node</strong> is $O(f)$, since you basically just need try $f$ questions, and <strong>each sample</strong> is part of $O(d)$​​ nodes (do it $O(d)$ times), i.e. your data <mark>matrix</mark> would be $nf$​.</li>
   <li>Therefore, since depth is usually $log_2 n$​, so it is generally a fast algorithm</li>
 </ul>
 
@@ -5602,7 +5602,7 @@ P(\exists h \in \mathcal{H}, |\varepsilon(h_i) - \hat{\varepsilon}(h_i) | &gt; \
   <p><strong>Idea</strong></p>
 
   <ul>
-    <li>Now, the idea is to consider each random variable being our <strong>model itself</strong>, sampled from some distribution. Our aim is to get a <strong>final aggregated model</strong> that who comes from a distribution of a <em>lower variance</em>. Therefore, effectively we want to ==”average/ensemble” different models== to improve the performance, i.e. achieve lower variance.</li>
+    <li>Now, the idea is to consider each random variable being our <strong>model itself</strong>, sampled from some distribution. Our aim is to get a <strong>final aggregated model</strong> that who comes from a distribution of a <em>lower variance</em>. Therefore, effectively we want to <mark>"average/ensemble" different models</mark> to improve the performance, i.e. achieve lower variance.</li>
   </ul>
 </blockquote>
 
@@ -5622,7 +5622,7 @@ P(\exists h \in \mathcal{H}, |\varepsilon(h_i) - \hat{\varepsilon}(h_i) | &gt; \
 <p>Basically, the idea is to have</p>
 
 <ol>
-  <li>==assume== your entire train dataset to be the true population $P$</li>
+  <li><mark>assume</mark> your entire train dataset to be the true population $P$</li>
   <li>each training set $Z_i$ is sampled without replacement from $P$​</li>
   <li>each tree model $G_i$​ is then trained on $Z_i$​</li>
   <li>the final result is <strong>the average result of all models $G_i$​</strong>​</li>
@@ -5632,14 +5632,14 @@ P(\exists h \in \mathcal{H}, |\varepsilon(h_i) - \hat{\varepsilon}(h_i) | &gt; \
 
 \[G_{\mathrm{final}}(x') = \frac{\sum_{i=1}^m G_i(x')}{M}\]
 
-<p>The net effect is that the ==variance== of your model decreases since:</p>
+<p>The net effect is that the <mark>variance</mark> of your model decreases since:</p>
 
 <ul>
   <li>$\frac{1-\rho}{n}\sigma^2$ in equation 158 will be decreased since $M=n$ basically increases as the number of trained model increases</li>
   <li>$\rho$ in equation 158 will also be decreased since bootstrapping make them less corelated</li>
 </ul>
 
-<p>However, the drawback is that your ==bias== would increase (slightly) since:</p>
+<p>However, the drawback is that your <mark>bias</mark> would increase (slightly) since:</p>
 
 <ul>
   <li>each model is trained on <em>less data</em>/random subsampling</li>
@@ -5649,7 +5649,7 @@ P(\exists h \in \mathcal{H}, |\varepsilon(h_i) - \hat{\varepsilon}(h_i) | &gt; \
   <p><strong>Bagging + Decision Tree</strong></p>
 
   <ul>
-    <li>Recall that decision trees have ==high variance but low bias==. Therefore, this works <strong>nicely with Bagging</strong>.</li>
+    <li>Recall that decision trees have <mark>high variance but low bias</mark>. Therefore, this works <strong>nicely with Bagging</strong>.</li>
   </ul>
 </blockquote>
 
@@ -5660,12 +5660,12 @@ P(\exists h \in \mathcal{H}, |\varepsilon(h_i) - \hat{\varepsilon}(h_i) | &gt; \
 <p>This is achieved by considering <strong>only a fraction of features at each split</strong>, which would result in lower correlation between models.</p>
 
 <ul>
-  <li>think of the case where there is a <em>strong feature</em> that works nicely for classification. Then most of your trees will have that being the first split, hence somewhat correlated. However, this can be avoided if you ==force== <em>only a fraction of features</em> being considered.</li>
+  <li>think of the case where there is a <em>strong feature</em> that works nicely for classification. Then most of your trees will have that being the first split, hence somewhat correlated. However, this can be avoided if you <mark>force</mark> <em>only a fraction of features</em> being considered.</li>
 </ul>
 
 <h3 id="boosting">Boosting</h3>
 
-<p>This is more like the opposite, it is <strong>decreasing the bias</strong> but <strong>increasing the variance</strong>. The key difference is that this approach is about ==addition==.</p>
+<p>This is more like the opposite, it is <strong>decreasing the bias</strong> but <strong>increasing the variance</strong>. The key difference is that this approach is about <mark>addition</mark>.</p>
 
 <p>The basic idea is as follows (this is actually ADABoost):</p>
 
@@ -5713,7 +5713,7 @@ P(\exists h \in \mathcal{H}, |\varepsilon(h_i) - \hat{\varepsilon}(h_i) | &gt; \
 
 <ol>
   <li>initiate some $w, b$</li>
-  <li>find the optimal $w, b$. This means that we need to ==define a loss function==.</li>
+  <li>find the optimal $w, b$. This means that we need to <mark>define a loss function</mark>.</li>
   <li>output $w,b$</li>
 </ol>
 
@@ -5739,12 +5739,12 @@ P(\exists h \in \mathcal{H}, |\varepsilon(h_i) - \hat{\varepsilon}(h_i) | &gt; \
   <li>
     <p><strong>Neuron = Linear + Activation</strong></p>
 
-    <p>In the case of logistic regression, the part $w^T x + b$ is the ==linear part==, and the $\sigma(w^Tx + b)$ is the ==activation==</p>
+    <p>In the case of logistic regression, the part $w^T x + b$ is the <mark>linear part</mark>, and the $\sigma(w^Tx + b)$ is the <mark>activation</mark></p>
   </li>
   <li>
     <p><strong>Model = Architecture + Parameter</strong></p>
 
-    <p>In the case of logistic regression, we have an ==architecture== of 1 neuron, and the ==parameter== $w, b$</p>
+    <p>In the case of logistic regression, we have an <mark>architecture</mark> of 1 neuron, and the <mark>parameter</mark> $w, b$</p>
   </li>
 </ol>
 
@@ -5777,7 +5777,7 @@ P(\exists h \in \mathcal{H}, |\varepsilon(h_i) - \hat{\varepsilon}(h_i) | &gt; \
   <li>$\partial \mathcal{L}_{3N}/{\partial w_i^{[1]}}$ has the same result as $\partial \mathcal{L}/{\partial w}$ since the variables $w_i^{[1]}$ are <strong>decoupled</strong></li>
 </ul>
 
-<p>However, one problem is that if the data is ==unbalanced==, then some neurons ==might not be trained as much as others==.</p>
+<p>However, one problem is that if the data is <mark>unbalanced</mark>, then some neurons <mark>might not be trained as much as others</mark>.</p>
 
 <ul>
   <li>one way to deal with it is to use the <em>SoftMax regression</em>, which basically outputs the <em>most likely</em> instead of all three</li>
@@ -5834,7 +5834,7 @@ P(\exists h \in \mathcal{H}, |\varepsilon(h_i) - \hat{\varepsilon}(h_i) | &gt; \
 
 <ul>
   <li>
-    <p>inputs are ==no longer fully connected== to the neurons in the first level</p>
+    <p>inputs are <mark>no longer fully connected</mark> to the neurons in the first level</p>
 
     <p>(as we go on, neural network will usually be able to figure which inputs are interesting by themselves. The idea is to <em>first fully connect the network</em>, and then <em>allow weights</em>.)</p>
   </li>
@@ -5869,7 +5869,7 @@ P(\exists h \in \mathcal{H}, |\varepsilon(h_i) - \hat{\varepsilon}(h_i) | &gt; \
   <p><strong>Note</strong></p>
 
   <ul>
-    <li>the architecture and the idea of having input propagated forward to get the output is also called ==forward propagation==.</li>
+    <li>the architecture and the idea of having input propagated forward to get the output is also called <mark>forward propagation</mark>.</li>
   </ul>
 </blockquote>
 
@@ -5893,7 +5893,7 @@ z^{[1](1)} &amp; ... &amp; z^{[1](m)}\\
 
 <ul>
   <li>$Z^{[1]} \to (3,m)$</li>
-  <li>$w^{[1]} \to (3,n)$ is the ==same as before==</li>
+  <li>$w^{[1]} \to (3,n)$ is the <mark>same as before</mark></li>
   <li>$\tilde{b}^{[1]} = \begin{bmatrix}
 | &amp; … &amp; |<br />
 b^{[1]} &amp; … &amp; b^{[1]}<br />
@@ -5905,7 +5905,7 @@ b^{[1]} &amp; … &amp; b^{[1]}<br />
 
 <h3 id="optimization">Optimization</h3>
 
-<p>Now we have the equations for each neuron, we need to consider the ==loss function== and the ==cost function== (cost usually refers to the error of the batch of $m$ examples, whereas loss refers to error of $1$ example).</p>
+<p>Now we have the equations for each neuron, we need to consider the <mark>loss function</mark> and the <mark>cost function</mark> (cost usually refers to the error of the batch of $m$ examples, whereas loss refers to error of $1$ example).</p>
 
 <p>Our task here is to optimize $w^{[i]}, b^{[i]}; i \in [1,3]$. Since the output is the last layer $\hat{y} = a^{[3]}$, we have the <strong>cost</strong> being:</p>
 
@@ -6006,7 +6006,7 @@ b^{[l]} := b^{[l]} - \alpha \frac{\partial \mathcal{J}}{\partial b^{[l]}}
   <p><strong>Note</strong></p>
 
   <ul>
-    <li>therefore, since we are <strong>computing the optimization</strong> backward, this part is called the ==backward propagation==</li>
+    <li>therefore, since we are <strong>computing the optimization</strong> backward, this part is called the <mark>backward propagation</mark></li>
   </ul>
 </blockquote>
 

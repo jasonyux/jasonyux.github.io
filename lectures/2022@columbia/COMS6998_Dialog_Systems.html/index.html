@@ -13,11 +13,11 @@
 <meta property="og:url" content="/lectures/2022@columbia/COMS6998_Dialog_Systems.html/" />
 <meta property="og:site_name" content="Lecture Notes" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2022-10-19T00:00:00-04:00" />
+<meta property="article:published_time" content="2022-10-19T00:00:00+00:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="COMS6998 Dialog Systems" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2022-10-19T00:00:00-04:00","datePublished":"2022-10-19T00:00:00-04:00","description":"6998: Conversational AI","headline":"COMS6998 Dialog Systems","mainEntityOfPage":{"@type":"WebPage","@id":"/lectures/2022@columbia/COMS6998_Dialog_Systems.html/"},"url":"/lectures/2022@columbia/COMS6998_Dialog_Systems.html/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2022-10-19T00:00:00+00:00","datePublished":"2022-10-19T00:00:00+00:00","description":"6998: Conversational AI","headline":"COMS6998 Dialog Systems","mainEntityOfPage":{"@type":"WebPage","@id":"/lectures/2022@columbia/COMS6998_Dialog_Systems.html/"},"url":"/lectures/2022@columbia/COMS6998_Dialog_Systems.html/"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/lectures/assets/main.css"><link type="application/atom+xml" rel="alternate" href="/lectures/feed.xml" title="Lecture Notes" /></head>
 <body><header class="site-header">
@@ -66,7 +66,7 @@
   </head>
   <header class="post-header">
     <h1 class="post-title p-name" itemprop="name headline">COMS6998 Dialog Systems</h1>
-    <p class="post-meta"><time class="dt-published" datetime="2022-10-19T00:00:00-04:00" itemprop="datePublished">
+    <p class="post-meta"><time class="dt-published" datetime="2022-10-19T00:00:00+00:00" itemprop="datePublished">
         Oct 19, 2022
       </time></p>
   </header>
@@ -193,7 +193,7 @@
   <li>social chatbot: engage the user to stay in the conversation.</li>
 </ul>
 
-<p>Usually, we consider dialog framework (==abstractions==) for task oriented chatbots:</p>
+<p>Usually, we consider dialog framework (<mark>abstractions</mark>) for task oriented chatbots:</p>
 
 <table>
   <thead>
@@ -284,7 +284,7 @@ conversation flow (e.g. generate what DA to do at each turn), which can then be 
 <h2 id="multiwoz---a-large-scale-multi-domain-wizard-of-oz-dataset-for-task-oriented-dialogue-modelling">MultiWOZ - A Large-Scale Multi-Domain Wizard-of-Oz Dataset for Task-Oriented Dialogue Modelling</h2>
 
 <blockquote>
-  <p><strong>Aim</strong>: Provide more data and ==across more than one domains even within a conversation==. Therefore, they collected a fully labelled (current <em>domain</em>, <em>dialog intent</em>, <em>slot</em>, and its <em>value</em>) human-human written conversations over multiple domains. This can then be used for belief tracking (i.e. what the system believe the user’s intent is), dialog act and response generation.</p>
+  <p><strong>Aim</strong>: Provide more data and <mark>across more than one domains even within a conversation</mark>. Therefore, they collected a fully labelled (current <em>domain</em>, <em>dialog intent</em>, <em>slot</em>, and its <em>value</em>) human-human written conversations over multiple domains. This can then be used for belief tracking (i.e. what the system believe the user’s intent is), dialog act and response generation.</p>
 
   <ul>
     <li>cover between 1 and 5 domains per dialogue thus greatly varying in length and complexity. This broad range of domains allows to create scenarios where domains are naturally connected.</li>
@@ -318,10 +318,10 @@ conversation flow (e.g. generate what DA to do at each turn), which can then be 
 
     <p><img src="/lectures/images/2022-10-19-COMS6998_Dialog_Systems/image-20220911010401705.png" alt="image-20220911010401705" style="zoom:67%;" /></p>
 
-    <p>which is presented gradually to the user, and the user needs to ==fulfill those tasks by talking to the system==.</p>
+    <p>which is presented gradually to the user, and the user needs to <mark>fulfill those tasks by talking to the system</mark>.</p>
   </li>
   <li>
-    <p>the system (wizard) is given some API/backend to query whatever he/she needs, and tries to answer the question. Note that the ==belief state can be tracked implicitly== here since we can just check what the system is querying the database to know what he/she thinks the user needs.</p>
+    <p>the system (wizard) is given some API/backend to query whatever he/she needs, and tries to answer the question. Note that the <mark>belief state can be tracked implicitly</mark> here since we can just check what the system is querying the database to know what he/she thinks the user needs.</p>
 
     <ul>
       <li>note that in the end, it is annotated again by the MT because there could be errors when performing the database queries (e.g. incomplete)</li>
@@ -376,7 +376,7 @@ conversation flow (e.g. generate what DA to do at each turn), which can then be 
 <h2 id="towards-scalable-multi-domain-conversational-agents-the-schema-guided-dialogue-dataset">Towards Scalable Multi-Domain Conversational Agents: The Schema-Guided Dialogue Dataset</h2>
 
 <blockquote>
-  <p><strong>Aim</strong>: In reality, there might be a dynamic set of intents and slots for a task, i.e. their possible values not known in advance. Therefore, they propose a <strong>dataset for zero-shot settings</strong> and also propose a ==schema-guided paradigm== to train models making <strong>predictions over a dynamic set of intent/slots you can have in the input schema</strong>.</p>
+  <p><strong>Aim</strong>: In reality, there might be a dynamic set of intents and slots for a task, i.e. their possible values not known in advance. Therefore, they propose a <strong>dataset for zero-shot settings</strong> and also propose a <mark>schema-guided paradigm</mark> to train models making <strong>predictions over a dynamic set of intent/slots you can have in the input schema</strong>.</p>
 
   <ul>
     <li>essentially this dataset is collected by 1) generate outlines via M-M interaction, and then 2) convert to human language by AMT paraphrasing them</li>
@@ -389,7 +389,7 @@ conversation flow (e.g. generate what DA to do at each turn), which can then be 
 
 <ul>
   <li>a <strong>schema</strong> (see above) is a combination of intent and slots with some additional constraints (such as some intent requires at least certain slots to be there)</li>
-  <li>there are also ==non-categorical== slots</li>
+  <li>there are also <mark>non-categorical</mark> slots</li>
 </ul>
 
 <p><strong>Dataset Collection</strong>:</p>
@@ -400,14 +400,14 @@ conversation flow (e.g. generate what DA to do at each turn), which can then be 
   <li>first they use dialog simulators to interact with services to generate dialog outlines, basically a). This is achieved by first seeding the user agent with a scenario (among the 200 they identified), and then generate the dialog act to do for the next turn.</li>
   <li>then the system agent generates in a similar fashion.</li>
   <li>the rest is basically shown in the above flowchart.</li>
-  <li>the MT is asked to <strong>exactly repeat the slot values</strong> in their paraphrases. This has the advantage of easily string matching to find the ==slot span annotation automatically==. Also, it ==preserves all the annotation in a)==, hence there is no more need for human annotators.
+  <li>the MT is asked to <strong>exactly repeat the slot values</strong> in their paraphrases. This has the advantage of easily string matching to find the <mark>slot span annotation automatically</mark>. Also, it <mark>preserves all the annotation in a)</mark>, hence there is no more need for human annotators.
     <ul>
       <li>perhasp a disadvantage: reduced noise in human conversation as every/most sentences would be goal oriented? Are the intent natural on a human-basis?</li>
     </ul>
   </li>
 </ol>
 
-<p><strong>Dataset Benchmark</strong>: since one aim of this is to do ==zero-shot dialog state tracking==, they also made a model to do that</p>
+<p><strong>Dataset Benchmark</strong>: since one aim of this is to do <mark>zero-shot dialog state tracking</mark>, they also made a model to do that</p>
 
 <ul>
   <li>their model is basically done by:
@@ -439,7 +439,7 @@ conversation flow (e.g. generate what DA to do at each turn), which can then be 
       <li><strong>Active Intent Accuracy</strong>: how much active intent of the user I got right</li>
       <li><strong>Request Slot F1</strong>: macro-averaged F1 score for requested slots</li>
       <li><strong>Average Goal Accuracy</strong>: for each turn, the accuracy of the predicted value of each slot (fuzzy machine score used for continous values)</li>
-      <li>==Joint Goal Accurarcy==: usually more useful/stricter than the above</li>
+      <li><mark>Joint Goal Accurarcy</mark>: usually more useful/stricter than the above</li>
     </ul>
 
     <p>some important results are shown here</p>
@@ -561,7 +561,7 @@ Jack   friend_with   Germany    0.156      5
 
     <ul>
       <li>however, note that there could be some stylistic difference between <code class="language-plaintext highlighter-rouge">ConvAI2</code> dialogs and <code class="language-plaintext highlighter-rouge">WoW</code> dialogs. For instance, the prior include a persona context, and the latter include a topic</li>
-      <li>therefore, to avoid model exploiting those, all samples are modified to ==always include a persona and a topic== (where there is already an alignment of <code class="language-plaintext highlighter-rouge">WoW</code> topics to <code class="language-plaintext highlighter-rouge">ConvAI2</code>)</li>
+      <li>therefore, to avoid model exploiting those, all samples are modified to <mark>always include a persona and a topic</mark> (where there is already an alignment of <code class="language-plaintext highlighter-rouge">WoW</code> topics to <code class="language-plaintext highlighter-rouge">ConvAI2</code>)</li>
     </ul>
   </li>
   <li>
@@ -584,7 +584,7 @@ Jack   friend_with   Germany    0.156      5
       <li>
         <p>MT Single-Skills does not do exactly well as single-skill model when evaluated on their own benchmark (for <code class="language-plaintext highlighter-rouge">ConvAI2</code> and <code class="language-plaintext highlighter-rouge">ED</code>). But perhaps this is unfair since those Single-Skill models only have to choose from candidates from their own domain. Hence, the author considers mixing candidate for them to also include samples from other dataset, which gives rise to the <em>Mixed-candidates evaluation</em>.</p>
 
-        <p>Here, MT Single-Skills is doing better, suggesting that multi-task training results in ==increased resilience to having to deal with more varied distractor candidates==</p>
+        <p>Here, MT Single-Skills is doing better, suggesting that multi-task training results in <mark>increased resilience to having to deal with more varied distractor candidates</mark></p>
       </li>
     </ul>
   </li>
@@ -611,7 +611,7 @@ Jack   friend_with   Germany    0.156      5
 <h2 id="attention-based-recurrent-neural-network-models-for-joint-intent-detection-and-slot-filling">Attention-Based Recurrent Neural Network Models for Joint Intent Detection and Slot Filling</h2>
 
 <blockquote>
-  <p><strong>Aim</strong>: we want to explore how the ==alignment information in slot filling== can be best utilized in the encoder-decoder models, and on the other hand, whether the alignment-based RNN slot filling models can be further improved with the attention mechanism that introduced from the encoder-decoder architecture . To this end, we propose an <strong>attention-based neural network model for joint intent detection and slot filling</strong>.</p>
+  <p><strong>Aim</strong>: we want to explore how the <mark>alignment information in slot filling</mark> can be best utilized in the encoder-decoder models, and on the other hand, whether the alignment-based RNN slot filling models can be further improved with the attention mechanism that introduced from the encoder-decoder architecture . To this end, we propose an <strong>attention-based neural network model for joint intent detection and slot filling</strong>.</p>
 
   <p>The main idea is:</p>
 
@@ -628,7 +628,7 @@ Jack   friend_with   Germany    0.156      5
 <ul>
   <li>the input essentially is the sentence, and slot detection and slot-filling is <strong>done simultaneously from the flat structure</strong>
     <ul>
-      <li>==potential problem== cannot track implicit information, e.g. slot value not there, or hierarchical information (i.e. tagging v.s. parsing)</li>
+      <li><mark>potential problem</mark> cannot track implicit information, e.g. slot value not there, or hierarchical information (i.e. tagging v.s. parsing)</li>
     </ul>
   </li>
   <li>let the input sentence be $x=(x_1,…,x_T)$, and output be $y=(y_1,…,y_T)$ and intent in addition.</li>
@@ -685,7 +685,7 @@ Jack   friend_with   Germany    0.156      5
     <p>therefore, their ultimate model involves giving the decoder both the aligned hidden state $h_i$ and the attended context $c_i$</p>
   </li>
   <li>
-    <p>==TODO== two objectives and one network</p>
+    <p><mark>TODO</mark> two objectives and one network</p>
   </li>
   <li>
     <p>to further <strong>utilize the decoded tags</strong>, they can also do it <strong>auto-regressively</strong> by feeding the decoded tag into the forward direction of the RNN</p>
@@ -712,7 +712,7 @@ Jack   friend_with   Germany    0.156      5
 <h2 id="conversational-semantic-parsing-for-dialog-state-tracking">Conversational Semantic Parsing for Dialog State Tracking</h2>
 
 <blockquote>
-  <p><strong>Aim</strong>: By formulating DST (dialog state tracking) as a semantic parsing task over ==hierarchical representations==, we can incorporate semantic compositionality, cross domain knowledge sharing and co-reference.</p>
+  <p><strong>Aim</strong>: By formulating DST (dialog state tracking) as a semantic parsing task over <mark>hierarchical representations</mark>, we can incorporate semantic compositionality, cross domain knowledge sharing and co-reference.</p>
 
   <ul>
     <li>essentially outputting a tree instead of slot-filling</li>
@@ -731,7 +731,7 @@ Jack   friend_with   Germany    0.156      5
 
 <ul>
   <li>
-    <p>As in DST, the task is to ==track a user’s goal== as it accumulates over the course of a conversation. To capture a hierarchical representation of domain, verbs, and operators and slots:</p>
+    <p>As in DST, the task is to <mark>track a user’s goal</mark> as it accumulates over the course of a conversation. To capture a hierarchical representation of domain, verbs, and operators and slots:</p>
 
     <table>
       <thead>
@@ -751,8 +751,8 @@ Jack   friend_with   Germany    0.156      5
     <p>this is done for both user and system, and this dotted form is also referred to as a <strong>meaning representation</strong>. Advantages of this include:</p>
 
     <ul>
-      <li>tracking ==nested intents== and representing compositions in a single graph</li>
-      <li>naturally supports ==cross domain slot sharing== and cross-turn co-reference through incorporating the shared slots or the references as sub-graphs in the representation</li>
+      <li>tracking <mark>nested intents</mark> and representing compositions in a single graph</li>
+      <li>naturally supports <mark>cross domain slot sharing</mark> and cross-turn co-reference through incorporating the shared slots or the references as sub-graphs in the representation</li>
     </ul>
   </li>
   <li>
@@ -783,7 +783,7 @@ Jack   friend_with   Germany    0.156      5
 
     <ul>
       <li>
-        <p>a module <strong>generating the initial user goal</strong> $P(y_o^u)$. This can be done by sampling a ==production rule==</p>
+        <p>a module <strong>generating the initial user goal</strong> $P(y_o^u)$. This can be done by sampling a <mark>production rule</mark></p>
 
         <p><img src="/lectures/images/2022-10-19-COMS6998_Dialog_Systems/image-20220916204534378.png" alt="image-20220916204534378" style="zoom: 67%;" /></p>
       </li>
@@ -803,7 +803,7 @@ Jack   friend_with   Germany    0.156      5
             <p>the next dialog state $y_t^u$ is generated based on the <strong>top elements of the stack as the dialog history</strong></p>
 
             <ul>
-              <li>==precaustion:== implies an additional structure to dialog, hence unfair advantage as their model also stores a stack? (see their modelling choice of dialog history, which takes the top of the stack as well)</li>
+              <li><mark>precaustion:</mark> implies an additional structure to dialog, hence unfair advantage as their model also stores a stack? (see their modelling choice of dialog history, which takes the top of the stack as well)</li>
             </ul>
 
             <p>since this is now generated from two trees (there are two at the top of the stack)</p>
@@ -833,8 +833,8 @@ Jack   friend_with   Germany    0.156      5
     <p>our task is to:</p>
 
     <ul>
-      <li>infer ==$y_t^u$== since $y_t^s$  is observed/what the system just did</li>
-      <li>to also track ==goal switching and resumption==, a <strong>stack is used to store dialog states</strong></li>
+      <li>infer <mark>$y_t^u$</mark> since $y_t^s$  is observed/what the system just did</li>
+      <li>to also track <mark>goal switching and resumption</mark>, a <strong>stack is used to store dialog states</strong></li>
     </ul>
   </li>
   <li>
@@ -846,7 +846,7 @@ Jack   friend_with   Germany    0.156      5
     </ul>
   </li>
   <li>
-    <p>additionally, they chose to ==maneuver their own features==:</p>
+    <p>additionally, they chose to <mark>maneuver their own features</mark>:</p>
 
     <ul>
       <li>
@@ -874,7 +874,7 @@ Jack   friend_with   Germany    0.156      5
 
         <ul>
           <li>
-            <p>==just decode a flattened string==, as in Figure 1. The final aim is to simply ==compute the probability of next token== by accessing its probability of generation and copy</p>
+            <p><mark>just decode a flattened string</mark>, as in Figure 1. The final aim is to simply <mark>compute the probability of next token</mark> by accessing its probability of generation and copy</p>
 
             <p>Specifically, the decoder takes</p>
 
@@ -902,7 +902,7 @@ Jack   friend_with   Germany    0.156      5
             <p>finally, since this is decoding a flat string, the loss is simply CCE of the correct $y_{y,i}^u$</p>
           </li>
           <li>
-            <p>==decode a tree by generating nodes and select their parent relationships from the existing tree==: you basically take the hidden state/embedding of the previous node $n_{t,i-1}^u$ and its parent relation $r_{t,i-1}^u$ to be input features as well for decoding:</p>
+            <p><mark>decode a tree by generating nodes and select their parent relationships from the existing tree</mark>: you basically take the hidden state/embedding of the previous node $n_{t,i-1}^u$ and its parent relation $r_{t,i-1}^u$ to be input features as well for decoding:</p>
 
 \[g_i = \mathrm{LSTM}(g_{i-1},n_{t,i-1}^u , r_{t,i-1}^u)\]
 
@@ -932,7 +932,7 @@ Jack   friend_with   Germany    0.156      5
     <p><img src="/lectures/images/2022-10-19-COMS6998_Dialog_Systems/image-20220916212530129.png" alt="image-20220916212530129" style="zoom:67%;" /></p>
 
     <ul>
-      <li>==TODO== doesn’t this also mean that flattened based is naturally less accurate than tree based (TED-Flat v.s. TED-Vanilla) given that the <strong>task is tree based</strong>?</li>
+      <li><mark>TODO</mark> doesn’t this also mean that flattened based is naturally less accurate than tree based (TED-Flat v.s. TED-Vanilla) given that the <strong>task is tree based</strong>?</li>
     </ul>
   </li>
   <li>
@@ -953,7 +953,7 @@ Jack   friend_with   Germany    0.156      5
 <p>In this paper, we propose GALAXY, a novel pre-trained dialog model that explicitly learns dialog policy from limited labeled dialogs and large-scale unlabeled dialog corpora via semi-supervised learning.</p>
 
 <blockquote>
-  <p>Specifically, we introduce a ==dialog act prediction task for policy optimization== during pre-training and employ a consistency  regularization term to refine the learned representation with the help of unlabeled dialogs</p>
+  <p>Specifically, we introduce a <mark>dialog act prediction task for policy optimization</mark> during pre-training and employ a consistency  regularization term to refine the learned representation with the help of unlabeled dialogs</p>
 </blockquote>
 
 <p><strong>Background</strong>:</p>
@@ -981,10 +981,10 @@ Jack   friend_with   Germany    0.156      5
 
 <ul>
   <li>
-    <p>We choose ==UniLM== (Dong et al. 2019) as our ==backbone== model, which contains a bi-directional encoder for understanding and a unidirectional decoder for generation.</p>
+    <p>We choose <mark>UniLM</mark> (Dong et al. 2019) as our <mark>backbone</mark> model, which contains a bi-directional encoder for understanding and a unidirectional decoder for generation.</p>
   </li>
   <li>
-    <p>We adopt a similar scheme of input representation in Bao et al. (2020), where the ==input embeddings consist of four elements: tokens, roles, turns, and positions==.</p>
+    <p>We adopt a similar scheme of input representation in Bao et al. (2020), where the <mark>input embeddings consist of four elements: tokens, roles, turns, and positions</mark>.</p>
 
     <ul>
       <li>Role embeddings are like segmentation embeddings in BERT and are used to differentiate which role the current token belongs to, either user or system</li>
@@ -993,7 +993,7 @@ Jack   friend_with   Germany    0.156      5
     </ul>
   </li>
   <li>
-    <p>Four objectives are employed in our dialog pre-training process: response selection, response generation, ==DA prediction== and consistency regularization.</p>
+    <p>Four objectives are employed in our dialog pre-training process: response selection, response generation, <mark>DA prediction</mark> and consistency regularization.</p>
 
     <p><img src="/lectures/images/2022-10-19-COMS6998_Dialog_Systems/image-20220705152829713.png" alt="image-20220705152829713" /></p>
 
@@ -1019,7 +1019,7 @@ Jack   friend_with   Germany    0.156      5
         <p>for $r_t$ is the $t$-th word in $r$, and $r_{&lt;t}={r_1,…,r_{t-1}}$. So basically this is the greedy prediction.</p>
       </li>
       <li>
-        <p><strong>DA Prediction</strong>: For a context response pair $(c; r)$ sampled from <code class="language-plaintext highlighter-rouge">UniDA</code>, the DA prediction task aims to predict the DA label $a$ of the response $r$ based ==merely on the context $c$==. However, since there are responses in <code class="language-plaintext highlighter-rouge">UniDA </code> associated with multiple DA, we model it as a Bernoulli Distribution such that $a\equiv (a_1,a_2,…,a_N)$ for $N$ being the number of dialog acts, and $p(a\vert c)=\prod_i^N p(a_i\vert c)$. Therefore, taking the dialog context $c$ as input, we add a multi-dimensional binary classifiers on $h_{cls}$ to predict each act $a_i$:</p>
+        <p><strong>DA Prediction</strong>: For a context response pair $(c; r)$ sampled from <code class="language-plaintext highlighter-rouge">UniDA</code>, the DA prediction task aims to predict the DA label $a$ of the response $r$ based <mark>merely on the context $c$</mark>. However, since there are responses in <code class="language-plaintext highlighter-rouge">UniDA </code> associated with multiple DA, we model it as a Bernoulli Distribution such that $a\equiv (a_1,a_2,…,a_N)$ for $N$ being the number of dialog acts, and $p(a\vert c)=\prod_i^N p(a_i\vert c)$. Therefore, taking the dialog context $c$ as input, we add a multi-dimensional binary classifiers on $h_{cls}$ to predict each act $a_i$:</p>
 
 \[L_{DA}=-\sum_{i=1}^N \{y_i \log p(a_i|c)+(1-y_i)\log(1-p(a_i|c)\}\]
 
@@ -1050,7 +1050,7 @@ Jack   friend_with   Germany    0.156      5
 \[L = L_{RS} + L_{RG} + L_{DA} + L_{KL}\]
       </li>
       <li>
-        <p><code class="language-plaintext highlighter-rouge">UniDial</code> samples which does not have DA annotation and some are very ==noisy==. Hence we consider a ==gating mechanism of weighting the $L_{KL}$== by looking at the entropy of the DA prediction $q(a\vert c)$:</p>
+        <p><code class="language-plaintext highlighter-rouge">UniDial</code> samples which does not have DA annotation and some are very <mark>noisy</mark>. Hence we consider a <mark>gating mechanism of weighting the $L_{KL}$</mark> by looking at the entropy of the DA prediction $q(a\vert c)$:</p>
 
 \[E = \sum_{i}^N q(a_i|c)\log(q(a_i|c))\]
 
@@ -1065,7 +1065,7 @@ Jack   friend_with   Germany    0.156      5
     </ul>
   </li>
   <li>
-    <p>Finally, once we trained our model with mixing <code class="language-plaintext highlighter-rouge">UniDA</code> and <code class="language-plaintext highlighter-rouge">UniDial</code>, it is a ==pretrained model and we can fine-tune it with our desired DA dataset== :</p>
+    <p>Finally, once we trained our model with mixing <code class="language-plaintext highlighter-rouge">UniDA</code> and <code class="language-plaintext highlighter-rouge">UniDial</code>, it is a <mark>pretrained model and we can fine-tune it with our desired DA dataset</mark> :</p>
 
 \[L_{\text{fine-tune}} = L_{RS} + L_{RG} + \alpha L_{DA}\]
 
@@ -1088,14 +1088,14 @@ Jack   friend_with   Germany    0.156      5
   <li>
     <p>we must also acknowledge that machine-human conversation typically serves a purpose and aims to fulfill one or more goals on the part of the user. In other words, the model must offer utility to the user. It is this <strong>extrinsic</strong> dimension of functional <strong>utility</strong>, we suggest, that constitutes the proper focus of automated evaluation in general-domain models.</p>
 
-    <p>Therefore, a evaluation metric called ==Utility== is proposed, so that cross-dataset comparison can be made instead of the adhoc metrics for a dataset (e.g. Success-rate and Inform-rate).</p>
+    <p>Therefore, a evaluation metric called <mark>Utility</mark> is proposed, so that cross-dataset comparison can be made instead of the adhoc metrics for a dataset (e.g. Success-rate and Inform-rate).</p>
 
     <ul>
       <li>currently the <strong>utility</strong> can only be human-evaluated</li>
     </ul>
   </li>
   <li>
-    <p>after large scale pretraining, the model is ==tested== on <strong>Multi-WOZ</strong>, <strong>CoQA</strong>, <strong>Wizard of Wikipedia</strong>, and <strong>Wizard of the Internet</strong></p>
+    <p>after large scale pretraining, the model is <mark>tested</mark> on <strong>Multi-WOZ</strong>, <strong>CoQA</strong>, <strong>Wizard of Wikipedia</strong>, and <strong>Wizard of the Internet</strong></p>
   </li>
 </ul>
 
@@ -1139,7 +1139,7 @@ Jack   friend_with   Germany    0.156      5
     <p>we would like to test the <strong>few-shot finetuning</strong> ability of the mode, as well as full finetuning, because in general labeled task-oriented data is small in size</p>
   </li>
   <li>
-    <p>dataset used for testing therefore include the ==untouched==: MultiWOZ, Wizard of Wikipedia, Wizard of Internet, and CoQA</p>
+    <p>dataset used for testing therefore include the <mark>untouched</mark>: MultiWOZ, Wizard of Wikipedia, Wizard of Internet, and CoQA</p>
 
     <ul>
       <li>specifically, for few-shot we consider tuning 50 dialogs for each task for finetuning</li>
@@ -1173,7 +1173,7 @@ Jack   friend_with   Germany    0.156      5
 <h2 id="alquist-40-towards-social-intelligence-using-generative-models-and">Alquist 4.0 Towards Social Intelligence Using Generative Models and</h2>
 
 <blockquote>
-  <p><strong>Aim</strong>: The system Alquist has a goal to conduct a <strong>coherent and engaging conversation</strong>, which essentially uses a ==hybrid of hand-designed responses== and ==generative models==</p>
+  <p><strong>Aim</strong>: The system Alquist has a goal to conduct a <strong>coherent and engaging conversation</strong>, which essentially uses a <mark>hybrid of hand-designed responses</mark> and <mark>generative models</mark></p>
 
   <ul>
     <li>usually it is the hand designed responses tree that is functioning</li>
@@ -1233,7 +1233,7 @@ Jack   friend_with   Germany    0.156      5
     <p>so that short-term profile is reset at the beginning of each session</p>
   </li>
   <li>
-    <p><strong>Entity and Knowledge Utilization</strong>: include ==factual information== about the entity that the user is interested in. This means you need to do:</p>
+    <p><strong>Entity and Knowledge Utilization</strong>: include <mark>factual information</mark> about the entity that the user is interested in. This means you need to do:</p>
 
     <ul>
       <li><em>entity recognition</em>: a sequence tagging task performed by Bi-LSTM</li>
@@ -1241,7 +1241,7 @@ Jack   friend_with   Germany    0.156      5
     </ul>
   </li>
   <li>
-    <p><strong>Dialog Management</strong>: there are ==several small scripted dialogs (of intents)==, which are of high quality and will be of focus of this system. Then, since there are several dialogs, a <strong>dialog selector</strong> is used when a small dialog finished and needs to find a continuation dialog:</p>
+    <p><strong>Dialog Management</strong>: there are <mark>several small scripted dialogs (of intents)</mark>, which are of high quality and will be of focus of this system. Then, since there are several dialogs, a <strong>dialog selector</strong> is used when a small dialog finished and needs to find a continuation dialog:</p>
 
     <ol>
       <li>the <strong>dialog selector</strong> collects information about the previous context, such as user profile, topics discussed (from tags), and some additional constraints if the new dialog can start (prerequisites)</li>
@@ -1285,7 +1285,7 @@ Jack   friend_with   Germany    0.156      5
     <p>notice that now performance speed also matters</p>
   </li>
   <li>
-    <p><strong>Neural Response Generator</strong>: used in two tasks: a) if <strong>OOD</strong>, use this model to generate b) generates a follow up question when a <strong>trivia is selected</strong> in the dialog manager. Notice that the aim of this is to ==compensate== the incomplete scripted dialog in some cases, but the major focus should be on the success/controllability of the scripted dialog:</p>
+    <p><strong>Neural Response Generator</strong>: used in two tasks: a) if <strong>OOD</strong>, use this model to generate b) generates a follow up question when a <strong>trivia is selected</strong> in the dialog manager. Notice that the aim of this is to <mark>compensate</mark> the incomplete scripted dialog in some cases, but the major focus should be on the success/controllability of the scripted dialog:</p>
 
     <p><img src="/lectures/images/2022-10-19-COMS6998_Dialog_Systems/image-20220930213317181.png" alt="image-20220930213317181" style="zoom:80%;" /></p>
 
@@ -1375,7 +1375,7 @@ Jack   friend_with   Germany    0.156      5
 
     <ul>
       <li>
-        <p>==Director==: for each token, add a classification head on thumb-up or down. Therefore, when you generate, you can combine the two scores</p>
+        <p><mark>Director</mark>: for each token, add a classification head on thumb-up or down. Therefore, when you generate, you can combine the two scores</p>
 
         <ul>
           <li>
@@ -1396,7 +1396,7 @@ Jack   friend_with   Germany    0.156      5
 <p><strong>Still Problems on Chatbots</strong></p>
 
 <ul>
-  <li>why is repetition ==neuron degenration==, liable to repeat</li>
+  <li>why is repetition <mark>neuron degenration</mark>, liable to repeat</li>
 </ul>
 
 <p><strong>Future of Chatbots</strong>:</p>
@@ -1439,7 +1439,7 @@ Jack   friend_with   Germany    0.156      5
         <p><img src="/lectures/images/2022-10-19-COMS6998_Dialog_Systems/image-20221008141727577.png" alt="image-20221008141727577" style="zoom:80%;" /></p>
       </li>
       <li>
-        <p>or, as used in this paper, they score existing samples based on <em>objective voice</em>, <em>lexical precision</em> (sticking to fact), and <em>entailment</em> to provide additional ==signal during training and hence control during inference==</p>
+        <p>or, as used in this paper, they score existing samples based on <em>objective voice</em>, <em>lexical precision</em> (sticking to fact), and <em>entailment</em> to provide additional <mark>signal during training and hence control during inference</mark></p>
 
         <ul>
           <li>ablation study shows that those control does change performance</li>
@@ -1525,7 +1525,7 @@ Jack   friend_with   Germany    0.156      5
   <p><strong>Aim</strong>: An e2e model that includes capability of <strong>Search-Engine, Knowledge Extraction, and Response Generation</strong> all into one single model, while treating them as separate modular functionality. The final aim is again to be an open-domain knowledge grounded conversational agent.</p>
 
   <ul>
-    <li>achieved by using appending ==special tokens in the encoder== (or decoder) to indicate which module is being invoked</li>
+    <li>achieved by using appending <mark>special tokens in the encoder</mark> (or decoder) to indicate which module is being invoked</li>
     <li>done study on treating each module as a separate model as well, but only found marginal improvement while model size becomes 3x big</li>
   </ul>
 </blockquote>
@@ -1534,10 +1534,10 @@ Jack   friend_with   Germany    0.156      5
 
 <ol>
   <li>
-    <p>==search module==: input dialog context, <strong>generate a relevant search query</strong> for internet search engine (Bing)</p>
+    <p><mark>search module</mark>: input dialog context, <strong>generate a relevant search query</strong> for internet search engine (Bing)</p>
   </li>
   <li>
-    <p>==knowledge module==: input the dialog context + returned documents (intersecting with Common Crawl and take top 5) and <strong>generate their most relevant portion</strong> to the context (i.e. extracting the useful portion)</p>
+    <p><mark>knowledge module</mark>: input the dialog context + returned documents (intersecting with Common Crawl and take top 5) and <strong>generate their most relevant portion</strong> to the context (i.e. extracting the useful portion)</p>
 
     <ul>
       <li>
@@ -1553,7 +1553,7 @@ Jack   friend_with   Germany    0.156      5
     </ul>
   </li>
   <li>
-    <p>==response module==: input context and the extracted knowledge, and <strong>generate a response</strong>.</p>
+    <p><mark>response module</mark>: input context and the extracted knowledge, and <strong>generate a response</strong>.</p>
   </li>
 </ol>
 
@@ -1600,7 +1600,7 @@ Jack   friend_with   Germany    0.156      5
 
     <ul>
       <li>seems that only with gold knowledge response the model is working</li>
-      <li>==TODO== knowledge F1 ignores the semantic, and a lot of discrepancy with the human evaluation?</li>
+      <li><mark>TODO</mark> knowledge F1 ignores the semantic, and a lot of discrepancy with the human evaluation?</li>
     </ul>
   </li>
   <li>
@@ -1633,7 +1633,7 @@ Jack   friend_with   Germany    0.156      5
 
         <p><img src="/lectures/images/2022-10-19-COMS6998_Dialog_Systems/image-20221008151408879.png" alt="image-20221008151408879" /></p>
 
-        <p>==TODO== it seems that with LM it is better, so are the modules compared the one with LM or the “standard SeeKeR”?</p>
+        <p><mark>TODO</mark> it seems that with LM it is better, so are the modules compared the one with LM or the “standard SeeKeR”?</p>
       </li>
       <li>
         <p>tested if separating each task to a different module would help. It does marginally but 3x the size</p>
@@ -1699,7 +1699,7 @@ Jack   friend_with   Germany    0.156      5
           <li><strong>sociable strategies:</strong> eight strategies related to recommendation task to build rapport with seeker
             <ul>
               <li>e.g. personal opinion, personal experience, similarity, encouragement, etc.</li>
-              <li>==what they want to test==, if this is effective in task-oriented setting</li>
+              <li><mark>what they want to test</mark>, if this is effective in task-oriented setting</li>
             </ul>
           </li>
           <li><strong>preference elicitation</strong>: to know the seeker’s taste directly
@@ -1720,7 +1720,7 @@ Jack   friend_with   Germany    0.156      5
 
 <ul>
   <li>
-    <p>found that ==social strategies does correlate to the probability of successful recommendation==</p>
+    <p>found that <mark>social strategies does correlate to the probability of successful recommendation</mark></p>
 
     <p><img src="/lectures/images/2022-10-19-COMS6998_Dialog_Systems/image-20221014201122513.png" alt="image-20221014201122513" style="zoom:67%;" /></p>
   </li>
@@ -1728,7 +1728,7 @@ Jack   friend_with   Germany    0.156      5
     <p>examine if the <strong>quality of the movie matters more than recommendation</strong></p>
 
     <ul>
-      <li>==TODO==: “<em>adding movie attributes</em> such as genre, recent release data have an impact on successful recommendation” how is this related to the question? I imagine something like measuring the correlation between quality of the movie v.s. successful recommendation and failed ones.</li>
+      <li><mark>TODO</mark>: “<em>adding movie attributes</em> such as genre, recent release data have an impact on successful recommendation” how is this related to the question? I imagine something like measuring the correlation between quality of the movie v.s. successful recommendation and failed ones.</li>
       <li>found that 96% of recommended movies are covered by the top five genres</li>
     </ul>
   </li>
@@ -1762,7 +1762,7 @@ Jack   friend_with   Germany    0.156      5
 
     <p><img src="/lectures/images/2022-10-19-COMS6998_Dialog_Systems/image-20221014202221999.png" alt="image-20221014202221999" /></p>
 
-    <p>==TODO== why, if you only prioritize encouragement, you can better fluency, consistency, naturalness? How much is this due to selecting long sentences?</p>
+    <p><mark>TODO</mark> why, if you only prioritize encouragement, you can better fluency, consistency, naturalness? How much is this due to selecting long sentences?</p>
   </li>
 </ul>
 
@@ -1817,20 +1817,20 @@ Jack   friend_with   Germany    0.156      5
       <li><strong>NLU</strong>: input user utterance and output user dialog act
         <ul>
           <li>a hard task and hence enhanced the input with sentiment score, context information output from CNN and pretrained character embedding, got around 62%</li>
-          <li>==TODO== uses a regular expression and pre-defined rules to reach 84.1%. What happened here?</li>
+          <li><mark>TODO</mark> uses a regular expression and pre-defined rules to reach 84.1%. What happened here?</li>
         </ul>
       </li>
       <li><strong>Dialogue Manager</strong>: outputs the next system dialog act, but follows the agenda shown above
         <ul>
-          <li>the first green block is the control experiment: want to measure if having each of the four strategy would affect overall persuasion = ==if personal inquires yield more persuasiveness==</li>
+          <li>the first green block is the control experiment: want to measure if having each of the four strategy would affect overall persuasion = <mark>if personal inquires yield more persuasiveness</mark></li>
           <li>then, the system proceeds to persuasive appeal, where a <strong>fixed strategy order</strong>  is used</li>
-          <li>finally, ==when user dialog act is <code class="language-plaintext highlighter-rouge">agree-donation</code>== (predicted by NLU), enter <code class="language-plaintext highlighter-rouge">Agree Donation</code> stage and always present the three task in the order: ask donation amount, propose more donation, …</li>
+          <li>finally, <mark>when user dialog act is `agree-donation`</mark> (predicted by NLU), enter <code class="language-plaintext highlighter-rouge">Agree Donation</code> stage and always present the three task in the order: ask donation amount, propose more donation, …</li>
           <li>in addition, a factual QA component is there in case if user asked fact related questions related to the charity</li>
         </ul>
       </li>
       <li><strong>Natural Language Generation</strong>: there are three ways to generating: a) template base, b) retrieval-based from the training dataset and c) generation
         <ul>
-          <li>==template-based for Persuasive Inquiry:== we want to study the effects of different persuasive inquiries <strong>instead of the impact of the surface-form</strong>; therefore, the surface-forms of the persuasive inquiries should be a controlled variable that stays the same across experiments.</li>
+          <li><mark>template-based for Persuasive Inquiry:</mark> we want to study the effects of different persuasive inquiries <strong>instead of the impact of the surface-form</strong>; therefore, the surface-forms of the persuasive inquiries should be a controlled variable that stays the same across experiments.</li>
           <li><strong>retrieval-based persuasive appeal</strong>: want to also be templated based but now you have a large context, hence that doesn’t work anymore</li>
         </ul>
       </li>
@@ -1855,15 +1855,15 @@ Jack   friend_with   Germany    0.156      5
     <p>but then they found that participants are <strong>perceiving bots are humans or vice versa despite the given label</strong></p>
   </li>
   <li>
-    <p>found that if bots are ==perceived as human==, then the above it matters</p>
+    <p>found that if bots are <mark>perceived as human</mark>, then the above it matters</p>
 
     <p><img src="/lectures/images/2022-10-19-COMS6998_Dialog_Systems/image-20221014205113538.png" alt="image-20221014205113538" /></p>
 
     <p>this shows that being a human is more persuasive hence:</p>
 
     <ul>
-      <li>==nullifies Hypothesis 1==, which claims being perceived as human or machine does not matter</li>
-      <li>==supports Hypothesis 2==, that using personal inquires help</li>
+      <li><mark>nullifies Hypothesis 1</mark>, which claims being perceived as human or machine does not matter</li>
+      <li><mark>supports Hypothesis 2</mark>, that using personal inquires help</li>
     </ul>
   </li>
   <li>
@@ -1874,7 +1874,7 @@ Jack   friend_with   Germany    0.156      5
     <p>where this means that if bot’s identity does not matter, then in each pair of blue and green bar it should be same height:</p>
 
     <ul>
-      <li>when participants talked to “Jessie (bot)” but perceiving it as a human, they were also more likely to donate than those in the same condition but perceiving it as a bot. In contrast, when participants talked to “Jessie” but suspected it was a bot, they were ==least likely to make a donation, which supported the UVM in Hypothesis 3==</li>
+      <li>when participants talked to “Jessie (bot)” but perceiving it as a human, they were also more likely to donate than those in the same condition but perceiving it as a bot. In contrast, when participants talked to “Jessie” but suspected it was a bot, they were <mark>least likely to make a donation, which supported the UVM in Hypothesis 3</mark></li>
       <li>also, result showed that “Jessie (bot)” would decrease the donation probability ($\beta$=−0.52,  $p$&lt;0.05). So the <strong>bot’s identity matters in the persuasion outcome, which again disproves Hypothesis 1</strong></li>
     </ul>
   </li>

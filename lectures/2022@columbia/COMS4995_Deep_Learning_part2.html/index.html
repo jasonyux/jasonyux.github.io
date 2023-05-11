@@ -13,11 +13,11 @@
 <meta property="og:url" content="/lectures/2022@columbia/COMS4995_Deep_Learning_part2.html/" />
 <meta property="og:site_name" content="Lecture Notes" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2022-04-21T00:00:00-04:00" />
+<meta property="article:published_time" content="2022-04-21T00:00:00+00:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="COMS4995 Deep Learning part2" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2022-04-21T00:00:00-04:00","datePublished":"2022-04-21T00:00:00-04:00","description":"Deep Learning Part 2","headline":"COMS4995 Deep Learning part2","mainEntityOfPage":{"@type":"WebPage","@id":"/lectures/2022@columbia/COMS4995_Deep_Learning_part2.html/"},"url":"/lectures/2022@columbia/COMS4995_Deep_Learning_part2.html/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2022-04-21T00:00:00+00:00","datePublished":"2022-04-21T00:00:00+00:00","description":"Deep Learning Part 2","headline":"COMS4995 Deep Learning part2","mainEntityOfPage":{"@type":"WebPage","@id":"/lectures/2022@columbia/COMS4995_Deep_Learning_part2.html/"},"url":"/lectures/2022@columbia/COMS4995_Deep_Learning_part2.html/"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/lectures/assets/main.css"><link type="application/atom+xml" rel="alternate" href="/lectures/feed.xml" title="Lecture Notes" /></head>
 <body><header class="site-header">
@@ -66,7 +66,7 @@
   </head>
   <header class="post-header">
     <h1 class="post-title p-name" itemprop="name headline">COMS4995 Deep Learning part2</h1>
-    <p class="post-meta"><time class="dt-published" datetime="2022-04-21T00:00:00-04:00" itemprop="datePublished">
+    <p class="post-meta"><time class="dt-published" datetime="2022-04-21T00:00:00+00:00" itemprop="datePublished">
         Apr 21, 2022
       </time></p>
   </header>
@@ -191,7 +191,7 @@
   <li><strong>post processing</strong></li>
 </ul>
 
-<p>Such an idea of ==automatically finding== best tools could be applied to a range of similar tasks such as:</p>
+<p>Such an idea of <mark>automatically finding</mark> best tools could be applied to a range of similar tasks such as:</p>
 
 <ul>
   <li>
@@ -202,7 +202,7 @@
     <p>where essentially we given in <em>building blocks</em> to compose some activation function, and ask it to find a best one</p>
   </li>
   <li>
-    <p>automated <strong>optimizer</strong> finding, where again we feed in ==building blocks== for an optimizer</p>
+    <p>automated <strong>optimizer</strong> finding, where again we feed in <mark>building blocks</mark> for an optimizer</p>
 
     <p><img src="/lectures/images/2022-04-21-COMS4995_Deep_Learning_part2/image-20220322152256184.png" alt="image-20220322152256184" style="zoom: 75%;" /></p>
 
@@ -429,7 +429,7 @@
 <p>Developing novel neural architectures manually is time consuming, error prone. Now you can use <strong>automatic methods for searching for neural network architectures</strong>: AutoKeras (CNN, RNN), AutoGAN, AutoGNN.</p>
 
 <blockquote>
-  <p><strong>For deep learning models</strong>, we might consider ==combining many different algorithms== in a pipeline such as CNN as backbone and then Transformers.</p>
+  <p><strong>For deep learning models</strong>, we might consider <mark>combining many different algorithms</mark> in a pipeline such as CNN as backbone and then Transformers.</p>
 </blockquote>
 
 <p>Most packages cover two possible architecture shape:</p>
@@ -594,7 +594,7 @@
 
 <p><strong>Naive Solution of Filling Matrix:</strong></p>
 
-<p>Let each item have a ==known feature vector== $\vec{x}^{(i)}$. We want to learn some parameters $\theta^{(j)}$ of each user and assume that $\theta^{(j)^T}x^{i}$ would model their preference score. Then:</p>
+<p>Let each item have a <mark>known feature vector</mark> $\vec{x}^{(i)}$. We want to learn some parameters $\theta^{(j)}$ of each user and assume that $\theta^{(j)^T}x^{i}$ would model their preference score. Then:</p>
 
 \[\min_{\theta^{(j)}} \frac{1}{2} \sum_{i:M_{ij}=1} \left(\theta^{(j)^T}x^{i} - Y_{ij}\right)^2 + \text{Regularize}(\theta^{(j)})\]
 
@@ -609,7 +609,7 @@
 
 <p><img src="/lectures/images/2022-04-21-COMS4995_Deep_Learning_part2/image-20220324163254898.png" alt="image-20220324163254898" style="zoom: 50%;" /></p>
 
-<p><strong>Problem</strong>: In tasks AutoML needs to solve, we are usually given a ==unknown/new dataset and task==. I.e. we are having a new item with unknown $\vec{x}^{i}$.</p>
+<p><strong>Problem</strong>: In tasks AutoML needs to solve, we are usually given a <mark>unknown/new dataset and task</mark>. I.e. we are having a new item with unknown $\vec{x}^{i}$.</p>
 
 <p>Then, the idea is to do a EM-like approach:</p>
 
@@ -927,7 +927,7 @@
 </ul>
 
 <blockquote>
-  <p><strong>Note</strong> that though for each task you can define your own loss, ==what happens when we update $\theta_s$==? There will be $T$ different losses for a single $\theta_s$. How do we update that?</p>
+  <p><strong>Note</strong> that though for each task you can define your own loss, <mark>what happens when we update $\theta_s$</mark>? There will be $T$ different losses for a single $\theta_s$. How do we update that?</p>
 </blockquote>
 
 <h3 id="linear-scalarization-of-mtl">Linear Scalarization of MTL</h3>
@@ -957,7 +957,7 @@
 </ul>
 
 <blockquote>
-  <p>Therefore, ==how do we define an ordering for the parameters to begin with==?</p>
+  <p>Therefore, <mark>how do we define an ordering for the parameters to begin with</mark>?</p>
 </blockquote>
 
 <p>One simple idea is to consider a <strong>linear combination</strong></p>
@@ -980,7 +980,7 @@
 
 \[y \prec y' \iff f_i(x) &lt; f_i(x')\,\,\forall i\]
 
-<p>in other words, $y$ wins/is smaller if it is smaller in all dimension. Then applied in our case, we essentially have “<strong>many optimal solutions</strong>” forming a ==Pareto frontier==.</p>
+<p>in other words, $y$ wins/is smaller if it is smaller in all dimension. Then applied in our case, we essentially have “<strong>many optimal solutions</strong>” forming a <mark>Pareto frontier</mark>.</p>
 
 <p><img src="/lectures/images/2022-04-21-COMS4995_Deep_Learning_part2/image-20220329155604002.png" alt="image-20220329155604002" style="zoom: 80%;" /></p>
 
@@ -1022,7 +1022,7 @@
   <li>Gradients may conflict</li>
 </ul>
 
-<p>So in general it is ==important== to determine the <strong>relationships between tasks</strong>, to tell if a shared architecture works</p>
+<p>So in general it is <mark>important</mark> to determine the <strong>relationships between tasks</strong>, to tell if a shared architecture works</p>
 
 <h3 id="architectures-in-shared-networks">Architectures in Shared Networks</h3>
 
@@ -1282,14 +1282,14 @@
   <p>The goal of few-shot meta-learning is to train a model $f_\theta$ that can quickly adapt to a new task using only a few datapoints and training update iterations to $\theta$.</p>
 
   <ul>
-    <li>in other words, we want some ==good initialization of $\theta_0$== (learnt from other tasks as a “warm start”) such that in a new task it learns fast with only few samples</li>
+    <li>in other words, we want some <mark>good initialization of $\theta_0$</mark> (learnt from other tasks as a “warm start”) such that in a new task it learns fast with only few samples</li>
   </ul>
 </blockquote>
 
 <p>So how do we get such a handy $\theta_0$? In effect, the meta-learning problem <strong>treats entire tasks as training examples</strong>, i.e. we consider</p>
 
 <ul>
-  <li>==a distribution over tasks $p(T)$== that we want our model to adapt to</li>
+  <li><mark>a distribution over tasks $p(T)$</mark> that we want our model to adapt to</li>
   <li>for each task $T_i$ could have its own loss $\mathcal{L}_{T_i}$ and its training data distribution $q_i(x)$</li>
 </ul>
 
@@ -1308,7 +1308,7 @@
 
         <ol>
           <li>sample  a task $T_i$, e.g. compare “cat v.s. dog”</li>
-          <li>draw $K$ samples from $q_i(x)$ for training, known as ==support set==</li>
+          <li>draw $K$ samples from $q_i(x)$ for training, known as <mark>support set</mark></li>
           <li>compute its loss $L_{T_i}(f_\theta)$ using the $\theta$ initialization</li>
           <li>update/see how well this initialization works by doing a few descents:</li>
         </ol>
@@ -1329,7 +1329,7 @@
             <p>$f_{\theta_i’}$ is like the same model “fine-tuned” on task $T_i$.</p>
           </li>
           <li>
-            <p>$L_{T_i}(f_{\theta_i’})$ will now be evaluated on the <strong>new samples</strong> from $q_i(x)$, known as the ==query set== to test its generalization ability as well</p>
+            <p>$L_{T_i}(f_{\theta_i’})$ will now be evaluated on the <strong>new samples</strong> from $q_i(x)$, known as the <mark>query set</mark> to test its generalization ability as well</p>
           </li>
           <li>
             <p>since we are taking derivative w.r.t $\theta$, and we know (if only doing a single iteration)</p>
@@ -1343,7 +1343,7 @@
     </ol>
   </li>
   <li>
-    <p>output the learnt $\theta$ being the ==better “initialization” parameters for your model $f_\theta$ which is ready for other tasks==</p>
+    <p>output the learnt $\theta$ being the <mark>better "initialization" parameters for your model $f_\theta$ which is ready for other tasks</mark></p>
   </li>
 </ol>
 
@@ -1456,7 +1456,7 @@
 
 <h3 id="prototypical-network">Prototypical Network</h3>
 
-<p>Here the idea is to consider predicting $\hat{y}$ of $x_q$ by <strong>nearest neighbor</strong> to ==prototypes $c_k$ of each class== (learnt from the few-shot training):</p>
+<p>Here the idea is to consider predicting $\hat{y}$ of $x_q$ by <strong>nearest neighbor</strong> to <mark>prototypes $c_k$ of each class</mark> (learnt from the few-shot training):</p>
 
 \[c_ k = \frac{1}{|S_k|} \sum_{(x_i,y_i)\in S_k} f_\theta(x_i)\]
 
@@ -1862,7 +1862,7 @@
 
 <h3 id="self-driving-car-prediction">Self-Driving Car: Prediction</h3>
 
-<p>Now, given the surroundings, and <strong>before I plan what I do</strong>, I also need to ==predict what other dynamical objects will do==. i.e. I need trajectories from other dynamical objects as part of the <strong>environment</strong> as well!</p>
+<p>Now, given the surroundings, and <strong>before I plan what I do</strong>, I also need to <mark>predict what other dynamical objects will do</mark>. i.e. I need trajectories from other dynamical objects as part of the <strong>environment</strong> as well!</p>
 
 <ul>
   <li>

@@ -13,11 +13,11 @@
 <meta property="og:url" content="/lectures/2022@columbia/COMS4705_NLP_part2.html/" />
 <meta property="og:site_name" content="Lecture Notes" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2022-05-09T00:00:00-04:00" />
+<meta property="article:published_time" content="2022-05-09T00:00:00+00:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="COMS4705 NLP part2" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2022-05-09T00:00:00-04:00","datePublished":"2022-05-09T00:00:00-04:00","description":"Continuation from: NLP_part_1","headline":"COMS4705 NLP part2","mainEntityOfPage":{"@type":"WebPage","@id":"/lectures/2022@columbia/COMS4705_NLP_part2.html/"},"url":"/lectures/2022@columbia/COMS4705_NLP_part2.html/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2022-05-09T00:00:00+00:00","datePublished":"2022-05-09T00:00:00+00:00","description":"Continuation from: NLP_part_1","headline":"COMS4705 NLP part2","mainEntityOfPage":{"@type":"WebPage","@id":"/lectures/2022@columbia/COMS4705_NLP_part2.html/"},"url":"/lectures/2022@columbia/COMS4705_NLP_part2.html/"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/lectures/assets/main.css"><link type="application/atom+xml" rel="alternate" href="/lectures/feed.xml" title="Lecture Notes" /></head>
 <body><header class="site-header">
@@ -66,7 +66,7 @@
   </head>
   <header class="post-header">
     <h1 class="post-title p-name" itemprop="name headline">COMS4705 NLP part2</h1>
-    <p class="post-meta"><time class="dt-published" datetime="2022-05-09T00:00:00-04:00" itemprop="datePublished">
+    <p class="post-meta"><time class="dt-published" datetime="2022-05-09T00:00:00+00:00" itemprop="datePublished">
         May 9, 2022
       </time></p>
   </header>
@@ -897,7 +897,7 @@
 <h3 id="architecture-examples">Architecture Examples</h3>
 
 <blockquote>
-  <p>In reality, since the ==pretained model has a lot of parameters==, it is common to <strong>freeze those weights</strong> for the following models and <strong>add a linear/NN layer</strong> on top for your downstream task.</p>
+  <p>In reality, since the <mark>pretained model has a lot of parameters</mark>, it is common to <strong>freeze those weights</strong> for the following models and <strong>add a linear/NN layer</strong> on top for your downstream task.</p>
 </blockquote>
 
 <p><strong>GPT</strong></p>
@@ -1043,7 +1043,7 @@
   </tbody>
 </table>
 
-<p>one key difference here is that ==we do NOT update weights==, we are only providing exmaples = providing a <strong>context</strong>.</p>
+<p>one key difference here is that <mark>we do NOT update weights</mark>, we are only providing exmaples = providing a <strong>context</strong>.</p>
 
 <h1 id="machine-translation">Machine Translation</h1>
 
@@ -1197,7 +1197,7 @@
     <p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220321194326179.png" alt="image-20220321194326179" style="zoom: 67%;" /></p>
   </li>
   <li>
-    <p>Use <strong>lexical transfer rules</strong> to find syntactic ==one to many mapping== of the translation of each word:</p>
+    <p>Use <strong>lexical transfer rules</strong> to find syntactic <mark>one to many mapping</mark> of the translation of each word:</p>
 
     <p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220321194444415.png" alt="image-20220321194444415" style="zoom: 67%;" /></p>
 
@@ -1258,7 +1258,7 @@
 <p>The idea is to consider, for example translating French to English:</p>
 
 <blockquote>
-  <p>Source sentence (e.g. French) was generated from some ==noisy transformation== of the target sentence (e.g. English), as we have done in Spelling Correction.</p>
+  <p>Source sentence (e.g. French) was generated from some <mark>noisy transformation</mark> of the target sentence (e.g. English), as we have done in Spelling Correction.</p>
 </blockquote>
 
 <p>Therefore, we consider finding the translation $\hat{E}$:</p>
@@ -1329,7 +1329,7 @@
 
 <h3 id="ibm-model-1">IBM Model 1</h3>
 
-<p>Now, ==assume that $P(F\vert E,A)$== is computable. The IBM model for SMT can generated a single $F$ from $E=e_1,…,e_n$ of length $n$ by:</p>
+<p>Now, <mark>assume that $P(F\vert E,A)$</mark> is computable. The IBM model for SMT can generated a single $F$ from $E=e_1,…,e_n$ of length $n$ by:</p>
 
 <ol>
   <li>choose length $k$, so that we would have $F=f_1,…,f_k$</li>
@@ -1390,7 +1390,7 @@
 
 <h3 id="hmm-based-word-alignment">HMM-Based Word Alignment</h3>
 
-<p>Obviously, one problem with IBM Model 1 is that it assumes all alignments are <strong>equally likely</strong> and ==does not take into account locality==, e.g. <em>next to each other words are likely to be next to each other in another language as well.</em></p>
+<p>Obviously, one problem with IBM Model 1 is that it assumes all alignments are <strong>equally likely</strong> and <mark>does not take into account locality</mark>, e.g. <em>next to each other words are likely to be next to each other in another language as well.</em></p>
 
 <blockquote>
   <p>To solve this issue, <strong>HMM models</strong> can be used which models the <strong>jump width</strong> as hidden state, i.e. :</p>
@@ -1448,8 +1448,8 @@
 <p>Then this means that:</p>
 
 <ul>
-  <li>==Observation likelihood $P(F\vert E)$== can be computed by the <strong>forward algorithm</strong> with HMM</li>
-  <li>==Decoding $\hat{E}=\arg\max_E P(E\vert F)$== can be computed by <strong>Viterbi algorithm</strong> with HMM</li>
+  <li><mark>Observation likelihood $P(F\vert E)$</mark> can be computed by the <strong>forward algorithm</strong> with HMM</li>
+  <li><mark>Decoding $\hat{E}=\arg\max_E P(E\vert F)$</mark> can be computed by <strong>Viterbi algorithm</strong> with HMM</li>
 </ul>
 
 <h3 id="training-word-alignment-models">Training Word Alignment Models</h3>
@@ -1567,8 +1567,8 @@
 <p>Translations are evaluated along <strong>two dimensions</strong>:</p>
 
 <ol>
-  <li><strong>adequacy</strong>: how well the translation captures the exact ==meaning== of the source sentence. Sometimes called <strong>faithfulness</strong> or fidelity.</li>
-  <li><strong>fluency</strong>: how ==fluent== the translation is in the target language (is it grammatical, clear, readable, natural).</li>
+  <li><strong>adequacy</strong>: how well the translation captures the exact <mark>meaning</mark> of the source sentence. Sometimes called <strong>faithfulness</strong> or fidelity.</li>
+  <li><strong>fluency</strong>: how <mark>fluent</mark> the translation is in the target language (is it grammatical, clear, readable, natural).</li>
 </ol>
 
 <p>The most accurate metric is to have human to score the translations based on the above criterion, but that is inefficient and expensive. This in reality is done often in the following manner:</p>
@@ -1735,10 +1735,10 @@ e^{1-(r/c)},&amp; \text{if }c \le r
       <li>used often for Social Media analysis, how users interact online between each other</li>
     </ul>
   </li>
-  <li>==Attitudes==: enduring, affectively colored beliefs, dispositions towards objects or persons
+  <li><mark>Attitudes</mark>: enduring, affectively colored beliefs, dispositions towards objects or persons
     <ul>
       <li>liking, loving, hating, valuing, desiring</li>
-      <li>used a lot for product reviews and ==sentiment analysis==</li>
+      <li>used a lot for product reviews and <mark>sentiment analysis</mark></li>
     </ul>
   </li>
   <li><strong>Personality Traits</strong>
@@ -1774,7 +1774,7 @@ e^{1-(r/c)},&amp; \text{if }c \le r
 <p>In reality:</p>
 
 <ul>
-  <li><strong>Simplest task:</strong> Is the attitude of this text positive or negative? This will be our focus in this chapter as a ==classification task==.</li>
+  <li><strong>Simplest task:</strong> Is the attitude of this text positive or negative? This will be our focus in this chapter as a <mark>classification task</mark>.</li>
   <li><strong>More complex:</strong> Rank the attitude of this text from 1 to 5, i.e. include <em>strength</em></li>
   <li><strong>Advanced:</strong> all the 4 subtasks.</li>
 </ul>
@@ -1853,7 +1853,7 @@ e^{1-(r/c)},&amp; \text{if }c \le r
   <p><strong>Multinomial Naïve Bayes</strong> is essentially a Naive Bayes classifier that is able to output a class among many classes (more than two). This is essentially done by:</p>
 
   <ul>
-    <li>(==assumption==: Naive Bayes) probabilities $P(w_i\vert c)$ are independent given the class $c$. Therefore it allows</li>
+    <li>(<mark>assumption</mark>: Naive Bayes) probabilities $P(w_i\vert c)$ are independent given the class $c$. Therefore it allows</li>
   </ul>
 
 \[P(w_1,...,w_n|c_j) = \prod_i P(w_i|c_j)\]
@@ -1868,7 +1868,7 @@ e^{1-(r/c)},&amp; \text{if }c \le r
 
 \[c = \arg\max_{c_j \in C} P(W|c_j)P(c_j) =\arg\max_{c_j \in C}  P(c_j)\prod_i P(w_i |c_j)\]
 
-<p>meaning that we ==assume each word to be independently contributing to $c_j$==. Note that</p>
+<p>meaning that we <mark>assume each word to be independently contributing to $c_j$</mark>. Note that</p>
 
 <ul>
   <li>
@@ -1892,7 +1892,7 @@ e^{1-(r/c)},&amp; \text{if }c \le r
 
 \[c_{NB} = \arg\max_{c_j \in C} \,\,\log P(c_j) + \sum_i \log P(w_i|c_j)\]
 
-<p>But how do we ==learn== $P(c_j)$ and $P(w_i\vert c_j)$?</p>
+<p>But how do we <mark>learn</mark> $P(c_j)$ and $P(w_i\vert c_j)$?</p>
 
 <ul>
   <li>
@@ -1919,10 +1919,10 @@ e^{1-(r/c)},&amp; \text{if }c \le r
 
 \[\hat{P}(w_i|c_j) = \frac{\text{Count}(w_i, c_j)+1}{\sum_{w\in V}\text{Count}(w_i, c_j)+1}=\frac{\text{Count}(w_i, c_j)+1}{\text{Count(total words in $c_j$)}+|V|}\]
 
-<p>which is ==critically needed== as the likelihood term is a multiplication.</p>
+<p>which is <mark>critically needed</mark> as the likelihood term is a multiplication.</p>
 
 <ul>
-  <li>for <strong>OOV words</strong>, we can use the technique introduced before by inducing <code class="language-plaintext highlighter-rouge">OOV</code> vocab in the training set. However, for Naive Bayes, it is more common to ==ignore those words completely== (as if you didn’t see it)</li>
+  <li>for <strong>OOV words</strong>, we can use the technique introduced before by inducing <code class="language-plaintext highlighter-rouge">OOV</code> vocab in the training set. However, for Naive Bayes, it is more common to <mark>ignore those words completely</mark> (as if you didn’t see it)</li>
   <li>other processing step include <strong>removing stop words</strong> such as <code class="language-plaintext highlighter-rouge">a</code> and <code class="language-plaintext highlighter-rouge">the</code> for both train and test sets. Though the performance gain from this is not significant.</li>
 </ul>
 
@@ -2026,7 +2026,7 @@ e^{1-(r/c)},&amp; \text{if }c \le r
   </ul>
 </blockquote>
 
-<p>In algorithm, basically you can <strong>first reduce all duplicate words ==in each document== to one occurrence</strong>, and then perform the same algorithm.</p>
+<p>In algorithm, basically you can <strong>first reduce all duplicate words <mark>in each document</mark> to one occurrence</strong>, and then perform the same algorithm.</p>
 
 <p>For example:</p>
 
@@ -2081,7 +2081,7 @@ e^{1-(r/c)},&amp; \text{if }c \le r
 <p>Some simple measurement of such is to consider:</p>
 
 <ul>
-  <li>==how likely each word== is to ==appear in each sentiment class== (discussed here)</li>
+  <li><mark>how likely each word</mark> is to <mark>appear in each sentiment class</mark> (discussed here)</li>
   <li>use some form of embedding, which could be learnt in a Word2Vec approach</li>
 </ul>
 
@@ -2093,7 +2093,7 @@ e^{1-(r/c)},&amp; \text{if }c \le r
 
 <ul>
   <li>each category $c$ would represent the word “<em>bad</em>” appearing in a 1-star, 2-star, 3-star review, etc</li>
-  <li>notice that even in 10-star comments, we still see the word “<em>bad</em>” quite often. This could happen due to ==negations==.</li>
+  <li>notice that even in 10-star comments, we still see the word “<em>bad</em>” quite often. This could happen due to <mark>negations</mark>.</li>
 </ul>
 
 <p>Then, since we have the counts, we can compute the likelihood</p>
@@ -2117,7 +2117,7 @@ e^{1-(r/c)},&amp; \text{if }c \le r
 <p>where:</p>
 
 <ul>
-  <li>notice that “<em>good</em>” looks relatively flat across ratings (perhaps due to negations). This means “<em>good</em>” is ==not a good indicator== for positive sentiment/rather <strong>neutral polarity</strong>.</li>
+  <li>notice that “<em>good</em>” looks relatively flat across ratings (perhaps due to negations). This means “<em>good</em>” is <mark>not a good indicator</mark> for positive sentiment/rather <strong>neutral polarity</strong>.</li>
   <li>words such as “<em>great</em>” and “<em>excellent</em>” would be a better “metric” for the positive rating of the movie/positive polarity.</li>
   <li>words such as “<em>somewhat</em>” and “<em>fairly</em>” are attenuators as they most happen in th middle of the rating; they dampen extremely positive/negative reviews</li>
   <li>the upshot is that even seemingly positive/negative words <strong><em>could</em> happen in all contexts</strong></li>
@@ -2257,7 +2257,7 @@ e^{1-(r/c)},&amp; \text{if }c \le r
 
 \[I(x,y) = \log_2\left(\frac{P(x,y)}{P(x)P(y)}\right)\]
 
-    <p>Hence, the <strong>pointwise mutual information</strong> between a target word $w$ and a context word $c$ (for ==some window size such as 7==) is then defined as:</p>
+    <p>Hence, the <strong>pointwise mutual information</strong> between a target word $w$ and a context word $c$ (for <mark>some window size such as 7</mark>) is then defined as:</p>
 
 \[\text{PMI}(w,c) = \log_2\left(\frac{P(w,c)}{P(w)P(c)}\right)\]
 
@@ -2286,7 +2286,7 @@ e^{1-(r/c)},&amp; \text{if }c \le r
       </li>
     </ul>
 
-    <p>Finally, we define the polarity of a phrase by doing the ==PMI difference between “<em>excellent</em>” or “<em>poor</em>”==:</p>
+    <p>Finally, we define the polarity of a phrase by doing the <mark>PMI difference between "*excellent*" or "*poor*"</mark>:</p>
 
     <p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220328165248858.png" alt="image-20220328165248858" style="zoom:33%;" /></p>
   </li>
@@ -2355,7 +2355,7 @@ e^{1-(r/c)},&amp; \text{if }c \le r
 <p>In reality:</p>
 
 <ul>
-  <li><strong>Simplest task:</strong> Is the attitude of this text positive or negative? This will be our focus in this chapter as a ==classification task==.</li>
+  <li><strong>Simplest task:</strong> Is the attitude of this text positive or negative? This will be our focus in this chapter as a <mark>classification task</mark>.</li>
   <li><strong>More complex:</strong> Rank the attitude of this text from 1 to 5, i.e. include <em>strength</em></li>
   <li><strong>Advanced:</strong> all the 4 subtasks.</li>
 </ul>
@@ -2490,11 +2490,11 @@ e^{1-(r/c)},&amp; \text{if }c \le r
 \[H_0: \text{what you observed is just a random effect}\\
 H_1: \text{it is not random. Our model is better}\]
 
-<p>We want to show that $H_0$, the <strong>null hypothesis</strong>, has a ==low probability of happening==, so that what we observed is <strong>not</strong> random/by chance:</p>
+<p>We want to show that $H_0$, the <strong>null hypothesis</strong>, has a <mark>low probability of happening</mark>, so that what we observed is <strong>not</strong> random/by chance:</p>
 
 \[\text{p-value}(x) \equiv P(\delta(X) \ge \delta(x) | H_0 \text{ is true})\]
 
-<p>i.e. we try on some ==random== test set $X=x$ (with mean $0$) to get $\delta(x)$ again and again. If it is ==not by chance==, then $\text{p-value}(x)$ should be small.</p>
+<p>i.e. we try on some <mark>random</mark> test set $X=x$ (with mean $0$) to get $\delta(x)$ again and again. If it is <mark>not by chance</mark>, then $\text{p-value}(x)$ should be small.</p>
 
 <ul>
   <li>e.g. consider playing Poker, I claim that I am a better player, so the null hypothesis is that I win by luck.</li>
@@ -2517,7 +2517,7 @@ H_1: \text{it is not random. Our model is better}\]
 
   <ul>
     <li>In NLP we generally don’t use parametric tests such as t-tests or ANOVAs as they make <strong>assumptions on the distributions of the test statistic</strong> (such as normality) that don’t generally hold in our cases
-So in NLP we usually ==use non-parametric tests based on sampling==.</li>
+So in NLP we usually <mark>use non-parametric tests based on sampling</mark>.</li>
   </ul>
 </blockquote>
 
@@ -2536,7 +2536,7 @@ So in NLP we usually ==use non-parametric tests based on sampling==.</li>
   <p>The word bootstrapping refers to repeatedly drawing large numbers of smaller samples with replacement (called bootstrap samples) from an original larger sample.</p>
 
   <ul>
-    <li>in fact, the idea is to ==virtually create random test sets $X$== by ==sampling with replacement from a fixed test set $x$==.</li>
+    <li>in fact, the idea is to <mark>virtually create random test sets $X$</mark> by <mark>sampling with replacement from a fixed test set $x$</mark>.</li>
     <li>since this means we have $X$ with mean of $\delta(x)$, we would have to change the formula a bit</li>
   </ul>
 </blockquote>
@@ -2557,11 +2557,11 @@ So in NLP we usually ==use non-parametric tests based on sampling==.</li>
 
 <p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220328233452958.png" alt="image-20220328233452958" style="zoom:67%;" /></p>
 
-<p>Now that we have the ==$b$ random test sets==, providing a sampling distribution, we can compute how likely $A$ made $\delta(x)$ by pure chance. We might naively consider:</p>
+<p>Now that we have the <mark>$b$ random test sets</mark>, providing a sampling distribution, we can compute how likely $A$ made $\delta(x)$ by pure chance. We might naively consider:</p>
 
 \[\text{p-value}(x) = \frac{1}{b} \sum_{i=1}^b \mathbb{1}\left( \delta(x^{(i)}) - \delta(x) \ge 0 \right)\]
 
-<p>so that if ==p-value is low==, then $\delta(x)$ is ==not by pure chance==. However, this would be wrong as</p>
+<p>so that if <mark>p-value is low</mark>, then $\delta(x)$ is <mark>not by pure chance</mark>. However, this would be wrong as</p>
 
 \[\text{p-value}(x) \equiv P(\delta(X) \ge \delta(x) | H_0 \text{ is true})\]
 
@@ -2623,7 +2623,7 @@ So in NLP we usually ==use non-parametric tests based on sampling==.</li>
   <p>Specific type of information extraction in which the <strong>goal is to extract formal names of particular types of entities</strong> such as people, places, organizations, etc.</p>
 </blockquote>
 
-<p>Usually this is <strong>used as a preprocessing step</strong> for some future tasks, such as the template filling task we had, or question answering. Notice that this is a task in between sequence level and token level task - it is a ==span-oriented application==.</p>
+<p>Usually this is <strong>used as a preprocessing step</strong> for some future tasks, such as the template filling task we had, or question answering. Notice that this is a task in between sequence level and token level task - it is a <mark>span-oriented application</mark>.</p>
 
 <p>Formally, given an input $x$ with $T$ tokens, $x_1,…,x_T$, a span is a continuous sequence of tokens with start $i$ and end $j$ such that $1 \le i \le j \le T$. Then in total  for all possible span length we could have:</p>
 
@@ -2659,7 +2659,7 @@ So in NLP we usually ==use non-parametric tests based on sampling==.</li>
 
 <h3 id="bio-based-ner">BIO-based NER</h3>
 
-<p>Some idea for <strong>training BIO-based model</strong> would be a ==Seq-labelling model==</p>
+<p>Some idea for <strong>training BIO-based model</strong> would be a <mark>Seq-labelling model</mark></p>
 
 <table>
   <thead>
@@ -2680,11 +2680,11 @@ So in NLP we usually ==use non-parametric tests based on sampling==.</li>
 
 <p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220331153630932.png" alt="image-20220331153630932" style="zoom: 50%;" /></p>
 
-<p>==TODO: CRF==   on page 178-Chapter 8</p>
+<p><mark>TODO: CRF</mark>   on page 178-Chapter 8</p>
 
 <h3 id="span-based-ner">Span-based NER</h3>
 
-<p>Some idea for <strong>training an end-to-end NN based model</strong> would be a ==span-oriented application==.</p>
+<p>Some idea for <strong>training an end-to-end NN based model</strong> would be a <mark>span-oriented application</mark>.</p>
 
 <ol>
   <li>
@@ -2766,7 +2766,7 @@ So in NLP we usually ==use non-parametric tests based on sampling==.</li>
   <li>etc.</li>
 </ul>
 
-<p>All of those are simple ==binary relationships== which fall under some generic categorization such as:</p>
+<p>All of those are simple <mark>binary relationships</mark> which fall under some generic categorization such as:</p>
 
 <ul>
   <li>
@@ -2985,7 +2985,7 @@ So in NLP we usually ==use non-parametric tests based on sampling==.</li>
 
 <ol>
   <li>
-    <p>==first system== decides whether the template is present in a particular sentence</p>
+    <p><mark>first system</mark> decides whether the template is present in a particular sentence</p>
 
     <ul>
       <li>called <strong>template recognition</strong> or <strong>event recognition</strong></li>
@@ -3001,7 +3001,7 @@ So in NLP we usually ==use non-parametric tests based on sampling==.</li>
     <p>Then if detected, feed that sequence of words into the second system with that detected template</p>
   </li>
   <li>
-    <p>==second system== has the job of role-filler extraction.</p>
+    <p><mark>second system</mark> has the job of role-filler extraction.</p>
 
     <ul>
       <li><strong>for each role</strong> in the template, e.g. <code class="language-plaintext highlighter-rouge">LEAD-AIRLINE</code>, <code class="language-plaintext highlighter-rouge">AMOUNT</code>, etc</li>
@@ -3349,7 +3349,7 @@ So in NLP we usually ==use non-parametric tests based on sampling==.</li>
 <p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220404205323421.png" alt="image-20220404205323421" style="zoom: 50%;" /></p>
 
 <blockquote>
-  <p><strong>Note</strong> that in this formula, if ==document $d$ contains none of the words in query $q$, then it will have a score of zero==. This is why we needed the <strong>inverted index</strong> to quickly filter documents and only get the ones containing terms in $q$.</p>
+  <p><strong>Note</strong> that in this formula, if <mark>document $d$ contains none of the words in query $q$, then it will have a score of zero</mark>. This is why we needed the <strong>inverted index</strong> to quickly filter documents and only get the ones containing terms in $q$.</p>
 </blockquote>
 
 <hr />
@@ -3424,7 +3424,7 @@ So in NLP we usually ==use non-parametric tests based on sampling==.</li>
   <p>This is called the <strong>vocabulary mismatch problem</strong></p>
 </blockquote>
 
-<p>Therefore, the solution is to find a representation that can handle ==synonymy==: instead of (sparse) word-count vectors, ==using (dense) embeddings==, e.g. encoders like BERT.</p>
+<p>Therefore, the solution is to find a representation that can handle <mark>synonymy</mark>: instead of (sparse) word-count vectors, <mark>using (dense) embeddings</mark>, e.g. encoders like BERT.</p>
 
 <p>In fact, in what is sometimes called a <strong>bi-encoder</strong> we use two separate encoder models $\text{BERT}_Q, \text{BERT}_D$:</p>
 
@@ -3434,7 +3434,7 @@ So in NLP we usually ==use non-parametric tests based on sampling==.</li>
 
 \[h_q = \text{BERT}_Q(q)[\text{CLS}]\]
 
-    <p>where since we ==need a single vector==, we take the embedding of the $[\text{CLS}]$ token which encodes all information of the sequence</p>
+    <p>where since we <mark>need a single vector</mark>, we take the embedding of the $[\text{CLS}]$ token which encodes all information of the sequence</p>
   </li>
   <li>
     <p>one to <strong>encode the document $d$</strong></p>
@@ -3460,7 +3460,7 @@ So in NLP we usually ==use non-parametric tests based on sampling==.</li>
   <li>Among the many areas of active research are <strong>how to do the fine-tuning</strong> of the encoder modules on the IR task</li>
   <li>Efficiency is also an issue. For TF-IDF version we had inverted index which allowed us to quickly rank documents. But here, with <strong>dense vectors we need a Nearest Neighbor search</strong>, which is inefficient.
     <ul>
-      <li>Modern systems therefore make use of approximate nearest neighbor vector search algorithms like ==Faiss==</li>
+      <li>Modern systems therefore make use of approximate nearest neighbor vector search algorithms like <mark>Faiss</mark></li>
     </ul>
   </li>
 </ul>
@@ -3486,7 +3486,7 @@ So in NLP we usually ==use non-parametric tests based on sampling==.</li>
 
 <p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220404212600688.png" alt="image-20220404212600688" style="zoom:67%;" /></p>
 
-<p>which is essentially a ==retrieve and read model==</p>
+<p>which is essentially a <mark>retrieve and read model</mark></p>
 
 <ol>
   <li>use <strong>retriever</strong> to retrieve relevant passages from a text collection, usually using a search engines
@@ -3494,7 +3494,7 @@ So in NLP we usually ==use non-parametric tests based on sampling==.</li>
       <li>this we have discussed before in IR, e.g. use Dense Vectors for embedding</li>
     </ul>
   </li>
-  <li>a neural <strong>reading comprehension</strong> algorithm passes over each passage and ==finds spans that are likely to answer the question==
+  <li>a neural <strong>reading comprehension</strong> algorithm passes over each passage and <mark>finds spans that are likely to answer the question</mark>
     <ul>
       <li>given the query $q$ and a sample passage $p$ that could contain the answer</li>
       <li>return an answer $s$ or perhaps declare there is no answer</li>
@@ -3747,7 +3747,7 @@ So in NLP we usually ==use non-parametric tests based on sampling==.</li>
 
 <p><em>Recall</em>: Encoder-Decoder</p>
 
-<p>Essentially for decode, we usually do it <strong>auto-regressively</strong> so that suppose our ==decoder== has <code class="language-plaintext highlighter-rouge">Attention</code> with <code class="language-plaintext highlighter-rouge">MAX_SEQ_LEN=32</code>. Then:</p>
+<p>Essentially for decode, we usually do it <strong>auto-regressively</strong> so that suppose our <mark>decoder</mark> has <code class="language-plaintext highlighter-rouge">Attention</code> with <code class="language-plaintext highlighter-rouge">MAX_SEQ_LEN=32</code>. Then:</p>
 
 <p><img src="/lectures/images/2022-03-30-COMS4705_NLP/transformer_decoding_1.gif" style="zoom: 50%;" /></p>
 
@@ -3765,7 +3765,7 @@ So in NLP we usually ==use non-parametric tests based on sampling==.</li>
 
   <ul>
     <li><strong>transformer</strong> based can <strong>only condition/read in</strong> $o_{t-31},…,o_t$ for a max sequence length of <code class="language-plaintext highlighter-rouge">32</code> for the attention layer</li>
-    <li><strong>RNN</strong> based can use $h_t$ which ==encodes all previous information==. However, it has ==no attention/is sequential==.</li>
+    <li><strong>RNN</strong> based can use $h_t$ which <mark>encodes all previous information</mark>. However, it has <mark>no attention/is sequential</mark>.</li>
   </ul>
 </blockquote>
 
@@ -3883,7 +3883,7 @@ So in NLP we usually ==use non-parametric tests based on sampling==.</li>
     <p><strong>dialogue act</strong>: in this competition, <em>request</em> or <em>inform</em> (here we only have two)</p>
   </li>
   <li>
-    <p><strong>attributes/values</strong>: unordered attributes of the generated text that you need to fulfill (all those attributes needs to be mentioned) this will be a fixed set, which is called ==domain ontology==:</p>
+    <p><strong>attributes/values</strong>: unordered attributes of the generated text that you need to fulfill (all those attributes needs to be mentioned) this will be a fixed set, which is called <mark>domain ontology</mark>:</p>
 
     <p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220406163143626.png" alt="image-20220406163143626" style="zoom:33%;" /></p>
 
@@ -4034,7 +4034,7 @@ So in NLP we usually ==use non-parametric tests based on sampling==.</li>
 
 \[o_t = \arg\max_y P(y_{t}|y_1,...,y_{t-1},h_x)\]
 
-    <p>but remember this is a ==greedy search==. In reality you can use <strong>beam search</strong> to allow for keeping more than one options.</p>
+    <p>but remember this is a <mark>greedy search</mark>. In reality you can use <strong>beam search</strong> to allow for keeping more than one options.</p>
   </li>
 </ul>
 
@@ -4187,7 +4187,7 @@ So in NLP we usually ==use non-parametric tests based on sampling==.</li>
   </tbody>
 </table>
 
-<p>Hence we have a <strong>synthetic text and MR</strong> pair, but the pair is ==still faithful==! The overall algorithm looks like</p>
+<p>Hence we have a <strong>synthetic text and MR</strong> pair, but the pair is <mark>still faithful</mark>! The overall algorithm looks like</p>
 
 <p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220406171201842.png" alt="image-20220406171201842" style="zoom: 50%;" /></p>
 
@@ -4272,7 +4272,7 @@ So in NLP we usually ==use non-parametric tests based on sampling==.</li>
 <p>Here we will see:</p>
 
 <ul>
-  <li><strong>Greedy Search</strong>: what we do most of the time, so that at each time $t$ of decoding, we pick the single most probable words. However, the problem is that this ==might not generate the most probable sequence==</li>
+  <li><strong>Greedy Search</strong>: what we do most of the time, so that at each time $t$ of decoding, we pick the single most probable words. However, the problem is that this <mark>might not generate the most probable sequence</mark></li>
   <li><strong>Beam Search</strong>: Beam search reduces the risk of missing hidden high probability word sequences by keeping the most likely num_beams of hypotheses at each time step and eventually choosing the hypothesis that has the overall highest probability. But still, it does not solve the problem.</li>
   <li><strong>Top-k Sampling</strong>: it is a <em>sampling</em> method (i.e. randomly choose) from the Top-$k$ most likely next word based on redistributing the probability mass only among those $k$ words</li>
   <li><strong>Temperature Sampling</strong>: essentially rescaling the probability by temperature $T$, such that with $T$ is low only high energy (probability) would be “survive”, and when $T$ is high, low energy states gets a greater chance than before to be sampled.</li>
@@ -4317,7 +4317,7 @@ So in NLP we usually ==use non-parametric tests based on sampling==.</li>
 <h3 id="temperature-sampling">Temperature Sampling</h3>
 
 <blockquote>
-  <p><strong>Temperature sampling</strong> works by increasing the probability of the most likely words before sampling. The idea is borrowed from thermodynamics where essentially ==energy $\approx$ probability== so that:</p>
+  <p><strong>Temperature sampling</strong> works by increasing the probability of the most likely words before sampling. The idea is borrowed from thermodynamics where essentially <mark>energy $\approx$ probability</mark> so that:</p>
 
   <ul>
     <li>
@@ -4380,7 +4380,7 @@ So in NLP we usually ==use non-parametric tests based on sampling==.</li>
 
 \[p(y_{i+1}|y_{i-L+1:i})\]
 
-      <p>for a window size of $L$ (depending on your machine’s memory for NN models) and $y_{i-L+1:i}$ are the words generated so far. Note that this is basically ==language models==</p>
+      <p>for a window size of $L$ (depending on your machine’s memory for NN models) and $y_{i-L+1:i}$ are the words generated so far. Note that this is basically <mark>language models</mark></p>
 
 \[p(w_{i+1}|w_{i-L+1:i})\]
 
@@ -4391,7 +4391,7 @@ So in NLP we usually ==use non-parametric tests based on sampling==.</li>
 
 \[p(y_{i+1}|\vec{x},y_{i-L+1:i})\]
 
-      <p>which you will see is what ==summarization/conditional generation== is essentially about: modelling the above probability with some neural network.</p>
+      <p>which you will see is what <mark>summarization/conditional generation</mark> is essentially about: modelling the above probability with some neural network.</p>
     </li>
   </ul>
 </blockquote>
@@ -4414,7 +4414,7 @@ So in NLP we usually ==use non-parametric tests based on sampling==.</li>
   <li><strong>generic</strong> v.s. <strong>user-focused</strong>: decides if we should use layman terms (e.g. commonly when in medical/legal domain, use professional terms)</li>
 </ul>
 
-<p>Here, we will focus on mainly doing ==informative== summarization and compare:</p>
+<p>Here, we will focus on mainly doing <mark>informative</mark> summarization and compare:</p>
 
 <ul>
   <li>simple task of <strong>extractive</strong> summary</li>
@@ -4486,7 +4486,7 @@ So in NLP we usually ==use non-parametric tests based on sampling==.</li>
   </li>
 </ul>
 
-<p>You will soon seen in the <a href="#Attention Based Summarizer">Attention Based Summarizer</a> how this probability $\log p(\vec{y} \vert  \vec{x})$ can be ==modelled using a neural network==.</p>
+<p>You will soon seen in the <a href="#Attention Based Summarizer">Attention Based Summarizer</a> how this probability $\log p(\vec{y} \vert  \vec{x})$ can be <mark>modelled using a neural network</mark>.</p>
 
 <h3 id="attention-based-summarizer">Attention Based Summarizer</h3>
 
@@ -4526,7 +4526,7 @@ So in NLP we usually ==use non-parametric tests based on sampling==.</li>
 <p>being our model.</p>
 
 <blockquote>
-  <p>Then for ==NN based model==, essentially the idea is to do:</p>
+  <p>Then for <mark>NN based model</mark>, essentially the idea is to do:</p>
 
 \[p_\theta(y_{i+1}|\vec{x},\vec{y}_C) = \text{Softmax}(W \, \text{repr}(\vec{x},\vec{y}_C)) \in \mathbb{R}^{|V|}\]
 
@@ -4548,10 +4548,10 @@ So in NLP we usually ==use non-parametric tests based on sampling==.</li>
 
 <ul>
   <li>
-    <p><strong>encoder</strong>: do the $\text{enc}(\vec{x},\vec{y}_C)$ part and ==get a vector of hidden dimension $H$==</p>
+    <p><strong>encoder</strong>: do the $\text{enc}(\vec{x},\vec{y}_C)$ part and <mark>get a vector of hidden dimension $H$</mark></p>
   </li>
   <li>
-    <p><strong>decoder</strong>: do the $\text{Softmax}(V\vec{h} + W\,\text{enc}(\vec{x},\vec{y}_C))$ part with ==auto-regressive generation==</p>
+    <p><strong>decoder</strong>: do the $\text{Softmax}(V\vec{h} + W\,\text{enc}(\vec{x},\vec{y}_C))$ part with <mark>auto-regressive generation</mark></p>
   </li>
 </ul>
 
@@ -4647,7 +4647,7 @@ So in NLP we usually ==use non-parametric tests based on sampling==.</li>
 <p>where here $\text{repr}(\vec{x},\vec{y}_C)$ would come from weigths that does:</p>
 
 <ul>
-  <li>embedding of $\vec{x}, \vec{y}<em>c$ using ==two networks== $f</em>\theta(\vec{x}),g_\phi(\vec{y})$
+  <li>embedding of $\vec{x}, \vec{y}<em>c$ using <mark>two networks</mark> $f</em>\theta(\vec{x}),g_\phi(\vec{y})$
     <ul>
       <li>in contrast to generation with <strong>GPT</strong>, which only has a single network for encoding $f_\theta(\vec{x}), f_\theta(\vec{y})$</li>
     </ul>
@@ -4657,7 +4657,7 @@ So in NLP we usually ==use non-parametric tests based on sampling==.</li>
 </ul>
 
 <blockquote>
-  <p>But essentially we <strong>comes down to having some good encoding network</strong>. Therefore BART consider ==pre-train tasks== of corrupting documents and then optimizing a <strong>reconstruction</strong> loss:</p>
+  <p>But essentially we <strong>comes down to having some good encoding network</strong>. Therefore BART consider <mark>pre-train tasks</mark> of corrupting documents and then optimizing a <strong>reconstruction</strong> loss:</p>
 
   <p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220412020232001.png" alt="image-20220412020232001" style="zoom:50%;" /></p>
 
@@ -4705,10 +4705,10 @@ So in NLP we usually ==use non-parametric tests based on sampling==.</li>
       <li>also it uses the same encoding network at all times</li>
     </ul>
   </li>
-  <li><strong>BART</strong>: Inputs to the encoder need not be aligned with decoder outputs, ==allowing arbitrary noise transformations==, i.e. can generate “new words” for tasks such as summarization.
+  <li><strong>BART</strong>: Inputs to the encoder need not be aligned with decoder outputs, <mark>allowing arbitrary noise transformations</mark>, i.e. can generate “new words” for tasks such as summarization.
     <ul>
       <li>then the <em>likelihood of the original document</em> (right) is calculated with an autoregressive decoder</li>
-      <li>notice that the <strong>order changed</strong> as this is allowed for encoder-decoder type model! We are using ==two networks== $f_\theta(\vec{x}),g_\phi(\vec{y})$ for encoding the input and the output generated differently, as their interaction could be complex</li>
+      <li>notice that the <strong>order changed</strong> as this is allowed for encoder-decoder type model! We are using <mark>two networks</mark> $f_\theta(\vec{x}),g_\phi(\vec{y})$ for encoding the input and the output generated differently, as their interaction could be complex</li>
     </ul>
   </li>
 </ul>
@@ -4772,7 +4772,7 @@ So in NLP we usually ==use non-parametric tests based on sampling==.</li>
     </ul>
   </li>
   <li>
-    <p><strong>Speech/Dialog Acts</strong>: each utterance in a dialogue is a kind of action being performed by the speaker. Basically expresses an important component of the ==intention of the speaker== (or writer) in saying what they said</p>
+    <p><strong>Speech/Dialog Acts</strong>: each utterance in a dialogue is a kind of action being performed by the speaker. Basically expresses an important component of the <mark>intention of the speaker</mark> (or writer) in saying what they said</p>
   </li>
   <li>
     <p><strong>Grounding</strong>: acknowledging that the hearer has understood the speaker (e.g. saying “OK”, as the agent does in A8 or A10.)</p>
@@ -4884,7 +4884,7 @@ h_r = \text{BERT}_R(r)[CLS]\]
 
 <hr />
 
-<p><strong>Generation Based</strong>: think of response production as an encoder-decoder task — ==transducing from the user’s prior turn to the system’s turn==. So basically can treat it as a kind of translation.</p>
+<p><strong>Generation Based</strong>: think of response production as an encoder-decoder task — <mark>transducing from the user’s prior turn to the system’s turn</mark>. So basically can treat it as a kind of translation.</p>
 
 <p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220414002318125.png" alt="image-20220414002318125" style="zoom:50%;" /></p>
 
@@ -4916,7 +4916,7 @@ h_r = \text{BERT}_R(r)[CLS]\]
   <li>A <strong>frame</strong> is a kind of knowledge structure representing the kinds of intentions the system can extract from user</li>
   <li>A frame consists of a collection of <strong>slots</strong>, each of which can take a set of possible <strong>values</strong>.
     <ul>
-      <li>basically specifies what the system ==needs to know==</li>
+      <li>basically specifies what the system <mark>needs to know</mark></li>
     </ul>
   </li>
   <li>A set of frames is sometimes called a <strong>domain ontology</strong>.</li>
@@ -5105,7 +5105,7 @@ h_r = \text{BERT}_R(r)[CLS]\]
   <li>etc.</li>
 </ul>
 
-<p>Learning a <strong>best policy</strong> would be done by ==reinforcement learning== system gets a <strong>reward at the end of the dialogue</strong>, and uses that reward to train a policy to take actions.</p>
+<p>Learning a <strong>best policy</strong> would be done by <mark>reinforcement learning</mark> system gets a <strong>reward at the end of the dialogue</strong>, and uses that reward to train a policy to take actions.</p>
 
 <p>Additionally, this module might need to take on task of choosing some attributes (slots and values) which plans on what to say to the user, before feeding into the NLG module.</p>
 
@@ -5202,7 +5202,7 @@ h_r = \text{BERT}_R(r)[CLS]\]
 
 <p><strong>Semantic Challenges</strong></p>
 
-<p>Many large models are able to make language generation fluent, but they often ==do not understand deep level semantics== of the language (e.g. Microsoft’s Tay AI), which can lead to unsafe systems.</p>
+<p>Many large models are able to make language generation fluent, but they often <mark>do not understand deep level semantics</mark> of the language (e.g. Microsoft’s Tay AI), which can lead to unsafe systems.</p>
 
 <p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220418202331875.png" alt="image-20220418202331875" style="zoom: 33%;" /></p>
 
@@ -5462,7 +5462,7 @@ h_r = \text{BERT}_R(r)[CLS]\]
 
 <p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220418165357936.png" alt="image-20220418165357936" style="zoom:50%;" /></p>
 
-<p>Why can human do so well? Where ==error analysis becomes important==!</p>
+<p>Why can human do so well? Where <mark>error analysis becomes important</mark>!</p>
 
 <h4 id="error-analysis-unfaithful-outputs">Error Analysis: Unfaithful Outputs</h4>
 
@@ -5474,7 +5474,7 @@ h_r = \text{BERT}_R(r)[CLS]\]
 
 <p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220418165535004.png" alt="image-20220418165535004" style="zoom:50%;" /></p>
 
-<p>This can be dangerous in <strong>deployment</strong>. Therefore one approach is to have a ==safety net== that can <strong>rank</strong> which responses is better</p>
+<p>This can be dangerous in <strong>deployment</strong>. Therefore one approach is to have a <mark>safety net</mark> that can <strong>rank</strong> which responses is better</p>
 
 <ol>
   <li>
@@ -5490,7 +5490,7 @@ h_r = \text{BERT}_R(r)[CLS]\]
     <p>given some sampled $N$ samples, with the intent and semantic slot, rank those responses by a human in the loop</p>
   </li>
   <li>
-    <p>once we have samples of human ranking, ==train a classifier== to rank it</p>
+    <p>once we have samples of human ranking, <mark>train a classifier</mark> to rank it</p>
 
     <p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220418211910164.png" alt="image-20220418211910164" style="zoom: 33%;" /></p>
   </li>
@@ -5524,7 +5524,7 @@ h_r = \text{BERT}_R(r)[CLS]\]
 <p>where we see that there is a wide variety of actions to take than <strong>credibility appeals</strong> when persuading people.</p>
 
 <ul>
-  <li>Therefore, we also need <strong>persuasion strategies</strong> (i.e. <em>how</em> to persuade), ==in addition== of the dialog act of <code class="language-plaintext highlighter-rouge">propose-donation</code> (by the DPL module, on <em>what</em> to do next)</li>
+  <li>Therefore, we also need <strong>persuasion strategies</strong> (i.e. <em>how</em> to persuade), <mark>in addition</mark> of the dialog act of <code class="language-plaintext highlighter-rouge">propose-donation</code> (by the DPL module, on <em>what</em> to do next)</li>
 </ul>
 
 <p><img src="/lectures/images/2022-03-30-COMS4705_NLP/image-20220418170330288.png" alt="image-20220418170330288" style="zoom: 50%;" /></p>
@@ -5704,7 +5704,7 @@ h_r = \text{BERT}_R(r)[CLS]\]
   </li>
 </ul>
 
-<p>In general, on common application of this is to make it ==perform well under few-shot conditions==.</p>
+<p>In general, on common application of this is to make it <mark>perform well under few-shot conditions</mark>.</p>
 
 <table>
   <thead>
@@ -5729,7 +5729,7 @@ h_r = \text{BERT}_R(r)[CLS]\]
   <li>we want the model to <strong>perform well in test support and test query</strong></li>
 </ul>
 
-<p>Therefore, we want to ==simulate the testing environment== during our training procedure</p>
+<p>Therefore, we want to <mark>simulate the testing environment</mark> during our training procedure</p>
 
 <ul>
   <li>just like normal model training where our train/test environment are <strong>both classification</strong>, here our train/test environment should <strong>both be few-shot learning</strong></li>
@@ -5761,14 +5761,14 @@ h_r = \text{BERT}_R(r)[CLS]\]
   <p>The goal of few-shot meta-learning is to train a model $f_\theta$ that can quickly adapt to a new task using only a few datapoints and training update iterations to $\theta$.</p>
 
   <ul>
-    <li>in other words, we want some ==good initialization of $\theta_0$== (learnt from other tasks as a “warm start”) such that in a new task it learns fast with only few samples</li>
+    <li>in other words, we want some <mark>good initialization of $\theta_0$</mark> (learnt from other tasks as a “warm start”) such that in a new task it learns fast with only few samples</li>
   </ul>
 </blockquote>
 
 <p>So how do we get such a handy $\theta_0$? In effect, the meta-learning problem <strong>treats entire tasks as training examples</strong>, i.e. we consider</p>
 
 <ul>
-  <li>==a distribution over tasks $p(T)$== that we want our model to adapt to</li>
+  <li><mark>a distribution over tasks $p(T)$</mark> that we want our model to adapt to</li>
   <li>for each task $T_i$ could have its own loss $\mathcal{L}_{T_i}$ and its training data distribution $q_i(x)$</li>
 </ul>
 
@@ -5787,7 +5787,7 @@ h_r = \text{BERT}_R(r)[CLS]\]
 
         <ol>
           <li>sample  a task $T_i$, e.g. compare “cat v.s. dog”</li>
-          <li>draw $K$ samples from $q_i(x)$ for training, known as ==support set==</li>
+          <li>draw $K$ samples from $q_i(x)$ for training, known as <mark>support set</mark></li>
           <li>compute its loss $L_{T_i}(f_\theta)$ using the $\theta$ initialization</li>
           <li>update/see how well this initialization works by doing a few descents:</li>
         </ol>
@@ -5808,7 +5808,7 @@ h_r = \text{BERT}_R(r)[CLS]\]
             <p>$f_{\theta_i’}$ is like the same model “fine-tuned” on task $T_i$.</p>
           </li>
           <li>
-            <p>$L_{T_i}(f_{\theta_i’})$ will now be evaluated on the <strong>new samples</strong> from $q_i(x)$, known as the ==query set== to test its generalization ability as well</p>
+            <p>$L_{T_i}(f_{\theta_i’})$ will now be evaluated on the <strong>new samples</strong> from $q_i(x)$, known as the <mark>query set</mark> to test its generalization ability as well</p>
           </li>
           <li>
             <p>since we are taking derivative w.r.t $\theta$, and we know (if only doing a single iteration)</p>
@@ -5822,7 +5822,7 @@ h_r = \text{BERT}_R(r)[CLS]\]
     </ol>
   </li>
   <li>
-    <p>output the learnt $\theta$ being the ==better “initialization” parameters for your model $f_\theta$ which is ready for other tasks==</p>
+    <p>output the learnt $\theta$ being the <mark>better "initialization" parameters for your model $f_\theta$ which is ready for other tasks</mark></p>
   </li>
 </ol>
 
@@ -5951,7 +5951,7 @@ h_r = \text{BERT}_R(r)[CLS]\]
     <p>for transfer learning, we want to start with $\theta$ that works best in one domain and then <strong>move to others</strong></p>
   </li>
   <li>
-    <p>for meta learning, you want to get $\theta$ such that it works ==best at adapation== (in all directions)</p>
+    <p>for meta learning, you want to get $\theta$ such that it works <mark>best at adapation</mark> (in all directions)</p>
   </li>
 </ul>
 
@@ -5994,7 +5994,7 @@ h_r = \text{BERT}_R(r)[CLS]\]
     <p>the grey ones are the few-shot examples, the black texts are the machines’ output</p>
   </li>
   <li>
-    <p>so that essentially it is few shot learning ==without updating weights==</p>
+    <p>so that essentially it is few shot learning <mark>without updating weights</mark></p>
   </li>
 </ul>
 
@@ -6019,7 +6019,7 @@ h_r = \text{BERT}_R(r)[CLS]\]
 <p>so that essentially:</p>
 
 <ul>
-  <li>it is <strong>fine-tuning</strong> but the training set is a ==concatenation of support set and query set==</li>
+  <li>it is <strong>fine-tuning</strong> but the training set is a <mark>concatenation of support set and query set</mark></li>
   <li>since it is a concatenation, the problem becomes memory constraint.</li>
   <li>such an update method is also model agnostic</li>
 </ul>
@@ -6052,7 +6052,7 @@ h_r = \text{BERT}_R(r)[CLS]\]
 <h2 id="bias-in-word-embeddings">Bias in Word Embeddings</h2>
 
 <blockquote>
-  <p>In machine learning, essentially bias refers to <strong>prior information/the priors</strong>. The are ==problematic when== such information is derived from aspects of human culture known to lead to harmful behavior</p>
+  <p>In machine learning, essentially bias refers to <strong>prior information/the priors</strong>. The are <mark>problematic when</mark> such information is derived from aspects of human culture known to lead to harmful behavior</p>
 
   <ul>
     <li>e.g. Word2Vec: “Man is to computer programmer as woman is to homemaker.”</li>
@@ -6327,7 +6327,7 @@ h_r = \text{BERT}_R(r)[CLS]\]
   <li><strong>GN-GLOVE:</strong> use a <strong>loss function</strong> during training that aims to <strong>reduce bias</strong></li>
 </ul>
 
-<p>However, the quick conclusion is that even those does remove surface level bias (the word embedding itself may not be biased), it does <strong>not</strong> reduce ==hidden biases== such as “doctor” and “boss” having a similar embedding v.s. “nurse” and “teacher”</p>
+<p>However, the quick conclusion is that even those does remove surface level bias (the word embedding itself may not be biased), it does <strong>not</strong> reduce <mark>hidden biases</mark> such as “doctor” and “boss” having a similar embedding v.s. “nurse” and “teacher”</p>
 
 <h3 id="de-bias-via-post-processing">De-bias via Post Processing</h3>
 

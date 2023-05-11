@@ -13,11 +13,11 @@
 <meta property="og:url" content="/lectures/2021@columbia/COMS4111_Intro_to_Databases.html/" />
 <meta property="og:site_name" content="Lecture Notes" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2021-04-22T00:00:00-04:00" />
+<meta property="article:published_time" content="2021-04-22T00:00:00+00:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="COMS4111 Intro to Databases" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2021-04-22T00:00:00-04:00","datePublished":"2021-04-22T00:00:00-04:00","description":"An inexhaustive collection of markdown/latex(PDF) notes that I took since college.","headline":"COMS4111 Intro to Databases","mainEntityOfPage":{"@type":"WebPage","@id":"/lectures/2021@columbia/COMS4111_Intro_to_Databases.html/"},"url":"/lectures/2021@columbia/COMS4111_Intro_to_Databases.html/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2021-04-22T00:00:00+00:00","datePublished":"2021-04-22T00:00:00+00:00","description":"An inexhaustive collection of markdown/latex(PDF) notes that I took since college.","headline":"COMS4111 Intro to Databases","mainEntityOfPage":{"@type":"WebPage","@id":"/lectures/2021@columbia/COMS4111_Intro_to_Databases.html/"},"url":"/lectures/2021@columbia/COMS4111_Intro_to_Databases.html/"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/lectures/assets/main.css"><link type="application/atom+xml" rel="alternate" href="/lectures/feed.xml" title="Lecture Notes" /></head>
 <body><header class="site-header">
@@ -66,7 +66,7 @@
   </head>
   <header class="post-header">
     <h1 class="post-title p-name" itemprop="name headline">COMS4111 Intro to Databases</h1>
-    <p class="post-meta"><time class="dt-published" datetime="2021-04-22T00:00:00-04:00" itemprop="datePublished">
+    <p class="post-meta"><time class="dt-published" datetime="2021-04-22T00:00:00+00:00" itemprop="datePublished">
         Apr 22, 2021
       </time></p>
   </header>
@@ -4969,7 +4969,7 @@ In general, **clustered index** would be faster, because: if I am fetching `key=
 
 &lt;img src="/lectures/images/2021-04-22-COMS4111_Intro_to_Databases/Snipaste_2021-03-27_15-29-16.png" style="zoom:50%;" /&gt;
 
-==TODO== this should be data entries? Yes, should be data entries
+&lt;mark&gt;TODO&lt;/mark&gt; this should be data entries? Yes, should be data entries
 
 &gt; **Note**
 &gt;
@@ -5285,14 +5285,14 @@ Then:
 
 However, since the idea is to **add the result if there is a MATCHING** from a record in table R and a (or many) record in S, we could do:
 
-- if we have a ==B-Tree indexing== on the column of *one of the relation*\]
+- if we have a &lt;mark&gt;B-Tree indexing&lt;/mark&gt; on the column of *one of the relation*\]
 
 <p>M_R + [(M_R \times p) \times 3]</p>
 
 \[- this makes sense because for each record of $R$, we just needed *$3$ Disk Access (B-Tree traversal)* to find out if there is an **equivalent** entry on $S$
   - we *only needed to read the entire table $R$* ($M_R$ Disk Accesses since we read by page) in the beginning, and THEN do the search.
 
-- if we have a ==Hash Table== indexing, then obviously:\]
+- if we have a &lt;mark&gt;Hash Table&lt;/mark&gt; indexing, then obviously:\]
 
 <p>M_R + [(M_R \times p) \times 1]</p>
 
@@ -5498,13 +5498,13 @@ This is extremely  useful when you are doing some sort of **concurrent execution
 
 A transaction might **commit** after completing all its actions, or it could **abort** (or be aborted by the DBMS) after executing some actions.
 
-- therefore, either this thing ==executed completely==, or ==none==
+- therefore, either this thing &lt;mark&gt;executed completely&lt;/mark&gt;, or &lt;mark&gt;none&lt;/mark&gt;
 
 &gt; **Atomicity of Transactions**
 &gt;
 &gt; - Transactions are executing **all** its actions in **one step**, or **not** executing **any actions at all**
 &gt;   - i.e. all in or nothing
-&gt;   - this is achieved by DBMS logs, which records all actions, so that it can ==undo/roll back== the **uncommitted**/aborted transactions. (The idea is exactly the same as *journaling in OS*)
+&gt;   - this is achieved by DBMS logs, which records all actions, so that it can &lt;mark&gt;undo/roll back&lt;/mark&gt; the **uncommitted**/aborted transactions. (The idea is exactly the same as *journaling in OS*)
 
 &lt;u&gt;*For Example:*&lt;/u&gt;
 
@@ -5519,7 +5519,7 @@ Then, technically *data is not there* even if you committed.
 However, the next time you boot up:
 
 - DBMS checks the log, and the **commits** to see if the Disks have it
-- if not, ==redo the committed transactions== so the disk is up-to-date
+- if not, &lt;mark&gt;redo the committed transactions&lt;/mark&gt; so the disk is up-to-date
 
 Therefore, it's basically the same idea as *journaling in OS*.
 
@@ -5552,7 +5552,7 @@ which *intends to*
 - first transaction is transferring $100 from B’s account to A’s account.  
 - second is crediting both accounts with a 6% interest payment.
 
-==If both are submitted together==, i .e. concurrency, we need to make sure the **net effect** is that these two transactions running ==serially== in some order.
+&lt;mark&gt;If both are submitted together&lt;/mark&gt;, i .e. concurrency, we need to make sure the **net effect** is that these two transactions running &lt;mark&gt;serially&lt;/mark&gt; in some order.
 
 &lt;u&gt;*For Example:*&lt;/u&gt;
 
@@ -5591,7 +5591,7 @@ A schedule is a basically a series of (scheduled) executions.
 &gt;   - simplest thing. Nothing special to do.
 &gt; - **Equivalent** schedules:  For any database state, the effect (on the set of objects in the database) of executing the first schedule is *identical to the effect* of executing the second schedule.
 &gt; - **Serializable** schedule:  A schedule that is equivalent to some serial execution of the transactions.
-&gt;   - A concurrent (**interleaved**) execution of two or more transactions is ==correct== if their ==execution is serializable==
+&gt;   - A concurrent (**interleaved**) execution of two or more transactions is &lt;mark&gt;correct&lt;/mark&gt; if their &lt;mark&gt;execution is serializable&lt;/mark&gt;
 
 The above defined what it means to have some *correct* concurrent transactions.
 
@@ -5610,8 +5610,8 @@ Then, we can have some possible *results*:
 
 where:
 
-- the ==result== of 1 and 2 are *serializable*, because they are **serial** (in transaction) already $\to$ both are possibly ==correct==
-- thee ==result== of 3 is *not serializable*, since the only two possible serialized result is $x=40,x=4$ $\to$ this one is ==incorrect==
+- the &lt;mark&gt;result&lt;/mark&gt; of 1 and 2 are *serializable*, because they are **serial** (in transaction) already $\to$ both are possibly &lt;mark&gt;correct&lt;/mark&gt;
+- thee &lt;mark&gt;result&lt;/mark&gt; of 3 is *not serializable*, since the only two possible serialized result is $x=40,x=4$ $\to$ this one is &lt;mark&gt;incorrect&lt;/mark&gt;
 
 ### Anomalies of Interleaved Execution
 
@@ -5659,13 +5659,13 @@ From the above examples, we can conclude what are some **conflicted/critical ope
 
 &gt; **Read/Write Conflicts**
 &gt;
-&gt; - `R(x)`: ==conflicts== with `W(x)`
+&gt; - `R(x)`: &lt;mark&gt;conflicts&lt;/mark&gt; with `W(x)`
 &gt;   - e.g. [Read-Write Conflicts] $T_1$ does read to `x`,  $T_2$ does write to `x`, and $T_1$ does read to `x`
-&gt; - `W(x)`: ==conflicts== with both `R(x)` and `W(x)`
+&gt; - `W(x)`: &lt;mark&gt;conflicts&lt;/mark&gt; with both `R(x)` and `W(x)`
 &gt;   - e.g. [Dirty Read]  $T_1$ does write to `x`, and $T_2$ does read to `x`
 &gt;   - e.g. [Overwriting] $T_1$ does a write to `x`, then $T_2$ also does a write to `x`
 &gt;
-&gt; All of the above are conflicts if ==the conflict operation of $T_2$ happened INSIDE/BEFORE $T_1$ commits==
+&gt; All of the above are conflicts if &lt;mark&gt;the conflict operation of $T_2$ happened INSIDE/BEFORE $T_1$ commits&lt;/mark&gt;
 
 Basically, only `R(x)` does not conflict with `R(x)`.
 
@@ -5679,8 +5679,8 @@ Now, we know what could goes to conflict, we need to have a way to decide **whic
 &gt;
 &gt; - A directed graph in which 
 &gt;   - **nodes** represent transactions in a schedule $S$ (T1, T2, etc)
-&gt;   - An edge $T_i \to T_j$, $i \neq j$, means that one of $T_i$'s operations **precedes** and **conflicts** ==one== of $T_j$'s ops. 
-&gt; - A schedule $S$ is ==serializable== if its $PG$ has **no cycles.** 
+&gt;   - An edge $T_i \to T_j$, $i \neq j$, means that one of $T_i$'s operations **precedes** and **conflicts** &lt;mark&gt;one&lt;/mark&gt; of $T_j$'s ops. 
+&gt; - A schedule $S$ is &lt;mark&gt;serializable&lt;/mark&gt; if its $PG$ has **no cycles.** 
 
 &lt;u&gt;*For Example:*&lt;/u&gt;\]
 
@@ -5705,14 +5705,14 @@ There is a cycle, so this **schedule is not serializable**.
 &gt;
 &gt; This works simply because:
 &gt;
-&gt; - If ==an edge $T_i \to T_j$ exists== in the precedence graph, then, in any serial schedule $S′$ ==equivalent== to $S$, we will have ==$T_i$ must appear before $T_j$.==
+&gt; - If &lt;mark&gt;an edge $T_i \to T_j$ exists&lt;/mark&gt; in the precedence graph, then, in any serial schedule $S′$ &lt;mark&gt;equivalent&lt;/mark&gt; to $S$, we will have &lt;mark&gt;$T_i$ must appear before $T_j$.&lt;/mark&gt;
 &gt;   - i.e. $T_1$ **precedes** $T_2$, this means the **net result is equivalent to $T_2$ happening after** $T_1$
 &gt;   - i.e. the work that $T_2$ did **overwrites** the work of $T_1$, so net result is equivalent to $T_2$ happening serially after.
 &gt; - Therefore, if you have a cycle, then it is not serializable.
 
 ### Equivalent Serial Schedule
 
-Now, if we have a *serializable schedule*, when we should be able to **do a topological sort** that produces (**one of the possible**) ==serialized== transactions.
+Now, if we have a *serializable schedule*, when we should be able to **do a topological sort** that produces (**one of the possible**) &lt;mark&gt;serialized&lt;/mark&gt; transactions.
 
 &gt; **Topological Sort**
 &gt;
@@ -5763,7 +5763,7 @@ where we see conflicts:</p>
         <li>i.e. the work that $T_2$ did <strong>overwrites</strong> the work of $T_1$, so net result is <strong>equivalent to $T_2$ happening serially after.</strong></li>
       </ul>
     </li>
-    <li>Therefore, if $T_i$ has <code class="language-plaintext highlighter-rouge">indegree=0</code>, then $T_i$ basically ==precedes everyone==
+    <li>Therefore, if $T_i$ has <code class="language-plaintext highlighter-rouge">indegree=0</code>, then $T_i$ basically <mark>precedes everyone</mark>
       <ul>
         <li>i.e. the <strong>net equivalent serial version</strong> will have $T_1$ going first</li>
       </ul>
@@ -5781,12 +5781,12 @@ where we see conflicts:</p>
   <ul>
     <li>Each Transaction must obtain
       <ul>
-        <li>a <code class="language-plaintext highlighter-rouge">S</code> or <code class="language-plaintext highlighter-rouge">R</code> ==(shared) lock== on object before <strong>reading</strong>
+        <li>a <code class="language-plaintext highlighter-rouge">S</code> or <code class="language-plaintext highlighter-rouge">R</code> <mark>(shared) lock</mark> on object before <strong>reading</strong>
           <ul>
             <li>i.e. <code class="language-plaintext highlighter-rouge">R(x)</code> followed by <code class="language-plaintext highlighter-rouge">R(x)</code> is ok (of different transactions)</li>
           </ul>
         </li>
-        <li>an <code class="language-plaintext highlighter-rouge">X</code> or <code class="language-plaintext highlighter-rouge">W</code> ==(exclusive) lock== on object before <strong>writing</strong>.
+        <li>an <code class="language-plaintext highlighter-rouge">X</code> or <code class="language-plaintext highlighter-rouge">W</code> <mark>(exclusive) lock</mark> on object before <strong>writing</strong>.
           <ul>
             <li>i.e. <code class="language-plaintext highlighter-rouge">R(x)</code> followed by <code class="language-plaintext highlighter-rouge">W(x)</code> is <strong>not</strong> ok (of different transactions)</li>
             <li>i.e. <code class="language-plaintext highlighter-rouge">W(x)</code> followed by <code class="language-plaintext highlighter-rouge">W(x)</code> is <strong>not</strong> ok (of different transactions)</li>
@@ -5794,7 +5794,7 @@ where we see conflicts:</p>
         </li>
       </ul>
     </li>
-    <li>All <strong>locks</strong> held by a transaction are <strong>released</strong> when the ==transaction completes==
+    <li>All <strong>locks</strong> held by a transaction are <strong>released</strong> when the <mark>transaction completes</mark>
       <ul>
         <li>(Non-strict) 2PL Variant: Release locks anytime, but cannot acquire locks after releasing any lock.</li>
       </ul>
@@ -5878,7 +5878,7 @@ where we see conflicts:</p>
     <tr>
       <td> </td>
       <td>W(x)</td>
-      <td>Blocked until <code class="language-plaintext highlighter-rouge">R(x)</code> released -&gt; ==Deadlock==</td>
+      <td>Blocked until <code class="language-plaintext highlighter-rouge">R(x)</code> released -&gt; <mark>Deadlock</mark></td>
     </tr>
   </tbody>
 </table>
@@ -5924,7 +5924,7 @@ where we see conflicts:</p>
     <tr>
       <td> </td>
       <td>W(x)</td>
-      <td>Blocked until <code class="language-plaintext highlighter-rouge">R(x)</code> released -&gt; ==Deadlock==</td>
+      <td>Blocked until <code class="language-plaintext highlighter-rouge">R(x)</code> released -&gt; <mark>Deadlock</mark></td>
     </tr>
   </tbody>
 </table>
@@ -5989,14 +5989,14 @@ Excluded: all other topics, namely, Normalization (deck 07), and Embedded SQL, A
   <li>Lecture #11 to #12: Included: Transaction Processing, only the first part that deals with Concurrency Control and at the level of detail covered in class (deck 50, slides &lt;= 16 only). Excluded: Recovery (deck 50, slides &gt; 16) and everything in Lecture #12.</li>
 </ol>
 
-<p>==Difficulty==:</p>
+<p><mark>Difficulty</mark>:</p>
 
 <ul>
   <li><strong>Homework</strong> level.</li>
   <li>B+-Tree would be by default level <code class="language-plaintext highlighter-rouge">3</code> for lookup</li>
 </ul>
 
-<p>==Difference== between Midterm</p>
+<p><mark>Difference</mark> between Midterm</p>
 
 <ul>
   <li>Query optimization (indexes and storages)</li>
@@ -6009,7 +6009,7 @@ Excluded: all other topics, namely, Normalization (deck 07), and Embedded SQL, A
   <p><strong>This section is of course not included in the final</strong></p>
 </blockquote>
 
-<p>Some topics below are also discussed in ==4112==:</p>
+<p>Some topics below are also discussed in <mark>4112</mark>:</p>
 
 <ul>
   <li>Main memory and <strong>SSDs databases</strong></li>
@@ -6020,7 +6020,7 @@ Excluded: all other topics, namely, Normalization (deck 07), and Embedded SQL, A
   <li>Big data, data analytics, data warehousing, decision support</li>
 </ul>
 
-<p>Some topics discussed in ==6111==:</p>
+<p>Some topics discussed in <mark>6111</mark>:</p>
 
 <ul>
   <li>Information retrieval &amp; databases (<strong>Web search, i.e. Google Search</strong>, web scrapers, XML)</li>
@@ -6064,7 +6064,7 @@ Excluded: all other topics, namely, Normalization (deck 07), and Embedded SQL, A
 
 <hr />
 
-<p>Print the name of students who have enrolled in ==all courses== offered by the ‘Chemical Engineering’ department.</p>
+<p>Print the name of students who have enrolled in <mark>all courses</mark> offered by the ‘Chemical Engineering’ department.</p>
 
 <div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="o">*</span>
 <span class="k">From</span> <span class="n">Student</span> <span class="n">s</span>
@@ -6105,7 +6105,7 @@ Excluded: all other topics, namely, Normalization (deck 07), and Embedded SQL, A
 
 <hr />
 
-<p>Print the name and age of the student(s) with the highest GPA in ==their exact age group==</p>
+<p>Print the name and age of the student(s) with the highest GPA in <mark>their exact age group</mark></p>
 
 <div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="o">*</span>
 <span class="k">FROM</span> <span class="n">student</span> <span class="n">s</span>
@@ -6157,7 +6157,7 @@ Excluded: all other topics, namely, Normalization (deck 07), and Embedded SQL, A
 <p>Step 2:</p>
 
 <ul>
-  <li>==for each student==, find the <strong>department’s corresponding</strong> <code class="language-plaintext highlighter-rouge">MAX(GPA)</code></li>
+  <li><mark>for each student</mark>, find the <strong>department’s corresponding</strong> <code class="language-plaintext highlighter-rouge">MAX(GPA)</code></li>
 </ul>
 
 <hr />
@@ -6323,7 +6323,7 @@ Excluded: all other topics, namely, Normalization (deck 07), and Embedded SQL, A
   <p><strong>Note</strong></p>
 
   <ul>
-    <li>the keywords are ==only== available for the trigger with <code class="language-plaintext highlighter-rouge">AFTER event_list ON table </code></li>
+    <li>the keywords are <mark>only</mark> available for the trigger with <code class="language-plaintext highlighter-rouge">AFTER event_list ON table </code></li>
   </ul>
 </blockquote>
 
@@ -6354,7 +6354,7 @@ Excluded: all other topics, namely, Normalization (deck 07), and Embedded SQL, A
 <p>where:</p>
 
 <ul>
-  <li><code class="language-plaintext highlighter-rouge">tsvector</code> basically can <strong>convert a string to ==words== as their occurrences</strong></li>
+  <li><code class="language-plaintext highlighter-rouge">tsvector</code> basically can <strong>convert a string to <mark>words</mark> as their occurrences</strong></li>
 </ul>
 
 <blockquote>

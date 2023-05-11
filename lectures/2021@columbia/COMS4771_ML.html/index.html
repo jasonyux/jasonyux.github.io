@@ -13,11 +13,11 @@
 <meta property="og:url" content="/lectures/2021@columbia/COMS4771_ML.html/" />
 <meta property="og:site_name" content="Lecture Notes" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2021-12-09T00:00:00-05:00" />
+<meta property="article:published_time" content="2021-12-09T00:00:00+00:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="COMS4771 Machine Learning" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2021-12-09T00:00:00-05:00","datePublished":"2021-12-09T00:00:00-05:00","description":"Logistics","headline":"COMS4771 Machine Learning","mainEntityOfPage":{"@type":"WebPage","@id":"/lectures/2021@columbia/COMS4771_ML.html/"},"url":"/lectures/2021@columbia/COMS4771_ML.html/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2021-12-09T00:00:00+00:00","datePublished":"2021-12-09T00:00:00+00:00","description":"Logistics","headline":"COMS4771 Machine Learning","mainEntityOfPage":{"@type":"WebPage","@id":"/lectures/2021@columbia/COMS4771_ML.html/"},"url":"/lectures/2021@columbia/COMS4771_ML.html/"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/lectures/assets/main.css"><link type="application/atom+xml" rel="alternate" href="/lectures/feed.xml" title="Lecture Notes" /></head>
 <body><header class="site-header">
@@ -66,7 +66,7 @@
   </head>
   <header class="post-header">
     <h1 class="post-title p-name" itemprop="name headline">COMS4771 Machine Learning</h1>
-    <p class="post-meta"><time class="dt-published" datetime="2021-12-09T00:00:00-05:00" itemprop="datePublished">
+    <p class="post-meta"><time class="dt-published" datetime="2021-12-09T00:00:00+00:00" itemprop="datePublished">
         Dec 9, 2021
       </time></p>
   </header>
@@ -313,7 +313,7 @@
   <li>output space is has only a discrete set of $10$ values</li>
 </ul>
 
-<p>Then obviously, the aim of our task is to ==figure our $f$==.</p>
+<p>Then obviously, the aim of our task is to <mark>figure our $f$</mark>.</p>
 
 <blockquote>
   <p>In summary, for Supervised Learning, we need:</p>
@@ -322,7 +322,7 @@
     <li><strong>Data</strong>: $(\vec{x}_1, y_1), (\vec{x}_2, y_2), …, (\vec{x}_m, y_m) \in \mathcal{X} \times \mathcal{Y}$</li>
     <li><strong>Assumption</strong>: there exists some optimal function $f^* : \mathcal{X} \to \mathcal{Y}$ such that $f^*(\vec{x}_i)=y_i$ for <strong>most</strong> $i$</li>
     <li><strong>Learning Task</strong>: given $n$ examples from the data, find approximation $\hat{f} \approx f^*$ (as close as possible)</li>
-    <li><strong>Goal</strong>: find $\hat{f}$ that gives the mostly correct prediction in ==unseen examples==</li>
+    <li><strong>Goal</strong>: find $\hat{f}$ that gives the mostly correct prediction in <mark>unseen examples</mark></li>
   </ul>
 
   <p>For Unsupervised Learning, the difference is that:</p>
@@ -349,8 +349,8 @@
   <p><strong>Heuristics</strong>:</p>
 
   <ul>
-    <li>let this data be $\vec{x}_1$. Then idea is that the ==probability of $(\vec{x}_1, y_1=5)$ should be a lot more likely== than $\vec{x}_1, y_1=1$, for example. Therefore, we can consider some non-uniform distribution of $(\mathcal{X} \times \mathcal{Y}) \sim D$.</li>
-    <li>Then, we basically assume that we have $(\vec{x}_1, y_1), (\vec{x}_2, y_2), …$ ==drawn IID (Independently and identically distributed) from $\mathcal{D}$.==
+    <li>let this data be $\vec{x}_1$. Then idea is that the <mark>probability of $(\vec{x}_1, y_1=5)$ should be a lot more likely</mark> than $\vec{x}_1, y_1=1$, for example. Therefore, we can consider some non-uniform distribution of $(\mathcal{X} \times \mathcal{Y}) \sim D$.</li>
+    <li>Then, we basically assume that we have $(\vec{x}_1, y_1), (\vec{x}_2, y_2), …$ <mark>drawn IID (Independently and identically distributed) from $\mathcal{D}$.</mark>
       <ul>
         <li><em>independent</em>: drawing data $(\vec{x}_2, y_2)$ does not depend on the value of $(\vec{x}_1, y_1)$</li>
         <li><em>identically distributed</em> : data are drawn from the same distribution $\mathcal{D}$</li>
@@ -385,7 +385,7 @@
   <li>$p_\theta = p_\theta(\vec{x}_i)$, basically takes in our data and spits out the <strong>probability of generating this input</strong></li>
 </ul>
 
-<p>If each model $p_\theta$ is a ==probability model==, then we can find $\theta$ that best fits the data by using the ==maximum likelihood estimation==.</p>
+<p>If each model $p_\theta$ is a <mark>probability model</mark>, then we can find $\theta$ that best fits the data by using the <mark>maximum likelihood estimation</mark>.</p>
 
 <blockquote>
   <p><strong>Heuristics</strong></p>
@@ -405,14 +405,14 @@
   <li>consider we are looking at some model with $\theta$, what is the <strong>probability that this model $p_\theta$ generated the data set $X$</strong>?</li>
 </ul>
 
-<p>Now, ==using the IID assumption==, we can expand this into:</p>
+<p>Now, <mark>using the IID assumption</mark>, we can expand this into:</p>
 
 \[P(\vec{x}_1, ..., \vec{x}_n | \theta) = \prod_{i=1}^n P(\vec{x}_i | \theta) = \prod_{i=1}^n p_\theta(\vec{x}_i)\]
 
 <p>The interpretation is simple: How probable(or how likely) is the data $X$ given the model $p_\theta$?</p>
 
 <blockquote>
-  <p>==MLE==</p>
+  <p><mark>MLE</mark></p>
 
   <ul>
     <li>
@@ -438,7 +438,7 @@
   <li>a better way would be to think that all those are having the same label, so we are learning currently $P[X=\vec{x}\vert Y=\text{some label}]$</li>
 </ul>
 
-<p>And suppose that we know ==this data is generated from a Gaussian==, so then we know:</p>
+<p>And suppose that we know <mark>this data is generated from a Gaussian</mark>, so then we know:</p>
 
 \[p_\theta (x) = p_{\{\mu, \sigma^2\}}(x)L=\frac{1}{\sqrt{2\pi \sigma^2}} \exp(-\frac{(x-\mu)^2}{2\sigma^2})\]
 
@@ -454,7 +454,7 @@
 &amp;= \arg \max_\theta \prod_{i=1}^n \frac{1}{\sqrt{2\pi \sigma^2}} \exp(-\frac{(x-\mu)^2}{2\sigma^2})
 \end{align*}\]
 
-<p>while this may be painful to do, but we have some ==tricks==:</p>
+<p>while this may be painful to do, but we have some <mark>tricks</mark>:</p>
 
 <ol>
   <li>
@@ -464,7 +464,7 @@
 \log \mathcal{L}(\theta | X)\]
   </li>
   <li>
-    <p>To find the maximum, we basically analyze the “stationary points” of the $\mathcal{L}$ by taking ==derivatives==</p>
+    <p>To find the maximum, we basically analyze the “stationary points” of the $\mathcal{L}$ by taking <mark>derivatives</mark></p>
 
     <ul>
       <li>for high order parameter, we need to use partial derivatives</li>
@@ -546,7 +546,7 @@ l(\theta)
 
 <p>For labelled data, suppose labels are $y_1, y_2, … \in \mathcal{Y}$.</p>
 
-<p>Then, our ==ending function== should be (this is justified soon):</p>
+<p>Then, our <mark>ending function</mark> should be (this is justified soon):</p>
 
 \[\hat{f}(\vec{x}) = \arg \max_{y \in \mathcal{Y}} P(y \in Y | \vec{x})\]
 
@@ -567,7 +567,7 @@ l(\theta)
   <li>the third equality comes from the fact that we are looking for $\arg \max_{y \in \mathcal{Y}}$ which is independent of $P(\vec{x})$.</li>
   <li>the probability $P(y)$ is also called the <strong>class prior</strong>.
     <ul>
-      <li>The probability of something happening ==regardless of your “features/condition”==.</li>
+      <li>The probability of something happening <mark>regardless of your "features/condition"</mark>.</li>
     </ul>
   </li>
   <li>the probability $P(\vec{x}\vert y)$ is also called the <strong>class conditional/probability model</strong>.
@@ -578,7 +578,7 @@ l(\theta)
   </li>
 </ul>
 
-<p>Now, we want to ==use MLE== to find out the quantity $P(\vec{x}\vert y)$ and $P(y)$.</p>
+<p>Now, we want to <mark>use MLE</mark> to find out the quantity $P(\vec{x}\vert y)$ and $P(y)$.</p>
 
 <blockquote>
   <p><strong>Side Note</strong></p>
@@ -616,7 +616,7 @@ l(\theta)
 <ul>
   <li>$P(Y = \text{male})$ = fraction of training data labelled as male
     <ul>
-      <li>(==note that the TRUE probability is not this, of course==, this is just an estimate of what the true probability is)</li>
+      <li>(<mark>note that the TRUE probability is not this, of course</mark>, this is just an estimate of what the true probability is)</li>
     </ul>
   </li>
   <li>$P(Y = \text{female})$ = fraction of training data labelled as female</li>
@@ -632,7 +632,7 @@ l(\theta)
 <p>This we can do MLE to find out $\theta_{\text{male}}$ and $\theta_{\text{female}}$.</p>
 
 <ul>
-  <li>==if it is normally distributed==, then we can find the parameter = mean + variance matrix easily</li>
+  <li><mark>if it is normally distributed</mark>, then we can find the parameter = mean + variance matrix easily</li>
   <li>then we just use MLE to figure out $\mu, \sigma$ for the normal distribution</li>
 </ul>
 
@@ -652,7 +652,7 @@ l(\theta)
 
 \[\hat{f}(\vec{x}) = \arg \max_{y \in \mathcal{Y}} P(y \in Y | \vec{x})\]
 
-<p>First, we ==define== the <strong>true accuracy</strong> of a classifier what have made $f$ to be:</p>
+<p>First, we <mark>define</mark> the <strong>true accuracy</strong> of a classifier what have made $f$ to be:</p>
 
 \[P_{\vec{x},y}[f(\vec{x}) = y] = \mathbb{E}_{(\vec{x},y)}[1\{ f(\vec{x}) = y \}]\]
 
@@ -663,7 +663,7 @@ l(\theta)
     <p>$\mathbb{E}_{\text{random variable}}[\text{event}]$. So here, we are consider the randomness of $\vec{x},y$ joinly.</p>
   </li>
   <li>
-    <p>here, we are assuming this is computed over the ==true population $(\vec{x},y) \sim \mathcal{D}$==, hence equality.</p>
+    <p>here, we are assuming this is computed over the <mark>true population $(\vec{x},y) \sim \mathcal{D}$</mark>, hence equality.</p>
   </li>
   <li>
     <p>recall that the expected value would be calculated by integrating samples from</p>
@@ -798,7 +798,7 @@ P[f(\vec{x}) = y | X=\vec{x}] &amp;- P[g(\vec{x})=y|X=\vec{x}] \\
   <li>other possibilities for $P[X=\vec{x} \vert  Y=y]$ could be to use Neural Networks, DL models etc.</li>
 </ul>
 
-<p>Basically, even if we know this is the ==optimal solution/framework== to work under, we need to be able to compute the quantities such as $P[X=\vec{x} \vert  Y=y]$. But since we don’t know the true population, all we are doing are the estimates.</p>
+<p>Basically, even if we know this is the <mark>optimal solution/framework</mark> to work under, we need to be able to compute the quantities such as $P[X=\vec{x} \vert  Y=y]$. But since we don’t know the true population, all we are doing are the estimates.</p>
 
 <blockquote>
   <p><strong>In summary</strong></p>
@@ -815,7 +815,7 @@ P[f(\vec{x}) = y | X=\vec{x}] &amp;- P[g(\vec{x})=y|X=\vec{x}] \\
 
 <h2 id="naïve-bayes-classifier">Naïve Bayes Classifier</h2>
 
-<p>If we ==assume== that <strong>individual features</strong> are ==independent given the class label.== Then we have the Naïve Bayes:</p>
+<p>If we <mark>assume</mark> that <strong>individual features</strong> are <mark>independent given the class label.</mark> Then we have the Naïve Bayes:</p>
 
 \[\begin{align*}
 \hat{f}(\vec{x}) 
@@ -845,7 +845,7 @@ P[f(\vec{x}) = y | X=\vec{x}] &amp;- P[g(\vec{x})=y|X=\vec{x}] \\
           <p>e.g. if they are <em>dependent</em>, then you need to figure out if it is a positively correlated, negatively correlated, not correlated, etc. So you need to have <em>more samples</em> to know what is happening</p>
         </li>
         <li>
-          <p>e.g. if you are doing a ==non-parametric fit==, you are now estimating $d$ densities, each of which would be $1$-dimensional. This means that you reduced the data needed:</p>
+          <p>e.g. if you are doing a <mark>non-parametric fit</mark>, you are now estimating $d$ densities, each of which would be $1$-dimensional. This means that you reduced the data needed:</p>
 
 \[\frac{1}{\sqrt{n}^d} \to d\cdot \frac{1}{\sqrt{n}}\]
         </li>
@@ -857,13 +857,13 @@ P[f(\vec{x}) = y | X=\vec{x}] &amp;- P[g(\vec{x})=y|X=\vec{x}] \\
 
   <ul>
     <li>
-      <p>The assumption often does not hold, as they might be correlation between features that ==matters for classification==. This will result in giving bad estimates.</p>
+      <p>The assumption often does not hold, as they might be correlation between features that <mark>matters for classification</mark>. This will result in giving bad estimates.</p>
 
       <p>For instance, consider:</p>
 
       <p><img src="/lectures/images/2021-12-09-COMS4771_ML/image-20210921172020242.png" alt="image-20210921172020242" style="zoom: 50%;" /></p>
 
-      <p>where for <strong>each green-labeled class</strong>, the correlation is difference ==but projection is the same==. So assuming independence might cause some trouble. However, it might <em>not matter</em> for classification since the threshold value is clear/correct even if we used independence.</p>
+      <p>where for <strong>each green-labeled class</strong>, the correlation is difference <mark>but projection is the same</mark>. So assuming independence might cause some trouble. However, it might <em>not matter</em> for classification since the threshold value is clear/correct even if we used independence.</p>
 
       <ul>
         <li>at this level, whether if the correlation matters would be tested using <em>trial and error</em>.</li>
@@ -880,11 +880,11 @@ P[f(\vec{x}) = y | X=\vec{x}] &amp;- P[g(\vec{x})=y|X=\vec{x}] \\
 
 <p>to decide which is a better classifier (this is one and the most common way of doing it), using accuracy.</p>
 
-<p>However, since we don’t know the true population, we can only do an ==estimate== using:</p>
+<p>However, since we don’t know the true population, we can only do an <mark>estimate</mark> using:</p>
 
 \[\frac{1}{n}\sum_{i=1}^n 1\{ f(\vec{x}_i) = y_i \}\]
 
-<p>using the ==test data==.</p>
+<p>using the <mark>test data</mark>.</p>
 
 <ul>
   <li>if we have used the <strong>train data</strong>, then the approximation no longer holds because the IID could be falsified. In other words, the data would have been contaminated since we have already seen it. (e.g. think of a classifier being a lookup table)</li>
@@ -906,7 +906,7 @@ P[f(\vec{x}) = y | X=\vec{x}] &amp;- P[g(\vec{x})=y|X=\vec{x}] \\
   </ul>
 </blockquote>
 
-<p>An ==unbiased estimator would have:==</p>
+<p>An <mark>unbiased estimator would have:</mark></p>
 
 \[\mathbb{E}_{\vec{x}\sim \mathcal{D}}[\hat{\theta}(\vec{x})] = \lang \hat{\theta}(\vec{x}) \rang = \theta\]
 
@@ -918,7 +918,7 @@ P[f(\vec{x}) = y | X=\vec{x}] &amp;- P[g(\vec{x})=y|X=\vec{x}] \\
   <li>the first equality is because expected value is the same as mean</li>
 </ul>
 
-<p>Notice that again, it is defined upon the ==true population==.</p>
+<p>Notice that again, it is defined upon the <mark>true population</mark>.</p>
 
 <hr />
 
@@ -984,11 +984,11 @@ P[f(\vec{x}) = y | X=\vec{x}] &amp;- P[g(\vec{x})=y|X=\vec{x}] \\
 
 <p><img src="/lectures/images/2021-12-09-COMS4771_ML/image-20210913085640033.png" alt="image-20210913085640033" style="zoom:67%;" /></p>
 
-<p>instead of trying to fit a probability density for each class of data, one <strong>intuitive way</strong> would be looking at its neighbors. If its ==closest== neighbor is a $\text{male}$, then it is probably also a $\text{male}$</p>
+<p>instead of trying to fit a probability density for each class of data, one <strong>intuitive way</strong> would be looking at its neighbors. If its <mark>closest</mark> neighbor is a $\text{male}$, then it is probably also a $\text{male}$</p>
 
 <h2 id="nearest-neighbor-classifier">Nearest Neighbor Classifier</h2>
 
-<p>First, we need to define what we mean by ==distance between two data points==. There are in fact many ways to do it:</p>
+<p>First, we need to define what we mean by <mark>distance between two data points</mark>. There are in fact many ways to do it:</p>
 
 <ul>
   <li>Actually compute some sort of distance (smaller the distance, closer the examples)</li>
@@ -1100,7 +1100,7 @@ P[f(\vec{x}) = y | X=\vec{x}] &amp;- P[g(\vec{x})=y|X=\vec{x}] \\
     </tr>
     <tr>
       <td> </td>
-      <td style="text-align: center">MLE estimation of the ==true probability parameter $\rho$== such that true distribution is $D(\rho)$ converges with rate $\vert \rho-\hat{p}_n\vert \le 1/\sqrt[\leftroot{-3}\uproot{3}d]{n}$  where $\hat{p}_n$ is the ==estimated parameters== based on the $n$ training samples</td>
+      <td style="text-align: center">MLE estimation of the <mark>true probability parameter $\rho$</mark> such that true distribution is $D(\rho)$ converges with rate $\vert \rho-\hat{p}_n\vert \le 1/\sqrt[\leftroot{-3}\uproot{3}d]{n}$  where $\hat{p}_n$ is the <mark>estimated parameters</mark> based on the $n$ training samples</td>
       <td style="text-align: center">The rate of convergence to optimal bayes classifier is shown in <a href="https://cseweb.ucsd.edu/~dasgupta/papers/nn-rates.pdf">this paper</a></td>
     </tr>
     <tr>
@@ -1168,7 +1168,7 @@ P[f(\vec{x}) = y | X=\vec{x}] &amp;- P[g(\vec{x})=y|X=\vec{x}] \\
 
 \[|\theta - \hat{\theta}_n| \le \frac{1}{\sqrt{n}}\]
 
-<p>But what if we have now <strong>two features?</strong> Then we need the number of data points <em>squared</em> to make sure <strong>all pair of values have some histogram</strong> in the $\mathbb{R}^2$. So in general, as the ==dimension $d$ of data increases==:</p>
+<p>But what if we have now <strong>two features?</strong> Then we need the number of data points <em>squared</em> to make sure <strong>all pair of values have some histogram</strong> in the $\mathbb{R}^2$. So in general, as the <mark>dimension $d$ of data increases</mark>:</p>
 
 \[|\theta - \hat{\theta}_n| \le \frac{1}{\sqrt{n}^d}\]
 
@@ -1210,17 +1210,17 @@ P[f(\vec{x}) = y | X=\vec{x}] &amp;- P[g(\vec{x})=y|X=\vec{x}] \\
 
 <p>First consider with $k=1$. Then consider that we are <strong>given a fixed data point $x_{\text{test}}=x_t$</strong>, we want to evaluate the error of a <strong>given classifier</strong> $f$.</p>
 
-<p>==Heuristic==: What should be the <em>probability of error in this case?</em> Suppose the actual label for $x_t$ is a <strong>given</strong> $y_t$, then obviously:</p>
+<p><mark>Heuristic</mark>: What should be the <em>probability of error in this case?</em> Suppose the actual label for $x_t$ is a <strong>given</strong> $y_t$, then obviously:</p>
 
 \[\text{Error}=1\{ f(x_t) \neq y_t \}\]
 
-<p>But since we are <em>not given the $y_t$</em> but only $x_t$, we need to consider the ==true distribution of $y_t$ given $x_t$==, which gives the ==probability of error== being:</p>
+<p>But since we are <em>not given the $y_t$</em> but only $x_t$, we need to consider the <mark>true distribution of $y_t$ given $x_t$</mark>, which gives the <mark>probability of error</mark> being:</p>
 
 \[\text{Probability of Error}=\mathbb{E}_{y_t}[1\{ f(x_t) \neq y_t \}]\]
 
 <p>where basically it is averaging over the <strong>distribution</strong> of $y_t\vert X=x_t \sim D$.</p>
 
-<p>Now, we need to consider some ==1-NN classifier $f_n$== given ==some arbitrary== training dataset $D_n={X_n, Y_n}$ of size $n$. Let the nearest neighbor of a dataset $\mathcal{D}_n$ be $x_n$, and the label of that being $y_n$.</p>
+<p>Now, we need to consider some <mark>1-NN classifier $f_n$</mark> given <mark>some arbitrary</mark> training dataset $D_n={X_n, Y_n}$ of size $n$. Let the nearest neighbor of a dataset $\mathcal{D}_n$ be $x_n$, and the label of that being $y_n$.</p>
 
 <ul>
   <li>note that the classifier $f_n$ depends on size $n$ since the nearest point could change</li>
@@ -1258,13 +1258,13 @@ P[f(\vec{x}) = y | X=\vec{x}] &amp;- P[g(\vec{x})=y|X=\vec{x}] \\
 \[P[e|X_n] = P[e|x_n]\]
   </li>
   <li>
-    <p>the third equality comes from evaluation the error. Notice that we are computing over the ==true distribution of $\mathcal{Y}$==</p>
+    <p>the third equality comes from evaluation the error. Notice that we are computing over the <mark>true distribution of $\mathcal{Y}$</mark></p>
   </li>
   <li>
     <p>the fourth equality comes from that fact that $x_t$ and $x_n$ are drawn <strong>independently</strong></p>
   </li>
   <li>
-    <p>the last equality assumes a ==reasonable sample space== such that as $n \to \infty$, $x_n \to x_t$ (basically getting really close).</p>
+    <p>the last equality assumes a <mark>reasonable sample space</mark> such that as $n \to \infty$, $x_n \to x_t$ (basically getting really close).</p>
 
     <ul>
       <li>
@@ -1348,7 +1348,7 @@ P[f(\vec{x}) = y | X=\vec{x}] &amp;- P[g(\vec{x})=y|X=\vec{x}] \\
 <p>first, we order the data points. Then, we</p>
 
 <ol>
-  <li>find the first ==median== $T_0$, and see if $x_t$ is larger or smaller than that</li>
+  <li>find the first <mark>median</mark> $T_0$, and see if $x_t$ is larger or smaller than that</li>
   <li>suppose it is larger. Then we <strong>look in the right region only</strong></li>
   <li>then we compute the median of the left region of $T_0$, which is $T_{1,2}$, and we compare that to $x_t$</li>
   <li>repeat 1-3 until we just have some constant number of training sample $c$ left in a region</li>
@@ -1359,11 +1359,11 @@ P[f(\vec{x}) = y | X=\vec{x}] &amp;- P[g(\vec{x})=y|X=\vec{x}] \\
 
 <p><img src="/lectures/images/2021-12-09-COMS4771_ML/image-20210921091017319.png" alt="image-20210921091017319" style="zoom:80%;" /></p>
 
-<p>where we see the ==problem== is that:</p>
+<p>where we see the <mark>problem</mark> is that:</p>
 
 <ul>
   <li>if the threshold was $T_{1,2}$ and $x_t$ is larger than that, we would have <strong>returned the rightest point</strong>. Yet the actual nearest neighbor is the one almost on the $T_{1,2}$.</li>
-  <li>so we are ==approximating== the closest neighbor (which actually does <em>not</em> reduce the accuracy)</li>
+  <li>so we are <mark>approximating</mark> the closest neighbor (which actually does <em>not</em> reduce the accuracy)</li>
 </ul>
 
 <p><strong><em>High Dimensional Data</em></strong></p>
@@ -1376,7 +1376,7 @@ P[f(\vec{x}) = y | X=\vec{x}] &amp;- P[g(\vec{x})=y|X=\vec{x}] \\
 
 <ol>
   <li>
-    <p>pick a <em>coordinate to work on</em> (the optimal way is to pick the axis with ==largest variance==)</p>
+    <p>pick a <em>coordinate to work on</em> (the optimal way is to pick the axis with <mark>largest variance</mark>)</p>
 
     <ul>
       <li>
@@ -1459,11 +1459,11 @@ P[f(\vec{x}) = y | X=\vec{x}] &amp;- P[g(\vec{x})=y|X=\vec{x}] \\
   <li>…</li>
 </ul>
 
-<p>==Observation==:</p>
+<p><mark>Observation</mark>:</p>
 
 <ul>
-  <li>Feature measurements not-relevant (noisy) for the classification task simply ==distorts== NN distance computations</li>
-  <li>Even highly correlated relevant measurements (signal) ==distorts== the distance comparisons</li>
+  <li>Feature measurements not-relevant (noisy) for the classification task simply <mark>distorts</mark> NN distance computations</li>
+  <li>Even highly correlated relevant measurements (signal) <mark>distorts</mark> the distance comparisons</li>
 </ul>
 
 <hr />
@@ -1472,7 +1472,7 @@ P[f(\vec{x}) = y | X=\vec{x}] &amp;- P[g(\vec{x})=y|X=\vec{x}] \\
 
 <ol>
   <li>
-    <p>==Re-weight== the contribution of each feature to the distance computation</p>
+    <p><mark>Re-weight</mark> the contribution of each feature to the distance computation</p>
 
 \[\begin{align*}
 \rho (\vec{x}_1, \vec{x}_2; \vec{w})
@@ -1507,7 +1507,7 @@ P[f(\vec{x}) = y | X=\vec{x}] &amp;- P[g(\vec{x})=y|X=\vec{x}] \\
   <li>Different set  $D={ (\vec{x}_i,\vec{x}_j)\vert y_i \neq y_j }$</li>
 </ul>
 
-<p>And we can ==minimize the cost function $\Psi$==</p>
+<p>And we can <mark>minimize the cost function $\Psi$</mark></p>
 
 \[\Psi(\vec{w}):=\lambda \sum_{(\vec{x}_i,\vec{x}_j) \in S}\rho(\vec{x}_i,\vec{x}_j;\vec{w}) -(1- \lambda) \sum_{(\vec{x}_i,\vec{x}_j) \in D}\rho(\vec{x}_i,\vec{x}_j;\vec{w})\]
 
@@ -1579,7 +1579,7 @@ P[f(\vec{x}) = y | X=\vec{x}] &amp;- P[g(\vec{x})=y|X=\vec{x}] \\
 
 <p>where we see the splitting in the right is basically useless.</p>
 
-<p>Therefore, $k$-d tree construction was  ==NOT== optimizing for <strong>for classification accuracy</strong> directly.</p>
+<p>Therefore, $k$-d tree construction was  <mark>NOT</mark> optimizing for <strong>for classification accuracy</strong> directly.</p>
 
 <hr />
 
@@ -1600,7 +1600,7 @@ P[f(\vec{x}) = y | X=\vec{x}] &amp;- P[g(\vec{x})=y|X=\vec{x}] \\
   <li>repeat until some given condition is met (e.g. each leaf/cell contains at least 5 data points)</li>
 </ol>
 
-<p>In the end, you just get a bunch of <strong>thresholds</strong>, which then becomes a ==tree== for input data to be classified.</p>
+<p>In the end, you just get a bunch of <strong>thresholds</strong>, which then becomes a <mark>tree</mark> for input data to be classified.</p>
 
 <hr />
 
@@ -1632,7 +1632,7 @@ P[f(\vec{x}) = y | X=\vec{x}] &amp;- P[g(\vec{x})=y|X=\vec{x}] \\
   </li>
 </ul>
 
-<p>Then the idea is to find $C$ such that $u(C)$ is ==minimized==. So we need to find a <strong>feature $F$ and the threshold $T$</strong> that maximally reduces the  uncertainty of labels:</p>
+<p>Then the idea is to find $C$ such that $u(C)$ is <mark>minimized</mark>. So we need to find a <strong>feature $F$ and the threshold $T$</strong> that maximally reduces the  uncertainty of labels:</p>
 
 \[\arg\max_{F,T} [u(C) - (p_L \cdot u(C_L) + p_R \cdot u(C_R))]\]
 
@@ -1654,7 +1654,7 @@ P[f(\vec{x}) = y | X=\vec{x}] &amp;- P[g(\vec{x})=y|X=\vec{x}] \\
 
 <p>where we have basically only rotated the data for 45 degrees.</p>
 
-<p>The problem for a complex classifier is that ==the more complex your classifier==, the ==poorer it generalizes==</p>
+<p>The problem for a complex classifier is that <mark>the more complex your classifier</mark>, the <mark>poorer it generalizes</mark></p>
 
 <ul>
   <li>complexity here basically would be the number of nodes/thresholds</li>
@@ -1676,8 +1676,8 @@ P[f(\vec{x}) = y | X=\vec{x}] &amp;- P[g(\vec{x})=y|X=\vec{x}] \\
 
 <ul>
   <li>model complexity would be measured by the <strong>number of parameters</strong> in the estimator</li>
-  <li>==overfitting== occurs when you are fitting to the noise (to the right)</li>
-  <li>==underfitting== occurs when your model is too simple (to the left)</li>
+  <li><mark>overfitting</mark> occurs when you are fitting to the noise (to the right)</li>
+  <li><mark>underfitting</mark> occurs when your model is too simple (to the left)</li>
 </ul>
 
 <p>note that the gap between the test error and training error depends on the task/data.</p>
@@ -1740,7 +1740,7 @@ P[f(\vec{x}) = y | X=\vec{x}] &amp;- P[g(\vec{x})=y|X=\vec{x}] \\
   </li>
 </ul>
 
-<p>Hence, our ==classifier $f(x)$== from the decision boundary would be:</p>
+<p>Hence, our <mark>classifier $f(x)$</mark> from the decision boundary would be:</p>
 
 \[f(x):= 
 \begin{cases}
@@ -1788,7 +1788,7 @@ x_d
 \end{bmatrix} \\
 \end{cases}\]
 
-      <p>and in fact, $w_0$ is also referred as the ==bias==, since it is shifting things.</p>
+      <p>and in fact, $w_0$ is also referred as the <mark>bias</mark>, since it is shifting things.</p>
     </li>
   </ul>
 </blockquote>
@@ -1835,7 +1835,7 @@ x_d
 
 <p><strong>Heuristic</strong></p>
 
-<p>Essentially, our final predictor is $f=f(g(\vec{x}))$, which in turns depend on $\vec{w}$. The <em>last step</em> of our optimization should be taking the computing the minimization of $\text{error}(f)$ , which means we need to <strong>take derivatives</strong>. It is <em>not good</em> if $f$ is a ==not differentiable== function.</p>
+<p>Essentially, our final predictor is $f=f(g(\vec{x}))$, which in turns depend on $\vec{w}$. The <em>last step</em> of our optimization should be taking the computing the minimization of $\text{error}(f)$ , which means we need to <strong>take derivatives</strong>. It is <em>not good</em> if $f$ is a <mark>not differentiable</mark> function.</p>
 
 <p>Hence, a reasonable step to do would be to approximate $f$ as a <strong>continuous function</strong> first, and then the rest should work.</p>
 
@@ -1866,7 +1866,7 @@ x_d
       <p>The amazing fact here is that:</p>
 
       <ul>
-        <li>==this network can approximate any smooth function!==</li>
+        <li><mark>this network can approximate any smooth function!</mark></li>
         <li>hence it is very useful</li>
       </ul>
     </li>
@@ -1877,7 +1877,7 @@ x_d
 
 <h4 id="learning-the-weights">Learning the Weights</h4>
 
-<p>Given some labeled training data, bias included, $(\vec{x}_1,y_1),(\vec{x}_2,y_2),…,(\vec{x}_n,y_n)$, we want to find the <em>optimal $w$</em> such that the ==training error is minimized.==</p>
+<p>Given some labeled training data, bias included, $(\vec{x}_1,y_1),(\vec{x}_2,y_2),…,(\vec{x}_n,y_n)$, we want to find the <em>optimal $w$</em> such that the <mark>training error is minimized.</mark></p>
 
 \[\arg \min_{\vec{w}} \frac{1}{n} \sum_{i=1}^n 1\{ \text{sign}(\vec{w}^T \vec{x}) \neq y_i \}\]
 
@@ -1909,7 +1909,7 @@ x_d
 
 <hr />
 
-<p>So the idea is to consider some ==assumptions== that might simplify the problem: suppose the ==training data IS linearly separable==. Then what can we do?</p>
+<p>So the idea is to consider some <mark>assumptions</mark> that might simplify the problem: suppose the <mark>training data IS linearly separable</mark>. Then what can we do?</p>
 
 <p><img src="/lectures/images/2021-12-09-COMS4771_ML/image-20210927204334284.png" alt="image-20210927204334284" style="zoom: 50%;" /></p>
 
@@ -1919,7 +1919,7 @@ x_d
   <li>and here, we might want to make the <strong>margin $\gamma$</strong> as <strong>large as possible</strong></li>
 </ul>
 
-<p>Then, ==under this assumption==, we can then can find <strong>$\vec{w}$ such that $y_i (\vec{w} \cdot \vec{x}_i) \ge 0$</strong> for all $i$. Then, we can do a constraint optimization</p>
+<p>Then, <mark>under this assumption</mark>, we can then can find <strong>$\vec{w}$ such that $y_i (\vec{w} \cdot \vec{x}_i) \ge 0$</strong> for all $i$. Then, we can do a constraint optimization</p>
 
 <ul>
   <li>
@@ -2005,7 +2005,7 @@ x_d
 
       <p>Let $R = \max_{\vec{x}\in S}\vert \vert \vec{x}\vert \vert$ be the radius of your data, for your sample being $S$.</p>
 
-      <p>Then we claim that the perceptron algorithm will make ==at most==:</p>
+      <p>Then we claim that the perceptron algorithm will make <mark>at most</mark>:</p>
 
 \[T:= \left(\frac{R}{\gamma}\right)^2 \text{ mistakes}\]
 
@@ -2017,7 +2017,7 @@ x_d
 
 <p><em>Proof</em></p>
 
-<p>The key quantity here we think about is: ==how far away is $\vec{w}^{(t)}$ from $\vec{w}^*$==?</p>
+<p>The key quantity here we think about is: <mark>how far away is $\vec{w}^{(t)}$ from $\vec{w}^*$</mark>?</p>
 
 <ul>
   <li>essentially we want to know the <em>angle between the two vector</em>, which then is related to $\vec{w}^{(t)}\cdot \vec{w}^*$.</li>
@@ -2108,11 +2108,11 @@ x_d
   <p><strong>Take Away Message</strong></p>
 
   <ul>
-    <li>The idea of a linear classifier is that the ==decision boundary== induced by a linear classifier is LINEAR (AFFINE) in the <strong>untransformed input space</strong>.</li>
+    <li>The idea of a linear classifier is that the <mark>decision boundary</mark> induced by a linear classifier is LINEAR (AFFINE) in the <strong>untransformed input space</strong>.</li>
   </ul>
 </blockquote>
 
-<p>So often the data is <em>not linearly separable</em>, then we need some ==tricks==.</p>
+<p>So often the data is <em>not linearly separable</em>, then we need some <mark>tricks</mark>.</p>
 
 <ul>
   <li>(Basically applying nonlinear transformation to an input space, so that the data in the end is linearly separable in that space)</li>
@@ -2124,7 +2124,7 @@ x_d
 
 <p><img src="/lectures/images/2021-12-09-COMS4771_ML/image-20210930150815651.png" alt="image-20210930150815651" style="zoom:80%;" /></p>
 
-<p>where the data ==is separable==, but ==not linearly separable==.</p>
+<p>where the data <mark>is separable</mark>, but <mark>not linearly separable</mark>.</p>
 
 <p>In this case, <strong>suppose we knew beforehand</strong> the separation boundary is a perfect circle:</p>
 
@@ -2172,7 +2172,7 @@ x_d
 
   <ul>
     <li>
-      <p>After we have applied a ==feature transformation== $\phi(x_1 , x_2)\mapsto (x_1^2 , x_2^2)$, then $g$ becomes ==linear in $\phi$-feature space==. (i.e. we don’t look at $X$ now, we look at data in $\phi(X)$ instead).</p>
+      <p>After we have applied a <mark>feature transformation</mark> $\phi(x_1 , x_2)\mapsto (x_1^2 , x_2^2)$, then $g$ becomes <mark>linear in $\phi$-feature space</mark>. (i.e. we don’t look at $X$ now, we look at data in $\phi(X)$ instead).</p>
 
       <ul>
         <li>Then, once in $\phi(X)$ it is linearly separable, we just use Perceptron and we are done.</li>
@@ -2185,7 +2185,7 @@ x_d
       <p><img src="/lectures/images/2021-12-09-COMS4771_ML/image-20210930152612906.png" alt="image-20210930152612906" style="zoom: 80%;" /></p>
     </li>
     <li>
-      <p>yet the problem is that we don’t know ==what should be $\phi$== beforehand.</p>
+      <p>yet the problem is that we don’t know <mark>what should be $\phi$</mark> beforehand.</p>
 
       <ul>
         <li>This is why we have soon some kernel tricks which would compute an <em>infinite power of polynomial instead</em>.</li>
@@ -2196,7 +2196,7 @@ x_d
 
 <h4 id="transformation-for-quadratic-boundaries">Transformation for Quadratic Boundaries</h4>
 
-<p>Now, we continue exploring some the <strong>general form</strong> for ==quadratic boundaries==. (so only up to power of 2)</p>
+<p>Now, we continue exploring some the <strong>general form</strong> for <mark>quadratic boundaries</mark>. (so only up to power of 2)</p>
 
 <p>Suppose we have for only two features, $\vec{x} \in R^2$:</p>
 
@@ -2225,7 +2225,7 @@ x_d
       <li>so you approximately needs $d^p$, where $p$ is the degree of polynomial you want to go up to.</li>
     </ul>
   </li>
-  <li>captures all ==pairwise interactions between each feature==. Note that only <em>pairwise</em> though.</li>
+  <li>captures all <mark>pairwise interactions between each feature</mark>. Note that only <em>pairwise</em> though.</li>
 </ul>
 
 <p>So the problem is that we see, even for <em>only using quadratics</em>, we have too many terms -&gt; too many parameters to fit.</p>
@@ -2235,9 +2235,9 @@ x_d
 <blockquote>
   <p><strong>Theorem</strong></p>
 
-  <p>Given $n$ ==distinct points== $S=\vec{x}_1,…,\vec{x}_n$</p>
+  <p>Given $n$ <mark>distinct points</mark> $S=\vec{x}_1,…,\vec{x}_n$</p>
 
-  <p>There ==exists== a ==feature transformation== (can be anything, but only looks at feature, not labels) such that for <em>any labelling</em> of $\mathcal{S}$ is linearly separable ==in that transformed space==!</p>
+  <p>There <mark>exists</mark> a <mark>feature transformation</mark> (can be anything, but only looks at feature, not labels) such that for <em>any labelling</em> of $\mathcal{S}$ is linearly separable <mark>in that transformed space</mark>!</p>
 </blockquote>
 
 <hr />
@@ -2297,9 +2297,9 @@ y_n
 <p>Though this finishes the proof,</p>
 
 <ul>
-  <li>but ==that transformation cannot be generalized== to test data points. So we need to find some reasonable transformations.</li>
-  <li>the ==computational complexity== is high (in $\Omega(d’)$ where $d’$ is the new dimension)</li>
-  <li>also you have a high chance of overfitting (==model complexity==)</li>
+  <li>but <mark>that transformation cannot be generalized</mark> to test data points. So we need to find some reasonable transformations.</li>
+  <li>the <mark>computational complexity</mark> is high (in $\Omega(d’)$ where $d’$ is the new dimension)</li>
+  <li>also you have a high chance of overfitting (<mark>model complexity</mark>)</li>
 </ul>
 
 <h4 id="kernel-trick">Kernel Trick</h4>
@@ -2321,7 +2321,7 @@ y_n
 
 \[f(\vec{x})=\text{sign}(\vec{w}\cdot \vec{x}) = \text{sign}\left(\vec{x}\cdot \sum_{k=1}^n\alpha_ky_x\vec{x}_k\right) =  \text{sign}\left(\sum_{k=1}^n\alpha_ky_x(\vec{x}_k\cdot \vec{x})\right)\]
 
-  <p>So we ==technically just need to make sure $\vec{x}_i \cdot \vec{x}_j$ is fast==. And this is doable even if $\vec{x}\to \phi(\vec{x})$ will be <strong>large in dimension</strong> in the new/transformed dimension, because some kernel transformation can ==do $\phi(\vec{x}_i)\cdot \phi(\vec{x}_j)$ fast.==</p>
+  <p>So we <mark>technically just need to make sure $\vec{x}_i \cdot \vec{x}_j$ is fast</mark>. And this is doable even if $\vec{x}\to \phi(\vec{x})$ will be <strong>large in dimension</strong> in the new/transformed dimension, because some kernel transformation can <mark>do $\phi(\vec{x}_i)\cdot \phi(\vec{x}_j)$ fast.</mark></p>
 </blockquote>
 
 <p>An illustration with an example is the fastest.</p>
@@ -2345,7 +2345,7 @@ y_n
 
 \[a*c^2\to (a,c,c)\]
 
-      <p>so approximately we have the ==new dimension being $d’=d^p$==.</p>
+      <p>so approximately we have the <mark>new dimension being $d'=d^p$</mark>.</p>
     </li>
   </ul>
 </blockquote>
@@ -2354,7 +2354,7 @@ y_n
 
 \[\vec{x} \mapsto (x_1^2,...,x_d^2,\sqrt{2}x_1x_2,...,\sqrt{2}x_{d-1}x_d,...,\sqrt{2}x_d,1) = \phi(\vec{x})\]
 
-<p>Then obviously ==computing $\phi(\vec{x}_i) \cdot \phi(\vec{x}_j)$== directly will take $O(d^2)$.</p>
+<p>Then obviously <mark>computing $\phi(\vec{x}_i) \cdot \phi(\vec{x}_j)$</mark> directly will take $O(d^2)$.</p>
 
 <ul>
   <li>the fact that it needs to be $\sqrt{2}$ will not affect classification in the end, since the weight is controlled by $\vec{w}$ anyway.</li>
@@ -2364,7 +2364,7 @@ y_n
 
 \[\phi(\vec{x}_i)\cdot \phi(\vec{x}_j) = (1+\vec{x}_i\cdot \vec{x}_j)^2\]
 
-<p>which is ==only $O(d)$.== So for some ==specific transformation $\phi$==, we can make computation efficient.</p>
+<p>which is <mark>only $O(d)$.</mark> So for some <mark>specific transformation $\phi$</mark>, we can make computation efficient.</p>
 
 <hr />
 
@@ -2399,15 +2399,15 @@ b_2^2\\
 <blockquote>
   <p><strong>RBF (Radial Basis Function)</strong></p>
 
-  <p>So we have seen one kernel trick, and it turns out that this kernel transformation ==gets up to infinite dimension==.</p>
+  <p>So we have seen one kernel trick, and it turns out that this kernel transformation <mark>gets up to infinite dimension</mark>.</p>
 
 \[\vec{x} \mapsto \left(\exp(-||\vec{x}-\alpha||^2)\right)_{\alpha \in \mathbb{R}^d},\quad \vec{x}\in \mathbb{R}^d\]
 
-  <p>this transformed vector even needs ==infinite space== to write down. But the dot products $\phi(\vec{x}_i),\phi(\vec{x}_j)$ is:</p>
+  <p>this transformed vector even needs <mark>infinite space</mark> to write down. But the dot products $\phi(\vec{x}_i),\phi(\vec{x}_j)$ is:</p>
 
 \[\phi(\vec{x}_i)\cdot \phi(\vec{x}_j)=\exp(-||\vec{x}_i - \vec{x}_j||^2)\]
 
-  <p>which again ==becomes $O(d)$==</p>
+  <p>which again <mark>becomes $O(d)$</mark></p>
 </blockquote>
 
 <p>To understand this, we need to consider <em>another way of visualizing a vector</em>.</p>
@@ -2421,11 +2421,11 @@ x_2\\
 x_d
 \end{bmatrix} = (x_i)_{i =1,2,...,d}\]
 
-<p>but this only works for a <strong>countably infinite dimension</strong>. To represent an ==uncountably infinite dimension==, consider:</p>
+<p>but this only works for a <strong>countably infinite dimension</strong>. To represent an <mark>uncountably infinite dimension</mark>, consider:</p>
 
 \[\vec{x}=(x_i)_{i \in \mathbb{R}} = (x_\alpha)_{\alpha \in \mathbb{R}}\]
 
-<p>And if we stack the <em>components vertically</em>, then essentially ==$\vec{x}$ is a function==.</p>
+<p>And if we stack the <em>components vertically</em>, then essentially <mark>$\vec{x}$ is a function</mark>.</p>
 
 <p><img src="/lectures/images/2021-12-09-COMS4771_ML/image-20211005185501058.png" alt="image-20211005185501058" style="zoom: 50%;" /></p>
 
@@ -2439,7 +2439,7 @@ x_d
   </li>
 </ul>
 
-<p>Therefore, the ==dot product becomes integral for functions==. For a 1-D case, basically you get:</p>
+<p>Therefore, the <mark>dot product becomes integral for functions</mark>. For a 1-D case, basically you get:</p>
 
 \[\phi(x_1)\cdot \phi(x_2)= \int_{i\in \mathbb{R}}\phi(x_1)_i\phi(x_2)_idi\]
 
@@ -2463,7 +2463,7 @@ x_d
   <li>if we want to apply kernel directly by replacing in $\vec{x} \to \phi(\vec{x})$, we will be stuck at learning $\vec{w}$ because it has $…+y\vec{x}$, which we cannot compute with $\vec{x} \to \phi(\vec{x})$</li>
 </ul>
 
-<p>However, we can ==rewrite the algorithm==. Since each time we we ==update $\vec{w}$==, we are ==adding a sample data== point $\vec{x}_i$. This means that:</p>
+<p>However, we can <mark>rewrite the algorithm</mark>. Since each time we we <mark>update $\vec{w}$</mark>, we are <mark>adding a sample data</mark> point $\vec{x}_i$. This means that:</p>
 
 \[\vec{w}^{(t)}:=\vec{w}^{(t-1)}+y_k\vec{x}_k,\text{ when $\vec{x}_k$ is wrong}\iff \vec{w}=\sum_k\alpha_ky_x\vec{x}_k\]
 
@@ -2490,7 +2490,7 @@ x_d
   </li>
 </ul>
 
-<p>which in ==both cases are only taking dot products $\vec{x}_i\cdot \vec{x}_j$==. So we can ==replace them with $\phi(\vec{x}_i)\cdot \phi(\vec{x}_j)$==.</p>
+<p>which in <mark>both cases are only taking dot products $\vec{x}_i\cdot \vec{x}_j$</mark>. So we can <mark>replace them with $\phi(\vec{x}_i)\cdot \phi(\vec{x}_j)$</mark>.</p>
 
 <blockquote>
   <p><strong>Kernel For Perceptron</strong></p>
@@ -2508,7 +2508,7 @@ x_d
           <p>basically we start with assuming no mistake. Then, when mistake is made on the $i$-th data point, we update $\alpha_i$.</p>
         </li>
         <li>
-          <p>we essentially never compute <em>individually</em> $\phi(\vec{x}_i)$, we ==only compute the dot product==.</p>
+          <p>we essentially never compute <em>individually</em> $\phi(\vec{x}_i)$, we <mark>only compute the dot product</mark>.</p>
         </li>
       </ul>
     </li>
@@ -2517,7 +2517,7 @@ x_d
 
       <p><img src="/lectures/images/2021-12-09-COMS4771_ML/image-20211005191517894.png" alt="image-20211005191517894" style="zoom: 50%;" /></p>
 
-      <p>so basically in the ==transformed space==:</p>
+      <p>so basically in the <mark>transformed space</mark>:</p>
 
 \[\vec{w} = \sum_{i=1}^n \alpha_i y_i \phi(\vec{x}_i)\]
 
@@ -2526,7 +2526,7 @@ x_d
   </ul>
 </blockquote>
 
-<p>So in the end, we can encapsulate $K(\vec{x}_i,\vec{x}_j)$ that performs <em>some kernelization</em> $\phi(\vec{x}_i)\cdot\phi(\vec{x}_j)$ of your choice. But there are still some ==rules== that we need to follow for ==our choice of $K$:==</p>
+<p>So in the end, we can encapsulate $K(\vec{x}_i,\vec{x}_j)$ that performs <em>some kernelization</em> $\phi(\vec{x}_i)\cdot\phi(\vec{x}_j)$ of your choice. But there are still some <mark>rules</mark> that we need to follow for <mark>our choice of $K$:</mark></p>
 
 <ol>
   <li>For a kernel function $K(x,z)$, there better exists $\phi$ such that $\phi(x)^T\phi(z) = K(x,z)$
@@ -2542,7 +2542,7 @@ x_d
 </ol>
 
 <blockquote>
-  <p><strong>Disadvantages</strong> (of being in an ==kernel==/Hilbert space)</p>
+  <p><strong>Disadvantages</strong> (of being in an <mark>kernel</mark>/Hilbert space)</p>
 
   <ul>
     <li>The classifier needs to <strong>hold all the data points</strong> around $\vec{x} \in \mathcal{D}$</li>
@@ -2565,7 +2565,7 @@ x_d
 
 \[||\phi(x)||^2 = \int_{-\infty}^{\infty}\phi^2(x)_idi\]
 
-      <p>and this is ==finite== (due to Cauchy Schwartz Inequality). Therefore, $R$ is still finite and we can still apply the <em>theorem such that</em>:</p>
+      <p>and this is <mark>finite</mark> (due to Cauchy Schwartz Inequality). Therefore, $R$ is still finite and we can still apply the <em>theorem such that</em>:</p>
 
 \[T \le \left(\frac{R}{\gamma} \right)^2\]
     </li>
@@ -2583,18 +2583,18 @@ x_d
 
 <p><img src="/lectures/images/2021-12-09-COMS4771_ML/image-20211007152925216.png" alt="image-20211007152925216" /></p>
 
-<p>where ==any of the above line== might be returned from our perceptron algorithm</p>
+<p>where <mark>any of the above line</mark> might be returned from our perceptron algorithm</p>
 
 <ul>
   <li>e.g. due to the order of us iterating through the data point</li>
-  <li>yet in reality, you might <strong>want</strong> to use the <em>middle line with largest margin $\gamma$</em>, so that your ==testing phase== would perform better (this is the meaning of defining a $\gamma$ anyway)</li>
+  <li>yet in reality, you might <strong>want</strong> to use the <em>middle line with largest margin $\gamma$</em>, so that your <mark>testing phase</mark> would perform better (this is the meaning of defining a $\gamma$ anyway)</li>
 </ul>
 
 <blockquote>
   <p><strong>Motivation</strong></p>
 
   <ul>
-    <li>returns a linear classifier that is ==stable== solution by giving a <strong>maximum margin</strong> solution (which is not considered in the perceptron algorithm).
+    <li>returns a linear classifier that is <mark>stable</mark> solution by giving a <strong>maximum margin</strong> solution (which is not considered in the perceptron algorithm).
       <ul>
         <li>stable: no matter which order of training data ($x_1, x_2,x_3$ vs $x_3,x_1,x_2$) you have, you give the same solution.</li>
       </ul>
@@ -2624,15 +2624,15 @@ x_d
   <p><strong>Heuristics</strong></p>
 
   <ul>
-    <li>We can try finding ==two parallel hyperplanes== that <strong>correctly classify all the points</strong>, and ==maximize the distance== between them!
+    <li>We can try finding <mark>two parallel hyperplanes</mark> that <strong>correctly classify all the points</strong>, and <mark>maximize the distance</mark> between them!
       <ul>
-        <li>then, you just need to return the ==average of the two parallel hyperplanes==.</li>
+        <li>then, you just need to return the <mark>average of the two parallel hyperplanes</mark>.</li>
       </ul>
     </li>
   </ul>
 </blockquote>
 
-<p>Consider that you get ==some== boundary $\vec{w} \cdot \vec{x}-b=0$ ($\vec{w}$ is not necessarily the best here).</p>
+<p>Consider that you get <mark>some</mark> boundary $\vec{w} \cdot \vec{x}-b=0$ ($\vec{w}$ is not necessarily the best here).</p>
 
 <p>Then we get two planes, being some distance $c$ away such that:</p>
 
@@ -2672,7 +2672,7 @@ x_d
 
 <hr />
 
-<p>Then, ==since we have two planes==, the correct classification means:</p>
+<p>Then, <mark>since we have two planes</mark>, the correct classification means:</p>
 
 \[\begin{cases}
 \vec{w} \cdot \vec{x}_i - b \ge +1,\quad \text{if $y_i=+1$}\\
@@ -2684,7 +2684,7 @@ x_d
 \[y_i(\vec{w} \cdot \vec{x}_i - b) \ge +1,\quad \forall i\]
 
 <ul>
-  <li>so basically if we have $n$ data points, this is $n$ ==constraint== equations.</li>
+  <li>so basically if we have $n$ data points, this is $n$ <mark>constraint</mark> equations.</li>
 </ul>
 
 <p>Therefore, our optimization problem is:</p>
@@ -2728,11 +2728,11 @@ x_d
 <p>where we denote the error of those points being:</p>
 
 <ul>
-  <li>$\xi_i$ and $\xi_{i’}$ are the error which is the ==distance $&gt;0$ to the correct (stringent) hyperplane==</li>
+  <li>$\xi_i$ and $\xi_{i’}$ are the error which is the <mark>distance $&gt;0$ to the correct (stringent) hyperplane</mark></li>
   <li>$\xi = 0$ if the data is <strong>correctly</strong> classified</li>
 </ul>
 
-<p>So now the idea is to optimize over ==$\vec{w}$ AND $\xi_i$ simultaneously==. Then we can just associated each training data with a slack/error $x_i \to \xi_i$  such that</p>
+<p>So now the idea is to optimize over <mark>$\vec{w}$ AND $\xi_i$ simultaneously</mark>. Then we can just associated each training data with a slack/error $x_i \to \xi_i$  such that</p>
 
 <p>where:</p>
 
@@ -2794,18 +2794,18 @@ x_d
 <p>note that:</p>
 
 <ul>
-  <li>doing minimization is not the problem, but the ==$n$ constraint== are annoying.</li>
+  <li>doing minimization is not the problem, but the <mark>$n$ constraint</mark> are annoying.</li>
 </ul>
 
-<p>First, let us consider ==visualization== of minimization and functions.</p>
+<p>First, let us consider <mark>visualization</mark> of minimization and functions.</p>
 
 <p>Consider some function $f(y,z) \to \mathbb{R}$. We can visualize this as:</p>
 
 <p><img src="https://www.mathworks.com/matlabcentral/mlc-downloads/downloads/submissions/27178/versions/6/previews/html/gaPeaksExample_01.png" alt="peaks Minimization with Genetic Algorithm" style="zoom: 80%;" /></p>
 
 <ul>
-  <li>the input plane/plane we operate on is <strong>always y-z plane</strong>. The vertical dimension of x is an ==imagined axis== so that we can visualize output.</li>
-  <li>the idea is that for a function $f:\mathbb{R}^d \to \mathbb{R}$, we are having base plane (input being $\mathbb{R}^d$), and the ==output is “imagined to be” perpendicular== to the base space.</li>
+  <li>the input plane/plane we operate on is <strong>always y-z plane</strong>. The vertical dimension of x is an <mark>imagined axis</mark> so that we can visualize output.</li>
+  <li>the idea is that for a function $f:\mathbb{R}^d \to \mathbb{R}$, we are having base plane (input being $\mathbb{R}^d$), and the <mark>output is "imagined to be" perpendicular</mark> to the base space.</li>
 </ul>
 
 <p>Therefore, the function</p>
@@ -2854,7 +2854,7 @@ x_d
 <ul>
   <li>a finite number of a constraints</li>
   <li>equality constraint can also be made into an inequality constraint. E.g. $x^2=5$ could be transformed to $x^2-5 \ge 0$ and $x^2-5 \le 0$</li>
-  <li>and we assume that ==the problem is feasible==.</li>
+  <li>and we assume that <mark>the problem is feasible</mark>.</li>
 </ul>
 
 <p>Some common ways of doing it would be</p>
@@ -2864,7 +2864,7 @@ x_d
 <ol>
   <li>start with a feasible solution $x_0$ (not necessarily minimized)</li>
   <li>find $x_1$ that has slightly lower objective value</li>
-  <li>if $x_1$ violates the constraints, ==project back== to the constraints.
+  <li>if $x_1$ violates the constraints, <mark>project back</mark> to the constraints.
     <ul>
       <li>where project back to the constraints is the hard part</li>
     </ul>
@@ -2876,7 +2876,7 @@ x_d
 
 <ol>
   <li>
-    <p>Use a ==penalty function== to incorporate the ==constraints into the objective==</p>
+    <p>Use a <mark>penalty function</mark> to incorporate the <mark>constraints into the objective</mark></p>
 
     <ul>
       <li>
@@ -2898,7 +2898,7 @@ x_d
 <p>and recall that :</p>
 
 <ul>
-  <li>our aim was to minimize $f(\vec{x})$ ==such that $g_i(\vec{x}) \le 0$ is satisfied==</li>
+  <li>our aim was to minimize $f(\vec{x})$ <mark>such that $g_i(\vec{x}) \le 0$ is satisfied</mark></li>
   <li>$\vec{x}$ is the original variable, called primal variable as well</li>
   <li>$\lambda_i$ will be some new variable, called <strong>Lagrange/Dual Variables</strong>.</li>
 </ul>
@@ -2907,7 +2907,7 @@ x_d
 
 <ol>
   <li>
-    <p>For ==any feasible $x$== and all $\lambda_i \ge 0$, then since $g_i(\vec{x}) \le 0$, then obviously:</p>
+    <p>For <mark>any feasible $x$</mark> and all $\lambda_i \ge 0$, then since $g_i(\vec{x}) \le 0$, then obviously:</p>
 
 \[L(\vec{x},\vec{\lambda}) \le f(\vec{x}) \to \max_{\lambda_i \ge 0} L(\vec{x},\vec{\lambda}) \le f(\vec{x})\]
   </li>
@@ -2920,10 +2920,10 @@ x_d
 
     <ul>
       <li>$\max_{\lambda_i \ge 0}$ which is much easier than satisfying entire functions $g_{i}(\vec{x})\le 0$.</li>
-      <li>once  $\max_{\lambda_i \ge 0}$ this is done, $\min_{\vec{x}}$ has ==no constraint on $\vec{x}$== anymore</li>
+      <li>once  $\max_{\lambda_i \ge 0}$ this is done, $\min_{\vec{x}}$ has <mark>no constraint on $\vec{x}$</mark> anymore</li>
     </ul>
 
-    <p>we now show that this $p^*$ actual is the ==same as our original goal==.</p>
+    <p>we now show that this $p^*$ actual is the <mark>same as our original goal</mark>.</p>
   </li>
 </ol>
 
@@ -2936,7 +2936,7 @@ x_d
 
       <ul>
         <li>it means at least one of the $g_i(\vec{x})&gt; 0$ (since $\vec{x}$ is infeasible)</li>
-        <li>Therefore, $\max_{\lambda_i \ge 0} L(\vec{x},\vec{\lambda})$ would end up with ==one== $\lambda_i \to \infty$ and $\max_{\lambda_i \ge 0} L(\vec{x},\vec{\lambda}) \to \infty$</li>
+        <li>Therefore, $\max_{\lambda_i \ge 0} L(\vec{x},\vec{\lambda})$ would end up with <mark>one</mark> $\lambda_i \to \infty$ and $\max_{\lambda_i \ge 0} L(\vec{x},\vec{\lambda}) \to \infty$</li>
         <li>therefore, such a $p^*$ cannot be computed, which is a contradiction.</li>
       </ul>
     </li>
@@ -2948,7 +2948,7 @@ x_d
           <p>this means all $g_i(\vec{x})\le 0$.</p>
         </li>
         <li>
-          <p>Therefore, $\max_{\lambda_i \ge 0} L(\vec{x},\vec{\lambda})$ would end up ==with all== $\lambda_i = 0$, or $g_i(x)=0$ already. Then, this becomes the same as:</p>
+          <p>Therefore, $\max_{\lambda_i \ge 0} L(\vec{x},\vec{\lambda})$ would end up <mark>with all</mark> $\lambda_i = 0$, or $g_i(x)=0$ already. Then, this becomes the same as:</p>
 
 \[\min_\vec{x}\max_{\lambda_i \ge 0} L(\vec{x},\vec{\lambda}) \to \min_{\vec{x}}f(\vec{x})\]
 
@@ -2958,7 +2958,7 @@ x_d
     </li>
   </ol>
 
-  <p>Therefore, ==this $p^*$ problem is the same as what we wanted to compute==, namely:</p>
+  <p>Therefore, <mark>this $p^*$ problem is the same as what we wanted to compute</mark>, namely:</p>
 
   <p><img src="/lectures/images/2021-12-09-COMS4771_ML/image-20211012155030945.png" alt="image-20211012155030945" /></p>
 </blockquote>
@@ -2981,11 +2981,11 @@ x_d
 
 \[d:=\max_{\lambda_{i}\ge 0}\min_{\vec{x}}L(\vec{x},\vec{\lambda}) \le p^*\]
 
-<p>Technically, $d^<em>$ is dual problem, and ==in some cases==, $d^</em> = p^*$. Then this is good because:</p>
+<p>Technically, $d^<em>$ is dual problem, and <mark>in some cases</mark>, $d^</em> = p^*$. Then this is good because:</p>
 
 <ul>
   <li>$\min_{\vec{x}}L(\vec{x},\vec{\lambda})$ is unconstraint optimization, and we can compute derivatives</li>
-  <li>in fact, $h(\lambda) \equiv \min_{\vec{x}} L(\vec{x},\vec{\lambda})$. Then we can show that ==every dual problem is concave==. This justifies the final maximization procedure.</li>
+  <li>in fact, $h(\lambda) \equiv \min_{\vec{x}} L(\vec{x},\vec{\lambda})$. Then we can show that <mark>every dual problem is concave</mark>. This justifies the final maximization procedure.</li>
 </ul>
 
 <hr />
@@ -3026,7 +3026,7 @@ x_d
 
 \[d^* = \max_{\lambda_i \ge 0}\min_\vec{x} L(\vec{x},\vec{\lambda})\]
 
-  <p>which is different from what we need to solve, but ==much easier to solve.== And we know that $d^* \le p^*$</p>
+  <p>which is different from what we need to solve, but <mark>much easier to solve.</mark> And we know that $d^* \le p^*$</p>
 </blockquote>
 
 <p>However, the dual problem is useful because under <em>certain conditions</em>, $p^<em>=d^</em>$.</p>
@@ -3039,11 +3039,11 @@ x_d
   <p>and our aim is to achieve equality/duality gap is zero in some cases, which is useful since the <strong>dual problem is easy to solve</strong>.</p>
 </blockquote>
 
-<p>Then, first we need to consider ==when is the duality gap zero==. To do that, we need to first understand convexity.</p>
+<p>Then, first we need to consider <mark>when is the duality gap zero</mark>. To do that, we need to first understand convexity.</p>
 
 <h4 id="convexity">Convexity</h4>
 
-<p>The following concepts would be helpful before we go into show ==when $p^* = d^*$==.</p>
+<p>The following concepts would be helpful before we go into show <mark>when $p^* = d^*$</mark>.</p>
 
 <hr />
 
@@ -3108,7 +3108,7 @@ x_d
 
   <p><img src="/lectures/images/2021-12-09-COMS4771_ML/image-20211014155124853.png" alt="image-20211014155124853" /></p>
 
-  <p>this problem is a convex optimization ==IFF both holds==:</p>
+  <p>this problem is a convex optimization <mark>IFF both holds</mark>:</p>
 
   <ul>
     <li>the <strong>feasible</strong> region of output (due to the constraint) is a <strong>convex set</strong></li>
@@ -3122,7 +3122,7 @@ x_d
 
 <ul>
   <li>
-    <p>if the <em>function</em> $g_i(\vec{x})$ is convex, it does ==not necessarily mean== out feasible region is also convex (e.g. draw two quadratic, and the region outside is not a convex set)</p>
+    <p>if the <em>function</em> $g_i(\vec{x})$ is convex, it does <mark>not necessarily mean</mark> out feasible region is also convex (e.g. draw two quadratic, and the region outside is not a convex set)</p>
 
     <p><img src="/lectures/images/2021-12-09-COMS4771_ML/image-20211019165830633.png" alt="image-20211019165830633" style="zoom:50%;" /></p>
   </li>
@@ -3137,8 +3137,8 @@ x_d
     <p>Every local optima is a <strong>global optima</strong></p>
 
     <ul>
-      <li>but note that a local optima ==might not exist==. For instance $y=e^x,y=x$ both has no local/global optima</li>
-      <li>also, there could be ==multiple local/global optima==</li>
+      <li>but note that a local optima <mark>might not exist</mark>. For instance $y=e^x,y=x$ both has no local/global optima</li>
+      <li>also, there could be <mark>multiple local/global optima</mark></li>
     </ul>
 
     <blockquote>
@@ -3198,7 +3198,7 @@ x_d
 <p>Note:</p>
 
 <ul>
-  <li>Slater’s condition is a ==sufficient== condition (fulfillment of requirement “guarantees” that the outcome), but not a <em>necessary condition</em> (i.e. there might be other causes such that $d^<em>=p^</em>$)</li>
+  <li>Slater’s condition is a <mark>sufficient</mark> condition (fulfillment of requirement “guarantees” that the outcome), but not a <em>necessary condition</em> (i.e. there might be other causes such that $d^<em>=p^</em>$)</li>
   <li>(the Karush-Kuhn-Tucker (KKT) condition would be the necessary condition)</li>
 </ul>
 
@@ -3211,22 +3211,22 @@ x_d
 <p>observe that:</p>
 
 <ol>
-  <li>the objective function is a <strong>convex function</strong> ==in the space of $\vec{w},b$== (i.e. a bowl shape extended in some direction)
+  <li>the objective function is a <strong>convex function</strong> <mark>in the space of $\vec{w},b$</mark> (i.e. a bowl shape extended in some direction)
     <ul>
       <li>an easy way to check is to see the <em>second derivative is <strong>positive definite</strong></em></li>
     </ul>
   </li>
-  <li>the constraint functions are <strong>affine</strong> ==in $\vec{w},b$==, which gives a polytope feasible region -&gt; convex set.</li>
+  <li>the constraint functions are <strong>affine</strong> <mark>in $\vec{w},b$</mark>, which gives a polytope feasible region -&gt; convex set.</li>
 </ol>
 
 <p>Therefore, this means:</p>
 
 <ul>
   <li>
-    <p>we can solve this primal problem ==directly== using a quadratic program (done)</p>
+    <p>we can solve this primal problem <mark>directly</mark> using a quadratic program (done)</p>
   </li>
   <li>
-    <p>this satisfies the Slater’s condition, then $d^<em>=p^</em>$, so we might be able to ==optimize if solving for $d^*$==</p>
+    <p>this satisfies the Slater’s condition, then $d^<em>=p^</em>$, so we might be able to <mark>optimize if solving for $d^*$</mark></p>
   </li>
 </ul>
 
@@ -3272,15 +3272,15 @@ this means that:</p>
           <p>looks similar to the perceptron algorithm, though $\alpha_i$ has a different meaning here (and is different)</p>
         </li>
         <li>
-          <p>whatever your result is from SVM, your ==boundary MUST== be a linear combination of the data points</p>
+          <p>whatever your result is from SVM, your <mark>boundary MUST</mark> be a linear combination of the data points</p>
         </li>
         <li>
-          <p>since $\alpha_i \ge 0$, the ==only participating vectors== are $x_i \to \alpha_i &gt; 0$. These vectors are called the <strong>support vectors</strong>. Now, notice that the primal problem (which is the same as dual problem now) we setup was:
+          <p>since $\alpha_i \ge 0$, the <mark>only participating vectors</mark> are $x_i \to \alpha_i &gt; 0$. These vectors are called the <strong>support vectors</strong>. Now, notice that the primal problem (which is the same as dual problem now) we setup was:
 \(\min_\vec{x}\max_{\lambda_i \ge 0} L(\vec{x},\vec{\lambda}) = \max_{\lambda_i \ge 0}\min_{\vec{x}} f(\vec{x}) + \sum_{i=1}^n \lambda_i g_i(\vec{x})\)
 where $g_i(x)=1-y_i(\vec{w}\cdot\vec{x}-b)\le 0$, and $\lambda = \alpha$ in our setup. Since we needed to maximize it, then obviously:</p>
 
           <ul>
-            <li>if $g_i(x) = 0$, then $\lambda_i$ can take any value. This means $1=y_i(\vec{w}\cdot\vec{x}-b)$. We are ==ON THE BOUNDARY==.</li>
+            <li>if $g_i(x) = 0$, then $\lambda_i$ can take any value. This means $1=y_i(\vec{w}\cdot\vec{x}-b)$. We are <mark>ON THE BOUNDARY</mark>.</li>
             <li>if $g_i(x) &lt; 0$, then $\lambda_i=0$ since we need to maximize it in the end. This means $1 &lt; y_i(\vec{w}\cdot\vec{x}-b)$. We are away from the boundary.</li>
           </ul>
 
@@ -3323,11 +3323,11 @@ where $g_i(x)=1-y_i(\vec{w}\cdot\vec{x}-b)\le 0$, and $\lambda = \alpha$ in our 
     <ul>
       <li>this objective function is <strong>concave</strong>, so a maxima exists. (because the $0.5\sum …$ is convex, but there is a negative sign, which made it concave)
         <ul>
-          <li>in fact, ==every dual problem== is ==concave==.</li>
+          <li>in fact, <mark>every dual problem</mark> is <mark>concave</mark>.</li>
         </ul>
       </li>
       <li>
-        <p>data points are in the form of $\lang x_i , x_j\rang$, which becomes ==kernelizable==. So we can actually substitute in a kernel function and optimize over it.</p>
+        <p>data points are in the form of $\lang x_i , x_j\rang$, which becomes <mark>kernelizable</mark>. So we can actually substitute in a kernel function and optimize over it.</p>
       </li>
       <li>
         <p>the constraint now is comes from $\partial L / \partial b = 0$</p>
@@ -3352,7 +3352,7 @@ where $g_i(x)=1-y_i(\vec{w}\cdot\vec{x}-b)\le 0$, and $\lambda = \alpha$ in our 
     <p><img src="/lectures/images/2021-12-09-COMS4771_ML/image-20211019173834736.png" alt="image-20211019173834736" style="zoom:50%;" /></p>
   </li>
   <li>
-    <p>To ==solve== this, notice that the objective is no longer convex (it will be convex only in the feasible region). The constraint is essentially $\vec{\alpha}\cdot \vec{y}=0$. Therefore, we can solve this by:</p>
+    <p>To <mark>solve</mark> this, notice that the objective is no longer convex (it will be convex only in the feasible region). The constraint is essentially $\vec{\alpha}\cdot \vec{y}=0$. Therefore, we can solve this by:</p>
 
     <ol>
       <li>use gradient descent for our objective function, computing gradient of $\alpha_i$</li>
@@ -3453,10 +3453,10 @@ where $g_i(x)=1-y_i(\vec{w}\cdot\vec{x}-b)\le 0$, and $\lambda = \alpha$ in our 
 <p>where the vertical axis is the next eruption time, horizontal axis being the current eruption time</p>
 
 <ul>
-  <li>notice that here we are ==combining the output space with the input space==. (In classification, it was color coded.)</li>
+  <li>notice that here we are <mark>combining the output space with the input space</mark>. (In classification, it was color coded.)</li>
 </ul>
 
-<p>Let us for now assume that input space is one dimensional, $X \in \mathbb{R}$. We ant to estimate $\hat{y}$, and compare that against the actual observation $y$. Our ==general aim is to minimize the “error”/loss $\hat{y}-y$==.</p>
+<p>Let us for now assume that input space is one dimensional, $X \in \mathbb{R}$. We ant to estimate $\hat{y}$, and compare that against the actual observation $y$. Our <mark>general aim is to minimize the "error"/loss $\hat{y}-y$</mark>.</p>
 
 <ul>
   <li>in the discrete case, our “error” is defined as $\hat{y}\neq y$.</li>
@@ -3470,7 +3470,7 @@ where $g_i(x)=1-y_i(\vec{w}\cdot\vec{x}-b)\le 0$, and $\lambda = \alpha$ in our 
 ...
 \end{cases}\]
 
-<p>Next, we need to ==assume a form of our predictor== $f$, in this case, a linear predictor:</p>
+<p>Next, we need to <mark>assume a form of our predictor</mark> $f$, in this case, a linear predictor:</p>
 
 \[\hat{y} =\hat{f}(\vec{x}) = \vec{w} \cdot \vec{x} + w_0\]
 
@@ -3478,7 +3478,7 @@ where $g_i(x)=1-y_i(\vec{w}\cdot\vec{x}-b)\le 0$, and $\lambda = \alpha$ in our 
 
 \[\min_{f\in F}\mathbb{E}_{x,y}[L(f(x),y)] = \min_{\vec{w},w_0} \mathbb{E}_{x,y}[L(f(x),y)]\]
 
-<p>so basically we want the ==average loss== to be ==minimized== over all the data points $(\vec{x},y)$</p>
+<p>so basically we want the <mark>average loss</mark> to be <mark>minimized</mark> over all the data points $(\vec{x},y)$</p>
 
 <h2 id="parametric-vs-non-parametric-regression">Parametric vs Non-Parametric Regression</h2>
 
@@ -3545,11 +3545,11 @@ where $g_i(x)=1-y_i(\vec{w}\cdot\vec{x}-b)\le 0$, and $\lambda = \alpha$ in our 
 
   <ul>
     <li>This squared quantity means that I am penalizing <em>more</em> the further you are away. This might or might not be suitable depending on the application.</li>
-    <li>In other words, you are preferring ==many small mistakes== than few large mistakes.</li>
+    <li>In other words, you are preferring <mark>many small mistakes</mark> than few large mistakes.</li>
   </ul>
 </blockquote>
 
-<p>Graphically, we are basically making the ==loss== to be the ==vertical distance==:</p>
+<p>Graphically, we are basically making the <mark>loss</mark> to be the <mark>vertical distance</mark>:</p>
 
 <p><img src="/lectures/images/2021-12-09-COMS4771_ML/image-20211021155124932.png" alt="image-20211021155124932" /></p>
 
@@ -3562,7 +3562,7 @@ where $g_i(x)=1-y_i(\vec{w}\cdot\vec{x}-b)\le 0$, and $\lambda = \alpha$ in our 
   <li>label $y$ is perpendicular to the input space, but attached to it as we are looking at both together</li>
   <li>we are minimizing the vertical distance (quantity $(\vec{w}\cdot \vec{x}_i - y_i)$) squared. Because our predicted output is technically $(\vec{x}_i, \vec{w}\cdot \vec{x}_i)$.
     <ul>
-      <li>we are ==not minimizing== the ==distance to the orthogonal projection==. if you are minimizing the orthogonal distance, then its like PCA.</li>
+      <li>we are <mark>not minimizing</mark> the <mark>distance to the orthogonal projection</mark>. if you are minimizing the orthogonal distance, then its like PCA.</li>
     </ul>
   </li>
 </ul>
@@ -3606,7 +3606,7 @@ y_n
   <li>note we choose to represent data vectors in row, because this is the convention for statistics. Mathematically doing it in a column vector is “nicer”.</li>
 </ul>
 
-<p>Now we take the ==derivative== w.r.t. $\vec{w}$ to minimize it:</p>
+<p>Now we take the <mark>derivative</mark> w.r.t. $\vec{w}$ to minimize it:</p>
 
 \[\frac{d}{d\vec{w}}||X\vec{w}-\vec{y}||^2 = 2X^T(X\vec{w}-\vec{y}) = 0\]
 
@@ -3637,7 +3637,7 @@ X^TX\vec{w}
 <p>note that</p>
 
 <ul>
-  <li>we are taking the ==pseudo inverse== of $X^TX$, because $X^TX$ might ==not be invertible== (if invertible, the solution is <strong>unique and stable</strong>).</li>
+  <li>we are taking the <mark>pseudo inverse</mark> of $X^TX$, because $X^TX$ might <mark>not be invertible</mark> (if invertible, the solution is <strong>unique and stable</strong>).</li>
 </ul>
 
 <p>The advantage of this is that you no longer needs to do some <strong>iterative computation</strong> of gradient descent on the data, we can compute in one shot the solution.</p>
@@ -3681,7 +3681,7 @@ M^{-1}
 0 &amp; \dots &amp; 1 / \lambda_k
 \end{bmatrix},\quad \text{for }\lambda_k &gt; 0\]
 
-      <p>in other words, you ==drop all the $\lambda_i,v_i$ if $\lambda_i=0$==.</p>
+      <p>in other words, you <mark>drop all the $\lambda_i,v_i$ if $\lambda_i=0$</mark>.</p>
     </li>
     <li>
       <p>Therefore, another way is to write as:</p>
@@ -3719,7 +3719,7 @@ M^{-1}
 
 <p><img src="/lectures/images/2021-12-09-COMS4771_ML/image-20211029131500291.png" alt="image-20211029131500291" style="zoom:50%;" /></p>
 
-<p>Let us denote those vectors as $\ddot{x}_1,…,\ddot{x}_d \in \mathbb{R}^n$. Each vector here represents the “==realization of that feature across your $n$ data points==”. Then, we can rewrite the same problem as:</p>
+<p>Let us denote those vectors as $\ddot{x}_1,…,\ddot{x}_d \in \mathbb{R}^n$. Each vector here represents the “<mark>realization of that feature across your $n$ data points</mark>”. Then, we can rewrite the same problem as:</p>
 
 \[\arg\min_{\vec{w}} \frac{1}{n} \sum_{i=1}^n(\vec{w}\cdot \vec{x}_i - y_i)^2 = \arg\min_{\vec{w}}\frac{1}{n}\left\|\vec{y} - \sum_{i=1}^d w_i\ddot{x}_i\right\|^2\]
 
@@ -3732,10 +3732,10 @@ M^{-1}
     <p>so essentially $X\vec{w}$ is linear combination of columns of $X$.</p>
   </li>
   <li>
-    <p>This task now becomes: how to ==combine each column together==, such that the ==result is closest to the label vector $\vec{y}$==</p>
+    <p>This task now becomes: how to <mark>combine each column together</mark>, such that the <mark>result is closest to the label vector $\vec{y}$</mark></p>
 
     <ul>
-      <li>so basically how ==important== is <strong>each feature column in your training data</strong>. In other words, this is telling you the feature importance. e.g. if $w_i=0$, that means feature $i$ is <em>useless</em> for my prediction.</li>
+      <li>so basically how <mark>important</mark> is <strong>each feature column in your training data</strong>. In other words, this is telling you the feature importance. e.g. if $w_i=0$, that means feature $i$ is <em>useless</em> for my prediction.</li>
     </ul>
   </li>
 </ul>
@@ -3748,7 +3748,7 @@ M^{-1}
 
 <ul>
   <li>
-    <p>$\hat{y}$ is the ==orthogonal projection of $\vec{y}$== into $\text{span}{\ddot{x}_1 , \ddot{x}_2,…\ddot{x}_d}$. This is because that we know:</p>
+    <p>$\hat{y}$ is the <mark>orthogonal projection of $\vec{y}$</mark> into $\text{span}{\ddot{x}_1 , \ddot{x}_2,…\ddot{x}_d}$. This is because that we know:</p>
 
 \[w_{\mathrm{ols}}=\arg\min_{\vec{w}}\frac{1}{n}\left\|\vec{y} - \sum_{i=1}^d w_i\ddot{x}_i\right\|^2\]
 
@@ -3767,7 +3767,7 @@ M^{-1}
     <p>$\hat{y}$ must be in the space of $\text{span}{\ddot{x}_1 , \ddot{x}_2,…\ddot{x}_d}$</p>
   </li>
   <li>
-    <p>$\vec{y}$ may or ==may not== be in the $\text{span}{\ddot{x}_1 , \ddot{x}_2,…\ddot{x}_d}$</p>
+    <p>$\vec{y}$ may or <mark>may not</mark> be in the $\text{span}{\ddot{x}_1 , \ddot{x}_2,…\ddot{x}_d}$</p>
   </li>
   <li>
     <p>the residual is basically:</p>
@@ -3782,7 +3782,7 @@ M^{-1}
 
 \[\hat{y} = X\vec{w}_{ols} = X(X^TX)^\dagger X^T \vec{y}\]
 
-<p>which means ==$X(X^TX)^\dagger X^T$ is the projection matrix== into the space of $\text{span}{\ddot{x}_1 , \ddot{x}_2,…\ddot{x}_d}$.</p>
+<p>which means <mark>$X(X^TX)^\dagger X^T$ is the projection matrix</mark> into the space of $\text{span}{\ddot{x}_1 , \ddot{x}_2,…\ddot{x}_d}$.</p>
 
 <ul>
   <li>note that this orthogonal projection is <em>still</em> different from the PCA, because now we are in the dimension of $n$, i,e, the column space of data points $X$ instead of the row space $\mathbb{R}^d$.</li>
@@ -3790,7 +3790,7 @@ M^{-1}
 
 <h4 id="statistical-view-of-linear-regression">Statistical View of Linear Regression</h4>
 
-<p>Let’s ==assume== that data $(x_i, y_i)$ is ==generated== from the following process. Basically a “generative view” of the problem.</p>
+<p>Let’s <mark>assume</mark> that data $(x_i, y_i)$ is <mark>generated</mark> from the following process. Basically a “generative view” of the problem.</p>
 
 <p>Consider the generation process be:</p>
 
@@ -3806,7 +3806,7 @@ M^{-1}
 \[y_{\text{clean}_i}:= w \cdot x_i\]
   </li>
   <li>
-    <p>Then you have some noise $\epsilon_i \sim N(0, \sigma^2)$ that disrupts that $y_{\text{clean}}$ to get your ==actual “label”==:</p>
+    <p>Then you have some noise $\epsilon_i \sim N(0, \sigma^2)$ that disrupts that $y_{\text{clean}}$ to get your <mark>actual "label"</mark>:</p>
 
 \[y_i := w \cdot x_i + \epsilon_i\]
 
@@ -3828,7 +3828,7 @@ M^{-1}
     </table>
   </li>
   <li>
-    <p>Then what you can ==only see (as training data) it the final result==:</p>
+    <p>Then what you can <mark>only see (as training data) it the final result</mark>:</p>
 
 \[S:=(x_1, y_1), (x_2, y_2), ..., (x_n, y_n)\]
   </li>
@@ -3838,7 +3838,7 @@ M^{-1}
   <p>Now, the <strong>goal</strong> is to figure out what is $w$ from some <em>noised</em> data. So we want to:</p>
 
   <ul>
-    <li>determine $w$, from the gaussian noise distribution using ==MLE==! Because we basically just have a parameter $\theta = w$, we have some data essentially from some distribution.</li>
+    <li>determine $w$, from the gaussian noise distribution using <mark>MLE</mark>! Because we basically just have a parameter $\theta = w$, we have some data essentially from some distribution.</li>
   </ul>
 </blockquote>
 
@@ -3895,7 +3895,7 @@ l(w|S)
 
 \[\arg\max_{\vec{w}} \mathcal{L}(w|S) = \arg\max_{\vec{w}}\sum_{i=1}^n -(\vec{w}\cdot \vec{x}_i - y_i)^2 = \arg\min_{\vec{w}} \sum_{i=1}^n (\vec{w}\cdot \vec{x}_i-y_i)^2\]
 
-<p>which is ==exactly the Ordinary Least Square== problem.</p>
+<p>which is <mark>exactly the Ordinary Least Square</mark> problem.</p>
 
 <blockquote>
   <p><strong>Note</strong></p>
@@ -3908,7 +3908,7 @@ l(w|S)
 
 \[\arg\min_{\vec{w}} \sum_{i=1}^n \frac{(\vec{w}\cdot \vec{x}_i-y_i)^2}{2\sigma^2_i}\]
 
-      <p>then each $\sigma_i$ is <strong>weighing how confident</strong> my $\hat{y}_i=\vec{w}\cdot \vec{x}_i$ is. In other words, if $\sigma_i$ is large for some $x_i$, then it means even if the “discrepancy” $(\hat{y}_i - y_i)^2$ may be large, but if $\vert \hat{y}_i - y_i\vert$ is still a ==within $\sqrt{2} \sigma$ from the “center of mass”== of the distribution, then I am <strong>quite confident</strong> about it.</p>
+      <p>then each $\sigma_i$ is <strong>weighing how confident</strong> my $\hat{y}_i=\vec{w}\cdot \vec{x}_i$ is. In other words, if $\sigma_i$ is large for some $x_i$, then it means even if the “discrepancy” $(\hat{y}_i - y_i)^2$ may be large, but if $\vert \hat{y}_i - y_i\vert$ is still a <mark>within $\sqrt{2} \sigma$ from the "center of mass"</mark> of the distribution, then I am <strong>quite confident</strong> about it.</p>
     </li>
     <li>
       <p>the noise is distributed as $\epsilon \sim N(0,\sigma^2)$, and the data is generated in the way mentioned above.</p>
@@ -3929,12 +3929,12 @@ l(w|S)
 
       <ul>
         <li>
-          <p>linear regression ==tacks the label onto the same space== as input</p>
+          <p>linear regression <mark>tacks the label onto the same space</mark> as input</p>
 
           <p><img src="/lectures/images/2021-12-09-COMS4771_ML/image-20211104144946621.png" alt="image-20211104144946621" style="zoom: 50%;" /></p>
         </li>
         <li>
-          <p>classification used ==color code== for the label, but space is still $X$.</p>
+          <p>classification used <mark>color code</mark> for the label, but space is still $X$.</p>
 
           <p><img src="/lectures/images/2021-12-09-COMS4771_ML/image-20211104144812504.png" alt="image-20211104144812504" style="zoom: 50%;" /></p>
         </li>
@@ -3947,7 +3947,7 @@ l(w|S)
 
 <p><img src="/lectures/images/2021-12-09-COMS4771_ML/image-20211104144812504.png" alt="image-20211104144812504" style="zoom: 50%;" /></p>
 
-<p>but we could ==manually tack on a output value==, such that:</p>
+<p>but we could <mark>manually tack on a output value</mark>, such that:</p>
 
 <ul>
   <li>$Y=1$ for blue dots</li>
@@ -3965,7 +3965,7 @@ l(w|S)
   <li>essentially, we are fitting a “stepwise-ish” function (since we are doing classification) to a linear relationship</li>
 </ul>
 
-<p>A better model would be to consider a ==sigmoid function== whose shape is much closer</p>
+<p>A better model would be to consider a <mark>sigmoid function</mark> whose shape is much closer</p>
 
 <p><img src="/lectures/images/2021-12-09-COMS4771_ML/image-20211104145812551.png" alt="image-20211104145812551" style="zoom: 50%;" /></p>
 
@@ -3977,10 +3977,10 @@ l(w|S)
 
 <ul>
   <li>the controlling parameter is $w$, which tells you how <strong>fast</strong> the ramp goes up</li>
-  <li>notice that the logistic regression $\sigma : \mathbb{R} \to [0,1]$, but ==our data is $X \in \mathbb{R}^d$==. Therefore, we basically did $z = \vec{w}\cdot \vec{x}$.</li>
+  <li>notice that the logistic regression $\sigma : \mathbb{R} \to [0,1]$, but <mark>our data is $X \in \mathbb{R}^d$</mark>. Therefore, we basically did $z = \vec{w}\cdot \vec{x}$.</li>
 </ul>
 
-<p>Also notice that technically, ${1}/(1+e^{-z}) \to [0,1]$, but since we want to get $[-1, 1]$, we could do either of the ==two things== to make it classification:</p>
+<p>Also notice that technically, ${1}/(1+e^{-z}) \to [0,1]$, but since we want to get $[-1, 1]$, we could do either of the <mark>two things</mark> to make it classification:</p>
 
 <ol>
   <li>
@@ -4000,7 +4000,7 @@ l(w|S)
 
   <ul>
     <li>
-      <p>thought this looks like a nonlinear function, but this is in the space of $Y$ ==attached== to $X$, i.e. $\mathbb{R}^{d+1}$. Recall that a linear classifier means the <strong>boundary in the $X$ space is affine</strong>, which is correct here.</p>
+      <p>thought this looks like a nonlinear function, but this is in the space of $Y$ <mark>attached</mark> to $X$, i.e. $\mathbb{R}^{d+1}$. Recall that a linear classifier means the <strong>boundary in the $X$ space is affine</strong>, which is correct here.</p>
 
       <table>
         <thead>
@@ -4017,7 +4017,7 @@ l(w|S)
         </tbody>
       </table>
 
-      <p>notice the boundary induces is ==in the input space, which is linear==.</p>
+      <p>notice the boundary induces is <mark>in the input space, which is linear</mark>.</p>
     </li>
     <li>
       <p>therefore, for a “higher dimensional sigmoid function”, this is still a linear boundary in the input space</p>
@@ -4044,7 +4044,7 @@ l(w|S)
 
 \[\text{odds}(P) = \frac{P}{1-P} = \frac{\text{probabilit of occuring}}{\text{probabilit of not occuring}}\]
 
-<p>which if we consider this is ==asymmetric==</p>
+<p>which if we consider this is <mark>asymmetric</mark></p>
 
 <ul>
   <li>if $p=0.9$, then odds is $9$. But if $p=0.1$, odds is $0.11…$. Seems unrelated</li>
@@ -4054,11 +4054,11 @@ l(w|S)
   <p><strong>Heuristics</strong></p>
 
   <ul>
-    <li>Given ==some data point $x$==, what is the ==odds that $\text{Y=1}$==? To find that out, we need to think about what is the probability of “success”, i.e. getting $Y=1$ for some $x$. Hence, something like $P(x)$.</li>
+    <li>Given <mark>some data point $x$</mark>, what is the <mark>odds that $\text{Y=1}$</mark>? To find that out, we need to think about what is the probability of “success”, i.e. getting $Y=1$ for some $x$. Hence, something like $P(x)$.</li>
   </ul>
 </blockquote>
 
-<p>Since we should not apply some linear model to the Odds function, we can try ==consider the $\log$ of the odds==, which is symmetric:</p>
+<p>Since we should not apply some linear model to the Odds function, we can try <mark>consider the $\log$ of the odds</mark>, which is symmetric:</p>
 
 \[\log (\text{odds}(P)) := \text{logit}(P):= \log \left( \frac{P}{1-P} \right)\]
 
@@ -4066,10 +4066,10 @@ l(w|S)
 
 <ul>
   <li>
-    <p>this means: ==what is the log of the chance/odd that some event is “successful”==, i.e. how likely to have $Y=1$</p>
+    <p>this means: <mark>what is the log of the chance/odd that some event is "successful"</mark>, i.e. how likely to have $Y=1$</p>
   </li>
   <li>
-    <p>having some symmetry here makes much <strong>more sense</strong> to model $\text{logit}$ function as a linear model.??? ==TODO==</p>
+    <p>having some symmetry here makes much <strong>more sense</strong> to model $\text{logit}$ function as a linear model.??? <mark>TODO</mark></p>
   </li>
   <li>
     <p>graphically:</p>
@@ -4103,11 +4103,11 @@ P(x)
 
   <ul>
     <li>
-      <p>Basically, the idea is that, ==given some data $x$==, we are modelling $X \sim \text{Bern}(p)$. And we basically come up with:</p>
+      <p>Basically, the idea is that, <mark>given some data $x$</mark>, we are modelling $X \sim \text{Bern}(p)$. And we basically come up with:</p>
 
 \[p= \frac{1}{1+e^{-w \cdot x}} := \text{Probability of getting $Y=1$}\]
 
-      <p>And we got here by modelling ==(log of) the odds of having $Y=1$== for some data $x$ ==by a linear approximation $w \cdot x$==.</p>
+      <p>And we got here by modelling <mark>(log of) the odds of having $Y=1$</mark> for some data $x$ <mark>by a linear approximation $w \cdot x$</mark>.</p>
 
       <ul>
         <li>assuming that this is Bernoulli, that the probability of “failure” of $Y=0$ is $1-P(x)$, for $P(x)$ is the probability of “success”.</li>
@@ -4120,13 +4120,13 @@ P(x)
   <p><strong>Advantage of Logistic Regression for Classification</strong></p>
 
   <ul>
-    <li>the obvious advantage is that now, given some $x$, we can spit out ==how confidence/probable== we are in our ==classification==.</li>
+    <li>the obvious advantage is that now, given some $x$, we can spit out <mark>how confidence/probable</mark> we are in our <mark>classification</mark>.</li>
   </ul>
 </blockquote>
 
 <h3 id="solving-logistic-regression">Solving Logistic Regression</h3>
 
-<p>Now basically our only task left is to find out the ==optimum $w$==, given our model being:</p>
+<p>Now basically our only task left is to find out the <mark>optimum $w$</mark>, given our model being:</p>
 
 \[1\left\{ \frac{1}{1+e^{-w \cdot x}} &gt; 0.5 \right\} = 1\left\{ P(x) &gt; 0.5 \right\}\]
 
@@ -4201,7 +4201,7 @@ P(x)
 
 <h3 id="ridge-regression">Ridge Regression</h3>
 
-<p>Consider now we have the ==objective== being</p>
+<p>Consider now we have the <mark>objective</mark> being</p>
 
 <p><img src="/lectures/images/2021-12-09-COMS4771_ML/image-20211104154726308.png" alt="image-20211104154726308" style="zoom: 67%;" /></p>
 
@@ -4215,13 +4215,13 @@ P(x)
       <li>For instance, $w=[0.5,0.5]^T$ would be preferred over $w=[1,0]^T$.</li>
     </ul>
 
-    <p>Therefore, this is most suitable when a data set contains ==a higher number of features than the number of observations==, so that we ==prevent overfitting.==</p>
+    <p>Therefore, this is most suitable when a data set contains <mark>a higher number of features than the number of observations</mark>, so that we <mark>prevent overfitting.</mark></p>
   </li>
   <li>
     <p>so again, we have <strong>competing</strong> terms of reconstruction error and regularization (preventing overfitting of features)</p>
   </li>
   <li>
-    <p>notice that here we are doing a ==L-2 regularization==, since $\vert \vert \vec{w}\vert \vert _2^2$ is L-2 distance.</p>
+    <p>notice that here we are doing a <mark>L-2 regularization</mark>, since $\vert \vert \vec{w}\vert \vert _2^2$ is L-2 distance.</p>
   </li>
 </ul>
 
@@ -4232,11 +4232,11 @@ P(x)
 <p>which basically comes from taking the derivative of the objective and setting it to zero, and note that:</p>
 
 <ul>
-  <li>this matrix $X^TX + \lambda I$ is exactly ==invertible== since it is now <strong>positive definite</strong> (because we added some positive number to diagonal)</li>
-  <li>since $X^TX + \lambda I$ is invertible, this always result in a ==unique solution==.</li>
+  <li>this matrix $X^TX + \lambda I$ is exactly <mark>invertible</mark> since it is now <strong>positive definite</strong> (because we added some positive number to diagonal)</li>
+  <li>since $X^TX + \lambda I$ is invertible, this always result in a <mark>unique solution</mark>.</li>
 </ul>
 
-<p>But also notice that this objective is ==similar== to the following optimization problem</p>
+<p>But also notice that this objective is <mark>similar</mark> to the following optimization problem</p>
 
 <p><img src="/lectures/images/2021-12-09-COMS4771_ML/image-20211104155643938.png" alt="image-20211104155643938" style="zoom: 50%;" /></p>
 
@@ -4277,7 +4277,7 @@ P(x)
     <p>the constraint of $\vert \vert w\vert \vert ^2 \le B$ gives you the blue ball</p>
   </li>
   <li>
-    <p>therefore the $\vec{w}_{\text{ridge}}$ <em>in this case</em> is touching the circumference of the circle (gradient vector parallel to normal vector), which is ==unique==, and this problem is also a <strong>convex optimization</strong>.</p>
+    <p>therefore the $\vec{w}_{\text{ridge}}$ <em>in this case</em> is touching the circumference of the circle (gradient vector parallel to normal vector), which is <mark>unique</mark>, and this problem is also a <strong>convex optimization</strong>.</p>
 
     <ul>
       <li>
@@ -4285,7 +4285,7 @@ P(x)
 
         <p><img src="/lectures/images/2021-12-09-COMS4771_ML/image-20211109150532372.png" alt="image-20211109150532372" style="zoom:50%;" /></p>
 
-        <p>where the “plus” like shape is the L-0 constraint. Since the feasible set is not a convex set, it is <strong>not a convex optimization</strong>. The ==closest convex approximation== is the L-1 constraint, which gives us the Lasso’s Regression.</p>
+        <p>where the “plus” like shape is the L-0 constraint. Since the feasible set is not a convex set, it is <strong>not a convex optimization</strong>. The <mark>closest convex approximation</mark> is the L-1 constraint, which gives us the Lasso’s Regression.</p>
       </li>
     </ul>
   </li>
@@ -4329,7 +4329,7 @@ P(x)
 
 \[\vec{w}_{\text{lasso}} =?\]
 
-<p>yet we can solve this using <strong>iterative methods</strong> such as gradient descent, just taking derivatives of the ==objective function==.</p>
+<p>yet we can solve this using <strong>iterative methods</strong> such as gradient descent, just taking derivatives of the <mark>objective function</mark>.</p>
 
 <p>The equivalent problem in <strong>optimization/Lagrange</strong> is:</p>
 
@@ -4352,13 +4352,13 @@ P(x)
 
 <h2 id="regression-optimality">Regression Optimality</h2>
 
-<p>Given some data, can we find some <strong>optimal estimator</strong> (not necessarily linear), that basically ==parallels the concept of a Bayes’ classifier== in the discrete case?</p>
+<p>Given some data, can we find some <strong>optimal estimator</strong> (not necessarily linear), that basically <mark>parallels the concept of a Bayes' classifier</mark> in the discrete case?</p>
 
 <p>Recall that in the discrete case, the Bayes was simply taking the most possible estimate:</p>
 
 \[f^*(x) = \arg \max_{y \in Y} P[Y=y|X=x]\]
 
-<p>notice that it like a function that is taking the best value <strong>point-wisely</strong> for each $x$. Therefore, the parallel in ==continuous case== is:</p>
+<p>notice that it like a function that is taking the best value <strong>point-wisely</strong> for each $x$. Therefore, the parallel in <mark>continuous case</mark> is:</p>
 
 \[f^*(x) := \mathbb{E}_{y|x}[Y|X=x]\]
 
@@ -4376,7 +4376,7 @@ P(x)
     <p>which makes sense since in the end we can <em>only return one value/label</em> for a given $x$.</p>
   </li>
   <li>
-    <p>However, why is ==taking the mean== giving us the ==best performance==? What ==performance metric== are we using?</p>
+    <p>However, why is <mark>taking the mean</mark> giving us the <mark>best performance</mark>? What <mark>performance metric</mark> are we using?</p>
   </li>
 </ul>
 
@@ -4391,7 +4391,7 @@ P(x)
 
   <ul>
     <li>our “error” is a <strong>L-2 error</strong> of $\vert f^<em>(x)-y\vert ^2$. Therefore, the optimal $f^</em>$ defined above is also the <strong>optimal $L_2$ regressor</strong>.</li>
-    <li>so the ==performance metric== is actually $\vert f^*(x)-y\vert ^2$.</li>
+    <li>so the <mark>performance metric</mark> is actually $\vert f^*(x)-y\vert ^2$.</li>
   </ul>
 </blockquote>
 
@@ -4443,12 +4443,12 @@ P(x)
   <li>the second equality comes from the fact that we are minimizing over $g(x)$</li>
 </ul>
 
-<p>Therefore, under this ==specific performance metric==, $f^*(x) := \mathbb{E}_{y\vert x}[Y\vert X=x]$is the best we can do.</p>
+<p>Therefore, under this <mark>specific performance metric</mark>, $f^*(x) := \mathbb{E}_{y\vert x}[Y\vert X=x]$is the best we can do.</p>
 
 <blockquote>
   <p><strong>Note</strong></p>
 
-  <p>Again, this is the optimal over the <strong>true population</strong>, since we are having access to $\mathbb{E}_{y\vert x}[Y\vert X=x]$, which means we need to see ==all possible $y$==, and eventually this needs to be done for ==all possible $x$== as well.</p>
+  <p>Again, this is the optimal over the <strong>true population</strong>, since we are having access to $\mathbb{E}_{y\vert x}[Y\vert X=x]$, which means we need to see <mark>all possible $y$</mark>, and eventually this needs to be done for <mark>all possible $x$</mark> as well.</p>
 
   <ul>
     <li>this, in a sense, is approximated/answered in the non-parametric regression</li>
@@ -4465,7 +4465,7 @@ P(x)
 
 <ul>
   <li>if you <strong>only look at the slice of $x=x_0$</strong>, we might have no data of $y$ at all!</li>
-  <li>therefore, the idea is to ==look at slice of the neighborhood around $x_0$==</li>
+  <li>therefore, the idea is to <mark>look at slice of the neighborhood around $x_0$</mark></li>
 </ul>
 
 <blockquote>
@@ -4487,7 +4487,7 @@ P(x)
   </ul>
 </blockquote>
 
-<p>So the idea is to look at the neighbor, but we can even do better by <strong>weighting the neighbor</strong> by how far it is from the data point. This introduces us the idea of non-parametric regression - ==Kernel Regression==</p>
+<p>So the idea is to look at the neighbor, but we can even do better by <strong>weighting the neighbor</strong> by how far it is from the data point. This introduces us the idea of non-parametric regression - <mark>Kernel Regression</mark></p>
 
 <h3 id="kernel-regression">Kernel Regression</h3>
 
@@ -4495,11 +4495,11 @@ P(x)
 
 <p><img src="/lectures/images/2021-12-09-COMS4771_ML/image-20211109163330074.png" alt="image-20211109163330074" style="zoom: 50%;" /></p>
 
-<p>then it is the same as considering, ==within that slice==, we take a ==uniform weighting==:</p>
+<p>then it is the same as considering, <mark>within that slice</mark>, we take a <mark>uniform weighting</mark>:</p>
 
 <p><img src="/lectures/images/2021-12-09-COMS4771_ML/image-20211109164029716.png" alt="image-20211109164029716" style="zoom:80%;" /></p>
 
-<p>In general, the idea of kernel regression is that, for ==given $x$ and within the slice/neighborhood==:</p>
+<p>In general, the idea of kernel regression is that, for <mark>given $x$ and within the slice/neighborhood</mark>:</p>
 
 \[\hat{y} = \hat{f}_n(x):= \sum_{i=1}^n w(x,x_i)y_i\]
 
@@ -4565,13 +4565,13 @@ e^{-||x-x'||^2/h}, &amp; \text{Gassian Kernel}\\
 \text{variance} &amp;\approx c_2 \frac{1}{nh^d}
 \end{align*}\]
 
-<p>Then, since we can choose any bandwidth, consider ==$h \approx n^{-1/(2+d)}$==, then we get:</p>
+<p>Then, since we can choose any bandwidth, consider <mark>$h \approx n^{-1/(2+d)}$</mark>, then we get:</p>
 
 \[\mathbb{E}[|\hat{f}_{h,n}(x) - f^*(x)|^2] \approx n^{-2 / (2+d)} \to 0, \quad \text{as } n \to \infty\]
 
 <h1 id="statistical-learning-theory">Statistical Learning Theory</h1>
 
-<p>How do we formalize the concept that “our machine has ==learned== something” (e.g. what is a face vs what is an apple.) So the idea is that we want to define what what <strong>learning means</strong>.</p>
+<p>How do we formalize the concept that “our machine has <mark>learned</mark> something” (e.g. what is a face vs what is an apple.) So the idea is that we want to define what what <strong>learning means</strong>.</p>
 
 <ul>
   <li>in specific, we are using a statisical approach, so that is why it is called “statistical learning theory”</li>
@@ -4597,7 +4597,7 @@ e^{-||x-x'||^2/h}, &amp; \text{Gassian Kernel}\\
 
     <ol>
       <li>There is an input space $X$ and an output space $Y$</li>
-      <li>There is some distribution $\mathcal{D}$ where you get those data, but the model ==does not know what is the distribution==</li>
+      <li>There is some distribution $\mathcal{D}$ where you get those data, but the model <mark>does not know what is the distribution</mark></li>
       <li>The learner <strong>observes</strong> $m$ examples $(x_1, y_1),…,(x_m, y_m)$ drawn from $\mathcal{D}$
         <ul>
           <li>note that at this stage, techinically this <em>does not have to be IID</em>. But for the scope of this course, IID is the assumption.</li>
@@ -4617,7 +4617,7 @@ e^{-||x-x'||^2/h}, &amp; \text{Gassian Kernel}\\
         </ul>
       </li>
       <li>
-        <p>From $m$ observations, <strong>select</strong> a model $f_m \in \mathcal{F}$ which predicts ==well==</p>
+        <p>From $m$ observations, <strong>select</strong> a model $f_m \in \mathcal{F}$ which predicts <mark>well</mark></p>
 
         <ul>
           <li>
@@ -4628,7 +4628,7 @@ e^{-||x-x'||^2/h}, &amp; \text{Gassian Kernel}\\
 
 \[\mathrm{err}(f) := \mathbb{P}_{(x,y)\sim \mathcal{D}}[f(x) \neq y]\]
 
-            <p>which again is just the ==generalization error== defined on the <strong>entire/true population</strong>.</p>
+            <p>which again is just the <mark>generalization error</mark> defined on the <strong>entire/true population</strong>.</p>
           </li>
         </ul>
 
@@ -4646,7 +4646,7 @@ e^{-||x-x'||^2/h}, &amp; \text{Gassian Kernel}\\
   </li>
 </ul>
 
-<p>Now the problem is we ==cannot compute $\mathrm{err}(f)$== since this is dependent on the true distribution. So can we find some way to approximate it in the practical world?</p>
+<p>Now the problem is we <mark>cannot compute $\mathrm{err}(f)$</mark> since this is dependent on the true distribution. So can we find some way to approximate it in the practical world?</p>
 
 <blockquote>
   <p><strong>Note</strong></p>
@@ -4663,10 +4663,10 @@ e^{-||x-x'||^2/h}, &amp; \text{Gassian Kernel}\\
 <blockquote>
   <p><strong>PAC Learning Definition</strong></p>
 
-  <p>For ==all== tolerance levels $\epsilon &gt; 0$, and all confidence level $\delta &gt; 0$, if there is exist some model selection algorithm $A$ that <strong>selects $f_m^A\in \mathcal{F}$ from $m$ observations,</strong> i.e  $A: (x_i,y_i)_{i=1}^m \to f_m^A$, that has the property:</p>
+  <p>For <mark>all</mark> tolerance levels $\epsilon &gt; 0$, and all confidence level $\delta &gt; 0$, if there is exist some model selection algorithm $A$ that <strong>selects $f_m^A\in \mathcal{F}$ from $m$ observations,</strong> i.e  $A: (x_i,y_i)_{i=1}^m \to f_m^A$, that has the property:</p>
 
   <blockquote>
-    <p>(for ==all $\epsilon &gt;0, \delta&gt;0$==), with probably at least $1-\delta$ over ==some== draw of the sample with size $m$:</p>
+    <p>(for <mark>all $\epsilon &gt;0, \delta&gt;0$</mark>), with probably at least $1-\delta$ over <mark>some</mark> draw of the sample with size $m$:</p>
   </blockquote>
 
 \[\mathrm{err}(f_m^A) - \mathrm{err}(f^*) \le \epsilon\]
@@ -4678,10 +4678,10 @@ e^{-||x-x'||^2/h}, &amp; \text{Gassian Kernel}\\
   <ul>
     <li>the parameter $\delta$ is necessary, because you might <em>accidentally be given some “bad samples”</em>, so you cannot achieve the $\epsilon$ bound (e.g. very biased data). Hence this is necessary due to the fact that your sample drawn is <strong>random</strong>.</li>
     <li>the parameter $m$ is tunable. The aim is to find some $m$ that makes it work.</li>
-    <li>note that this error is the ==generalization== error, not training/testing error.</li>
+    <li>note that this error is the <mark>generalization</mark> error, not training/testing error.</li>
   </ul>
 
-  <p>If the above holds for $A: (x_i,y_i)_{i=1}^m \to f_m^A$, then the ==model class $\mathcal{F}$== is PAC-learnable.</p>
+  <p>If the above holds for $A: (x_i,y_i)_{i=1}^m \to f_m^A$, then the <mark>model class $\mathcal{F}$</mark> is PAC-learnable.</p>
 
   <ul>
     <li>
@@ -4718,10 +4718,10 @@ e^{-||x-x'||^2/h}, &amp; \text{Gassian Kernel}\\
 
 <ul>
   <li>
-    <p>this is ==an algorithm $A$==, that operates on some input data of size $m$ and spits our a predictor.</p>
+    <p>this is <mark>an algorithm $A$</mark>, that operates on some input data of size $m$ and spits our a predictor.</p>
   </li>
   <li>
-    <p>this is defined on <em>some sample</em>, which may either the ==training sample or the test sample== (or whatever sample)</p>
+    <p>this is defined on <em>some sample</em>, which may either the <mark>training sample or the test sample</mark> (or whatever sample)</p>
   </li>
 </ul>
 
@@ -4745,7 +4745,7 @@ e^{-||x-x'||^2/h}, &amp; \text{Gassian Kernel}\\
   <p>Essentially $\mathcal{F}$ will be <strong>efficiently PAC Learnable</strong> for using the ERM algorithm.</p>
 
   <ul>
-    <li>recall that $f^* =\arg\min_{f \in \mathcal{F}}\mathrm{err}(f)$, so it is basically ==as good as the best on in the class==, not necessarily the optimal Bayes</li>
+    <li>recall that $f^* =\arg\min_{f \in \mathcal{F}}\mathrm{err}(f)$, so it is basically <mark>as good as the best on in the class</mark>, not necessarily the optimal Bayes</li>
   </ul>
 </blockquote>
 
@@ -4762,7 +4762,7 @@ e^{-||x-x'||^2/h}, &amp; \text{Gassian Kernel}\\
 <blockquote>
   <p><strong>Note</strong></p>
 
-  <p>This theorem is also called the <strong>Occam’s Razor Theorem</strong>, its principle is basically that the “all things being equal (==i.e. same performance==), simplest explanation is the best explanation”, because here we are considering the <strong>smaller the $m$, the better</strong>, which means:</p>
+  <p>This theorem is also called the <strong>Occam’s Razor Theorem</strong>, its principle is basically that the “all things being equal (<mark>i.e. same performance</mark>), simplest explanation is the best explanation”, because here we are considering the <strong>smaller the $m$, the better</strong>, which means:</p>
 
 \[\text{smaller } \ln(|\mathcal{F}|)\]
 
@@ -4825,7 +4825,7 @@ e^{-||x-x'||^2/h}, &amp; \text{Gassian Kernel}\\
 <p>where the generalization error comes from the fact that:</p>
 
 <ul>
-  <li>$Z_1^f$ is still a ==random draw from some fixed distribution==, so the generalization is $\mathbb{E}[Z_1^f]$.</li>
+  <li>$Z_1^f$ is still a <mark>random draw from some fixed distribution</mark>, so the generalization is $\mathbb{E}[Z_1^f]$.</li>
 </ul>
 
 <p>Since $Z \in {0,1}$ basically is a Bernoulli random variable, the following Lemma will actually be useful:</p>
@@ -4856,7 +4856,7 @@ e^{-||x-x'||^2/h}, &amp; \text{Gassian Kernel}\\
   </ul>
 </blockquote>
 
-<p>Then, we want to evaluate the ==how probable it is to have picked a bad classifier $f \in \mathcal{F}$==, i.e. sample average is far off from true average $p=\mathbb{E}[Z_1]$:</p>
+<p>Then, we want to evaluate the <mark>how probable it is to have picked a bad classifier $f \in \mathcal{F}$</mark>, i.e. sample average is far off from true average $p=\mathbb{E}[Z_1]$:</p>
 
 \[P_{x_i, y_i}\left[\exists f \in \mathcal{F} , \, \left|  \ \frac{1}{m} \sum_{i=1}^m Z_i - \mathbb{E}[Z_1]\right| &gt;\epsilon \right]\]
 
@@ -4887,7 +4887,7 @@ e^{-||x-x'||^2/h}, &amp; \text{Gassian Kernel}\\
 m &amp;\ge \frac{1}{2 \epsilon^2} \ln \frac{2|\mathcal{F}|}{\delta}
 \end{align*}\]
 
-<p>so that if $m$ ==satisfies this condition==, then we ==WILL get good classifiers (error smaller than $\epsilon$ away) for $1-\delta$ of the time== such that:</p>
+<p>so that if $m$ <mark>satisfies this condition</mark>, then we <mark>WILL get good classifiers (error smaller than $\epsilon$ away) for $1-\delta$ of the time</mark> such that:</p>
 
 \[\left|  \ \frac{1}{m} \sum_{i=1}^m Z_i - \mathbb{E}[Z_1]\right|=| \mathrm{err}_m(f) - \mathrm{err}(f) | \le \epsilon\]
 
@@ -4898,7 +4898,7 @@ m &amp;\ge \frac{1}{2 \epsilon^2} \ln \frac{2|\mathcal{F}|}{\delta}
 &amp;\le 2 \max_{f \in \mathcal{F}} | \mathrm{err}(f) - \mathrm{err}_m(f) | = 2 \epsilon
 \end{align*}\]
 
-<p>Hence, to force it back to $\epsilon$, we need to ==substitute $\epsilon \to \epsilon/2$== for their $m$ so that we get:</p>
+<p>Hence, to force it back to $\epsilon$, we need to <mark>substitute $\epsilon \to \epsilon/2$</mark> for their $m$ so that we get:</p>
 
 \[m \ge \frac{2}{\epsilon^2} \ln \frac{2|\mathcal{F}|}{\delta}\]
 
@@ -4942,7 +4942,7 @@ P[|X-\mathbb{E}[X]| \ge c]
     <p>the second inequality comes from Markov’s inequality</p>
   </li>
   <li>
-    <p>now this is true for ==any distribution/random variable== .</p>
+    <p>now this is true for <mark>any distribution/random variable</mark> .</p>
   </li>
   <li>
     <p>notice that this can be applied for any power $(X-\mathbb{E}[X])^n$ for some even $n$.</p>
@@ -4971,7 +4971,7 @@ P_{Z_i}\left[ \frac{1}{m} \sum_{i=1}^m Z_i - \mathbb{E}[Z_1] &gt;\epsilon\right]
 &amp;\le e^{-2\epsilon^2m}
 \end{align*}\]
 
-<p>where the second last inequality comes from the fact that (proof omitted) $\mathbb{E}[e^{tY_1}] \le e^{t^2 / 8}$; the last inequality comes from using $t=4\epsilon$. Notice that we ==didn’t take the absolute value==. Therefore, to obtain the result we had, this is bounded by 2 times:</p>
+<p>where the second last inequality comes from the fact that (proof omitted) $\mathbb{E}[e^{tY_1}] \le e^{t^2 / 8}$; the last inequality comes from using $t=4\epsilon$. Notice that we <mark>didn't take the absolute value</mark>. Therefore, to obtain the result we had, this is bounded by 2 times:</p>
 
 \[P_{Z_i}\left[ \left| \frac{1}{m} \sum_{i=1}^m Z_i - \mathbb{E}[Z_1]\right| &gt;\epsilon\right] \le 2e^{-2\epsilon^2m}\]
 
@@ -4985,7 +4985,7 @@ P_{Z_i}\left[ \frac{1}{m} \sum_{i=1}^m Z_i - \mathbb{E}[Z_1] &gt;\epsilon\right]
   <p><strong>Aim</strong>: need find another way to capture the richness of $\mathcal{F}$.</p>
 </blockquote>
 
-<p>(Note that all the concepts below are for ==classification==. They can be extended to regression.)</p>
+<p>(Note that all the concepts below are for <mark>classification</mark>. They can be extended to regression.)</p>
 
 <blockquote>
   <p><strong>Definition (Vapnik-Chervonenkis or VC dimension):</strong></p>
@@ -4994,7 +4994,7 @@ P_{Z_i}\left[ \frac{1}{m} \sum_{i=1}^m Z_i - \mathbb{E}[Z_1] &gt;\epsilon\right]
 
   <ul>
     <li>
-      <p>the fact that some configuration of $x_1, …, x_d$ with any label can be classified is also called ==shattering==</p>
+      <p>the fact that some configuration of $x_1, …, x_d$ with any label can be classified is also called <mark>shattering</mark></p>
     </li>
     <li>
       <p>Note that VC dimension $d$ is dependent on <em>some set of points</em> AND <em>some model</em>. As long as there is one configuration that works, it is ok.</p>
@@ -5002,7 +5002,7 @@ P_{Z_i}\left[ \frac{1}{m} \sum_{i=1}^m Z_i - \mathbb{E}[Z_1] &gt;\epsilon\right]
     <li>
       <p>intuively, this is a measure of <strong>richness/complexity</strong> of the hypothesis class, since, e.g. if you have a polynomial of degree 5, then for any $d=5$ data you give me, I can achieve the labelling. So I <em>at least have VC=$5$</em> (unless $d=5$ is the larges set I can find).</p>
       <ul>
-        <li>another way to see this is that, for those $d$ points, you can have ==any noise to the label==, and the model will fit to that label (is bad). So it hints at how many data you need to not overfit.</li>
+        <li>another way to see this is that, for those $d$ points, you can have <mark>any noise to the label</mark>, and the model will fit to that label (is bad). So it hints at how many data you need to not overfit.</li>
       </ul>
     </li>
   </ul>
@@ -5018,7 +5018,7 @@ P_{Z_i}\left[ \frac{1}{m} \sum_{i=1}^m Z_i - \mathbb{E}[Z_1] &gt;\epsilon\right]
 
 <ul>
   <li>
-    <p>we just need to provide ==one configuration==. It does not need to hold for all configurations of the $d=3$ Points.</p>
+    <p>we just need to provide <mark>one configuration</mark>. It does not need to hold for all configurations of the $d=3$ Points.</p>
   </li>
   <li>
     <p>for $d=4$, no configuration is achievable. This you can show using the convex hull of four points. To show this, consider <em>ANY</em> configuration of four points, then you can either have:</p>
@@ -5032,7 +5032,7 @@ P_{Z_i}\left[ \frac{1}{m} \sum_{i=1}^m Z_i - \mathbb{E}[Z_1] &gt;\epsilon\right]
 
         <p><img src="/lectures/images/2021-12-09-COMS4771_ML/image-20211118172939664.png" alt="image-20211118172939664" style="zoom:67%;" /></p>
 
-        <p>(notice that ==linear separability== = classify data into ==convex sets==)</p>
+        <p>(notice that <mark>linear separability</mark> = classify data into <mark>convex sets</mark>)</p>
       </li>
       <li>
         <p>two corners -&gt; more than three points being colliear</p>
@@ -5104,7 +5104,7 @@ P_{Z_i}\left[ \frac{1}{m} \sum_{i=1}^m Z_i - \mathbb{E}[Z_1] &gt;\epsilon\right]
 
   <p>Let $\mathcal{A}$ be any model select algorithm that given $m$ samples, returns a model from $\mathcal{F}$, i.e. $A :(x_i, y_i)_{i=1}^m \to f_m^A$.</p>
 
-  <p>Then, for all tolerance levels $0 &lt; \epsilon &lt; 1$, and all confidence levle $0 &lt; \delta &lt; 1/4$, there ==exists a distribution== $\mathcal{D}$ for your data such that, if:</p>
+  <p>Then, for all tolerance levels $0 &lt; \epsilon &lt; 1$, and all confidence levle $0 &lt; \delta &lt; 1/4$, there <mark>exists a distribution</mark> $\mathcal{D}$ for your data such that, if:</p>
 
 \[m \le C \frac{\text{VC}(\mathcal{F})}{\epsilon^2}\]
 
@@ -5116,7 +5116,7 @@ P_{Z_i}\left[ \frac{1}{m} \sum_{i=1}^m Z_i - \mathbb{E}[Z_1] &gt;\epsilon\right]
 
   <ul>
     <li>if you give me less data than the bound, then, <strong>for more than $\delta$ amount of the time</strong>, your model can be arbitrarily bad in generalization error (for all $\epsilon$)</li>
-    <li>note that this fails for ==some distribution of data $\mathcal{D}$==. So you <em>might</em> be fine if your dataset is not that distribution $\mathcal{D}$.</li>
+    <li>note that this fails for <mark>some distribution of data $\mathcal{D}$</mark>. So you <em>might</em> be fine if your dataset is not that distribution $\mathcal{D}$.</li>
   </ul>
 </blockquote>
 
@@ -5129,7 +5129,7 @@ P_{Z_i}\left[ \frac{1}{m} \sum_{i=1}^m Z_i - \mathbb{E}[Z_1] &gt;\epsilon\right]
 
 <h2 id="no-free-lunch">No Free Lunch</h2>
 
-<p>ERM Algorithm + PAC Learning sounds very powerful, such that you can “solve any question”. However, be careful the PAC-Learnable is comparing against $f^* =\arg\min_{f \in \mathcal{F}}\mathrm{err}(f)$, which ==could be itself pretty bad==.</p>
+<p>ERM Algorithm + PAC Learning sounds very powerful, such that you can “solve any question”. However, be careful the PAC-Learnable is comparing against $f^* =\arg\min_{f \in \mathcal{F}}\mathrm{err}(f)$, which <mark>could be itself pretty bad</mark>.</p>
 
 <blockquote>
   <p><strong>Thereon</strong> (no free lunch)</p>
@@ -5144,7 +5144,7 @@ P_{Z_i}\left[ \frac{1}{m} \sum_{i=1}^m Z_i - \mathbb{E}[Z_1] &gt;\epsilon\right]
 
   <p>basically whatever your algorithm returns (e.g. ERM algorithm), I can <strong>always find a distirbution of data</strong> such that your algorithm returned garbage/close to random guessing.</p>
 
-  <p>Note that there is ==no conflict with PAC theorem== because:</p>
+  <p>Note that there is <mark>no conflict with PAC theorem</mark> because:</p>
 
   <ul>
     <li>you can pick some $\mathcal{D}$ such that the entire $\mathcal{F}$ is bad, i.e. your $f^* =\arg\min_{f \in \mathcal{F}}\mathrm{err}(f)$ is bad such that $\mathrm{err}(f^*)\approx 1/2$. However, notice that $f$ which is the optimal bayes can be good and that it could be $f \notin \mathcal{F}$. So there is no conflict.</li>
@@ -5206,7 +5206,7 @@ P_{Z_i}\left[ \frac{1}{m} \sum_{i=1}^m Z_i - \mathbb{E}[Z_1] &gt;\epsilon\right]
 <p>Suppose you know in advance that we have $k$ groups in our data $\vec{x}_1, …, \vec{x}_n$.</p>
 
 <blockquote>
-  <p>Our ==goal== is to partition our data into $k$ groups such that there is some “common features” shared</p>
+  <p>Our <mark>goal</mark> is to partition our data into $k$ groups such that there is some “common features” shared</p>
 
   <ul>
     <li>the definition of “common feature” <strong>decides what clustering algorithm</strong> we will use</li>
@@ -5223,7 +5223,7 @@ P_{Z_i}\left[ \frac{1}{m} \sum_{i=1}^m Z_i - \mathbb{E}[Z_1] &gt;\epsilon\right]
 
 <h3 id="k-means">$k$-means</h3>
 
-<p>Let there be $\vec{c}_1, …, \vec{c}_k$ being a set of ==representative== points such that data $\vec{x}_1, …, \vec{x}_n$ is close to some representative.</p>
+<p>Let there be $\vec{c}_1, …, \vec{c}_k$ being a set of <mark>representative</mark> points such that data $\vec{x}_1, …, \vec{x}_n$ is close to some representative.</p>
 
 <blockquote>
   <p><strong>Heuristics</strong>:</p>
@@ -5236,7 +5236,7 @@ P_{Z_i}\left[ \frac{1}{m} \sum_{i=1}^m Z_i - \mathbb{E}[Z_1] &gt;\epsilon\right]
 
 </blockquote>
 
-<p>Therefore, essentially we want to ==optimize the following==:</p>
+<p>Therefore, essentially we want to <mark>optimize the following</mark>:</p>
 
 \[\min_{c_1, ..., c_k} \left[ \sum_{i=1}^n \min_{j=1,...,k}||\vec{x}_i - \vec{c}_j||^2 \right]\]
 
@@ -5254,7 +5254,7 @@ P_{Z_i}\left[ \frac{1}{m} \sum_{i=1}^m Z_i - \mathbb{E}[Z_1] &gt;\epsilon\right]
 
   <ul>
     <li>
-      <p>this ==will== give you $k$ ==distinct== representative points if $n &gt; k$ and we have $n$ distinct data points.</p>
+      <p>this <mark>will</mark> give you $k$ <mark>distinct</mark> representative points if $n &gt; k$ and we have $n$ distinct data points.</p>
     </li>
     <li>
       <p>we cannot use gradient descent for $c_i$ because there is a $\min$ term inside that derivatives can’t deal with</p>
@@ -5279,7 +5279,7 @@ P_{Z_i}\left[ \frac{1}{m} \sum_{i=1}^m Z_i - \mathbb{E}[Z_1] &gt;\epsilon\right]
       </ul>
     </li>
     <li>
-      <p>K-means will always produce ==convex clusters== (due to the defined objective above), thus it can ==only work if clusters can be linearly separated==.</p>
+      <p>K-means will always produce <mark>convex clusters</mark> (due to the defined objective above), thus it can <mark>only work if clusters can be linearly separated</mark>.</p>
 
       <p>E.g.</p>
 
@@ -5362,7 +5362,7 @@ P_{Z_i}\left[ \frac{1}{m} \sum_{i=1}^m Z_i - \mathbb{E}[Z_1] &gt;\epsilon\right]
 
       <ul>
         <li>
-          <p>i.e. the approximation ==can== be arbitrarily bad, such that the cost difference against the optimal solution basically can be made arbitrarily bad. The <strong>cost</strong> function would be</p>
+          <p>i.e. the approximation <mark>can</mark> be arbitrarily bad, such that the cost difference against the optimal solution basically can be made arbitrarily bad. The <strong>cost</strong> function would be</p>
 
 \[\text{cost}(\{c_j\}) = \sum_{i=1}^n \min_{j=1,...,k}||\vec{x}_i - \vec{c}_j||^2\]
 
@@ -5376,11 +5376,11 @@ P_{Z_i}\left[ \frac{1}{m} \sum_{i=1}^m Z_i - \mathbb{E}[Z_1] &gt;\epsilon\right]
       <p>Performance quality heavily dependent on the initialization!</p>
     </li>
     <li>
-      <p>The whole purpose of $\vec{c}_j$ was ==only== to <strong>compute the new partition for $\vec{x}_i$</strong>, which is</p>
+      <p>The whole purpose of $\vec{c}_j$ was <mark>only</mark> to <strong>compute the new partition for $\vec{x}_i$</strong>, which is</p>
 
 \[\min_{c_1,...,c_j} \left[ \sum_{i=1}^n ||\vec{x}_i - \vec{c}_j||^2 \right]\]
 
-      <p>so if we can do ==this step using dot products==, we can ==kernelize this== (see HW4 last question)</p>
+      <p>so if we can do <mark>this step using dot products</mark>, we can <mark>kernelize this</mark> (see HW4 last question)</p>
     </li>
   </ul>
 </blockquote>
@@ -5390,7 +5390,7 @@ P_{Z_i}\left[ \frac{1}{m} \sum_{i=1}^m Z_i - \mathbb{E}[Z_1] &gt;\epsilon\right]
 <p>Now, the <strong>second</strong> problem is how should be <strong>decide what $k$ is</strong>?</p>
 
 <blockquote>
-  <p><strong>Solution</strong>: You don’t, since you might have no idea how many clusters there are. Then you basically can ==encode clustering for all values of $k$==, and the user choose later which one works the best!</p>
+  <p><strong>Solution</strong>: You don’t, since you might have no idea how many clusters there are. Then you basically can <mark>encode clustering for all values of $k$</mark>, and the user choose later which one works the best!</p>
 
   <ul>
     <li>this gives hierarchical clustering</li>
@@ -5444,7 +5444,7 @@ P_{Z_i}\left[ \frac{1}{m} \sum_{i=1}^m Z_i - \mathbb{E}[Z_1] &gt;\epsilon\right]
         <p>if I lifted $35$, then any cut in the yellow area will now give me purple and green as the same group</p>
       </li>
       <li>
-        <p>this also says. the longer the branch is, the more ==”saliently different”== it is from other group as you can ==cut many times and still result in different branches==</p>
+        <p>this also says. the longer the branch is, the more <mark>"saliently different"</mark> it is from other group as you can <mark>cut many times and still result in different branches</mark></p>
       </li>
     </ul>
   </li>
@@ -5540,7 +5540,7 @@ P_{Z_i}\left[ \frac{1}{m} \sum_{i=1}^m Z_i - \mathbb{E}[Z_1] &gt;\epsilon\right]
     <p>where $\pi_i$ is the probability to get cluster $i$.</p>
   </li>
   <li>
-    <p>To generate a <strong>single data point $x_i$</strong>, row the “dice $C$ which has $k$ faces”, and whatever it outputs will be the ==cluster that $x_i$ belongs to== (i.e. we first <strong>generate the cluster</strong>)</p>
+    <p>To generate a <strong>single data point $x_i$</strong>, row the “dice $C$ which has $k$ faces”, and whatever it outputs will be the <mark>cluster that $x_i$ belongs to</mark> (i.e. we first <strong>generate the cluster</strong>)</p>
 
     <ul>
       <li>in the end, after we generated cluster information for all data, this is basically a <strong>multinomial distribution for $C$</strong>, so you basically have $P(C_1=c_1, …, C_k=c_k)$ for $c_i$ being the number of data belonging to the $i$-th cluster.</li>
@@ -5568,11 +5568,11 @@ P_{Z_i}\left[ \frac{1}{m} \sum_{i=1}^m Z_i - \mathbb{E}[Z_1] &gt;\epsilon\right]
 
 \[\theta = (\pi_1, \vec{\mu}_1, \Sigma_1, ..., \pi_k, \vec{\mu}_k, \Sigma_k)\]
 
-<p>Then we ==want to do MLE==, but we don’t have data about $C$.</p>
+<p>Then we <mark>want to do MLE</mark>, but we don’t have data about $C$.</p>
 
 <ul>
   <li>modelling assumption is $(X,C)=(x_1, c_1),…,(x_n, c_n)$ drawn IID from $\mathbb{R}\times [k]$,</li>
-  <li>but we don’t have the “label” information! So need to ==model== the joint ==only with $x_1, …, x_n$==.
+  <li>but we don’t have the “label” information! So need to <mark>model</mark> the joint <mark>only with $x_1, ..., x_n$</mark>.
     <ul>
       <li>this is also called <strong>latent variable modelling</strong> where variable $c_i$ is latent/hidden from us</li>
       <li>if data is complete, we just do MLE</li>
@@ -5615,7 +5615,7 @@ P[\vec{x}|\theta]
   <li>
     <p>the last step basically is because by construction $P[c_i\vert \theta]=\pi_i$ and $P[\vec{x}\vert c_i,\theta]=N(\vec{x};\mu_i, \Sigma_i)$</p>
   </li>
-  <li>now the <strong>Gaussian Mixture Model</strong> is clear because the probability is a ==sum/mixture of many gaussians==.</li>
+  <li>now the <strong>Gaussian Mixture Model</strong> is clear because the probability is a <mark>sum/mixture of many gaussians</mark>.</li>
 </ul>
 
 <p>Graphically:</p>
@@ -5625,7 +5625,7 @@ P[\vec{x}|\theta]
 <p>where:</p>
 
 <ul>
-  <li>always remember that ==we don’t have $C$ information==, therefore our data is still in $\mathbb{R}^2$</li>
+  <li>always remember that <mark>we don't have $C$ information</mark>, therefore our data is still in $\mathbb{R}^2$</li>
   <li>the model $P[\vec{x}\vert \theta]$ for each data point contains a <strong>weighted contribution from each of the three Gaussian mountain</strong></li>
 </ul>
 
@@ -5645,12 +5645,12 @@ P[\vec{x}|\theta]
 
 <ul>
   <li>the first step comes from taking the log likelihood to convert $\Pi \to \sum$.</li>
-  <li>but we ==cannot simplify further== because $\ln \sum …$ is a pain to deal with.
+  <li>but we <mark>cannot simplify further</mark> because $\ln \sum …$ is a pain to deal with.
     <ul>
       <li>also note that this is <strong>not a convex optimization problem</strong> as this function is not convex</li>
     </ul>
   </li>
-  <li>the bigger problem with MLE directly is that the estimate for $\theta$ will ==yield degenerate $\theta$==</li>
+  <li>the bigger problem with MLE directly is that the estimate for $\theta$ will <mark>yield degenerate $\theta$</mark></li>
 </ul>
 
 <p>This basically does not work due to the fact that we are summing up the probability for each data point, and we can configure the Gaussian to be such that the following happens</p>
@@ -5696,7 +5696,7 @@ P[\vec{x}|\theta]
 
 <hr />
 
-<p><strong>Approach 2: ==EM Algorithm==</strong></p>
+<p><strong>Approach 2: <mark>EM Algorithm</mark></strong></p>
 
 <p>The idea is as follows. Even though the MLE which gives a <strong>global maximum</strong> is not desired, <strong>local maximum</strong> seems to be desirable:</p>
 
@@ -5724,7 +5724,7 @@ P[\vec{x}|\theta]
     <p>Initialize the parameters arbitrarily</p>
   </li>
   <li>
-    <p>Given the current setting of parameters find the <strong>best (soft) assignment</strong> of data samples to the clusters (==Expectation-step==)</p>
+    <p>Given the current setting of parameters find the <strong>best (soft) assignment</strong> of data samples to the clusters (<mark>Expectation-step</mark>)</p>
 
     <ul>
       <li>
@@ -5744,11 +5744,11 @@ P[\vec{x}|\theta]
     </ul>
   </li>
   <li>
-    <p>Update all the parameters $\theta$ with respect to the current (soft) assignment that maximizes the likelihood (==Maximization-step==)</p>
+    <p>Update all the parameters $\theta$ with respect to the current (soft) assignment that maximizes the likelihood (<mark>Maximization-step</mark>)</p>
 
     <ul>
       <li>same idea as Lloyd’s algorithm</li>
-      <li>this is now basically ==MLE==</li>
+      <li>this is now basically <mark>MLE</mark></li>
     </ul>
   </li>
   <li>
@@ -5889,7 +5889,7 @@ w_j^{(i)}
 
 \[f:\mathbb{R}^{784} \to \mathbb{R}^2\]
 
-    <p>which basically is doing a ==mapping from high dimension to low dimension==</p>
+    <p>which basically is doing a <mark>mapping from high dimension to low dimension</mark></p>
   </li>
 </ul>
 
@@ -5912,11 +5912,11 @@ w_j^{(i)}
 
 <p><strong>Data</strong>: given data $\vec{x}_1,…, \vec{x}_n \in \mathbb{R}^d$</p>
 
-<p><strong>Goal</strong>: find the best ==linear== transformation $\phi : \mathbb{R}^d \to \mathbb{R}^k, k &lt; d$ that best maintains reconstruction accuracy.</p>
+<p><strong>Goal</strong>: find the best <mark>linear</mark> transformation $\phi : \mathbb{R}^d \to \mathbb{R}^k, k &lt; d$ that best maintains reconstruction accuracy.</p>
 
 <ul>
   <li>basically it means minimizing the discrepancy if I <em>recreate the data</em></li>
-  <li>equivalently, we want to ==minimze aggregate residual error== (so we need to define this objective)</li>
+  <li>equivalently, we want to <mark>minimze aggregate residual error</mark> (so we need to define this objective)</li>
 </ul>
 
 <blockquote>
@@ -5929,7 +5929,7 @@ w_j^{(i)}
   <p>so basically $\phi$ is a mapping but it is linear.</p>
 
   <ul>
-    <li>e.g. in the case of $\phi:\mathbb{R}^{784} \to \mathbb{R}^2$ for the digits, a ==linear mapping then it means $\phi(\vec{x})=M\vec{x}$ for $M \in \mathbb{R}^{2 \times 784}$==. So we are just dealing with <strong>transformation matrices</strong>!</li>
+    <li>e.g. in the case of $\phi:\mathbb{R}^{784} \to \mathbb{R}^2$ for the digits, a <mark>linear mapping then it means $\phi(\vec{x})=M\vec{x}$ for $M \in \mathbb{R}^{2 \times 784}$</mark>. So we are just dealing with <strong>transformation matrices</strong>!</li>
     <li>One property of linear transformation is, that if $\vec{x}_j$ is close to $\vec{x}_i$, then in the transformed space, $\phi(\vec{x}_j)$ is still close to $\phi(\vec{x}_i)$. i.e. Neighboorhood  will be “preserved” in lower dimension.</li>
   </ul>
 </blockquote>
@@ -5937,25 +5937,25 @@ w_j^{(i)}
 <blockquote>
   <p><strong>Heuristics</strong></p>
 
-  <p>Consider that we are given some blue data points, e.g. in 3D. We know that given any plane, the <strong>minimum error you can get is to do orthogonal projection</strong>. Now, the question is ==which plane gives the smallest “error”== (if on each we do orthogonal projection):</p>
+  <p>Consider that we are given some blue data points, e.g. in 3D. We know that given any plane, the <strong>minimum error you can get is to do orthogonal projection</strong>. Now, the question is <mark>which plane gives the smallest "error"</mark> (if on each we do orthogonal projection):</p>
 
   <p><img src="/lectures/images/2021-12-09-COMS4771_ML/image-20211202223740693.png" alt="image-20211202223740693" style="zoom:80%;" /></p>
 
-  <p>so essentially we want to minimize the sum of the <strong>blue distances</strong> to find the ==best plane for projection==.</p>
+  <p>so essentially we want to minimize the sum of the <strong>blue distances</strong> to find the <mark>best plane for projection</mark>.</p>
 
   <ul>
     <li>so notice that now we are <strong>looking at the orthogonal distance</strong> (as compared to the regression case)</li>
   </ul>
 </blockquote>
 
-<p>Therefore, in order we define our ==objective== as follows. Let us find $\Pi^k:\mathbb{R}^d \to \mathbb{R}^d$ (instead of directly $\phi : \mathbb{R}^d \to \mathbb{R}^k, k &lt; d$ because we need to do subtraction with $\mathbb{R}^d$), such that:</p>
+<p>Therefore, in order we define our <mark>objective</mark> as follows. Let us find $\Pi^k:\mathbb{R}^d \to \mathbb{R}^d$ (instead of directly $\phi : \mathbb{R}^d \to \mathbb{R}^k, k &lt; d$ because we need to do subtraction with $\mathbb{R}^d$), such that:</p>
 
 \[\min_{\Pi^k} \frac{1}{n} \sum_{i=1}^n || \vec{x}_i - \Pi_k (\vec{x}_i) ||^2\]
 
-<p>so basically this is to ==minimize the height residuals==.</p>
+<p>so basically this is to <mark>minimize the height residuals</mark>.</p>
 
 <ul>
-  <li>note that we use $\Pi^k:\mathbb{R}^d \to \mathbb{R}^d$, which <strong>projects</strong> blue points into red points but in the ==same dimensional representation of $\mathbb{R}^{d}$==. This is also called a <strong>k-dimensional orthogonal linear projector</strong>
+  <li>note that we use $\Pi^k:\mathbb{R}^d \to \mathbb{R}^d$, which <strong>projects</strong> blue points into red points but in the <mark>same dimensional representation of $\mathbb{R}^{d}$</mark>. This is also called a <strong>k-dimensional orthogonal linear projector</strong>
     <ul>
       <li>you will see that eventually this $\Pi^k$ will contain our transformation matrix $\phi$ mentioned above</li>
     </ul>
@@ -5966,8 +5966,8 @@ w_j^{(i)}
 <p>Now, our task is to <strong>find $\Pi^k$</strong> for now. We know that:</p>
 
 <ul>
-  <li>A $k$ dimensional ==subspace== can be represented by any $k$ set of <strong>orthonormal</strong> vectors ==$\vec{q}_1, …, \vec{q}_k \in \mathbb{R}^d$== (basically I remove some unit vectors so I am in $\mathbb{R}^d$ but a subspace)</li>
-  <li>then <strong>projection</strong> of ==any $\vec{x}\in \mathbb{R}^d$== into that <strong>subspace</strong> is just ==projecting into the $\text{span}{\vec{q}_1, …, \vec{q}_k}$==</li>
+  <li>A $k$ dimensional <mark>subspace</mark> can be represented by any $k$ set of <strong>orthonormal</strong> vectors <mark>$\vec{q}_1, ..., \vec{q}_k \in \mathbb{R}^d$</mark> (basically I remove some unit vectors so I am in $\mathbb{R}^d$ but a subspace)</li>
+  <li>then <strong>projection</strong> of <mark>any $\vec{x}\in \mathbb{R}^d$</mark> into that <strong>subspace</strong> is just <mark>projecting into the $\text{span}\{\vec{q}_1, ..., \vec{q}_k\}$</mark></li>
 </ul>
 
 <p>Therefore, such a projection into the <strong>$k$ dimensional subspace of $d$ dimension</strong> is:</p>
@@ -6074,11 +6074,11 @@ x_1 &amp; ... &amp; x_n\\
 \[\vec{q}^T\left( \sum_{i=1}^n \vec{x}_i\vec{x}_i^T \right)\vec{q} =  \sum_{i=1}^n (\vec{q}^T\vec{x}_i)^2\]
   </li>
   <li>$X^TX$ is close to the covariance of the data (only if centered at the mean)</li>
-  <li>$M=X^TX$ is basically a matrix of solely composed of our data, and it is ==diagonalizable since it is symmetric==</li>
-  <li>and lastly, notice ==that $M \in \mathbb{R}^{d \times d}$ for $\vec{x}_i \in \mathbb{R}^d$==</li>
+  <li>$M=X^TX$ is basically a matrix of solely composed of our data, and it is <mark>diagonalizable since it is symmetric</mark></li>
+  <li>and lastly, notice <mark>that $M \in \mathbb{R}^{d \times d}$ for $\vec{x}_i \in \mathbb{R}^d$</mark></li>
 </ul>
 
-<p>Now, it turns out that the <strong>maximal solution</strong> happens ==when $\vec{q}$ is the eigenvector of $M$ that has the largest eigenvalue== (many resources have the <a href="https://math.stackexchange.com/questions/1199852/maximize-the-value-of-vtav">proof</a>. Below is one that is intuitively)</p>
+<p>Now, it turns out that the <strong>maximal solution</strong> happens <mark>when $\vec{q}$ is the eigenvector of $M$ that has the largest eigenvalue</mark> (many resources have the <a href="https://math.stackexchange.com/questions/1199852/maximize-the-value-of-vtav">proof</a>. Below is one that is intuitively)</p>
 
 <blockquote>
   <p><strong>Note</strong></p>
@@ -6177,7 +6177,7 @@ v_1 &amp; ... &amp; v_n\\
 
 <p><img src="/lectures/images/2021-12-09-COMS4771_ML/image-20211209162317800.png" alt="image-20211209162317800" style="zoom: 67%;" /></p>
 
-<p>But notice that to be a <strong>subspace of $\mathbb{R}^2$</strong>, we need  $\vec{q}$ to ==go through the origin==. Therefore:</p>
+<p>But notice that to be a <strong>subspace of $\mathbb{R}^2$</strong>, we need  $\vec{q}$ to <mark>go through the origin</mark>. Therefore:</p>
 
 <table>
   <thead>
@@ -6208,7 +6208,7 @@ v_1 &amp; ... &amp; v_n\\
     <p>for the case of $k=1$.</p>
   </li>
   <li>
-    <p>therefore, for ==off-mean== data, you will get ==undesirable result==.</p>
+    <p>therefore, for <mark>off-mean</mark> data, you will get <mark>undesirable result</mark>.</p>
   </li>
 </ul>
 
@@ -6234,7 +6234,7 @@ v_1 &amp; ... &amp; v_n\\
 
 <p><img src="/lectures/images/2021-12-09-COMS4771_ML/image-20211209151837556.png" alt="image-20211209151837556" style="zoom:50%;" /></p>
 
-<p>This is because, consider the variance of the <strong>projected data</strong> in the ==$\vec{q}$ subspace== (a line) is:</p>
+<p>This is because, consider the variance of the <strong>projected data</strong> in the <mark>$\vec{q}$ subspace</mark> (a line) is:</p>
 
 \[\text{projected data in $\vec{q}$ direction: }\quad \vec{q}^T \vec{x}_1, ..., \vec{q}^T \vec{x}_n\]
 
@@ -6251,7 +6251,7 @@ v_1 &amp; ... &amp; v_n\\
 <p>therefore $\vec{q}^T \left( \frac{1}{n}X^TX \right)\vec{q}$ is <strong>exactly our objective</strong>!</p>
 
 <ul>
-  <li>therefore, what we computed as ==obejctive== is the ==same as computing the variance in the direction of $\vec{q}$==</li>
+  <li>therefore, what we computed as <mark>obejctive</mark> is the <mark>same as computing the variance in the direction of $\vec{q}$</mark></li>
   <li>the second equality comes from the idea that, if the global mean is zero, the projected mean is zero</li>
 </ul>
 
@@ -6265,7 +6265,7 @@ v_1 &amp; ... &amp; v_n\\
   <p><strong>Note</strong></p>
 
   <ul>
-    <li>since we are maximizing variance, this makes PCA very <strong>sensitive</strong> to both ==outliers== and ==units==
+    <li>since we are maximizing variance, this makes PCA very <strong>sensitive</strong> to both <mark>outliers</mark> and <mark>units</mark>
       <ul>
         <li>obviously since it maximizes variance, or minimize the residual, <strong>outlies have big impacts</strong>!</li>
         <li>PCA treats <strong>all features equally</strong>. So if one of the feature, say, measures height, happens to have the unit of $\text{km}$. Then, all data will have “small distances” between each other, which will distort PCA output.</li>
@@ -6289,10 +6289,10 @@ v_1 &amp; ... &amp; v_n\\
 
 <ol>
   <li>assume $k=1$, find the $\vec{q}=\vec{q}_1$ (which is the eigenvector with <strong>largest</strong> $\lambda_1$ as well) that maximizes variance</li>
-  <li>take the ==orthogonal subspace== of $\vec{q}_1$, and repeat step 1 for $k$ times</li>
+  <li>take the <mark>orthogonal subspace</mark> of $\vec{q}_1$, and repeat step 1 for $k$ times</li>
 </ol>
 
-<p>Therefore, you in the end get $k$ orthogonal eigenvectors, which means the problem is ==the same as==:</p>
+<p>Therefore, you in the end get $k$ orthogonal eigenvectors, which means the problem is <mark>the same as</mark>:</p>
 
 \[\text{Find Top $k$ eigenvectors of the matrix $X^TX$}\]
 
@@ -6328,7 +6328,7 @@ v_1 &amp; ... &amp; v_n\\
   </li>
 </ol>
 
-<p>To interpret what <strong>eigenvectors in images mean</strong>, consider we ==write an image $\vec{x}_i \in \mathbb{R}^{784}$ as linear combination of eigenvectors $\vec{q}_i \in \mathbb{R}^{784}$==:</p>
+<p>To interpret what <strong>eigenvectors in images mean</strong>, consider we <mark>write an image $\vec{x}_i \in \mathbb{R}^{784}$ as linear combination of eigenvectors $\vec{q}_i \in \mathbb{R}^{784}$</mark>:</p>
 
 <p><img src="/lectures/images/2021-12-09-COMS4771_ML/image-20211209171645986.png" alt="image-20211209171645986" style="zoom:80%;" /></p>
 

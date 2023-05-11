@@ -13,11 +13,11 @@
 <meta property="og:url" content="/lectures/2022@columbia/COMS4732_Computer_Vision2.html/" />
 <meta property="og:site_name" content="Lecture Notes" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2022-04-28T00:00:00-04:00" />
+<meta property="article:published_time" content="2022-04-28T00:00:00+00:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="COMS4732 Computer Vision II" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2022-04-28T00:00:00-04:00","datePublished":"2022-04-28T00:00:00-04:00","description":"Introduction","headline":"COMS4732 Computer Vision II","mainEntityOfPage":{"@type":"WebPage","@id":"/lectures/2022@columbia/COMS4732_Computer_Vision2.html/"},"url":"/lectures/2022@columbia/COMS4732_Computer_Vision2.html/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2022-04-28T00:00:00+00:00","datePublished":"2022-04-28T00:00:00+00:00","description":"Introduction","headline":"COMS4732 Computer Vision II","mainEntityOfPage":{"@type":"WebPage","@id":"/lectures/2022@columbia/COMS4732_Computer_Vision2.html/"},"url":"/lectures/2022@columbia/COMS4732_Computer_Vision2.html/"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/lectures/assets/main.css"><link type="application/atom+xml" rel="alternate" href="/lectures/feed.xml" title="Lecture Notes" /></head>
 <body><header class="site-header">
@@ -66,7 +66,7 @@
   </head>
   <header class="post-header">
     <h1 class="post-title p-name" itemprop="name headline">COMS4732 Computer Vision II</h1>
-    <p class="post-meta"><time class="dt-published" datetime="2022-04-28T00:00:00-04:00" itemprop="datePublished">
+    <p class="post-meta"><time class="dt-published" datetime="2022-04-28T00:00:00+00:00" itemprop="datePublished">
         Apr 28, 2022
       </time></p>
   </header>
@@ -513,7 +513,7 @@
     <li>etc</li>
   </ul>
 
-  <p>using a linear kernel/filter, which essentially are using ==weighted sums of pixel values== using different patterns of weights to find different image patterns. Despite its simplicity, this process is extremely useful.</p>
+  <p>using a linear kernel/filter, which essentially are using <mark>weighted sums of pixel values</mark> using different patterns of weights to find different image patterns. Despite its simplicity, this process is extremely useful.</p>
 </blockquote>
 
 <p>For instance, when you take a photo at night, there is little light hence it would capture a lot of <strong>noise</strong></p>
@@ -538,7 +538,7 @@
 <p>where:</p>
 
 <ul>
-  <li>as a ==function==, the image <strong>maps a coordinate $(x,y)$</strong> to <strong>intensity</strong> $[0,255]$</li>
+  <li>as a <mark>function</mark>, the image <strong>maps a coordinate $(x,y)$</strong> to <strong>intensity</strong> $[0,255]$</li>
   <li>(in some other cases, thinking of this as a <strong>matrix</strong> would work)</li>
 </ul>
 
@@ -572,7 +572,7 @@
 
 <p><img src="/lectures/images/2022-04-28-COMS4732_Computer_Vision2/image-20220128104522974.png" alt="image-20220128104522974" style="zoom:50%;" /></p>
 
-<p>In general, we will be looking at ==linear filters==, which has to satisfy the following</p>
+<p>In general, we will be looking at <mark>linear filters</mark>, which has to satisfy the following</p>
 
 <ol>
   <li>
@@ -604,11 +604,11 @@
 <h2 id="convolution-filter">Convolution Filter</h2>
 
 <blockquote>
-  <p><strong>Kernel/Filter</strong>: The pattern of weights used for a ==linear filter== is usually referred to as the kernel/the filter</p>
+  <p><strong>Kernel/Filter</strong>: The pattern of weights used for a <mark>linear filter</mark> is usually referred to as the kernel/the filter</p>
 </blockquote>
 
 <blockquote>
-  <p>The process of <strong>applying</strong> the filter is usually referred to as ==convolution==.</p>
+  <p>The process of <strong>applying</strong> the filter is usually referred to as <mark>convolution</mark>.</p>
 </blockquote>
 
 <p>For instance, we can do a running average by the following convolution:</p>
@@ -641,7 +641,7 @@
     <p>For a $3\times 3$ kernel, we would set $i \in [0,2], j \in [0,2]$ and output to the <strong>top right</strong> instead of center.</p>
   </li>
   <li>
-    <p>notice that the ==minus sign is intended==, so that we are <strong>flipping the filter</strong>:</p>
+    <p>notice that the <mark>minus sign is intended</mark>, so that we are <strong>flipping the filter</strong>:</p>
 
     <p><img src="/lectures/images/2022-04-28-COMS4732_Computer_Vision2/image-20220128105549387.png" alt="image-20220128105549387" style="zoom:50%;" /></p>
 
@@ -651,7 +651,7 @@
       <li>the only purpose of flipping is that it makes the math easier later on</li>
       <li>increasing index in $g$ but doing decreasing for $f$.
         <ul>
-          <li>therefore, you need to ==flip the filter upside down==, and ==then right to left==</li>
+          <li>therefore, you need to <mark>flip the filter upside down</mark>, and <mark>then right to left</mark></li>
         </ul>
       </li>
       <li>when you code it, however, often you will just have <code class="language-plaintext highlighter-rouge">+</code> sign.</li>
@@ -660,7 +660,7 @@
 </ul>
 
 <blockquote>
-  <p>Note that if the ==filter is symmetric==, then flipping doesn’t matter.</p>
+  <p>Note that if the <mark>filter is symmetric</mark>, then flipping doesn’t matter.</p>
 
   <ul>
     <li>However, if the filter is not symmetric, (most people) just don’t flip it either way. So it depends.</li>
@@ -789,7 +789,7 @@
 
 <ul>
   <li>black means 0, white means 1, and this white box is <strong>larger</strong> than $1 \times 1$ in size.</li>
-  <li>smoothing: suppresses noise by enforcing the requirement that ==pixels should look like their neighbors==</li>
+  <li>smoothing: suppresses noise by enforcing the requirement that <mark>pixels should look like their neighbors</mark></li>
   <li>the Gaussian one does indeed is more visually appealing</li>
 </ul>
 
@@ -805,7 +805,7 @@
 
 <ul>
   <li>notice that it is <strong>symmetric</strong>. This is enforced.</li>
-  <li>yet since it is a Gaussian, we can also <strong>control its parameters</strong> $\sigma$, which ==determines the extent of smoothing==</li>
+  <li>yet since it is a Gaussian, we can also <strong>control its parameters</strong> $\sigma$, which <mark>determines the extent of smoothing</mark></li>
 </ul>
 
 <p><img src="/lectures/images/2022-04-28-COMS4732_Computer_Vision2/image-20220128185111480.png" alt="image-20220128185111480" style="zoom:50%;" /></p>
@@ -1217,7 +1217,7 @@
 
 \[G(f) = \int_{\infty}^{\infty}g(t)e^{-2\pi i ft}dt\]
 
-<p>which is basically can be thought as <strong>calculating the average position of $g(t)$</strong>, when ==given some frequency $f$==</p>
+<p>which is basically can be thought as <strong>calculating the average position of $g(t)$</strong>, when <mark>given some frequency $f$</mark></p>
 
 <p><img src="/lectures/images/2022-04-28-COMS4732_Computer_Vision2/image-20220204111631759.png" alt="image-20220204111631759" style="zoom:33%;" /></p>
 
@@ -1300,7 +1300,7 @@
 <p>where we have <strong>rotated the circle</strong></p>
 
 <ul>
-  <li>so the <strong>angle of the vector</strong> has information about the ==phase==</li>
+  <li>so the <strong>angle of the vector</strong> has information about the <mark>phase</mark></li>
 </ul>
 
 <p><img src="/lectures/images/2022-04-28-COMS4732_Computer_Vision2/image-20220204112513787.png" alt="image-20220204112513787" style="zoom: 33%;" /></p>
@@ -1309,7 +1309,7 @@
 
 <ul>
   <li>
-    <p>so the <strong>magnitude of the vector</strong> has information about the ==amplitude==</p>
+    <p>so the <strong>magnitude of the vector</strong> has information about the <mark>amplitude</mark></p>
   </li>
   <li>
     <p>so if an amplitude of zero, this means that that frequency wave is <strong>not contributing</strong> to the $G(f)$</p>
@@ -1339,7 +1339,7 @@
 
 <p><img src="/lectures/images/2022-04-28-COMS4732_Computer_Vision2/image-20220204113627782.png" alt="image-20220204113627782" style="zoom: 33%;" /></p>
 
-<p>Then for a ==higher dimension==, you will just be having multiple integrals over $dt_x dt_y$ for instance:</p>
+<p>Then for a <mark>higher dimension</mark>, you will just be having multiple integrals over $dt_x dt_y$ for instance:</p>
 
 <p><img src="/lectures/images/2022-04-28-COMS4732_Computer_Vision2/image-20220204152341182.png" alt="image-20220204152341182" style="zoom: 80%;" /></p>
 
@@ -1424,7 +1424,7 @@
 <p>note that:</p>
 
 <ul>
-  <li>this is the same as ==edge== detection</li>
+  <li>this is the same as <mark>edge</mark> detection</li>
 </ul>
 
 <hr />
@@ -1499,7 +1499,7 @@
 
 <ul>
   <li>
-    <p>in reality, applying Fourier Transform returns your a ==matrix of complex numbers== (i.e. the vector of $G(f)$). So technically you are doing <strong>element-wise multiplication for those complex numbers</strong></p>
+    <p>in reality, applying Fourier Transform returns your a <mark>matrix of complex numbers</mark> (i.e. the vector of $G(f)$). So technically you are doing <strong>element-wise multiplication for those complex numbers</strong></p>
   </li>
   <li>
     <p>but for visualization, let us only consider the <strong>amplitude</strong> of the returned complex vectors in $G(f)$. (so if that is zero, than means the particular frequency wave is not useful) Then, element-wise multiplication with a Gaussian filter is basically <strong>removing high frequency details</strong>.</p>
@@ -1835,7 +1835,7 @@ x_{i+1}^j &amp; \text{with probability $p$}\\
 <p>In reality, there is a interesting theoretical result which is rarely used in reality</p>
 
 <blockquote>
-  <p><strong>Universal approximation theorem</strong>:  With ==sufficiently wide== network and just one (hidden) layer, you can approximate any continuous function with arbitrary approximation error.</p>
+  <p><strong>Universal approximation theorem</strong>:  With <mark>sufficiently wide</mark> network and just one (hidden) layer, you can approximate any continuous function with arbitrary approximation error.</p>
 </blockquote>
 
 <p>The problem is that</p>
@@ -1869,7 +1869,7 @@ x_{i+1}^j &amp; \text{with probability $p$}\\
 
 <ul>
   <li>
-    <p>how can you train a network that works ==regardless of the perspective==?</p>
+    <p>how can you train a network that works <mark>regardless of the perspective</mark>?</p>
   </li>
   <li>
     <p>model will also <strong>learn the bias</strong></p>
@@ -1987,7 +1987,7 @@ x_{i+1}^j &amp; \text{with probability $p$}\\
 
 <p><img src="/lectures/images/2022-04-28-COMS4732_Computer_Vision2/image-20220225232028053.png" alt="image-20220225232028053" style="zoom:67%;" /></p>
 
-<p>this idea can be seen as a new way to do ==classification==. For example data in the training set, train a SVM where that single data point is a positive example, whereas all the others are negative. Graphically:</p>
+<p>this idea can be seen as a new way to do <mark>classification</mark>. For example data in the training set, train a SVM where that single data point is a positive example, whereas all the others are negative. Graphically:</p>
 
 <p><img src="/lectures/images/2022-04-28-COMS4732_Computer_Vision2/image-20220225233815650.png" alt="image-20220225233815650" style="zoom:50%;" /></p>
 
@@ -2259,7 +2259,7 @@ y_i = g(w_y^T h_i)\]
   </li>
 </ul>
 
-<p>Though this network is sound, the problem is that it has a problem of ==vanishing/exploding gradient==. Because when you backpropagation, you would be doing <strong>backpropagation through time</strong>: (==TODO replace $z_i$ with $h_i$==)</p>
+<p>Though this network is sound, the problem is that it has a problem of <mark>vanishing/exploding gradient</mark>. Because when you backpropagation, you would be doing <strong>backpropagation through time</strong>: (<mark>TODO replace $z_i$ with $h_i$</mark>)</p>
 
 <p>At time $i$, we have the <strong>forward pass</strong> being</p>
 
@@ -2367,7 +2367,7 @@ y_i = g(w_y^T h_i)\]
 <p>This <strong>feature</strong> can be helpful for:</p>
 
 <ul>
-  <li>deciding whether if an action is intentional/unintentional: ==speed of action alters perception==</li>
+  <li>deciding whether if an action is intentional/unintentional: <mark>speed of action alters perception</mark></li>
 </ul>
 
 <h2 id="action-prediction">Action Prediction</h2>
@@ -2419,7 +2419,7 @@ y_i = g(w_y^T h_i)\]
 
 <p>to <strong>regress to the mean</strong>, i.e. your predicted future would be a <strong>mean of possible futures</strong>. This is bad! But how do we build models that is capable of <strong>predicting possible/likely future</strong>?</p>
 
-<p>One problem is that there are <strong>multiple possible outcomes</strong> (i.e. we have uncertainties in what will happen next), but the reality we have in the video has ==only one future==. How do we build this?</p>
+<p>One problem is that there are <strong>multiple possible outcomes</strong> (i.e. we have uncertainties in what will happen next), but the reality we have in the video has <mark>only one future</mark>. How do we build this?</p>
 
 <blockquote>
   <p><em>Intuition</em>:</p>
@@ -2875,7 +2875,7 @@ y_i = g(w_y^T h_i)\]
 
 <p><img src="/lectures/images/2022-04-28-COMS4732_Computer_Vision2/image-20220325120351845.png" alt="image-20220325120351845" style="zoom:33%;" /></p>
 
-<p>where notice that to answer this question, you ==would have logically tracked the image==!</p>
+<p>where notice that to answer this question, you <mark>would have logically tracked the image</mark>!</p>
 
 <p>Then we can have a system such that, we are given a colored video:</p>
 
@@ -2988,7 +2988,7 @@ y_i = g(w_y^T h_i)\]
 
 <ul>
   <li>
-    <p>the grey scale image could ==already be the $L$ values==</p>
+    <p>the grey scale image could <mark>already be the $L$ values</mark></p>
   </li>
   <li>
     <p>then the task is just to predict $a,b$ values of the lab</p>
@@ -3016,7 +3016,7 @@ y_i = g(w_y^T h_i)\]
   </tbody>
 </table>
 
-<p>One way to deal with it is to <strong>predict a distribution of discrete colors</strong>, so that we ==allow for more than one answer!==</p>
+<p>One way to deal with it is to <strong>predict a distribution of discrete colors</strong>, so that we <mark>allow for more than one answer!</mark></p>
 
 <p><img src="/lectures/images/2022-04-28-COMS4732_Computer_Vision2/image-20220325122758695.png" alt="image-20220325122758695" style="zoom:50%;" /></p>
 
@@ -3110,7 +3110,7 @@ y_i = g(w_y^T h_i)\]
 
 \[\hat{c}_j = \sum_i A_{ij}c_i,\quad A_{ij} = \frac{\exp(f_i^T f_j)}{\sum_{k} \exp(f_k^T f_j)}\]
 
-<p>essentially a ==weighted sum based on similarity== of the embedding of each pixel. (note the <strong>analogy to self-attention mechanisms</strong>)</p>
+<p>essentially a <mark>weighted sum based on similarity</mark> of the embedding of each pixel. (note the <strong>analogy to self-attention mechanisms</strong>)</p>
 
 <p>Then since we have the label already:</p>
 
@@ -3120,7 +3120,7 @@ y_i = g(w_y^T h_i)\]
 
 <ul>
   <li>for a particular video, our NN would be able to produce a pixel-wise embedding $f$ from its learnt parameters $\theta$</li>
-  <li>once we have the embedding, we can color the image <strong>or we find object correspondance</strong> hence ==tracking== by measuing similarity between $f_i,f_j$ between any two locations of between two frames!</li>
+  <li>once we have the embedding, we can color the image <strong>or we find object correspondance</strong> hence <mark>tracking</mark> by measuing similarity between $f_i,f_j$ between any two locations of between two frames!</li>
 </ul>
 
 <hr />
@@ -3232,7 +3232,7 @@ y_i = g(w_y^T h_i)\]
 
 <p><img src="/lectures/images/2022-04-28-COMS4732_Computer_Vision2/image-20220325104337993.png" alt="image-20220325104337993" style="zoom: 33%;" /></p>
 
-<p>where essentially we ==record what image batches activate the first layer most strongly==, and it seems that we are detecting <strong>edges</strong>. If you also do it for layer 2 in the network:</p>
+<p>where essentially we <mark>record what image batches activate the first layer most strongly</mark>, and it seems that we are detecting <strong>edges</strong>. If you also do it for layer 2 in the network:</p>
 
 <p><img src="/lectures/images/2022-04-28-COMS4732_Computer_Vision2/image-20220325104507636.png" alt="image-20220325104507636" style="zoom: 33%;" /></p>
 
@@ -3253,7 +3253,7 @@ y_i = g(w_y^T h_i)\]
     <li>rotation can be performed by a linear transformation, so then a NN could have rotated and those representations. Then why are we still have the vertical alignment for maximal activation? i.e. the activation is <strong>lower if we rotated the image</strong>, which shouldn’t happen.</li>
   </ul>
 
-  <p>Therefore, this also motivates another view that instead of having a grandmother neuron specialized for a concept, could it be that we have a ==distributed view of a concept across neurons==, so that the combination gives us the classification?</p>
+  <p>Therefore, this also motivates another view that instead of having a grandmother neuron specialized for a concept, could it be that we have a <mark>distributed view of a concept across neurons</mark>, so that the combination gives us the classification?</p>
 
   <ul>
     <li>then we can perhaps recover the extra degree of freedom carried in by transformation such as rotation?</li>
@@ -3423,7 +3423,7 @@ y_i = g(w_y^T h_i)\]
 <p>where the key point is that <strong>finetuning</strong> starts with <strong>some representation learnt from a previous task</strong> hence:</p>
 
 <ul>
-  <li>we aim to construct a network that can ==learn useful representation $h$== of images $x$ in an ==unsupervised way==</li>
+  <li>we aim to construct a network that can <mark>learn useful representation $h$</mark> of images $x$ in an <mark>unsupervised way</mark></li>
   <li>then use that representation $h$ as a “pretrained network” for fine-tuning on other tasks</li>
 </ul>
 
@@ -3498,7 +3498,7 @@ y_i = g(w_y^T h_i)\]
   <li>i.e. I know what a “<em>cow</em>” is because it can make a “<em>moo</em>” sound. Hence the representation should reflect the two</li>
 </ul>
 
-<p>For example, given an input video, it will have ==both sound and image== in the video:</p>
+<p>For example, given an input video, it will have <mark>both sound and image</mark> in the video:</p>
 
 <p><img src="/lectures/images/2022-04-28-COMS4732_Computer_Vision2/image-20220401110730523.png" alt="image-20220401110730523" style="zoom:50%;" /></p>
 
@@ -3512,7 +3512,7 @@ y_i = g(w_y^T h_i)\]
 
 <p>notice that to solve it, we <strong>needed to know how a cat looks like</strong>.</p>
 
-<p>Hence, we want to <strong>predict the spatial layout</strong> between the patches, which ==depends on learning some good representation $z$ of the object==:</p>
+<p>Hence, we want to <strong>predict the spatial layout</strong> between the patches, which <mark>depends on learning some good representation $z$ of the object</mark>:</p>
 
 <p><img src="/lectures/images/2022-04-28-COMS4732_Computer_Vision2/image-20220401111011200.png" alt="image-20220401111011200" style="zoom:50%;" /></p>
 
@@ -3547,7 +3547,7 @@ y_i = g(w_y^T h_i)\]
 
 <p><img src="/lectures/images/2022-04-28-COMS4732_Computer_Vision2/image-20220401111929437.png" alt="image-20220401111929437" style="zoom:50%;" /></p>
 
-<p>the intuition is we want to ==leverage recursive structure to images==:</p>
+<p>the intuition is we want to <mark>leverage recursive structure to images</mark>:</p>
 
 <ul>
   <li>consider the question being how many eyes there are in the last image</li>
@@ -3674,7 +3674,7 @@ y_i = g(w_y^T h_i)\]
 
 <ul>
   <li>this is because there is chromatic aberration and vignetting in the inage, where <strong>neural network picked up</strong> as clues.</li>
-  <li>however, those are ==hidden information relative to human eyes==</li>
+  <li>however, those are <mark>hidden information relative to human eyes</mark></li>
 </ul>
 
 <h3 id="chromatic-aberration-and-vignetting">Chromatic Aberration and Vignetting</h3>
@@ -3737,7 +3737,7 @@ y_i = g(w_y^T h_i)\]
 
 <p><img src="/lectures/images/2022-04-28-COMS4732_Computer_Vision2/image-20220401120418806.png" alt="image-20220401120418806" style="zoom: 67%;" /></p>
 
-<p>But you can also <strong>turn this as a good “feature” of the program</strong>, as chromatic aberration and vignetting is always present in photos, we can use it to ==detect if the photo is cropped/edited/etc==</p>
+<p>But you can also <strong>turn this as a good “feature” of the program</strong>, as chromatic aberration and vignetting is always present in photos, we can use it to <mark>detect if the photo is cropped/edited/etc</mark></p>
 
 <p><img src="/lectures/images/2022-04-28-COMS4732_Computer_Vision2/image-20220401120541177.png" alt="image-20220401120541177" style="zoom:50%;" /></p>
 
@@ -3804,7 +3804,7 @@ y_i = g(w_y^T h_i)\]
 
     <ul>
       <li>Learn the linear/nonlinear boundary between classes</li>
-      <li>==Estimates: $P(Y \vert  X)$ the posterior== (which essentially learns boundaries)</li>
+      <li><mark>Estimates: $P(Y \vert  X)$ the posterior</mark> (which essentially learns boundaries)</li>
     </ul>
   </li>
   <li>
@@ -3813,7 +3813,7 @@ y_i = g(w_y^T h_i)\]
     <ul>
       <li>Learn the distribution of the data</li>
       <li>Often you can sample from it</li>
-      <li>==Estimates: $P(Y, X)$ the joint== (i.e. learn the data distribution, hence generate more data)</li>
+      <li><mark>Estimates: $P(Y, X)$ the joint</mark> (i.e. learn the data distribution, hence generate more data)</li>
     </ul>
   </li>
 </ul>
@@ -3838,7 +3838,7 @@ y_i = g(w_y^T h_i)\]
 <p>Hence this results in the following idea for generative models:</p>
 
 <blockquote>
-  <p>Given some known <strong>prior</strong> distribution $p(z)$, e.g. a Gaussian, ==learn a mapping== (e.g. done from neural network $G$) from $p(z)$ to the <strong>target</strong> joint distribution you want to learn.</p>
+  <p>Given some known <strong>prior</strong> distribution $p(z)$, e.g. a Gaussian, <mark>learn a mapping</mark> (e.g. done from neural network $G$) from $p(z)$ to the <strong>target</strong> joint distribution you want to learn.</p>
 </blockquote>
 
 <p>Visually, if we need to find a model $G$ such that it learns:</p>
@@ -3902,14 +3902,14 @@ y_i = g(w_y^T h_i)\]
   <li>a decoder that goes $G(z) \to x$ <em>seems to learn a mapping</em> from the red space to blue space</li>
 </ul>
 
-<p>But why does pure autoencoder not work? Because we technically still <strong>don’t know the red latent space</strong>, hence we cannot <strong>sample $z$</strong> from the latent space to ==generate some new data==. Therefore, instead of mapping to some random latent space, we can enforce it to map to a known, given prior distribution:</p>
+<p>But why does pure autoencoder not work? Because we technically still <strong>don’t know the red latent space</strong>, hence we cannot <strong>sample $z$</strong> from the latent space to <mark>generate some new data</mark>. Therefore, instead of mapping to some random latent space, we can enforce it to map to a known, given prior distribution:</p>
 
 <p><img src="/lectures/images/2022-04-28-COMS4732_Computer_Vision2/image-20220408104249814.png" alt="image-20220408104249814" style="zoom: 40%;" /></p>
 
 <p>Therefore we consider <strong>Variational AutoEncoder</strong>:</p>
 
 <ul>
-  <li>we are learning a mapping from prior ==distribution== in red (e.g. Gaussian), which is <strong>parameterized distribution</strong> (so that we know how to sample from it once we know the parameters) to the target distribution</li>
+  <li>we are learning a mapping from prior <mark>distribution</mark> in red (e.g. Gaussian), which is <strong>parameterized distribution</strong> (so that we know how to sample from it once we know the parameters) to the target distribution</li>
   <li>then we can construct this problem as an autoencoder like problem, but $p(z)$ would now be parametrized</li>
   <li>with this learnt, we can sample from $p(z)$ and when $G(z)$ to output a new image/sample!</li>
 </ul>
@@ -3935,7 +3935,7 @@ y_i = g(w_y^T h_i)\]
 
 \[p_\theta(x) = \int p(x|z;\theta)p(z)dz\]
 
-<p>then we need to ==figure out $p(x\vert z;\theta)$==, which is essentially given a $z$, how can we map it to a distribution?</p>
+<p>then we need to <mark>figure out $p(x\vert z;\theta)$</mark>, which is essentially given a $z$, how can we map it to a distribution?</p>
 
 <p><img src="/lectures/images/2022-04-28-COMS4732_Computer_Vision2/image-20220408180335516.png" alt="image-20220408180335516" style="zoom:50%;" /></p>
 
@@ -4025,7 +4025,7 @@ y_i = g(w_y^T h_i)\]
 
 <ul>
   <li>A <strong>generator</strong> tries to <strong>learn the mapping</strong> from prior $p(z)$, e.g. a Gaussian, to the image distributions</li>
-  <li>A <strong>discriminator</strong> tries to ==provide feedback== on how close $G(z)$ is to real sample $x$ it learnt</li>
+  <li>A <strong>discriminator</strong> tries to <mark>provide feedback</mark> on how close $G(z)$ is to real sample $x$ it learnt</li>
   <li>then, if the discriminator $D$ learnt some feature (e.g. human have 2 eyes) and used this to tell $G(z)$ is fake, it can <strong>backpropagate this information to $G$</strong> so that $G$ can update and learn about the distribution $x \sim p(x)$</li>
 </ul>
 
@@ -4070,7 +4070,7 @@ y_i = g(w_y^T h_i)\]
 </ul>
 
 <blockquote>
-  <p><strong>Note that</strong> if $D$ is really good (e.g. pretrained on large task), then it ==might not work== to train a $G$. This is because:</p>
+  <p><strong>Note that</strong> if $D$ is really good (e.g. pretrained on large task), then it <mark>might not work</mark> to train a $G$. This is because:</p>
 
   <ul>
     <li>since $D$ needs to produce a probability, typically we have as a sigmoid behind it</li>
@@ -4106,7 +4106,7 @@ y_i = g(w_y^T h_i)\]
   </li>
 </ul>
 
-<p>But suppose ==$G(z)$ can generated a subset of $x$ being realistic==. So that it learnt</p>
+<p>But suppose <mark>$G(z)$ can generated a subset of $x$ being realistic</mark>. So that it learnt</p>
 
 <p><img src="/lectures/images/2022-04-28-COMS4732_Computer_Vision2/image-20220408185418486.png" alt="image-20220408185418486" style="zoom: 33%;" /></p>
 
@@ -4162,7 +4162,7 @@ y_i = g(w_y^T h_i)\]
   <li>$D_Y$ discriminates between real $Y$ and $F(X)$</li>
 </ul>
 
-<p>Then ==naively== you might write down:</p>
+<p>Then <mark>naively</mark> you might write down:</p>
 
 \[\mathcal{L}=\mathcal{L}_{\text{GAN}}(G,D_Y) + \mathcal{L}_{\text{GAN}}(F,D_X)\]
 
@@ -4173,7 +4173,7 @@ y_i = g(w_y^T h_i)\]
 
 <p>being the losses for normal GANs. However, this would not work as, for example, it <strong>does not require $G(x),x$ to be the same object</strong>, i.e. it only needs to learn realistic $F(y),G(x)$, but it could be of entire unrelated objects from $y,x$.</p>
 
-<p>Therefore, the solution is to enforce ==cycle consistency== to ensure the transfer is done on the same object</p>
+<p>Therefore, the solution is to enforce <mark>cycle consistency</mark> to ensure the transfer is done on the same object</p>
 
 <p><img src="/lectures/images/2022-04-28-COMS4732_Computer_Vision2/image-20220408201225287.png" alt="image-20220408201225287" style="zoom: 50%;" /></p>
 
@@ -4201,7 +4201,7 @@ y_i = g(w_y^T h_i)\]
   <p>This section will cover a series of real life scenarios where we caused problem due engineers not paying attention to <strong>bias/ethics</strong></p>
 </blockquote>
 
-<p>Note that a lot of the ideas/interpretations written in this section will be ==subjective==.</p>
+<p>Note that a lot of the ideas/interpretations written in this section will be <mark>subjective</mark>.</p>
 
 <h2 id="unconscious-understanding">Unconscious Understanding</h2>
 
@@ -4302,7 +4302,7 @@ y_i = g(w_y^T h_i)\]
 
     <p>e.g. anything that is not blue nor green pass all the way to red.</p>
 
-    <p>Then, when you ship this to the lab, we need to take the channels, find a way to mix them, and resemble them into a colored photo. This means you need to a come up with a <strong>chemical process to mix</strong> those back. But what is the ==standard for a good mix==?</p>
+    <p>Then, when you ship this to the lab, we need to take the channels, find a way to mix them, and resemble them into a colored photo. This means you need to a come up with a <strong>chemical process to mix</strong> those back. But what is the <mark>standard for a good mix</mark>?</p>
   </li>
 </ul>
 
@@ -4329,7 +4329,7 @@ y_i = g(w_y^T h_i)\]
   </tbody>
 </table>
 
-<p>so that people <strong>calibrates machines</strong>/color mixings according to those cards. Apparently we see the definition of beauty in colored photos is ==bias towards white==!</p>
+<p>so that people <strong>calibrates machines</strong>/color mixings according to those cards. Apparently we see the definition of beauty in colored photos is <mark>bias towards white</mark>!</p>
 
 <p>As a result, if you take a colored photo of the blacks at that time:</p>
 
@@ -4501,7 +4501,7 @@ y_i = g(w_y^T h_i)\]
   </li>
 </ul>
 
-<p>But most of the time, <strong>normal/natural data</strong> will have ==correspondence== between modalities. In this chapter, we aims to build models that ==exploit those interactions==.</p>
+<p>But most of the time, <strong>normal/natural data</strong> will have <mark>correspondence</mark> between modalities. In this chapter, we aims to build models that <mark>exploit those interactions</mark>.</p>
 
 <ul>
   <li>an example application would be to train a model that can locate the source of a sound (e.g. an instrument) from a video</li>
@@ -4555,7 +4555,7 @@ y_i = g(w_y^T h_i)\]
   <p>How do we <strong>represent sound</strong> in computer?</p>
 </blockquote>
 
-<p>Computer <strong>represents sound</strong> by resenting its wave: by variation of amplitude (air pressure) over time. But more often we do a FT of the waveform to get a <strong>frequency domain</strong>: ==spectrogram==/<strong>sonographs</strong></p>
+<p>Computer <strong>represents sound</strong> by resenting its wave: by variation of amplitude (air pressure) over time. But more often we do a FT of the waveform to get a <strong>frequency domain</strong>: <mark>spectrogram</mark>/<strong>sonographs</strong></p>
 
 <table>
   <thead>
@@ -4640,7 +4640,7 @@ y_i = g(w_y^T h_i)\]
 
 <p><img src="/lectures/images/2022-04-28-COMS4732_Computer_Vision2/image-20220415104843699.png" alt="image-20220415104843699" style="zoom:50%;" /></p>
 
-<p>most of the hard stuff is ==how do we get training data== (for free). Usually this is done by utilizing the synchronization of videos which have <strong>both a sound and vision</strong> perspective.</p>
+<p>most of the hard stuff is <mark>how do we get training data</mark> (for free). Usually this is done by utilizing the synchronization of videos which have <strong>both a sound and vision</strong> perspective.</p>
 
 <hr />
 
@@ -4737,7 +4737,7 @@ y_i = g(w_y^T h_i)\]
   <p>Given a sound/spectrogram that is a <strong>composition of sounds</strong> (e.g. two musicians playing), can we build a network so that we can choose to attend to one player’s sound while filtering out the other?</p>
 
   <ul>
-    <li>essentially the problem of ==unmixing sounds==</li>
+    <li>essentially the problem of <mark>unmixing sounds</mark></li>
   </ul>
 </blockquote>
 
@@ -4819,7 +4819,7 @@ y_i = g(w_y^T h_i)\]
 
 <ul>
   <li>we want the network to get from one spectrogram to $k$ spectrograms</li>
-  <li>then the key idea is that the audio NN should learn ==what are the $k$-channels that can best reconstruct the original sound==!</li>
+  <li>then the key idea is that the audio NN should learn <mark>what are the $k$-channels that can best reconstruct the original sound</mark>!</li>
 </ul>
 
 <p>Then if we have <strong>large enough data</strong>:</p>
@@ -4827,7 +4827,7 @@ y_i = g(w_y^T h_i)\]
 <ul>
   <li>each $s_i$ (e.g sound of a dog) would correspond to the vision of $v_i$</li>
   <li>technically you can choose a $k$ that is large, so that even if there are less objects than $k$, we can have the vision “fragmented” $v_i$ and $s_i$ so that when we “click” on the object, we just sum the fragmented sounds and get back the sound of the object</li>
-  <li>so technically it learns by ==separation by category==, so that if you have multiple instances of the same instrument, then it won’t work</li>
+  <li>so technically it learns by <mark>separation by category</mark>, so that if you have multiple instances of the same instrument, then it won’t work</li>
 </ul>
 
 <hr />
@@ -4942,7 +4942,7 @@ y_i = g(w_y^T h_i)\]
   </ul>
 </blockquote>
 
-<p>One key observation/property is that human needs to breathe, hence we get <strong>silent intervals</strong>. Then ==during those silent intervals, estimate the noise distribution==:</p>
+<p>One key observation/property is that human needs to breathe, hence we get <strong>silent intervals</strong>. Then <mark>during those silent intervals, estimate the noise distribution</mark>:</p>
 
 <p><img src="/lectures/images/2022-04-28-COMS4732_Computer_Vision2/image-20220415114058030.png" alt="image-20220415114058030" style="zoom:50%;" /></p>
 
@@ -5120,7 +5120,7 @@ y_i = g(w_y^T h_i)\]
 <p>where the big difference from the previous is:</p>
 
 <ul>
-  <li>if one component of the program is wrong, then the performance is bad (i.e. structure ==assumptions== we are making, which works only if right)</li>
+  <li>if one component of the program is wrong, then the performance is bad (i.e. structure <mark>assumptions</mark> we are making, which works only if right)</li>
   <li>but for black box approaches with NN, the risk is much smaller</li>
 </ul>
 

@@ -1,0 +1,4504 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>COMS3203 Discrete Math | Lecture Notes</title>
+<meta name="generator" content="Jekyll v4.3.1" />
+<meta property="og:title" content="COMS3203 Discrete Math" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Discrete Math Logistics" />
+<meta property="og:description" content="Discrete Math Logistics" />
+<link rel="canonical" href="/lectures/2022@columbia/COMS3203_Discrete_Math.html/" />
+<meta property="og:url" content="/lectures/2022@columbia/COMS3203_Discrete_Math.html/" />
+<meta property="og:site_name" content="Lecture Notes" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2023-05-11T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="COMS3203 Discrete Math" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-05-11T00:00:00+00:00","datePublished":"2023-05-11T00:00:00+00:00","description":"Discrete Math Logistics","headline":"COMS3203 Discrete Math","mainEntityOfPage":{"@type":"WebPage","@id":"/lectures/2022@columbia/COMS3203_Discrete_Math.html/"},"url":"/lectures/2022@columbia/COMS3203_Discrete_Math.html/"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/lectures/assets/main.css"><link type="application/atom+xml" rel="alternate" href="/lectures/feed.xml" title="Lecture Notes" /></head>
+<body><header class="site-header">
+
+	<div class="wrapper"><a class="site-title" rel="author" href="/lectures/">Lecture Notes</a>
+
+		<nav class="site-nav">
+			<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+			<label for="nav-trigger">
+			<span class="menu-icon">
+				<svg viewBox="0 0 18 15" width="18px" height="15px">
+				<path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+				</svg>
+			</span>
+			</label>
+
+			<div class="trigger">
+				<a class="page-link" href="/">Home</a>
+				<a class="page-link" href="/projects">Projects</a>
+				<a class="page-link" href="/research">Research</a>
+				<span class="page-link" href="#">[Education]</span>
+				<a class="page-link" href="/learning">Blog</a>
+			</div>
+		</nav>
+	</div>
+  </header><main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <head>
+  <script>
+    MathJax = {
+      // 
+      loader: {
+        load: ['[tex]/ams', '[tex]/textmacros', '[tex]/boldsymbol']
+      },
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        packages: {'[+]': ['ams', 'textmacros', 'boldsymbol']}
+      }
+    };
+  </script>
+  <script id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+  </script>
+  </head>
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">COMS3203 Discrete Math</h1>
+    <p class="post-meta"><time class="dt-published" datetime="2023-05-11T00:00:00+00:00" itemprop="datePublished">
+        May 11, 2023
+      </time></p>
+  </header>
+
+  <div class="section-nav" id="toc-all">
+    <button type="button" id="toc-close" class="toc_collapsible hidden" title="collapse">
+      <span><strong>Table of Contents</strong></span>
+    </button>
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" mirror-in-rtl="true" fill="#000000" style="width: 18px;" id="toc-reopen" class="toc_collapsible">
+      <g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <circle fill="#494c4e" cx="2" cy="2" r="2"></circle> <circle fill="#494c4e" cx="2" cy="8" r="2"></circle> <circle fill="#494c4e" cx="2" cy="20" r="2"></circle> <circle fill="#494c4e" cx="2" cy="14" r="2"></circle> <path fill="#494c4e" d="M23.002 3H7.998C7.448 3 7 2.55 7 2.002v-.004c0-.55.45-.998.998-.998H23c.55 0 1 .45 1 .998V2c0 .55-.45 1-.998 1zM23.002 9H7.998C7.448 9 7 8.55 7 8.002v-.004c0-.55.45-.998.998-.998H23c.55 0 1 .45 1 .998V8c0 .55-.45 1-.998 1zM23.002 15H7.998c-.55 0-.998-.45-.998-.998V14c0-.55.45-1 .998-1H23c.55 0 1 .45 1 .998V14c0 .55-.45 1-.998 1zM23.002 21H7.998c-.55 0-.998-.45-.998-.998V20c0-.55.45-1 .998-1H23c.55 0 1 .45 1 .998V20c0 .55-.45 1-.998 1z"></path> </g>
+    </svg>
+    <ul id="toc" class="section-nav">
+<li class="toc-entry toc-h1"><a href="#discrete-math-logistics">Discrete Math Logistics</a></li>
+<li class="toc-entry toc-h1"><a href="#logic">Logic</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#axioms-of-numbers">Axioms of Numbers</a></li>
+<li class="toc-entry toc-h2"><a href="#introduction-to-logic">Introduction to Logic</a></li>
+<li class="toc-entry toc-h2"><a href="#laws-of-propositional-logic">Laws of Propositional Logic</a></li>
+<li class="toc-entry toc-h2"><a href="#logical-inference">Logical Inference</a></li>
+<li class="toc-entry toc-h2"><a href="#first-order-logic">First Order Logic</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#domain-of-fol">Domain of FOL</a></li>
+<li class="toc-entry toc-h3"><a href="#mixing-quantifiers">Mixing Quantifiers</a></li>
+<li class="toc-entry toc-h3"><a href="#fol-statements-and-prelude-to-proofs">FOL Statements and Prelude to Proofs</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#proofs">Proofs</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#proof-by-enumeration">Proof by Enumeration</a></li>
+<li class="toc-entry toc-h2"><a href="#direct-proof">Direct Proof</a></li>
+<li class="toc-entry toc-h2"><a href="#proof-by-contradiction">Proof by Contradiction</a></li>
+<li class="toc-entry toc-h2"><a href="#proof-by-contrapositive">Proof by Contrapositive</a></li>
+<li class="toc-entry toc-h2"><a href="#proof-of-iff">Proof of IFF</a></li>
+<li class="toc-entry toc-h2"><a href="#proof-by-contradiction-1">Proof by Contradiction</a></li>
+<li class="toc-entry toc-h2"><a href="#proof-by-cases">Proof by Cases</a></li>
+<li class="toc-entry toc-h2"><a href="#proof-by-counter-example">Proof by Counter Example</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#sets">Sets</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#unordered-sets">Unordered Sets</a></li>
+<li class="toc-entry toc-h2"><a href="#set-operations-and-properties">Set Operations and Properties</a></li>
+<li class="toc-entry toc-h2"><a href="#proofs-on-sets">Proofs on Sets</a></li>
+<li class="toc-entry toc-h2"><a href="#size-of-the-union">Size of the Union</a></li>
+<li class="toc-entry toc-h2"><a href="#ordered-setslists">Ordered Sets/Lists</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#relations">Relations</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#representation-of-relation">Representation of Relation</a></li>
+<li class="toc-entry toc-h2"><a href="#properties-of-relations">Properties of Relations</a></li>
+<li class="toc-entry toc-h2"><a href="#relation-of-congruence-modulo-n">Relation of congruence modulo n</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#functions">Functions</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#properties-of-functions">Properties of Functions</a></li>
+<li class="toc-entry toc-h2"><a href="#composition-of-functions">Composition of Functions</a></li>
+<li class="toc-entry toc-h2"><a href="#inverse-of-functions">Inverse of Functions</a></li>
+<li class="toc-entry toc-h2"><a href="#pigeon-hole-principle">Pigeon Hole Principle</a></li>
+<li class="toc-entry toc-h2"><a href="#infinity-and-countability">Infinity and Countability</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#advanced-proofs">Advanced Proofs</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#proof-by-induction">Proof by Induction</a></li>
+<li class="toc-entry toc-h2"><a href="#proof-by-smallest-counter-example">Proof by Smallest Counter Example</a></li>
+<li class="toc-entry toc-h2"><a href="#proof-by-strong-induction">Proof by Strong Induction</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#number-theory">Number Theory</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#divisibility">Divisibility</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#least-common-multiple-and-greatest-common-divisor">Least Common Multiple and Greatest Common Divisor</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#prime-numbers-and-factorization">Prime Numbers and Factorization</a></li>
+<li class="toc-entry toc-h2"><a href="#modular-arithmetic">Modular Arithmetic</a></li>
+<li class="toc-entry toc-h2"><a href="#public-key-cryptography">Public Key Cryptography</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#counting">Counting</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#counting-lists">Counting Lists</a></li>
+<li class="toc-entry toc-h2"><a href="#counting-sets">Counting Sets</a></li>
+<li class="toc-entry toc-h2"><a href="#inclusion-exclusion-principle">Inclusion Exclusion Principle</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#graph-theory">Graph Theory</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#isomorphism">Isomorphism</a></li>
+<li class="toc-entry toc-h2"><a href="#types-of-graphs">Types of Graphs</a></li>
+<li class="toc-entry toc-h2"><a href="#properties-of-graphs">Properties of Graphs</a></li>
+<li class="toc-entry toc-h2"><a href="#trees">Trees</a></li>
+<li class="toc-entry toc-h2"><a href="#eulerian-graphs">Eulerian Graphs</a></li>
+<li class="toc-entry toc-h2"><a href="#planar-graphs">Planar Graphs</a></li>
+</ul>
+</li>
+</ul>
+  </div>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <h1 id="discrete-math-logistics">Discrete Math Logistics</h1>
+
+<ul>
+  <li>Content on Courseworks, homework on Gradescope</li>
+  <li><strong>Notes</strong> on Coursework provided by the Professor. Additional examples (not on the book) will be gone over during classes.</li>
+  <li><strong>Recitations</strong> will be recorded, and content in the recitation needs to be studied</li>
+  <li><strong>Homework</strong>: weekly, needs to be typed</li>
+</ul>
+
+<h1 id="logic">Logic</h1>
+
+<p>Propositional logic, truth tables, Boolean algebra, inference.</p>
+
+<h2 id="axioms-of-numbers">Axioms of Numbers</h2>
+
+<blockquote>
+  <p><strong>Natural Numbers</strong> contain all positive whole numbers (excluding zero)</p>
+
+\[\mathbb{N} = \{ 1,2,3,... \}\]
+
+</blockquote>
+
+<blockquote>
+  <p><strong>Even Numbers</strong> an integer $a$ if even IFF $a$ is divisible by 2; or exists an integer $b$ such that $a = 2b$</p>
+</blockquote>
+
+<blockquote>
+  <p><strong>Odd Numbers</strong> an integer $a$ if is odd provided there exists a number $q \in \mathbb{Z}$ s.t. $a = 2q+1$</p>
+</blockquote>
+
+<blockquote>
+  <p><strong>Prime Numbers</strong> let $p \in \mathbb{Z}, p&gt;1$. We call a number prime provided it is only divisible by $1$ and itself.</p>
+
+  <ul>
+    <li>e.g. 2, 3, 5…. By definition $1$ is therefore not prime.</li>
+  </ul>
+</blockquote>
+
+<p>etc. Just to recall:</p>
+
+<ul>
+  <li>$\mathbb{Z}$ represents integer, $\mathbb{Q}$ represents rational numbers (fractions with integer num/denom), $\mathbb{R}$ represents real numbers</li>
+  <li>$\mathbb{N}\subseteq Z \subseteq Q \subseteq R$</li>
+</ul>
+
+<h2 id="introduction-to-logic">Introduction to Logic</h2>
+
+<blockquote>
+  <p><strong>Proposition</strong>: a proposition is an objective, declarative statement that’s either true or false.</p>
+</blockquote>
+
+<p>for example, proposition includes:</p>
+
+<ul>
+  <li>$2+2=4$ (is true)</li>
+  <li>$2 &gt; 5$ (is false)</li>
+  <li>$x+2=5$ (used in first order logic as it depends on $x$=a predicate, but it is a proposition)</li>
+</ul>
+
+<p>not propositions:</p>
+
+<ul>
+  <li>Newborns are cute (subjective)</li>
+  <li>Hello.</li>
+</ul>
+
+<blockquote>
+  <p><strong>Atomic Proposition</strong>: simplest (elementary) form of a proposition. Some common notations used to denote atomic proposition include $p,q,r,t,s,z$ etc.</p>
+</blockquote>
+
+<blockquote>
+  <p><strong>Compound Proposition</strong>: a proposition constructed from two or more atomic propositions using <em>connectives</em>, or adding a connective to an atomic proposition.</p>
+</blockquote>
+
+<blockquote>
+  <p><strong>Major Connectives in Propositional Logic</strong>: if we have a proposition $p$</p>
+
+  <ul>
+    <li>
+      <p><strong>negation</strong> (not): $\neg p$. For example, $p=$ it is snowing, $\neg p$ = it is not snowing. All possible negation actions include:</p>
+
+      <p><img src="/lectures/images/2023-05-11-COMS3203_Discrete_Math/image-20230119110421501.png" alt="image-20230119110421501" style="zoom: 50%;" /></p>
+
+      <p>note that the <strong>Truth Table</strong> above basically lays out all the possible “scenarios”</p>
+    </li>
+    <li>
+      <p><strong>conjunction</strong> (and): $p \and q$.</p>
+
+      <p><img src="/lectures/images/2023-05-11-COMS3203_Discrete_Math/image-20230119110900415.png" alt="image-20230119110900415" style="zoom:50%;" /></p>
+
+      <p>now that there are 2 “variables”, we have $2^2$ possibilities</p>
+    </li>
+    <li>
+      <p><strong>dis-junction</strong> (or): $p \or q$.</p>
+
+      <p><img src="/lectures/images/2023-05-11-COMS3203_Discrete_Math/image-20230119111803562.png" alt="image-20230119111803562" style="zoom:50%;" /></p>
+    </li>
+    <li>
+      <p><strong>exclusive or</strong> (xor). $p \oplus q$. You expect only one of the options. interestingly this is more related to using “or” in natural language: e.g. “you can either have $p$ as side dish or $q$”</p>
+
+      <p><img src="/lectures/images/2023-05-11-COMS3203_Discrete_Math/image-20230119112042366.png" alt="image-20230119112042366" style="zoom:50%;" /></p>
+    </li>
+    <li>
+      <p><strong>implication</strong> (if, or implies): $p \to q$. For example, “if heavy snow ($p$), then Columbia is closed ($q$)”. So whenever $p$ is fulfilled, we expect $q$ to happen.</p>
+
+      <p><img src="/lectures/images/2023-05-11-COMS3203_Discrete_Math/image-20230119112342403.png" alt="image-20230119112342403" style="zoom:50%;" /></p>
+
+      <p>the first two rows are straight-forward. Consider “If I get an A in this course ($p$), then I will give you a dollar ($q$)”.</p>
+
+      <ul>
+        <li>If $p,q$ both happened, then I kept my promise. If $p$ happened but I didn’t give you a dollar ($\neg q$), then I broke the promise.</li>
+        <li>If $p$ didn’t happen in the first place, then technically I <em>haven’t yet</em> break the promise. In this case we <strong>assume it is still true</strong>, i.e. the <mark>benefit of doubt</mark></li>
+      </ul>
+    </li>
+    <li>
+      <p><strong>if and only if</strong> (iff) $p \iff q$. Basically this means a conjunction to two implications $(p \to q)\and (q \to p)$</p>
+
+      <p><img src="/lectures/images/2023-05-11-COMS3203_Discrete_Math/image-20230124102509957.png" alt="image-20230124102509957" style="zoom: 43%;" /></p>
+
+      <p>where the last one has $(p \to q)=T$ and $(q \to p)=T$ due to benefit of doubt. Hence $(p \iff q) = (T \and T) = T$. Notice that basically $p \iff q$ is true when $p,q$ are equivalently true or equivalently false.</p>
+    </li>
+  </ul>
+</blockquote>
+
+<p>note that</p>
+
+<ul>
+  <li>every connective mentioned above except for negation are <em>binary connectives</em>.</li>
+  <li>the order of evaluation would go from
+    <ol>
+      <li>$()$ processed from inside to outside</li>
+      <li>$\neg$ negation</li>
+      <li>$\and$ and</li>
+      <li>$\or,\oplus$</li>
+      <li>$\to$ implies</li>
+      <li>$\iff$</li>
+      <li>left to right</li>
+    </ol>
+  </li>
+</ul>
+
+<p>and in English</p>
+
+<p><img src="/lectures/images/2023-05-11-COMS3203_Discrete_Math/image-20230126104413095.png" alt="image-20230126104413095" style="zoom:50%;" /></p>
+
+<p>where the more tricky ones are highlighted.</p>
+
+<ul>
+  <li>“$p$ only if $q$” means only if the consequence $q$ happens</li>
+  <li>“$q$ is a necessary condition for $p$” means “$q$ is a necessary <em>conclusion</em> for $p$”</li>
+  <li>a trick can be to consider which one maps correctly to “if $p$ then $q$”.</li>
+</ul>
+
+<hr />
+
+<p><em>For Example</em>, consider $p \or q \implies \neg r$.</p>
+
+<p>First of all, how many rows will there be? Since there are three variables, $2^3=8$ rows.</p>
+
+<p><img src="/lectures/images/2023-05-11-COMS3203_Discrete_Math/image-20230124103755936.png" alt="image-20230124103755936" style="zoom:50%;" /></p>
+
+<hr />
+
+<p>Implication can be very tricky when combined with negation:</p>
+
+<ul>
+  <li>
+    <p><strong>negation of implication</strong>: $\neg (p \to q)$ is $p \and \neg q$.</p>
+
+    <ul>
+      <li>for instance $\neg$(hit$\to$hurt) is (hit$\to\neg$hurt)</li>
+      <li>is proven below (of course, they don’t come out of nowhere. See the example in the proof)</li>
+    </ul>
+  </li>
+  <li>
+    <p>if $p\to q$ is implication, then</p>
+
+    <ul>
+      <li><strong>converse</strong> $q \to p$</li>
+      <li><strong>contrapositive</strong> $\neg q \to \neg p$</li>
+      <li><strong>inverse</strong> $\neg p \to \neg q$</li>
+    </ul>
+
+    <p>why they are named like this can be seen more clearly from the truth table:</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th style="text-align: left">p</th>
+          <th style="text-align: left">q</th>
+          <th style="text-align: center">$p \to q$</th>
+          <th style="text-align: center">$q\to p$</th>
+          <th style="text-align: center">$\neg q \to \neg p$</th>
+          <th style="text-align: center">$\neg p \to \neg q$</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="text-align: left">T</td>
+          <td style="text-align: left">T</td>
+          <td style="text-align: center">T</td>
+          <td style="text-align: center">T</td>
+          <td style="text-align: center">T</td>
+          <td style="text-align: center">T</td>
+        </tr>
+        <tr>
+          <td style="text-align: left">T</td>
+          <td style="text-align: left">F</td>
+          <td style="text-align: center">F</td>
+          <td style="text-align: center">T</td>
+          <td style="text-align: center">F</td>
+          <td style="text-align: center">T</td>
+        </tr>
+        <tr>
+          <td style="text-align: left">F</td>
+          <td style="text-align: left">T</td>
+          <td style="text-align: center">T</td>
+          <td style="text-align: center">F</td>
+          <td style="text-align: center">T</td>
+          <td style="text-align: center">F</td>
+        </tr>
+        <tr>
+          <td style="text-align: left">F</td>
+          <td style="text-align: left">F</td>
+          <td style="text-align: center">T</td>
+          <td style="text-align: center">T</td>
+          <td style="text-align: center">T</td>
+          <td style="text-align: center">T</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>notice that $p \to q$ <mark>is the same as</mark> $\neg q \to \neg p$, and $q\to p$ <mark>is the same as</mark> $\neg p \to \neg q$.</p>
+  </li>
+</ul>
+
+<blockquote>
+  <p><strong>Logical Equivalence</strong>: two propositions $p,q$ are called <em>logical equivalent</em> provided they have the <mark>same truth table</mark></p>
+
+\[p \equiv q,\quad \mathrm{or}\quad p=q\]
+
+  <p>we will mostly use $\equiv$. Note that this is <em>not a connective</em>, but rather a <em>relation</em>.</p>
+</blockquote>
+
+<p>Now you can show that $\neg (p \to q) \equiv p \and \neg q$</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">p</th>
+      <th style="text-align: left">q</th>
+      <th style="text-align: center">$p \to q$</th>
+      <th style="text-align: center">$\neg (p \to q)$</th>
+      <th style="text-align: center">$p\and \neg q$</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">T</td>
+      <td style="text-align: left">T</td>
+      <td style="text-align: center">T</td>
+      <td style="text-align: center">F</td>
+      <td style="text-align: center">F</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">T</td>
+      <td style="text-align: left">F</td>
+      <td style="text-align: center">F</td>
+      <td style="text-align: center">T</td>
+      <td style="text-align: center">T</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">F</td>
+      <td style="text-align: left">T</td>
+      <td style="text-align: center">T</td>
+      <td style="text-align: center">F</td>
+      <td style="text-align: center">F</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">F</td>
+      <td style="text-align: left">F</td>
+      <td style="text-align: center">T</td>
+      <td style="text-align: center">F</td>
+      <td style="text-align: center">F</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>And similarly, you can show that:</p>
+
+\[p \to q \equiv \neg p \or q \equiv \neg q \to \neg p\]
+
+<p>So implication is just a <mark>disjunction</mark>! This is very important to know!</p>
+
+<ul>
+  <li>e.g. if I hit my thumb, it will hurt $\equiv$ I don’t hit my thumb, or else it will hurt</li>
+</ul>
+
+<blockquote>
+  <p><strong>Tautology</strong>: a proposition is always true is called a <em>tautology</em>. For example, $p \or \neg p$ is a tautology as no matter what value $p$ takes, <em>every</em> row in the truth table is <em>true</em>.</p>
+</blockquote>
+
+<p>A more interesting example would be</p>
+
+<ul>
+  <li>you may feel this is similar to $\iff$. But $\equiv$ is a relation <em>between</em> propositions, whereas $\iff$ is a <em>connective</em>.</li>
+  <li>e.g. we know $p\to q \equiv \neg p \lor q$ as they have the same truth table. Then this also mean $(p\to q) \equiv (\neg p \lor q)$ is a <strong>tautology</strong></li>
+</ul>
+
+<blockquote>
+  <p><strong>Fallacy/Contradiction</strong>: a proposition that is always false. For example, $p \and \neg p$.</p>
+</blockquote>
+
+<blockquote>
+  <p><strong>Contingency</strong>:  a proposition that is not a tautology or fallacy, i.e. is a valid proposition. Usually we can just call this a (valid) “proposition”.</p>
+</blockquote>
+
+<hr />
+
+<p><em>For Example:</em> Wason Puzzle</p>
+
+<p>Consider a set of four cards. Each card has a letter on one side and one number on the other side.</p>
+
+<p><img src="/lectures/images/2023-05-11-COMS3203_Discrete_Math/image-20230124111846624.png" alt="image-20230124111846624" style="zoom:50%;" /></p>
+
+<p>Consider the proposition: “If there is a vowel on one side, then there is an even number on the other side.”</p>
+
+<p><strong>Question</strong>: What are the only cards that you <em>need to turn</em> to check if the proposition is True or False?</p>
+
+<p><strong>Answer</strong>: you only need to turn $A$ and $3$. Let $p$=is vowel and $q$=other side is even. To falsify it, we need to basically get <strong>(vowel and not even)</strong> because this is the only case the <strong>implication $(p\to q)=F$</strong>. Therefore, the two relevant checks will be $p=T$ and $q=F$, corresponding to the card $A$ and card $3$.</p>
+
+<p>More interestingly, notice that checking $3$ is the same as the $\neg q \to \neg p$ which is the <strong>contrapositive</strong>!</p>
+
+<h2 id="laws-of-propositional-logic">Laws of Propositional Logic</h2>
+
+<p>These basic laws (equivalences) are important as:</p>
+
+<ul>
+  <li>can be used to show that a proposition is equivalent than other ones, a tautology, of fallacy</li>
+  <li>simplify a proposition</li>
+</ul>
+
+<p><img src="/lectures/images/2023-05-11-COMS3203_Discrete_Math/image-20230126105134138.png" alt="image-20230126105134138" style="zoom:50%;" /></p>
+
+<p>where the most important ones are highlighted. Most of them has something to do with simplifying $\land$ and $\lor$</p>
+
+<ul>
+  <li><strong>associativity</strong>: has to be used on the <em>same</em> connective (e.g. $(p\lor q)\and r$ has to be done in a distributive case)</li>
+  <li><strong>distributivity</strong>: you can also show that $(q \lor r) \land p \equiv (q \land p) \lor (r \land p)$ by using the <em>commutativity law</em> and the first row in Distributive law</li>
+  <li><strong>absorption</strong>: note that this is different from “Idempotence law”</li>
+  <li><strong>DeMorgan’s</strong>: how to distribute <strong>negation</strong></li>
+</ul>
+
+<p><strong><em>Proof</em></strong> of $p \or (p \land q) \equiv p$.</p>
+
+<p>To get only $p$ on the RHS, we can consider $p \land T = p$ or $p \lor p = p$ as the last step. Here we use the first one:</p>
+
+\[p \or (p \land q) = (p \land T) \lor (p \land q) = p \land (T \lor q) = p \land T = p\]
+
+<p><strong><em>Proof</em></strong> of $p \land (p \lor q) \equiv p$</p>
+
+\[p \land (p \lor q) = (p \lor F) \land (p \lor q) = p \or (F \land q) =  p \lor F = p\]
+
+<p>which we already know is $p$ from the previous proof.</p>
+
+<hr />
+
+<p><em>For Example</em>: show that</p>
+
+\[(p \lor q) \land (p \lor \neg q) \quad \text{is a tautology}\]
+
+<p><strong><em>Proof</em></strong>: (first you start intuitively), realize that you are “or”ing $q$ and $\neg q$, hence:</p>
+
+\[(p \lor q) \land (p \lor \neg q) = p \lor ( q \land \neg q) = p \lor (T) = T\]
+
+<h2 id="logical-inference">Logical Inference</h2>
+
+<p>Or logical deduction.</p>
+
+<blockquote>
+  <p><strong>Logical inference/argument</strong>: a sequence of propositions such that:</p>
+
+  <ul>
+    <li>all but the last propositions are called premises (i.e. precedes conclusion)</li>
+    <li>the last proposition ($q$) is called conclusion</li>
+  </ul>
+
+\[\frac{p_1p_2,\dots p_n}{q}\]
+
+  <p>an argument is called <mark>valid if the premises imply the conclusion</mark>. This means that:</p>
+
+\[(p_1 \land p_2 \land \dots \land p_n) \to q \equiv T \quad \text{(is a tautology)}\]
+
+</blockquote>
+
+<p>But notice that implication has the benefit of doubt, so it <mark>only makes sure that if all $p_i$ is satisfied, $q$ will happen</mark>. If one of the $q_i$ is false, it does not affect anything.</p>
+
+<hr />
+
+<p><em>For Example</em>:</p>
+
+\[\frac{p_1p_2}{p_1 \land p_2} \quad \text{is valid}\]
+
+<p>because it is basically $p \to p$. In fact, if you have <strong>equivalence</strong>, such as</p>
+
+\[\text{both}\quad \frac{\neg \neg p}{p},\frac{p}{\neg \neg p}\quad \text{are valid}\]
+
+<p>you can also see that via a Truth Table</p>
+
+<p><img src="/lectures/images/2023-05-11-COMS3203_Discrete_Math/image-20230131105859364.png" alt="image-20230131105859364" style="zoom:50%;" /></p>
+
+<hr />
+
+<p><strong>Rules of Inference</strong></p>
+
+<ul>
+  <li>
+    <p><strong>addition</strong>:</p>
+
+\[\frac{p}{p \lor q}\]
+
+    <p>you can prove this by showing that $p \to (p\lor q) \equiv T$</p>
+
+\[\neg p \lor (p \lor q) = T \lor q = T\]
+
+    <p>e.g. “it is raining” concludes “it is raining or xxxx” is obviously true.</p>
+  </li>
+  <li>
+    <p><strong>conjunction</strong>:</p>
+
+\[\frac{p \quad q}{p \land q}\]
+
+    <p>basically means $(p \land q) \to (p \and q)$</p>
+  </li>
+  <li>
+    <p><strong>simplification</strong>:</p>
+
+\[\frac{p \land q}{p}\text{    and    } \frac{p \land q}{q}\]
+
+    <p>because $p \land q \to p \equiv T$</p>
+  </li>
+  <li>
+    <p><strong>disjunctive syllogism</strong>:</p>
+
+\[\frac{p \lor q \quad \neg p}{q}\]
+
+    <p>proof is left to you as an exercise, but intuitively if the premises is true, then it means $p$ is false hence $F \lor q$ is true concludes $q$ is true.</p>
+  </li>
+  <li>
+    <p><strong>hypothetical syllogism</strong>:</p>
+
+\[\frac{p \to q \quad q \to r}{p \to r}\]
+
+    <p>which implies that implication is transitive.</p>
+  </li>
+  <li>
+    <p><strong>resolution</strong></p>
+
+\[\frac{p \lor q \quad \neg p \lor r}{q \lor r}\]
+
+    <p>meaning that if $p\lor q$ and $\neg p \lor r$ is true, then it means either $q$ or $r$ has to be true. Hence the conclusion $q\lor r$ is true. You can again try to prove this formally $((p \lor q) \land (\neg p \lor r) \to q\lor r) \equiv T$</p>
+  </li>
+  <li>
+    <p><strong>modus ponens</strong> (latin: mode that affirms)</p>
+
+\[\frac{p \quad p \to q}{q}\]
+
+    <p>is a <mark>very important law</mark>, as it means if $p \to q$ is true and $p$ happened, then $q$ must conclude.</p>
+  </li>
+  <li>
+    <p><strong>modus tollens</strong> (latin: mode that denies)</p>
+
+\[\frac{\neg q \quad p \to q}{\neg p}\]
+
+    <p>very similar as above, as it means if $p \to q$ is true (e.g. raining $\to$ take umbrella) and $q$ did not happen (e.g. did not take umbrella), then $p$ did not happen (e.g. it is not raining).</p>
+  </li>
+  <li>
+    <p><strong>transitivity</strong> this will be used a lot in proofs, so that basically if</p>
+
+\[\frac{p}{q},\quad \frac{q}{r}\quad \text{are valid}\]
+
+    <p>then</p>
+
+\[\frac{p}{r}\quad \text{is valid}\]
+  </li>
+</ul>
+
+<blockquote>
+  <p>Inference is like implication except that it is (saying, since the premises are true, then this conclusion must be) <strong>always true</strong></p>
+</blockquote>
+
+<blockquote>
+  <p>All <strong>laws of logic</strong> seen earlier can be written as <strong>rule of inference</strong>.</p>
+</blockquote>
+
+<p><em>For example</em>, you can transform $p \lor T \equiv T$ to inference as:</p>
+
+\[\frac{p \lor T}{T} \text{    and  }  \frac{T}{p \lor T}\]
+
+<p><em>Another example</em>: premise $p_1$=It’s not rainy but it’s nicer than yesterday. $p_2$=we will watch a movie only if it’s raining. $p_3$ we will go swimming if we do not watch a movie. $p_4$=if we go swimming, we will be home after sunset.</p>
+
+<ol>
+  <li>
+    <p>Translate this into propositional logic (PL).</p>
+
+    <p>let us use</p>
+
+\[r:\text{rainy}\quad n:\text{nicer}\quad  w:\text{watch}\quad  h:\text{home}\quad  s:\text{swim}\quad\]
+
+    <p>therefore this means</p>
+
+    <ul>
+      <li>$p_1 = \neg r \land n$</li>
+      <li>$p_2 = w \to r$</li>
+      <li>$p_3 = \neg w \to s$</li>
+      <li>$p_4 = s \to h$</li>
+    </ul>
+  </li>
+  <li>
+    <p>Show that these premises lead to “we will be home after sunset” (premises are “true”)</p>
+
+    <ol>
+      <li>
+        <p>first, we can simplify to get it is not raining:</p>
+
+\[\frac{\neg r \land n}{\neg r}\]
+      </li>
+      <li>
+        <p>then applying modus tollens</p>
+
+\[\frac{w \to r \quad \neg r}{\neg w}\]
+      </li>
+      <li>
+        <p>then applying modus ponens</p>
+
+\[\frac{\neg w \to s \quad \neg w}{s}\]
+      </li>
+      <li>
+        <p>finally</p>
+
+\[\frac{s\quad s\to h}{h}\]
+      </li>
+    </ol>
+  </li>
+</ol>
+
+<p><em>Another Example</em>: consider the whompus world where there are breezes $B$, pits $P$, and whompus $W$ such that $B_{11} \iff P_{12} \lor P_{21}$. And given that $\neg B_{11}$, show that $\neg P_{12}$</p>
+
+<ol>
+  <li>
+    <p>we can break up the iff into $P_{12} \lor P_{21} \to B_{11}$ by simplification</p>
+  </li>
+  <li>
+    <p>then apply modus ponens</p>
+
+\[\frac{\neg B_{11}\quad P_{12} \lor P_{21} \to B_{11}}{\neg (P_{12} \land P_{21} )}\]
+  </li>
+  <li>
+    <p>De Morgans law gives this means</p>
+
+\[\neg (P_{12} \land P_{21}) = \neg P_{12} \land \neg P_{21}\]
+  </li>
+  <li>
+    <p>finally, apply simplification</p>
+
+\[\frac{\neg P_{12} \land \neg P_{21}}{\neg P_{12}}\]
+  </li>
+</ol>
+
+<h2 id="first-order-logic">First Order Logic</h2>
+
+<p>What if you want to say “there is no $W$ anywhere in the 5x5 cave”? Given current tools, this is not very convenient to do.</p>
+
+<blockquote>
+  <p><strong>First Order Logic</strong> (abbreviated as FOL), also known as <strong>predicate logic</strong>, combines quantifiers and predicates for a more powerful and compact formalism. So in a sense, PL is a <em>subset</em> of FOL.</p>
+</blockquote>
+
+<p>The idea is to:</p>
+
+<ul>
+  <li>instead of having just $p$, we consider $p(x)$, or $p(x,y)$, etc (i.e. predicates)</li>
+  <li>and we add quantifiers such as $\forall, \exists$</li>
+</ul>
+
+<blockquote>
+  <p><strong>Predicate</strong>: A predicate is a proposition whose truth value <mark>depends on one or more variables</mark>.</p>
+</blockquote>
+
+<blockquote>
+  <p><strong>N-ary predicate</strong>: a predicate with $N$-variables</p>
+
+\[\text{predicate}(\underbrace{x,y,z,...}_{\text{n variables}})\]
+
+</blockquote>
+
+<p>For example, this includes</p>
+
+<ul>
+  <li>(predicates) $x+2=5$; even$(x)$; $x+y &gt; 10$</li>
+  <li>
+    <p>i.e. they <em>can be true or false</em>, but it <em>depends</em> on the values of the variables</p>
+  </li>
+  <li>i.e. it is like a function that <mark>always evaluates to true or false</mark> given the “input values”</li>
+</ul>
+
+<blockquote>
+  <p><strong>Quantifiers</strong></p>
+
+  <ul>
+    <li>universal quantifier: $\forall$ expresses such as “for all, for every, all of, for each, for any, any of, given any, for an arbitrary, etc.”</li>
+    <li>existential quantifier: $\exists$ expresses such as “there exist, for some, for at least one, there is, there is at least one, etc.”</li>
+  </ul>
+</blockquote>
+
+<blockquote>
+  <p><strong>Universal Quantifier</strong> additionally requires a <em>variable name</em> and a <em>domain</em>.</p>
+
+\[\forall \underbrace{x}_{\text{variable}}  \underbrace{ \in A}_{\text{a domain}}\]
+
+  <p>then this can be combined with a proposition</p>
+
+\[\forall \underbrace{x}_{\text{variable}}  \underbrace{ \in A}_{\text{a domain}}\,\,(\text{predicate}...)\]
+
+</blockquote>
+
+<p>and then you can say something like “all aliens are green”, by considering $A$=the set of aliens:</p>
+
+\[\forall a \in A\,\, (green(a))\]
+
+<p>(which may or may not be true). Another example: all integers are even:</p>
+
+\[\forall a \in \mathbb{Z}\,\, (x\,\text{mod }2 = 0)\]
+
+<blockquote>
+  <p>One powerful/additional feature of FOL is that your predicate can contain essentially <strong>functions</strong>, introducing many new operators such as “mod”, “equality”, etc.</p>
+</blockquote>
+
+<p>More examples: “All Aliens are green and nice. Domain: Alien denoted $A$”</p>
+
+\[\forall a \in A \quad (\text{green}(a) \land \text{nice}(a))\]
+
+<blockquote>
+  <p><strong>Existential Quantifier</strong>: he existential quantifier, denoted with the symbol $\exists$, expresses the statements: there exist, for some, for at least one, there is, there is at least one, etc. The application of this is the same as the “Universal Quantifier”</p>
+</blockquote>
+
+<p>For example: There exists an integer that is both even and prime</p>
+
+\[\exists x \in \mathbb{Z} \quad (\text{even}(x) \land \text{prime}(x))\]
+
+<p><mark>but how do we prove it</mark>? In this example, we can by just realizing that $x=2$ satisfies. But in general, see <a href="#FOL Statements and Proofs">FOL Statements and Proofs</a></p>
+
+<blockquote>
+  <p><strong>Negation</strong> of FOL statements:</p>
+
+  <ul>
+    <li>$\neg (\forall x \quad p(x))$ means $\exists x \quad (\neg p(x))$</li>
+    <li>$\neg (\exists x \quad p(x))$ means $\forall x \quad (\neg p(x))$</li>
+  </ul>
+</blockquote>
+
+<p>For example:</p>
+
+\[\neg(\forall x \exist y\quad p(x,y)) \equiv \exists x \forall y \quad\neg p(x,y)\]
+
+<p>where we abbreviated $\forall x (\exist y\quad p(x,y))$ to just $\forall x \exist y\quad p(x,y)$</p>
+
+<blockquote>
+  <p><strong>Distributivity of FOL</strong>: in short, they <mark>do not distribute</mark></p>
+
+  <ul>
+    <li>
+      <p>consider $\forall$:</p>
+
+\[\forall x \quad P(x) \lor Q(x) \neq (\forall x \quad P(x)) \lor (\forall x \quad Q(x))\]
+
+      <p>e.g. consider $P(x)$=even(x) and $Q(x)$=odd(x). Then LHS = $T$, but RHS = $F\lor F=F$</p>
+    </li>
+    <li>
+      <p>consider $\exists$:</p>
+
+\[\exists x \quad P(x) \land Q(x) \neq (\exists x \quad P(x)) \land (\exists x \quad Q(x))\]
+
+      <p>e.g. consider $P(x)$=prime(x) and $Q(x)$=notprime(x). Then LHS=$F$ but RHS=$T\land T=T$</p>
+    </li>
+  </ul>
+</blockquote>
+
+<h3 id="domain-of-fol">Domain of FOL</h3>
+
+<p>On the <strong>importance</strong> of the domain:</p>
+
+<ul>
+  <li>
+    <p>Suppose you want to express: “All birds fly”</p>
+
+\[\forall b \in B\quad \text{fly}(b)\]
+  </li>
+  <li>
+    <p>“All birds <mark>except</mark> penguins fly”. Naively:</p>
+
+\[\forall b \in B \quad (\text{fly}(b)\land \neg \text{penguin}(b))\]
+
+    <p>but this also means we are stating two things:</p>
+
+\[[\forall b \in B \quad \text{fly}(b)]\quad \land \quad [\forall b \in B \quad \neg \text{penguin}(b)]\]
+
+    <p>i.e. whenever $b$ is a penguin, this will be false $\neq$ our original statement. The <mark>correct way</mark> to express it is</p>
+
+\[\forall b \in B \quad ( \neg \text{penguin}(b) \to \text{fly}(b) )\]
+
+    <p>i.e “if it is not a penguin, then it flies”, i.e. the <em>only false case is “not penguin, and can’t fly”,</em> and we are not claiming anything else than that, which is consistent with the statement.</p>
+
+    <ul>
+      <li>
+        <p>(<em>optional</em>) technically you can also interpret this as “penguins don’t fly”. Then you might have</p>
+
+\[\forall b \in B \quad ( \neg \text{penguin}(b) \iff \text{fly}(b) )\]
+      </li>
+      <li>
+        <p>one way to think about this type of problem is to convert it into code</p>
+
+        <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">birds</span><span class="p">:</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">penguin</span><span class="p">(</span><span class="n">a</span><span class="p">)):</span>
+        <span class="n">fly</span>
+    <span class="c1"># technically done
+</span>    <span class="c1"># optionally:
+</span>    <span class="k">if</span> <span class="n">penguin</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
+        <span class="ow">not</span> <span class="n">fly</span>
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<p>Another example:</p>
+
+<ul>
+  <li>
+    <p>“In the <strong>set of animals</strong>, all lions are fierce”</p>
+
+\[\forall a \in A \quad \text{lion(a)} \to \text{fierce}(a)\]
+  </li>
+  <li>
+    <p>“some lions are fierce”</p>
+
+\[\exists a \in A \quad (\text{fierce}(x) \land \text{lion(a)})\]
+
+    <p>is now correct.</p>
+  </li>
+</ul>
+
+<blockquote>
+  <p><strong>Note</strong>: this means <em>usually</em></p>
+
+  <ul>
+    <li>$\forall$ goes with $\to$ implications (because $\forall$ is a strong quantifier)</li>
+    <li>$\exists$ goes with $\land$ conjunctions</li>
+  </ul>
+</blockquote>
+
+<p><em>For example</em>: Consider the domain of Humans, you want to express “All kids has pets”</p>
+
+\[\forall h \in H\quad \text{kid}(h) \to \text{has pet}(h)\]
+
+<p>then another way to do this is</p>
+
+\[\forall h \in H ( \text{kid}(h) \to \exists \underbrace{ a \in A \quad \text{pet}(a) \land \text{is his pet}(a,k)}_{\text{exists a pet that the kid has}})\]
+
+<p><em>For example</em>: “there exists a class that’s taken by every student”. Consider two domains, “event” (e.g. classes, workshops, conferences, sport events, etc) and “students”</p>
+
+\[\exists e \in \text{event}\quad \text{class}(e) \land (\forall s \in \text{students} \quad \text{take}(s,e))\]
+
+<h3 id="mixing-quantifiers">Mixing Quantifiers</h3>
+
+<p>Consider the statement “All integers are even”, and</p>
+
+\[\forall x \in \mathbb{Z}\quad ( \exists y\in \mathbb{Z}\quad x=2y )\]
+
+<p>which is like a <mark>"nested loop"</mark> of, taking a loop over $x \in \mathbb{Z}$, and each is a even number.</p>
+
+<p>Another example: what are the differences between:</p>
+
+<ul>
+  <li>$\forall x \in \mathbb{Z}\quad ( \forall y\in \mathbb{Z}\quad x+y=0 )$ is false as, given an $x$, I can easily find a $y$ such that it does not hold</li>
+  <li>$\forall x \in \mathbb{Z}\quad ( \exists y\in \mathbb{Z}\quad x+y=0 )$ is true, by picking $y = -x$ for any given $x$</li>
+  <li>$\exists x \in \mathbb{Z}\quad ( \forall y\in \mathbb{Z}\quad x+y=0 )$ is false, as this says “given a $x$”, all $y+x=0$ for any $y \in \mathbb{Z}$</li>
+  <li>$\exists x \in \mathbb{Z}\quad ( \exists y\in \mathbb{Z}\quad x+y=0 )$ is true</li>
+</ul>
+
+<h3 id="fol-statements-and-prelude-to-proofs">FOL Statements and Prelude to Proofs</h3>
+
+<p>Consider we want to prove:</p>
+
+<ol>
+  <li>$\forall x \in D\quad p(x):true$ means that $p(x)$ for <strong>all</strong> elements in $D$</li>
+  <li>$\forall x \in D\quad p(x):false$ means that there is at least <strong>one</strong> element for which $p(x)$ is false</li>
+  <li>$\exists x \in D \quad p(x): true$ means there is at least <strong>one</strong> element in $D$ for which $p(x)$ is true</li>
+  <li>$\exists x \in D \quad p(x):false$: means that for <strong>all</strong> elements in the domain $p(x)$ is false</li>
+</ol>
+
+<p>This means that:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th> </th>
+      <th>$\forall x \quad p(x)$</th>
+      <th>$\exists x \quad p(x)$</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Prove</td>
+      <td><strong>prove</strong> such as proof by contradiction, induction, etc.</td>
+      <td>enough to find an <strong>example</strong></td>
+    </tr>
+    <tr>
+      <td>Disprove</td>
+      <td>enough to provide a <strong>counter example</strong></td>
+      <td><strong>prove</strong> that $\forall x$ the predicate $p(x)$ is false, using …</td>
+    </tr>
+  </tbody>
+</table>
+
+<blockquote>
+  <p><strong>Note</strong> that sometimes when a domain is “clear”, instead of $\forall x \in A\quad p(x)$ you can just write $\forall x \quad p(x)$.</p>
+</blockquote>
+
+<p><em>For example</em>: consider the FOLs, for which we will prove</p>
+
+<ol>
+  <li>
+    <p>“Any even integer is divisible by 2”. Let domain be $\mathbb{Z}$</p>
+
+\[\forall x \in \mathbb{Z}\quad (\text{even}(x) \implies 2|x)\]
+
+    <p>where $2\vert x$ means 2 divides x. Note that technically “if it is divisible by 2, it is an even integer” is also true, so technically $\iff$ here would be correct. But since we <em>are focused on proofs</em>, we might not want to do extra work, i.e. prove both sides if using $\iff$.</p>
+  </li>
+  <li>
+    <p>“An integer is even iff it is divisible by 2”</p>
+
+\[\forall x \in \mathbb{Z} \quad (\text{even}(x) \iff 2|a )\]
+  </li>
+  <li>
+    <p>“The sum of two even integers is an even integer”</p>
+
+\[\forall x,y \in \mathbb{Z} \quad (\text{even}(x) \land \text{even}(y)) \implies \text{even}(x+y)\]
+
+    <p>but don’t you need to specify that $\text{even}(x,y)$ is also an integer? This is not necessary here by the axiom of closure property (adding two elements in $\mathbb{Z}$ results still in $\mathbb{Z}$).</p>
+  </li>
+  <li>
+    <p>“Let $r\in \mathbb{R}$. If $r$ is irrational, then $\sqrt{r}$ is also irrational”. We are allowed to also use the set of rationals $\Q$</p>
+
+\[\forall r \in \mathbb{R} \quad  (r \notin \Q \to \sqrt{r} \notin \Q)\]
+  </li>
+  <li>
+    <p>“If $x$ is even, then $x^2+x$ is even.” Domain is integer.</p>
+
+\[\forall x \in \Z \quad (\text{even}(x) \to \text{even}(x^2+x))\]
+  </li>
+  <li>
+    <p>“There are no pair of integers that satisfy the expression $5x+25y = 1723$”</p>
+
+\[\neg (\exist x,y \in \mathbb{Z}\quad 5x+25y=1723)\]
+
+    <p>or alternatively you can say</p>
+
+\[\forall x,y \in \mathbb{Z}\quad 5x+25y\neq 1723\]
+  </li>
+</ol>
+
+<blockquote>
+  <p><strong>Challenge question:</strong> there exists a unique with the quantifier we already have, to express</p>
+
+\[\exists ! x \quad p(x)\]
+
+  <p>where $\exists !$ is used now as a shortcut to express <mark>exists a unique</mark></p>
+
+\[\exists x \quad p(x) \land (\forall y \quad p(y) \to (y = x))\]
+
+  <p>this hints at, to prove a uniqueness theorem, you just need to show that: 1) there exist a solution, and 2) any other working solution is the same as that solution.</p>
+</blockquote>
+
+<p>Note that it would be <strong>incorrect</strong> in this case to say</p>
+
+\[\forall x \quad p(x) \implies (\forall y \quad p(y) \to (y = x))\]
+
+<p>because then, it could be there is <em>no such $x$ such that $p(x)$</em>, i.e. the “exist a solution” part we wanted to express is no longer there!</p>
+
+<h1 id="proofs">Proofs</h1>
+
+<p>First we need to define a few jargon</p>
+
+<blockquote>
+  <p><strong>Axiom</strong>: An axiom is a proposition that is assumed to be True. You don’t need to prove them.</p>
+</blockquote>
+
+<blockquote>
+  <p><strong>Lemma</strong>: A preliminary mathematical proposition for which there is/<mark>needs a proof</mark>. Generally, lemmas precede a bigger result and lay the ground to a theorem.</p>
+
+  <ul>
+    <li>a baby version of “theorem”, but still requires a proof</li>
+  </ul>
+</blockquote>
+
+<blockquote>
+  <p><strong>Theorem</strong>: A declarative mathematical statement for which there is/<mark>needs a proof</mark></p>
+
+  <ul>
+    <li>in greek this means “something needs to be proved”</li>
+  </ul>
+</blockquote>
+
+<blockquote>
+  <p><strong>Corollary</strong>: A proposition that <em>follows from a theorem</em> in just a few steps.</p>
+
+  <ul>
+    <li>i.e. once the theorem is proven, these come very naturally/can be proven easily</li>
+  </ul>
+</blockquote>
+
+<blockquote>
+  <p><strong>Conjecture</strong>: A strong mathematical result that is strongly believed to be true, but is <em>yet to be proven</em>.</p>
+</blockquote>
+
+<p>In general, you will be approaching them with:</p>
+
+<p><img src="/lectures/images/2023-05-11-COMS3203_Discrete_Math/image-20230209112412432.png" alt="image-20230209112412432" style="zoom: 67%;" /></p>
+
+<h2 id="proof-by-enumeration">Proof by Enumeration</h2>
+
+<blockquote>
+  <p>When the domain is small, we can verify the proposition <strong>for all values</strong>.</p>
+</blockquote>
+
+<p><em>For Example</em>: Proposition $\forall x \in \mathbb{Z}$ then $1 &lt; x &lt; 5 \implies (2\vert x) \lor (3\vert x)$</p>
+
+<p><em>Proof</em>: we consider for each case $1&lt;x&lt;5$</p>
+
+<ol>
+  <li>when $x=2$, $2\vert x$ hence is true</li>
+  <li>when $x=3$, $3\vert x$ is true hence true</li>
+  <li>when $x=4$. $2\vert x$ is true hence true</li>
+</ol>
+
+<h2 id="direct-proof">Direct Proof</h2>
+
+<p>Given a statement</p>
+
+\[\forall x \in D\quad p(x) \implies q(x)\]
+
+<p>Then in a direct proof you basically</p>
+
+<blockquote>
+  <p>Directly prove $p \implies q$ using definitions/axioms/logic. I.e. assuming $p$ is true, then $q$ is true.</p>
+</blockquote>
+
+<p><em>For Example</em>: $\forall a \in \mathbb{Z}$ and $\forall b \in \mathbb{Z}$ then</p>
+
+\[\text{$a$ is even } \land \text{ $b$ is even } \implies (a+b) \text{ is even}\]
+
+<p><em>Proof</em>: since we know $\text{$a$is even } \land \text{$b$is even }$</p>
+
+<ol>
+  <li>
+    <p>this implies</p>
+
+\[\exists k \in \mathbb{Z},\quad a=2k\\
+\exists z \in \mathbb{Z},\quad b=2z\]
+  </li>
+  <li>
+    <p>hence this means</p>
+
+\[a+b = 2(k+z)\]
+  </li>
+  <li>
+    <p>hence this means</p>
+
+\[\exists t \in \mathbb{Z},\quad (a+b)=2t\]
+
+    <p>e.g. by picking $t = (k+z)$</p>
+  </li>
+  <li>
+    <p>therefore $(a+b)$ is even</p>
+  </li>
+</ol>
+
+<blockquote>
+  <p><em>Recall</em> that (we will use this quite often)</p>
+
+  <ul>
+    <li>$x$ is even $\iff$ $2\vert x$, or $\exists k \in \mathbb{Z},\  x = 2k$</li>
+    <li>$x$ is odd $\iff$ $\neg 2\vert x$ or $\exists k \in \mathbb{Z},\  x = 2k+1$</li>
+  </ul>
+</blockquote>
+
+<h2 id="proof-by-contradiction">Proof by Contradiction</h2>
+
+<p>Consider a statement</p>
+
+\[\forall x \in D \quad p(x) \implies q(x)\]
+
+<blockquote>
+  <p>Assume that the statement is not true, i.e.  $\neg ( p \implies q) = p \land \neg q$. Then show that this is impossible.</p>
+</blockquote>
+
+<p><em>For example</em>: prove $\forall a \in \mathbb{Z}$ and $\forall b \in \mathbb{Z}$ then</p>
+
+\[\text{$a$ is even } \land \text{ $b$ is even } \implies (a+b) \text{ is even}\]
+
+<p>by contradiction.</p>
+
+<p><em>Proof</em>: assume that $p \land \neg q$</p>
+
+<ol>
+  <li>
+    <p>this means we assume the following is true</p>
+
+\[(\text{$a$ is even } \land \text{ $b$ is even })  \land \neg(a+b \text{ is even})\]
+
+    <p><mark>notice this $\land$ induced by contradiction proof</mark>. This effectively allows us to use both LHS and RHS of the equation</p>
+  </li>
+  <li>
+    <p>this means</p>
+
+\[(\text{$a$ is even } \land \text{ $b$ is even })  \land (a+b \text{ is odd})\]
+  </li>
+  <li>
+    <p>this implies</p>
+
+\[\exists k \in \mathbb{Z},\quad a=2k\\
+\exists z \in \mathbb{Z},\quad b=2z\]
+  </li>
+  <li>
+    <p>but this means</p>
+
+\[a+b = 2(k+z)\quad \text{is even}\]
+  </li>
+  <li>
+    <p>yet we claimed $(a+b)$ is not even. Is a contradiction.</p>
+  </li>
+</ol>
+
+<h2 id="proof-by-contrapositive">Proof by Contrapositive</h2>
+
+<p>Given the statement</p>
+
+\[\forall x \in D \quad p(x) \implies q(x)\]
+
+<blockquote>
+  <p>Prove by showing that $\forall x \quad \neg q(x) \implies \neg p(x)$, which <em>might be easier in times</em>.</p>
+
+  <ul>
+    <li>i.e. start with $\neg q(x)$, and conclude that $\neg p(x)$. e.g. by using a direct proof.</li>
+    <li>this is useful usually when you realize the LHS of the original statement, i.e. $p(x)$ is <mark>hard to move forward</mark></li>
+  </ul>
+</blockquote>
+
+<p><em>For Example</em>: prove that $\forall r \in \mathbb{R}$, if $r$ is irrational, then $\sqrt{r}$ is also irrational.</p>
+
+<ul>
+  <li>since this means $r \neq a/b$, which is hard to move forward. Hence we consider converting proof by contrapositive.</li>
+</ul>
+
+<p><em>Proof</em>: by contrapositive, then $\sqrt{r}$ is rational $\implies$ $r$ is rational. Using a direct proof</p>
+
+<ol>
+  <li>
+    <p>since $\sqrt{r} \in \Q$, this means</p>
+
+\[\exists a,b \in \mathbb{Z}, \quad \sqrt{r}=\frac{a}{b}\]
+  </li>
+  <li>
+    <p>then this means</p>
+
+\[r = \frac{a^2}{b^2}\]
+  </li>
+  <li>
+    <p>this means</p>
+
+\[\exists c,d \in \Z, \quad r = \frac{c}{d}\]
+
+    <p>for example by letting $a^2=c$, $b^2=d$</p>
+  </li>
+  <li>
+    <p>this means $r \in \Q$.</p>
+  </li>
+</ol>
+
+<p><em>For Example</em>: let $a,b \in \Z$ prove that $a+b &gt; 100 \implies ((a &gt; 50) \lor (b &gt; 50))$</p>
+
+<p><em>Proof</em>: We realize it is hard to move forward from $a+b &gt; 100$ as we have two numbers on LHS. Consider using the contrapositive</p>
+
+\[((a \le 50) \land (b \le 50)) \implies a+b \le 100\]
+
+<p>the rest is obvious by direct proof.</p>
+
+<h2 id="proof-of-iff">Proof of IFF</h2>
+
+<p>Consider the statement</p>
+
+\[\forall x \in D\quad p(x) \iff q(x)\]
+
+<p>Then essentially you need to</p>
+
+<ul>
+  <li>proof by any method that $p(x) \to q(x)$</li>
+  <li>proof by any method that $q(x) \to p(x)$</li>
+</ul>
+
+<p><em>For Example</em>: prove that $\text{$x^2$is even} \iff \text{$x$is even}$. To prove this we need to prove both ways</p>
+
+<p><em>Proof</em>. We can first prove the forward direction</p>
+
+\[\text{$x$ is even}\implies\text{$x^2$ is even}\]
+
+<ol>
+  <li>since $x$ is even, then $x=2a$ for some $a \in \Z$</li>
+  <li>therefore $x^2 = 4a^2$</li>
+  <li>hence $x^2 = 2 (2a^2)$</li>
+  <li>hence $x^2 = 2c$ for some $c \in \Z$</li>
+  <li>so $x^2$ is even</li>
+</ol>
+
+<p>Now, we prove that</p>
+
+\[\text{$x^2$ is even}\implies\text{$x$ is even}\]
+
+<ol>
+  <li>
+    <p>its hard to do a direct proof, we can try instead contrapositive</p>
+
+\[\text{$x$ is odd}\implies\text{$x^2$ is odd}\]
+  </li>
+  <li>
+    <p>then this means $x = 2a+1$ for some $a \in \Z$</p>
+  </li>
+  <li>
+    <p>hence $x^2 = 4a^2 + 2a + 1$</p>
+  </li>
+  <li>
+    <p>hence $x^2 = 2(2a^2 + a) + 1$</p>
+  </li>
+  <li>
+    <p>meaning $x^2 = 2c + 1$ for some $c \in \Z$</p>
+  </li>
+  <li>
+    <p>so $x^2$ is odd</p>
+  </li>
+</ol>
+
+<h2 id="proof-by-contradiction-1">Proof by Contradiction</h2>
+
+<blockquote>
+  <p>In a proof by contradiction, assume the opposite of what you are trying to prove. Then you make logical deductions until you arrive to a <strong>contradiction</strong>.</p>
+</blockquote>
+
+<p><em>For Example</em>: Prove by contradiction that there are no integer $x,y$ that satisfy $5x+25y = 1723$</p>
+
+<p><em>Proof</em>: This means to prove that</p>
+
+\[\forall x,y \in \Z \quad 5x + 25y \neq 1723\]
+
+<p>By contradiction, we can first assume that this is false. Hence this means the below is true by assumption.</p>
+
+\[\exists x,y \in \Z \quad 5x + 25y =1723\]
+
+<ol>
+  <li>
+    <p>let this be true. Then this means</p>
+
+\[5(x+5y) = 1723\]
+  </li>
+  <li>
+    <p>hence</p>
+
+\[x + 5y = \frac{1723}{5}\]
+  </li>
+  <li>
+    <p>hence contradiction as LHS is integer, but RHS is not.</p>
+  </li>
+</ol>
+
+<h2 id="proof-by-cases">Proof by Cases</h2>
+
+<blockquote>
+  <p>In proof by cases, try to break the proof into cases, if your starting point is too general. Make sure that your cases span <strong>all possibilities</strong></p>
+</blockquote>
+
+<p>So the general format would be to prove</p>
+
+\[p_1 \lor \dots \lor p_n \implies q\]
+
+<p>by proving for each $p_i \implies q$ by <em>proposition logic</em>.</p>
+
+<hr />
+
+<p><em>For Example</em>: Profe that for any integer $x$, $x^2 + x$ is even.</p>
+
+<p><em>Proof</em> : this means that</p>
+
+\[\forall x \in \Z\quad \text{$x^2+x$ is even} \equiv \forall x \in \Z\quad (x\in \Z \implies \text{$x^2+x$ is even} )\]
+
+<p>this is straightforward using a direct proof, and essentially showing that $x(x+1)$ must include both an even number and an odd number.</p>
+
+<p>To prove by cases, we can consider (inspired from the direct proof) that</p>
+
+\[\forall x \in \Z\quad (\text{$x$ is even} \lor \text{$x$ is odd} \implies \text{$x^2+x$ is even} )\]
+
+<ul>
+  <li>case 1: $x$ is even, then $x = 2a$ for some $a \in \Z$
+    <ul>
+      <li>then $x^2 + x = 2(2a^2 + a)$ is even.</li>
+    </ul>
+  </li>
+  <li>case 2: $x$ is odd, then $x=2a+1$
+    <ul>
+      <li>then $x^2 + x = 2(2a^2 + 3a + 1)$ is also even</li>
+    </ul>
+  </li>
+  <li>therefore, $x^2 + x$ is even.</li>
+</ul>
+
+<h2 id="proof-by-counter-example">Proof by Counter Example</h2>
+
+<blockquote>
+  <p>Used to <strong>disprove</strong> some proposition, by finding an example such that the proposition is false.</p>
+</blockquote>
+
+<p>Usually you will disprove</p>
+
+\[p \to q\]
+
+<p>meaning to find an example such that $p$ is true but $q$ is false.</p>
+
+<p>Some “tricks/hints” when you are stuck:</p>
+
+<ol>
+  <li>keep in mind of your domain</li>
+  <li>try to create edge examples</li>
+  <li>try to prove it (though you know it will not hold), so you can look for pattern when this will likely fail</li>
+</ol>
+
+<hr />
+
+<p><em>For example</em>: disprove that $\forall a,b \in \Z\quad (a\vert b \land b\vert a)\implies a=b$</p>
+
+<p><em>Proof</em>: counter example: $a=-b$, e.g. $a=2$ and $b=-2$. Then LHS is true, but RHS is false.</p>
+
+<p>You can see how this edge case come about if you attempted a direct proof to “attempt to” show this is true</p>
+
+<ol>
+  <li>let $a\vert b \land b\vert a$ is true</li>
+  <li>Then this means $a = xb$ and $b = ya$ for $x,y \in \Z$</li>
+  <li>hence this means $a = xy \cdot a$ hence $xy = 1$</li>
+  <li>but this means either $x = y = 1$ or $x=y=-1$.</li>
+  <li>in the latter case, this implies $a=-b$, which means LHS is true but RHS is false</li>
+</ol>
+
+<blockquote>
+  <p><strong>Note</strong> that this is <em>different</em> from proof by contradiction, from which it is a) used to <em>prove</em> instead of disprove; b) flipped the entire proposition</p>
+</blockquote>
+
+<h1 id="sets">Sets</h1>
+
+<p>In general, we we refer to sets, we consider unordered sets</p>
+
+<blockquote>
+  <p>We will distinguish between two types of collections: <strong>unordered sets</strong> (in which, order does not matter) and <strong>ordered sets or lists</strong> (in which order matters).</p>
+</blockquote>
+
+<h2 id="unordered-sets">Unordered Sets</h2>
+
+<blockquote>
+  <p><strong>(Unordered) Set</strong>: is a collection of <mark>distinct</mark> object in which order does not matter.</p>
+</blockquote>
+
+<p>for example:</p>
+
+\[p = \{ \text{eraser, pen, highlighter} \}\]
+
+<p>or you can also have an infinite set</p>
+
+\[\mathbb{Z} = \{ \dots, -2,-1,0,1,2,\dots \}\]
+
+<p>for us, in general we assume that <mark>counting numbers start with $1$</mark></p>
+
+\[\mathbb{N} = \{ 1,2,3,\dots \}\]
+
+<p>though there are also some people considers $\mathbb{N}$ includes $0$. You can even have sets inside a set</p>
+
+\[bp = \{ \text{notebook, laptop, } \{ \text{eraser, pen, highlighter} \} \}\]
+
+<p>but if we the following is <strong>not a set</strong></p>
+
+\[S = \{ 1,1,2,3 \}\]
+
+<p>since you have duplicates. This becomes a <em>multiset</em>, which we will not cover in this class.</p>
+
+<blockquote>
+  <p><strong>Notation</strong>:</p>
+
+  <ul>
+    <li>
+      <p>belongs to $\in$. Means is a <em>member/element</em> in a set is denoted as</p>
+
+\[a \in \mathbb{Z}\]
+    </li>
+    <li>
+      <p>empty set is denoted as either</p>
+
+\[b = \{\},\quad\text{or}\quad b = \emptyset\]
+    </li>
+    <li>
+      <p>does not belong to $\notin$:</p>
+
+\[\text{fridge} \notin \text{backpack}\]
+
+      <p>where backpack is a set.</p>
+    </li>
+  </ul>
+</blockquote>
+
+<p>some caution include that, let</p>
+
+\[bp = \{ \text{notebook, laptop, } \{ \text{eraser, pen, highlighter} \} \}\]
+
+<p>then technically</p>
+
+<ul>
+  <li>$\text{notebook} \in bp$</li>
+  <li>$\text{pen} \notin bp$ because “pen” is technically <em>not a member</em> of the set, but ${ \text{eraser, pen, highlighter} } \in bp$</li>
+</ul>
+
+<blockquote>
+  <p><strong>Subset</strong>: let $A,B$ be two sets. $A$ is a subset of $B$ provided that every element in $A$ is also an element in $B$. We denote that</p>
+
+\[A \subseteq B\]
+
+  <p>where this is “subset <em>or equal</em>”.</p>
+</blockquote>
+
+<p>Note that the difference between $\in$ and $\subseteq$ is that</p>
+
+<ul>
+  <li>$\in$ can be used <strong>with an element</strong> or set, since a set can be an element</li>
+  <li>$\subseteq$ must only be used with a <strong>set</strong></li>
+</ul>
+
+<p>But note that we can <em>translate the definition of subset to FOL</em>:</p>
+
+<p>Let $A,B$ be sets. Then</p>
+
+\[A \subseteq B \iff (\forall a \in A\quad a \in B)\]
+
+<p>(just as a practice) What if the domain is $\Z$, i.e. for both sets?</p>
+
+\[A \subseteq B \iff (\forall a \in \Z \quad a \in A \implies a \in B)\]
+
+<p><em>For Example</em>:</p>
+
+<ul>
+  <li>${4} \subseteq { 1,2,3,4 }$ is true</li>
+  <li>${4} \nsubseteq { 1,2,3,{4} }$ since the element in LHS is $4$, whereas the element on RHS is ${4}$.</li>
+  <li>${{4}} \subseteq { 1,2,3,{4} }$ is true</li>
+  <li>${} \subseteq { 1,2,3,{4} }$ in fact, ${} \subseteq S$ for any set $S$.</li>
+  <li>${} \notin { 1,2,3,{4} }$ as empty set is not a member of the RHS.</li>
+</ul>
+
+<blockquote>
+  <p><strong>Equality between sets</strong>: two sets are equal $A = B$ provided</p>
+
+\[A = B \iff A \subseteq B \land B \subseteq A\]
+
+  <p>or we can write as FOL</p>
+
+\[A = B \iff (\forall a \quad a \in A \iff a \in B)\]
+
+</blockquote>
+
+<p>note that the above strictly says “take any element $a$ in the universe, if $a \in A$ then $a \in B$ and vice versa”. Therefore the below is <strong>wrong</strong></p>
+
+\[A = B \iff (\forall a \quad a \in A \land a \in B)\]
+
+<p>this instead says “every element in the universe is both in $A$ and $B$”. But yuo can do something like (<strong>correct</strong>)</p>
+
+\[A = B \iff (\forall a \in A \quad a \in B) \land (\forall a \in B \quad a \in A)\]
+
+<p>which is basically saying $A \subseteq B \land B \subseteq A$.</p>
+
+<blockquote>
+  <p><strong>Proper Subset</strong>: being a subset <em>but not equal</em></p>
+
+\[A \subset B \iff A \subseteq B \land A \neq B\]
+
+</blockquote>
+
+<p><em>For Example</em>: $\Z \subset \Q$ because</p>
+
+\[\Z \subset \Q \iff \Z \subseteq \Q \land \Z \neq \Q\]
+
+<p>and of course</p>
+
+<ul>
+  <li>${1} \subset {1,2}$</li>
+  <li>${1} \subseteq {1,2}$</li>
+  <li>but ${1,2} \subseteq {1,2}$ only</li>
+</ul>
+
+<blockquote>
+  <p><strong>Universal Set</strong> denoted as $U$, which is the set of <strong>everything under consideration</strong>.</p>
+</blockquote>
+
+<p>(Barber’/Russell’s paradox: in general, whenever there is self-reference, there is typically a paradox)</p>
+
+<blockquote>
+  <p><strong>Power Set</strong>: the set of <em>all subsets</em> of a set $A$ is called a power set $P(A)$</p>
+</blockquote>
+
+<p>For example, let $S = {1,2}$, then</p>
+
+\[P(S) = \{ \empty, \{1\}, \{2\}, \{1,2\} \}\]
+
+<p>basically,  a set including $0$ elements on the set, $1$ element of the set, and then $2$ elements of the set.</p>
+
+<p>This means <strong>empty set is an element of any powerset</strong>, so that</p>
+
+\[P(\empty) = \{ \empty \}\]
+
+<p>How many elements are there in a powerset? There are <mark>$2^k$ elements in the powerset $P(S)$</mark>, for $k$ is the number of elements in $S$.</p>
+
+<ul>
+  <li>
+    <p>proof 1: For each element in $P(S)$, e.g. let $S={a,b,c}$, then any power set is essentially:</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th> </th>
+          <th>a</th>
+          <th>b</th>
+          <th>c</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>$\empty$</td>
+          <td>F</td>
+          <td>F</td>
+          <td>F</td>
+        </tr>
+        <tr>
+          <td>${a}$</td>
+          <td>T</td>
+          <td>F</td>
+          <td>F</td>
+        </tr>
+        <tr>
+          <td>${b}$</td>
+          <td>F</td>
+          <td>T</td>
+          <td>F</td>
+        </tr>
+        <tr>
+          <td>${c}$</td>
+          <td>F</td>
+          <td>F</td>
+          <td>T</td>
+        </tr>
+        <tr>
+          <td>${a,b}$</td>
+          <td>T</td>
+          <td>T</td>
+          <td>F</td>
+        </tr>
+        <tr>
+          <td>…</td>
+          <td> </td>
+          <td> </td>
+          <td> </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>so basically it is the number of combinations of the truth table</p>
+  </li>
+  <li>
+    <p>proof 2: just use</p>
+
+\[{0 \choose k} + {1 \choose k} + \cdots + {k \choose k} =2^k\]
+  </li>
+</ul>
+
+<blockquote>
+  <p><strong>Finite Set</strong>: a finite set is a set has $n$ elements for $n \in \Z^+$. Otherwise we call the set infinite.</p>
+</blockquote>
+
+<blockquote>
+  <p><strong>Cardinality</strong>: let $A$ be a finite set, the number of elements in $A$ is called cardinality, denoted as $\vert A\vert$</p>
+</blockquote>
+
+<p>For example:</p>
+
+<ul>
+  <li>if $A$ has $n$ elements, then $\vert A\vert =n$.</li>
+  <li>$S={1,2,3,…,20}$. Then $\vert S\vert =20$, and that $\vert P(S)\vert  = 2^{20}$.</li>
+  <li>$\vert \Z\vert$ is then technically sloppy notation as $\Z$ is not a finite set, but we will use this later in functions.</li>
+</ul>
+
+<blockquote>
+  <p>We have seen a lot of connections between FOL and sets. We will see how to build set using “<strong>set builders</strong>”, a compact way to define your set using FOL (and PL):</p>
+
+\[S = \{ x | P(x) \}\]
+
+  <p>where $P(x)$ is a FOL</p>
+</blockquote>
+
+<p><em>For Example</em>:</p>
+
+<ul>
+  <li>
+    <p>instead of $S={1,2,3…,100}$, you can write</p>
+
+\[S = \{ x | x \in \Z \land (1 \le x \le 100) \}\]
+
+    <p>to avoid any ambiguity</p>
+  </li>
+  <li>
+    <p>the set of even integers is then</p>
+
+\[E = \{ x | x\in \Z \land 2|x \}\]
+
+    <p>or more properly</p>
+
+\[E = \{ x | x\in \Z \land (\exists a \in \Z \quad x=2a) \}\]
+  </li>
+  <li>
+    <p>define the set of composite (non prime) number (excluding 1)</p>
+
+\[S = \{ x | x\in \Z^+ \land \underbrace{(\exists a \in \Z^+ \quad (1&lt;a&lt;x) \land a|x)}_{\text{$a$ is non-prime}} \}\]
+
+    <p>which basically says “every member in the set is (a positive integer AND is non-prime)”.</p>
+
+    <p>note that it would be “incorrect” to write</p>
+
+\[S = \{ x | x\in \Z^+ \quad {(\exists a \in \Z^+ \quad (1&lt;a&lt;x) \land a|x)}\}\]
+
+    <p>because we are <em>not talking about $\forall x \in \Z^+$</em> or $\exists x \in \Z^+$, we are just letting $x\in \Z^+$ being a <strong>property of elements in this set.</strong></p>
+  </li>
+  <li>
+    <p>define $S={1,4,9,16,…,100}$ by set builder:</p>
+
+\[S=\{x|x\in Z\land (1\le x \le 100) \land (\exists a\in \Z \quad x=a^2 )\}\]
+
+    <p>or you can</p>
+
+\[S=\{x|x\in Z\land (1\le x \le 100) \land (\sqrt{x} \in \Z) \}\]
+
+    <p>technically you can even omit $x\in \Z$ since by closure property this is implied by $\sqrt{x} \in \Z$.</p>
+  </li>
+</ul>
+
+<blockquote>
+  <p>Make sure that your set builder includes <strong>all the elements</strong> and <strong>only the elements intended</strong>, i.e. is correct and complete. This mean you should check</p>
+
+\[\forall x \quad (x \in S \iff P(x))\]
+
+  <p>so that forward is correctness, and backward is completeness (i.e. $\forall x \in U \quad P(x) \to x\in S$)</p>
+</blockquote>
+
+<h2 id="set-operations-and-properties">Set Operations and Properties</h2>
+
+<blockquote>
+  <p><strong>Set operations</strong> defined between 2 sets</p>
+
+  <ul>
+    <li>
+      <p><strong>intersection</strong> of two sets:</p>
+
+\[A \cap B = \{x | (x\in A) \land (x \in B) \}\]
+
+      <p>basically conjunction in PL</p>
+    </li>
+    <li>
+      <p><strong>union</strong> of two sets</p>
+
+\[A \cup B = \{x | (x\in A) \lor (x \in B) \}\]
+    </li>
+    <li>
+      <p><strong>difference</strong> between two sets</p>
+
+\[A - B = \{x | (x\in A) \land (x \neq B) \}\]
+
+      <p>in $A$ but no in $B$</p>
+    </li>
+    <li>
+      <p><strong>complement</strong> (with respect to the universe)</p>
+
+\[A^c = \bar{A} = \{x | x \notin A\}\]
+
+      <p>where $x \in U$ part of the universe is assumed.</p>
+    </li>
+    <li>
+      <p><strong>Cartesian product</strong> between two sets</p>
+
+\[A\times B = \{ (a,b) | a\in A\land b \in B \}\]
+
+      <p>for example $A={ c,d }$ and $B={e,f,g}$, then $A\times B={ (c,e),(c,f),(c,g),(d,e), (d,f),(d,g) }$. Therefore, this also means that the cardinality $\vert A \times B\vert  = \vert A\vert \cdot \vert B\vert$.</p>
+    </li>
+  </ul>
+</blockquote>
+
+<p>or even Venn Diagram</p>
+
+<p><img src="/lectures/images/2023-05-11-COMS3203_Discrete_Math/image-20230223110701172.png" alt="image-20230223110701172" style="zoom: 50%;" /></p>
+
+<p>Then of course, you also have certain <strong>properties <em>of those operations</em></strong></p>
+
+<p><img src="/lectures/images/2023-05-11-COMS3203_Discrete_Math/image-20230223111557244.png" alt="image-20230223111557244" style="zoom:50%;" /></p>
+
+<p><em>For Example</em>:: prove that $\overline{A \cap B} = \bar{A} \cup \bar{B}$ using <strong>set builders</strong></p>
+
+<p>since by definition of set operations</p>
+
+\[\overline{A \cap B} = \{ x | x \notin (A \cap B) \}\]
+
+<p>then we can rewrite as</p>
+
+\[\overline{A \cap B} = \{ x | \neg (x \in (A \cap B)) \}\]
+
+<p>but we can then define $A \cap B$ by</p>
+
+\[\overline{A \cap B} = \{ x | \neg (x \in A \land x \in B) \}\]
+
+<p>then by De Morgan</p>
+
+\[\overline{A \cap B} = \{ x | x \notin A \lor x\notin B \}\]
+
+<p>then finally just put it into our target form</p>
+
+\[\overline{A \cap B} = \{ x | x \in \bar{A} \lor x \in \bar{B} \}\]
+
+<p>hence</p>
+
+\[\overline{A \cap B} = \{ x | x \in \bar{A} \cup \bar{B} \}\]
+
+<p>But in general, there will be multiple ways to prove this.</p>
+
+<h2 id="proofs-on-sets">Proofs on Sets</h2>
+
+<p>We have covered a bit of how to prove set equality in previous section in an example. Here we discuss <em>more techniques</em> that you can use for set proofs.</p>
+
+<ol>
+  <li><strong>To prove that $A \subseteq B$</strong>
+    <ul>
+      <li>let $x \in A$</li>
+      <li>…</li>
+      <li>therefore $x \in B$</li>
+    </ul>
+  </li>
+  <li><strong>To prove $A = B$ by showing that $A \subseteq B \land B \subseteq A$</strong>
+    <ul>
+      <li>show that $A \subseteq B$ by showing $x \in A$ … therefore $x \in B$</li>
+      <li>show that $B \subseteq A$ by showing $x \in B$ … therefore $x \in A$</li>
+    </ul>
+  </li>
+</ol>
+
+<blockquote>
+  <p>To prove equality, you can use <strong>any of the three methods</strong></p>
+
+  <ol>
+    <li>(element level) use <strong>set builder</strong>
+      <ul>
+        <li>e.g. see previous section on proving $\overline{A \cap B} = \bar{A} \cup \bar{B}$</li>
+      </ul>
+    </li>
+    <li>(element level) use the <strong>subset</strong> technique above, e.g. to prove $F=E$
+      <ul>
+        <li>i.e. you can either prove $x\in F \implies x\in E$, and then again for $x \in E \implies x\in F$</li>
+        <li>or you can shorten the above and <mark>show that $x\in F \iff x \in E$</mark> (e.g. see the last example in <a href="#Relations">Relations</a>)</li>
+      </ul>
+    </li>
+    <li>(set level) using <strong>set operations</strong>, e.g. distributivity, De Morgan, etc.</li>
+  </ol>
+</blockquote>
+
+<p><em>For Example</em>: let $F$ and $E$ be two sets.</p>
+
+\[F = \{z|z \in \Z \land z = a+b \land a\text{ is odd} \land b \text{ is odd}\}\]
+
+\[E = \{ x | x \in \Z \land 2 |x \}\]
+
+<p>Prove that $F=E$.</p>
+
+<ul>
+  <li>
+    <p>Prove that $F \subseteq E$</p>
+
+    <ol>
+      <li>
+        <p>let $x \in F$.</p>
+      </li>
+      <li>
+        <p>Then this means $x = a + b$ for some $a,b\in \Z$ where $a,b$ is odd</p>
+      </li>
+      <li>
+        <p>therefore this means</p>
+
+\[x = (2t+1)+(2w+1)\]
+      </li>
+      <li>
+        <p>we can rewrite this as</p>
+
+\[x = 2(t+w+1)\]
+      </li>
+      <li>
+        <p>so $x$ is even, and $2\vert x$</p>
+      </li>
+      <li>
+        <p>therefore $x \in E$</p>
+      </li>
+    </ol>
+  </li>
+  <li>
+    <p>Prove that $E \subseteq F$</p>
+
+    <ol>
+      <li>
+        <p>let $x \in E$</p>
+      </li>
+      <li>
+        <p>then this means $x=2t$ for some $t \in \Z$</p>
+      </li>
+      <li>
+        <p>then we can rewrite this as</p>
+
+\[x = (2t+1) - 1\]
+      </li>
+      <li>
+        <p>therefore we can have $a = 2t+1$ and $b=-1$, meaning $a,b$ are odd</p>
+      </li>
+      <li>
+        <p>therefore $x \in F$</p>
+      </li>
+    </ol>
+  </li>
+</ul>
+
+<h2 id="size-of-the-union">Size of the Union</h2>
+
+<blockquote>
+  <p><strong>Size of the union</strong>: Let $A,B$ be two sets. Then</p>
+
+\[|A\cup B| = |A| + |B| - |A \cap B|\]
+
+  <p>But if $A,B$ are disjoint, then</p>
+
+\[|A \cup B| = |A| + |B|\]
+
+</blockquote>
+
+<p>For example: What is $\vert A \cup B\cup C\vert$</p>
+
+<p>Following the step above, we have</p>
+
+\[\begin{align*}
+&amp;\quad |A \cup B \cup C| \\
+&amp;= |A \cup B| + |C| - |A \cup B \cap C| \\
+&amp;= |A|+|B|-|A \cap B| + |C| - |(A \cup B) \cap C|
+\end{align*}\]
+
+<p>but notice that:</p>
+
+\[(A \cup B) \cap C = (A\cap C) \cup (B \cap C)\]
+
+<p>Hence</p>
+
+\[|(A \cup B) \cap C| = |A\cap C| + |B \cap C| - |A \cap B \cap C|\]
+
+<p>Hence we obtain</p>
+
+\[|A \cup B \cup C| = |A|+|B|+|C| - |A \cap B| - |A \cap C| - |B \cap C| + |A \cap B \cap C|\]
+
+<blockquote>
+  <p>Note that this including and then excluding back will also be touched on in counting, called the <strong>Principle of Inclusion Exclusion</strong>.</p>
+</blockquote>
+
+<p><em>Another in class example</em>: Let there be 16 people taking DM, 16 taking AP, and 11 taking OS. We are also given that</p>
+
+<ul>
+  <li>5 taking both DM and OS, and among them 3 taking AP as well</li>
+  <li>8 people taking AP only</li>
+  <li>5 people taking OS only</li>
+</ul>
+
+<p>We want to know how many want to take DM only.</p>
+
+<p>Here, we solve it using <strong>Venn Diagram</strong></p>
+
+<p><img src="/lectures/images/2023-05-11-COMS3203_Discrete_Math/image-20230304232008190.png" alt="image-20230304232008190" style="zoom: 33%;" /></p>
+
+<h2 id="ordered-setslists">Ordered Sets/Lists</h2>
+
+<p>Now, we turn to ordered sets, where the order of the elements matter.</p>
+
+<blockquote>
+  <p><strong>A list</strong> is an <mark>ordered</mark> set of element, and <mark>elements can now repeat</mark>. This is often denoted using parenthesis</p>
+
+\[(e_1,e_2, \dots, e_n)\]
+
+</blockquote>
+
+<p>For example:</p>
+
+<ul>
+  <li>
+    <p>$(9,1,1)$ is a valid ordered list</p>
+  </li>
+  <li>
+    <p>we actually touched on this before</p>
+
+\[A\times B = \{ \underbrace{(a,b)}_{\text{a list}} | a\in A\land b \in B \}\]
+
+    <p>where order mattered, so that $A \times B \neq B \times A$.</p>
+  </li>
+  <li>
+    <p>binary representation of numbers are also lists, so that all of the below are <em>different lists</em>: $101,110,011$.</p>
+  </li>
+</ul>
+
+<h1 id="relations">Relations</h1>
+
+<p>Remember that for Cartesian product, we had</p>
+
+\[A\times B = \{ (a,b) | a\in A\land b \in B \}\]
+
+<p>so that let $S={A,D }$ being Annie and Daniel, and $C={DM, OS}$ being Discret Math and OS. Then</p>
+
+\[S \times C = \{ (A,DM),(A,OS),(D,DM),(D,OS) \}\]
+
+<p>but this doesn’t mean anything. Say we want to use this to represent “taking classes”</p>
+
+<p>So we are taking <strong>subset</strong> to represent a <strong>meaningful relationship</strong>. i.e.</p>
+
+\[R_{\mathrm{take class}} = \{ (A,DM),(D,DM) \}\]
+
+<p>hence also $R_{\mathrm{take class}} \subseteq (S \times C)$</p>
+
+<blockquote>
+  <p><strong>Relation</strong>: let $A,B$ be two sets. We say that $R$ is a relation from $A$ to $B$ provided</p>
+
+\[R \subseteq A \times B\]
+
+  <p>and that $R$ is a <strong>set of pairs</strong>.</p>
+</blockquote>
+
+<p><em>For Example</em>:</p>
+
+<ul>
+  <li>
+    <p>Let $A = {1,2}$. Then</p>
+
+\[A \times A = \{ (1,1),(1,2),(2,1),(2,2) \}\]
+
+    <p>consider a relation</p>
+
+\[R = \{ (1,1),(1,2),(2,2) \}\]
+
+    <p>then this $R$ means $\le$. in other words:</p>
+
+\[(x,y)\in R \iff x&lt;y\]
+  </li>
+  <li>
+    <p>Let $A = {1,2}$. Let $R_{even}$ be defined <strong>from $A$ to $A$</strong></p>
+
+\[(x,y) \in R_{even} \iff x+y \text{ is even}\]
+
+    <p>then this means</p>
+
+\[R_{even} = \{ (1,1),(2,2) \}\]
+
+    <p>or using set builders, this means</p>
+
+\[R_{even} = \{ (x,y) | x\in A \land y \in A \land 2|(x+y) \}\]
+  </li>
+</ul>
+
+<blockquote>
+  <p>In general, we <strong>notate the relation</strong> as two ways</p>
+
+\[(x,y) \in R_{even} \iff x+y \text{ is even}\]
+
+  <p>or</p>
+
+\[x  R_{even} y \iff x+y \text{ is even}\]
+
+</blockquote>
+
+<p><em>For Example</em>: Let $R$ be a relation on $\Z$, i.e. from $\Z$ to $\Z$.</p>
+
+\[x R y \iff x \text{ divides }y\]
+
+<p>then what is $R$? We can first list a few examples</p>
+
+\[R = \{ (2,4),(2,6),(1,2), \dots \}\]
+
+<p>meaning</p>
+
+\[R = \{ (x,y) | x\in \Z \land y \in \Z \land x|y \}\]
+
+<blockquote>
+  <p>Note that a relation can involve <mark>two or more sets</mark>, i.e. n-ary relations.</p>
+</blockquote>
+
+<p><em>For Example</em>: a simple one</p>
+
+\[R = \{ (a,b,c)| a \in A \land b \in B \land c \in C \}\]
+
+<p>is a legit relation.</p>
+
+<blockquote>
+  <p><strong>Inverse of a Relation</strong>: let $R$ be a relation from $A$ to $B$. We define the inverse of $R$ denoted as $R^{-1}$ as follows</p>
+
+\[\forall x \in A,\forall y\in B\qquad (x,y)\in R \iff (y,x) \in R^{-1}\]
+
+  <p>so that $R^{-1}$ is a <strong>relation from $B$ to $A$</strong>.</p>
+</blockquote>
+
+<blockquote>
+  <p><strong>Proposition: inverse of inverse is itself</strong></p>
+
+\[R = (R^1)^{-1}\]
+
+</blockquote>
+
+<p><em>Proof</em> (using the subset technique):</p>
+
+<ul>
+  <li>prove $R \subseteq (R^{-1})^{-1}$:
+    <ol>
+      <li>let $(x,y) \in R$.</li>
+      <li>then by definition of inverse $(y,x) \in R^{-1}$</li>
+      <li>therefore $(x,y) \in (R^{-1})^{-1}$</li>
+    </ol>
+  </li>
+  <li>prove $(R^{-1})^{-1} \subseteq R$:
+    <ol>
+      <li>let $(x,y) \in (R^{-1})^{-1}$.</li>
+      <li>then by definition of inverse $(y,x) \in R^{-1}$</li>
+      <li>therefore $(x,y) \in R$</li>
+    </ol>
+  </li>
+</ul>
+
+<p>But we notice that the step is <mark>symmetrical/same</mark> in both ways. Hence this proof <mark>can be proven in much fewer lines</mark></p>
+
+\[(x,y) \in R \iff (y,x) \in R^{-1} \iff (x,y) \in (R^{-1})^{-1}\]
+
+<h2 id="representation-of-relation">Representation of Relation</h2>
+
+<p>We can visualize a relation using:</p>
+
+<ol>
+  <li><strong>Directed Graphs</strong> (DiGraphs)</li>
+  <li><strong>Matrix</strong> (a boolean matrix)</li>
+</ol>
+
+<blockquote>
+  <p><strong>Digraph</strong>: a visual representation of a relation with a set of nodes (vertices) connected by <mark>directed</mark> edges (arcs)</p>
+</blockquote>
+
+<p>For example: this relation is a subset of cross product $R \subseteq {1,2,3}\times {1,2,3}$</p>
+
+<p><img src="/lectures/images/2023-05-11-COMS3203_Discrete_Math/image-20230302102725671.png" alt="image-20230302102725671" style="zoom: 40%;" /></p>
+
+<p>notice that here <mark>each node is an element in the pair</mark>, and in general, the graph <mark>does not have to be connected</mark> (e.g. imagine $R={(1,1),(2,2)}$)</p>
+
+<blockquote>
+  <p><strong>Matrix</strong>: A relation $𝑅$ defined from set $𝐴$ to set $𝐵$ can be represented by a Boolean matrix in which the rows are elements of $𝐴$ and the columns are represented elements of $𝐵$ and each entry of the matrix at row $𝑖$ column $𝑗$ is 1 if there is a relation through $𝑅$ between the ith element in $𝐴$ and the jth element in $𝐵$, otherwise the entry is zero.</p>
+</blockquote>
+
+<p><img src="/lectures/images/2023-05-11-COMS3203_Discrete_Math/image-20230302103442944.png" alt="image-20230302103442944" style="zoom:50%;" /></p>
+
+<p>Note that since essentially relations are <em>sets</em>:</p>
+
+<blockquote>
+  <p><strong>All the properties on set operations apply to relations as well.</strong> For instance, intersection is commutative for relations, and we have $R_1 \cap R_2 = R_2 \cap R_1$</p>
+</blockquote>
+
+<h2 id="properties-of-relations">Properties of Relations</h2>
+
+<p>Some relations <em>can have</em> <mark>special</mark> properties, which would come useful later</p>
+
+<ul>
+  <li>
+    <p><strong>Reflexivity</strong>: let $R$ be a relation defined on a set $A$. The relation is <strong>reflexive</strong></p>
+
+\[R\text{ is reflexive}\iff \forall x \in A\quad (x,x)\in R\]
+
+    <p>or you can also denote</p>
+
+\[R\text{ is reflexive}\iff \forall x \in A\quad xRx\]
+
+    <p>note that</p>
+
+    <ul>
+      <li>
+        <p>graphically, it means for $\forall x\in A$, you have a self-loop</p>
+      </li>
+      <li>
+        <p>the following would be incorrect: $R^{-1} = R$. e.g. let $R={(1,2),(2,1)}$</p>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>Not Reflexivity</strong>: then there exists a pair that is not in $R$:</p>
+
+\[R\text{ is not reflexive}\iff \exists x \in A\quad (x,x)\notin R\]
+
+    <p>or you can also denote</p>
+
+\[R\text{ is not reflexive}\iff \exists x \in A\quad x\not R x\]
+  </li>
+  <li>
+    <p><strong>Irreflexive</strong>: then basically <strong>no self-loops</strong>:</p>
+
+\[R\text{ is irreflexive}\iff \forall x \in A\quad (x,x)\notin R\]
+
+    <p>examples include “is parent of”, “&gt;”.</p>
+  </li>
+  <li>
+    <p><strong>Symmetric</strong>: “all directed edges = undirected edges”</p>
+
+\[R\text{ is symmetric}\iff \forall x,y \in A\quad (x,y)\in R \implies (y,x)\in R\]
+
+    <p>e.g. $A={1,2,3}$, and a symmetric relation $R={(1,2),(2,1)}$</p>
+  </li>
+  <li>
+    <p><strong>Not symmetric</strong>: negation of the above. There exist a pair that is not “reciprocal”  (including “self-reciprocity”)</p>
+
+\[R\text{ is not symmetric}\iff \exists x,y \in A\quad (x,y)\in R \land (y,x)\notin R\]
+  </li>
+  <li>
+    <p><strong>Antisymmetric</strong>: there is never reciprocity (except “self-reciprocity”)</p>
+
+\[R\text{ is anti-symmetric}\iff \forall x,y \in A\quad xRy \land yRx \implies x=y\]
+
+    <p>note that the this is <mark>different from the below</mark></p>
+
+\[R\text{ is anti-symmetric}\iff \forall x,y \in A\quad (x,y)\in R \implies (y,x)\notin R\]
+
+    <p>the upshot is that you can have a relation that is <mark>both symmetric and anti-symmetric</mark>, and also being both symmetric and not anti-sym.</p>
+  </li>
+  <li>
+    <p><strong>Transitivity</strong>: very useful later</p>
+
+\[R\text{ is transitive}\iff \forall x,y,z \in A\quad xRy \land yRz \implies xRz\]
+  </li>
+</ul>
+
+<blockquote>
+  <p>Note that when you have $\forall x\in A \quad \text{blablabla}$, be careful how <mark>$A$ is defined</mark></p>
+</blockquote>
+
+<p><em>For Example</em>: Consider the following relations defined by $A = {1,2,3}$</p>
+
+<ul>
+  <li>
+    <p>$R_1= { (1,3),(3,3),(3,1),(2,2),(2,3),(1,1),(1,2) }$</p>
+
+    <ul>
+      <li>is reflexive: because $\forall x \in {1,2,3}\quad xRx$</li>
+      <li>not symmetric: because $(2,3)\in R \land (3,2) \notin R$</li>
+      <li>not anti-symmetric: because $1R3\land 3R1$ but $1\neq 3$</li>
+      <li>not transitive: $2R3\land 3R1$ but $2 \not R1$ (better see this drawing a <strong>Digram</strong>)</li>
+    </ul>
+
+    <p><img src="/lectures/images/2023-05-11-COMS3203_Discrete_Math/image-20230302111414955.png" alt="image-20230302111414955" style="zoom:33%;" /></p>
+  </li>
+  <li>
+    <p>$R_2 = { (1,1),(2,2),(3,3) }$ is symmetric and anti-symmetric</p>
+
+    <ul>
+      <li>is reflexive</li>
+      <li>is symmetric: because for each element <em>in the relation</em>, $xRy \to yRx$</li>
+      <li>is anti-symmetric: yes. Just proof by enumeration.</li>
+      <li>is transitive: yes. Just proof by enumeration.</li>
+    </ul>
+  </li>
+  <li>
+    <p>$R_3={ (1,1),(1,2),(2,3),(3,1),(1,3) }$</p>
+
+    <ul>
+      <li>not irreflexive: because $(1,1)$ is there</li>
+      <li>is symmetric: no</li>
+      <li>is anti-symmetric: no, because $(1,3)$ and $(3,1)$ exists</li>
+      <li>is transitive: no, because $(2,3)$ and $(3,1)$ but no $(2,1)$</li>
+    </ul>
+  </li>
+  <li>
+    <p>$R_4 = { (1,2),(2,3),(1,3) }$</p>
+
+    <ul>
+      <li>is irreflexive: no self-loops</li>
+      <li>is anti-symmetric: yes, because there is no reciprocity whatsoever</li>
+      <li>is transitive: yes, proof by enumeration</li>
+    </ul>
+  </li>
+</ul>
+
+<p>Consider the following $R$ acting on $\Z$:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>$R$</th>
+      <th>reflexive</th>
+      <th>irreflexive</th>
+      <th>symmetric</th>
+      <th>anti-symmetric</th>
+      <th>transitive</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>$=$</td>
+      <td>yes</td>
+      <td>no</td>
+      <td>yes</td>
+      <td>yes</td>
+      <td>yes</td>
+    </tr>
+    <tr>
+      <td>$\le$</td>
+      <td>yes</td>
+      <td>no</td>
+      <td>no</td>
+      <td>yes</td>
+      <td>yes</td>
+    </tr>
+    <tr>
+      <td>$&lt;$</td>
+      <td>no</td>
+      <td>yes</td>
+      <td>no</td>
+      <td>yes</td>
+      <td>yes</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>where:</p>
+
+<ul>
+  <li>$R_=$ is symmetric because if $x=y \implies y=x$, and is transitive, since $x=y\land y=z \implies x=z$. Finally it is also anti-symmetric because $a=b\land b =a \implies a=b$ (different from transitive)</li>
+  <li>$R_\le$ is  reflexive since $\forall x\in \Z\quad x\le x$. Hence this is also not irreflexive. It is also not symmetric since $1 \le 2$ but $2 \not \le 1$. By axioms $a \le b \land b \le a\implies a=b$ is anti-symmetric.</li>
+  <li>$R_&lt;$ is anti-symmetric because of <em>benefit of doubt</em>: $a &lt; b \land b &lt; a\implies a=b$ is true because LHS is <em>always false</em>.</li>
+</ul>
+
+<blockquote>
+  <p><strong>Equivalence Relation</strong>: Let $R$ be a relation on $A$. We call a relation an equivalence relation provided</p>
+
+  <ol>
+    <li>$R$ is reflexive</li>
+    <li>$R$ is symmetric</li>
+    <li>$R$ is transitive</li>
+  </ol>
+</blockquote>
+
+<p>For example, let $R$ be a relation between sets “$R$: have same cardinality”. So that (<mark>notice now we are operating on sets)</mark> let $A,B$ be sets:</p>
+
+\[A,B\subseteq S\quad ARB\iff |A| = |B|\]
+
+<p>note that since we are operating on sets being subsets of $S$, this means our relations are $R\subseteq P(S)\times P(S)$ defined on power sets.</p>
+
+<p>Then, we want to prove that $R$ is an equivalence relation:</p>
+
+<ul>
+  <li>is reflexive, since $\forall A \subseteq S\quad \vert A\vert =\vert A\vert$</li>
+  <li>is symmetric, since $\forall A,B\subseteq S \quad \vert A\vert =\vert B\vert \implies \vert B\vert =\vert A\vert$</li>
+  <li>is transitive, since $\forall A,B \subseteq S\quad \vert A\vert =\vert B\vert \land \vert B\vert =\vert C\vert \implies \vert A\vert =\vert C\vert$</li>
+</ul>
+
+<p>Why do we care about this property? Because</p>
+
+<blockquote>
+  <p><strong>Equivalence Classes</strong>: let $R$ be an equivalence relation on $A$. Then let $a\in A$. The equivalence class of $a$, denoted as $[a]$ is the set of <mark>all elements in $A$</mark>, related to $a$ <mark>through the relation $R$</mark>:</p>
+
+\[[a] = \{ x | x\in A \land x Ra \}\]
+
+  <p>notice that it is defined through a <strong><em>particular relation</em></strong>, and you will see <strong>$a$ itself will always belong to this set</strong></p>
+</blockquote>
+
+<blockquote>
+  <p>Why do we care about equivalence sets? You will see that</p>
+
+  <ul>
+    <li>
+      <p>objects in an equivalence sets share <em>similar properties</em></p>
+    </li>
+    <li>
+      <p>can <em>partitions sets into equivalence classes</em> - cutting down the amount of cases necessary to prove something.</p>
+    </li>
+  </ul>
+</blockquote>
+
+<p>For example:</p>
+
+<ul>
+  <li>let $R$ being the cardinality of sets. Then $[\empty] = {\empty}$</li>
+  <li>let $R$ be the relation “Have same parents as you” $[\text{you}] = {\text{you, your siblings}}$</li>
+</ul>
+
+<blockquote>
+  <p><strong>Properties of Equivalence Classes</strong>: let $R$ be an equivalence class on $A$, then</p>
+
+  <ol>
+    <li>$a\in [a]$ is always there (because an equivalence class is reflexive)</li>
+    <li>$\forall a \in A\quad [a]\neq \empty$ due to the above</li>
+    <li>if I take the equivalence class of all elements, then $\bigcup_{a\in A}[a] = A$</li>
+  </ol>
+</blockquote>
+
+<p>Proof for $\bigcup_{a\in A}[a] = A$. We notice that this is basically proving <strong>equality between sets</strong>. We can then do:</p>
+
+<ul>
+  <li>$\bigcup_{a\in A}[a] \subseteq A$:
+    <ol>
+      <li>let $x \in \bigcup_{a\in A}[a]$.</li>
+      <li>then this means $x$ must belong to <em>some equivalence class</em> $\exists a\in A\quad x\in [a]$</li>
+      <li>but we know $[a]\subseteq A$</li>
+      <li>therefore $x \in A$</li>
+    </ol>
+  </li>
+  <li>$A \subseteq \bigcup_{a\in A}[a]$
+    <ol>
+      <li>let $x\in A$</li>
+      <li>then $x\in [x]$</li>
+      <li>therefore $x \in \bigcup_{a\in A}[a]$.</li>
+    </ol>
+  </li>
+</ul>
+
+<p><em>For example</em>, consider $R$ be defined on a set of 2x2 board configuration $S$, so that:</p>
+
+\[\text{board}_1\ R\ \text{board}_2 \iff \text{board 1 and board 2 can be obtained form each other by reflection or rotation}\]
+
+<p>we can:</p>
+
+<ol>
+  <li>
+    <p>show that this relation is an <strong>equivalence relation</strong> (i.e. is reflexive, symmetric, and transitive)</p>
+  </li>
+  <li>
+    <p>we can find all its equivalence classes and realize they are <strong>partitions!</strong></p>
+
+    <p><img src="/lectures/images/2023-05-11-COMS3203_Discrete_Math/image-20230307150928998.png" alt="image-20230307150928998" style="zoom: 33%;" /></p>
+  </li>
+</ol>
+
+<h2 id="relation-of-congruence-modulo-n">Relation of congruence modulo n</h2>
+
+<p>This is used a lot in cryptography, and number theory.</p>
+
+<blockquote>
+  <p><strong>Congruence modulo n</strong>: let $n$ be a positive integer. We say that two integers $x,y\in \Z$ are congruent modulo n:</p>
+
+\[x \equiv y(\mathrm{mod}\ n)\]
+
+  <p><mark>provided that $n$ divides the difference $n\vert (x-y)$</mark>. Note that In the context of relations, <strong>”$\equiv$” means congruent.</strong></p>
+</blockquote>
+
+<p><em>For example</em>,</p>
+
+<ul>
+  <li>$3\equiv 13 (\mathrm{mod}\ 10)$ reads as “$3$ is congruent to $13$ modulo $10$”</li>
+  <li>$13\equiv 3 (\mathrm{mod}\ 10)$</li>
+  <li>$3\not\equiv 22 (\mathrm{mod}\ 10)$</li>
+</ul>
+
+<blockquote>
+  <p><strong>Theorem</strong>: let $n$ be a positive integer. The relation “congruent modulo $n$” is an <strong>equivalence relation</strong> on the set of integers</p>
+</blockquote>
+
+<p><em>Proof</em>:</p>
+
+<ul>
+  <li>
+    <p>is reflexive. This means we want to show that</p>
+
+\[\forall x \in \Z,\quad x\equiv x(\mathrm{mod}\ n)\]
+
+    <p>by definition, this means $\iff$ $n\vert (x-x)$, which is true since $n\vert 0$.</p>
+  </li>
+  <li>
+    <p>is symmetric. This means we want to show that</p>
+
+\[\forall x,y \in \Z,\quad x\equiv y(\mathrm{mod}\ n)\implies y\equiv x(\mathrm{mod}\ n)\]
+
+    <p>then</p>
+
+    <ol>
+      <li>let $x\equiv y(\mathrm{mod}\ x)$. This means $n\vert (x-y)$</li>
+      <li>so $n\vert -(x-y)$</li>
+      <li>hence $n\vert (y-x)$</li>
+      <li>therefore $y\equiv x(\mathrm{mod}\ y)$</li>
+    </ol>
+  </li>
+  <li>
+    <p>is transitive. This means to prove that</p>
+
+\[\forall x,y,z\in \Z,\quad x\equiv y(\mathrm{mod}\ n)\land y\equiv z(\mathrm{mod}\ n) \implies x\equiv z(\mathrm{mod}\ n)\]
+
+    <p>then</p>
+
+    <p><img src="/lectures/images/2023-05-11-COMS3203_Discrete_Math/image-20230307111950238.png" alt="image-20230307111950238" style="zoom: 50%;" /></p>
+  </li>
+</ul>
+
+<blockquote>
+  <p><strong>Partition</strong>: a partition of a set is a collection of non-empty pairwise-disjoint subset of $S$, so that the union gives $S$</p>
+</blockquote>
+
+<p><em>For example</em> ,consider the congruence modolo $2$ of $\Z$ is</p>
+
+\[\forall a,b\in \Z,\quad a \equiv b(\mathrm{mod}\ 2)\]
+
+<p>where basically $a \equiv b(\mathrm{mod}\ 2)$is $aRb$.</p>
+
+<ul>
+  <li>
+    <p>then we have</p>
+
+\[[0] = \{ x | x \in \Z \land 0 \equiv x \text{ (mod 2)} \} = \{ ..., -4,-2,0,2,4,... \}\]
+  </li>
+  <li>
+    <p>continuing</p>
+
+\[[1] = \{ x | x \in \Z \land 1 \equiv x \text{ (mod 2)} \} = \{...-3,-1,1,3,... \}\]
+  </li>
+  <li>
+    <p>but eventually you will realize</p>
+
+\[[2] = \{ x | x \in \Z \land 2 \equiv x \text{ (mod 2)} \} = \{ ..., -4,-2,0,2,4,... \}\]
+
+    <p>which is same as $[0]$!</p>
+  </li>
+  <li>
+    <p>and you can show that also $[3] = [1]$.</p>
+  </li>
+</ul>
+
+<p>As a result , this creates a <strong>partition of $\Z$ into two partitions</strong>, even and odd numbers (if you consider equivalences for $\mod 4$, you get 4 partitions, etc.)</p>
+
+<blockquote>
+  <p>Proposition: let $n \in \Z ^+$ and $a,b \in \Z$. Then</p>
+
+\[a \equiv b (\mathrm{mod}\ n) \iff a\ \mathrm{mod}\ n = b\ \mathrm{mod}\ n\]
+
+  <p>which you can try to prove as an exercise.</p>
+
+  <ul>
+    <li>note that in general, proofs with relation are <strong>essentially set proofs</strong>. See HW6 Q6 or recitation 8 for example.</li>
+  </ul>
+</blockquote>
+
+<h1 id="functions">Functions</h1>
+
+<p><img src="/lectures/images/2023-05-11-COMS3203_Discrete_Math/image-20230321104019461.png" alt="image-20230321104019461" style="zoom: 50%;" /></p>
+
+<p>It can be seen also as a type of <strong>relation</strong> where you basically have ${(x,f(x))}$. For example, if $f(x)=x^2$, then on the set of integers:</p>
+
+\[f=\{(0,0),(1,1), (-1,1), (2,4), (-2,4),...\}\]
+
+<blockquote>
+  <p><strong>Functions</strong>: let $A,B$ be two sets. A function $f$ from $A$ to $B$ denoted</p>
+
+\[f:A \to B\]
+
+  <p>so $f \subseteq A \times B$ where <mark>each</mark> element of $A$ appears <mark>exactly once</mark> as a first element of the ordered pairs of $f$. (i.e. <mark>vertical line test</mark>). So that</p>
+
+\[\text{$f$ is a function from $A$ to $B$}\iff \forall a \in A\quad \exists! b \in B \quad b = f(a)\]
+
+  <p>i.e. there is <mark>only one $b$ for each $f(a)$</mark>.</p>
+</blockquote>
+
+<p>Some terminology to be used here. Let $f:A \to B$. Then</p>
+
+<ul>
+  <li>$A$ is called the <strong>domain</strong></li>
+  <li>$B$ is the <strong>co-domain</strong></li>
+  <li>$b\in B$ is called the <strong>image</strong> of $a$</li>
+  <li>$a\in A$ is called the <strong>pre-image</strong> of $b$</li>
+</ul>
+
+<blockquote>
+  <p>More formally, the set of all second elements of the pairs of $f$ is called the <strong>image of $f$:</strong></p>
+
+\[\mathrm{image}(f) = \{ b | b \in B \land \exists a \in A\land  f(a)=b \}\]
+
+  <p>so that $\mathrm{image}(f) \subseteq B$</p>
+</blockquote>
+
+<p><em>For example</em>: let $A = {1,2,3,4}$ and $B={1,2,3,4,7,10,12}$.</p>
+
+<ul>
+  <li>let $f={(1,2),(2,3),(4,3),(3,1)}$. This is a <em>valid</em> function as <em>each input $a\in A$ has a unique output</em>.
+    <ul>
+      <li>the image of $f$ is then ${2,3,1}$.</li>
+    </ul>
+  </li>
+  <li>let $f={(1,2),(2,3),(4,3)}$. This is a <em>not valid</em> function as $a=3$ has undefined output.</li>
+</ul>
+
+<hr />
+
+<p>One way to visualize functions is <strong>bipartite graph</strong>. For example the function</p>
+
+\[f=\{(1,2),(2,3),(4,3),(3,1)\}\]
+
+<p>can be visualized as</p>
+
+<p><img src="/lectures/images/2023-05-11-COMS3203_Discrete_Math/image-20230321110509355.png" alt="image-20230321110509355" style="zoom: 33%;" /></p>
+
+<p>so that the “vertical line test” in discrete function is that each $a\in A$ has <mark>only one edge going out</mark>.</p>
+
+<p><em>For example</em>, let $f:{0,1}\times {0,1} \to \N \cup {0}$</p>
+
+<ul>
+  <li>
+    <p>so that basically $A={(0,0),(0,1),(1,0),(1,1)}$, and $B={0,1,2,3,…}$</p>
+  </li>
+  <li>
+    <p>and you are given:</p>
+
+    <p><img src="/lectures/images/2023-05-11-COMS3203_Discrete_Math/image-20230321111129449.png" alt="image-20230321111129449" style="zoom: 33%;" /></p>
+  </li>
+  <li>
+    <p>is this a valid function? Yes, <em>every</em> $a\in A$ has a <em>unique</em> (only one) output.</p>
+  </li>
+  <li>
+    <p>and also $\mathrm{image}(f)={0,1,2} \subseteq \N \cup {0}$.</p>
+  </li>
+</ul>
+
+<h2 id="properties-of-functions">Properties of Functions</h2>
+
+<blockquote>
+  <p><strong>Onto/surjective function</strong>: let $f:A \to B$ be a function. $f$ is onto IFF <strong>every element of $B$</strong> has a pre-image. You can translate this into FOL</p>
+
+\[\forall b \in B \quad (\exists a \in A\quad  b=f(a))\]
+
+  <p>as a result, $\mathrm{image}(f)=B$. For example, $A={(0,0),(0,1),(1,0),(1,1)}$, $B={0,1,2}$:</p>
+
+  <p><img src="/lectures/images/2023-05-11-COMS3203_Discrete_Math/image-20230321111129449.png" alt="image-20230321111129449" style="zoom: 33%;" /></p>
+
+  <p>so every element in $B$ receives <mark>at *least* one 1 pre-image</mark>.</p>
+
+  <ul>
+    <li>for example, $f(x)=x^2$ for $x \in \Z$ is <em>not</em> onto since $5 \in \Z$ but there is no integer with $x^2 = 5$</li>
+    <li>and observe that $\text{$f$is onto\ }\implies \vert A\vert  \ge \vert B\vert$</li>
+    <li>is visually is also the <strong>pigeon hole principle</strong> ($A$ are the pigeons)</li>
+  </ul>
+</blockquote>
+
+<blockquote>
+  <p><strong>One-to-one/injection function</strong>: $f$ is one to one IFF no two elements of $A$ has the same image in $B$, i.e. every element in $B$ receives <mark>at *most* 1 pre-image</mark>. Note that this means one-to-one function <em>does not have to be onto functions</em>, i.e. you <em>DON’T</em> need $\mathrm{image}(f)=B$. Into FOL we have:</p>
+
+\[\forall a_1,a_2 \in A\quad a_1 \neq a_2 \implies f(a_1) \neq f(a_2)\]
+
+  <p>or you can re-write this as contrapositive</p>
+
+\[\forall a_1,a_2 \in A\quad f(a_1) = f(a_2) \implies a_1 = a_2\]
+
+  <p>which would be easier to use during proofs.</p>
+
+  <p><img src="/lectures/images/2023-05-11-COMS3203_Discrete_Math/image-20230323104803922.png" alt="image-20230323104803922" style="zoom: 33%;" /></p>
+
+  <ul>
+    <li>for example, $f(x)=x^2$ for $x \in \Z$ is <em>not</em> one-to-one since you can have $4=(+2)^2 = (-2)^2$.</li>
+    <li>and observe that $\text{$f$is one-to-one\ }\implies \vert A\vert  \le \vert B\vert$</li>
+  </ul>
+</blockquote>
+
+<p>This means:</p>
+
+<ul>
+  <li><strong>to prove a function is onto</strong>: take an arbitrary element $b \in B$, show it has a pre-image in $A$</li>
+  <li><strong>to prove a function is one-to-one</strong>: take two arbitrary elements $a_1, a_2 \in A$, show that (e.g. direct proof) $f(a_1) = f(a_2) \implies a_1 = a_2$</li>
+</ul>
+
+<p><em>For Example</em>: let a function $f: \Q \to \Q$, and $f(x)=2x+1$.</p>
+
+<ul>
+  <li>prove that $f$ is onto.
+    <ul>
+      <li>let $b \in \Q$ be an arbitrary element</li>
+      <li>then $b=2(x+1) \implies x = (b-1)/2$</li>
+      <li>but since $b\in \Q$, therefore $x \in \Q$</li>
+      <li>hence there is a pre-image $x\in \Q$ such that $f(x)=b$.</li>
+      <li>so $f$ is onto</li>
+    </ul>
+  </li>
+  <li>prove that $f$ is one-to-one</li>
+  <li>let $a_1,a_2 \in \Q$ and that $f(a_1)=f(a_2)$</li>
+  <li>then this $\implies 2a_1 + 1 = 2a_2 + 1$</li>
+  <li>so $\implies a_1= a_2$</li>
+  <li>therefore $f$ is one-to-one</li>
+</ul>
+
+<blockquote>
+  <p><strong>Bijection</strong>: let $f:A \to B$ be a function that is <strong>both onto and one-to-one</strong>, then $f$ is a bijection, i.e. every element in $B$ receives <mark>exactly one pre-image</mark></p>
+
+  <p><img src="/lectures/images/2023-05-11-COMS3203_Discrete_Math/image-20230323105025411.png" alt="image-20230323105025411" style="zoom: 25%;" /></p>
+
+  <ul>
+    <li>and observe that $\text{$f$is a bijection\ }\implies \vert A\vert  = \vert B\vert$</li>
+  </ul>
+</blockquote>
+
+<p><em>For Example</em>: consider</p>
+
+<ul>
+  <li>
+    <p>let $f_1 : \Z^+<em>{odd} \to Z^+</em>{even}$ and $f_1(x)=x+1$ is a bijection as it is both onto (each $b$ has a pre-image) and one-to-one (every $b$ has at most one). This implies, intuitively, that $\vert Z^+<em>{odd}\vert  = \vert Z^+</em>{even}\vert$</p>
+  </li>
+  <li>
+    <p>let $f_2 : \Z^+ \to Z^+<em>{even}$ and $f_1(x)=2x$ is also bijection. But this unintuitively implies $\vert Z^+\vert  = \vert Z^+</em>{even}\vert$! <mark>in general for infinite sets, "cardinality" doesn't really exist</mark>.</p>
+  </li>
+</ul>
+
+<h2 id="composition-of-functions">Composition of Functions</h2>
+
+<p>Consider two functions:</p>
+
+<ul>
+  <li>$f: A \to B$ and $g: C \to D$</li>
+  <li>let $\mathrm{image}(f) \subseteq C$</li>
+</ul>
+
+<p><img src="/lectures/images/2023-05-11-COMS3203_Discrete_Math/image-20230323110521659.png" alt="image-20230323110521659" style="zoom:50%;" /></p>
+
+<blockquote>
+  <p><strong>Composition</strong>: let $f: A \to B$ and $g: C \to D$, and $\mathrm{image}(f) \subseteq C$. The composition of functions $f$ and $g$ is defined as</p>
+
+\[g\circ f: A \to D,\quad g\circ f (x) = g(f(x))\]
+
+  <p>note that we need $\mathrm{image}(f) \subseteq C$, not necessarily $B \subseteq C$.</p>
+</blockquote>
+
+<p><em>For example</em>: let $f:\Z \to \Z$ and $g : \Z \to \Z$</p>
+
+<ul>
+  <li>let $f(x) = x^2+1$ and $g(x)=2x-3$. THen $g\circ f(x) = g(x^2+1) = 2(x^2+1)-3=2x^2-1$</li>
+</ul>
+
+<blockquote>
+  <p><strong>Composition of Functions preserve the property</strong> of $f,g$ if they share the same property. If $f,g$ have different properties, it is more complicated.</p>
+
+  <ul>
+    <li>e.g. $f$ is many-to-one and $g$ is one-to-one then $f\circ g$ is many-to-one</li>
+  </ul>
+</blockquote>
+
+<h2 id="inverse-of-functions">Inverse of Functions</h2>
+
+<blockquote>
+  <p><strong>Identity Function</strong>: the identity function denoted $I_A$ is <strong>defined on $A$</strong> to have:</p>
+
+\[I_A: A \to A,\quad I_A(a)=a\]
+
+</blockquote>
+
+<blockquote>
+  <p><strong>Inverse Function</strong>: let $f: A\to B$. If there exists a function $g: B \to A$ such that</p>
+
+\[g\circ f = I_A,\quad  f\circ g = I_B\]
+
+  <p>then $g$ is called the inverse of $f$, called $g=f^{-1}$.</p>
+
+  <ul>
+    <li>basically you want $f \circ f^{-1} = I_B$. and $f^{-1}\circ f = I_A$.</li>
+  </ul>
+</blockquote>
+
+<p><em>For Example</em></p>
+
+<ul>
+  <li>let $f(x)=3x-2$. What is $f^{-1}$ Essentially we are <strong>finding $x$</strong> from $y=f(x)$, therefore $f^{-1}(x)=(x+2)/3$</li>
+</ul>
+
+<p>Note that <strong>inverse $f^{-1}$ might not exist</strong>, i.e. not a function. E.g. $f(x)={(1,a),(2,a)}$, then $f^{-1}={(a,1),(a,2)}$!</p>
+
+<blockquote>
+  <p><strong>Theorem</strong>: let $f:A \to B$ be a function. Then $f^{-1}:B\to A$ exists provided $f$ is a <strong>bijection</strong>.</p>
+
+  <ul>
+    <li>need to be one-to-one, so that when reversed each input has only one image</li>
+    <li>need to be on-to, so that when reversed each input has an image</li>
+  </ul>
+</blockquote>
+
+<blockquote>
+  <p><strong>Theorem</strong>: let $f:A\to B$ be a bijection. Then $f^{-1}$ is <strong>unique</strong>.</p>
+</blockquote>
+
+<p><em>Proof</em>: By contradiction, suppose there are two inverse functions $f^{-1}_1$ and $f_2^{-1}$</p>
+
+<ul>
+  <li>then this means there is an element $f^{-1}_1(b) \neq f^{-1}_2(b)$</li>
+  <li>but this means $f(f^{-1}_1(b)) \neq f(f^{-1}_2(b))$</li>
+  <li>by definition, both $f_1^{-1},f_2^{-1}$ are inverse of $f$, so this cannot be right as we get $b \neq b$</li>
+  <li>therefore, this is a contradiction and there can only be one unique inverse of $f$.</li>
+</ul>
+
+<h2 id="pigeon-hole-principle">Pigeon Hole Principle</h2>
+
+<p>Given a function $f:A\to B$, recall that <strong>if $\vert A\vert  &gt; \vert B\vert$,</strong> then it <strong>must be some of the elements in $A$ going into the same image</strong></p>
+
+<blockquote>
+  <p><strong>PHP</strong>: if $p$ pigeons fly in $h$ holes, and $p &gt; h$, then at least one of the hole contains two or more pigeons.</p>
+</blockquote>
+
+<p><em>For example</em>:</p>
+
+<ul>
+  <li>
+    <p>We know that there are 8M people in NYC. We know that each person can have a maximum number of 300,000 hair strands. Then by PHP this means there are people having the same number of fair strands.</p>
+  </li>
+  <li>
+    <p>Let there be three pairs of socks, B, G, R. How many socks do I need to blindly pick so that I get at least one pair?</p>
+
+    <p><img src="/lectures/images/2023-05-11-COMS3203_Discrete_Math/image-20230401010148088.png" alt="image-20230401010148088" style="zoom:15%;" /></p>
+  </li>
+  <li>
+    <p>in a group of $n$ people, there will be always two people who <em>have the same number of friends</em>. Assume each person has at least one friend in this group. (Hint: the key is to realize the holes need to be “<em>the number of friends</em>”, and the maximum number of friends you can have is $n-1$)</p>
+  </li>
+  <li>
+    <p>let $A = {1,2,3,4,5,6,7,8}$. If I <em>pick 5 random numbers</em>, will there be at least a pair of number that sums to $9$?</p>
+
+    <p>the pigeons can be any <em>five numbers</em> $n_1,n_2,n_3,n_4,n_5$, the holes can be the pairs/the ways that sums to $9$.</p>
+  </li>
+</ul>
+
+<blockquote>
+  <p><strong>Generalized PHP</strong>: Given $p$ pigoens and $h$ holes. If $p &gt; h$ then at least a hole contains:</p>
+
+\[\lceil \frac{p}{h} \rceil \text{\ pigeons}\]
+
+  <p>(the ceiling of $p/h$).</p>
+</blockquote>
+
+<p>This also covers the PHP, because let $p=n$ and $h=n-1$. THen by GPHP we have $\lceil n/(n-1) \rceil = 2$ meaning at least one hole contains 2 pigeons.</p>
+
+<h2 id="infinity-and-countability">Infinity and Countability</h2>
+
+<p>The aim is to discuss the size of a set who is infinite, but we saw in previous sections that if $f:A\to B$ is a bijection, then $\vert A\vert  = \vert B\vert$</p>
+
+<blockquote>
+  <p><strong>Countability</strong>: we say that set $S$ is countable $\iff$ there exists a bijection between $S$ and $\N$ (or some subset of $\N$).</p>
+
+  <ul>
+    <li>i.e. a set is countable, if you can <em>enumerate</em> all the elements without missing any</li>
+  </ul>
+</blockquote>
+
+<p>For example:</p>
+
+<ul>
+  <li>
+    <p>let $S={10,20,30,40,50}$. This is countable, since we can take the image being ${1,2,3,4,5}$</p>
+  </li>
+  <li>
+    <p>let $S={2,4,6,8,…}$. This is countable, as you as enumerate them as is.</p>
+  </li>
+  <li>
+    <p>let $S={\frac{a}{b}\vert a,b\in \Z \land b \neq 0}$. How do you enumerate the values of fractions? George Cantor showed this $\Q$ is countable using <strong>diagonalization</strong>.</p>
+
+    <p>First, we show $\Q+$ is countable</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th> </th>
+          <th>1</th>
+          <th>2</th>
+          <th>3</th>
+          <th>…</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>1/1</td>
+          <td>1/2</td>
+          <td>1/3</td>
+          <td>…</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>2/1</td>
+          <td>2/2</td>
+          <td>2/3</td>
+          <td>…</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>3/1</td>
+          <td>3/2</td>
+          <td>3/3</td>
+          <td>…</td>
+        </tr>
+        <tr>
+          <td>…</td>
+          <td>…</td>
+          <td>…</td>
+          <td>…</td>
+          <td>…</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <ul>
+      <li>so I cannot enumerate by row, as I will never come back from a row. same reason for column</li>
+      <li>but I can go by a diagonal</li>
+    </ul>
+
+    <p><img src="/lectures/images/2023-05-11-COMS3203_Discrete_Math/image-20230330101348980.png" alt="image-20230330101348980" style="zoom:33%;" /></p>
+
+    <p>therefore:</p>
+
+\[\{ 1/1, \quad 2/1, \quad 1/2, \quad 3/1,\quad 2/2, \quad1/3, ... \}\]
+
+    <p>so essentially countability can be seen as to <strong>find a strategy to enumerate it</strong> = can find a bijection from $\N$ by just corresponding each element here to a number in $\N$ (you do not need to know what that function is, but it can be enumerated).</p>
+
+    <p>Finally to get $\Q$, we just need to insert each number’s negative in between.</p>
+  </li>
+</ul>
+
+<blockquote>
+  <p><strong>Theorem</strong>: the set of real numbers $\R$ is <em>not</em> countable.</p>
+</blockquote>
+
+<blockquote>
+  <p><strong>Corollary</strong>: the set of real numbers in $[0,1]$ is also <em>not countable</em>.</p>
+</blockquote>
+
+<p><em>Proof</em>: by contradiction using diagonalization.</p>
+
+<ul>
+  <li>assume I can list all the real numbers in $[0,1]$, so that ${r_1, r_2, r_3, …}$, e.g.
+    <ul>
+      <li>$r_1 = 0.4513201…$</li>
+      <li>$r_2=0.3351238…$</li>
+      <li>$r_3 = 0.1234223…$</li>
+      <li>…</li>
+    </ul>
+  </li>
+  <li>we can show that this is <em>missing at least one real number</em>, by
+    <ul>
+      <li>let $\text{decimal}<em>i(r</em>{new})$ be the $i$-th decimal number of $r_{new}$. E.g. $\text{decimal}<em>3(r</em>{1})=1$ above.</li>
+      <li>I can invent a $r_{new}$ to be $\text{decimal}<em>i(r</em>{new}) \neq \text{decimal}<em>i(r</em>{i})$ for every $i$! e.g. $r_{new}=0.544…$</li>
+    </ul>
+  </li>
+  <li>and the key is this $r_{new}\in R$! (therefore this won’t work with proving $\Q$ being uncountable, though we already know it is not)</li>
+</ul>
+
+<h1 id="advanced-proofs">Advanced Proofs</h1>
+
+<p>Here we cover more techniques to prove things. We will cover</p>
+
+<ul>
+  <li>proof by mathematical induction (PMI)</li>
+  <li>proof by smallest counter example (PSCI)</li>
+  <li>proof by strong mathematical induction (PSMI)</li>
+</ul>
+
+<h2 id="proof-by-induction">Proof by Induction</h2>
+
+<p>Consider proving propositions that look like</p>
+
+\[\forall n\quad p(n),\quad n \in \Z^+\]
+
+<p>The idea is to consider:</p>
+
+<ol>
+  <li>
+    <p><a href="**prove** that the following is true">base case</a> show $p(a)$ is true</p>
+  </li>
+  <li>
+    <p>if we can show $p(k) \implies p(k+1)$.</p>
+  </li>
+  <li>
+    <p>then $\forall k \ge a \implies p(k)$. It is like a “chain reaction”.</p>
+
+    <p><img src="/lectures/images/2023-05-11-COMS3203_Discrete_Math/image-20230330102531524.png" alt="image-20230330102531524" style="zoom: 25%;" /></p>
+  </li>
+  <li>
+    <p>hence we have shown that $\forall n \in \Z^+ \quad n\ge a \implies p(n)$</p>
+  </li>
+</ol>
+
+<blockquote>
+  <p><strong>Proof Template for Induction</strong></p>
+
+  <ol>
+    <li>
+      <p>write the proposition clearly</p>
+
+\[\forall n \quad p(n)\]
+    </li>
+    <li>
+
+\[p(a),\quad \text{a is the smallest case of n}\]
+    </li>
+    <li></li>
+    <li>
+      <p>[inductive step] <strong>prove</strong> that <strong>“all the next steps/domino” are true</strong> given $p(k)$</p>
+
+\[p(k) \implies p(k+1)\]
+
+      <p>here is when you can <em>technically</em> use all the different proof techniques (e.g. by contrapositive). But often we just do direct proofs.</p>
+    </li>
+    <li>therefore, $p(k)$ is true $\forall k \ge a$</li>
+  </ol>
+</blockquote>
+
+<p><em>For Example</em>: prove that $\forall n \in \Z^+$</p>
+
+\[p(n): 1+2+3+ \dots + n = \frac{n(n+1)}{2}\]
+
+<p>Proof by induction: the proposition is already written in the “standard” format</p>
+
+<ol>
+  <li>
+    <p>base case is $p(1)$.  This is true because</p>
+
+\[p(1): 1 = \frac{1\cdot 2}{2}\]
+
+    <p>is true</p>
+  </li>
+  <li>
+    <p>inductive hypothesis that for $k \ge 1$, we assume $p(k)$ is true</p>
+
+\[p(k):1+2+3+\cdots + k = \frac{k(k+1)}{2}\]
+  </li>
+  <li>
+    <p>inductive step so $p(k+1):1+2+3+\cdots + k + k+1= \frac{k+2(k+2)}{2}$ and it requires you to <strong>prove that $p(k+1)$ is true by</strong></p>
+
+\[p(k) \implies p(k+1)\]
+
+    <p>we can consider a <strong>direct proof</strong></p>
+
+    <ol>
+      <li>
+        <p>let $p(k)$. This means this is true</p>
+
+\[1+2+3+\cdots + k = \frac{k(k+1)}{2}\]
+      </li>
+      <li>
+        <p>then this means</p>
+
+\[1+2+3+\cdots + k + k+1 = \frac{k(k+1)}{2} + k+1\]
+
+        <p>this step can be interpreted in two ways (both valid)</p>
+
+        <ul>
+          <li>smudging the entire $p(k)$ to look like $p(k+1)$</li>
+          <li>just want to see what does RHS look like by $1+2+3+\cdots + k + k+1 = p(k)+k+1$</li>
+        </ul>
+      </li>
+      <li>
+        <p>rewriting the RHS we get</p>
+
+\[1+2+3+\cdots + k + k+1 = \frac{(k+2)(k+1)}{2}\]
+
+        <p>which is exactly $p(k+1)$</p>
+      </li>
+      <li>
+        <p>hence, we have shown that $p(k+1)$ is true assuming $p(k)$, i.e. $p(k)\implies p(k+1)$</p>
+      </li>
+    </ol>
+  </li>
+</ol>
+
+<p><em>For example</em>: prove that $\forall n \in \Z, n \ge 1$</p>
+
+<p>we want to show that</p>
+
+\[1+3+5+\dots+(2n-1) = n^2\]
+
+<p>Visually, this looks like</p>
+
+<p><img src="/lectures/images/2023-05-11-COMS3203_Discrete_Math/image-20230330105520061.png" alt="image-20230330105520061" style="zoom:33%;" /></p>
+
+<p><em>Proof by induction</em>:</p>
+
+<ol>
+  <li>
+    <p>base case is $p(1)$. This is easily true since $1=1^2$</p>
+  </li>
+  <li>
+    <p>inductive hypothesis: assume $p(k)$ is true</p>
+
+\[1+3+5+\dots+(2k-1) = k^2\]
+  </li>
+  <li>
+    <p>inductive step: want to show that $p(k+1)$ is true given $p(k)$, so that considering direct proof</p>
+
+    <ol>
+      <li>
+        <p>let $p(k)$ be true, hence</p>
+
+\[1+3+5+\dots+(2k-1) = k^2\]
+      </li>
+      <li>
+        <p>then moving to $p(k+1)$ we get</p>
+
+\[1+3+5+\dots+(2k-1)+(2k+1) = k^2 + 2k+1\]
+      </li>
+      <li>
+        <p>the RHS can be reformatted to be</p>
+
+\[1+3+5+\dots+(2k-1)+(2k+1) = (k+1)^2\]
+      </li>
+      <li>
+        <p>this is basically $p(k+1)$</p>
+      </li>
+    </ol>
+  </li>
+</ol>
+
+<blockquote>
+  <p><strong>Well-ordering principle</strong>: every set of non-negative integers <mark>has a starting element (i.e. a beginning)</mark></p>
+
+  <ul>
+    <li>The induction process is possible thanks to the principle of <strong>well-ordering principle</strong>.</li>
+    <li>this does <mark>not necessarily have to be the smallest element</mark>. e.g. prove in the domain of only negative numbers you can start with the largest element, and prove $p(k)\implies p(k-1)$</li>
+  </ul>
+</blockquote>
+
+<p><em>For example</em>:</p>
+
+<ul>
+  <li>is well-ordering: $\N={1,2,3,…}$, $S={4,5,6,…}$</li>
+  <li><em>not</em> well-ordering: $\R$, $\Q$, or even $\R^+$.</li>
+</ul>
+
+<h2 id="proof-by-smallest-counter-example">Proof by Smallest Counter Example</h2>
+
+<p>To compare this with what you</p>
+
+<p>PMI: essentially proves the purple ones</p>
+
+<p><img src="/lectures/images/2023-05-11-COMS3203_Discrete_Math/image-20230330120500591.png" alt="image-20230330120500591" style="zoom: 7%;" /></p>
+
+<p>PSCI: aims to prove the red one being false, hence there cannot be a CE:</p>
+
+<p><img src="/lectures/images/2023-05-11-COMS3203_Discrete_Math/image-20230330120615053.png" alt="image-20230330120615053" style="zoom:9%;" /></p>
+
+<blockquote>
+  <p><strong>Proof Template for PSCI</strong></p>
+
+  <ol>
+    <li>
+      <p>write in $\forall n \quad p(n)$</p>
+    </li>
+    <li>
+      <p><strong>prove</strong> base case</p>
+    </li>
+    <li>
+      <p><strong>assume</strong> that there exist exceptions/counter examples. <mark>Let $x$ be the smallest so $p(x)$ is False</mark>. Notice that this <strong>also means $p(x-1)$ is true</strong></p>
+    </li>
+    <li>
+      <p><strong>prove</strong> that this is a <strong>contradiction, hence $p(x)$ cannot exist</strong>. i.e. this cannot hold.</p>
+
+\[p(x)\text{ is False } \land\,\,  p(x-1)\text{ is True }\]
+    </li>
+    <li>
+      <p>if there is no SCE, then there is <mark>no CE at all given the well-ordering principle</mark>. Hence the proposition is true.</p>
+    </li>
+  </ol>
+</blockquote>
+
+<p><em>Proof by SCE</em>: show that</p>
+
+\[p(n): 1+2+3+ \dots + n = \frac{n(n+1)}{2}\]
+
+<ol>
+  <li>
+    <p>base case $p(1)$ is true since $1=1\times 2/2$</p>
+  </li>
+  <li>
+    <p>by contradiction, <strong>assume that $\exists x &gt; 1$ such that $p(x)$ is False, for $x$ is the smallest counter example</strong></p>
+  </li>
+  <li>
+    <p>then we can show that this is a contradiction that this cannot happen. So that given</p>
+
+\[p(x):1+2+3+ \dots + x \neq \frac{x(x+1)}{2}\]
+
+    <p>but that</p>
+
+\[p(x-1):1+2+3+ \dots + x-1 = \frac{x(x-1)}{2}\]
+
+    <p>cannot hold.</p>
+  </li>
+  <li>
+    <p>therefore, there is no SCE, meaning essentially</p>
+
+\[\neg (\exist x &gt; 1 \quad p(x) \text{ is False})\]
+
+    <p>so that for $n \in \Z^+$</p>
+
+\[\forall n \quad p(n)\]
+  </li>
+</ol>
+
+<p><em>Proof by SCE:</em> prove by SCE that</p>
+
+\[\forall n \in \Z, \quad n&gt;0 \to 4|(5^n-1)\]
+
+<ol>
+  <li>
+    <p>base case $n=1$ works easily</p>
+  </li>
+  <li>
+    <p>by contradiction, assume $x$ the S.C.E such that $p(x)$ is false. i.e. $4$ does not divide $5^x-1$</p>
+
+\[4 \nmid (5^x-1)\]
+  </li>
+  <li>
+    <p>now we want to show that this is a contradiction: $p(x)$ is false and $p(x-1)$ is true cannot hold</p>
+
+    <ol>
+      <li>
+        <p>since $p(x-1)$ is true, this means $4\vert (5^{x-1}-1)$</p>
+      </li>
+      <li>
+        <p>this means $5^{x-1}-1=4\times q$, where $q \in \Z$. We want to move towards contradiction that $4 \nmid (5^x-1)$</p>
+      </li>
+      <li>
+        <p>multiply by 5, we get</p>
+
+\[5^x-4-1 = 4\times (5 \times 1)\]
+
+        <p>hence</p>
+
+\[5^x-1 = 4 \times( 5 \times q + 1)\]
+
+        <p>meaning that $4 \vert  (5^x-1)$</p>
+      </li>
+    </ol>
+  </li>
+  <li>
+    <p>therefore, there is no such $x$ such that $p(x)$ is false. Hence the proposition is true.</p>
+  </li>
+</ol>
+
+<p><em>Proposition</em>: Every Integer is either odd or even.</p>
+
+<p>Note that now we are considering $\forall n \in\Z$, meaning there is <em>technically</em> not a “well-ordering set”. But there can be a trick:</p>
+
+<ol>
+  <li>
+    <p><strong>first prove by SCE</strong> that this holds when $\forall n \in \Z^+$</p>
+  </li>
+  <li>
+    <p><strong>extend</strong> your above proof to the negative domain, since</p>
+
+\[n \in \Z,n &lt; 0 \implies n = -m, m\in \Z^+\]
+
+    <p>basically flipping the sign</p>
+  </li>
+</ol>
+
+<h2 id="proof-by-strong-induction">Proof by Strong Induction</h2>
+
+<p>The difference with proof by induction is:</p>
+
+<ul>
+  <li>could have many base cases</li>
+  <li>making stronger assumptions that all cases from the base cases until $p(k)$ are true. Prove $p(k+1)$</li>
+</ul>
+
+<p>Graphically, it looks like:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Method</th>
+      <th style="text-align: center">Visual</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>normal Induction</td>
+      <td style="text-align: center"><img src="/lectures/images/2023-05-11-COMS3203_Discrete_Math/image-20230404164715165.png" alt="image-20230404164715165" style="zoom:7%;" /></td>
+    </tr>
+    <tr>
+      <td>strong induction</td>
+      <td style="text-align: center"><img src="/lectures/images/2023-05-11-COMS3203_Discrete_Math/image-20230404164747333.png" alt="image-20230404164747333" style="zoom:15%;" /></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>and finally this also means base case for strong induction has to look like:</p>
+
+<p><img src="/lectures/images/2023-05-11-COMS3203_Discrete_Math/image-20230404164821701.png" alt="image-20230404164821701" style="zoom:10%;" /></p>
+
+<blockquote>
+  <p>Therefore, this is useful when the result <strong>for $n = k+1$ depends on the result for some smaller value of $n$ (e.g. $n=k-4$), but it’s not the immediately previous value $k$.</strong></p>
+</blockquote>
+
+<blockquote>
+  <p><strong>Proof Template for PSI</strong>: consider proving some $\forall n \quad p(n)$</p>
+
+  <ol>
+    <li>
+      <p><strong>base case</strong>: prove the base cases (you will need to experiment to find out how many you need)</p>
+
+\[p(a),p(a+1),p(a+2),...,p(a+z)\]
+    </li>
+    <li>
+      <p><strong>inductive hypothesis</strong>: assume $p(k)$ hold for <mark>all numbers</mark> less than or equal to an arbitrary $k$, i.e. all the below are true</p>
+
+\[p(a) \land p(a+1)\land \dots p(k)\]
+
+      <p>(i.e. the purple window above)</p>
+    </li>
+    <li>
+      <p><strong>inductive step</strong>: now it becomes</p>
+
+\[p(a) \land p(a+1)\land \dots p(k) \implies p(k+1)\]
+
+      <p>essentially to prove $p(k+1)$ you have a <strong>range of choices/assumptions to choose from</strong>. (see example below)</p>
+
+      <ul>
+        <li>The difference is actually only superficial compared to normal induction proofs, and the two proof techniques are equivalent.</li>
+        <li>you can see this more in the example below</li>
+      </ul>
+
+      <p><mark>and you want to make sure $p(a+z+1)$ can be proven using this inductive step</mark> (where $p(a+z)$ you already show to be true in step 1)</p>
+
+      <ul>
+        <li>this usually depends on, say $p(k+1)$ required $p(k-3)$ to be true.</li>
+        <li>so this means you need $p(k), p(k-1),p(k-2),p(k-3)$ to be true = <strong>need 4 base cases</strong> in step 1 for arbitrary $k$ to hold</li>
+      </ul>
+    </li>
+    <li>
+      <p><strong>conclusion</strong>: repeatedly apply the above proof to increase the purple window until all $\forall n$ are covered. (same as normal induction)</p>
+    </li>
+  </ol>
+</blockquote>
+
+<p><em>Example:</em> Stamping Problem. Prove that any amount of postage $\ge 2$ cent can be made with 2 cents or 3 cents stamp.</p>
+
+<p>Let’s first attempt using simple induction.</p>
+
+<ol>
+  <li><strong>base case:</strong> I can make $p(2)$ with one stamp of 2 cent</li>
+  <li><strong>inductive hypothesis:</strong> it is possible to make a postage worthy of $k$ cent using 2 or 3 cents stamp</li>
+  <li><strong>inductive step:</strong> prove $p(k+1)$, show that you can make $k+1$ cent
+    <ul>
+      <li>case 1: $p(k)$ has only 2 cents stamp. Take a 2 away and replace by 3 cents.</li>
+      <li>case 2: $p(k)$ has only 3 cents stamp. Take a 3 away and replace by two 2 cents.</li>
+      <li>case 3: $p(k)$ has both 2 cents and 3 stamps. Take a 2 away and replace by 3, or take a 3 and replace by two 2 cents.</li>
+    </ul>
+  </li>
+  <li>done.</li>
+</ol>
+
+<p>Let’s see how strong induction would prove this:</p>
+
+<ol>
+  <li>
+    <p><strong>base case</strong>: we will see how many cases we need. First prove (skipped) that $p(2),p(3),p(4),p(5)$ are true</p>
+  </li>
+  <li>
+    <p><strong>inductive hypothesis</strong>: by assumption then let the following until $k$ be true</p>
+
+\[p(1) \land ... p(6) \land p(7)\dots p(k)\]
+  </li>
+  <li>
+    <p>inductive step: to prove $p(k+1)$ all I need is to show</p>
+
+\[p(1) \land ... p(6) \land p(7)\dots p(k) \implies p(k+1)\]
+
+    <p>realize that</p>
+
+\[p(k+1) = p(k-2+3)=p(k-2)+3\]
+
+    <p>i.e. <mark>adding</mark> a 3 cent in the solution for $p(k-2)$. Since $p(k-2)$ is true by inductive hypothesis, we are done.</p>
+
+    <ul>
+      <li>This also means we need at least <mark>3 base cases</mark>, that $p(2),p(3),p(4)$ is already proven (it is)</li>
+      <li>since we need the <em>left boundary of our purple window at $2 \le k-2$</em>, so $k\ge 4$. Therefore we needed base case up to $p(k=4)$</li>
+    </ul>
+  </li>
+  <li>
+    <p>therefore $p(k+1)$ is true.</p>
+  </li>
+</ol>
+
+<blockquote>
+  <p>Notice that we <mark>needed to directly prove (a minimum of) three base cases</mark>, since we needed to <mark>reach back three integers in our inductive step</mark>. It’s <strong>not always obvious how many base cases are needed until you work out the details</strong> of your inductive step.</p>
+</blockquote>
+
+<h1 id="number-theory">Number Theory</h1>
+
+<p>Here we will discuss topics including</p>
+
+<ul>
+  <li>divisibility</li>
+  <li>GCD/GCF (greatest common divisor/factor)</li>
+  <li>fundemental theorem of arithmetic</li>
+  <li>factoring</li>
+  <li>modular arithmetic (clock arithmetic)</li>
+  <li>introduction to cryptography</li>
+</ul>
+
+<h2 id="divisibility">Divisibility</h2>
+
+<p>In the 1880, Peano’s axioms of natural numbers (converted into natural language):</p>
+
+<ol>
+  <li>
+    <p>there is a starting point of numbers $x \in \N$, and it starts at 1</p>
+  </li>
+  <li>
+    <p>let $s$ be a successor function. Every natural number has a successor:</p>
+
+\[\forall n \in \N, \quad s(n) \in \N\]
+  </li>
+  <li>
+    <p>and 1 is not a successor of any natural number, so that $1 \neq s(n)$</p>
+  </li>
+  <li>
+    <p>let $s(n)$ is a one-to-one function., so that each number has a different successor.</p>
+  </li>
+  <li>
+    <p>there is no other set of natural numbers.</p>
+  </li>
+</ol>
+
+<p>These requirements enabled a “massive production of numbers”, and they have some interesting consequences</p>
+
+<blockquote>
+  <p><strong>Divisibility Theorem</strong>: let $a,b \in \Z$, and $b &gt; 0$, then there exist a <mark>unique</mark> pair $(q,r)$ such that</p>
+
+\[a = bq +r,\quad 0 \le r &lt; b\]
+
+  <p><mark>note that $r,b$ is positive.</mark></p>
+</blockquote>
+
+<p>for example:</p>
+
+<ul>
+  <li>$25 = 10\times 2 +5$, where $25=a$, $b=10$, etc.</li>
+  <li>$-25 = 10 \times -3 +5$. Note that both $b$ and $r$ are positive.</li>
+</ul>
+
+<p>for example: prove that every integer is either odd or even</p>
+
+<ol>
+  <li>
+    <p>by the divisibility theorem, there is a unique pair $(q,r)$, such that</p>
+
+\[n = 2q + r,\quad 0 \le r &lt;2\]
+  </li>
+  <li>
+    <p>i.e. if I divide by 2, the remainder can only be zero or one! then,</p>
+
+    <ul>
+      <li>if $r=0$, this means $n=2q$ hence $n$ is even</li>
+      <li>if $r=1$, this means $n=2q+1$ hence $n$ is odd.</li>
+    </ul>
+  </li>
+</ol>
+
+<blockquote>
+  <p><strong>Div and Mod Operators</strong>: let $a,b \in \Z, b &gt; 0$. We know that $a = bq +r,\quad 0 \le r &lt; b$ .Then</p>
+
+\[\exists (q,r) \in \Z \times (\Z^+ \cup \{0\})\]
+
+  <p>and then we define the operators</p>
+
+  <ul>
+    <li>$a \mathrm{\ div\ }b = q$</li>
+    <li>$a \mathrm{\ mod\ }b = r$</li>
+  </ul>
+</blockquote>
+
+<h3 id="least-common-multiple-and-greatest-common-divisor">Least Common Multiple and Greatest Common Divisor</h3>
+
+<blockquote>
+  <p><strong>Proposition</strong>: let $a,b \in \Z$,. Let let $d\in \Z^+$ means</p>
+
+\[d|a \land d |b \implies d|(a+b) \land d|(a-b)\]
+
+  <p>i.e. $d$ also <mark>divides any linear combination of $a,b$</mark>. This is very useful as it means, for example:</p>
+
+\[gcd(a,b)≡gcd(−a,b)≡gcd(a,−b)≡gcd(−a,−b)≡gcd(∣a∣,∣b∣)\]
+
+</blockquote>
+
+<p>The above comes useful in later proofs. This proposition is itself relatively easy to prove, since:</p>
+
+<ul>
+  <li>to prove $d\vert (a+b)$ you can rewrite $a+b=dq_1 + dq_2=d(q_1+q_2)$ since $d\vert a \land d\vert b$</li>
+  <li>to prove $d\vert (a-b)$ you can rewrite $a-b=dq_1 - dq_2=d(q_1-q_2)$ since $d\vert a \land d\vert b$</li>
+</ul>
+
+<blockquote>
+  <p><strong>Greatest Common Factor/Divisor</strong>: let $a,b \in \Z$. We call $d$ the greatest common factor IFF</p>
+
+  <ol>
+    <li>$d \vert  a \land d\vert b$ (i.e. is a divisor)</li>
+    <li>$\forall e \in \Z, \quad e\vert a \land e \vert b \implies e \le d$ (i.e. is the biggest)</li>
+  </ol>
+</blockquote>
+
+<p><em>For example</em>: there are 28 roses, 14 daisies. What is the greatest number of identical bouquet of flowers can you make with no flowers left?</p>
+
+<ul>
+  <li>let there be $k$ bouquet of flowers. Realize this $k$ must be a divisor such that $k\vert 28$ and $k\vert 14$</li>
+  <li>to have the most $k$, you basically need to find the greatest common divisor. In this case you can find by inspection, giving $14$.</li>
+</ul>
+
+<blockquote>
+  <p><strong>Properties of GCD</strong></p>
+
+  <ul>
+    <li>$\mathrm{GCD}(a,0)=a$, since divisor for $0$ includes all numbers</li>
+    <li>$\mathrm{GCD}(0,0)$ is undefined</li>
+    <li>$\mathrm{GCD}(a,b)=\mathrm{GCD}(b,a)$</li>
+    <li>$\mathrm{GCD}(a,b)=\mathrm{GCD}(\vert a\vert ,\vert b\vert )$</li>
+    <li>$\mathrm{GCD}(a,b,c)=\mathrm{GCD}(a,\mathrm{GCD}(b,c))$.</li>
+  </ul>
+</blockquote>
+
+<p><strong>But how do we find GCD</strong>?</p>
+
+<p>Naive GCD: without loss of generalization, let $a \ge b$. Then</p>
+
+<ol>
+  <li>for each $d=1$ to $b$ (in case of co-prime, $\mathrm{GCD}(a,b)=1$ )
+    <ol>
+      <li>if $d\vert a\land d\vert b$ then $g=d$</li>
+    </ol>
+  </li>
+  <li>return $g$</li>
+</ol>
+
+<p>Before we discuss a more efficient algorithm: <mark>observe: let $a,b\in \Z^+$. Realize that $\mathrm{GCD}(a,b)=\mathrm{GCD}(b,a \mod b)$.</mark></p>
+
+<ul>
+  <li>$\mathrm{GCD}(75, 63)=\mathrm{GCD}(63, 12)$
+    <ul>
+      <li>note that if you started with $\mathrm{GCD}(63, 75)\to\mathrm{GCD}(75, 63)$ since $63 \mod 75=63$ gets automatically swapped.</li>
+    </ul>
+  </li>
+  <li>but you can continue: $\mathrm{GCD}(63, 12)=\mathrm{GCD}(12, 3)=\mathrm{GCD}(3, 0)$</li>
+  <li>then you are done. GCD is 3!</li>
+</ul>
+
+<p>Graphically:</p>
+
+<p><img src="/lectures/images/2023-05-11-COMS3203_Discrete_Math/image-20230406102803913.png" alt="image-20230406102803913" style="zoom: 33%;" /></p>
+
+<p>Essentially at each iteration you managed to cut the “search space”!</p>
+
+<blockquote>
+  <p><strong>Euclid GCD Algorithm</strong>: let $a,b\in \Z^+$. Realize that $\mathrm{GCD}(a,b)=\mathrm{GCD}(b,a \mod b)$ as shown above (proof later). Then the algorithm becomes</p>
+
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">recursive_gcd</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">):</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">a</span> <span class="n">mod</span> <span class="n">b</span>
+    <span class="k">if</span> <span class="n">r</span> <span class="o">=</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">b</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">recursive_gcd</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">r</span><span class="p">)</span>
+</code></pre></div>  </div>
+
+  <p>but you can of course write this into an iterative version</p>
+
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">iterative_gcd</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">):</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">a</span> <span class="n">mod</span> <span class="n">b</span>
+    <span class="k">while</span> <span class="n">r</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="n">b</span>
+        <span class="n">b</span> <span class="o">=</span> <span class="n">r</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="n">a</span> <span class="n">mod</span> <span class="n">b</span>
+    <span class="k">return</span> <span class="n">b</span>
+</code></pre></div>  </div>
+</blockquote>
+
+<p><em>Proof of Euclid’s divisibility</em>. The key is to utilize divisiblity that, consider $\mathrm{GCD}(a,b)$ then</p>
+
+<ul>
+  <li>$a=bq +r$, with $0 \le r &lt;b$ by divisibility</li>
+  <li>hence $r=a-bq$ i.e. by definition, $r$ is basically $a \mod b$</li>
+</ul>
+
+<p>Therefore, the proof looks like</p>
+
+<ol>
+  <li>let $d$ be a divisor of $a$ and $b$. Then $r=a-bq$ means that
+    <ol>
+      <li>$d\vert a \implies a=d\cdot q_1$, and $d\vert b \implies b = d\cdot q_2$</li>
+      <li>hence $r=dq_1 - qdq_2 = d(q_1 - qq_2)\implies d\vert r$</li>
+      <li>so <strong>any divisor of $a,b$ is also a divisor of $r$</strong></li>
+    </ol>
+  </li>
+  <li>let $c$ be a divisor of $b$ and $r$. Then $a=bq + r$ means that
+    <ol>
+      <li>similarly you can show that $c\vert a$</li>
+      <li>so <strong>any divisor of $b,r$ is also a divisor of $a$</strong></li>
+    </ol>
+  </li>
+  <li>form the above two conclusions, <mark>$a,b$ and $b,r$ have the same common divisors</mark>. (e.g. let $k$ be a common divsor for $a,b$ but not for $b,r$. Then this means $k \nmid r$, which cannot be due to our proof above!)</li>
+  <li>Hence $\mathrm{GCD}(a,b)$ ad $\mathrm{GCD}(b,r)$ must be the same/share the same GCD!</li>
+</ol>
+
+<h2 id="prime-numbers-and-factorization">Prime Numbers and Factorization</h2>
+
+<p>The idea is that</p>
+
+\[\N = \{1,2,3,\dots\} = \{1\}\cup \text{primes}\cup \text{composites}\]
+
+<p>and that interestingly:</p>
+
+<ul>
+  <li>primes are more “dense” when small</li>
+  <li>there is an infinity amount of prime numbers</li>
+</ul>
+
+<blockquote>
+  <p><strong>Fundemental theorem of arithmetic</strong>: let $n \in \Z \land n \ge2$. There is a <strong>unique</strong> factorization of $n$ into a product of primes. i.e. $n$ is either a prime of a product of primes (composites).</p>
+</blockquote>
+
+<p>To prove the above, you will need to show that</p>
+
+<ol>
+  <li>there <em>exists</em> a prime factoriazation for any $n \ge 2$</li>
+  <li>this factorization is <em>unique</em> (this can get quite complicated to prove, see Gauss’s proof)</li>
+</ol>
+
+<p><em>Proof</em>: there exists a prime factorization. Proof by <strong>strong induction</strong></p>
+
+<ol>
+  <li>base case: let us use $p(2)=2,p(3)=3,p(4)=2\times 2$ have a prime factorization.</li>
+  <li>inductive step: every number between $2$ and $k\ge 5$ can be factored into primes</li>
+  <li>prove $k+1$: realize either that $k+1$ is a prime or a composite.
+    <ul>
+      <li>if $k+1$ is a prime, then $p(k+1)=k+1$, done.</li>
+      <li>if $k+1$ is a composite
+        <ul>
+          <li>then $k+1 = a\times b$ for some factors $a,b&lt;k+1$. (technically this can be even strong that $a,b&lt; (k+1)//2$, but it is not necessary)</li>
+          <li>but realize that we have assumed $p(a)$ and $p(b)$ are both having a prime factorization</li>
+          <li>hence $k+1$ also has a prime factorization</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>therefore, $k+1$ also has a prime factorization.</li>
+</ol>
+
+<blockquote>
+  <p><strong>Theorem</strong>: there is an infinite number of prime numbers.</p>
+</blockquote>
+
+<p><em>Kumer’s proof</em>: proof by <strong>contradiction</strong>. Suppose there is a <em>finite</em> number of primes:</p>
+
+\[p_1 &lt; p_2 &lt; \dots &lt; p_r\]
+
+<p>where $p_r &lt; \infty$ is finite. Then</p>
+
+<ol>
+  <li>$x=p_1\times p_2 \times \dots \times p_r$ is a composite included <strong>all possible primes</strong></li>
+  <li>consider $x+1=p_1\times p_2 \times \dots \times p_r+1$
+    <ul>
+      <li>if $x+1$ is prime
+        <ul>
+          <li>we already get a <em>contradiction</em> $x+1 &gt; p_r$</li>
+        </ul>
+      </li>
+      <li>if $x+1$ is a composite
+        <ul>
+          <li>then since $x$ is a composite including all primes, $x$ and $x+1$ <strong>must share at least a prime</strong>, let’s call this $p_i$</li>
+          <li>then $p_i\vert x$ and $p_i \vert  (x+1)$, so that $x=p_iq_1$ and $x+1 = p_i q_2$</li>
+          <li>$x+1-x=p_i q_2 -p_iq_1$ hence $1 = p_i(q_2-q_1)$</li>
+          <li>but $p_i\vert 1$ cannot be true as the smallest prime number is $2$!</li>
+          <li>this is a <em>contradiction</em></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Hence, by contradiction there is an infinite number of primes.</li>
+</ol>
+
+<blockquote>
+  <p><strong>Sieve of Fratosthenes</strong>: what is a good way to find all primes until $n$? E.g. let us find all primes less than $n=20$</p>
+
+  <ol>
+    <li>write down every integer $2,3,\dots,20$</li>
+    <li>for $i$ each of the above integer that is <em>not crossed out</em>
+      <ol>
+        <li>cross out all multiples of $i$</li>
+        <li>stop at $\lfloor \sqrt{n} \rfloor$, because the biggest <em>possible</em> factor is $\lfloor \sqrt{n} \rfloor$</li>
+      </ol>
+    </li>
+    <li>whatever not crossed out are the primes</li>
+  </ol>
+</blockquote>
+
+<p>Graphically, if you pick $n=41$:</p>
+
+<p><img src="/lectures/images/2023-05-11-COMS3203_Discrete_Math/image-20230406112112752.png" alt="image-20230406112112752" style="zoom:25%;" /></p>
+
+<p>Finally, <strong>prime factorization</strong> can be used as a good way to find GCD by hand:</p>
+
+<p><img src="/lectures/images/2023-05-11-COMS3203_Discrete_Math/image-20230406112659314.png" alt="image-20230406112659314" style="zoom:43%;" /></p>
+
+<p>so basically all you need to do is to pick the minimum power. This would be useful when you need to find GCD by hand/both $a,b$ are relatively small. Otherwise using the Euclid algorithm should be much faster.</p>
+
+<blockquote>
+  <p>Note: what is the relationship between $a \mod b$ and $a-b$?</p>
+
+  <ul>
+    <li>since $a=qb + r$, this means $a \mod b = a - b -b -b \dots -b$ with $q$ number of $b$s</li>
+    <li>this also means if $a/2 &lt; b$, then $q=1$, hence $a \mod b = a - b$</li>
+  </ul>
+</blockquote>
+
+<h2 id="modular-arithmetic">Modular Arithmetic</h2>
+
+<p>In many applications such as clock, month, cryptography in $\Z_n = {0,1,2,\dots, n-1}$, we need a “new” type of arithmetic to say something like $n+3 \to 2$  (e.g. 14pm is the same as 2pm)</p>
+
+<ul>
+  <li>
+    <p>this should remind you of the congruence modulo $n$</p>
+  </li>
+  <li>
+    <p>for example, clock would have $\Z_{12}={0,1,2,\dots, 11}$ and has 12 equivalence classes</p>
+    <ul>
+      <li>e.g. $\dots, -24,-12,0,12,24,\dots$ (given any number outside of the range, either plus 12 or minus12 until you get back into $\Z_{12}$)</li>
+      <li>e.g. $\dots, -23,-11,1,13,25,\dots$</li>
+    </ul>
+  </li>
+</ul>
+
+<p>Then defining the “arithmetics”:</p>
+
+<ul>
+  <li>
+    <p><strong>addition</strong> in $\Z_{n}$: let $a,b\in \Z_{n}$, then</p>
+
+\[a \oplus b \equiv (a+b) \bmod {n}\]
+
+    <p>e.g. let $n=10$, then $12\oplus 12 = 24 \bmod 10 = 4$.</p>
+  </li>
+  <li>
+    <p><strong>multiplication</strong>: same thing, let $a,b\in \Z_{n}$,</p>
+
+\[a \otimes b \equiv (a\times b ) \bmod n\]
+  </li>
+  <li>
+    <p><strong>subtraction</strong>: now the problem is with $a,b\in \Z_{n}$, you can get negative numbers in the sense that:</p>
+
+    <ul>
+      <li>if $a - b &gt; 0$, then $a \ominus b = (a-b)\bmod n$</li>
+      <li>if $a - b &lt; 0$, then $a \ominus b = (a-b)+n$ (i.e. add as many $n$ until you get back into $\Z_{n}$, in this case since $a,b\in \Z_n$, add once is enough)
+        <ul>
+          <li>e.g. let $n=10$, then $1-4 = -3 + 10 = 7$</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>division</strong>: same setup, but recall that</p>
+
+    <ul>
+      <li>
+        <p>in normal arithmetic we have $a / b = a \times b^{-1}$, where the reciprocal $b^{-1} = 1/ b$.</p>
+      </li>
+      <li>
+        <p>here, we want to consider</p>
+
+\[a \oslash b = a \otimes b^{-1}\]
+
+        <p>and that by definition, the reciprocal <strong>has to satisfy $b^{-1}\otimes b = 1$</strong>. <mark>Any element in $\Z_n$ that has a reciprocal is called invertible in $\Z_n$)</mark>. Therefore, this division only <mark>exists when $b$ is invertible</mark>.</p>
+
+        <ul>
+          <li>for example, for $\Z_{10}$, only the following ${1,3,7,9}$ has inverse.</li>
+          <li>you will see how this is related to coprimes.</li>
+        </ul>
+      </li>
+    </ul>
+
+    <p>How do we find the inverse in this new arithmetic?</p>
+
+    <ul>
+      <li>e.g. let $n=10$. Then $2 \oslash 7 = 2 \otimes 7^{-1} = 2 \otimes 3 = 6$, because $7^{-1}\times 3 = 21 \bmod 10 = 1$ is invertible!</li>
+    </ul>
+  </li>
+</ul>
+
+<p>Is there a systematic/mathematical way to find the inverse?</p>
+
+<blockquote>
+  <p><strong>Coprime</strong>: let $a,b\in Z^+$. We call $a,b$ being coprimes IFF $\gcd(a,b)=1$. We denote this with $a \perp b$.</p>
+
+  <ul>
+    <li>this is a generic definition for all $\Z^+$</li>
+    <li>in the case of modular arithmetic, the only <strong>invertible</strong> elements in $\Z_n$ are the <mark>coprimes with $n$</mark></li>
+  </ul>
+</blockquote>
+
+<p>Then, to find the inverse you can use:</p>
+
+<blockquote>
+  <p><strong>Extended GCD Algorithm</strong>: let $a,b,d \in \Z^+$. It turns out that if</p>
+
+\[d|a \land d |b \land d= ax+by,\quad \text{for some $x,y\in \Z$}\]
+
+  <p>then</p>
+
+\[\gcd(a,b) = d\]
+
+  <p>in other words, you can <mark>always write $\gcd(a,b)$ as $\gcd(a,b)=ax+by$!</mark></p>
+</blockquote>
+
+<p>How can this be true? Proof:</p>
+
+<ul>
+  <li>for any common divisor $d\vert a \land d \vert b$, so $d \le gcd(a,b)$ obviously</li>
+  <li>but I also said $d = ax+by$. So any common divisor of $a,b$ must divide $d$. This means $gcd(a,b)$ divides $d$, hence $d \ge gcd(a,b)$
+    <ul>
+      <li>i.e. $d$ = any common divisor times something positive.</li>
+    </ul>
+  </li>
+  <li>since $gcd(a,b) \le d$ and $\gcd(a,b) \ge d$, hence $gcd(a,b)=d$</li>
+</ul>
+
+<p><em>For example:</em> considering finding $\gcd(41,43)$, and show $\gcd(41,43)=41x+43y$</p>
+
+<p><img src="/lectures/images/2023-05-11-COMS3203_Discrete_Math/image-20230411233913776.png" alt="image-20230411233913776" style="zoom: 20%;" /></p>
+
+<p>we want to show $\gcd(a,b)=ax+by$.</p>
+
+<ul>
+  <li>
+    <p>since $\gcd(41,43)=1$ in the last step</p>
+  </li>
+  <li>
+    <p>If I take the second and third step, we have $43= 41\times 1 + 2 \implies 2 = 43 - 41 \times 1$, and $41=2\times 20 + 1 \implies 1 = 41 - 2 \times 20$.</p>
+  </li>
+  <li>
+    <p>hence I just substitute them in $1 = 41 - (43 - 41)\times 20 = 21 \times 41 - 43 \times 20$, hence</p>
+
+\[\gcd(43,41) = 1 = 43 \times (-20) + 41 \times (20) = ax + by\]
+  </li>
+</ul>
+
+<blockquote>
+  <p><strong>Modulus Division</strong>: this is a consequence of extended GCD + all invertible elements in $\Z_n$ are coprimes. Therefore, take any invertible element in $\Z_n$ we have:</p>
+
+\[\gcd(a,n)=1 = ax + ny\]
+
+  <p>therefore, notice that in modular arithmetic $ny$ goes away, hence:</p>
+
+\[a\otimes x = 1\implies x = a^{-1}\]
+
+  <p>finally, you want to <strong>be careful that $x \in \Z_n$ by mapping it back</strong>.</p>
+</blockquote>
+
+<p>For example,</p>
+
+<ul>
+  <li>
+    <p>what is $41^{-1}$ for $\Z_{43}$? We know that</p>
+
+\[\gcd(43,41) = 1 = 43 \times (-20) + 41 \times (20)\]
+
+    <p>therefore, $41^{-1}=20$.</p>
+  </li>
+  <li>
+    <p>what is $3^{-1}$ for $\Z_{40}$? Given that</p>
+
+\[\gcd(3, 40) = 1 =  3 \times (-13) + 40 \times (1)\]
+
+    <p>therefore, $3^{-1}=13 + 40=27$</p>
+  </li>
+</ul>
+
+<h2 id="public-key-cryptography">Public Key Cryptography</h2>
+
+<p>Here we discuss the basics of RSA</p>
+
+<ol>
+  <li>
+    <p>Bob will pick two large  prime numbers $p,q$, such that $n=p \times q$</p>
+  </li>
+  <li>
+    <p>Bob chooses an $e$ that is coprime with $(p-1)$ and $(q-1)$ so that</p>
+
+\[\gcd(e, (p-1)(q-1)) =1\]
+
+    <p>and also knows $d=e^{-1}$ is invertible (and easy to find knowing $p,q$). This is the <strong>secret key.</strong></p>
+  </li>
+  <li>
+    <p>the public key is invertible, $n,e$ is sent to Alice (and everybody can see the two). This is <strong>public key</strong>.</p>
+  </li>
+  <li>
+    <p>Alice then prepares the encrypted message and encrypt it with $e$ to get $E(m)=m^e \bmod n$</p>
+  </li>
+  <li>
+    <p>Bob then inverts this by, recall that $e\otimes d=1$, hence</p>
+
+\[E^{-1}(E(m)) = (m^e)^d \bmod n = m\]
+
+    <p>decodes it back.</p>
+  </li>
+</ol>
+
+<blockquote>
+  <p>So the key idea is you need $d$ to decode, but finding $d=e^{-1}$ will take years to compute if you don’t know it (or $p,q$) in advance.</p>
+</blockquote>
+
+<h1 id="counting">Counting</h1>
+
+<p>Here we will talk about</p>
+
+<ol>
+  <li>counting lists: arrangements, permutations, anagrams</li>
+  <li>counting sets: combination, pascal triangle, binomial coefficients</li>
+</ol>
+
+<h2 id="counting-lists">Counting Lists</h2>
+
+<blockquote>
+  <p><strong>Multiplication Theorem</strong>: the number of lists of length $k$ where elements can be chosen from a set of $n$ possible elements is</p>
+
+\[\begin{cases}
+n^k, &amp; \text{if repetitions are allowed}\\
+(n)_k \equiv n!/(n-k)!, &amp; \text{if repetitions not allowed}
+\end{cases}\]
+
+  <p>where $(n)_k$ is called the <em>fallen factorial</em> because it does not go all the way down to $1$. This is basically <mark>permutations</mark>.</p>
+</blockquote>
+
+<p>Essentially we are constructing <em>lists</em> = order matters = permutations.</p>
+
+<p>For example:</p>
+
+<ul>
+  <li>making phone numbers (list of length $10$) from all numbers $0\sim 9$ <em>with repetition</em> is $10^{10}$.</li>
+  <li>making phone numbers (list of length $4$) from all numbers <em>without repetition</em> is $(10)_4 = 10! / 6!$</li>
+  <li>if you have $5$ shirts, $3$ pants, and $4$ pairs of shoes, how many outfits can you make? $5\times 3\times 4$.</li>
+</ul>
+
+<blockquote>
+  <p><strong>Anagrams</strong>: a permutation of the letters in a word, without repetition.</p>
+</blockquote>
+
+<p>for example:</p>
+
+<ul>
+  <li>how may anagrams can you create from “math”? $4!=24$ ways</li>
+  <li>what about from “momo”? We need to be careful of duplicates created by repeating “m” ($2!$ ways) and “o” ($2$! ways). Therefore $4!/(2!\times 2!)$</li>
+</ul>
+
+<p>We can write the above process in a general formula:</p>
+
+\[\frac{n!}{n_1!\times n_2!\times \dots \times n_k!} = \frac{n!}{\Pi_{i=1}^k n_i!}\]
+
+<p>where there are $k$ unique letters, and each of those letters repeated $n_k$ times.</p>
+
+<h2 id="counting-sets">Counting Sets</h2>
+
+<p>Now, we want <mark>combinations</mark> of $k$ elements taken from a set of $n$ possible element. Since we are counting sets = <strong>order does not matter</strong></p>
+
+<blockquote>
+  <p><strong>Combination</strong>: the set of $k$ elements <mark>sets</mark> of $n$ elements of an $n$-element set such that $0 &lt; k \le n$ is called a combination</p>
+</blockquote>
+
+<blockquote>
+  <p><strong>Binomial Coefficient</strong>: let $n,k&gt;0$. A binomial coefficient denoted as</p>
+
+\[{n \choose k} = \frac{n!}{(n-k)!k!} = \frac{(n)_k}{k!}\]
+
+  <p>is the number of combinations of choosing (sets of $k$ elements) from $n$ elements. $k!$ represents, given a permutation $[a,b,c]$, the number of ways you can <em>double count</em> if you are counting combinations.</p>
+</blockquote>
+
+<p>Why is it called binomial coefficients? Consider $(x+y)^k$. Then essentially you get</p>
+
+\[(x+y)^k = \underbrace{xx...xxx}_{\text{length $k$}} + xx...xxy + xx..xyy  + \dots + yy...yyy\]
+
+<p>therefore, to <em>collect</em> terms into $x^iy^{k-i}$, it becomes a combination problem $k\choose i$. Therefore you also get</p>
+
+<blockquote>
+  <p><strong>Binomial Theorem</strong>: let $n\in \N$, then</p>
+
+\[(x+y)^n = \sum_{k=0}^n {n \choose k} x^{n-k}y^k\]
+
+</blockquote>
+
+<p>Pascal’s triangle: <em>visually</em> you can decompose a combination $n \choose k$ into two terms:</p>
+
+<p><img src="/lectures/images/2023-05-11-COMS3203_Discrete_Math/image-20230423025442744.png" alt="image-20230423025442744" style="zoom:50%;" /></p>
+
+<p>For example, we have on the 3rd row ${3 \choose 0}=1$ and ${3 \choose 1}=3$, etc, but realize that:</p>
+
+\[{3 \choose 1}= {2 \choose 0}+ {2 \choose 1}\]
+
+<blockquote>
+  <p><strong>Pascal’s Identity</strong>: for $n,k\in \Z$, and $0 &lt; k &lt; n$ is positive</p>
+
+\[{n \choose k} = {n-1 \choose k-1} + {n-1 \choose k}\]
+
+  <p>Intuitively, this works because:</p>
+
+  <ul>
+    <li>first ${n \choose k}$ represents finding <strong>sets of size $k$</strong> out of $n$ distinct elements</li>
+    <li>let there be a “special element $sp$” amongst the $n$ element. The ${n \choose k}$ means “sets of size $k$ that includes $sp$” + “sets of size $k$ that exludes $sp$”. Hence we get:
+      <ul>
+        <li>“sets of size $k$ that (already) includes $sp$”  = choosing $k-1$ elements out of $n-1$</li>
+        <li>“sets of size $k$ that exludes $sp$” = choosing $k$ elements out of $n-1$</li>
+      </ul>
+    </li>
+  </ul>
+</blockquote>
+
+<p>From the above you also see the symmetry of combinations</p>
+
+<blockquote>
+  <p><strong>Rabbit property</strong>: the following are equivalent</p>
+
+\[{n \choose k} = {n \choose n-k}\]
+
+  <p>this makes sense because, say you are choosing a team of $k$ members out of $n$ people. Then for each team of $k$ you choose, you <strong>also implicitly chose a team of $n-k$</strong>. Since there is a one-to-one mapping of the teams you choose/left out = equality.</p>
+</blockquote>
+
+<h2 id="inclusion-exclusion-principle">Inclusion Exclusion Principle</h2>
+
+<p>This is essentially used to count <strong>size of union sets</strong> with arbitrarily large number of sets.</p>
+
+<p>For example, let there be 4 sets,</p>
+
+<p><img src="/lectures/images/2023-05-11-COMS3203_Discrete_Math/image-20230423032103704.png" alt="image-20230423032103704" style="zoom:23%;" /></p>
+
+<p>and you want to figure out the <strong>union size</strong> $\vert G \cup P \cup V \cup F\vert$?</p>
+
+<p>The finding is that (without proof), let $A_1, …,A_n$ be finite sets, then</p>
+
+<p><img src="/lectures/images/2023-05-11-COMS3203_Discrete_Math/image-20230423032434999.png" alt="image-20230423032434999" style="zoom: 33%;" /></p>
+
+<p>so the sign is alternating. This leads to a general formula</p>
+
+<blockquote>
+  <p><strong>Principle of Inclusion/Exclusion</strong> (PIE): there is an alternating sign as the number of sets $\cap$ increases. Hence</p>
+
+\[\left| \bigcup_{i=1}^n A_i \right| = \underbrace{\sum_{i=1}^n |A_i|}_{\text{n choose 1 terms}} - \underbrace{\sum_{1\le i &lt;j\le n} |A_i \cap A_j|}_{\text{n choose 2 terms}} + ...+\underbrace{(-1)^{n-1}|A_1 \cap ... A_n|}_{\text{n choose n terms}}\]
+
+  <p>basically a formulaic way if there are large number of sets so that <em>Venn diagram is not drawable</em>.</p>
+</blockquote>
+
+<p><em>For example:</em> At the music academy, there are 43 students taking piano $A_P$, 57 students taking violin $A_V$, 29 students taking guitar $A_G$, and 18 taking flute $A_F$. There are 10 students in any two of these courses, 5 students in any three of them and 2 taking all courses. How many students are taking at least one course at the music academy?</p>
+
+<p>This is equivalent of answering $\vert A_P\cup A_V\cup A_G \cup A_F\vert$, hence we get from PIE</p>
+
+<ul>
+  <li>
+    <p>add $\vert A_P\vert  + \vert A_V\vert + \vert A_G\vert + \vert A_F\vert$ already known</p>
+  </li>
+  <li>minus $(\vert A_P\cap A_V\vert  + \vert A_P \cap A_G\vert  + …)$. Since “there are 10 students in any two of these courses” and there are 4 choose 2 ways to choose the two groups we get $10 \times {4 \choose 2}$</li>
+  <li>add $(\vert A_P \cap A_V \cap A_G\vert + …)$ etc.</li>
+</ul>
+
+<p>So we have</p>
+
+\[|A_P\cup A_V\cup A_G \cup A_F| = \underbrace{43+57+29+18}_{\text{1 term}} - \underbrace{10 \times {4 \choose 2}}_{\text{2 terms}} + \underbrace{5 \times {4 \choose 3}}_{\text{3 terms}} - \underbrace{2}_{\text{4 terms}} = 105\]
+
+<h1 id="graph-theory">Graph Theory</h1>
+
+<blockquote>
+  <p>We will focus on simple graphs, that are <strong>undirected</strong>, has <strong>no loops</strong> (but can have cycle), and has <strong>no parallel edges</strong> (cycle of two nodes). So</p>
+
+  <ul>
+    <li><mark>at most one</mark> edge can exist for a pair of nodes</li>
+    <li>should look simple as well</li>
+  </ul>
+</blockquote>
+
+<p>Some definitions:</p>
+
+<p><img src="/lectures/images/2023-05-11-COMS3203_Discrete_Math/image-20230423035411986.png" alt="image-20230423035411986" style="zoom: 25%;" /></p>
+
+<blockquote>
+  <p><strong>Graph</strong>: A graph consists of a set of vertices and edges:</p>
+
+\[G=(V,E)\]
+
+  <p>in the example above, this graph can be denoted as</p>
+
+\[G=(\{u,v,w,x,y,z\},\{e_1,...,e_8\})\]
+
+</blockquote>
+
+<blockquote>
+  <p><strong>Edge</strong>: An edge in a graph joints two vertices (e.g. $u,v$). This edge can be denoted either as $uv$, ${u,v}$, or you can name it $e_1$.</p>
+</blockquote>
+
+<p>More definitions</p>
+
+<ul>
+  <li>
+    <p><strong>adjacent</strong>: two <em>nodes</em> $u$ and $v$ are adjacent if there is an edge directly connecting them. Denoted as $u \sim v$.</p>
+  </li>
+  <li>
+    <p><strong>neighborhood</strong>: the <em>set</em> of nodes that has an edge directly connecting it. Denoted as</p>
+
+\[\mathcal{N}(x)=\{ v \in V | v \sim x \}\]
+  </li>
+  <li>
+    <p><strong>degree</strong>: The number of neighbors of a vertex is called its degree, denoted</p>
+
+\[d(x) = |\mathcal{N}(x)|\]
+
+    <p>for example, $d(w)=2$ in the above figure as there are two connections. Furthermore, we denote</p>
+
+    <ul>
+      <li><strong>max degree of a graph</strong> as $\Delta(G)$. In the above figure $\Delta(G)=5$</li>
+      <li><strong>min degree of a graph</strong> as $\delta(G)$. In the above figure $\delta(G)=1$</li>
+    </ul>
+  </li>
+</ul>
+
+<p>Observe that in the above example</p>
+
+<p><img src="/lectures/images/2023-05-11-COMS3203_Discrete_Math/image-20230423041224774.png" alt="image-20230423041224774" style="zoom: 33%;" /></p>
+
+<p>So why twice? The proof is quite intuitive</p>
+
+<ul>
+  <li>adding each edge adds a total degree of 2 to the graph</li>
+  <li>if there are $\vert E\vert$ edges, then total degree is $2\vert E\vert$.</li>
+</ul>
+
+<blockquote>
+  <p><strong>Handshaking</strong>: The sum of the degrees of each vertex in a graph $G=(V,E)$ is equal to twice the number of edges.</p>
+
+\[\sum_{u\in V}d(v) = 2|E|\]
+
+  <p>(this holds for non-simple graphs as well, if you treat a loop as an edge)</p>
+</blockquote>
+
+<p>This also means that <mark>a graph's total degree must be even</mark>.</p>
+
+<h2 id="isomorphism">Isomorphism</h2>
+
+<p>Now, we move to studying isomorphism between graphs, which arises when two graphs have the “<strong>same form.</strong>”</p>
+
+<blockquote>
+  <p><strong>Isomorphism</strong>: Two graphs $G=(V_G, E_G)$ and $H=(V_H, E_H)$ are isomorphic (“same-form”) if and only if there exists a bijective function (i.e. <strong>mapping of vertices</strong>) representing an isomorphism of $G$ to $H$:</p>
+
+\[f:V_G \to V_H\]
+
+  <p>such that</p>
+
+\[\forall u,v \in V_G, \quad u \sim v \text{ in $G$} \iff f(u) \sim f(v) \text{ in $H$}\]
+
+  <p>i.e. it requires <mark>adjacency between vertices is the same</mark></p>
+</blockquote>
+
+<p>Below would be an example</p>
+
+<p><img src="/lectures/images/2023-05-11-COMS3203_Discrete_Math/image-20230423115306098.png" alt="image-20230423115306098" style="zoom:33%;" /></p>
+
+<p>But below is not</p>
+
+<p><img src="/lectures/images/2023-05-11-COMS3203_Discrete_Math/image-20230423115405904.png" alt="image-20230423115405904" style="zoom:33%;" /></p>
+
+<p>because realize that the left graph has an edge connecting a vertex with (degree = 1) with (degree = 3), but the right graph only has (degree = 2) with (degree = 3).</p>
+
+<p>In general:</p>
+
+<ul>
+  <li><strong>to prove isomorphism</strong>: find a bijection and show that the adjacency property (edge to endpoints) is preserved
+    <ul>
+      <li>this is generally considered a hard problem, as there is <em>no efficient algorithm</em> to find the bijection.</li>
+    </ul>
+  </li>
+  <li><strong>to prove non-isomorphism</strong>: if adjacency are preserved, then there <strong>will be some invariant properties</strong> such as degrees. Therefore, if some properties are violated then they cannot be isomorphic</li>
+</ul>
+
+<p><img src="/lectures/images/2023-05-11-COMS3203_Discrete_Math/image-20230423115939111.png" alt="image-20230423115939111" style="zoom:33%;" /></p>
+
+<h2 id="types-of-graphs">Types of Graphs</h2>
+
+<p>some common types of graphs, which can have some useful properties.</p>
+
+<blockquote>
+  <p><strong>Null graph</strong>: A graph that does not have edges. So you have $G=(V, {})$. This is also often denoted as</p>
+
+\[L_n = \text{null graph with n nodes}\]
+
+  <p>e.g $L_1$ is one vertex zero edge, $L_2$ is two vertex zero edge, …</p>
+</blockquote>
+
+<blockquote>
+  <p><strong>Complete graph</strong>: A graph with <strong>every possible pair of vertices</strong> has an edge. We use $K_n$ to denote a complete graph with $n$ vertices.</p>
+</blockquote>
+
+<p>for example:</p>
+
+<p><img src="/lectures/images/2023-05-11-COMS3203_Discrete_Math/image-20230423121353025.png" alt="image-20230423121353025" style="zoom:37%;" /></p>
+
+<p>notice that</p>
+
+<ul>
+  <li>$K_1 = L_1$!</li>
+  <li>for <mark>every vertex $v$,  it has $\deg(v)=n-1$!</mark></li>
+</ul>
+
+<blockquote>
+  <p><strong>Path graph</strong>: A path graph has vertices ${v_1,…,v_n}$ and edges ${e_1,…,e_{n-1}}$  such that <strong>an edge $e_k$ joins ${v_k, v_{k+1}}$</strong>. We use $P_n$ to denote path graphs with $n$ vertices.</p>
+</blockquote>
+
+<p>For example</p>
+
+<p><img src="/lectures/images/2023-05-11-COMS3203_Discrete_Math/image-20230423121642105.png" alt="image-20230423121642105" style="zoom: 33%;" /></p>
+
+<p>notice that $\vert V\vert -1=\vert E\vert$.</p>
+
+<blockquote>
+  <p><strong>Cycle Graph</strong>: A path graph has vertices ${v_1,…,v_n}$ and edges ${e_1,…,e_{n}}$  such that an edge $e_k$ joins ${v_k, v_{k+1}}$ <strong>where $k+1$ is “$\bmod n$”</strong>. We use $C_n$ to denote path graphs with $n$ vertices.</p>
+</blockquote>
+
+<p>For example:</p>
+
+<p><img src="/lectures/images/2023-05-11-COMS3203_Discrete_Math/image-20230423122142344.png" alt="image-20230423122142344" style="zoom:33%;" /></p>
+
+<p>where notice that:</p>
+
+<ul>
+  <li><mark>all vertex has exactly degree 2</mark></li>
+  <li>and $\vert V\vert =\vert E\vert$.</li>
+</ul>
+
+<blockquote>
+  <p><strong>Regular Graph</strong>: A graph is regular provided <strong>every vertex has the same degree</strong></p>
+
+  <ul>
+    <li>so a $C_n$ is a regular graph of degree 2</li>
+    <li>a $K_n$ complete graph is also regular of degree $n-1$</li>
+    <li>a $L_n$ is also a regular of degree 0.</li>
+  </ul>
+</blockquote>
+
+<h2 id="properties-of-graphs">Properties of Graphs</h2>
+
+<p>Now we can talk about certain properties. First a few more definitions.</p>
+
+<blockquote>
+  <p><strong>Walk</strong>: A walk in $G$ is just <mark>any</mark> sequence of vertices where each vertex is adjacent to the next vertex (i.e. you can physically walk on the graph given this sequence).</p>
+</blockquote>
+
+<p>For example, given this graph</p>
+
+<p><img src="/lectures/images/2023-05-11-COMS3203_Discrete_Math/image-20230423123320755.png" alt="image-20230423123320755" style="zoom:43%;" /></p>
+
+<p>where:</p>
+
+<ul>
+  <li>$(u,v,w,v,x)$ is a walk of length 4.</li>
+  <li>$(v)$ is a walk of length 0.</li>
+  <li>$(u,u,x,v,w)$ is NOT a walk because $u$ does not have a connection to $u$</li>
+</ul>
+
+<blockquote>
+  <p><strong>Path</strong>: A path in a graph is a <strong>walk</strong> in which <mark>no vertex</mark> is repeated. We denote a path of length $n-1$ with $n$ vertices as $P_n$.</p>
+
+  <p>Additionally, we denote <strong>$(u,v)$-path</strong> is a path that starts at vertex $u$ and ends at vertex $v$.</p>
+</blockquote>
+
+<p>Then we can define</p>
+
+<blockquote>
+  <p><strong>Connected Graph</strong>: A graph $G=(V,E)$ is called a connected graph provided <mark>each pair of vertices is connected by a path</mark> (i.e. you can reach any vertex from some random vertex). Formally:</p>
+
+\[\forall u, v \in V,\quad \exists (u,v)\text{-path}\]
+
+</blockquote>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">connected</th>
+      <th style="text-align: center">disconnected</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><img src="https://www.tutorialspoint.com/discrete_mathematics/images/connected_graph.jpg" alt="Connected vs Disconnected Graphs" style="zoom:50%;" /></td>
+      <td style="text-align: center"><img src="https://www.tutorialspoint.com/discrete_mathematics/images/unconnected_graph.jpg" alt="Connected vs Disconnected Graphs" style="zoom:50%;" /></td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="trees">Trees</h2>
+
+<blockquote>
+  <p><strong>Tree</strong>: Let $T=G=(V,E)$. $G$ is a tree iff it is connected and <strong>has no cycle (acyclic)</strong>. A cycle can be seen as a path in which the first and last variables are the same. A graph that is acyclic contains <mark>no such paths</mark>.</p>
+</blockquote>
+
+<p><img src="https://static.cambridge.org/binary/version/id/urn:cambridge.org:id:binary:20171027092037172-0306:9781316105450:08931fig2_1.png?pub-status=live" alt="Shapes of Graphs: Trees to Triangles (Chapter 2) - Applying Graph Theory in  Ecological Research" style="zoom:33%;" /></p>
+
+<p>some properties of trees include:</p>
+
+<ul>
+  <li>there is <mark>exactly one path</mark> to reach from one vertex to another (since there is no cycle)</li>
+  <li>for a tree <mark>$\vert V\vert  = \vert E\vert +1$</mark> (which can be proven by induction)</li>
+  <li>A graph is a tree if and only if it a <mark>minimal connected</mark> (if you take out one edge, it becomes disconnected)</li>
+</ul>
+
+<blockquote>
+  <p><strong>Leaf</strong>: let $G=(V,E)$, then a vertex of <strong>degree 1</strong> is called a leaf in a tree. And if you take out any of the leaf nodes, you <strong>still have a tree</strong></p>
+</blockquote>
+
+<blockquote>
+  <p><strong>Theorem</strong>: let $G=(V,E)$. $G$ is tree provided that</p>
+
+\[\forall u,v \in V \quad \exists!\text{u-v path}\]
+
+</blockquote>
+
+<blockquote>
+  <p><strong>Theorem</strong>: for a tree $\vert V\vert =\vert E\vert +1$</p>
+</blockquote>
+
+<p><em>Proof</em>: by induction.</p>
+
+<ul>
+  <li>
+    <p>base case: $\vert V\vert =1$ with $\vert E\vert =0$ holds with tree of 1 vertex</p>
+  </li>
+  <li>
+    <p>inductive hypothesis: suppose $T_k$ is a tree with $k$ vertices. Suppose the proposition holds for $T_k$.</p>
+
+\[|E_{T_k}| = |V_{T_k}| - 1\]
+
+    <p>i.e. it has <strong>$k$ vertices with $k-1$ edges</strong>.</p>
+  </li>
+  <li>
+    <p>inductive step: it works for a tree $T_{k+1}$, because $T_{k+1}$ must be $T_k$ <strong>plus a leaf node</strong>. So suppose we derach one leaf of $T_{k+1}$, we get a tree $T_k$. Therefore it <strong>means $T_{k+1}$ has one extra edge than $T_k$</strong> (and one leaf node).</p>
+
+\[|E_{T_{k+1}}|=k=(k+1)-1\]
+
+    <p>holds</p>
+  </li>
+</ul>
+
+<blockquote>
+  <p><strong>Hamiltonian Path</strong>: is a <mark>path</mark> containing <mark>all vertices</mark> (recall that a path walk <mark>without repeating vertices</mark>).</p>
+</blockquote>
+
+<p><img src="/lectures/images/2023-05-11-COMS3203_Discrete_Math/image-20230425123039505.png" alt="image-20230425123039505" style="zoom:13%;" /></p>
+
+<ul>
+  <li>
+    <p>How many walks are there between $a,b$? There is an <strong>infinity of walks</strong> since there are cycles</p>
+  </li>
+  <li>
+    <p>How many paths are there between $a,b$? There are $4\times 2= 8$. How?</p>
+    <ul>
+      <li>it is equivalent to #ways to reach $a_7$ from $a$ times #ways to reach from $a_7$ to $b$.</li>
+    </ul>
+  </li>
+</ul>
+
+<p>There is no Hamiltonian path between $a$ and $b$. (complicated, in this case by enumeration)</p>
+
+<p><em>For Example</em>: let $K_n$ be a complete graph with $n\ge 2$. How many Hamiltonian paths are there <strong>in total</strong>, between any pair of vertices?</p>
+
+<ul>
+  <li>notice that a complete graph is one for <em>every pair of vertex there is an edge</em>.
+    <ul>
+      <li>for $K_2$, since you can reach any from any other, there are two boxes = $2!$ ways (<code class="language-plaintext highlighter-rouge">ab</code> and <code class="language-plaintext highlighter-rouge">ba</code>)</li>
+      <li>for $K_3$, you have $3!$ ways (<code class="language-plaintext highlighter-rouge">abc</code>, <code class="language-plaintext highlighter-rouge">acb</code>, <code class="language-plaintext highlighter-rouge">bac</code>, <code class="language-plaintext highlighter-rouge">bca</code>, <code class="language-plaintext highlighter-rouge">cab</code>, <code class="language-plaintext highlighter-rouge">cba</code>)</li>
+      <li>for $K_4$, you have $4!$ ways</li>
+    </ul>
+  </li>
+  <li><strong>so in total $n!$ Hamiltonian path for $K_n$</strong></li>
+</ul>
+
+<h2 id="eulerian-graphs">Eulerian Graphs</h2>
+
+<blockquote>
+  <p><strong>Eulerian trail</strong>: a <mark>walk</mark> in $G=(V,E)$ is called an eulerian trail provided it traverses every <mark>edge exactly once</mark>.</p>
+</blockquote>
+
+<blockquote>
+  <p><strong>Eulerian tour</strong>: if an Eulerian trail start and end at the same vertex, it is called an Eulerian tour.</p>
+</blockquote>
+
+<blockquote>
+  <p><strong>Eulerian graph</strong>: A graph with an Eulerian tour is called an Eulerian graph.</p>
+</blockquote>
+
+<p><em>For example</em>: consider the following graphs</p>
+
+<p><img src="/lectures/images/2023-05-11-COMS3203_Discrete_Math/image-20230425105112462.png" alt="image-20230425105112462" style="zoom:33%;" /></p>
+
+<ul>
+  <li>for graph $H$, we can
+    <ul>
+      <li>have an Eulerian trail from<code class="language-plaintext highlighter-rouge">x</code> to <code class="language-plaintext highlighter-rouge">y</code>: $x-v-u-w-v-y-w-x-y$.</li>
+      <li>there is <em>no Eulerian tour</em> in $H$.</li>
+    </ul>
+  </li>
+  <li>for graph $G$, we can
+    <ul>
+      <li>no Eulerian tour nor Eulerian trail in $G$</li>
+    </ul>
+  </li>
+</ul>
+
+<p>How do we justify? Realize if you have even one <strong>vertex with odd degrees</strong>, then there cannot be an Eulerian tour.</p>
+
+<ul>
+  <li>because to go out and get back, you in general must do <code class="language-plaintext highlighter-rouge">out</code> and <code class="language-plaintext highlighter-rouge">in</code>. So the degree <mark>has to be even</mark>.</li>
+</ul>
+
+<blockquote>
+  <p>Theorem: let $G$ be a connected graph. If <strong>every vertex $v\in V(G)$ has even degree</strong>, then there is an Eulerian <mark>tour</mark> that begins and ends at (every) $v$</p>
+</blockquote>
+
+<blockquote>
+  <p>Theorem: let $G$ be a connected graph with <strong>exactly two vertices of odd degree $u,v$.</strong> Then $G$ has a Eulerian <mark>trail</mark> that begins at $u$ and ends at $v$.</p>
+</blockquote>
+
+<p><em>For Example</em>: how many non-isomorphic graph with $n$ vertices are there? Given $n=4$,</p>
+
+<ul>
+  <li>
+    <p>there are ${4 \choose 2}=6$ possible edges to place into a graph of 4 nodes.</p>
+  </li>
+  <li>
+    <p>for every graph, you can choose to <strong>have the edge or not</strong>. Hence <mark>$2^6$ possible graphs</mark> (including isomorphic)</p>
+
+\[\square \square \square \square \square \square\]
+  </li>
+  <li>
+    <p>for non-isomorphic graph, you will need to draw all the equivalence groups/isomorphism</p>
+  </li>
+  <li>
+    <p>there you will find there are 11 of them/non-isomorphic graph</p>
+  </li>
+</ul>
+
+<blockquote>
+  <p>There is an formula for this, but in the course we pretend we don’t know, and we have to count.</p>
+</blockquote>
+
+<h2 id="planar-graphs">Planar Graphs</h2>
+
+<p>Is it possible to feed every house with utility without a cable (edge) crossing other edges?</p>
+
+<blockquote>
+  <p><strong>Planar Graph</strong>: A graph is a planar graph if it can be drawn in a <strong>two-dimensional space</strong> with <strong>no crossing edges</strong>. A planar graph divides the plane into areas called <strong>faces</strong>.</p>
+</blockquote>
+
+<p><em>For Example</em>: square graph being planar v.s. not planar.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">non-planar</th>
+      <th style="text-align: center">planar</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><img src="/lectures/images/2023-05-11-COMS3203_Discrete_Math/image-20230425123212482.png" alt="image-20230425123212482" style="zoom: 10%;" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2023-05-11-COMS3203_Discrete_Math/image-20230425123422760.png" alt="image-20230425123422760" style="zoom:10%;" /></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>where the planar graph no the right has “non-overlapping” faces.</p>
+
+<blockquote>
+  <p>Theorem: For <strong>every connected planar graph</strong>, we have:</p>
+
+\[v+f = e+2\]
+
+  <p>where $v$ is the number of vertices, $e$ the number of edges, and $f$ the number of faces.</p>
+</blockquote>
+
+  </div><a class="u-url" href="/lectures/2022@columbia/COMS3203_Discrete_Math.html/" hidden></a>
+  <script src="/lectures/assets/js/my_navigation.js"></script>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/lectures/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Lecture Notes</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Lecture Notes</li><li><a class="u-email" href="mailto:jasonyux17@gmail.com">jasonyux17@gmail.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/jasonyux"><svg class="svg-icon"><use xlink:href="/lectures/assets/minima-social-icons.svg#github"></use></svg> <span class="username">jasonyux</span></a></li><li><a href="https://www.linkedin.com/in/xiao-yu2437"><svg class="svg-icon"><use xlink:href="/lectures/assets/minima-social-icons.svg#linkedin"></use></svg> <span class="username">xiao-yu2437</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>An inexhaustive collection of markdown/latex(PDF) notes that I took since college. </p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

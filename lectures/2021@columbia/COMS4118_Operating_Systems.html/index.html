@@ -13,11 +13,11 @@
 <meta property="og:url" content="/lectures/2021@columbia/COMS4118_Operating_Systems.html/" />
 <meta property="og:site_name" content="Lecture Notes" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2022-01-04T00:00:00-05:00" />
+<meta property="article:published_time" content="2022-01-04T00:00:00+00:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="COMS4118 Operating Systems" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2022-01-04T00:00:00-05:00","datePublished":"2022-01-04T00:00:00-05:00","description":"An inexhaustive collection of markdown/latex(PDF) notes that I took since college.","headline":"COMS4118 Operating Systems","mainEntityOfPage":{"@type":"WebPage","@id":"/lectures/2021@columbia/COMS4118_Operating_Systems.html/"},"url":"/lectures/2021@columbia/COMS4118_Operating_Systems.html/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2022-01-04T00:00:00+00:00","datePublished":"2022-01-04T00:00:00+00:00","description":"An inexhaustive collection of markdown/latex(PDF) notes that I took since college.","headline":"COMS4118 Operating Systems","mainEntityOfPage":{"@type":"WebPage","@id":"/lectures/2021@columbia/COMS4118_Operating_Systems.html/"},"url":"/lectures/2021@columbia/COMS4118_Operating_Systems.html/"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/lectures/assets/main.css"><link type="application/atom+xml" rel="alternate" href="/lectures/feed.xml" title="Lecture Notes" /></head>
 <body><header class="site-header">
@@ -66,7 +66,7 @@
   </head>
   <header class="post-header">
     <h1 class="post-title p-name" itemprop="name headline">COMS4118 Operating Systems</h1>
-    <p class="post-meta"><time class="dt-published" datetime="2022-01-04T00:00:00-05:00" itemprop="datePublished">
+    <p class="post-meta"><time class="dt-published" datetime="2022-01-04T00:00:00+00:00" itemprop="datePublished">
         Jan 4, 2022
       </time></p>
   </header>
@@ -7389,7 +7389,7 @@ and a second for normal tasks.</li>
 
   <ul>
     <li>
-      <p>Since we essentially need to <em>index the virtual address</em> to get a physical address, we need away to ==TODO?==</p>
+      <p>Since we essentially need to <em>index the virtual address</em> to get a physical address, we need away to <mark>TODO?</mark></p>
     </li>
     <li>
       <p>The <em>virtual address</em> will be split into two parts, <strong>page number</strong> and <strong>offset</strong>:</p>
@@ -7999,7 +7999,7 @@ and a second for normal tasks.</li>
 <blockquote>
   <p><strong>Buddy Algorithm</strong></p>
 
-  <p>==TODO==</p>
+  <p><mark>TODO</mark></p>
 
   <p><img src="\lectures\images\typora-user-images\image-20210326153029152.png" alt="image-20210326153029152" style="zoom:50%;" /></p>
 
@@ -9836,7 +9836,7 @@ and a second for normal tasks.</li>
 <h2 id="virtual-file-system">Virtual File System</h2>
 
 <blockquote>
-  <p>==Some Useful References:==</p>
+  <p><mark>Some Useful References:</mark></p>
 
   <ul>
     <li>https://www.kernel.org/doc/html/latest/filesystems/index.html</li>
@@ -9986,7 +9986,7 @@ and a second for normal tasks.</li>
 
   <ul>
     <li>
-      <p>since we are writing to <em>Page Cache</em>  before actually to disk, this means that ==abnormally shutting your system down== could lead to some data missing because they are <strong>not yet flushed to disk from RAM</strong></p>
+      <p>since we are writing to <em>Page Cache</em>  before actually to disk, this means that <mark>abnormally shutting your system down</mark> could lead to some data missing because they are <strong>not yet flushed to disk from RAM</strong></p>
     </li>
     <li>
       <p>Therefore, there are usually <strong>system threads</strong> that periodically do those flushes. So if you do a <em>proper shutdown</em>, those threads would be waken up and flush things to disk.</p>
@@ -10034,7 +10034,7 @@ and a second for normal tasks.</li>
 <ul>
   <li>a <strong>disk arm</strong> that slides back and forth to <strong>read data from disk</strong>
     <ul>
-      <li>this is known as ==disk seek==</li>
+      <li>this is known as <mark>disk seek</mark></li>
       <li>since it is mechanical, this is slow</li>
     </ul>
   </li>
@@ -10056,7 +10056,7 @@ and a second for normal tasks.</li>
 
 <h3 id="io-request">I/O Request</h3>
 
-<p>When you do a <code class="language-plaintext highlighter-rouge">read()</code> or <code class="language-plaintext highlighter-rouge">write()</code>, if you needed something from the <strong>disk</strong>, Linux will do it by ==submitting an I/O Request==</p>
+<p>When you do a <code class="language-plaintext highlighter-rouge">read()</code> or <code class="language-plaintext highlighter-rouge">write()</code>, if you needed something from the <strong>disk</strong>, Linux will do it by <mark>submitting an I/O Request</mark></p>
 
 <p><img src="/lectures/images/2022-01-04-COMS4118_Operating_Systems/Snipaste_2021-04-08_14-16-32.png" style="zoom:67%;" /></p>
 
@@ -10070,15 +10070,15 @@ and a second for normal tasks.</li>
   </li>
   <li>we want to <strong>optimize</strong> it by possibly <em>merging requests</em> and <em>attempt to maximize data locality</em>
     <ul>
-      <li>==merge the requests== if possible
+      <li><mark>merge the requests</mark> if possible
         <ul>
           <li>if the contents to be read is contiguous for two requests</li>
         </ul>
       </li>
-      <li>if not, ==sort the requests==
+      <li>if not, <mark>sort the requests</mark>
         <ul>
           <li>if the contents to be read is close to each other but not contiguous, <strong>put/sort  the two requests close to each other</strong> (so I can handle nearby requests)</li>
-          <li>then, you also have to solve the problem of ==starvation==</li>
+          <li>then, you also have to solve the problem of <mark>starvation</mark></li>
         </ul>
       </li>
     </ul>
@@ -10107,7 +10107,7 @@ and a second for normal tasks.</li>
 
       <ul>
         <li>
-          <p>the requests in those two queues are ==pulled from the sorted queue==</p>
+          <p>the requests in those two queues are <mark>pulled from the sorted queue</mark></p>
         </li>
         <li>
           <p>requests on those two queue are <strong>ordered by their deadlines</strong></p>
@@ -10274,7 +10274,7 @@ and a second for normal tasks.</li>
 
 <p><img src="/lectures/images/2022-01-04-COMS4118_Operating_Systems/Snipaste_2021-04-08_15-17-24.png" style="zoom: 67%;" /></p>
 
-<p>Some ways to store data on disk that ==does not work== are</p>
+<p>Some ways to store data on disk that <mark>does not work</mark> are</p>
 
 <ul>
   <li>allocate a contiguous block for file data $\iff$ doesn’t work since size might change (e.g. append stuff)</li>
@@ -10310,7 +10310,7 @@ and a second for normal tasks.</li>
 <p>However, this turns out to be a good idea because:</p>
 
 <ul>
-  <li><strong>centralized important information</strong> $\to$ RAM can keep a copy of this in ==Cache== $\to$ RAM knows <em>block addresses in advance</em></li>
+  <li><strong>centralized important information</strong> $\to$ RAM can keep a copy of this in <mark>Cache</mark> $\to$ RAM knows <em>block addresses in advance</em></li>
 </ul>
 
 <h3 id="index-node">Index Node</h3>
@@ -10455,7 +10455,7 @@ and a second for normal tasks.</li>
   <li>this <em>was</em> “remedied” by a <strong>File System Checker FSCK</strong> for a while (in <code class="language-plaintext highlighter-rouge">EXT2</code>), but as Disks are larger, this is too <strong>slow</strong></li>
 </ul>
 
-<p>This problem of checking if ==updates are consistent in Disk== is solved by using a journal.</p>
+<p>This problem of checking if <mark>updates are consistent in Disk</mark> is solved by using a journal.</p>
 
 <h3 id="journaling">Journaling</h3>
 
@@ -10467,7 +10467,7 @@ and a second for normal tasks.</li>
   <li>update <code class="language-plaintext highlighter-rouge">dentry</code> of parent</li>
 </ul>
 
-<p>So we need consistency of ==all== of them somehow updated, or ==none== of them happened.</p>
+<p>So we need consistency of <mark>all</mark> of them somehow updated, or <mark>none</mark> of them happened.</p>
 
 <blockquote>
   <p><strong>Journaling</strong></p>
@@ -10488,7 +10488,7 @@ and a second for normal tasks.</li>
             <li>all the stuff after the commit is considered garbage</li>
           </ul>
         </li>
-        <li>if something is not correct, ==roll back== to previous commit (i.e. second last commit of data consistency)</li>
+        <li>if something is not correct, <mark>roll back</mark> to previous commit (i.e. second last commit of data consistency)</li>
       </ol>
     </li>
     <li>
@@ -10515,7 +10515,7 @@ and a second for normal tasks.</li>
   <p><strong>Solution</strong></p>
 
   <ul>
-    <li>only record <strong>meta-data</strong> as a ==compromise==. So that we <em>might have data-inconsistency</em>, but at least <strong>file system is consistent</strong></li>
+    <li>only record <strong>meta-data</strong> as a <mark>compromise</mark>. So that we <em>might have data-inconsistency</em>, but at least <strong>file system is consistent</strong></li>
   </ul>
 </blockquote>
 
@@ -10600,8 +10600,8 @@ and a second for normal tasks.</li>
     </li>
     <li>each disk block on SSD has a <strong>finite number of erases that you can do</strong>
       <ul>
-        <li>that disk block will ==wear out physically== for large amount of erases</li>
-        <li>this is also called ==wear leveling==</li>
+        <li>that disk block will <mark>wear out physically</mark> for large amount of erases</li>
+        <li>this is also called <mark>wear leveling</mark></li>
       </ul>
     </li>
     <li>the lock contention for multi-CPU would be also a problem (mentioned before)
@@ -10644,7 +10644,7 @@ and a second for normal tasks.</li>
       <ul>
         <li>mean time to failure MTTF is the <strong>same for disk regardless of the size (usually)</strong></li>
         <li><strong>lower reliability</strong></li>
-        <li>the solution is ==RAID==</li>
+        <li>the solution is <mark>RAID</mark></li>
       </ul>
     </li>
   </ul>
@@ -10686,7 +10686,7 @@ and a second for normal tasks.</li>
       </ul>
     </li>
     <li>
-      <p>RAID 1 - ==Mirroring==: simply make a <em>copy</em> of the disk!</p>
+      <p>RAID 1 - <mark>Mirroring</mark>: simply make a <em>copy</em> of the disk!</p>
 
       <ul>
         <li>
@@ -10710,7 +10710,7 @@ and a second for normal tasks.</li>
       </ul>
     </li>
     <li>
-      <p>RAID 3 - ==Parity Disk==</p>
+      <p>RAID 3 - <mark>Parity Disk</mark></p>
 
       <ul>
         <li>
@@ -11910,7 +11910,7 @@ and a second for normal tasks.</li>
 
 <ol>
   <li>
-    <p>allocate ==cursors==, creates a<code class="language-plaintext highlighter-rouge"> dentry</code> by ==”cloning itself”== that ‘s not linked to any inode and its  <code class="language-plaintext highlighter-rouge">d_subdir</code> are initialized with only itself in it</p>
+    <p>allocate <mark>cursors</mark>, creates a<code class="language-plaintext highlighter-rouge"> dentry</code> by <mark>"cloning itself"</mark> that ‘s not linked to any inode and its  <code class="language-plaintext highlighter-rouge">d_subdir</code> are initialized with only itself in it</p>
 
     <ul>
       <li>
@@ -12165,7 +12165,7 @@ and a second for normal tasks.</li>
 
 <p>basically, this is used to get or create an inode with a specified <code class="language-plaintext highlighter-rouge">ino</code>.</p>
 
-<p>However, if it is a new <code class="language-plaintext highlighter-rouge">inode</code>, there will be a ==lock that you need to release==</p>
+<p>However, if it is a new <code class="language-plaintext highlighter-rouge">inode</code>, there will be a <mark>lock that you need to release</mark></p>
 
 <ul>
   <li>see <code class="language-plaintext highlighter-rouge">unlock_new_inode(inode);</code></li>
@@ -12238,7 +12238,7 @@ and a second for normal tasks.</li>
 <ol>
   <li>create a new inode <code class="language-plaintext highlighter-rouge">new_inode()</code></li>
   <li>assign some generic properties</li>
-  <li>==only difference== between a file and a folder in <code class="language-plaintext highlighter-rouge">inode</code></li>
+  <li><mark>only difference</mark> between a file and a folder in <code class="language-plaintext highlighter-rouge">inode</code></li>
 </ol>
 
 <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/* generic operations */</span>
@@ -12315,7 +12315,7 @@ and a second for normal tasks.</li>
   <p><strong>Note</strong></p>
 
   <ul>
-    <li>this also means that the <code class="language-plaintext highlighter-rouge">write()</code> system calls actually ==first write to Page Cache of RAM==. Only when it is flushed, it gets to the disk.
+    <li>this also means that the <code class="language-plaintext highlighter-rouge">write()</code> system calls actually <mark>first write to Page Cache of RAM</mark>. Only when it is flushed, it gets to the disk.
       <ul>
         <li>this also means that sometimes, <code class="language-plaintext highlighter-rouge">write()</code> might even be faster than <code class="language-plaintext highlighter-rouge">read()</code></li>
       </ul>
@@ -12384,7 +12384,7 @@ and a second for normal tasks.</li>
 <span class="p">}</span>
 </code></pre></div>    </div>
 
-    <p>for <code class="language-plaintext highlighter-rouge">ramfs</code> as well as <code class="language-plaintext highlighter-rouge">ext4</code>, the <code class="language-plaintext highlighter-rouge">read_iter</code> is a <code class="language-plaintext highlighter-rouge">generic_file_read_iter</code> for <code class="language-plaintext highlighter-rouge">libc</code>, which reads data <strong>from the page cache</strong> (<code class="language-plaintext highlighter-rouge">ramfs</code> ==stores data in page cache==)</p>
+    <p>for <code class="language-plaintext highlighter-rouge">ramfs</code> as well as <code class="language-plaintext highlighter-rouge">ext4</code>, the <code class="language-plaintext highlighter-rouge">read_iter</code> is a <code class="language-plaintext highlighter-rouge">generic_file_read_iter</code> for <code class="language-plaintext highlighter-rouge">libc</code>, which reads data <strong>from the page cache</strong> (<code class="language-plaintext highlighter-rouge">ramfs</code> <mark>stores data in page cache</mark>)</p>
 
     <p>So <code class="language-plaintext highlighter-rouge">genetic_file_read_iter</code> does:</p>
 
@@ -12421,7 +12421,7 @@ and a second for normal tasks.</li>
 
             <ul>
               <li>if we got the <code class="language-plaintext highlighter-rouge">PAGE</code>, then we can read from there</li>
-              <li>otherwise, we need to ==read from Disk==, we would go to <code class="language-plaintext highlighter-rouge">page_cache_sync_readahead</code></li>
+              <li>otherwise, we need to <mark>read from Disk</mark>, we would go to <code class="language-plaintext highlighter-rouge">page_cache_sync_readahead</code></li>
             </ul>
 
             <ol>
@@ -12429,7 +12429,7 @@ and a second for normal tasks.</li>
                 <p>sets the the Pages we need</p>
               </li>
               <li>
-                <p>==submit a Disk I/O request== for reading from Disk, and return</p>
+                <p><mark>submit a Disk I/O request</mark> for reading from Disk, and return</p>
 
                 <ul>
                   <li>some other functions will checks if the allocated Pages are updated (and does some other work/checking). If not updated when checked, it will <strong>then block the process</strong></li>
@@ -12509,15 +12509,15 @@ and a second for normal tasks.</li>
                           <p>What happens to the request then? There will be a queue for the I/O request, and some <strong>scheduling done on the submitted requests</strong>, to do:</p>
 
                           <ol>
-                            <li>==merge the requests== if possible
+                            <li><mark>merge the requests</mark> if possible
                               <ul>
                                 <li>if the contents to be read is contiguous for two requests</li>
                               </ul>
                             </li>
-                            <li>if not, ==sort the requests==
+                            <li>if not, <mark>sort the requests</mark>
                               <ul>
                                 <li>if the contents to be read is close to each other but not contiguous, <strong>put/sort  the two requests close to each other</strong> (so I can handle nearby requests)</li>
-                                <li>then, you also have to solve the problem of ==starvation==</li>
+                                <li>then, you also have to solve the problem of <mark>starvation</mark></li>
                               </ul>
                             </li>
                           </ol>
@@ -12586,7 +12586,7 @@ and a second for normal tasks.</li>
                           <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">bio</span><span class="o">-&gt;</span><span class="n">bi_end_io</span> <span class="o">=</span> <span class="n">mpage_end_io</span><span class="p">;</span> <span class="cm">/* call back */</span>
 </code></pre></div>                          </div>
 
-                          <p>which would happen when ==disk i/O request is completed==. Then it would go to <code class="language-plaintext highlighter-rouge">__read_end_io</code>, which would:</p>
+                          <p>which would happen when <mark>disk i/O request is completed</mark>. Then it would go to <code class="language-plaintext highlighter-rouge">__read_end_io</code>, which would:</p>
 
                           <ol>
                             <li>
@@ -12597,7 +12597,7 @@ and a second for normal tasks.</li>
 
                               <ul>
                                 <li>
-                                  <p>this will go to <code class="language-plaintext highlighter-rouge">wake_up_page_bit()</code>, then to <code class="language-plaintext highlighter-rouge">__wake_up_locked_key_bookmark</code>, and finally ==wakes the process up==</p>
+                                  <p>this will go to <code class="language-plaintext highlighter-rouge">wake_up_page_bit()</code>, then to <code class="language-plaintext highlighter-rouge">__wake_up_locked_key_bookmark</code>, and finally <mark>wakes the process up</mark></p>
 
                                   <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">void</span> <span class="nf">__wake_up_locked_key_bookmark</span><span class="p">(</span>
     <span class="k">struct</span> <span class="n">wait_queue_head</span> <span class="o">*</span><span class="n">wq_head</span><span class="p">,</span>
@@ -12644,7 +12644,7 @@ and a second for normal tasks.</li>
             </ul>
           </li>
           <li>
-            <p>At this point, the Page will be <strong>up-to-date</strong>, and we ==finally can read/copy data to user’s buffer==</p>
+            <p>At this point, the Page will be <strong>up-to-date</strong>, and we <mark>finally can read/copy data to user's buffer</mark></p>
 
             <ul>
               <li>
@@ -12743,7 +12743,7 @@ and a second for normal tasks.</li>
   <p><strong>Device Drivers</strong></p>
 
   <ul>
-    <li>To encapsulate the <strong>details and oddities of different devices</strong> for their ports, controllers, and etc, the kernel of an operating system is structured to use ==device-driver modules==.</li>
+    <li>To encapsulate the <strong>details and oddities of different devices</strong> for their ports, controllers, and etc, the kernel of an operating system is structured to use <mark>device-driver modules</mark>.</li>
     <li>The device drivers present:
       <ul>
         <li>a <strong>uniform device access interface</strong> to the I/O subsystem, e.g. a keyboard (similar to system calls).</li>
@@ -12759,13 +12759,13 @@ and a second for normal tasks.</li>
 <p><img src="/lectures/images/2022-01-04-COMS4118_Operating_Systems/Snipaste_2021-04-14_17-05-15.png" style="zoom:67%;" /></p>
 
 <ul>
-  <li>==Port== - device communicates with the machine via a <strong>connection point</strong>, or port
+  <li><mark>Port</mark> - device communicates with the machine via a <strong>connection point</strong>, or port
     <ul>
       <li>for example, a serial port</li>
     </ul>
   </li>
-  <li>==Bus==: set of <strong>wires</strong> and a rigidly defined <strong>protocol</strong> that specifies a set of <strong>messages that can be sent on the wires</strong>.</li>
-  <li>==Controller==: A controller is a collection of electronics that can <strong>operate</strong> a port, a bus, or a device
+  <li><mark>Bus</mark>: set of <strong>wires</strong> and a rigidly defined <strong>protocol</strong> that specifies a set of <strong>messages that can be sent on the wires</strong>.</li>
+  <li><mark>Controller</mark>: A controller is a collection of electronics that can <strong>operate</strong> a port, a bus, or a device
     <ul>
       <li>i.e. CPU gives data and commands to controller, then <em>controller actually operates</em> on that device</li>
     </ul>
@@ -12800,10 +12800,10 @@ address.</li>
   <ul>
     <li>An I/O port typically consists of four registers, called the <strong>status</strong>, <strong>control</strong>, <strong>data-in</strong>, and <strong>data-out</strong> registers
       <ul>
-        <li>The ==data-in register== is <strong>read by the host</strong> to get input.</li>
-        <li>The ==data-out register== is <strong>written by the host</strong> to send output.</li>
-        <li>The ==status register== contains bits that can be read by the host. These bits indicate states, such as whether the <strong>current command has completed</strong>, whether a byte is available to be read from the data-in register, and whether a device error has occurred.</li>
-        <li>The ==control register== can be written by the host to <strong>start a command</strong> or to change the mode of a device.</li>
+        <li>The <mark>data-in register</mark> is <strong>read by the host</strong> to get input.</li>
+        <li>The <mark>data-out register</mark> is <strong>written by the host</strong> to send output.</li>
+        <li>The <mark>status register</mark> contains bits that can be read by the host. These bits indicate states, such as whether the <strong>current command has completed</strong>, whether a byte is available to be read from the data-in register, and whether a device error has occurred.</li>
+        <li>The <mark>control register</mark> can be written by the host to <strong>start a command</strong> or to change the mode of a device.</li>
       </ul>
     </li>
   </ul>
@@ -12815,23 +12815,23 @@ address.</li>
   <p><strong>Communication Between CPU and Device using I/O Port</strong></p>
 
   <ol>
-    <li>The <strong>host</strong> repeatedly reads the <code class="language-plaintext highlighter-rouge">busy</code> bit in ==status register== until that bit becomes <strong>clear</strong>.
+    <li>The <strong>host</strong> repeatedly reads the <code class="language-plaintext highlighter-rouge">busy</code> bit in <mark>status register</mark> until that bit becomes <strong>clear</strong>.
       <ul>
         <li>CPU busy waiting/polling</li>
       </ul>
     </li>
-    <li>The <strong>host sets</strong> the <code class="language-plaintext highlighter-rouge">write</code> bit in the ==command register== and <strong>writes</strong> a byte into the ==data-out register==.</li>
+    <li>The <strong>host sets</strong> the <code class="language-plaintext highlighter-rouge">write</code> bit in the <mark>command register</mark> and <strong>writes</strong> a byte into the <mark>data-out register</mark>.</li>
     <li>The <strong>host sets</strong> the command-ready bit.</li>
     <li>When the <strong>controller</strong> notices that the command-ready bit is set, it sets the <code class="language-plaintext highlighter-rouge">busy</code> bit.</li>
-    <li>The <strong>controller</strong> reads the ==command register== and sees the write command. It reads the ==data-out register== to get the byte and does the I/O to the device.</li>
-    <li>The <strong>controller clears</strong> the command-ready bit, clears the error bit in the ==status register== to indicate that the device I/O succeeded, and clears the <code class="language-plaintext highlighter-rouge">busy</code> bit to indicate that it is finished.</li>
+    <li>The <strong>controller</strong> reads the <mark>command register</mark> and sees the write command. It reads the <mark>data-out register</mark> to get the byte and does the I/O to the device.</li>
+    <li>The <strong>controller clears</strong> the command-ready bit, clears the error bit in the <mark>status register</mark> to indicate that the device I/O succeeded, and clears the <code class="language-plaintext highlighter-rouge">busy</code> bit to indicate that it is finished.</li>
   </ol>
 </blockquote>
 
 <p><strong>Disadvantage</strong>:</p>
 
 <ul>
-  <li>in step 1, the host is ==busy-waiting or polling==: it is in a loop, reading the status register over and over until the busy bit becomes clear. Suitable for <strong>data that needs to be serviced quickly</strong>, but not suitable for <strong>long waits</strong>.</li>
+  <li>in step 1, the host is <mark>busy-waiting or polling</mark>: it is in a loop, reading the status register over and over until the busy bit becomes clear. Suitable for <strong>data that needs to be serviced quickly</strong>, but not suitable for <strong>long waits</strong>.</li>
 </ul>
 
 <h4 id="interrupt-driven-io">Interrupt Driven I/O</h4>
@@ -12844,14 +12844,14 @@ address.</li>
 
 <ul>
   <li>device driver (kernel) has nothing to do with device controller (hardware)</li>
-  <li>this is the ==interrupt== mechanism we discussed in the very beginning of course</li>
+  <li>this is the <mark>interrupt</mark> mechanism we discussed in the very beginning of course</li>
 </ul>
 
 <p>In summary, interrupts are used throughout modern operating systems to handle <strong>asynchronous</strong> events and to trap to supervisor-mode routines in the kernel.</p>
 
 <h3 id="direct-memory-access">Direct Memory Access</h3>
 
-<p>This is the case when we have <strong>large amount of data transfer</strong>. We don’t want ==CPU transferring data in and out of registers one byte at a time.==</p>
+<p>This is the case when we have <strong>large amount of data transfer</strong>. We don’t want <mark>CPU transferring data in and out of registers one byte at a time.</mark></p>
 
 <ul>
   <li>uses a DMA Controller (a <strong>special processor</strong>)
@@ -12866,7 +12866,7 @@ address.</li>
   <p><strong>Note</strong></p>
 
   <ul>
-    <li>This has ==nothing== to do with Memory Mapped I/O.</li>
+    <li>This has <mark>nothing</mark> to do with Memory Mapped I/O.</li>
   </ul>
 </blockquote>
 
@@ -12874,8 +12874,8 @@ address.</li>
   <p><strong>Components for DMA</strong></p>
 
   <ul>
-    <li>a special-purpose ==processor== called a ==direct-memory-access (DMA) controller==</li>
-    <li>a ==DMA command block== which contains
+    <li>a special-purpose <mark>processor</mark> called a <mark>direct-memory-access (DMA) controller</mark></li>
+    <li>a <mark>DMA command block</mark> which contains
       <ul>
         <li>a pointer to the source of a transfer,</li>
         <li>a pointer to the destination of the transfer,</li>
@@ -12903,7 +12903,7 @@ address.</li>
       <p>The <strong>DMA controller</strong> proceeds to <strong>operate</strong> the memory bus directly</p>
     </li>
     <li>
-      <p>While the <strong>DMA transfer</strong> is going on the ==CPU does not have access to the PCI bus== ( including main memory ), but it does have access to its internal registers and primary and secondary caches</p>
+      <p>While the <strong>DMA transfer</strong> is going on the <mark>CPU does not have access to the PCI bus</mark> ( including main memory ), but it does have access to its internal registers and primary and secondary caches</p>
     </li>
     <li>
       <p>When the entire transfer is finished, the DMA controller <strong>interrupts</strong> the CPU</p>
@@ -12923,18 +12923,18 @@ address.</li>
   <p><strong>When Buffering is Used</strong></p>
 
   <ol>
-    <li>One reason is to cope with a ==speed mismatch== between the producer and consumer of a data stream.
+    <li>One reason is to cope with a <mark>speed mismatch</mark> between the producer and consumer of a data stream.
       <ul>
         <li><em>for example</em>, that a file is being received via modem for storage on the hard disk. The modem is about a thousand
 times slower than the hard disk. So a buffer is created in main memory to <strong>accumulate the bytes received from the modem</strong>. When an entire buffer of data has arrived, the buffer can be written to disk in a single operation.</li>
       </ul>
     </li>
-    <li>A second use of buffering is to provide adaptations for devices that have ==different data-transfer sizes==.
+    <li>A second use of buffering is to provide adaptations for devices that have <mark>different data-transfer sizes</mark>.
       <ul>
         <li>in computer networking, where buffers are used widely for <strong>fragmentation</strong> and <strong>reassembly of messages.</strong></li>
       </ul>
     </li>
-    <li>A third use of buffering is to support ==copy semantics for application I/O.==
+    <li>A third use of buffering is to support <mark>copy semantics for application I/O.</mark>
       <ul>
         <li>for example, at <code class="language-plaintext highlighter-rouge">t=0</code> you issued <code class="language-plaintext highlighter-rouge">write()</code> with some data in your buffer to send to disk. But before the data is actually written to disk, you <strong>changed your data</strong>. Copy semantics ensured data written is at the time of submission (<code class="language-plaintext highlighter-rouge">t=0</code>).</li>
       </ul>
@@ -12955,7 +12955,7 @@ times slower than the hard disk. So a buffer is created in main memory to <stron
   <p><strong>Caching</strong></p>
 
   <ul>
-    <li>we basically encountered this already, where we have a ==page cache== for <code class="language-plaintext highlighter-rouge">read()</code>, and also for buffering<code class="language-plaintext highlighter-rouge">write</code> to be flushed to disk as one unit</li>
+    <li>we basically encountered this already, where we have a <mark>page cache</mark> for <code class="language-plaintext highlighter-rouge">read()</code>, and also for buffering<code class="language-plaintext highlighter-rouge">write</code> to be flushed to disk as one unit</li>
   </ul>
 </blockquote>
 
@@ -13568,7 +13568,7 @@ LIST_HEAD(fox_list);
     <li><code class="language-plaintext highlighter-rouge">make w4118_defconfig</code> then follow Xuheng’s instruction. Most importantly, don’t forget to do this first during menuconfig <code class="language-plaintext highlighter-rouge">Go to Kernel hacking -&gt; Compile-time checks and compiler options -&gt; Compile the kernel with debug info</code></li>
     <li>Randomize Memory: after <code class="language-plaintext highlighter-rouge">RANDOM_BASE</code> is disabled, <code class="language-plaintext highlighter-rouge">RANDOMIZE_MEMORY</code> should be disabled automatically. If not, disable “<code class="language-plaintext highlighter-rouge">Randomize the address of the kernel image(KASLR)</code>” in Processor type and features.</li>
     <li>name the file attached to the serial port with <code class="language-plaintext highlighter-rouge">.log</code> suffix</li>
-    <li>==update grub config==:
+    <li><mark>update grub config</mark>:
       <ul>
         <li>per the comment in piazza, we need to add <code class="language-plaintext highlighter-rouge">console=ttyS0 ignore_loglevel</code> (ttyS0 worked for me, from ttyS0 to ttyS10, there should be one that works) to the option <code class="language-plaintext highlighter-rouge">GRUB_CMD_LINE_LINUX</code> in <code class="language-plaintext highlighter-rouge">/etc/default/grub</code>. (see picture below)</li>
         <li><code class="language-plaintext highlighter-rouge">sudo update-grub</code> to enable the changes you just made</li>
