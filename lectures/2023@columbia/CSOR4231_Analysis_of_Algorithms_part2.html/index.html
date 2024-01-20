@@ -215,7 +215,7 @@
 
 <p>But visually this means that there is a bunch of $\mathcal{NP}$ problems $A_i$’s such that:</p>
 
-<p><img src="CSOR4231-Analysis_of_Algorithms_part2/image-20231117004546.png" style="zoom:20%;" /></p>
+<p><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms_part2/image-20231117004546.png" style="zoom:20%;" /></p>
 
 <p>In addition, since no-one so far has solved in polynomial time any $\mathcal{NP}\text{-}\mathcal{hard}$ problem, we have:</p>
 
@@ -228,7 +228,7 @@
   </ul>
 </blockquote>
 
-<p><img src="CSOR4231-Analysis_of_Algorithms_part2/image-20231117010439.png" style="zoom:70%;" /></p>
+<p><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms_part2/image-20231117010439.png" style="zoom:70%;" /></p>
 
 <p>A “surprising” example of $\mathcal{NP}$ problem: Knapsack:</p>
 <ul>
@@ -239,13 +239,13 @@
 
 <p>Finally, a more complete picture of P, NP, and NP-hard:</p>
 
-<p><img src="CSOR4231-Analysis_of_Algorithms_part2/image-20231118213057.png" style="zoom:35%;" /></p>
+<p><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms_part2/image-20231118213057.png" style="zoom:35%;" /></p>
 
 <h2 id="simple-reductions-for-np-hardness">Simple Reductions for NP-Hardness</h2>
 
 <p>Recall that we have used reductions before. For instance, to compute the Image Segmentation problem we used a minimum s-t cut algorithm as a black-box (i.e. Image segmentation reduces to minimum s-t cut):</p>
 
-<p><img src="CSOR4231-Analysis_of_Algorithms_part2/image-20231117011431.png" style="zoom:75%;" /></p>
+<p><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms_part2/image-20231117011431.png" style="zoom:75%;" /></p>
 
 <p>where we:</p>
 <ul>
@@ -264,8 +264,8 @@
   </thead>
   <tbody>
     <tr>
-      <td style="text-align: center"><img src="CSOR4231-Analysis_of_Algorithms_part2/image-20231117014759.png" style="zoom:100%;" /></td>
-      <td style="text-align: center"><img src="CSOR4231-Analysis_of_Algorithms_part2/image-20231117014805.png" style="zoom:100%;" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms_part2/image-20231117014759.png" style="zoom:100%;" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms_part2/image-20231117014805.png" style="zoom:100%;" /></td>
     </tr>
   </tbody>
 </table>
@@ -341,7 +341,7 @@
 
 <p>Therefore, consider the following reduction for DHP:</p>
 
-<p><img src="CSOR4231-Analysis_of_Algorithms_part2/image-20231117162336.png" style="zoom:70%;" /></p>
+<p><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms_part2/image-20231117162336.png" style="zoom:70%;" /></p>
 
 <p>Why can this algorithm (embedded with CFSP subroutine) solve DHP, i.e. is <strong>correct</strong>? To show this, we need to prove that this algorithm will output “yes” if and only if there is a Hamiltonian path in the graph. Notice that:</p>
 
@@ -418,7 +418,7 @@
 
 <p>For example, consider four jobs with processing time $l_1=2, l_2=2, l_3=1, l_4=3$, and two schedules:</p>
 
-<p><img src="CSOR4231-Analysis_of_Algorithms_part2/image-20231122003057.png" style="zoom:80%;" /></p>
+<p><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms_part2/image-20231122003057.png" style="zoom:80%;" /></p>
 
 <p>the first one will have makespan $4$, and the second one will have makespan $5$ due to the jobs on the first machine. So intuitively, we an ideal schedule would have a <mark>perfectly balanced-load on every machine</mark>. But unfortunately:</p>
 
@@ -432,7 +432,7 @@
 
 <p>The intuition is that our goal is create a balanced load on every machine, so that the makespan is minimized. Therefore, we can just have a greedy algorithm that iteratively assigns the next job to the machine with the smallest load.</p>
 
-<p><img src="CSOR4231-Analysis_of_Algorithms_part2/image-20231122003624.png" style="zoom:70%;" /></p>
+<p><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms_part2/image-20231122003624.png" style="zoom:70%;" /></p>
 
 <p>where for a fast <code class="language-plaintext highlighter-rouge">argmin</code> implementation, we can use a min-heap to keep track of the smallest load machine. But why this algorithm specifically? It turns out that this is not only fast (with min-heap) giving $O(n \log m)$, but also guarantees a rather good error bound.</p>
 
@@ -449,8 +449,8 @@
   </thead>
   <tbody>
     <tr>
-      <td style="text-align: center"><img src="CSOR4231-Analysis_of_Algorithms_part2/image-20231122004228.png" style="zoom:70%;" /></td>
-      <td style="text-align: center"><img src="CSOR4231-Analysis_of_Algorithms_part2/image-20231122004240.png" style="zoom:70%;" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms_part2/image-20231122004228.png" style="zoom:70%;" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms_part2/image-20231122004240.png" style="zoom:70%;" /></td>
     </tr>
   </tbody>
 </table>
@@ -492,7 +492,7 @@
 
 <p>But how big was $\hat{L}_{i}$? By the greedy criterion of the algorithm, it must have looked like this (if that machine is #1):</p>
 
-<p><img src="CSOR4231-Analysis_of_Algorithms_part2/image-20231122013331.png" style="zoom:90%;" /></p>
+<p><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms_part2/image-20231122013331.png" style="zoom:90%;" /></p>
 
 <p>i.e. it must be <strong>the lightest loaded before $j$ is assigned</strong>. How light can that be?:</p>
 
@@ -535,7 +535,7 @@
 
 <p>This gives the longest processing time first algorithm, which <strong>saves those small jobs for the end</strong>:</p>
 
-<p><img src="CSOR4231-Analysis_of_Algorithms_part2/image-20231122015101.png" style="zoom:70%;" /></p>
+<p><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms_part2/image-20231122015101.png" style="zoom:70%;" /></p>
 
 <p>again, this algorithm is not always correct, but it is guaranteed to produce a schedule with makespan $\le 3/2$ times the optimal makespan. How?</p>
 
@@ -588,7 +588,7 @@
 
 <p>Again, this problem is NP-hard, so we want to come up with an algorithm that is almost always correct. Consider the case when $k=1$: just pick $A_i$ with the largest size. But what about $k=2$? So the intuition is to maybe pick the second subset that <strong>increases coverage the most</strong>:</p>
 
-<p><img src="CSOR4231-Analysis_of_Algorithms_part2/image-20231122015923.png" style="zoom:80%;" /></p>
+<p><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms_part2/image-20231122015923.png" style="zoom:80%;" /></p>
 
 <p>This looks good, but when does it break? What is its error bound?</p>
 
@@ -603,8 +603,8 @@
   </thead>
   <tbody>
     <tr>
-      <td style="text-align: center"><img src="CSOR4231-Analysis_of_Algorithms_part2/image-20231122020358.png" style="zoom:65%;" /></td>
-      <td style="text-align: center"><img src="CSOR4231-Analysis_of_Algorithms_part2/image-20231122020558.png" style="zoom:65%;" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms_part2/image-20231122020358.png" style="zoom:65%;" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms_part2/image-20231122020558.png" style="zoom:65%;" /></td>
     </tr>
   </tbody>
 </table>
@@ -620,8 +620,8 @@
   </thead>
   <tbody>
     <tr>
-      <td style="text-align: center"><img src="CSOR4231-Analysis_of_Algorithms_part2/image-20231122020303.png" style="zoom:60%;" /></td>
-      <td style="text-align: center"><img src="CSOR4231-Analysis_of_Algorithms_part2/image-20231122020858.png" style="zoom:60%;" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms_part2/image-20231122020303.png" style="zoom:60%;" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms_part2/image-20231122020858.png" style="zoom:60%;" /></td>
     </tr>
   </tbody>
 </table>
@@ -672,7 +672,7 @@
 
 <p><em>Proof</em>: let $K_{j-1}$ denote the indices of the $j-1$ subsets picked so far, and $C_{j-1}$ its coverage. Any potential $\hat{K}$ (may or may not be optimal) that contains $k$ indices, and $W$ be the set of elements covered by $\hat{K}$ <em>but not by $K_{j-1}$</em>:</p>
 
-<p><img src="CSOR4231-Analysis_of_Algorithms_part2/image-20231122023659.png" style="zoom:80%;" /></p>
+<p><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms_part2/image-20231122023659.png" style="zoom:80%;" /></p>
 
 <p>where in the above example, basically $K_{j-1} = {4,5}$ and the alterative $\hat{K}=K^{*}$. Then this means:</p>
 
@@ -761,7 +761,7 @@
   <li>
     <p><strong>optimal solution’s structure</strong>: suppose you already have a minimum cost tour $T$ using vertices $V={1,2, …, n}$ labeled without loss of generality. WLOG, let the path “start and end at vertex $1$”. Then, <mark>suppose this optimal path's last hop was $j-1$</mark> for some $j \in V \setminus {1}$ :</p>
 
-    <p><img src="CSOR4231-Analysis_of_Algorithms_part2/image-20231129003245.png" style="zoom:90%;" /></p>
+    <p><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms_part2/image-20231129003245.png" style="zoom:90%;" /></p>
 
     <p>then this $1-j$ path must be a <mark>minimum cost, cycle-free path using vertices $V$</mark>. This means that:</p>
 
@@ -769,7 +769,7 @@
 
     <p>but how do we reason about the “min cost of cycle free 1-j path that visits $V$”? Realize that by a similar logic:</p>
 
-    <p><img src="CSOR4231-Analysis_of_Algorithms_part2/image-20231129004029.png" style="zoom:80%;" /></p>
+    <p><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms_part2/image-20231129004029.png" style="zoom:80%;" /></p>
 
     <p>i.e. plucking off the penultimate hop $k-j$ for some $k \in V \setminus {1, j}$, we have a <mark>minimum, cycle-free path using vertices $V - \{j\}$ </mark>. (this is the tricky part, instead of being the minimum cycle-free path using vertices $V$, because enabling $j$ could give us shortcuts). Therefore, this means:</p>
 
@@ -792,7 +792,7 @@
 
 <p>Finally, we can use this recurrence to construct a DP algorithm:</p>
 
-<p><img src="CSOR4231-Analysis_of_Algorithms_part2/image-20231129005839.png" style="zoom:80%;" /></p>
+<p><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms_part2/image-20231129005839.png" style="zoom:80%;" /></p>
 
 <p>where we had</p>
 <ul>
@@ -832,7 +832,7 @@
 
 <p>For example, in the following graph the optimal 4-path has cost 8, which is $(c \to a \to b \to e)$.</p>
 
-<p><img src="CSOR4231-Analysis_of_Algorithms_part2/image-20231129011207.png" style="zoom:100%;" /></p>
+<p><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms_part2/image-20231129011207.png" style="zoom:100%;" /></p>
 
 <p>As you may have guesses, this is also NP-hard and shares many similarities with TSP. But before we go to a DP approach, what is the runtime for exhaustive search? Given a $k$:</p>
 
@@ -883,7 +883,7 @@
 
 <p>For example, consider the following graph with $k=4$, where we can imagine each partition having a different color:</p>
 
-<p><img src="CSOR4231-Analysis_of_Algorithms_part2/image-20231129014034.png" style="zoom:80%;" /></p>
+<p><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms_part2/image-20231129014034.png" style="zoom:80%;" /></p>
 
 <h3 id="computing-a-minimum-cost-panchromatic-path">Computing a Minimum-Cost Panchromatic Path</h3>
 
@@ -901,7 +901,7 @@
   <li>
     <p><strong>optimal solution’s structure</strong>: essentially the same as TSP where we can pluck the last vertex out, along with its color:</p>
 
-    <p><img src="CSOR4231-Analysis_of_Algorithms_part2/image-20231129015016.png" style="zoom:100%;" /></p>
+    <p><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms_part2/image-20231129015016.png" style="zoom:100%;" /></p>
 
     <p>note that we do not have a start vertex here, and the smaller subproblem represents having one less color to visit (which skips a LOT of subproblems)!</p>
   </li>
@@ -926,7 +926,7 @@
 
 <p>Hence our DP algorithm is:</p>
 
-<p><img src="CSOR4231-Analysis_of_Algorithms_part2/image-20231129020101.png" style="zoom:80%;" /></p>
+<p><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms_part2/image-20231129020101.png" style="zoom:80%;" /></p>
 
 <p>again, this assumes that the optimal path is panchromatic.</p>
 
@@ -967,7 +967,7 @@
   <li>
     <p>to compute this, consider bounding $1-p$ from above by $e^{-p}$, which works because:</p>
 
-    <p><img src="CSOR4231-Analysis_of_Algorithms_part2/image-20231129021512.png" style="zoom:40%;" /></p>
+    <p><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms_part2/image-20231129021512.png" style="zoom:40%;" /></p>
 
     <p>therefore we get:</p>
 
@@ -981,7 +981,7 @@
 
 <p>This gives our final algorithm of color coding with randomized trials:</p>
 
-<p><img src="CSOR4231-Analysis_of_Algorithms_part2/image-20231129021934.png" style="zoom:80%;" /></p>
+<p><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms_part2/image-20231129021934.png" style="zoom:80%;" /></p>
 
 <p>where basically in the yellow part you just recolor everything for $T$ trials. This gives the total runtime of:</p>
 

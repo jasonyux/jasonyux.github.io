@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.1">Jekyll</generator><link href="/lectures/feed.xml" rel="self" type="application/atom+xml" /><link href="/lectures/" rel="alternate" type="text/html" /><updated>2024-01-20T22:33:13+00:00</updated><id>/lectures/feed.xml</id><title type="html">Lecture Notes</title><subtitle>An inexhaustive collection of markdown/latex(PDF) notes that I took since college. </subtitle><entry><title type="html">CSOR4231 Analysis of Algorithms</title><link href="/lectures/2023@columbia/CSOR4231_Analysis_of_Algorithms.html/" rel="alternate" type="text/html" title="CSOR4231 Analysis of Algorithms" /><published>2024-01-20T00:00:00+00:00</published><updated>2024-01-20T00:00:00+00:00</updated><id>/lectures/2023@columbia/CSOR4231_Analysis_of_Algorithms</id><content type="html" xml:base="/lectures/2023@columbia/CSOR4231_Analysis_of_Algorithms.html/"><![CDATA[<p>*Picture credits from the Algorithms Illuminated book</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.1">Jekyll</generator><link href="/lectures/feed.xml" rel="self" type="application/atom+xml" /><link href="/lectures/" rel="alternate" type="text/html" /><updated>2024-01-20T22:50:33+00:00</updated><id>/lectures/feed.xml</id><title type="html">Lecture Notes</title><subtitle>An inexhaustive collection of markdown/latex(PDF) notes that I took since college. </subtitle><entry><title type="html">CSOR4231 Analysis of Algorithms</title><link href="/lectures/2023@columbia/CSOR4231_Analysis_of_Algorithms.html/" rel="alternate" type="text/html" title="CSOR4231 Analysis of Algorithms" /><published>2024-01-20T00:00:00+00:00</published><updated>2024-01-20T00:00:00+00:00</updated><id>/lectures/2023@columbia/CSOR4231_Analysis_of_Algorithms</id><content type="html" xml:base="/lectures/2023@columbia/CSOR4231_Analysis_of_Algorithms.html/"><![CDATA[<p>*Picture credits from the Algorithms Illuminated book</p>
 
 <h1 id="analysis-of-algorithms">Analysis of Algorithms</h1>
 
@@ -27,7 +27,7 @@
 
     <p>The algorithm iteratively grows a “tree” of visited nodes. At each iteration, the node that has the smallest cost (e.g. node 1) will be marked as done. THen we add all the neighbors <em>of that marked node</em> (because of the insight above) to the tree of visited nodes, and update the cost of the neighbors.</p>
 
-    <p><img src="CSOR4231-Analysis_of_Algorithms/image-20230905205050.png" style="zoom:100%;" /></p>
+    <p><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20230905205050.png" style="zoom:100%;" /></p>
 
     <p>however, the issue is that it needs to remember information about the entire internet during computation (i.e. keep an adjacency matrix/is visited of all nodes), which is not scalable.</p>
   </li>
@@ -101,7 +101,7 @@
 
 <p>the above three simple algorithms have a running time of $O(n^2)$, which is not great. We can do better with <code class="language-plaintext highlighter-rouge">MergeSort</code>. High level idea:</p>
 
-<p><img src="CSOR4231-Analysis_of_Algorithms/image-20230907104943.png" style="zoom:70%;" /></p>
+<p><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20230907104943.png" style="zoom:70%;" /></p>
 
 <p>where:</p>
 <ul>
@@ -146,7 +146,7 @@
 
 <p>For recursive algorithms such as <code class="language-plaintext highlighter-rouge">MergeSort</code>, we can visualize it as a <strong>recursion tree</strong>:</p>
 
-<p><img src="CSOR4231-Analysis_of_Algorithms/image-20230907220532.png" style="zoom:100%;" /></p>
+<p><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20230907220532.png" style="zoom:100%;" /></p>
 
 <p>so basically, at each node THE REAL COST is <code class="language-plaintext highlighter-rouge">merge(C,D)</code>, assuming your code implementation can slice arrays in halves using $O(1)$ time. This means that the total runtime is:</p>
 
@@ -201,7 +201,7 @@
 
 <p>Recall that matrix multiplication considers</p>
 
-<p><img src="CSOR4231-Analysis_of_Algorithms/image-20230914212838.png" style="zoom:100%;" /></p>
+<p><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20230914212838.png" style="zoom:100%;" /></p>
 
 <p>Therefore the very basic algorithm would be:</p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">matrix_mut</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">):</span>
@@ -218,34 +218,34 @@
 <p>Since the input size is $O(n^{2})$, the best we can hope for would be $O(n^{2})$ runtime. So can we do better? Emboldened by the divide and conquer integer multiplication algorithm, we can try to divide the matrix into smaller submatrices and then recursively compute the product of these submatrices.</p>
 
 <p>Consider breaking the matrix down to:
-<img src="CSOR4231-Analysis_of_Algorithms/image-20230914214311.png" style="zoom:100%;" /></p>
+<img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20230914214311.png" style="zoom:100%;" /></p>
 
 <p>then we can write the product as:
-<img src="CSOR4231-Analysis_of_Algorithms/image-20230914214322.png" style="zoom:100%;" /></p>
+<img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20230914214322.png" style="zoom:100%;" /></p>
 
 <p>where adding two matrices is just element-wise addition with cost $O(l^{2})$ for $l \times l$ matrices. Therefore, analogous to the integer multiplication algorithm, we can write the matrix multiplication algorithm 
-<img src="CSOR4231-Analysis_of_Algorithms/image-20230914214431.png" style="zoom:80%;" /></p>
+<img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20230914214431.png" style="zoom:80%;" /></p>
 
 <p>which has basically eight recursive calls. The problem is that this is still $\Theta(n^{3})$!</p>
 
 <p>The key insight from the <strong>Karatsuba algorithm</strong> was that we can <em>save one multiplication</em> by using some tricks, and <strong>that can help us get sub-cubic time!</strong></p>
 
 <p>A high level description looks like:
-<img src="CSOR4231-Analysis_of_Algorithms/image-20230914214653.png" style="zoom:80%;" /></p>
+<img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20230914214653.png" style="zoom:80%;" /></p>
 
 <h3 id="details-of-strassens-algorithm">Details of Strassen’s Algorithm</h3>
 
 <p>The key detail is how to save the extra multiplication. The idea is to use the following 7 auxiliary matrices:</p>
 
-<p><img src="CSOR4231-Analysis_of_Algorithms/image-20230914214913.png" style="zoom:80%;" /></p>
+<p><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20230914214913.png" style="zoom:80%;" /></p>
 
 <p>which involves $O(n^{2})$ time doing additional matrix additions, but <em>just with these seven</em> we can compute the matrix product as:</p>
 
-<p><img src="CSOR4231-Analysis_of_Algorithms/image-20230914215001.png" style="zoom:80%;" /></p>
+<p><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20230914215001.png" style="zoom:80%;" /></p>
 
 <p>which works due to some crazy cancellation, for example in the upper left:</p>
 
-<p><img src="CSOR4231-Analysis_of_Algorithms/image-20230914215042.png" style="zoom:80%;" /></p>
+<p><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20230914215042.png" style="zoom:80%;" /></p>
 
 <p>the rest you can check yourself, but with it down to 7 recursive calls, we can compute the runtime (using the <a href="#The_Master_Method">The Master Method</a>): $O(n^{2.807})$!</p>
 
@@ -253,7 +253,7 @@
 
 <p>The high level idea of why to use Big O:</p>
 
-<p><img src="CSOR4231-Analysis_of_Algorithms/image-20230907222732.png" style="zoom:80%;" /></p>
+<p><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20230907222732.png" style="zoom:80%;" /></p>
 
 <p>where saving <em>one recursive call is a bigh win</em>, because that will get saved over and over again as the recursion goes deeper.</p>
 
@@ -271,7 +271,7 @@
 
 <p>Pictorially, we can imagine:</p>
 
-<p><img src="CSOR4231-Analysis_of_Algorithms/image-20230907223339.png" style="zoom:70%;" /></p>
+<p><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20230907223339.png" style="zoom:70%;" /></p>
 
 <hr />
 <p><em>For Example:</em> a degree-$k$ polynomials are $O(n^{k})$. Suppose:</p>
@@ -318,7 +318,7 @@
 
 <p>Pictorially, bounding from below means:</p>
 
-<p><img src="CSOR4231-Analysis_of_Algorithms/image-20230907224630.png" style="zoom:70%;" /></p>
+<p><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20230907224630.png" style="zoom:70%;" /></p>
 
 <p>and we would call $T(n) = \Omega(f(n))$.</p>
 
@@ -441,7 +441,7 @@ O(n^{\log_{b} a}) &amp; \text{if } a &gt; b^{d}
 
 <p>We can try to write a few terms out and see if we can find a pattern, but alternatively we can also <strong>draw a recursion tree</strong> and see if we can <strong>directly find a closed-form equation</strong>:</p>
 
-<p><img src="CSOR4231-Analysis_of_Algorithms/image-20230912225937.png" style="zoom:100%;" /></p>
+<p><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20230912225937.png" style="zoom:100%;" /></p>
 
 <p>Our goal is to find the runtime of this entire tree. So we consider:</p>
 
@@ -521,7 +521,7 @@ O(n^{\log_{b} a}) &amp; \text{if } a &gt; b^{d}
 
 <p>The naive solution would be a sort + indexing, which takes $O(n \log n)$ time. However, we can do better by using the divide-and-conquer strategy. The intuition is that we can select a pivot and partition the array in such a way that we will only need to <em>recurse on one of the two partitions</em> = <strong>reduced input size</strong>!</p>
 
-<p><img src="CSOR4231-Analysis_of_Algorithms/image-20230914220414.png" style="zoom:100%;" /></p>
+<p><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20230914220414.png" style="zoom:100%;" /></p>
 
 <p>one very important finding is that the <strong>pivot is at the “rightful” position</strong> which can tell us two things:</p>
 <ol>
@@ -597,7 +597,7 @@ O(n^{\log_{b} a}) &amp; \text{if } a &gt; b^{d}
 
 <blockquote>
   <p><strong>Lemma</strong>. The median of median pivot $p$ is at least the $30$th percentile of the array $A$. To see this, consider $k = n / 5$ is the number of groups you have spliited up, and $x_i$ is the $i$th smallest element <em>amongst the $k$ middle elements</em>. Then we can arrange the full array $A$ into the following way: 
-<img src="CSOR4231-Analysis_of_Algorithms/image-20230914223004.png" style="zoom:20%;" />
+<img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20230914223004.png" style="zoom:20%;" />
 where basically numbers are <strong>guaranteed to be bigger</strong> going from bottom to top, though not necessarily left to right. However, this still indicates that:</p>
   <ul>
     <li>the red highlighted bottom left corner is <strong>smaller than $x_{k / 2}$</strong></li>
@@ -653,7 +653,7 @@ therefore, this means that the median of median, $x_{k / 2}$ is bigger than 3/5 
 
 <p>The implementation follows directly from the <code class="language-plaintext highlighter-rouge">DSelect</code> and <code class="language-plaintext highlighter-rouge">partition</code> algorithm:</p>
 
-<p><img src="CSOR4231-Analysis_of_Algorithms/image-20230919223127.png" style="zoom:80%;" /></p>
+<p><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20230919223127.png" style="zoom:80%;" /></p>
 
 <p>how does this help <em>sort</em> the array?</p>
 
@@ -698,14 +698,14 @@ therefore, this means that the median of median, $x_{k / 2}$ is bigger than 3/5 
 <blockquote>
   <p><em>Key Idea</em>: while scanning through the array, we can urge to keep the following <strong>invariant</strong>:</p>
 
-  <p><img src="CSOR4231-Analysis_of_Algorithms/image-20230919225947.png" style="zoom:100%;" /></p>
+  <p><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20230919225947.png" style="zoom:100%;" /></p>
 
   <p>where to put the pivot element to the first position is just a swap in $O(1)$ during preprocessing. If we can check each new element in the unpartitioned part and <strong>swap it to the correct partition</strong>, then we can <mark>maintain this invariant = correctness</mark>!</p>
 </blockquote>
 
 <p>This is easiest to first go through an example. Consider an input:</p>
 
-<p><img src="CSOR4231-Analysis_of_Algorithms/image-20230919230212.png" style="zoom:100%;" /></p>
+<p><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20230919230212.png" style="zoom:100%;" /></p>
 
 <p>where we consider the invariant formally to be:</p>
 
@@ -720,14 +720,14 @@ therefore, this means that the median of median, $x_{k / 2}$ is bigger than 3/5 
 <ol>
   <li>We initialize $i,j$ to be right next to the pivot (first) element. As there is no element between $i$ and $j$ or between the pivot and $i$, the invariant is trivially satisfied.</li>
   <li>At each iteraction, we look at a new element and consider what to do to maintain the invariant:
-<img src="CSOR4231-Analysis_of_Algorithms/image-20230919230632.png" style="zoom:100%;" />
+<img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20230919230632.png" style="zoom:100%;" />
 in this case $8$ is larger than the pivot and invariant is maintained.</li>
   <li>If the new element is smaller than the pivot. To maintain invraiant, we can <em>swap it with the first element after $i$ and then increment $i$</em>:
-<img src="CSOR4231-Analysis_of_Algorithms/image-20230919230757.png" style="zoom:90%;" /></li>
+<img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20230919230757.png" style="zoom:90%;" /></li>
   <li>We continue increment $j$ to see the new element. If it is bigger than the pivot, we can just continue as the invariant is maintained.
-<img src="CSOR4231-Analysis_of_Algorithms/image-20230919230942.png" style="zoom:100%;" /></li>
+<img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20230919230942.png" style="zoom:100%;" /></li>
   <li>One last, example, now we see another element smaller than the pivot, so we need to swap and increment $i$:
-<img src="CSOR4231-Analysis_of_Algorithms/image-20230919231113.png" style="zoom:100%;" /></li>
+<img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20230919231113.png" style="zoom:100%;" /></li>
 </ol>
 
 <p>Hence the pseudocode is:</p>
@@ -831,7 +831,7 @@ in this case $8$ is larger than the pivot and invariant is maintained.</li>
 <ol>
   <li>if $z_k$ is smaller than $z_i$ or bigger than $z_j$, then $z_i, z_{i+1}, …, z_{j}$ will be in the same partition, and will be sent to the next recursive call. They <em>might</em> be compared against in the future, we don’t know yet.</li>
   <li>if $z_k$ happens to be between $z_i$ and $z_j$, then $z_i$ and $z_j$ will be separated by the pivot, and <strong>are not and will never</strong> be compared again.
-<img src="CSOR4231-Analysis_of_Algorithms/image-20230919235354.png" style="zoom:100%;" /></li>
+<img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20230919235354.png" style="zoom:100%;" /></li>
   <li>if $z_k$ happens to be $z_i$ or $z_j$, then they will be <strong>compared once</strong>, and then separated by the pivot, and <strong>are not and will never</strong> be compared again.</li>
 </ol>
 
@@ -860,7 +860,7 @@ in this case $8$ is larger than the pivot and invariant is maintained.</li>
   <li>
     <p>the last inequality can be proven graphically:</p>
 
-    <p><img src="CSOR4231-Analysis_of_Algorithms/image-20230920000352.png" style="zoom:80%;" /></p>
+    <p><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20230920000352.png" style="zoom:80%;" /></p>
 
     <p>where the sum covers the green highlighted rectangles, and the intergral covers the entire area under the blue curve.</p>
   </li>
@@ -884,7 +884,7 @@ in this case $8$ is larger than the pivot and invariant is maintained.</li>
 
 <blockquote>
   <p><strong>Tree</strong> a connected graph that has no cycles = have $n$ vertices and $n-1$ edges. For example:
-<img src="CSOR4231-Analysis_of_Algorithms/image-20230921225225.png" style="zoom:75%;" /></p>
+<img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20230921225225.png" style="zoom:75%;" /></p>
 </blockquote>
 
 <blockquote>
@@ -895,9 +895,9 @@ in this case $8$ is larger than the pivot and invariant is maintained.</li>
     <li>for each edge, a pointer to each of its two endpoints</li>
     <li>for each vertex, a pointer to each of its incident edges
 so visually, something like this:
-<img src="CSOR4231-Analysis_of_Algorithms/image-20230921230015.png" style="zoom:100%;" />
+<img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20230921230015.png" style="zoom:100%;" />
 where essentially we have $V_0$ having neighbor [2,3,4], and $V_2$ having neighbor [1,8], etc. Or alternatively, you can think of it as:
-<img src="CSOR4231-Analysis_of_Algorithms/image-20230922215707.png" style="zoom:30%;" /></li>
+<img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20230922215707.png" style="zoom:30%;" /></li>
   </ul>
 </blockquote>
 
@@ -911,7 +911,7 @@ where essentially we have $V_0$ having neighbor [2,3,4], and $V_2$ having neighb
 
 <p>Therefore we need <strong>in total $O(n+m)$ space to represent a graph using adjaceny list</strong>. Note that this is more efficient than adjaceny matrix, which need $O(n^2)$ space:</p>
 
-<p><img src="CSOR4231-Analysis_of_Algorithms/image-20230921225855.png" style="zoom:70%;" /></p>
+<p><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20230921225855.png" style="zoom:70%;" /></p>
 
 <h2 id="breadth-first-search-and-depth-first-search">Breadth-First Search and Depth-First Search</h2>
 
@@ -921,7 +921,7 @@ where essentially we have $V_0$ having neighbor [2,3,4], and $V_2$ having neighb
   <p>BFS Idea: start a vertex $s$ (layer 0), we want to explore all neighbors (layer 1), and repeat this process (reaching layer 2, layer 3, etc.) until we have explored all vertices.</p>
 </blockquote>
 
-<p><img src="CSOR4231-Analysis_of_Algorithms/image-20230921230806.png" style="zoom:70%;" /></p>
+<p><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20230921230806.png" style="zoom:70%;" /></p>
 
 <p>So how do we implement it? The trick is to use a queue (FIFO) to keep track of the vertices still need to visit in the order of their discovery. The pseudocode is as follows:</p>
 
@@ -945,11 +945,11 @@ where essentially we have $V_0$ having neighbor [2,3,4], and $V_2$ having neighb
 
 <p>The most intuitive explanation is to talk about an example. Suppose we are given a graph, and the adjaceny list happened to give $s \to a$ before $s \to b$, then starting from $s$ we would go:</p>
 
-<p><img src="CSOR4231-Analysis_of_Algorithms/image-20230921231717.png" style="zoom:80%;" /></p>
+<p><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20230921231717.png" style="zoom:80%;" /></p>
 
 <p>where the “frontier” marks the “borderline” between the explored and unexplored vertices. To make things interesting, let’s say the adjacency list had $c \to d$ before $c\to e$. This would then give us:</p>
 
-<p><img src="CSOR4231-Analysis_of_Algorithms/image-20230921231916.png" style="zoom:80%;" /></p>
+<p><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20230921231916.png" style="zoom:80%;" /></p>
 
 <p>Now there is a problem: at vertex $e$ we have <strong>no unvisited neighbors</strong>. So DFS is forced to retreat to its previous vertex $d$: and now, it discovered one unexplored vertex $b$.</p>
 
@@ -997,7 +997,7 @@ therefore the total number of operations is $O(n + 2m) = O(n + m)$.</li>
 
 <p>To see why this could contain both BFS and DFS, consider the following example graph:</p>
 
-<p><img src="CSOR4231-Analysis_of_Algorithms/image-20230923155032.png" style="zoom:100%;" /></p>
+<p><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20230923155032.png" style="zoom:100%;" /></p>
 
 <ol>
   <li>initially only our home base $s$ is marked as explored.</li>
@@ -1031,7 +1031,7 @@ therefore the total number of operations is $O(n + 2m) = O(n + m)$.</li>
 
 <blockquote>
   <p><strong>Connected Component</strong> is a maximal set of vertices $S \subseteq V$ such that for every pair of vertices $u,v \in S$, there is a path from $u$ to $v$ in $G$. Visually:
-<img src="CSOR4231-Analysis_of_Algorithms/image-20230921233123.png" style="zoom:70%;" /></p>
+<img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20230921233123.png" style="zoom:70%;" /></p>
 </blockquote>
 
 <p>Consider $G=(V,E)$ being an undirected graph, and consider the task being to identify all connected components of $G$ (e.g. assign each vertex <code class="language-plaintext highlighter-rouge">v</code> a label <code class="language-plaintext highlighter-rouge">cc(v)</code> indicating which connected component it belongs to).</p>
@@ -1078,11 +1078,11 @@ therefore the total number of operations is $O(n + 2m) = O(n + m)$.</li>
 
 <p>Visually, consider the following example:</p>
 
-<p><img src="CSOR4231-Analysis_of_Algorithms/image-20230926223914.png" style="zoom:100%;" /></p>
+<p><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20230926223914.png" style="zoom:100%;" /></p>
 
 <p>and there are two ways to topologically sort this graph:</p>
 
-<p><img src="CSOR4231-Analysis_of_Algorithms/image-20230926223904.png" style="zoom:100%;" /></p>
+<p><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20230926223904.png" style="zoom:100%;" /></p>
 
 <p>You can visualize a topological ordering by <strong>plotting</strong> the vertices in order of their f-values. In a topological ordering, <strong>all edges of the graph are directed from left to right</strong>.</p>
 
@@ -1179,7 +1179,7 @@ therefore the total number of operations is $O(n + 2m) = O(n + m)$.</li>
 
 <p>In short, while it didn’t matter much for undirected graph, for directed graph having a <strong>connected component</strong> makes things more complicated. First, recall that a connected component for <em>undirected</em> graph is defined as maximal regions within which you can get from anywhere to anywhere else in the region. For directed graph, consider</p>
 
-<p><img src="CSOR4231-Analysis_of_Algorithms/image-20230926232541.png" style="zoom:80%;" /></p>
+<p><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20230926232541.png" style="zoom:80%;" /></p>
 
 <p>Following the logic, the answer should be zero.</p>
 
@@ -1189,17 +1189,17 @@ therefore the total number of operations is $O(n + 2m) = O(n + m)$.</li>
 
 <p>For example</p>
 
-<p><img src="CSOR4231-Analysis_of_Algorithms/image-20230926232718.png" style="zoom:60%;" /></p>
+<p><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20230926232718.png" style="zoom:60%;" /></p>
 
 <p>First of all, why would <code class="language-plaintext highlighter-rouge">ucc</code> not work? Consider evoking BFS on the following vertices</p>
 
-<p><img src="CSOR4231-Analysis_of_Algorithms/image-20230926233006.png" style="zoom:60%;" /></p>
+<p><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20230926233006.png" style="zoom:60%;" /></p>
 
 <p>first, notice all the edges are organized to go mainly from left to right. In the case on the left, we would get a <em>wrong result</em>: BFS will discover every vertex and mark them as the same connected component. In the case on the right, we would get a <em>correct result</em>. This indicates that graph search can uncover strongly connected components, <mark>provided you start from the right place</mark>. But how? The key observation is that we want to first start from a <mark>sink SCC</mark>, i.e. the SCC with no outgoing edges to other SCCs. Then, we can go in a reverse topological order, plucking off sink SCCs one by one.</p>
 
 <blockquote>
   <p><strong>Key Lemma</strong>: the SCC Meta-Graph is directed acyclic. Visually this is simple to see:
-<img src="CSOR4231-Analysis_of_Algorithms/image-20230926235651.png" style="zoom:15%;" />
+<img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20230926235651.png" style="zoom:15%;" />
 and the argument is also simple. If two meta SCC are not acyclic, then you would have collapsed them into one, i.e., the two meta SCC were not maximal at the first place.</p>
   <ul>
     <li>this lemma is actually very important. This means that all we need to do is to find <mark>one vertex</mark> in a <mark>sink SCC</mark>, run BFS/DFS to label all vertices it can reach (and mark them as explored), and repeat</li>
@@ -1274,8 +1274,8 @@ and the argument is also simple. If two meta SCC are not acyclic, then you would
   </thead>
   <tbody>
     <tr>
-      <td style="text-align: center"><img src="CSOR4231-Analysis_of_Algorithms/image-20230927012532.png" style="zoom:50%;" /></td>
-      <td style="text-align: center"><img src="CSOR4231-Analysis_of_Algorithms/image-20230927012538.png" style="zoom:60%;" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20230927012532.png" style="zoom:50%;" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20230927012538.png" style="zoom:60%;" /></td>
     </tr>
   </tbody>
 </table>
@@ -1292,7 +1292,7 @@ and the argument is also simple. If two meta SCC are not acyclic, then you would
 
 <p>the proof is similar to the correctness of <code class="language-plaintext highlighter-rouge">topo_sort</code>. If we consider the following illustration:</p>
 
-<p><img src="CSOR4231-Analysis_of_Algorithms/image-20230927014115.png" style="zoom:70%;" /></p>
+<p><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20230927014115.png" style="zoom:70%;" /></p>
 
 <p>then there are two cases that can happen during <code class="language-plaintext highlighter-rouge">topo_sort</code> labeling all the vertices:</p>
 
@@ -1316,8 +1316,8 @@ and the argument is also simple. If two meta SCC are not acyclic, then you would
   </thead>
   <tbody>
     <tr>
-      <td style="text-align: center"><img src="CSOR4231-Analysis_of_Algorithms/image-20230927015408.png" style="zoom:100%;" /></td>
-      <td style="text-align: center"><img src="CSOR4231-Analysis_of_Algorithms/image-20230927015414.png" style="zoom:100%;" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20230927015408.png" style="zoom:100%;" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20230927015414.png" style="zoom:100%;" /></td>
     </tr>
   </tbody>
 </table>
@@ -1358,7 +1358,7 @@ and the argument is also simple. If two meta SCC are not acyclic, then you would
   <p>Why can’t we use BFS? Remember that breadth-first search computes the minimum number of edges in a path from the starting vertex to every other vertex (i.e. we continue layer by layer). This is the special case of the single-source shortest path problem <strong>in which every edge has length 1</strong>.</p>
   <ul>
     <li>but then can’t we just think of an edge with a longer length $l&gt;1$ as a <em>path of edges</em> that each have length 1?
-<img src="CSOR4231-Analysis_of_Algorithms/image-20230922003244.png" style="zoom:80%;" /></li>
+<img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20230922003244.png" style="zoom:80%;" /></li>
     <li>Yes, in principle, you can solve the single-source shortest path problem by expanding + using BFS</li>
     <li>However, the problem with this is that it blows up the size of the graph</li>
   </ul>
@@ -1370,7 +1370,7 @@ and the argument is also simple. If two meta SCC are not acyclic, then you would
 
 <p>Consider some example graph, where each edge $e$  has a length of $l_e$:</p>
 
-<p><img src="CSOR4231-Analysis_of_Algorithms/image-20230922003934.png" style="zoom:80%;" /></p>
+<p><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20230922003934.png" style="zoom:80%;" /></p>
 
 <p>Consider the pseudo-code</p>
 
@@ -1392,7 +1392,7 @@ and the argument is also simple. If two meta SCC are not acyclic, then you would
 
 <p>Visually, this works like:</p>
 
-<p><img src="CSOR4231-Analysis_of_Algorithms/image-20230922113037.png" style="zoom:100%;" /></p>
+<p><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20230922113037.png" style="zoom:100%;" /></p>
 
 <p>Is this algorithm correct? If you think about it, this is what Dijkstra’s algorithm is trying to say. Consider an edge $(v,w)$ with $v \in X$ and $w \notin X$. Then <mark>the shortes path from $s$ to $w$ consists of the shortest path from $s$ to $v$ (or $s \leadsto v$) with edge $(v,w)$ tacked at the end</mark>. So is this correct?</p>
 
@@ -1415,7 +1415,7 @@ and the argument is also simple. If two meta SCC are not acyclic, then you would
       <li>
         <p>showing $d(v^<em>) + l_{v^{</em>}w^{<em>}} \le \mathrm{shortest}(s, w^</em>)$, namely every competitor path $s \leadsto w^{<em>}$ must be at least  $d(v^</em>) + l_{v^{<em>}w^{</em>}}$. To show this, consider a “crazily short” path:</p>
 
-        <p><img src="CSOR4231-Analysis_of_Algorithms/image-20230922011917.png" style="zoom:60%;" /></p>
+        <p><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20230922011917.png" style="zoom:60%;" /></p>
 
         <p>where because we know that path has to start at $s$ and ends at $w^{*}$ which is <mark>outside $X$</mark>, then it must have crossed the frontier at some point. Let’s denote the <strong>first edge from that path crossing the frontier be $(y,z)$</strong>, such that $y\in X, z \notin X$. So in essence we can considering any competitor path $P’$ taking the form:</p>
 
@@ -1443,7 +1443,7 @@ and the argument is also simple. If two meta SCC are not acyclic, then you would
 
 <p>Therefore, you can consider the following example (from <a href="https://stackoverflow.com/questions/13159337/why-doesnt-dijkstras-algorithm-work-for-negative-weight-edges#:~:text=You%20can%20use%20dijkstra%27s%20algorithm,lose%20it%27s%20fast%20time%20complexity.">stackoverflow</a>)</p>
 
-<p><img src="CSOR4231-Analysis_of_Algorithms/image-20230923160616.png" style="zoom:100%;" /></p>
+<p><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20230923160616.png" style="zoom:100%;" /></p>
 
 <p>where Dijkstra would return the shortest path from $A\leadsto D$ being at a cost of 2, but in reality it is $-4900$.</p>
 
@@ -1527,7 +1527,7 @@ and the argument is also simple. If two meta SCC are not acyclic, then you would
 
 <p>Visually, this is very easy to understand:</p>
 
-<p><img src="CSOR4231-Analysis_of_Algorithms/image-20230928225818.png" style="zoom:60%;" /></p>
+<p><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20230928225818.png" style="zoom:60%;" /></p>
 
 <p>so that:&gt;</p>
 
@@ -1689,7 +1689,7 @@ Consider a lookup for a new random object $x$ with key $k$, which might or might
 
 <p>Visually:</p>
 
-<p><img src="CSOR4231-Analysis_of_Algorithms/image-20230928235431.png" style="zoom:80%;" /></p>
+<p><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20230928235431.png" style="zoom:80%;" /></p>
 
 <p>hence it is obvious that:</p>
 <ul>
@@ -1734,8 +1734,8 @@ Consider a lookup for a new random object $x$ with key $k$, which might or might
   </thead>
   <tbody>
     <tr>
-      <td style="text-align: center"><img src="CSOR4231-Analysis_of_Algorithms/image-20231005214058.png" style="zoom:100%;" /></td>
-      <td style="text-align: center"><img src="CSOR4231-Analysis_of_Algorithms/image-20231005214110.png" style="zoom:100%;" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20231005214058.png" style="zoom:100%;" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20231005214110.png" style="zoom:100%;" /></td>
     </tr>
     <tr>
       <td style="text-align: center">relatively easy to prove correct (e.g. induction)</td>
@@ -1763,7 +1763,7 @@ Consider a lookup for a new random object $x$ with key $k$, which might or might
       <li>e.g. consider three jobs with length $l_1=1, l_{2}=2, l_3=3$, weight $w_1=3, w_2=2, w_{3} = 1$. Suppose we scheduled them to be in the order of $j_1, j_2, j_3$. Then this means the completion time is $C_{1} = 1, C_{2} = 3, C_{3} = 6$. Visually</li>
     </ul>
 
-    <p><img src="CSOR4231-Analysis_of_Algorithms/image-20231005220948.png" style="zoom:60%;" /></p>
+    <p><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20231005220948.png" style="zoom:60%;" /></p>
   </li>
   <li>
     <p><strong>sum of weighted completion times</strong>. This is <mark>our objective function</mark>:</p>
@@ -1805,7 +1805,7 @@ Consider a lookup for a new random object $x$ with key $k$, which might or might
 
 <p>Obviously if they propose different schedules, then one of them must be wrong (or in general, both are wrong). In this case, we can rule out the first by considering the following example:</p>
 
-<p><img src="CSOR4231-Analysis_of_Algorithms/image-20231005222454.png" style="zoom:80%;" /></p>
+<p><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20231005222454.png" style="zoom:80%;" /></p>
 
 <p>where the first job would have a larger ratio, so GreedyRatio would schedule it first, but GreedyDiff would schedule the second job first. But we realize that the weighted completion time:</p>
 
@@ -1828,7 +1828,7 @@ Consider a lookup for a new random object $x$ with key $k$, which might or might
 
 <p>so that $\sigma$ is the sequence $[1,2, … , n]$. Suppose by contradiction that we have some competitor $\sigma^{<em>}$ that is better, and $\sigma^{</em>} \neq \sigma$. For the greedy output we get essentially:</p>
 
-<p><img src="CSOR4231-Analysis_of_Algorithms/image-20231005224435.png" style="zoom:80%;" /></p>
+<p><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20231005224435.png" style="zoom:80%;" /></p>
 
 <p>but note that for any other schedule, we will have a <strong>consecutive inversion</strong>: a pair of job $i &gt; j$ (so $j$ has a higher score) such that job $i$ is processed immediately before job $j$. For instance $\sigma^{‘}$ has a consecutive inversion:</p>
 
@@ -1841,8 +1841,8 @@ Consider a lookup for a new random object $x$ with key $k$, which might or might
   </thead>
   <tbody>
     <tr>
-      <td style="text-align: center"><img src="CSOR4231-Analysis_of_Algorithms/image-20231005225000.png" style="zoom:70%;" /></td>
-      <td style="text-align: center"><img src="CSOR4231-Analysis_of_Algorithms/image-20231005225006.png" style="zoom:70%;" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20231005225000.png" style="zoom:70%;" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20231005225006.png" style="zoom:70%;" /></td>
     </tr>
   </tbody>
 </table>
@@ -1867,7 +1867,7 @@ Consider a lookup for a new random object $x$ with key $k$, which might or might
 
 <p>So $\sigma^{‘}$ is at least as good as $\sigma^{<em>}$, with $\sigma^{‘}$ being more ordered = more similar to $\sigma$! More precisely, we can show that $\sigma^{‘}$ has <mark>exactly one less inversion</mark> than $\sigma^{</em>}$. To see this, define an inversion to be a pair $k,m$ of job such that $k &lt; m$ (so $k$ has a higher score) but $m$ is schedules before $k$, AND that they need not be consecutive. Then, realize that swapping one consecutive inversion does not change the relative order of $k,m$ relative to each other or $k,m$ relative to $i,j$:</p>
 
-<p><img src="CSOR4231-Analysis_of_Algorithms/image-20231005231255.png" style="zoom:70%;" /></p>
+<p><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20231005231255.png" style="zoom:70%;" /></p>
 
 <p>In other words, restoring consecutive inversion doesn’t affect any other inversions (if any). Therefore, this means:</p>
 
@@ -1907,8 +1907,8 @@ Consider a lookup for a new random object $x$ with key $k$, which might or might
   </thead>
   <tbody>
     <tr>
-      <td style="text-align: center"><img src="CSOR4231-Analysis_of_Algorithms/image-20231010233843.png" style="zoom:80%;" /></td>
-      <td style="text-align: center"><img src="CSOR4231-Analysis_of_Algorithms/image-                    .png" style="zoom:80%;" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20231010233843.png" style="zoom:80%;" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-                    .png" style="zoom:80%;" /></td>
     </tr>
   </tbody>
 </table>
@@ -1927,7 +1927,7 @@ Consider a lookup for a new random object $x$ with key $k$, which might or might
 
 <p>An example of prefix-free code would be fixed length code, or the following variable-length code:</p>
 
-<p><img src="CSOR4231-Analysis_of_Algorithms/image-20231011002350.png" style="zoom:100%;" /></p>
+<p><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20231011002350.png" style="zoom:100%;" /></p>
 
 <p>But how do we find a variable-length code that is also prefix-free? Crucial to reasoning about the problem is a method of <strong>associating codes with labeled binary trees</strong>. This is most easy to see with examples:</p>
 
@@ -1940,16 +1940,16 @@ Consider a lookup for a new random object $x$ with key $k$, which might or might
   </thead>
   <tbody>
     <tr>
-      <td style="text-align: center"><img src="CSOR4231-Analysis_of_Algorithms/image-        .png" style="zoom:80%;" /></td>
-      <td style="text-align: center"><img src="CSOR4231-Analysis_of_Algorithms/image-   .png" style="zoom:80%;" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-        .png" style="zoom:80%;" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-   .png" style="zoom:80%;" /></td>
     </tr>
     <tr>
-      <td style="text-align: center"><img src="CSOR4231-Analysis_of_Algorithms/image-20231011002732.png" style="zoom:80%;" /></td>
-      <td style="text-align: center"><img src="CSOR4231-Analysis_of_Algorithms/image-      .png" style="zoom:80%;" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20231011002732.png" style="zoom:80%;" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-      .png" style="zoom:80%;" /></td>
     </tr>
     <tr>
-      <td style="text-align: center"><img src="CSOR4231-Analysis_of_Algorithms/image-20231011002944.png" style="zoom:80%;" /></td>
-      <td style="text-align: center"><img src="CSOR4231-Analysis_of_Algorithms/image-20231011002953.png" style="zoom:80%;" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20231011002944.png" style="zoom:80%;" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20231011002953.png" style="zoom:80%;" /></td>
     </tr>
   </tbody>
 </table>
@@ -1968,7 +1968,7 @@ Consider a lookup for a new random object $x$ with key $k$, which might or might
 
 <p>Finally, we can visualize decoding as traversing the tree until we hit a leaf, and restarting from the root. For example, given the input string “010111” and the tree below, we would decode it as “ABD”:</p>
 
-<p><img src="CSOR4231-Analysis_of_Algorithms/image-20231011003933.png" style="zoom:80%;" /></p>
+<p><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20231011003933.png" style="zoom:80%;" /></p>
 
 <h2 id="huffmans-greedy-algorithm">Huffman’s Greedy Algorithm</h2>
 
@@ -2003,8 +2003,8 @@ Consider a lookup for a new random object $x$ with key $k$, which might or might
   </thead>
   <tbody>
     <tr>
-      <td style="text-align: center"><img src="CSOR4231-Analysis_of_Algorithms/image-              .png" style="zoom:70%;" /></td>
-      <td style="text-align: center"><img src="CSOR4231-Analysis_of_Algorithms/image-             .png" style="zoom:70%;" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-              .png" style="zoom:70%;" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-             .png" style="zoom:70%;" /></td>
     </tr>
   </tbody>
 </table>
@@ -2036,21 +2036,21 @@ Consider a lookup for a new random object $x$ with key $k$, which might or might
 
 <p>Before proof of correctness, consider a quick example. Given input of</p>
 
-<p><img src="CSOR4231-Analysis_of_Algorithms/image-20231011010013.png" style="zoom:100%;" /></p>
+<p><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20231011010013.png" style="zoom:100%;" /></p>
 
 <p>and each iteration of the algorithm looks like:</p>
 
 <ol>
   <li>initialize with 4 trees, each with a single symbol
-<img src="CSOR4231-Analysis_of_Algorithms/image-20231011010135.png" style="zoom:100%;" /></li>
+<img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20231011010135.png" style="zoom:100%;" /></li>
   <li>smallest is node C and D:
-<img src="CSOR4231-Analysis_of_Algorithms/image-20231011010204.png" style="zoom:100%;" />
+<img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20231011010204.png" style="zoom:100%;" />
 merge and obtain a new subtree with root CD at cost of $0.10+0.05=0.15$</li>
   <li>smallest two are $0.15$ and $0.25$, so merge the subtree CD with B:
-   <img src="CSOR4231-Analysis_of_Algorithms/image-20231011010318.png" style="zoom:100%;" />
+   <img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20231011010318.png" style="zoom:100%;" />
    and obtain a new subtree with cost $0.4$</li>
   <li>Finally<br />
-<img src="CSOR4231-Analysis_of_Algorithms/image-20231011010443.png" style="zoom:100%;" />
+<img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20231011010443.png" style="zoom:100%;" />
 where if we take the left edge to represent 0 and the right 1, this returns a variable length prefix-free code of A=0, B=10, C=110, D=111.</li>
 </ol>
 
@@ -2067,11 +2067,11 @@ where if we take the left edge to represent 0 and the right 1, this returns a va
 
 <p>Visually, each iteration of the algorithm is like:</p>
 
-<p><img src="CSOR4231-Analysis_of_Algorithms/image-20231011094550.png" style="zoom:10%;" /></p>
+<p><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20231011094550.png" style="zoom:10%;" /></p>
 
 <p>and to prove that the output tree is optimal (combining claim 1 and 2) we need to show that:</p>
 
-<p><img src="CSOR4231-Analysis_of_Algorithms/image-20231011094612.png" style="zoom:10%;" /></p>
+<p><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20231011094612.png" style="zoom:10%;" /></p>
 
 <p>If we can prove both of the above, then we are basically done (by induction).</p>
 
@@ -2089,7 +2089,7 @@ where if we take the left edge to represent 0 and the right 1, this returns a va
 
 <p>Consider changing the $a,b$ and $x,y$  pair:</p>
 
-<p><img src="CSOR4231-Analysis_of_Algorithms/image-20231011095113.png" style="zoom:100%;" /></p>
+<p><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20231011095113.png" style="zoom:100%;" /></p>
 
 <p>Then notice that the new tree $T’$ changed cost function by:</p>
 
@@ -2109,7 +2109,7 @@ where if we take the left edge to represent 0 and the right 1, this returns a va
 
 <p><em>Proof of Claim 1</em>: We will use induction to show that Huffman’s tree is the best amongst the sibling trees $T_{ab}$ where $a,b$ being the least frequent symbol are siblings. The trick is that we can do induction proof on $\Sigma’$-tree, where each step of the algorithm we “rename” the symbols instead of denoting them as subtree (e.g. merging $a,b$ gives the new symbol $ab$). Then note that the tree constructed in this notation is essentially the same as tree constructed in the original notation with $\Sigma$:</p>
 
-<p><img src="CSOR4231-Analysis_of_Algorithms/image-20231011102337.png" style="zoom:80%;" /></p>
+<p><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20231011102337.png" style="zoom:80%;" /></p>
 
 <p>with the only difference being $p_{ab} = p_a + p_b$, and the average leaf depth is the same up to a constant that is independent of the choice of the tree:</p>
 
@@ -2119,7 +2119,7 @@ where if we take the left edge to represent 0 and the right 1, this returns a va
 
 <p>Then, because each $\Sigma’$-tree correspond to $\Sigma$-tree (with $a,b$ being siblings) and the average leaf depth is preserved (up to a constant), then knowing an optimal tree in $\Sigma’$-tree, is knowing an optimal in $\Sigma$-tree with $a,b$ being siblings.</p>
 
-<p><img src="CSOR4231-Analysis_of_Algorithms/image-20231011102843.png" style="zoom:80%;" /></p>
+<p><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20231011102843.png" style="zoom:80%;" /></p>
 
 <p>where RHS is what we just proved, and LHS is claim 1.</p>
 
@@ -2136,7 +2136,7 @@ where if we take the left edge to represent 0 and the right 1, this returns a va
   <ul>
     <li>Min-Heap: the key present at the <strong>root node must be minimum</strong> among the keys present at all of it’s children. The same property must be recursively true for all sub-trees in that Binary Tree.</li>
     <li>Max-Heap: the key present at the <strong>root node must be maximum</strong> among the keys present at all of it’s children. The same property must be recursively true for all sub-trees in that Binary Tree.
-<img src="CSOR4231-Analysis_of_Algorithms/image-20231011111524.png" style="zoom:30%;" /></li>
+<img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20231011111524.png" style="zoom:30%;" /></li>
   </ul>
 
   <p>and the key usage is that deleting the top element of the heap or the highest priority element, and then <strong>re-balancing the tree only takes $O(\log N)$</strong>. (Actually it is $O(H)$ for $H$ being the height of the tree, which is $\log N$ if it is a complete binary tree). Therefore each find min/find max operation takes $O(\log N)$ time.</p>
@@ -2162,7 +2162,7 @@ where if we take the left edge to represent 0 and the right 1, this returns a va
 
 <p>For example, the red highlighted is a MST with cost $7$:</p>
 
-<p><img src="CSOR4231-Analysis_of_Algorithms/image-20231013004832.png" style="zoom:80%;" /></p>
+<p><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20231013004832.png" style="zoom:80%;" /></p>
 
 <h2 id="prims-algorithm">Prim’s Algorithm</h2>
 
@@ -2180,9 +2180,9 @@ where if we take the left edge to represent 0 and the right 1, this returns a va
   </thead>
   <tbody>
     <tr>
-      <td style="text-align: center"><img src="CSOR4231-Analysis_of_Algorithms/image-          .png" style="zoom:100%;" /></td>
-      <td><img src="CSOR4231-Analysis_of_Algorithms/image-20231013005456.png" style="zoom:100%;" /></td>
-      <td><img src="CSOR4231-Analysis_of_Algorithms/image-20231013005519.png" style="zoom:100%;" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-          .png" style="zoom:100%;" /></td>
+      <td><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20231013005456.png" style="zoom:100%;" /></td>
+      <td><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20231013005519.png" style="zoom:100%;" /></td>
     </tr>
   </tbody>
 </table>
@@ -2245,7 +2245,7 @@ where if we take the left edge to represent 0 and the right 1, this returns a va
 
 <p>to visualize this:</p>
 
-<p><img src="CSOR4231-Analysis_of_Algorithms/image-20231013234626.png" style="zoom:60%;" /></p>
+<p><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20231013234626.png" style="zoom:60%;" /></p>
 
 <p>where having the red edge will create a cycle, and the blue will not. Now, notice that in Prim’s algorithm, we will 1) start with $n$ distinct CCs, 2) add $n-1$ edges to the graph, and 3) finish with one CC. Therefore, every edge added must be type 2, and hence the output is a tree (graph with no cycle).</p>
 
@@ -2266,13 +2266,13 @@ where if we take the left edge to represent 0 and the right 1, this returns a va
 
 <p>For example, in the following graph, edge $(a,d)$ does not satisfy MBP, but edge $(a,c)$ does:</p>
 
-<p><img src="CSOR4231-Analysis_of_Algorithms/image-20231013235651.png" style="zoom:80%;" /></p>
+<p><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20231013235651.png" style="zoom:80%;" /></p>
 
 <p>Now, we prove that <strong>Prim’s algorithm only picks MBP edges</strong>. The trick is to realize that <strong>any path (see below) $v^{<em>} \leadsto w^{</em>}$ will have at least one edge that crosses the frontier</strong>. Since Prim picks the cheapest such edge, all other path must have at least one edge that is more expensive than the one picked by Prim.</p>
 
 <p>To see this more concretely, consider the same argument as from Dijkstra’s proof. Consider an edge $(v^{<em>}, w^{</em>})$ chosen in an iteration of Prim’s algorithm, with $v^{<em>} \in X$ and $w \notin X$. Now, consider any arbitrary path $v^{</em>} \overset{p}{\leadsto} w^{*}$:</p>
 
-<p><img src="CSOR4231-Analysis_of_Algorithms/image-20231013235845.png" style="zoom:70%;" /></p>
+<p><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20231013235845.png" style="zoom:70%;" /></p>
 
 <p>Note that since $w^{*} \notin X$, at some point the path will go inside the frontier to the outside. Let that happen with edge $(x,y)$ crossing the frontier in that path. However, since Prim guaranteed:</p>
 
@@ -2282,7 +2282,7 @@ where if we take the left edge to represent 0 and the right 1, this returns a va
 
 <p>Finally, we need to show that <strong>a tree with only MBP edges is a MST</strong>. To show this, we consider by contradiction that there is a MST $T^{*}$ that does not have the MBP property all the way but still has the minimum cost.(shown in solid lines):</p>
 
-<p><img src="CSOR4231-Analysis_of_Algorithms/image-20231014000728.png" style="zoom:70%;" /></p>
+<p><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20231014000728.png" style="zoom:70%;" /></p>
 
 <p>Let Prim’s tree be $T$. Since $T \neq T^{<em>}$, there is at least one MBP edge, e.g. $e_1=(u,v)$, that is not in $T^{</em>}$. Since $T^{<em>}$ is a tree, there exists a path $u \overset{p}{\leadsto} v$. But since $e_1$ is an MBP edge, this means there exists an edge $e_2$ on $u \overset{p}{\leadsto} v$ that has cost *higher</em> than $e_1$. Now, consider an <mark>exchange argument</mark> that:</p>
 <ol>
@@ -2292,7 +2292,7 @@ where if we take the left edge to represent 0 and the right 1, this returns a va
 
 <p>Now, we obtain $T’$:</p>
 
-<p><img src="CSOR4231-Analysis_of_Algorithms/image-20231014001152.png" style="zoom:70%;" /></p>
+<p><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20231014001152.png" style="zoom:70%;" /></p>
 
 <p>where by the above argument, $T’$ has also just $n-1$ edges and is connected $\implies$ $T’$ is a valid spanning tree. However, since $\mathrm{cost}(e_1) \le  \mathrm{cost}(e_2)$ by MBP, then cost of $T’$ is less than $T^{<em>}$, which is a contradiction. Therefore, every edge in $T^{</em>}$ must satisfy MBP to be MST, and hence Prim’s $T$ is a MST.</p>
 
@@ -2323,7 +2323,7 @@ where if we take the left edge to represent 0 and the right 1, this returns a va
 
 <p>For example, invariant 2 would look like:</p>
 
-<p><img src="CSOR4231-Analysis_of_Algorithms/image-20231014003326.png" style="zoom:70%;" /></p>
+<p><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20231014003326.png" style="zoom:70%;" /></p>
 
 <p><em>If the above two invariant hold</em> for every iteration of our implementation, then it is obvious that taking the minimum from such heap $\implies$ cheapest edge amongst the cheapest for each nod $\notin X$  $\implies$ the cheapest edge that crosses the frontier.</p>
 
@@ -2418,10 +2418,10 @@ where if we take the left edge to represent 0 and the right 1, this returns a va
   </thead>
   <tbody>
     <tr>
-      <td style="text-align: center"><img src="CSOR4231-Analysis_of_Algorithms/image-20231018005153.png" style="zoom:100%;" /></td>
-      <td style="text-align: center"><img src="CSOR4231-Analysis_of_Algorithms/image-20231018005200.png" style="zoom:100%;" /></td>
-      <td style="text-align: center"><img src="CSOR4231-Analysis_of_Algorithms/image-20231018005216.png" style="zoom:100%;" /></td>
-      <td style="text-align: center"><img src="CSOR4231-Analysis_of_Algorithms/image-20231018005224.png" style="zoom:100%;" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20231018005153.png" style="zoom:100%;" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20231018005200.png" style="zoom:100%;" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20231018005216.png" style="zoom:100%;" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20231018005224.png" style="zoom:100%;" /></td>
     </tr>
   </tbody>
 </table>
@@ -2486,7 +2486,7 @@ where if we take the left edge to represent 0 and the right 1, this returns a va
 
 <p>Visually, by the time we are checking the black $e$ edge, we would have checked all the blue edges:</p>
 
-<p><img src="CSOR4231-Analysis_of_Algorithms/image-20231018012523.png" style="zoom:50%;" /></p>
+<p><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20231018012523.png" style="zoom:50%;" /></p>
 
 <hr />
 
@@ -2505,7 +2505,7 @@ where if we take the left edge to represent 0 and the right 1, this returns a va
 
 <p>note that (though not used by Kruskal), with a good implementation the <code class="language-plaintext highlighter-rouge">Union</code> and <code class="language-plaintext highlighter-rouge">Find</code> operations both take time logarithmic in the number of objects. Since Kruskal itreatively <strong>checks connected components (if there is a cycle) and grow them</strong>, we can visualize the process as:</p>
 
-<p><img src="CSOR4231-Analysis_of_Algorithms/image-20231018013613.png" style="zoom:100%;" /></p>
+<p><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20231018013613.png" style="zoom:100%;" /></p>
 
 <p>such that finding if two vertices are in the same CC is just checking if they have the same root in a <code class="language-plaintext highlighter-rouge">union</code>. So instead of a DFS/BFS, we could just have done it in $O(1)$ by comparing if the two vertices have the same root! But how does union-find work?</p>
 
@@ -2524,8 +2524,8 @@ where if we take the left edge to represent 0 and the right 1, this returns a va
   </thead>
   <tbody>
     <tr>
-      <td style="text-align: center"><img src="CSOR4231-Analysis_of_Algorithms/image-20231018105402.png" style="zoom:100%;" /></td>
-      <td style="text-align: center"><img src="CSOR4231-Analysis_of_Algorithms/image-20231018105314.png" style="zoom:15%;" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20231018105402.png" style="zoom:100%;" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20231018105314.png" style="zoom:15%;" /></td>
     </tr>
   </tbody>
 </table>
@@ -2548,7 +2548,7 @@ where if we take the left edge to represent 0 and the right 1, this returns a va
     <ul>
       <li>if we don’t merge the smaller one with the larger one so that our size <em>at least doubles</em>, we cannot get the logarithmic runtime</li>
       <li>if we don’t merge with the root node, then the depth of vertices in $y$ will increase by <em>more than one</em>, impacting runtime. Visually for <code class="language-plaintext highlighter-rouge">union</code> if done o non-root node:
-<img src="CSOR4231-Analysis_of_Algorithms/image-20231018110926.png" style="zoom:80%;" /></li>
+<img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20231018110926.png" style="zoom:80%;" /></li>
     </ul>
   </li>
 </ul>
@@ -2573,7 +2573,7 @@ where if we take the left edge to represent 0 and the right 1, this returns a va
 
 <p>We will show that one <strong>application</strong> of Kruskal’s algorithm is to solve a problem called <strong>clustering</strong>. The goal is to partition a set of objects into a collection of clusters, such that given $n$ data points, they are classified into a coherent group:</p>
 
-<p><img src="CSOR4231-Analysis_of_Algorithms/image-20231018111845.png" style="zoom:100%;" /></p>
+<p><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20231018111845.png" style="zoom:100%;" /></p>
 
 <p>to do this, we assume that we are given:</p>
 
@@ -2585,7 +2585,7 @@ where if we take the left edge to represent 0 and the right 1, this returns a va
 
 <p>There are many ways to do this (e.g. bottom-up, top-down, k-means). Here we discuss <strong>bottom-up</strong> or <strong>agglomerative</strong> clustering is to begin with every data point in its own cluster, and then successively merge pairs of clusters until exactly $k$ remain.</p>
 
-<p><img src="CSOR4231-Analysis_of_Algorithms/image-20231018112326.png" style="zoom:100%;" /></p>
+<p><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20231018112326.png" style="zoom:100%;" /></p>
 
 <blockquote>
   <p><strong>so the key part</strong> is how to decide which two clusters to merge at each step.</p>
@@ -2639,8 +2639,8 @@ where if we take the left edge to represent 0 and the right 1, this returns a va
   </thead>
   <tbody>
     <tr>
-      <td style="text-align: center"><img src="CSOR4231-Analysis_of_Algorithms/image-20231019225023.png" style="zoom:80%;" /></td>
-      <td style="text-align: center"><img src="CSOR4231-Analysis_of_Algorithms/image-20231019225032.png" style="zoom:80%;" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20231019225023.png" style="zoom:80%;" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20231019225032.png" style="zoom:80%;" /></td>
     </tr>
   </tbody>
 </table>
@@ -2660,7 +2660,7 @@ where if we take the left edge to represent 0 and the right 1, this returns a va
 
 <p>This is quite a difficult problem <mark>even if we just consider path graphs to be $G$</mark></p>
 
-<p><img src="CSOR4231-Analysis_of_Algorithms/image-20231019225607.png" style="zoom:100%;" /></p>
+<p><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20231019225607.png" style="zoom:100%;" /></p>
 
 <p>where by looking at it we can see the solution is $8$.</p>
 <ul>
@@ -2709,7 +2709,7 @@ where if we take the left edge to represent 0 and the right 1, this returns a va
     <p>in other words, <em>if you know MWIS for $G’$</em> and <em>you know $v_n \notin S$</em>, then you can just use the MWIS for $G’$ as the MWIS for $G$.</p>
   </li>
   <li>$v_{n} \in S$. Then since $S$ is an indepednt set, we know that the penultimate vertex is not there.
-<img src="CSOR4231-Analysis_of_Algorithms/image-20231019232103.png" style="zoom:70%;" />
+<img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20231019232103.png" style="zoom:70%;" />
 Therefore, we can consider $G’’$ to be $G$ without $v_n$ and $v_{n-1}$. Then we can show that:
     <ul>
       <li>$S - {v_n}$ is an independent set for $G’’$, and since $S$ is the MWIS in $G$, then <em>$S - {v_n}$ is also the MWIS in $G’’$</em>.</li>
@@ -2858,7 +2858,7 @@ Let $S$ be an MWIS for $G$ with at least two vertices, and the nwe can find $S$ 
 
 <p>For example, given the following configuration, the maximum value you can stuff in is 8 for a capacity of 6:</p>
 
-<p><img src="CSOR4231-Analysis_of_Algorithms/image-20231020004340.png" style="zoom:80%;" /></p>
+<p><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20231020004340.png" style="zoom:80%;" /></p>
 
 <p>Now we can kind of just copy over the idea for WIS we had. Again, suppose someone gave you the optimal solution $S \subset {1,2,3 ,…,n }$ telling you the best items to put in the knapsack. <strong>We can we say about $S$ and problems of smaller size?</strong> Either $S$ includes the last item $n$ or it doesn’t.</p>
 
@@ -2917,7 +2917,7 @@ Let $S$ be an MWIS for $G$ with at least two vertices, and the nwe can find $S$ 
 
 <p>which runs in $O(n)$. Visually it is doing this:</p>
 
-<p><img src="CSOR4231-Analysis_of_Algorithms/image-20231020011132.png" style="zoom:100%;" /></p>
+<p><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20231020011132.png" style="zoom:100%;" /></p>
 
 <p>Finally, correctness. In general this will be proven by <strong>induction + the property we used to come up with the DP algorithm/recurrence itself</strong>. Hence, we omit the proof here.</p>
 
@@ -2935,12 +2935,12 @@ Let $S$ be an MWIS for $G$ with at least two vertices, and the nwe can find $S$ 
 
 <blockquote>
   <p><strong>Alignment</strong>: a way of inserting gaps such that the two strings have the same length. For example:
-<img src="CSOR4231-Analysis_of_Algorithms/image-20231025012521.png" style="zoom:80%;" /></p>
+<img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20231025012521.png" style="zoom:80%;" /></p>
 </blockquote>
 
 <p>so that then we can define the similarity of the two strings as the quality of the best alignment, for example</p>
 
-<p><img src="CSOR4231-Analysis_of_Algorithms/image-20231025012620.png" style="zoom:80%;" /></p>
+<p><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20231025012620.png" style="zoom:80%;" /></p>
 
 <blockquote>
   <p><strong>Finding Optimal Sequence Alignment</strong> then is used to answer the question “how similar the two strings are”. Formally, consider two strings $X,Y$ over the alphabet $\Sigma$. And let there be a penalty $\alpha_{xy}$ for swapping $x$ with $y$, and $\alpha_{\mathrm{gap}}$ be the cost of inserting a gap. The goal is to find an optimal alignment of $X,Y$ that <strong>minimizes the total penalty</strong>.</p>
@@ -2954,14 +2954,14 @@ Let $S$ be an MWIS for $G$ with at least two vertices, and the nwe can find $S$ 
 
 <p>The savior is again dynamic programming. Similar to prior approaches, we begin by reasoning about how <strong>optimal solution relates to optimal solutions of subproblems, and vice versa</strong>. Consider we are already given the optimal solution, and similar to previous problems, consider the <mark>subproblem is having one less character to align</mark>:</p>
 
-<p><img src="CSOR4231-Analysis_of_Algorithms/image-20231025013516.png" style="zoom:90%;" /></p>
+<p><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20231025013516.png" style="zoom:90%;" /></p>
 
 <p>This naturally becomes similar to WIS and Knapsack, but here we could have more cases. Let the optimal alignment for $X= x_1, x_2, …, x_m$ and $Y= y_1, y_2, …, y_n$ be given above. Denote $X’ = x_1, x_2, …, x_{m-1}$ and $Y’ = y_1, y_2, …, y_{n-1}$ both with last one removed:</p>
 
 <ol>
   <li>
     <p>Case 1: $x_m$ is aligned with $y_n$, two actual characters (may or may not be the same). Then you can peel them off and the rest of the alignment should also be optimal:
-<img src="CSOR4231-Analysis_of_Algorithms/image-20231025103754.png" style="zoom:80%;" />
+<img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20231025103754.png" style="zoom:80%;" />
 note that this alignment between $X’$ and $Y’$ will also be the <em>optimal aligmnent</em>. (Proof by contradiction: suppose that the penalty for this induced alignment of $X’, Y’$ is $P$, but there is another better competitor $P’ &lt; P$. Then appending $x_m, y_n$ to the competitor alignment gives back $X,Y$, with new cost:</p>
 
 \[P' + \alpha_{x_m y_n} &lt; P + \alpha_{x_m y_n}\]
@@ -2969,7 +2969,7 @@ note that this alignment between $X’$ and $Y’$ will also be the <em>optimal 
     <p>which is a contradiction that $P + \alpha_{x_m y_n}$ was the optimal alignment.) Note that $\alpha_{x_m y_n}$ could be zero.</p>
   </li>
   <li>Case 2: $x_m$ is aligned with a gap. Then the induced alignment of $X’,Y$ is optimal.
-<img src="CSOR4231-Analysis_of_Algorithms/image-20231025104438.png" style="zoom:80%;" /></li>
+<img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20231025104438.png" style="zoom:80%;" /></li>
   <li>Case 3: $y_n$ is aligned with a gap. Then the induced alignment of $X,Y’$ is optimal.</li>
   <li>Case 4: a gap with a gap. Note that this is <strong>not a scenario</strong>, as we could have removed both gaps. Therefore, in general, <em>any column/pairing in an alignment will be either of the three cases above</em>.</li>
 </ol>
@@ -2992,11 +2992,11 @@ note that this alignment between $X’$ and $Y’$ will also be the <em>optimal 
 
 <p>for every $i=1,2, …$ and $j=1,2, …$ representing the <strong>subproblem of aligning first $i$ symbols in $X$ with first $i$ symbols in $Y$</strong>. Finally, what if one of $i,j$ is zero? This is the <strong>base case</strong>: imagine $X$ of the $X,Y$ is empty, then the alignment cost will be $\alpha_{\mathrm{gap}} \vert  X \vert$. So we obtained:</p>
 
-<p><img src="CSOR4231-Analysis_of_Algorithms/image-20231025105309.png" style="zoom:70%;" /></p>
+<p><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20231025105309.png" style="zoom:70%;" /></p>
 
 <p>which means our algorithm would be progresively filling in a 2D array:</p>
 
-<p><img src="CSOR4231-Analysis_of_Algorithms/image-20231025105502.png" style="zoom:75%;" /></p>
+<p><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20231025105502.png" style="zoom:75%;" /></p>
 
 <p>which obviously has a runtime of $O(nm)$.</p>
 
@@ -3019,21 +3019,21 @@ note that this alignment between $X’$ and $Y’$ will also be the <em>optimal 
 
 <p>This means that visually we are dealing with a fast search datastructure that looks like:</p>
 
-<p><img src="CSOR4231-Analysis_of_Algorithms/image-20231025110413.png" style="zoom:70%;" /></p>
+<p><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20231025110413.png" style="zoom:70%;" /></p>
 
 <p><strong>for every subtree</strong> in the search tree. An example would be:</p>
 
-<p><img src="CSOR4231-Analysis_of_Algorithms/image-20231025110504.png" style="zoom:80%;" /></p>
+<p><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20231025110504.png" style="zoom:80%;" /></p>
 
 <h3 id="average-search-time">Average Search Time</h3>
 
 <p>Normally, when we consider a binary search tree, we measure the <strong>search time</strong> for a key $k$ to be the nunmber o nodes it need to visit while searching for $k$ (including $k$ itself). For exmaple in the following tree:</p>
 
-<p><img src="CSOR4231-Analysis_of_Algorithms/image-20231025110917.png" style="zoom:80%;" /></p>
+<p><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20231025110917.png" style="zoom:80%;" /></p>
 
 <p>key “1” wold have a search time 5. Therefore, without weights, the ideal search tree would be a balanced one</p>
 
-<p><img src="CSOR4231-Analysis_of_Algorithms/image-20231025111023.png" style="zoom:100%;" /></p>
+<p><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20231025111023.png" style="zoom:100%;" /></p>
 
 <p>because this would minimize the length of the longest root-leaf path, or equivalently, the maximum search time. Minimzing the maximum search time <strong>makes sense since you don’t have knowledge about which searches are more likely than others</strong>.</p>
 
@@ -3051,7 +3051,7 @@ note that this alignment between $X’$ and $Y’$ will also be the <em>optimal 
 
 <p>So how do we do it? Different from other previous problems, there is no <em>clear notion of the rightmost/last object to pluck off and obtain optimal thing for subproblem</em>. But the intuition is that we can imagine building the tree from bottom up, and imagine the <strong>last decision we have to make = determing the root node!</strong>. Consider, if we know the optimal solution is the following</p>
 
-<p><img src="CSOR4231-Analysis_of_Algorithms/image-20231025130312.png" style="zoom:80%;" /></p>
+<p><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20231025130312.png" style="zoom:80%;" /></p>
 
 <p>Then we (intuitively) also</p>
 <ul>
@@ -3075,7 +3075,7 @@ note that this alignment between $X’$ and $Y’$ will also be the <em>optimal 
 
 <p>Then intuitively, we want to show that we can cut and paste this tree into $T$ and the obtain a cost better than $T$:</p>
 
-<p><img src="CSOR4231-Analysis_of_Algorithms/image-20231025162139.png" style="zoom:80%;" /></p>
+<p><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20231025162139.png" style="zoom:80%;" /></p>
 
 <p>where RHS is the one we cut and pasted. The weighted search time of the original tree $T$ is:</p>
 
@@ -3099,13 +3099,13 @@ note that this alignment between $X’$ and $Y’$ will also be the <em>optimal 
 
 <p>where intutively, $W_{i, i}$ would representing you building a search tree with just the root node $r=i$. Then, the algorithm would just iteratively grow this tree like this:</p>
 
-<p><img src="CSOR4231-Analysis_of_Algorithms/image-20231025125708.png" style="zoom:80%;" /></p>
+<p><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20231025125708.png" style="zoom:80%;" /></p>
 
 <p>Alternatively you can also just start with the purple diagonal as base case in your algorithm, and go to the top left. And you will fill each new diagional from bottmo left to top right (think about why by looking at the recurrence relation).</p>
 
 <p>and the detailed algorithm would be:</p>
 
-<p><img src="CSOR4231-Analysis_of_Algorithms/image-20231025164341.png" style="zoom:70%;" /></p>
+<p><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20231025164341.png" style="zoom:70%;" /></p>
 
 <p>where the runtime would be:</p>
 
@@ -3129,7 +3129,7 @@ note that this alignment between $X’$ and $Y’$ will also be the <em>optimal 
 
 <p>As mentioned before, Dijkstra algorithm ca nfail with graphs that has negative edges (but not negative cycles). The reason is the greedy decision it makes now doesn’t work. Consider:</p>
 
-<p><img src="CSOR4231-Analysis_of_Algorithms/image-20231026233920.png" style="zoom:70%;" /></p>
+<p><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20231026233920.png" style="zoom:70%;" /></p>
 
 <p>where the shortest path from $s \leadsto t$  will be $s \to t$ in the first iteration of Dijkstra, which is wrong.</p>
 
@@ -3157,7 +3157,7 @@ note that this alignment between $X’$ and $Y’$ will also be the <em>optimal 
 
 <p>Proof: consider an optimal path $P’$ that has at least $n$ edges. This means it visits at least $n+1$ vertices, meaning some vertex $w$ is visited twice. This means we can splice the repeated part out from $P’$ while keeping thee same endpoints <strong>but with fewer edges now</strong>:</p>
 
-<p><img src="CSOR4231-Analysis_of_Algorithms/image-20231026235102.png" style="zoom:75%;" /></p>
+<p><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20231026235102.png" style="zoom:75%;" /></p>
 
 <p>But because there is no negative cycle, this spliced out (path) cycle must have nonnegative length. Therefore, the new path $P’’$ is shorter than $P’$, which is a contradiction.</p>
 
@@ -3167,7 +3167,7 @@ note that this alignment between $X’$ and $Y’$ will also be the <em>optimal 
 
 <p>Naively, you may think of subproblems being something based on a subset of the $G$ we need to solve (e.g., similar to how we solve WIS, where input graph is a path graph and we just pluck the last vertex out). However, the problem now is that <em>where is the “last vertex” in a generic graph</em>? Bellman-Ford thus considers a different approach. Although there is no sequentiality in input graph, <em>there is sequentialality in output graph, i.e., the optimal path</em>:</p>
 
-<p><img src="CSOR4231-Analysis_of_Algorithms/image-20231027112721.png" style="zoom:80%;" /></p>
+<p><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20231027112721.png" style="zoom:80%;" /></p>
 
 <p>which we will show that $P’$ must also be shortest (even if $w \to v$ can ve negative). This is great, but <mark>what is the subproblem</mark>?</p>
 
@@ -3183,7 +3183,7 @@ note that this alignment between $X’$ and $Y’$ will also be the <em>optimal 
 <ol>
   <li>that optimal $P$ for $s \leadsto v$ has <strong>at most $i-1$ edges</strong> (already a pretty good path using a budget $i-1$). Then $P$ must also be the <strong>optimal solution with edge budget $i-1$ for $s \leadsto v$</strong>. (Proof by contradiction: if not, then that shorter path would also be shorter for the original subproblem of at most $i$ edges.)</li>
   <li>that optimal $P$ uses <strong>exactly $i$ edges</strong>. Consider visually that optimal path and $P’$ being the last edge plucked (say $(w,v)$):
-<img src="CSOR4231-Analysis_of_Algorithms/image-20231027113744.png" style="zoom:80%;" />
+<img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20231027113744.png" style="zoom:80%;" />
 then that $P’$ is <strong>an $s \leadsto w$ optimal path with at most $i-1$ edges</strong> (<mark>a smaller subproblem BUT with different destination</mark>). This can be easily shown by contradiction as well, because if there exists a better path with at most $i-1$ edges from $s \leadsto w$, then we can swap that out and obtain a better $P$ to the original problem.</li>
 </ol>
 
@@ -3243,7 +3243,7 @@ then that $P’$ is <strong>an $s \leadsto w$ optimal path with at most $i-1$ ed
 
 <p>Why? Remeber we showed that in Section <a href="#Shortest_Path_with_Negative_Edge_Length">Shortest Path with Negative Edge Length</a>, the optimal $s \leadsto v$ path in a graph with no negative cycle must at most visited every vertex once (otherwise we could remove the cycle and get a shorter path). Therefore, this is <mark>the only place where we need the no-negative cycle condition</mark>, such that Bellman-Ford’s algorithm will stop/converge at $n-1$ iterations. <strong>If not, then there is a negative cycle</strong>:</p>
 
-<p><img src="CSOR4231-Analysis_of_Algorithms/image-20231027121122.png" style="zoom:80%;" /></p>
+<p><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20231027121122.png" style="zoom:80%;" /></p>
 
 <p>where again, we needed to fill up a 2D array because we have two parameters, $i,v$ for the subproblem.</p>
 
@@ -3288,7 +3288,7 @@ then that $P’$ is <strong>an $s \leadsto w$ optimal path with at most $i-1$ ed
 
 <p>For example:</p>
 
-<p><img src="CSOR4231-Analysis_of_Algorithms/image-20231027123349.png" style="zoom:80%;" /></p>
+<p><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20231027123349.png" style="zoom:80%;" /></p>
 
 <p>In this graph, if we had source and vertex being $1,5$, then if $k=0,1,2$ there is no feasible path so $L_{k,1,5}=\infty$. However, when $k=3$, then the path $1 \to 2 \to 3 \to 5$ is eligible (and being the only one) with cost $L_{3,1,5} = 3$.</p>
 
@@ -3298,7 +3298,7 @@ then that $P’$ is <strong>an $s \leadsto w$ optimal path with at most $i-1$ ed
   <li>Case 1: <strong>optimal $P$ for $v \leadsto w$ did NOT use $k$</strong> as an intermediate vertex. Then $P$ must be an optimal path with at most $k-1$ intermediate vertices as well. (Proof by contradiction)</li>
   <li>
     <p>Case 2: <strong>optimal $P$ for $v \leadsto w$ did use $k$</strong>. Then we can split the path into two by <em>removing $k$ to be uneligible</em>:
-<img src="CSOR4231-Analysis_of_Algorithms/image-20231027124934.png" style="zoom:80%;" /></p>
+<img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20231027124934.png" style="zoom:80%;" /></p>
 
     <p>because $k$ could have only appeared in $P$ once (by assumption of cycle-free optimal path), then $P_1$ is optimal with origin $v$ and destination $k$, and $P_2$ is optimal with origin $k$ and destination $w$, <strong>both with a smaller subproblem using only ${1,2, …, k-1}$ vertices</strong>.</p>
     <ul>
@@ -3327,7 +3327,7 @@ then that $P’$ is <strong>an $s \leadsto w$ optimal path with at most $i-1$ ed
 
 <p>Finally this gives the algorithm:</p>
 
-<p><img src="CSOR4231-Analysis_of_Algorithms/image-20231027130119.png" style="zoom:75%;" /></p>
+<p><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20231027130119.png" style="zoom:75%;" /></p>
 
 <p>where note that:</p>
 <ul>
@@ -3358,7 +3358,7 @@ then that $P’$ is <strong>an $s \leadsto w$ optimal path with at most $i-1$ ed
 
 <p>Let $C$ denote such a cycle, and let $k$ be the largest labeled vertex of $C$ with $k \neq v$:</p>
 
-<p><img src="CSOR4231-Analysis_of_Algorithms/image-20231027132431.png" style="zoom:80%;" /></p>
+<p><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20231027132431.png" style="zoom:80%;" /></p>
 
 <p>then we know:</p>
 <ul>
@@ -3388,7 +3388,7 @@ then that $P’$ is <strong>an $s \leadsto w$ optimal path with at most $i-1$ ed
 
 <p>Visually, a cut below would be optimal with a total capcity of 3:</p>
 
-<p><img src="CSOR4231-Analysis_of_Algorithms/image-20231102231406.png" style="zoom:30%;" /></p>
+<p><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20231102231406.png" style="zoom:30%;" /></p>
 
 <p>where:</p>
 <ul>
@@ -3407,7 +3407,7 @@ then that $P’$ is <strong>an $s \leadsto w$ optimal path with at most $i-1$ ed
   <p><em>Image Segmentation with Fore/background</em>: Consider the task of classifying pixels of an image to be either foreground or background. Let us be given some prior (e.g. heuristics, non-negative) that each pixel could be in foreground with $a_v$ and background with $b_v$. Additionally, we are given non-negative $p_e$ for each undirected edge between each pixel, which represents the fact that we want neighboring pixels to be close together, i.e. smooth.</p>
 
   <p>Then, we can define the segmentation as an <em>undirected graph</em> with all those costs/rewards assigned to the vertices and edges:
-<img src="CSOR4231-Analysis_of_Algorithms/image-20231102232526.png" style="zoom:30%;" /></p>
+<img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20231102232526.png" style="zoom:30%;" /></p>
 
   <p>where the first value of the nertex denotes $a_v$ and second denotes $b_v$ in this example. We <strong>want to maximize the objective</strong>:</p>
 
@@ -3471,19 +3471,19 @@ then that $P’$ is <strong>an $s \leadsto w$ optimal path with at most $i-1$ ed
   <li>
     <p><strong>undirected edges to directed?</strong> add both and give both a penalty of $p_e$ to mimic $c_e$:</p>
 
-    <p><img src="CSOR4231-Analysis_of_Algorithms/image-20231102234327.png" style="zoom:35%;" /></p>
+    <p><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20231102234327.png" style="zoom:35%;" /></p>
   </li>
   <li>
     <p><strong>missing source and sink?</strong> Add them to the new graph $G’$ so that $V’ = V \cup {s,t}$</p>
 
-    <p><img src="CSOR4231-Analysis_of_Algorithms/image-20231102234446.png" style="zoom:30%;" /></p>
+    <p><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20231102234446.png" style="zoom:30%;" /></p>
 
     <p>where we can make $s$ the source by adding a directed edge from $s$ to <em>every edge in $V$ but not $t$</em>, and similarlity make $t$ the sink by adding a directed edge from <em>every edge in $V$ but not $s$</em> to $t$:</p>
   </li>
   <li>
     <p><strong>additional $a_v, b_v$ costs?</strong> Since now we have an edge from $s$ to every vertex $v \in V$, we can just assign $a_v$ to the capacity of that edge, and similarly for $b_v$.</p>
 
-    <p><img src="CSOR4231-Analysis_of_Algorithms/image-20231102234841.png" style="zoom:25%;" /></p>
+    <p><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20231102234841.png" style="zoom:25%;" /></p>
   </li>
 </ul>
 
@@ -3493,7 +3493,7 @@ then that $P’$ is <strong>an $s \leadsto w$ optimal path with at most $i-1$ ed
   <li>
     <p>there is a bijection where every parition $X,Y$ of $V$ will correspond to a cut $A,B$ in $G’$. This is basically because we can just have $A \iff X \cup {s}$ and $B \iff Y \cup {t}$.</p>
 
-    <p><img src="CSOR4231-Analysis_of_Algorithms/image-20231102235254.png" style="zoom:15%;" /></p>
+    <p><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20231102235254.png" style="zoom:15%;" /></p>
   </li>
   <li>
     <p>then we argue that <strong>computing the capacity $\sum_{e =(u,v); u \in A, v \in B} c_e$ of such cut in $G’$</strong> is the same as <strong>computing the objective function of $\sum_{v \in X} b_v +\sum_{v \in Y} a_v + \sum_{e \in \delta(X)} p_e$</strong>. How?</p>
@@ -3519,7 +3519,7 @@ then that $P’$ is <strong>an $s \leadsto w$ optimal path with at most $i-1$ ed
 
 <p>Similar to minimum flow, we start with a flow graph $G=(V,E)$  wth <strong>directed edges</strong>, a source vertex $s$ and a sink $t$. Each edge $e \in E$ has a capacity $c_e$. The goal is to find a “flow” $f$ that maximizes the total flow from $s$ to $t$.</p>
 
-<p><img src="CSOR4231-Analysis_of_Algorithms/image-20231109222028.png" style="zoom:80%;" /></p>
+<p><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20231109222028.png" style="zoom:80%;" /></p>
 
 <p>where in the right flow, we made “three streams of water flow”:</p>
 <ul>
@@ -3539,8 +3539,8 @@ then that $P’$ is <strong>an $s \leadsto w$ optimal path with at most $i-1$ ed
   </thead>
   <tbody>
     <tr>
-      <td style="text-align: center"><img src="CSOR4231-Analysis_of_Algorithms/image-20231109222428.png" style="zoom:70%;" /></td>
-      <td style="text-align: center"><img src="CSOR4231-Analysis_of_Algorithms/image-20231109222415.png" style="zoom:70%;" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20231109222428.png" style="zoom:70%;" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20231109222415.png" style="zoom:70%;" /></td>
     </tr>
   </tbody>
 </table>
@@ -3571,7 +3571,7 @@ then that $P’$ is <strong>an $s \leadsto w$ optimal path with at most $i-1$ ed
   <li>if found, find how much we can send through on that path $\Delta = \min_{e \in P} (u_e - f_e)$ where $f_e$ represents the current flow we assigned on that edge</li>
 </ol>
 
-<p><img src="CSOR4231-Analysis_of_Algorithms/image-20231109223809.png" style="zoom:70%;" /></p>
+<p><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20231109223809.png" style="zoom:70%;" /></p>
 
 <p>Technically this is already greedy, to make it “greedier” consider step 1 to always pick the path that has highest $\Delta$. Either way, we show that this algorithm is incorrect:</p>
 
@@ -3584,8 +3584,8 @@ then that $P’$ is <strong>an $s \leadsto w$ optimal path with at most $i-1$ ed
   </thead>
   <tbody>
     <tr>
-      <td style="text-align: center"><img src="CSOR4231-Analysis_of_Algorithms/image-20231109224100.png" style="zoom:70%;" /></td>
-      <td style="text-align: center"><img src="CSOR4231-Analysis_of_Algorithms/image-20231109224111.png" style="zoom:70%;" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20231109224100.png" style="zoom:70%;" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20231109224111.png" style="zoom:70%;" /></td>
     </tr>
   </tbody>
 </table>
@@ -3605,8 +3605,8 @@ then that $P’$ is <strong>an $s \leadsto w$ optimal path with at most $i-1$ ed
   </thead>
   <tbody>
     <tr>
-      <td style="text-align: center"><img src="CSOR4231-Analysis_of_Algorithms/image-20231109224747.png" style="zoom:70%;" /></td>
-      <td style="text-align: center"><img src="CSOR4231-Analysis_of_Algorithms/image-20231109224800.png" style="zoom:70%;" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20231109224747.png" style="zoom:70%;" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20231109224800.png" style="zoom:70%;" /></td>
     </tr>
   </tbody>
 </table>
@@ -3623,7 +3623,7 @@ an edge $e = (v,w)$ that carries flow $f_e$ spawns into a forward edge of $G_f$ 
 
   <p>Visually:</p>
 
-  <p><img src="CSOR4231-Analysis_of_Algorithms/image-20231109225642.png" style="zoom:70%;" /></p>
+  <p><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20231109225642.png" style="zoom:70%;" /></p>
 
   <p>and as a result, <strong>any feasible flow in $G$ must still be feasible in $G_f$</strong>, because the remaining flow is kept by the forward edge. But since we now also have backward edges, the “search space” for possible flows is now larger. Though how is this useful?</p>
 </blockquote>
@@ -3640,9 +3640,9 @@ an edge $e = (v,w)$ that carries flow $f_e$ spawns into a forward edge of $G_f$ 
   </thead>
   <tbody>
     <tr>
-      <td style="text-align: center"><img src="CSOR4231-Analysis_of_Algorithms/image-20231109224100.png" style="zoom:70%;" /></td>
-      <td style="text-align: center"><img src="CSOR4231-Analysis_of_Algorithms/image-20231109225311.png" style="zoom:70%;" /></td>
-      <td style="text-align: center"><img src="CSOR4231-Analysis_of_Algorithms/image-20231109225318.png" style="zoom:70%;" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20231109224100.png" style="zoom:70%;" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20231109225311.png" style="zoom:70%;" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20231109225318.png" style="zoom:70%;" /></td>
     </tr>
   </tbody>
 </table>
@@ -3750,7 +3750,7 @@ an edge $e = (v,w)$ that carries flow $f_e$ spawns into a forward edge of $G_f$ 
 
 <p>therefore, visually this inequality means:</p>
 
-<p><img src="CSOR4231-Analysis_of_Algorithms/image-20231109234433.png" style="zoom:80%;" /></p>
+<p><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20231109234433.png" style="zoom:80%;" /></p>
 
 <p>so if value of <strong>one of $s-t$ cut overlapped with the cross in the figuer above</strong> (condition 2), then that cross has to be the maximum $f$ you can have due to the inequality above $\implies$ condition (1).</p>
 
@@ -3770,7 +3770,7 @@ an edge $e = (v,w)$ that carries flow $f_e$ spawns into a forward edge of $G_f$ 
 
 <p>then the other partition $V-A$ will contain $t$. Additionally, such a cut must look like this:</p>
 
-<p><img src="CSOR4231-Analysis_of_Algorithms/image-20231110000720.png" style="zoom:80%;" /></p>
+<p><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20231110000720.png" style="zoom:80%;" /></p>
 
 <p>where no (positive) edges would be sticking out of $A$, as otherwise we would have expanded $A$. But what does this cut mean <strong>for the original graph $G$</strong>?</p>
 
@@ -3799,7 +3799,7 @@ an edge $e = (v,w)$ that carries flow $f_e$ spawns into a forward edge of $G_f$ 
 
 <p>This now becomes trivial, as you recall this figure</p>
 
-<p><img src="CSOR4231-Analysis_of_Algorithms/image-20231109234433.png" style="zoom:80%;" /></p>
+<p><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20231109234433.png" style="zoom:80%;" /></p>
 
 <p>The recall that in the third part of <a href="#correctness-of-ford-fulkerson-algorithm">Correctness of Ford-Fulkerson Algorithm</a> proof we said</p>
 
@@ -3823,11 +3823,11 @@ an edge $e = (v,w)$ that carries flow $f_e$ spawns into a forward edge of $G_f$ 
   <p><em>Bipartite Matching Problem</em>: consdier an undirected bipartite graph $G=(V \cup W \cup E)$ (see image below), with every edge of $E$ having one endpoint in each of $V$ and $W$. That is, no edges internal to $V$ or $W$ are allowed. The feasible solutions are the matchings of the graph, meaning we can only <strong>pick $S \subset E$ of edges that share no endpoints</strong>. <strong>The goal is to pair up as many vertices as possible (using edges of $S$)</strong></p>
 </blockquote>
 
-<p><img src="CSOR4231-Analysis_of_Algorithms/image-20231103000933.png" style="zoom:30%;" /></p>
+<p><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20231103000933.png" style="zoom:30%;" /></p>
 
 <p>For example, in the following graph, the maximum matching is 1 (pair of vertex):</p>
 
-<p><img src="CSOR4231-Analysis_of_Algorithms/image-20231103001131.png" style="zoom:40%;" /></p>
+<p><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20231103001131.png" style="zoom:40%;" /></p>
 
 <blockquote>
   <p><em>Claim</em>: maximum-cardinality matching reduces in linear time to <strong>maximum flow</strong>.</p>
@@ -3835,7 +3835,7 @@ an edge $e = (v,w)$ that carries flow $f_e$ spawns into a forward edge of $G_f$ 
 
 <p>The trick is to consider transformation of the bipartite graph $G$ to the following:</p>
 
-<p><img src="CSOR4231-Analysis_of_Algorithms/image-20231110012430.png" style="zoom:80%;" /></p>
+<p><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20231110012430.png" style="zoom:80%;" /></p>
 
 <p>where given a bipartite graph $G=(V \cup W \cup E)$, we construct a flow graph $G’$ with:</p>
 
@@ -3974,7 +3974,7 @@ computational efficiency</em> (too general a problem becomes NP-Hard)</li>
 
 <p>then obviously this fits directly with the linear programming formulation, where $x_1, x_2$ are the decision variables. Visually, this linear problem does:</p>
 
-<p><img src="CSOR4231-Analysis_of_Algorithms/image-20231115010146.png" style="zoom:80%;" /></p>
+<p><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20231115010146.png" style="zoom:80%;" /></p>
 
 <p>where the</p>
 <ul>
@@ -4142,7 +4142,7 @@ e_{i} \ge - \left( \sum\limits_{j=1}^{d} w_j p_j^{i} +b \right) + y^{i}\]
 
 <p>Visually, it looks likes:</p>
 
-<p><img src="CSOR4231-Analysis_of_Algorithms/image-20231115015439.png" style="zoom:80%;" /></p>
+<p><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms/image-20231115015439.png" style="zoom:80%;" /></p>
 
 <p>Assuming there exists such a classifier, the problem almost looks exactly like a linear program, except that we have strict inequalities here. Again, the simple trick of adding an extra decision variable solves the problem.</p>
 
@@ -4286,7 +4286,7 @@ e_{i} \ge - \left( \sum\limits_{j=1}^{d} w_j p_j^{i} +b \right) + y^{i}\]
 
 <p>But visually this means that there is a bunch of $\mathcal{NP}$ problems $A_i$’s such that:</p>
 
-<p><img src="CSOR4231-Analysis_of_Algorithms_part2/image-20231117004546.png" style="zoom:20%;" /></p>
+<p><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms_part2/image-20231117004546.png" style="zoom:20%;" /></p>
 
 <p>In addition, since no-one so far has solved in polynomial time any $\mathcal{NP}\text{-}\mathcal{hard}$ problem, we have:</p>
 
@@ -4299,7 +4299,7 @@ e_{i} \ge - \left( \sum\limits_{j=1}^{d} w_j p_j^{i} +b \right) + y^{i}\]
   </ul>
 </blockquote>
 
-<p><img src="CSOR4231-Analysis_of_Algorithms_part2/image-20231117010439.png" style="zoom:70%;" /></p>
+<p><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms_part2/image-20231117010439.png" style="zoom:70%;" /></p>
 
 <p>A “surprising” example of $\mathcal{NP}$ problem: Knapsack:</p>
 <ul>
@@ -4310,13 +4310,13 @@ e_{i} \ge - \left( \sum\limits_{j=1}^{d} w_j p_j^{i} +b \right) + y^{i}\]
 
 <p>Finally, a more complete picture of P, NP, and NP-hard:</p>
 
-<p><img src="CSOR4231-Analysis_of_Algorithms_part2/image-20231118213057.png" style="zoom:35%;" /></p>
+<p><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms_part2/image-20231118213057.png" style="zoom:35%;" /></p>
 
 <h2 id="simple-reductions-for-np-hardness">Simple Reductions for NP-Hardness</h2>
 
 <p>Recall that we have used reductions before. For instance, to compute the Image Segmentation problem we used a minimum s-t cut algorithm as a black-box (i.e. Image segmentation reduces to minimum s-t cut):</p>
 
-<p><img src="CSOR4231-Analysis_of_Algorithms_part2/image-20231117011431.png" style="zoom:75%;" /></p>
+<p><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms_part2/image-20231117011431.png" style="zoom:75%;" /></p>
 
 <p>where we:</p>
 <ul>
@@ -4335,8 +4335,8 @@ e_{i} \ge - \left( \sum\limits_{j=1}^{d} w_j p_j^{i} +b \right) + y^{i}\]
   </thead>
   <tbody>
     <tr>
-      <td style="text-align: center"><img src="CSOR4231-Analysis_of_Algorithms_part2/image-20231117014759.png" style="zoom:100%;" /></td>
-      <td style="text-align: center"><img src="CSOR4231-Analysis_of_Algorithms_part2/image-20231117014805.png" style="zoom:100%;" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms_part2/image-20231117014759.png" style="zoom:100%;" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms_part2/image-20231117014805.png" style="zoom:100%;" /></td>
     </tr>
   </tbody>
 </table>
@@ -4412,7 +4412,7 @@ e_{i} \ge - \left( \sum\limits_{j=1}^{d} w_j p_j^{i} +b \right) + y^{i}\]
 
 <p>Therefore, consider the following reduction for DHP:</p>
 
-<p><img src="CSOR4231-Analysis_of_Algorithms_part2/image-20231117162336.png" style="zoom:70%;" /></p>
+<p><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms_part2/image-20231117162336.png" style="zoom:70%;" /></p>
 
 <p>Why can this algorithm (embedded with CFSP subroutine) solve DHP, i.e. is <strong>correct</strong>? To show this, we need to prove that this algorithm will output “yes” if and only if there is a Hamiltonian path in the graph. Notice that:</p>
 
@@ -4489,7 +4489,7 @@ e_{i} \ge - \left( \sum\limits_{j=1}^{d} w_j p_j^{i} +b \right) + y^{i}\]
 
 <p>For example, consider four jobs with processing time $l_1=2, l_2=2, l_3=1, l_4=3$, and two schedules:</p>
 
-<p><img src="CSOR4231-Analysis_of_Algorithms_part2/image-20231122003057.png" style="zoom:80%;" /></p>
+<p><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms_part2/image-20231122003057.png" style="zoom:80%;" /></p>
 
 <p>the first one will have makespan $4$, and the second one will have makespan $5$ due to the jobs on the first machine. So intuitively, we an ideal schedule would have a <mark>perfectly balanced-load on every machine</mark>. But unfortunately:</p>
 
@@ -4503,7 +4503,7 @@ e_{i} \ge - \left( \sum\limits_{j=1}^{d} w_j p_j^{i} +b \right) + y^{i}\]
 
 <p>The intuition is that our goal is create a balanced load on every machine, so that the makespan is minimized. Therefore, we can just have a greedy algorithm that iteratively assigns the next job to the machine with the smallest load.</p>
 
-<p><img src="CSOR4231-Analysis_of_Algorithms_part2/image-20231122003624.png" style="zoom:70%;" /></p>
+<p><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms_part2/image-20231122003624.png" style="zoom:70%;" /></p>
 
 <p>where for a fast <code class="language-plaintext highlighter-rouge">argmin</code> implementation, we can use a min-heap to keep track of the smallest load machine. But why this algorithm specifically? It turns out that this is not only fast (with min-heap) giving $O(n \log m)$, but also guarantees a rather good error bound.</p>
 
@@ -4520,8 +4520,8 @@ e_{i} \ge - \left( \sum\limits_{j=1}^{d} w_j p_j^{i} +b \right) + y^{i}\]
   </thead>
   <tbody>
     <tr>
-      <td style="text-align: center"><img src="CSOR4231-Analysis_of_Algorithms_part2/image-20231122004228.png" style="zoom:70%;" /></td>
-      <td style="text-align: center"><img src="CSOR4231-Analysis_of_Algorithms_part2/image-20231122004240.png" style="zoom:70%;" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms_part2/image-20231122004228.png" style="zoom:70%;" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms_part2/image-20231122004240.png" style="zoom:70%;" /></td>
     </tr>
   </tbody>
 </table>
@@ -4563,7 +4563,7 @@ e_{i} \ge - \left( \sum\limits_{j=1}^{d} w_j p_j^{i} +b \right) + y^{i}\]
 
 <p>But how big was $\hat{L}_{i}$? By the greedy criterion of the algorithm, it must have looked like this (if that machine is #1):</p>
 
-<p><img src="CSOR4231-Analysis_of_Algorithms_part2/image-20231122013331.png" style="zoom:90%;" /></p>
+<p><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms_part2/image-20231122013331.png" style="zoom:90%;" /></p>
 
 <p>i.e. it must be <strong>the lightest loaded before $j$ is assigned</strong>. How light can that be?:</p>
 
@@ -4606,7 +4606,7 @@ e_{i} \ge - \left( \sum\limits_{j=1}^{d} w_j p_j^{i} +b \right) + y^{i}\]
 
 <p>This gives the longest processing time first algorithm, which <strong>saves those small jobs for the end</strong>:</p>
 
-<p><img src="CSOR4231-Analysis_of_Algorithms_part2/image-20231122015101.png" style="zoom:70%;" /></p>
+<p><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms_part2/image-20231122015101.png" style="zoom:70%;" /></p>
 
 <p>again, this algorithm is not always correct, but it is guaranteed to produce a schedule with makespan $\le 3/2$ times the optimal makespan. How?</p>
 
@@ -4659,7 +4659,7 @@ e_{i} \ge - \left( \sum\limits_{j=1}^{d} w_j p_j^{i} +b \right) + y^{i}\]
 
 <p>Again, this problem is NP-hard, so we want to come up with an algorithm that is almost always correct. Consider the case when $k=1$: just pick $A_i$ with the largest size. But what about $k=2$? So the intuition is to maybe pick the second subset that <strong>increases coverage the most</strong>:</p>
 
-<p><img src="CSOR4231-Analysis_of_Algorithms_part2/image-20231122015923.png" style="zoom:80%;" /></p>
+<p><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms_part2/image-20231122015923.png" style="zoom:80%;" /></p>
 
 <p>This looks good, but when does it break? What is its error bound?</p>
 
@@ -4674,8 +4674,8 @@ e_{i} \ge - \left( \sum\limits_{j=1}^{d} w_j p_j^{i} +b \right) + y^{i}\]
   </thead>
   <tbody>
     <tr>
-      <td style="text-align: center"><img src="CSOR4231-Analysis_of_Algorithms_part2/image-20231122020358.png" style="zoom:65%;" /></td>
-      <td style="text-align: center"><img src="CSOR4231-Analysis_of_Algorithms_part2/image-20231122020558.png" style="zoom:65%;" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms_part2/image-20231122020358.png" style="zoom:65%;" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms_part2/image-20231122020558.png" style="zoom:65%;" /></td>
     </tr>
   </tbody>
 </table>
@@ -4691,8 +4691,8 @@ e_{i} \ge - \left( \sum\limits_{j=1}^{d} w_j p_j^{i} +b \right) + y^{i}\]
   </thead>
   <tbody>
     <tr>
-      <td style="text-align: center"><img src="CSOR4231-Analysis_of_Algorithms_part2/image-20231122020303.png" style="zoom:60%;" /></td>
-      <td style="text-align: center"><img src="CSOR4231-Analysis_of_Algorithms_part2/image-20231122020858.png" style="zoom:60%;" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms_part2/image-20231122020303.png" style="zoom:60%;" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms_part2/image-20231122020858.png" style="zoom:60%;" /></td>
     </tr>
   </tbody>
 </table>
@@ -4743,7 +4743,7 @@ e_{i} \ge - \left( \sum\limits_{j=1}^{d} w_j p_j^{i} +b \right) + y^{i}\]
 
 <p><em>Proof</em>: let $K_{j-1}$ denote the indices of the $j-1$ subsets picked so far, and $C_{j-1}$ its coverage. Any potential $\hat{K}$ (may or may not be optimal) that contains $k$ indices, and $W$ be the set of elements covered by $\hat{K}$ <em>but not by $K_{j-1}$</em>:</p>
 
-<p><img src="CSOR4231-Analysis_of_Algorithms_part2/image-20231122023659.png" style="zoom:80%;" /></p>
+<p><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms_part2/image-20231122023659.png" style="zoom:80%;" /></p>
 
 <p>where in the above example, basically $K_{j-1} = {4,5}$ and the alterative $\hat{K}=K^{*}$. Then this means:</p>
 
@@ -4832,7 +4832,7 @@ e_{i} \ge - \left( \sum\limits_{j=1}^{d} w_j p_j^{i} +b \right) + y^{i}\]
   <li>
     <p><strong>optimal solution’s structure</strong>: suppose you already have a minimum cost tour $T$ using vertices $V={1,2, …, n}$ labeled without loss of generality. WLOG, let the path “start and end at vertex $1$”. Then, <mark>suppose this optimal path's last hop was $j-1$</mark> for some $j \in V \setminus {1}$ :</p>
 
-    <p><img src="CSOR4231-Analysis_of_Algorithms_part2/image-20231129003245.png" style="zoom:90%;" /></p>
+    <p><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms_part2/image-20231129003245.png" style="zoom:90%;" /></p>
 
     <p>then this $1-j$ path must be a <mark>minimum cost, cycle-free path using vertices $V$</mark>. This means that:</p>
 
@@ -4840,7 +4840,7 @@ e_{i} \ge - \left( \sum\limits_{j=1}^{d} w_j p_j^{i} +b \right) + y^{i}\]
 
     <p>but how do we reason about the “min cost of cycle free 1-j path that visits $V$”? Realize that by a similar logic:</p>
 
-    <p><img src="CSOR4231-Analysis_of_Algorithms_part2/image-20231129004029.png" style="zoom:80%;" /></p>
+    <p><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms_part2/image-20231129004029.png" style="zoom:80%;" /></p>
 
     <p>i.e. plucking off the penultimate hop $k-j$ for some $k \in V \setminus {1, j}$, we have a <mark>minimum, cycle-free path using vertices $V - \{j\}$ </mark>. (this is the tricky part, instead of being the minimum cycle-free path using vertices $V$, because enabling $j$ could give us shortcuts). Therefore, this means:</p>
 
@@ -4863,7 +4863,7 @@ e_{i} \ge - \left( \sum\limits_{j=1}^{d} w_j p_j^{i} +b \right) + y^{i}\]
 
 <p>Finally, we can use this recurrence to construct a DP algorithm:</p>
 
-<p><img src="CSOR4231-Analysis_of_Algorithms_part2/image-20231129005839.png" style="zoom:80%;" /></p>
+<p><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms_part2/image-20231129005839.png" style="zoom:80%;" /></p>
 
 <p>where we had</p>
 <ul>
@@ -4903,7 +4903,7 @@ e_{i} \ge - \left( \sum\limits_{j=1}^{d} w_j p_j^{i} +b \right) + y^{i}\]
 
 <p>For example, in the following graph the optimal 4-path has cost 8, which is $(c \to a \to b \to e)$.</p>
 
-<p><img src="CSOR4231-Analysis_of_Algorithms_part2/image-20231129011207.png" style="zoom:100%;" /></p>
+<p><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms_part2/image-20231129011207.png" style="zoom:100%;" /></p>
 
 <p>As you may have guesses, this is also NP-hard and shares many similarities with TSP. But before we go to a DP approach, what is the runtime for exhaustive search? Given a $k$:</p>
 
@@ -4954,7 +4954,7 @@ e_{i} \ge - \left( \sum\limits_{j=1}^{d} w_j p_j^{i} +b \right) + y^{i}\]
 
 <p>For example, consider the following graph with $k=4$, where we can imagine each partition having a different color:</p>
 
-<p><img src="CSOR4231-Analysis_of_Algorithms_part2/image-20231129014034.png" style="zoom:80%;" /></p>
+<p><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms_part2/image-20231129014034.png" style="zoom:80%;" /></p>
 
 <h3 id="computing-a-minimum-cost-panchromatic-path">Computing a Minimum-Cost Panchromatic Path</h3>
 
@@ -4972,7 +4972,7 @@ e_{i} \ge - \left( \sum\limits_{j=1}^{d} w_j p_j^{i} +b \right) + y^{i}\]
   <li>
     <p><strong>optimal solution’s structure</strong>: essentially the same as TSP where we can pluck the last vertex out, along with its color:</p>
 
-    <p><img src="CSOR4231-Analysis_of_Algorithms_part2/image-20231129015016.png" style="zoom:100%;" /></p>
+    <p><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms_part2/image-20231129015016.png" style="zoom:100%;" /></p>
 
     <p>note that we do not have a start vertex here, and the smaller subproblem represents having one less color to visit (which skips a LOT of subproblems)!</p>
   </li>
@@ -4997,7 +4997,7 @@ e_{i} \ge - \left( \sum\limits_{j=1}^{d} w_j p_j^{i} +b \right) + y^{i}\]
 
 <p>Hence our DP algorithm is:</p>
 
-<p><img src="CSOR4231-Analysis_of_Algorithms_part2/image-20231129020101.png" style="zoom:80%;" /></p>
+<p><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms_part2/image-20231129020101.png" style="zoom:80%;" /></p>
 
 <p>again, this assumes that the optimal path is panchromatic.</p>
 
@@ -5038,7 +5038,7 @@ e_{i} \ge - \left( \sum\limits_{j=1}^{d} w_j p_j^{i} +b \right) + y^{i}\]
   <li>
     <p>to compute this, consider bounding $1-p$ from above by $e^{-p}$, which works because:</p>
 
-    <p><img src="CSOR4231-Analysis_of_Algorithms_part2/image-20231129021512.png" style="zoom:40%;" /></p>
+    <p><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms_part2/image-20231129021512.png" style="zoom:40%;" /></p>
 
     <p>therefore we get:</p>
 
@@ -5052,7 +5052,7 @@ e_{i} \ge - \left( \sum\limits_{j=1}^{d} w_j p_j^{i} +b \right) + y^{i}\]
 
 <p>This gives our final algorithm of color coding with randomized trials:</p>
 
-<p><img src="CSOR4231-Analysis_of_Algorithms_part2/image-20231129021934.png" style="zoom:80%;" /></p>
+<p><img src="/lectures/images/2024-01-20-CSOR4231_Analysis_of_Algorithms_part2/image-20231129021934.png" style="zoom:80%;" /></p>
 
 <p>where basically in the yellow part you just recolor everything for $T$ trials. This gives the total runtime of:</p>
 
