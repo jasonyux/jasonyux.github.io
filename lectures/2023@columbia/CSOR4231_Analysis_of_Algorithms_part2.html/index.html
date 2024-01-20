@@ -1,0 +1,1022 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>CSOR4231 Analysis of Algorithms part2 | Lecture Notes</title>
+<meta name="generator" content="Jekyll v4.3.1" />
+<meta property="og:title" content="CSOR4231 Analysis of Algorithms part2" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="NP-Hard Problems" />
+<meta property="og:description" content="NP-Hard Problems" />
+<link rel="canonical" href="/lectures/2023@columbia/CSOR4231_Analysis_of_Algorithms_part2.html/" />
+<meta property="og:url" content="/lectures/2023@columbia/CSOR4231_Analysis_of_Algorithms_part2.html/" />
+<meta property="og:site_name" content="Lecture Notes" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2024-01-20T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="CSOR4231 Analysis of Algorithms part2" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-01-20T00:00:00+00:00","datePublished":"2024-01-20T00:00:00+00:00","description":"NP-Hard Problems","headline":"CSOR4231 Analysis of Algorithms part2","mainEntityOfPage":{"@type":"WebPage","@id":"/lectures/2023@columbia/CSOR4231_Analysis_of_Algorithms_part2.html/"},"url":"/lectures/2023@columbia/CSOR4231_Analysis_of_Algorithms_part2.html/"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/lectures/assets/main.css"><link type="application/atom+xml" rel="alternate" href="/lectures/feed.xml" title="Lecture Notes" /></head>
+<body><header class="site-header">
+
+	<div class="wrapper"><a class="site-title" rel="author" href="/lectures/">Lecture Notes</a>
+
+		<nav class="site-nav">
+			<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+			<label for="nav-trigger">
+			<span class="menu-icon">
+				<svg viewBox="0 0 18 15" width="18px" height="15px">
+				<path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+				</svg>
+			</span>
+			</label>
+
+			<div class="trigger">
+				<a class="page-link" href="/">Home</a>
+				<a class="page-link" href="/projects">Projects</a>
+				<a class="page-link" href="/research">Research</a>
+				<span class="page-link" href="#">[Education]</span>
+				<a class="page-link" href="/learning">Blog</a>
+			</div>
+		</nav>
+	</div>
+  </header><main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <head>
+  <script>
+    MathJax = {
+      // 
+      loader: {
+        load: ['[tex]/ams', '[tex]/textmacros', '[tex]/boldsymbol']
+      },
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        packages: {'[+]': ['ams', 'textmacros', 'boldsymbol']}
+      }
+    };
+  </script>
+  <script id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+  </script>
+  </head>
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">CSOR4231 Analysis of Algorithms part2</h1>
+    <p class="post-meta"><time class="dt-published" datetime="2024-01-20T00:00:00+00:00" itemprop="datePublished">
+        Jan 20, 2024
+      </time></p>
+  </header>
+
+  <div class="section-nav" id="toc-all">
+    <button type="button" id="toc-close" class="toc_collapsible hidden" title="collapse">
+      <span><strong>Table of Contents</strong></span>
+    </button>
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" mirror-in-rtl="true" fill="#000000" style="width: 18px;" id="toc-reopen" class="toc_collapsible">
+      <g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <circle fill="#494c4e" cx="2" cy="2" r="2"></circle> <circle fill="#494c4e" cx="2" cy="8" r="2"></circle> <circle fill="#494c4e" cx="2" cy="20" r="2"></circle> <circle fill="#494c4e" cx="2" cy="14" r="2"></circle> <path fill="#494c4e" d="M23.002 3H7.998C7.448 3 7 2.55 7 2.002v-.004c0-.55.45-.998.998-.998H23c.55 0 1 .45 1 .998V2c0 .55-.45 1-.998 1zM23.002 9H7.998C7.448 9 7 8.55 7 8.002v-.004c0-.55.45-.998.998-.998H23c.55 0 1 .45 1 .998V8c0 .55-.45 1-.998 1zM23.002 15H7.998c-.55 0-.998-.45-.998-.998V14c0-.55.45-1 .998-1H23c.55 0 1 .45 1 .998V14c0 .55-.45 1-.998 1zM23.002 21H7.998c-.55 0-.998-.45-.998-.998V20c0-.55.45-1 .998-1H23c.55 0 1 .45 1 .998V20c0 .55-.45 1-.998 1z"></path> </g>
+    </svg>
+    <ul id="toc" class="section-nav">
+<li class="toc-entry toc-h1"><a href="#np-hard-problems">NP-Hard Problems</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#the-traveling-salesman-problem">The Traveling Salesman Problem</a></li>
+<li class="toc-entry toc-h2"><a href="#introduction-to-p-and-np">Introduction to P and NP</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#polynomial-time-algorithms">Polynomial-Time Algorithms</a></li>
+<li class="toc-entry toc-h3"><a href="#np-hard-problems-1">NP-hard Problems</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#simple-reductions-for-np-hardness">Simple Reductions for NP-Hardness</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#np-hardness-of-cycle-free-shortest-paths">NP-Hardness of Cycle-Free Shortest Paths</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#rookie-mistakes-and-acceptable-inaccuracies">Rookie Mistakes and Acceptable Inaccuracies</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#compromising-on-correctness-efficient-inexact-algorithms">Compromising on Correctness: Efficient Inexact Algorithms</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#makespan-minimization">Makespan Minimization</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#grahams-algorithm">Graham’s Algorithm</a></li>
+<li class="toc-entry toc-h3"><a href="#grahams-algorithm-error-bound">Graham’s Algorithm Error Bound</a></li>
+<li class="toc-entry toc-h3"><a href="#longest-processing-time-first">Longest Processing Time First</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#maximum-coverage-problem">Maximum Coverage Problem</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#greedycoverage-error-bound">GreedyCoverage Error Bound</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#compromising-on-speed-exact-inefficient-algorithms">Compromising on Speed: Exact Inefficient Algorithms</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#the-bellman-held-karp-algorithm-for-the-tsp">The Bellman-Held-Karp Algorithm for the TSP</a></li>
+<li class="toc-entry toc-h2"><a href="#finding-long-paths-by-color-coding">Finding Long Paths by Color Coding</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#color-coding">Color Coding</a></li>
+<li class="toc-entry toc-h3"><a href="#computing-a-minimum-cost-panchromatic-path">Computing a Minimum-Cost Panchromatic Path</a></li>
+<li class="toc-entry toc-h3"><a href="#randomized-color-coding">Randomized Color Coding</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+  </div>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <h1 id="np-hard-problems">NP-Hard Problems</h1>
+
+<p>Beyond the collection of efficient algorithms we have talked about? In the first part of the notes, we have seen problems such as sorting, graph search, shortest path, MST, etc being solved in almost linear time. Here, we essentially discuss the class of problems for which <strong>NO fast algorithms are KNOWN</strong> (notice the distinction between “no fast algorithms exist” and “no fast algorithms are known”).</p>
+
+<h2 id="the-traveling-salesman-problem">The Traveling Salesman Problem</h2>
+
+<p>By definition, this looks <em>very</em> alike MST:</p>
+
+<blockquote>
+  <p><strong>Traveling Salesman Problem Definition</strong>: given a <em>complete</em> undirected graph $G=(V,E)$ and a real-valued cost $c_e$ for each edge $e\in E$, find a minimum-cost tour that visits each vertex exactly once.</p>
+  <ul>
+    <li>difference from MST: MST is a <em>spanning tree</em> while TSP is a <em>tour</em>.</li>
+    <li>technically MST had only needed “connected” graph, which is actually <em>more general</em> (as you can mimic non-complete graphs by having some edges cost $\infty$)</li>
+  </ul>
+</blockquote>
+
+<p>How many distinct tours are there? Since each tour is a cycle, we have $n! / (2n)$ because for each vertex, it is repeated twice (once as start, once as end).</p>
+
+<p>Despite significant effort, until today (2023) there is no known fast algorithm for the TSP.</p>
+
+<blockquote>
+  <p>Conjecture: maybe no fast algorithm exists for TSP.</p>
+</blockquote>
+
+<p>But how do we even attempt to “prove” this? (Spoiler: we kind of don’t. We just try to show TSP is NP-hard $\implies$ solving it efficiently would prove $\mathcal{P} = \mathcal{NP}$, and until today no-one has done it.)</p>
+
+<h2 id="introduction-to-p-and-np">Introduction to P and NP</h2>
+
+<h3 id="polynomial-time-algorithms">Polynomial-Time Algorithms</h3>
+
+<p>So what does it mean to be $\mathcal{P}$?</p>
+
+<blockquote>
+  <p><strong>Polynomial-Time Solvable Problems</strong> A problem is in $\mathcal{P}$ if there is a polynomial-time algorithm to solve it.</p>
+  <ul>
+    <li>polynomial-time algorithm: one that correctly solves the problem with worst-case running time $O(n^k)$ for some constant $k$.</li>
+    <li>here $n$ denotes the input size, which you can image as “the number of bits needed to represent the entire input” for a generic problem.</li>
+  </ul>
+</blockquote>
+
+<h3 id="np-hard-problems-1">NP-hard Problems</h3>
+
+<p>Going back to our original problem: the goal is to gather evidences to show that “there exists no polynomial-time algorithm for TSP”. Just to be clear, no one has proven this yet, but we have some evidence to support this conjecture: to show that TSP is <em>relatively speaking, hard</em>.</p>
+
+<blockquote>
+  <p><strong>Strong Evidence of A Problem being Hard</strong>: A polynomial-time algorithm for the TSP would solve thousands of problems (i.e. by reduction), that have resisted the efforts of tens (if not hundreds) of thousands of brilliant minds over many decades.</p>
+  <ul>
+    <li>basically TSP must be “at least as hard as” any of those other problems.</li>
+  </ul>
+</blockquote>
+
+<p>More formally, here comes the notion of NP-hardness.</p>
+
+<blockquote>
+  <p>Complexity Class $\mathcal{NP}$: a problem is in $\mathcal{NP}$ if</p>
+  <ol>
+    <li>for every instance of the problem, every candidate <strong>solution can be described</strong> (e.g. in bits) by using, bounded above, <strong>a polynomial function of the input size</strong>.</li>
+    <li>for any of the candidate solutions, we can <strong>verify in polynomial time</strong> whether it is indeed a valid solution.</li>
+  </ol>
+</blockquote>
+
+<p>Notice that by this definition, almost all the search problems that you’ve seen qualify for $\mathcal{\mathcal{NP}}$. But additionally, let every candidate solution be described in $O(n^{d})$ bits, for an instance of the problem having input size $n$. Then, an exhaustive search algorithm over all solutions is:</p>
+
+\[O(2^{O(n^{d})}) \times O(n^{k}) = O(2^{O(n^{d})})\]
+
+<p>where:</p>
+<ul>
+  <li>since every solution can be described/encoded in $O(n^{d})$ <strong>bits</strong>, there are $2^{O(n^{d})}$ possible solutions.</li>
+  <li>the exhaustive search would basically loop over all possible solutions, and for each solution, it would take $O(n^{k})$ time to verify whether it is indeed a valid solution.</li>
+  <li>this therefore is <strong>exponential runtime</strong> (but of course, many problems have smart algorithms to solve them)</li>
+</ul>
+
+<blockquote>
+  <p><strong>NP-hard Problems</strong>: a problem is $\mathcal{NP}\text{-}\mathcal{hard}$ if <strong>every problem</strong> in $\mathcal{NP}$ can be <strong>reduced to it</strong> in polynomial time.</p>
+  <ul>
+    <li>recall if A reduces to B, then it means we can use B as a black-box to solve A.</li>
+    <li>so the consequence is that if you can solve one $\mathcal{NP}\text{-}\mathcal{hard}$ problem in polynomial time, you can solve all $\mathcal{NP}$ problems in polynomial time.</li>
+    <li>then $\mathcal{P} = \mathcal{NP}$</li>
+  </ul>
+
+  <p>notice that a problem can be $\mathcal{NP}\text{-}\mathcal{hard}$ without being in $\mathcal{NP}$ (see figure at the end of this section)</p>
+</blockquote>
+
+<p>We will see a bit later that TSP is $\mathcal{NP}\text{-}\mathcal{hard}$ being a strong evidence that we <em>think there exists no polynomial-time algorithm for TSP</em> (basically by reducing the 3-SAT problem to it, and somebody has already done the hardest work showing that 3-SAT is $\mathcal{NP}\text{-}\mathcal{hard}$)!</p>
+
+<p>But visually this means that there is a bunch of $\mathcal{NP}$ problems $A_i$’s such that:</p>
+
+<p><img src="CSOR4231-Analysis_of_Algorithms_part2/image-20231117004546.png" style="zoom:20%;" /></p>
+
+<p>In addition, since no-one so far has solved in polynomial time any $\mathcal{NP}\text{-}\mathcal{hard}$ problem, we have:</p>
+
+<blockquote>
+  <p><strong>Conjecture</strong>: $\mathcal{P} \neq  \mathcal{NP}$. Motivation why it may be true?</p>
+  <ul>
+    <li>empirical: all you need is one polynomial time algorithm for one $\mathcal{NP}\text{-}\mathcal{hard}$ problem to prove $\mathcal{P} = \mathcal{NP}$, but no one has found it yet.</li>
+    <li>philosophical: if $\mathcal{P} \neq  \mathcal{NP}$, then it means “solving a problem is as hard as checking a solution of a problem”. Then life is too easy.</li>
+    <li>mathematical: as of today, absent of evidence.</li>
+  </ul>
+</blockquote>
+
+<p><img src="CSOR4231-Analysis_of_Algorithms_part2/image-20231117010439.png" style="zoom:70%;" /></p>
+
+<p>A “surprising” example of $\mathcal{NP}$ problem: Knapsack:</p>
+<ul>
+  <li>recall that there is an $O(nC)$-time dynamic programming algorithm for the problem</li>
+  <li>but this is NOT polynomial in the size of input. this is a polynomial-time algorithm <em>in the special case in which $C$ is bounded by a polynomial function of $n$.</em></li>
+  <li>think of the number of keystrokes to type $C=10$, which is $2$, to $C=100$, which is $3$. The input size increased by $1.5$, but runtime increased by a factor of $10$.</li>
+</ul>
+
+<p>Finally, a more complete picture of P, NP, and NP-hard:</p>
+
+<p><img src="CSOR4231-Analysis_of_Algorithms_part2/image-20231118213057.png" style="zoom:35%;" /></p>
+
+<h2 id="simple-reductions-for-np-hardness">Simple Reductions for NP-Hardness</h2>
+
+<p>Recall that we have used reductions before. For instance, to compute the Image Segmentation problem we used a minimum s-t cut algorithm as a black-box (i.e. Image segmentation reduces to minimum s-t cut):</p>
+
+<p><img src="CSOR4231-Analysis_of_Algorithms_part2/image-20231117011431.png" style="zoom:75%;" /></p>
+
+<p>where we:</p>
+<ul>
+  <li>assumed that minimum s-t cut is polynomial-time solvable (it is)</li>
+  <li>created the image segmentation problem by preprocessing the input (convert to flow graph) and postprocessing the output (convert back)</li>
+</ul>
+
+<p>Reductions <strong>will also be used here</strong>, but for the purpose of spreading <strong>intractibiliy or tractibiliy</strong> (i.e. polynomial-time solvability) of a problem.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Tractibility</th>
+      <th style="text-align: center">Intractibility</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><img src="CSOR4231-Analysis_of_Algorithms_part2/image-20231117014759.png" style="zoom:100%;" /></td>
+      <td style="text-align: center"><img src="CSOR4231-Analysis_of_Algorithms_part2/image-20231117014805.png" style="zoom:100%;" /></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>so that more formally:</p>
+
+<blockquote>
+  <p><strong>Reductions Spread Tractability</strong>: if $A$ reduces to $B$ and $B$ is solvable in polynomial time, then $A$ is solvable in polynomial time.</p>
+
+  <p><strong>Reductions Spread Intractability</strong>: if $A$ reduces to $B$ and $A$ is not solvable in polynomial time, then $B$ is not solvable in polynomial time.</p>
+  <ul>
+    <li>think of it as a contrapositive of the previous statement</li>
+  </ul>
+</blockquote>
+
+<p>We have seen many nice examples of the first part: “spreading tractability”, in addition to the image segmentation problem:</p>
+<ul>
+  <li>Finding the median of an array of integers reduces to the problem of sorting the array</li>
+  <li>The all-pairs shortest path problem reduces to the single-source shortest path problem (iterating over all vertices is still polynomial time)</li>
+</ul>
+
+<p>But the latter part: “spreading intractability” is like the <strong>dark-side of the force</strong>, where we use in this case to show many problems are $\mathcal{NP}\text{-}\mathcal{hard}$.</p>
+<ul>
+  <li>if we know a problem $A$ is $\mathcal{NP}\text{-}\mathcal{hard}$, and we can reduce $A$ to $B$, then $B$ is also $\mathcal{NP}\text{-}\mathcal{hard}$. Why?</li>
+  <li>because if $B$ is solvable in polynomial time (the green box in the image segmentation example), then $A$ is also solvable in polynomial time.</li>
+  <li>This would imply all other $\mathcal{NP}$ problems are solvable in polynomial time (since $A$ is $\mathcal{NP}\text{-}\mathcal{hard}$). Then $\mathcal{P}=\mathcal{NP}$!</li>
+</ul>
+
+<p>Some examples of $\mathcal{NP}\text{-}\mathcal{hard}$ problems?</p>
+
+<p>This also highlights a template for proving if a problem is $\mathcal{NP}\text{-}\mathcal{hard}$:</p>
+
+<blockquote>
+  <p><strong>Proving $\mathcal{NP}\text{-}\mathcal{hard}$</strong>: to prove a problem $B$ is $\mathcal{NP}\text{-}\mathcal{hard}$, we can:</p>
+  <ol>
+    <li>find/choose an existing $\mathcal{NP}\text{-}\mathcal{hard}$ problem $A$.</li>
+    <li>Prove that $A$ reduce to $B$ in polynomial time. (i.e. can use $B$ to solve $A$)</li>
+  </ol>
+</blockquote>
+
+<h3 id="np-hardness-of-cycle-free-shortest-paths">NP-Hardness of Cycle-Free Shortest Paths</h3>
+
+<p>Here we discuss an example of known $\mathcal{NP}\text{-}\mathcal{hard}$ problems, and how we can use reduction to show that another problem we discussed in the first part of the notes is also $\mathcal{NP}\text{-}\mathcal{hard}$.</p>
+
+<p>Recall that we had this problem:</p>
+
+<blockquote>
+  <p><strong>Cycle-Free Shortest Path (CFSP)</strong>: given a directed graph $G=(V,E)$ with real-valued edge costs $c_{e} \in \R$ and a source vertex $s$, find a <strong>shortest cycle-free path</strong> from $s$ to every other vertex in $G$. If there is no $s-v$ path for some $v$, report $+\infty$ for them.</p>
+  <ul>
+    <li>why did we want cycle free? The problem is that if we had <em>negative cycles</em>, then the shortest path would be $-\infty$</li>
+    <li>in the first part of the notes, we have seen Bellman-Ford algorithm which find shortest path and “detect negative cycles” in $O(mn)$ time, i.e. <code class="language-plaintext highlighter-rouge">break</code> when there is a negative cycle.</li>
+  </ul>
+</blockquote>
+
+<p>We want to prove that this version of the problem is $\mathcal{NP}\text{-}\mathcal{hard}$</p>
+
+<blockquote>
+  <p><strong>Directed Hamiltonian Path (DHP)</strong>: given a directed graph $G=(V,E)$, output “yes” if there exists a directed path that visits each vertex exactly once, and “no” otherwise.</p>
+
+  <p>This is a famous $\mathcal{NP}\text{-}\mathcal{hard}$ problem in computer science.</p>
+</blockquote>
+
+<p>Now we want to show that DHP reduces to CFSP. Therefore since DHP is $\mathcal{NP}\text{-}\mathcal{hard}$, CFSP is also $\mathcal{NP}\text{-}\mathcal{hard}$.</p>
+
+<hr />
+
+<p><em>Proof</em>: The key question to think is: how do we use a subroutine for the cycle-free shortest path problem to solve the directed Hamiltonian path problem? In the former it will find shortest cycle-free path, whereas the latter needs a path that visits each vertex exactly once. Some key insights would be:</p>
+
+<ul>
+  <li>trick the CFSP into thinking that <strong>long paths (like an s-t Hamiltonian path) are actually short</strong></li>
+  <li>to achieve this, we can assign $c_{e} = -1$ for every edge $e$ in the graph</li>
+</ul>
+
+<p>Therefore, consider the following reduction for DHP:</p>
+
+<p><img src="CSOR4231-Analysis_of_Algorithms_part2/image-20231117162336.png" style="zoom:70%;" /></p>
+
+<p>Why can this algorithm (embedded with CFSP subroutine) solve DHP, i.e. is <strong>correct</strong>? To show this, we need to prove that this algorithm will output “yes” if and only if there is a Hamiltonian path in the graph. Notice that:</p>
+
+<ul>
+  <li>in the constructed cycle-free shortest paths instance, the <strong>minimum length of a cycle-free s-t path equals $-1$ times the maximum number of hops</strong></li>
+  <li>given a $s,t$, how do we get maximum hops in this case? Visit as many vertices as possible.</li>
+  <li>therefore, a cycle-free shortest path uses $\vert V\vert  - 1$ hops at most, in which case it is a Hamiltonian path.</li>
+</ul>
+
+<p>Hence, we just need to check if the shortest path from $s$ to $t$ is of length $-(\vert V\vert  - 1)$. This would correctly solve DHP problem.</p>
+
+<h2 id="rookie-mistakes-and-acceptable-inaccuracies">Rookie Mistakes and Acceptable Inaccuracies</h2>
+
+<p>Here are a few common misunderstandings about the notion of $\mathcal{NP}\text{-}\mathcal{hard}$.</p>
+
+<p><strong>Rookie Mistakes:</strong> (plain wrong)</p>
+
+<ol>
+  <li>thinking $\mathcal{NP}$ stands for “not polynomial time solvable”</li>
+  <li>using $\mathcal{NP}$ and $\mathcal{NP}\text{-}\mathcal{hard}$ interchangeably.
+    <ul>
+      <li>this is because in $\mathcal{NP}$ is actually a “good thing”. as it tells us a problem can be verified in polynomial time (but says nothing about how quickly we can solve it)</li>
+    </ul>
+  </li>
+</ol>
+
+<p><strong>Acceptable Inaccuracies:</strong></p>
+
+<ol>
+  <li>Assuming $\mathcal{P} \neq \mathcal{NP}$ is true</li>
+  <li>Using the terms $\mathcal{NP}\text{-}\mathcal{hard}$ and $\mathcal{NP}\text{-}\mathcal{complete}$ interchangeably.
+    <ul>
+      <li>$\mathcal{NP}\text{-}\mathcal{complete}$ is a subset of $\mathcal{NP}\text{-}\mathcal{hard}$, and the practical implications is the same as $\mathcal{NP}\text{-}\mathcal{hard}$.</li>
+      <li>assuming $\mathcal{P} \neq \mathcal{NP}$ is true, then both $\mathcal{NP}\text{-}\mathcal{hard}$ and $\mathcal{NP}\text{-}\mathcal{complete}$ are not solvable in polynomial time.</li>
+    </ul>
+  </li>
+  <li>Conflating $\mathcal{NP}\text{-}\mathcal{hard}$ with requiring exponential time in the worst case</li>
+</ol>
+
+<h1 id="compromising-on-correctness-efficient-inexact-algorithms">Compromising on Correctness: Efficient Inexact Algorithms</h1>
+
+<p>At the end of the day, you still have to come up with <em>some algorithms</em> to solve NP-hard problems. Because it’s NP-hard, you (probably) are confident that your algorithm can only <strong>achieve two out of the three</strong> properties:</p>
+<ol>
+  <li>fully general</li>
+  <li>always correct</li>
+  <li>fast</li>
+</ol>
+
+<p>In fact, we have <strong>already seen algorithms that compromises on generality</strong> over this course. For instance:</p>
+<ul>
+  <li>Dijkstra’s algorithm assumes non-negative edge costs</li>
+  <li>Bellman-Ford algorithm assumes graphs without negative cycles</li>
+  <li>Maximum Weighted Independent Set assumes path graphs</li>
+  <li>a polytime Knapsack algorithm assumes $C$ is bounded by a polynomial function of $O(n^{k})$</li>
+</ul>
+
+<p>Therefore, instead of compromising on generality, in this section we will discuss algorithms that <mark>compromise on correctness</mark>, i.e. they are <em>NOT always correct</em>, but often we can <em>quantify an upper-bound of how much error they can make</em>.</p>
+
+<blockquote>
+  <p>Note: this makes <em>greedy algorithms</em> particularly suitable for this purpose, as they are often fast and general, but not always correct.</p>
+</blockquote>
+
+<h2 id="makespan-minimization">Makespan Minimization</h2>
+
+<p>This is another scheduling problem like the one we have seen in the first part of the notes, but we have a few changes:</p>
+
+<blockquote>
+  <p><strong>Makespan Minimization</strong>: given $n$ jobs with processing times $l_{i}$, and $m$ machines, find an assignment of jobs to machines that minimizes the <strong>makespan</strong>, i.e. the maximum completion time of all jobs.</p>
+  <ul>
+    <li>basically a “multi-processing” version of the scheduling problem we have seen before</li>
+    <li>goal is to minimize the “latest” finishing job</li>
+  </ul>
+</blockquote>
+
+<p>For example, consider four jobs with processing time $l_1=2, l_2=2, l_3=1, l_4=3$, and two schedules:</p>
+
+<p><img src="CSOR4231-Analysis_of_Algorithms_part2/image-20231122003057.png" style="zoom:80%;" /></p>
+
+<p>the first one will have makespan $4$, and the second one will have makespan $5$ due to the jobs on the first machine. So intuitively, we an ideal schedule would have a <mark>perfectly balanced-load on every machine</mark>. But unfortunately:</p>
+
+<blockquote>
+  <p><strong>Makespan Minimization is NP-Hard</strong>: there is (currently) no polynomial-time algorithm for makespan minimization</p>
+</blockquote>
+
+<p>So what kind of algorithm can solve this in a general case, is fast, but may not always give us the best answer?</p>
+
+<h3 id="grahams-algorithm">Graham’s Algorithm</h3>
+
+<p>The intuition is that our goal is create a balanced load on every machine, so that the makespan is minimized. Therefore, we can just have a greedy algorithm that iteratively assigns the next job to the machine with the smallest load.</p>
+
+<p><img src="CSOR4231-Analysis_of_Algorithms_part2/image-20231122003624.png" style="zoom:70%;" /></p>
+
+<p>where for a fast <code class="language-plaintext highlighter-rouge">argmin</code> implementation, we can use a min-heap to keep track of the smallest load machine. But why this algorithm specifically? It turns out that this is not only fast (with min-heap) giving $O(n \log m)$, but also guarantees a rather good error bound.</p>
+
+<h3 id="grahams-algorithm-error-bound">Graham’s Algorithm Error Bound</h3>
+
+<p>First, let’s demonstrate one example where Graham’s algorithm is not optimal. Consider having 20 jobs with processing time $l_i = 1$ for all $i$, and one last job with processing time $l_{21} = 5$. Suppose we have $m=5$ machines. Then:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Graham’s Algorithm</th>
+      <th style="text-align: center">Optimal Solution</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><img src="CSOR4231-Analysis_of_Algorithms_part2/image-20231122004228.png" style="zoom:70%;" /></td>
+      <td style="text-align: center"><img src="CSOR4231-Analysis_of_Algorithms_part2/image-20231122004240.png" style="zoom:70%;" /></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>where Graham would output a makespan of $9$, whereas the optimal solution would be $5$. This is quite bad, but can it be worse? The answer is actually no, that this is as bad as it can get.</p>
+
+<blockquote>
+  <p><strong>Graham’s Algorithm Error Bound</strong>: Graham’s algorithm is guaranteed to produce a schedule with makespan $\le 2$ times the optimal makespan.</p>
+  <ul>
+    <li>with some algorithmic modifications, we can actually get the error bound to $4/3$ times the optimal makespan.</li>
+    <li>technically, it is $2 - 1/m$, where $m$ is the number of machines</li>
+    <li>technically, it is $\le 2$ <em>any possible optimal makespan</em></li>
+    <li>in practice, Graham’s (often) does much better than this error bound.</li>
+  </ul>
+</blockquote>
+
+<p>But how can we even go about proving it if we don’t even know what the optimal solution is (as it is NP-hard)? The key idea is to compare with the <em>lower bound</em> of what any optimal solution can achieve, i.e., a perfect load balance.</p>
+
+<p><em>Proof</em>: First, we need to consider the lower bound of this problem. Let the minimum possible makespan schedule be $M^{*}$. Then:</p>
+
+<ol>
+  <li>
+    <p><strong>Lower Bound #1:</strong> every job needs to be processed, so the best completion time must be at least as big than any of the processing time:</p>
+
+\[M \ge l_{j}\quad \forall j \in \{1, \ldots, n\}\]
+
+    <p>or alternatively $M^{*} \ge \max l_j$.</p>
+  </li>
+  <li>
+    <p><strong>Lower Bound #2:</strong> as the best case scenario is to have a perfectly balanced load (why? If not, one machine will have a larger load and another smaller. But since the objective is the <em>maximum makespan</em>, it is strictly worse):</p>
+
+\[M^{*} \ge \frac{1}{m} \sum_{j=1}^{n} l_{j}\]
+  </li>
+</ol>
+
+<p>Now we consider the lower bound of Graham’s algorithm. Let $M$ be the makespan of the schedule produced by Graham’s algorithm. Consider the “worst” machine that contributed to this load $M$, i.e. the machine with <strong>largest load $L_i$ such that $L_{i} = M$</strong>. Rewind the algorithm to the point where that machine was assigned its last job $j$, and let $\hat{L}_i$ denote that machine’s load at that point. So that obviously:</p>
+
+\[M = L_{i} = \hat{L}_{i} + l_{j}\]
+
+<p>But how big was $\hat{L}_{i}$? By the greedy criterion of the algorithm, it must have looked like this (if that machine is #1):</p>
+
+<p><img src="CSOR4231-Analysis_of_Algorithms_part2/image-20231122013331.png" style="zoom:90%;" /></p>
+
+<p>i.e. it must be <strong>the lightest loaded before $j$ is assigned</strong>. How light can that be?:</p>
+
+\[\hat{L}_{i} \le \frac{1}{m} \sum_{k=1}^{j-1} l_{k}\]
+
+<p>since the lightest load you can get at that point in time is a perfectly balanced load. Now since the comparison we need to make is:</p>
+
+\[M = \hat{L}_i + l_{j} \le l_{j} + \frac{1}{m} \sum_{k=1}^{j-1} l_{k} \le \text{something }M^{*}\]
+
+<p>we consider the following “tricks”:</p>
+
+<ul>
+  <li>
+    <p>transform the above expression:</p>
+
+\[M \le l_{j} + \frac{1}{m} \sum_{k=1}^{j-1} l_{k} \le l_{j} + \frac{1}{m} \sum_{k \neq j} l_{k}\]
+
+    <p>where we basically added a bunch of terms ($l_{j+1} / m, l_{j+2} / m, …$ ) so that RHS is of course larger or equal to LHS</p>
+  </li>
+  <li>
+    <p>the second term above is almost comparable with $M^{*}$, so we do some minor arithmetic operations:</p>
+
+\[l_{j} + \frac{1}{m} \sum_{k \neq j} l_{k} = l_{j} - \frac{l_j}{m} + \frac{1}{m} \sum\limits_{k=1}^{n}l_{k} = \left( 1- \frac{1}{m} \right) l_{j}  + \frac{1}{m} \sum\limits_{k=1}^{n}l_{k}\]
+  </li>
+</ul>
+
+<p>Now we can use the lower bound we found above</p>
+
+\[M \le \left( 1- \frac{1}{m} \right) l_{j}  + \frac{1}{m} \sum\limits_{k=1}^{n}l_{k} \le \left( 2 - \frac{1}{m} \right) M^{*}\]
+
+<p>because using lower bound #1 we know $\left( 1- \frac{1}{m} \right) l_{j} \le \left( 1- \frac{1}{m} \right) M^{<em>}$ and lower bound #2 tells us $\frac{1}{m} \sum\limits_{k=1}^{n}l_{k} \le M^{</em>}$. This completes the proof.</p>
+
+<h3 id="longest-processing-time-first">Longest Processing Time First</h3>
+
+<p>Here we discuss a modification of Graham’s algorithm that can achieve a better error bound of $4/3$ times the optimal makespan. The observation is that:</p>
+<ul>
+  <li>in the contrieved example where we showed Graham’s algorithm is not optimal (given 20 jobs with processing time $l_i = 1$ for all $i$ …), if only the <em>algorithm considered the longest processing time job first</em>, then it would have been optimal.</li>
+  <li>in the error bound proof, we see that it advocates for <strong>making the last job assigned to the least loaded machine as small as possible</strong>.</li>
+</ul>
+
+<p>This gives the longest processing time first algorithm, which <strong>saves those small jobs for the end</strong>:</p>
+
+<p><img src="CSOR4231-Analysis_of_Algorithms_part2/image-20231122015101.png" style="zoom:70%;" /></p>
+
+<p>again, this algorithm is not always correct, but it is guaranteed to produce a schedule with makespan $\le 3/2$ times the optimal makespan. How?</p>
+
+<hr />
+
+<p>Proof: similar to the original Graham algorithm, we start with some lower bounds. Consider we have sorted the jobs from <mark>longest to shortest</mark>, so that the $j$-th job is <em>longer</em> than the $j+1$-th job.</p>
+
+<ul>
+  <li>
+    <p><strong>Modified Lower bound #1</strong>: if $M^{<em>}$ denotes the minimum possible makespan, and say we have scheduled the first $m$ jobs (i.e. one for each machine). Let $j$ be *any</em> job after the first $m$ jobs. Then:</p>
+
+\[M^{*} \ge 2l_j\]
+
+    <p>which is evident by the pigeon-hole principle: the new job $j$ means we have now ay least $m+1$ jobs to schedule $\implies$ at least one machine had two jobs on it $\implies$ that machine has at least twice the time of $l_j$ since $l_j$ is the shortest amongst those $m+1$ jobs, by construction.</p>
+  </li>
+</ul>
+
+<p>Now, the trick to prove this $3 / 2$ bound is to realize that we can improve the final inequality in the previous proof by having $\left( 1- \frac{1}{m} \right) l_{j} \le \left( 1- \frac{1}{m} \right) (M^{*} / 2)$! Why?</p>
+
+<ul>
+  <li><strong>in the same analysis as before, we consider $M$ with the “worst machine” that just got assigned the final job $j$</strong>.</li>
+  <li>there needs to be at least one job assigned to that machine <em>prior to $j$</em> (otherwise it means there are in total $\le m$ jobs to assign $\implies$ Graham will return the optimal schedule with one job per machine)</li>
+  <li>this means that job $j$ is after the sorted first $m$ jobs, hence the inequality in modified lower bound applies.</li>
+</ul>
+
+<p>Plugging this in our previous last step:</p>
+
+\[M \le \left( 1- \frac{1}{m} \right) l_{j}  + \frac{1}{m} \sum\limits_{k=1}^{n}l_{k} \le \left( 1 - \frac{1}{m} \right) \frac{M^{*}}{2} + M^{*} = \left( \frac{3}{2} - \frac{1}{2m} \right) M^{*}\]
+
+<p>which has a better error bound as the original Graham.</p>
+
+<h2 id="maximum-coverage-problem">Maximum Coverage Problem</h2>
+
+<blockquote>
+  <p><strong>Maximum Coverage Problem</strong>: given a collection of <em>subsets</em> $A_1, …, A_{m} \subseteq U$ and a universal ground set $U$, and a number $k$, pick $k$ subsets that reaches <strong>the most coverage</strong>, i.e. the most number of elements in $U$.</p>
+  <ul>
+    <li>e.g. $A_i$ could represent the programming languages candidate $i$ is familiar with, and $U$ is the set of all programming languages in the world</li>
+    <li>e.g. the goal is to assemble $k$ candidates such that they cover the most number of programming languages in the world</li>
+  </ul>
+
+  <p>a bit more formally, pick a choice $K$:</p>
+
+\[K \subseteq \{1, ..., m\}, \quad |K| = k\]
+
+  <p>such that $f_{\mathrm{cov}}(K)$ is maximized:</p>
+
+\[f_{\mathrm{cov}}(K) = \left|\bigcup_{i \in K} A_{i}\right|\]
+
+</blockquote>
+
+<p>Again, this problem is NP-hard, so we want to come up with an algorithm that is almost always correct. Consider the case when $k=1$: just pick $A_i$ with the largest size. But what about $k=2$? So the intuition is to maybe pick the second subset that <strong>increases coverage the most</strong>:</p>
+
+<p><img src="CSOR4231-Analysis_of_Algorithms_part2/image-20231122015923.png" style="zoom:80%;" /></p>
+
+<p>This looks good, but when does it break? What is its error bound?</p>
+
+<p>Consider the following example of three subsets with a budget $k=2$:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Input</th>
+      <th style="text-align: center">Greedy Output</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><img src="CSOR4231-Analysis_of_Algorithms_part2/image-20231122020358.png" style="zoom:65%;" /></td>
+      <td style="text-align: center"><img src="CSOR4231-Analysis_of_Algorithms_part2/image-20231122020558.png" style="zoom:65%;" /></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>where you can achieve all elements by picking $A_1, A_2$. But if $A_3$ is a bit larger than $1 / 2$, then the algorithm would pick $A_3$ and you are immediately screwed: you would only cover about 75% of the elements. Similarly, consider this with budget $k=3$:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Input</th>
+      <th style="text-align: center">Greedy Output</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><img src="CSOR4231-Analysis_of_Algorithms_part2/image-20231122020303.png" style="zoom:60%;" /></td>
+      <td style="text-align: center"><img src="CSOR4231-Analysis_of_Algorithms_part2/image-20231122020858.png" style="zoom:60%;" /></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>where again, we can trick the greedy algorithm to pick $A_5$ first. Then, this would decrease the contribution of picking $A_1, A_2, A_3$ as they would only roughly contribute $(1 / 3)(2 / 3) = 2 / 9$ portions. Therefore, we can then trick the algorithm to pick $A_4$. Finally, choosing either one of $A_1, A_2, A_3$ would only result in $1 - 2 \times (1 / 3) (4 / 9) = 19 /27 \approx 70\%$ of the total size. But obviously the optimal solution would be to pick $A_1, A_2, A_3$.</p>
+
+<p>Interestingly, before we go into the error bound, we already observe that (if you extend this example to arbitrary $k$):</p>
+
+<blockquote>
+  <p><strong>Bad Examples of GreedyCoverage</strong>: for every positive interger $k$, we can come up with an instance such that:</p>
+  <ul>
+    <li>there exists $k$ subsets that reaches $100\%$ coverage</li>
+    <li>the greedy algorithm picks $k$ subsets <em>might only cover $1 - (1 - 1/k)^{k}$ fraction of the elements</em>.</li>
+  </ul>
+
+  <p>But since by definition:</p>
+
+\[e = \lim _{n \rightarrow \infty}\left(1+\frac{1}{n}\right)^{n}\]
+
+  <p>this is approximately, as $k \to \infty$:</p>
+
+\[\lim _{k \rightarrow \infty} 1 - \left(1 - \frac{1}{k}\right)^{k} \approx 1 - \frac{1}{e} \approx 63\%\]
+
+</blockquote>
+
+<p>So in those particular constructions, GreedyCoverage may cover only upto $63\%$ of the elements. But what about the general case? Is this generic enough?</p>
+
+<h3 id="greedycoverage-error-bound">GreedyCoverage Error Bound</h3>
+
+<p>It turns out this expression is general for GreedyCoverage, and in fact, it was proven (in other ways) that the number $1 - \frac{1}{e}$ is intrinsic to the maximum coverage problem.</p>
+
+<blockquote>
+  <p><strong>GreedyCoverage Error Bound</strong>: the coverage of the greedy algorithm is guaranteed to cover at least $1 - (1 - \frac{1}{k})^{k}$ fraction of the maximum-possible coverage (i.e.. worst-case scenario) for any instance of the problem.</p>
+  <ul>
+    <li>note that guaranteeing to cover $100\%$ would, of course, become an algorithm that is always correct.</li>
+  </ul>
+</blockquote>
+
+<p>To prove this, we need to consider some key lemmas:</p>
+
+<blockquote>
+  <p><strong>Lemma 20.8</strong>: consider pausing the algorithm when it has picked $j$ subsets, and let $C_j$ denote the coverage achieved at that point. For each such $j = {1,2, …, k}$, the $j$-th subset we just picked must cover <em>at least</em> $\frac{1}{k}(C^{*} - C_{j-1})$ new elements so that:</p>
+
+\[C_j - C_{j-1} \ge \frac{1}{k}(C^{*} - C_{j-1})\]
+
+  <p>where $C^{*}$ is the maximum possible coverage with $k$ subsets.</p>
+</blockquote>
+
+<p><em>Proof</em>: let $K_{j-1}$ denote the indices of the $j-1$ subsets picked so far, and $C_{j-1}$ its coverage. Any potential $\hat{K}$ (may or may not be optimal) that contains $k$ indices, and $W$ be the set of elements covered by $\hat{K}$ <em>but not by $K_{j-1}$</em>:</p>
+
+<p><img src="CSOR4231-Analysis_of_Algorithms_part2/image-20231122023659.png" style="zoom:80%;" /></p>
+
+<p>where in the above example, basically $K_{j-1} = {4,5}$ and the alterative $\hat{K}=K^{*}$. Then this means:</p>
+
+\[\sum\limits_{i \in \hat{K}} \left[ \underbrace{f_{\mathrm{cov}}(K_{j-1} \cup \{i\} - C_{j-1})}_{\text{coverage increase by adding $A_i$ into our collection }} \right] \ge W \ge \hat{C} - C_{j-1}\]
+
+<p>where:</p>
+<ul>
+  <li>the inequality on the RHS is obvious, as $W$ is the gap</li>
+  <li>the inequality on the LHS holds because each element in $W$ must came from one of the subsets in $\hat{K} \implies$ adding every subset in $\hat{K}$ to $K_{j-1}$ must have covered at least all $W$ elements.</li>
+</ul>
+
+<p>Next, since the sum on the LHS has $k$ terms, this means:</p>
+
+\[\max_{i \in \hat{K}} \left[ f_{\mathrm{cov}}(K_{j-1} \cup \{i\} - C_{j-1}) \right] \ge \frac{1}{k} \sum\limits_{i \in \hat{K}} \left[ f_{\mathrm{cov}}(K_{j-1} \cup \{i\} - C_{j-1}) \right] \ge \frac{1}{k} (\hat{C} - C_{j-1})\]
+
+<p>Finally we consider $K^{*}$ instead of $\hat{K}$, where the inequality still holds as our argument was for any candidate $\hat{K}$:</p>
+
+\[\underbrace{\max_{i \in K^{*}} \left[ f_{\mathrm{cov}}(K_{j-1} \cup \{i\} - C_{j-1}) \right]}_{\text{i.e. GreedyCoverage can at LEAST pick this subset in the next iteration}} \ge \frac{1}{k} (C^{*} - C_{j-1})\]
+
+<p>Therefore:</p>
+
+\[C_j - C_{j-1} \ge \frac{1}{k}(C^{*} - C_{j-1})\]
+
+<hr />
+
+<p>Finally, we can prove the bound by iterating over all $j$ using the above lemma, staring with $k$:</p>
+
+\[C_{k} \ge C_{k-1} + \frac{1}{k}(C^{*} - C_{k-1}) = \frac{C^{*}}{k}  + \left( 1 - \frac{1}{k} \right) C_{k-1}\]
+
+<p>applying again for $C_{k-2}$:</p>
+
+\[\begin{align*}
+   C_{k} 
+   &amp;\ge \frac{C^{*}}{k}+ \left( 1 - \frac{1}{k} \right)\left( \frac{C^{*}}{k}+ \left( 1 - \frac{1}{k} \right) C_{k-2} \right) \\
+   &amp;= \frac{C^{*}}{k}+ \left( 1 - \frac{1}{k} \right) \frac{C^{*}}{k}+ \left( 1 - \frac{1}{k} \right)^{2} C_{k-2}\\
+   &amp;= \frac{C^{*}}{k}+ \left( 1 - \frac{1}{k} \right) \frac{C^{*}}{k}+ \left( 1 - \frac{1}{k} \right)^{2} \frac{C^{*}}{k} + ... \left( 1 - \frac{1}{k} \right)^{k-1} \frac{C^{*}}{k}\\
+\end{align*}\]
+
+<p>where for the last inequality we assumed $C_0=0$. This is basically a geometric series with:</p>
+
+\[\begin{align*}
+   C_{k} 
+   &amp;\ge \frac{C^{*}}{k} \left( 1 + \left( 1-\frac{1}{k} \right) + \left( 1-\frac{1}{k} \right) ^{2} + ... + \left( 1-\frac{1}{k} \right)^{k-1}\right)\\
+   &amp;= \frac{C^{*}}{k} \left( \frac{1 - \left( 1-\frac{1}{k} \right)^{k}}{1 - \left( 1-\frac{1}{k} \right)} \right)\\
+   &amp;= C^{*}\left( 1 - \left( 1 - \frac{1}{k} \right)^{k} \right)
+\end{align*}\]
+
+<p>i.e. GreedyCoverage will cover at least $1 - (1 - \frac{1}{k})^{k}$ fraction of the maximum-possible coverage.</p>
+
+<h1 id="compromising-on-speed-exact-inefficient-algorithms">Compromising on Speed: Exact Inefficient Algorithms</h1>
+
+<p>The goal here is to design a general-purpose and correct algorithm that is <strong>as fast as possible</strong>, and certainly <strong>faster than exhaustive search</strong>, on as many inputs as possible. Yes, it is <em>still exponential-time,</em> but the in practice the runtime will be much better than exhaustive search.</p>
+
+<p>Just as greedy algorithm played a key role in the previous section, <strong>dynamic programming</strong> will play a key role here. Recall that to dynamic programming many involves:</p>
+<ul>
+  <li>reasoning about the <strong>structure of an optimal solution</strong> which contains optimal solution to <strong>smaller subproblems</strong> (e.g. see WIS, Knapsack, etc.)</li>
+  <li>iteratively construct solutions from small subproblems</li>
+  <li>is much faster than exhaustive search, <em>if the set of subproblems are small</em></li>
+</ul>
+
+<h2 id="the-bellman-held-karp-algorithm-for-the-tsp">The Bellman-Held-Karp Algorithm for the TSP</h2>
+
+<p>Before discussing how to solve this using a DP algorithm, let’s first consider the exhaustive search runtime. Recall that TSP operates on a complete graph, and your goal is to find a <strong>minimum-cost tour (cycle)</strong> that visits every vertex exactly once.</p>
+
+<p>Some facts about TSP:</p>
+<ul>
+  <li>there are $n!/(2n) = \frac{1}{2}(n-1)!$ possible tours, so this is $O(n!)$</li>
+  <li>factorial grows <strong>faster than exponential</strong>. e.g. $n! = n \cdot (n-1) \cdot … 2 \cdot 1$ which has $n$ terms mostly larger than $2$, while $2^{n}$ has $n$ terms of $2$’s.</li>
+</ul>
+
+<p>In this section we will often compare exponentials with factorials, so it is useful to know that:</p>
+
+<blockquote>
+  <p><strong>Sterling’s Approximation</strong>: in general pretty accurate:</p>
+
+\[n! \approx \sqrt{2 \pi n}\left(\frac{n}{e}\right)^{n}\]
+
+  <p>i.e. is roughly $(n/e)$ to the $n$ power. For large $n$ then $n / e » 2$!</p>
+</blockquote>
+
+<p>Now, we present an approach that can solve TSP in $O(n^{2} 2^{n})$ as opposed to $O(n!)$ using DP.</p>
+
+<hr />
+
+<ul>
+  <li>
+    <p><strong>optimal solution’s structure</strong>: suppose you already have a minimum cost tour $T$ using vertices $V={1,2, …, n}$ labeled without loss of generality. WLOG, let the path “start and end at vertex $1$”. Then, <mark>suppose this optimal path's last hop was $j-1$</mark> for some $j \in V \setminus {1}$ :</p>
+
+    <p><img src="CSOR4231-Analysis_of_Algorithms_part2/image-20231129003245.png" style="zoom:90%;" /></p>
+
+    <p>then this $1-j$ path must be a <mark>minimum cost, cycle-free path using vertices $V$</mark>. This means that:</p>
+
+\[\text{optimal tour cost} = \min_{j \in \{2, ..., n\}} \left( \text{min cost of cycle free 1-j path that visits $V$} + c_{j1} \right)\]
+
+    <p>but how do we reason about the “min cost of cycle free 1-j path that visits $V$”? Realize that by a similar logic:</p>
+
+    <p><img src="CSOR4231-Analysis_of_Algorithms_part2/image-20231129004029.png" style="zoom:80%;" /></p>
+
+    <p>i.e. plucking off the penultimate hop $k-j$ for some $k \in V \setminus {1, j}$, we have a <mark>minimum, cycle-free path using vertices $V - \{j\}$ </mark>. (this is the tricky part, instead of being the minimum cycle-free path using vertices $V$, because enabling $j$ could give us shortcuts). Therefore, this means:</p>
+
+\[\text{min cost of 1-j path for $V$} = \min_{k \in \{2, ..., n\} \setminus \{j\}} \left( \text{min cost of 1-k path for $V \setminus \{j\}$} + c_{kj} \right)\]
+
+    <p>and the above indeed can recurse into a DP algorithm.</p>
+  </li>
+  <li>
+    <p><strong>subproblems and recursions</strong>: this leads to TSP recurrence. Let $C_{S,j}$ denote the minimum cost of a cycle-free <strong>path</strong> that visits all vertices in $S$, <strong>begins with $1$ and ends at $j$</strong> (note beginning with a vertex $1$ is fine as the final solution is a tour). Then, for every subset $S \subset V$ that contains vertex $1$:</p>
+
+\[C_{S,j} = \min_{k \in S, k \neq 1,j} \left( C_{S \setminus \{j\}, k} + c_{kj} \right)\]
+
+    <p>i.e. there are $\vert S\vert -2$ candidate solutions for an optimal path that visits all vertices in $S$ and ends at $j$, each designating a different penultimate vertex $k$ (see the figure above). Obviously, given this the final solution is:</p>
+
+\[\text{optimal total cost} = \min_{j \in \{2, ..., n\}} \left( C_{V, j} + c_{j1} \right)\]
+
+    <p>until $S$ grows in size and reached $V$.</p>
+  </li>
+</ul>
+
+<p>Finally, we can use this recurrence to construct a DP algorithm:</p>
+
+<p><img src="CSOR4231-Analysis_of_Algorithms_part2/image-20231129005839.png" style="zoom:80%;" /></p>
+
+<p>where we had</p>
+<ul>
+  <li>$\vert S\vert  \ge 2$ because every subset $S$ must contain vertex $1$ and at least one other vertex $j$ for the “figure above to work”</li>
+  <li>base case: if there are just two vertices in $S$, and we need to find a path that starts with vertex $1$, then there is only one choice for each $C_{S,j}$.</li>
+  <li>there are in total $2^{n-1}-1$ subproblems of set $\vert S\vert  \ge 2$.</li>
+</ul>
+
+<hr />
+
+<p><strong>Correctness</strong> of this algorithm can be proven using induction on subproblem size $\vert S\vert$.</p>
+
+<p><strong>Runtime</strong>: as for a typical DP algorith, we consider:</p>
+<ul>
+  <li>number of subproblems: the size of $A$, which is $(2^{n-1}-1)(n-1) = O(n 2^{n})$</li>
+  <li>time per subproblem: we still needed to do a $A[S][j] = \min (…)$, so $O(n)$</li>
+  <li>post-processing (not reconstruction): another $\min$ before we return, so $O(n)$</li>
+</ul>
+
+<p>hence in total we get:</p>
+
+\[O(n 2^{n}) \times O(n) + O(n) = O(n^{2} 2^{n})\]
+
+<p>Note that this is still exponential, but much better than $O(n!)$.</p>
+
+<p>How do we reconstruct the tour? See problem set 10.</p>
+
+<h2 id="finding-long-paths-by-color-coding">Finding Long Paths by Color Coding</h2>
+
+<blockquote>
+  <p><strong>Minimum-Cost $k$-Path</strong>: given an undirected graph $G=(V,E)$ with edge costs $c_{e} \in \R$, and a positive integer $k$, find a <strong>path of length $k-1$ with minimum total cost</strong>.</p>
+  <ul>
+    <li>if $G$ has no $k$-path, then output $+\infty$.</li>
+    <li>yes, a $k$-path can start/end at any vertex in $G$, as long as it is cycle-free and has $k-1$ edges</li>
+  </ul>
+</blockquote>
+
+<p>For example, in the following graph the optimal 4-path has cost 8, which is $(c \to a \to b \to e)$.</p>
+
+<p><img src="CSOR4231-Analysis_of_Algorithms_part2/image-20231129011207.png" style="zoom:100%;" /></p>
+
+<p>As you may have guesses, this is also NP-hard and shares many similarities with TSP. But before we go to a DP approach, what is the runtime for exhaustive search? Given a $k$:</p>
+
+<ul>
+  <li>we can iterate over all possible $k$-sized tuples of vertices</li>
+  <li>therefore, there is $n \cdot (n-1) \cdot … \cdot (n-k+1) = O(n^{k})$ tuples to check</li>
+  <li>to compute the cost of each tuple, it takes $O(k)$. <strong>So in total $O(k n^{k})$</strong>.</li>
+  <li>this is again worse than things like $O(2^{k})$, as $n$ can be very large in practice.</li>
+</ul>
+
+<p>So how do we solve this using DP?</p>
+
+<hr />
+
+<p>Attempt 1: use the same trick from <a href="#the-bellman-held-karp-algorithm-for-the-tsp">The Bellman-Held-Karp Algorithm for the TSP</a>, where we define $C_{S,v}$ as the minimum cost cycle-free path that ends at vertex $v$ and visits exactly once each vertex in $S$, for $\vert S\vert  \le k$.</p>
+<ul>
+  <li>note that this differs from TSP where we do not require “start at vertex $1$ AND end at vertex $v$”, as we can start at any vertex</li>
+</ul>
+
+<p>We then just need to build up the solution from $\vert S\vert =1$ to $\vert S\vert =k$, and the optimal solution will be the minimum of $\min_{S_k, v} C_{S_k, v}$ for $S_{k}$ has size $k$ and $v \in S_k$.</p>
+
+<p>While this would work, but how many subproblems are there?</p>
+
+<ul>
+  <li>to choose $\vert S\vert  \le k$, we have  $\sum\limits_{i=1}^{k} {n \choose i} = O(n^{k})$</li>
+  <li>to scan over every $v \in S$, we have $O(k)$</li>
+</ul>
+
+<p>so this would give $O(k n^{k})$, which is the same as exhaustive search.</p>
+
+<hr />
+
+<h3 id="color-coding">Color Coding</h3>
+
+<p>The trick is to use <strong>color coding</strong> to track less information about a path than the full set of vertices it visits. The idea is to assign a color to each vertex, and then <strong>track the colors</strong> of the vertices visited by a path.</p>
+
+<p>Given a graph $G=(V,E)$ with length bound $k$:</p>
+
+<blockquote>
+  <p><strong>Color Coding</strong>: suppose you are given a partition of $k$ groups $V_{1} \cup V_{2} \cup … \cup V_{k} = V$ so that the minimum cost $k$-path is <strong>panchromatic</strong>, i.e. every one of the $k$ vertices reside in a different partition</p>
+
+  <p>Why is this useful? The plan is this:</p>
+  <ul>
+    <li>we can later show that with some randomized calls, we WILL eventually get a “lucky enough” partition where the optimal $k$-path is panchromatic</li>
+    <li>given the path is panchromatic, we find it much quicker than exhaustive search</li>
+  </ul>
+</blockquote>
+
+<p>For example, consider the following graph with $k=4$, where we can imagine each partition having a different color:</p>
+
+<p><img src="CSOR4231-Analysis_of_Algorithms_part2/image-20231129014034.png" style="zoom:80%;" /></p>
+
+<h3 id="computing-a-minimum-cost-panchromatic-path">Computing a Minimum-Cost Panchromatic Path</h3>
+
+<p>Now you will see why this is faster, as instead of iterating over all possible $k$-sized tuples of vertices (which has $O(n^{k})$ subproblems), we can instead iterate over all possible $k$-sized tuples of colors:</p>
+
+\[\sum\limits_{i=1}^{k} {n \choose i} = O(n^{k}) \quad \to \quad \sum\limits_{i=1}^{k} {k \choose i} = O(2^{k})\]
+
+<p>since each subproblem now only needs to consider a path that visits $\le k$ vertices of <strong>different colors</strong> (assuming that the optimal path is panchromatic). Now, all we need to do is to redefine the subproblems and recursion using colors.</p>
+
+<hr />
+
+<p>Let $C_{S,v}$ denote the minimum cost of an $S$-path that ends at some vertex $v$, and visits exactly once each color in $S$, for $S \subseteq {1,2, … ,k}$. Let $\sigma(v)$ denote the color of vertex $v$.</p>
+
+<ul>
+  <li>
+    <p><strong>optimal solution’s structure</strong>: essentially the same as TSP where we can pluck the last vertex out, along with its color:</p>
+
+    <p><img src="CSOR4231-Analysis_of_Algorithms_part2/image-20231129015016.png" style="zoom:100%;" /></p>
+
+    <p>note that we do not have a start vertex here, and the smaller subproblem represents having one less color to visit (which skips a LOT of subproblems)!</p>
+  </li>
+  <li>
+    <p><strong>subproblems and recurrence</strong>: again building from bottom up, for every subset $S \subseteq {1,2, … ,k}$ and every vertex $v \in V$:</p>
+
+\[C_{S,v} = \min_{(w,v) \in E} \left( C_{S \setminus \{\sigma(v)\}, w} + c_{wv} \right)\]
+
+    <p>where there are a couple differences from TSP:</p>
+    <ul>
+      <li>we still need to check every vertex $v \in V$ to build up the solution, but <mark>after checking one $v$ we can throw out all vertices of the same color $\sigma(v)$</mark></li>
+      <li>since this is looking for a path, we just need to check $(w,v) \in E$.</li>
+    </ul>
+
+    <p>The final optimal solution is then:</p>
+
+\[\min_{v \in V} C_{\{1,2, ... ,k\}, v}\]
+
+    <p>where $S={1,2, … ,k}$ is the full set of colors.</p>
+  </li>
+</ul>
+
+<p>Hence our DP algorithm is:</p>
+
+<p><img src="CSOR4231-Analysis_of_Algorithms_part2/image-20231129020101.png" style="zoom:80%;" /></p>
+
+<p>again, this assumes that the optimal path is panchromatic.</p>
+
+<hr />
+
+<p><strong>Correctness</strong>: induction by problem size on $\vert S\vert$</p>
+
+<p><strong>Runtime</strong>: here the main cost is in the triple for loop:</p>
+
+<ul>
+  <li>to compute $A[s][v] = \min(…)$ it takes $O(\mathrm{degree}(v))$ time</li>
+  <li>to compute <code class="language-plaintext highlighter-rouge">for v in V</code> then takes $O(\sum\limits_{n\in V} \mathrm{degree}(v)) = O(2m)=O(m)$ time</li>
+  <li>since then it just iterates over all possible $S \subseteq {1,2, …, k}$, we get $O(2^{k} m)$ time</li>
+</ul>
+
+<p>This is great as it is much better than $O(n^{k})$, but what do we do about the “lucky case” of the optimal path being panchromatic?</p>
+
+<h3 id="randomized-color-coding">Randomized Color Coding</h3>
+
+<p>The idea is that <strong>perhaps with a uniformly randomly colored graph</strong>, we can eventually get lucky enough to find a panchromatic path.</p>
+
+<p>Suppose we uniformly assign a color ${1, …, k}$ for each vertex at random. What is the probability that a given $k$-path is panchromatic?</p>
+
+<ul>
+  <li>there are in total $k^{k}$ possible colorings for that $k$-path</li>
+  <li>being panchromatic means that each color is used exactly once, so there are $k!$ ways to do that</li>
+  <li>therefore, the <strong>probability of being panchromatic is $k! / k^{k}$</strong></li>
+</ul>
+
+<p>How big is it? Now we can use steriling’s approximation to better see:</p>
+
+\[p = \frac{k!}{k^{k}} \approx \frac{\sqrt{2 \pi k}\left(\frac{k}{e}\right)^{k}}{k^{k}} = \frac{\sqrt{2\pi k}}{e^{k}}\]
+
+<p>with $k=7$ this number is already less than 1% due to the exponential term. But we <mark>don't need to get this done in one-shot. All we need is to be lucky for once in a reasonable number of trials.</mark> So what is the probability of getting at least once panchromatic path in $T$ trials?</p>
+
+<ul>
+  <li>this is equivalent to $1 - (1-p)^{T}$, where $p$ is computed above as the probaility of success in one trial, hence $(1-p)^{T}$ is the chance that <strong>all $T$ trials were unlucky</strong></li>
+  <li>
+    <p>to compute this, consider bounding $1-p$ from above by $e^{-p}$, which works because:</p>
+
+    <p><img src="CSOR4231-Analysis_of_Algorithms_part2/image-20231129021512.png" style="zoom:40%;" /></p>
+
+    <p>therefore we get:</p>
+
+\[(1-p)^{T} \le (e^{-p})^{T} = e^{-pT}\]
+  </li>
+</ul>
+
+<p>And therefore for a failure rate <strong>smaller than $\delta=0.01$</strong>, i.e. failure rate of 1%, we can set:</p>
+
+\[e^{-pT} \le \delta \implies T \ge \frac{1}{p} \ln \frac{1}{\delta} \approx \frac{e^{k}}{\sqrt{2\pi k}} \ln \frac{1}{\delta}\]
+
+<p>This gives our final algorithm of color coding with randomized trials:</p>
+
+<p><img src="CSOR4231-Analysis_of_Algorithms_part2/image-20231129021934.png" style="zoom:80%;" /></p>
+
+<p>where basically in the yellow part you just recolor everything for $T$ trials. This gives the total runtime of:</p>
+
+\[O\left( e^{k} \ln \frac{1}{\delta} \right) \times O(2^{k} m) = O\left( (2e)^{k} m \ln \frac{1}{\delta} \right)\]
+
+<p>which gives probability of success (i.e. reaching the lucky case of optimal path being panchromatic) at least $1-\delta$.</p>
+
+  </div><a class="u-url" href="/lectures/2023@columbia/CSOR4231_Analysis_of_Algorithms_part2.html/" hidden></a>
+  <script src="/lectures/assets/js/my_navigation.js"></script>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/lectures/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Lecture Notes</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Lecture Notes</li><li><a class="u-email" href="mailto:jasonyux17@gmail.com">jasonyux17@gmail.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/jasonyux"><svg class="svg-icon"><use xlink:href="/lectures/assets/minima-social-icons.svg#github"></use></svg> <span class="username">jasonyux</span></a></li><li><a href="https://www.linkedin.com/in/xiao-yu2437"><svg class="svg-icon"><use xlink:href="/lectures/assets/minima-social-icons.svg#linkedin"></use></svg> <span class="username">xiao-yu2437</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>An inexhaustive collection of markdown/latex(PDF) notes that I took since college. </p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
