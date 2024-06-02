@@ -1,0 +1,3727 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>COMS4733 Computational Aspects of Robotics | Lecture Notes</title>
+<meta name="generator" content="Jekyll v4.3.1" />
+<meta property="og:title" content="COMS4733 Computational Aspects of Robotics" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Table of Contents:" />
+<meta property="og:description" content="Table of Contents:" />
+<link rel="canonical" href="/lectures/2024@columbia/COMS4733_Computational_Aspects_of_Robotics.html/" />
+<meta property="og:url" content="/lectures/2024@columbia/COMS4733_Computational_Aspects_of_Robotics.html/" />
+<meta property="og:site_name" content="Lecture Notes" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2024-06-02T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="COMS4733 Computational Aspects of Robotics" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-06-02T00:00:00+00:00","datePublished":"2024-06-02T00:00:00+00:00","description":"Table of Contents:","headline":"COMS4733 Computational Aspects of Robotics","mainEntityOfPage":{"@type":"WebPage","@id":"/lectures/2024@columbia/COMS4733_Computational_Aspects_of_Robotics.html/"},"url":"/lectures/2024@columbia/COMS4733_Computational_Aspects_of_Robotics.html/"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/lectures/assets/main.css"><link type="application/atom+xml" rel="alternate" href="/lectures/feed.xml" title="Lecture Notes" /></head>
+<body><header class="site-header">
+
+	<div class="wrapper"><a class="site-title" rel="author" href="/lectures/">Lecture Notes</a>
+
+		<nav class="site-nav">
+			<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+			<label for="nav-trigger">
+			<span class="menu-icon">
+				<svg viewBox="0 0 18 15" width="18px" height="15px">
+				<path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+				</svg>
+			</span>
+			</label>
+
+			<div class="trigger">
+				<a class="page-link" href="/">Home</a>
+				<a class="page-link" href="/projects">Projects</a>
+				<a class="page-link" href="/research">Research</a>
+				<span class="page-link" href="#">[Education]</span>
+				<a class="page-link" href="/learning">Blog</a>
+			</div>
+		</nav>
+	</div>
+  </header><main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <head>
+  <script>
+    MathJax = {
+      // 
+      loader: {
+        load: ['[tex]/ams', '[tex]/textmacros', '[tex]/boldsymbol']
+      },
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        packages: {'[+]': ['ams', 'textmacros', 'boldsymbol']}
+      }
+    };
+  </script>
+  <script id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+  </script>
+  </head>
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">COMS4733 Computational Aspects of Robotics</h1>
+    <p class="post-meta"><time class="dt-published" datetime="2024-06-02T00:00:00+00:00" itemprop="datePublished">
+        Jun 2, 2024
+      </time></p>
+  </header>
+
+  <div class="section-nav" id="toc-all">
+    <button type="button" id="toc-close" class="toc_collapsible hidden" title="collapse">
+      <span><strong>Table of Contents</strong></span>
+    </button>
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" mirror-in-rtl="true" fill="#000000" style="width: 18px;" id="toc-reopen" class="toc_collapsible">
+      <g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <circle fill="#494c4e" cx="2" cy="2" r="2"></circle> <circle fill="#494c4e" cx="2" cy="8" r="2"></circle> <circle fill="#494c4e" cx="2" cy="20" r="2"></circle> <circle fill="#494c4e" cx="2" cy="14" r="2"></circle> <path fill="#494c4e" d="M23.002 3H7.998C7.448 3 7 2.55 7 2.002v-.004c0-.55.45-.998.998-.998H23c.55 0 1 .45 1 .998V2c0 .55-.45 1-.998 1zM23.002 9H7.998C7.448 9 7 8.55 7 8.002v-.004c0-.55.45-.998.998-.998H23c.55 0 1 .45 1 .998V8c0 .55-.45 1-.998 1zM23.002 15H7.998c-.55 0-.998-.45-.998-.998V14c0-.55.45-1 .998-1H23c.55 0 1 .45 1 .998V14c0 .55-.45 1-.998 1zM23.002 21H7.998c-.55 0-.998-.45-.998-.998V20c0-.55.45-1 .998-1H23c.55 0 1 .45 1 .998V20c0 .55-.45 1-.998 1z"></path> </g>
+    </svg>
+    <ul id="toc" class="section-nav">
+<li class="toc-entry toc-h1"><a href="#logistics">Logistics:</a></li>
+<li class="toc-entry toc-h1"><a href="#introduction-to-robotics">Introduction to Robotics</a></li>
+<li class="toc-entry toc-h1"><a href="#rigid-body-transformations">Rigid-Body Transformations</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#homogenous-transformations">Homogenous Transformations</a></li>
+<li class="toc-entry toc-h2"><a href="#3d-transformations">3D Transformations</a></li>
+<li class="toc-entry toc-h2"><a href="#3d-homogeneous-transformations">3D Homogeneous Transformations</a></li>
+<li class="toc-entry toc-h2"><a href="#composition-ordering">Composition Ordering</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#configuration-space">Configuration Space</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#c-space-of-mobile-robots">C-Space of Mobile Robots</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#unit-circle">Unit Circle</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#kinematic-chains">Kinematic Chains</a></li>
+<li class="toc-entry toc-h2"><a href="#manifolds">Manifolds</a></li>
+<li class="toc-entry toc-h2"><a href="#matrix-lie-groups">Matrix Lie Groups</a></li>
+<li class="toc-entry toc-h2"><a href="#obstacles-as-polygons">Obstacles as Polygons</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#c-space-obstacles">C-Space Obstacles</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#minkowski-difference">Minkowski Difference</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#convex-hulls">Convex Hulls</a></li>
+<li class="toc-entry toc-h3"><a href="#star-algorithm">Star Algorithm</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#c-spaces-with-orientation">C-Spaces with Orientation</a></li>
+<li class="toc-entry toc-h2"><a href="#c-space-with-manipulators">C-Space with Manipulators</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#kinematics">Kinematics</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#forward-kinematics">Forward Kinematics</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#2d-coordinate-frames">2D Coordinate Frames</a></li>
+<li class="toc-entry toc-h3"><a href="#cylindrical-arm">Cylindrical Arm</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#inverse-kinematics">Inverse Kinematics</a></li>
+<li class="toc-entry toc-h2"><a href="#robot-velocities">Robot Velocities</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#singular-configurations">Singular Configurations</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#numerical-inverse-kinematics">Numerical Inverse Kinematics</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#search-based-planning">Search-Based Planning</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#grids-and-obstacles">Grids and Obstacles</a></li>
+<li class="toc-entry toc-h2"><a href="#search-trees">Search Trees</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#dfs-and-bfs">DFS and BFS</a></li>
+<li class="toc-entry toc-h3"><a href="#dijkstras-algorithm">Dijkstra’s Algorithm</a></li>
+<li class="toc-entry toc-h3"><a href="#navigation-functions">Navigation Functions</a></li>
+<li class="toc-entry toc-h3"><a href="#wavefront-algorithm">Wavefront Algorithm</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#heuristics-functions">Heuristics Functions</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#a-search">A* Search</a></li>
+<li class="toc-entry toc-h3"><a href="#weighted-a-search">Weighted A* Search</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#dynamic-replanning">Dynamic Replanning</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#a-with-label-correction">A* with Label Correction</a></li>
+<li class="toc-entry toc-h2"><a href="#lifelong-planning-a">Lifelong Planning A*</a></li>
+<li class="toc-entry toc-h2"><a href="#d-lite">D* Lite</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#combinatorial-motion-planning">Combinatorial Motion Planning</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#roadmaps">Roadmaps</a></li>
+<li class="toc-entry toc-h2"><a href="#cell-decomposition">Cell Decomposition</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#vertical-decomposition">Vertical Decomposition</a></li>
+<li class="toc-entry toc-h3"><a href="#line-sweep-algorithm">Line Sweep Algorithm</a></li>
+<li class="toc-entry toc-h3"><a href="#adjacency-graph-and-path-finding">Adjacency Graph and Path Finding</a></li>
+<li class="toc-entry toc-h3"><a href="#morse-decomposition">Morse Decomposition</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#visibility-graphs">Visibility Graphs</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#efficiently-constructing-visibility-graph">Efficiently Constructing Visibility Graph</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#maximizing-clearance">Maximizing Clearance</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#generalized-voronoi-diagrams">Generalized Voronoi Diagrams</a></li>
+<li class="toc-entry toc-h3"><a href="#deformation-retracts">Deformation Retracts</a></li>
+<li class="toc-entry toc-h3"><a href="#constructing-gvds">Constructing GVDs</a></li>
+<li class="toc-entry toc-h3"><a href="#brushfire-algorithm">Brushfire Algorithm</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#probabilistic-roadmaps">Probabilistic Roadmaps</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#sampling-based-methods">Sampling Based Methods</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#distance-metrics">Distance Metrics</a></li>
+<li class="toc-entry toc-h3"><a href="#pseudometrics">Pseudometrics</a></li>
+<li class="toc-entry toc-h3"><a href="#k-d-trees">$k$-D Trees</a></li>
+<li class="toc-entry toc-h3"><a href="#vertex-neighborhood">Vertex Neighborhood</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#collision-detection-with-sampling-methods">Collision Detection with Sampling Methods</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#local-planner-and-path-collision-detection">Local Planner and Path Collision Detection</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#sampling-strategies">Sampling Strategies</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#dispersion-sampling">Dispersion Sampling</a></li>
+<li class="toc-entry toc-h3"><a href="#connection-sampling">Connection Sampling</a></li>
+<li class="toc-entry toc-h3"><a href="#obprm">OBPRM</a></li>
+<li class="toc-entry toc-h3"><a href="#other-sampling-strategies">Other Sampling Strategies</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#postprocessing-queries">Postprocessing Queries</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#single-query-planners">Single-Query Planners</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#grid-based-roadmap">Grid-Based Roadmap</a></li>
+<li class="toc-entry toc-h2"><a href="#potential-functions">Potential Functions</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#randomized-potential-fields">Randomized Potential Fields</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#tree-based-planners">Tree-Based Planners</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#expansive-space-trees">Expansive-Space Trees</a></li>
+<li class="toc-entry toc-h3"><a href="#rapidly-exploring-random-trees">Rapidly-Exploring Random Trees</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#greedy-extend-rrt">Greedy Extend RRT</a></li>
+<li class="toc-entry toc-h4"><a href="#other-extend-variations">Other Extend Variations</a></li>
+<li class="toc-entry toc-h4"><a href="#adding-sampling-bias">Adding Sampling Bias</a></li>
+<li class="toc-entry toc-h4"><a href="#merging-rrt-trees">Merging RRT Trees</a></li>
+<li class="toc-entry toc-h4"><a href="#rrt-visualizations">RRT Visualizations</a></li>
+<li class="toc-entry toc-h4"><a href="#rrt-limiting-behavior">RRT Limiting Behavior</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#growing-more-than-two-trees">Growing More than Two Trees</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#sampling-based-roadmap-of-trees">Sampling-Based Roadmap of Trees</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#optimality-for-rrt">Optimality for RRT</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#rapidly-exploring-random-graph">Rapidly-Exploring Random Graph</a></li>
+<li class="toc-entry toc-h3"><a href="#rrt">RRT*</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#differential-constraints">Differential Constraints</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#kinodynamic-planning">Kinodynamic Planning</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+  </div>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p><strong>Table of Contents:</strong></p>
+
+<p>[toc]</p>
+
+<h1 id="logistics">Logistics:</h1>
+
+<ul>
+  <li>Will be quite heavy in <strong>math</strong>: linear algebra + probability and stats</li>
+  <li><strong>Textbooks</strong>: Principle of Robot Motion (mostly), Planning Algorithms</li>
+  <li><strong>OH</strong>: 712 CEPSR, details posted on <em>Edstem</em> Live Calendar</li>
+  <li><strong>Grades</strong>: HW 40%, Midterm 30%, Final 30%</li>
+</ul>
+
+<h1 id="introduction-to-robotics">Introduction to Robotics</h1>
+
+<p>Robots can be classified into many categories by various methods:</p>
+<ul>
+  <li>
+    <p>one way of classification:
+|                                            Manipulator                                             |                                               Mobile                                               |                                              Humanoid                                              |
+| :————————————————————————————————: | :————————————————————————————————: | :————————————————————————————————: |
+| <img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240120164617.png" style="zoom:80%;" /> | <img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240120164637.png" style="zoom:80%;" /> | <img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240120164645.png" style="zoom:80%;" /> |</p>
+
+    <p>where manipulators are often fixe in place and used in industry a lot (e.g., warehouses), mobile robots tend to interact with dynamic and unknown environments (e.g., self-driving cars), and humanoid robots are mainly designed to assist and interact humans</p>
+  </li>
+  <li>
+    <p>or we can classify them by functions:
+|                                             Industrial                                             |                                               Field                                                |                                              Service                                               |
+| :————————————————————————————————: | :————————————————————————————————: | :————————————————————————————————: |
+| <img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240120164950.png" style="zoom:80%;" /> | <img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240120165004.png" style="zoom:80%;" /> | <img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240120165023.png" style="zoom:80%;" /> |</p>
+
+    <p>where industrial robots are often pre-programmed, field robots need to operate in unstructured environments, and service robots are designed to assist humans in daily life</p>
+  </li>
+</ul>
+
+<p>What kinds of computation problems do we care about in robotics?</p>
+<ol>
+  <li>How do you <strong>represent</strong> and model your robot and its environment? (so that you can easily compute things)</li>
+  <li>How do you <strong>control</strong> your robot?
+    <ul>
+      <li>robot kinematics: if you moved a joint by this bit, how much does the end-effector move?</li>
+      <li>motion planning and automation</li>
+    </ul>
+  </li>
+  <li>Robot sensors have a lot of noises. Need <strong>estimation, localization, and mapping</strong> to perceive what is happening in the environment</li>
+  <li><strong>AI learning and perception</strong></li>
+</ol>
+
+<h1 id="rigid-body-transformations">Rigid-Body Transformations</h1>
+
+<p>Let the world be represented with $\mathcal{W}$, and let a subset of points $\mathcal{A}$ be what we interested in (e.g. obstacles, our robot, etc)</p>
+
+<p>We will also typically use coordinates <strong>relative</strong> to either a <strong>fixed</strong> world frame, or <strong>fixed</strong> robot’s body frame.</p>
+
+<blockquote>
+  <p><strong>Rigid-body transformation:</strong> A transformation function $h: \mathcal{A} \to \mathcal{W}$ such that relative distance and orientations between all points in $\mathcal{A}$ are preserved (i.e., your robot is not stretching itself, and is not “flipping” itself). Examples include:</p>
+
+  <ul>
+    <li>translations</li>
+    <li>rotations</li>
+  </ul>
+</blockquote>
+
+<p><strong>A 2D translation</strong> <mark>by</mark> $\mathbf{p} = (x_t, y_t)$ applied to <mark>all points in $\mathcal{A}$</mark></p>
+
+\[h(x, y ) = (x+x_t, y+y_t)\]
+
+<p>this can be interpreted in two ways:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">you transformed the points in the robot</th>
+      <th style="text-align: center">you transformed the origin of the frame</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240119143903155.png" alt="image-20240119143903155" style="zoom: 50%;" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240119143912482.png" alt="image-20240119143912482" style="zoom:50%;" /></td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>A 2D rotation</strong>: suppose we rotate our robot counter-clockwise about the origin of the world frame by an angle $\theta$. You can do this</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Visually</th>
+      <th style="text-align: center">Mathematically</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240119144112167.png" alt="image-20240119144112167" style="zoom: 50%;" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240119144130121.png" alt="image-20240119144130121" style="zoom: 33%;" /></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>so now your function becomes:</p>
+
+\[h(\mathbf{x}) = R(\theta) \mathbf{x}\]
+
+<p>in fact, there is a simple interpretation of this rotation matrix:</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240119144440374.png" alt="image-20240119144440374" style="zoom:33%;" /></p>
+
+<p>The first column of $R$, which is $[\cos \theta, \sin\theta]^T$, is the <strong>coordinate of $x_1$ w.r.t the old frame</strong>, and the second columd is the <strong>coordinate of $y_1$ w.r.t the old frame</strong>! So the operation of:</p>
+
+\[\begin{bmatrix} \cos\theta &amp; -\sin\theta \\ \sin\theta &amp; \cos \theta \end{bmatrix} \begin{bmatrix}x \\ y\end{bmatrix} = x \begin{bmatrix} \cos\theta \\ \sin\theta \end{bmatrix} + y \begin{bmatrix} -\sin\theta \\ \cos\theta \end{bmatrix}\]
+
+<p>so it is basically the “same $(x ,y)$” but in a new coordinate frame!</p>
+
+<blockquote>
+  <p><strong>Properties of Rotation Matrix</strong>: a rotation matrix is quite important, and it has a lot of useful properties:</p>
+
+  <ul>
+    <li>$R(\theta)$ produces a counter-clockwise rotation</li>
+    <li>it is orthogonal: $R(\theta)^{-1} = R(\theta)^T$​</li>
+    <li>additional $R(\theta)^{-1} = R(-\theta)$​, so inverse is just a clockwise rotation</li>
+    <li>$\det(R(\theta)) = 1$, so rotation does <strong>not change length, size, or magnitude</strong> (i.e., does not stretch points, rigid-body transformation!)</li>
+    <li>is composable $R(\theta_1 + \theta_2) = R(\theta_1)R(\theta_2)$</li>
+    <li>2D rotation transformation is communicative (but not for 3D) $R(\theta_1)R(\theta_2) = R(\theta_2)R(\theta_1)$​</li>
+    <li>rotation matrices represent rotation as <strong>linear transformations</strong></li>
+  </ul>
+</blockquote>
+
+<h2 id="homogenous-transformations">Homogenous Transformations</h2>
+
+<p>Now you can combine rotaion and translation:</p>
+
+\[\begin{bmatrix}x' \\ y'\end{bmatrix} = R(\theta) \begin{bmatrix}x \\ y\end{bmatrix} + \begin{bmatrix}x_t \\ y_t\end{bmatrix}\]
+
+<p>is a valid rigid body transformation, but is now <strong>affine</strong>, not linear transformation. Some common trick to make this a linear transformation (so math is simpler later) is to add a dimension $(x,y) \to (x,y,1)$:</p>
+
+\[\begin{bmatrix} 
+x' \\ y' \\ 1 
+\end{bmatrix} = \begin{bmatrix} 
+\cos \theta &amp; -\sin \theta &amp; x_t \\ 
+\sin \theta &amp; \cos \theta &amp; y_t \\
+0 &amp; 0 &amp; 1
+\end{bmatrix}  \begin{bmatrix} 
+x \\ y \\ 1
+\end{bmatrix}
+= T(\theta, x_t, y_t) \begin{bmatrix}
+x \\ y \\ 1
+\end{bmatrix}\]
+
+<p>so that both rotation and translation is expressed as a <strong>homogeneous linear transformation</strong> (in 2D space). This turns out to be a general form:</p>
+
+<blockquote>
+  <p><strong>Homogenous Transformation Matrix</strong>: this form generalizes if you are doing rotations and translations only:</p>
+
+\[T(\theta, x_t, y_t) = \begin{bmatrix} 
+\cos \theta &amp; -\sin \theta &amp; x_t \\ 
+\sin \theta &amp; \cos \theta &amp; y_t \\
+0 &amp; 0 &amp; 1
+\end{bmatrix} = \begin{bmatrix}
+R(\theta) &amp; \mathbf{p} \\
+\mathbf{0}^T &amp; 1
+\end{bmatrix}\]
+
+  <p>so for example:</p>
+
+  <ul>
+    <li>
+      <p>to do pure rotation, substitute $\mathbf{p}=[0,0]^T$, and for pure translation, substitute $R(\theta) = I$</p>
+    </li>
+    <li>
+      <p>no longer orthogonal, so inverse is a bit more compllicated</p>
+
+\[T^{-1} = \begin{bmatrix}
+R^-1 &amp; -R^{-1}\mathbf{p}\\
+\mathbf{0}^T &amp; 1
+\end{bmatrix}\]
+    </li>
+    <li>
+      <p>not commutative: $T_1 T_0(x,y,1) \neq T_0 T_1(x,y,1)$</p>
+    </li>
+  </ul>
+</blockquote>
+
+<p>For example, consider visually what would happen if I do $T_0$ being pure rotation by $\pi/4$, and $T_1$ being translation to right by $3$</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240120161732.png" style="zoom:100%;" /></p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Step 0</th>
+      <th style="text-align: center">Step 1</th>
+      <th style="text-align: center">Step 2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240120162036.png" style="zoom:100%;" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240120162548.png" style="zoom:100%;" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240120162622.png" style="zoom:100%;" /></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>If you do in reverse order</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Step 0</th>
+      <th style="text-align: center">Step 1</th>
+      <th style="text-align: center">Step 2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240120162036.png" style="zoom:100%;" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240120162110.png" style="zoom:100%;" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240120162312.png" style="zoom:100%;" /></td>
+    </tr>
+  </tbody>
+</table>
+
+<p><mark>note that all intermediate transformations are relative to the original frame</mark>.</p>
+
+<h2 id="3d-transformations">3D Transformations</h2>
+
+<p>Essentially the same idea as 2D transformations, but:</p>
+
+<ul>
+  <li>
+    <p><strong>3D translations</strong> are still simple: $h(x,y,z)=(x+x_t, y+y_t, z+z_t)$</p>
+  </li>
+  <li>
+    <p><strong>3D rotations</strong> is much more complicated because you can <strong>rotate relative to many axis</strong></p>
+
+    <ul>
+      <li>
+        <p>e.g., rotation around the $z$-axis</p>
+
+\[R_z(\alpha) = \begin{bmatrix}
+\cos \alpha &amp; -\sin \alpha &amp; 0\\
+\sin \alpha &amp; \cos \alpha &amp; 0 \\
+0 &amp; 0 &amp; 1
+\end{bmatrix} \to \begin{bmatrix}
+\mathbf{x_1} &amp; \mathbf{y_1} &amp; \mathbf{z_1}
+\end{bmatrix}\]
+
+        <p>and again, the interpretation is the same as before: <strong>rotation matrix describes the new coordinate axis</strong></p>
+
+        <p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240119151643911.png" alt="image-20240119151643911" style="zoom:33%;" /></p>
+
+        <p>notice that:</p>
+
+        <ul>
+          <li>
+            <p>the zeros and ones is intuitive: since <strong>$z$-axis isn’t moving</strong>, they have to appear like this!</p>
+          </li>
+          <li>
+            <p>and the upper part of this matrix is exactly the same as the 2D transformation matrix $R(\theta)$</p>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <p>e..g, since you have three axis, you have two more rotation matrices</p>
+
+\[R_y(\beta) = \begin{bmatrix}
+\cos \beta &amp; 0 &amp; \sin \beta \\
+0 &amp; 1 &amp; 0 \\
+-\sin \beta &amp; 0 &amp; \cos \beta
+\end{bmatrix},\quad R_x(\gamma) = \begin{bmatrix}
+1 &amp; 0 &amp; 0 \\
+0 &amp; \cos \gamma &amp; -\sin \gamma \\
+0 &amp; \sin \gamma &amp; \cos \gamma
+\end{bmatrix}\]
+      </li>
+      <li>
+        <p>right-hand-rule: a 3D “positive rotation” by $\theta$ about some axis $\mathbf{v}$ is a counter-clockwise rotation in the plan normal to $\mathbf{v}$. Visually, it is just right-hand-rule:</p>
+
+        <p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240119152520204.png" alt="image-20240119152520204" style="zoom:50%;" /></p>
+      </li>
+      <li>
+        <p>rotations about the same axis is commutative (as in 2D), but <strong>not commutative</strong> when you are rotating about different axes (in 3D)</p>
+
+        <p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240119153258097.png" alt="image-20240119153258097" style="zoom: 50%;" /></p>
+      </li>
+      <li>
+        <p>but <strong>each 3D rotation matrix is orthogonal</strong></p>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<p><em>For example,</em> consider our “robot” is a box, and we want to transform all points of this box by $\pi$ in the $z$-axis (let us just visualize one point of the box):</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240119152934685.png" alt="image-20240119152934685" style="zoom: 50%;" /></p>
+
+<p><em>For example</em>: transform a vector $\mathbf{v}$ by $\pi/2$ in the $y$-axis</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240119153034529.png" alt="image-20240119153034529" style="zoom:50%;" /></p>
+
+<h2 id="3d-homogeneous-transformations">3D Homogeneous Transformations</h2>
+
+<p>Similar to 2D, if we do one rotation and and one translation: we can make it into <strong>one linear transformation matrix</strong> by uplifting one dimension.</p>
+
+<p><em>For example</em>, rotating about $y$-axis by $\beta$ followed by a translation:</p>
+
+\[T = \begin{bmatrix}
+R_y(\beta) &amp; \mathbf{p} \\
+\mathbf{0}^T &amp; 1
+\end{bmatrix}
+= \begin{bmatrix}
+\cos \beta &amp; 0 &amp; \sin \beta &amp; x_t \\
+0 &amp; 1 &amp; 0 &amp; y_t \\
+-\sin \beta &amp; 0 &amp; \cos \beta &amp; z_t \\
+0 &amp; 0 &amp; 0 &amp; 1
+\end{bmatrix}\]
+
+<p>As an exercise, try to figure out the transformation matrix from frame 0 to frame 1, and then from frame 1 to frame 2:</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240119154101897.png" alt="image-20240119154101897" style="zoom:40%;" /></p>
+
+<ul>
+  <li>
+    <p>from frame 0 to frame 1: we are rotating about $x_0$ by $\pi/2$, rotate about $y_0$ by $\pi/2$, and translate along $z_0$​ by 1unit</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Step 0</th>
+          <th>Step 1</th>
+          <th>Step 2</th>
+          <th>Step 3</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240121154430948.png" alt="image-20240121154430948" style="zoom:67%;" /></td>
+          <td><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240121154713679.png" alt="image-20240121154713679" style="zoom:67%;" /></td>
+          <td><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240121154727122.png" alt="image-20240121154727122" /></td>
+          <td><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240121154840717.png" alt="image-20240121154840717" /></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>therefore the full transformation matrix look like:</p>
+
+\[T_1^0 = \begin{bmatrix}
+I &amp; [0,0,1]^{T} \\
+\mathbf{0}^T &amp; 1
+\end{bmatrix} \begin{bmatrix}
+R_{y}(\pi/2) &amp; \mathbf{0} \\
+\mathbf{0}^T &amp; 1
+\end{bmatrix} \begin{bmatrix}
+R_{x}(\pi/2) &amp; \mathbf{0} \\
+\mathbf{0}^T &amp; 1
+\end{bmatrix}  = \begin{bmatrix}
+0 &amp; 1 &amp; 0 &amp; 0 \\
+0 &amp; 0 &amp; -1 &amp; 0 \\
+-1 &amp; 0 &amp; 0 &amp; 1 \\
+0 &amp; 0 &amp; 0 &amp; 1
+\end{bmatrix}\]
+
+    <p>note that in this case</p>
+
+    <ul>
+      <li><strong>each column represents the new coordinate’s axis relative to the original frame!</strong> (e.g., $x_1$’s coordinate is exactly <strong>pointing at</strong> $[0,0,-1]$, and the <strong>new origin at</strong> $[0,0,1]$ from the last column).</li>
+      <li>Also note that we <strong>do translation last</strong>, since it is the simplest as all transformation (i.e., the rotations) are relative to the <strong>original frame</strong>.</li>
+      <li>we denote $T^0_1$ means we are transforming from frame 0 to frame 1</li>
+    </ul>
+  </li>
+  <li>
+    <p>from frame 1 to frame 2: left as an exercise</p>
+  </li>
+</ul>
+
+<h2 id="composition-ordering">Composition Ordering</h2>
+
+<p>But what if I already give you the transformation of $T^0_2$?</p>
+
+\[T_2^0 = \begin{bmatrix}
+0 &amp; 0 &amp; -1 &amp; 0\\
+-1 &amp; 0 &amp; 0 &amp; 1 \\
+0 &amp; 1 &amp; 0 &amp; 0 \\
+0 &amp; 0 &amp; 0 &amp; 1
+\end{bmatrix}\]
+
+<p>Can you tell me what is $T^1_2$ given this information and your previous result of $T^0_1$?</p>
+
+<ul>
+  <li>
+    <p>attempt 1: can say that:</p>
+
+\[T^1_2 \overset{?}{=} T^0_2 T^1_0  = T_2^0 (T^0_1)^{-1}\]
+
+    <p>No, because the two transformations are done in <strong>different basis</strong>. The first transformation $T^1_0$ is based on frame 1, and the second $T^0_2$ is based on frame 0!</p>
+  </li>
+  <li>
+    <p>attempt 2: we need to <strong>write $T^{0}_2$ transformation relative to frame 1</strong>. This is a similarity transformation:</p>
+
+\[T^0_2 \to (T^0_1)^{-1} T^0_2 (T^0_1)\]
+
+    <p>Therefore, the correct transformation is:</p>
+
+\[T^{1}_2 = (T^0_1)^{-1} T^0_2 (T^0_1) (T^0_1)^{-1} = (T^0_1)^{-1} T^0_2 = T^{1}_0 T^{0}_2\]
+
+    <p>and note that this is almost the <mark>same as the first attempt, but flipped!</mark></p>
+  </li>
+</ul>
+
+<p>This turns out to be turn in general. Consider two homogenous transformations $A,B$:</p>
+
+<blockquote>
+  <ul>
+    <li>if both are written <strong>relative to the same frame</strong>, then you can simply combine them and the result is intuitive. E.g., $C=BA$ transformation means you first do $A$ and then $B$.</li>
+    <li>
+      <p>if they are <strong>not written relative to the same frame</strong>, for example $A=T^{i}_j$ is w.r.t. frame $i$ and $B=T^{j}_k$ is w.r.t. frame $j$, then:</p>
+
+\[T^{i}_j T^{j}_k = T^{i}_k\]
+
+      <p>is transforming from frame $i$ (left matrix) to frame $k$ (right matrix).</p>
+    </li>
+  </ul>
+</blockquote>
+
+<p>So in some sense, you can say “absolute transformations” (same frame) are pre-multiplied (right to left), and “relative transformations” (different frame) are post-multiplied (left to right).</p>
+
+<h1 id="configuration-space">Configuration Space</h1>
+
+<blockquote>
+  <p><strong>Configuration</strong>: Description of the positions of all points of a robot</p>
+
+  <p><strong>Configuration Space</strong> (C-Space): the space of all possible configurations of the robot.</p>
+
+  <ul>
+    <li>In theory, there may have an infinite list of point positions, but in practice we consider parameterized representations of C-space</li>
+  </ul>
+</blockquote>
+
+<blockquote>
+  <p><strong>Group</strong> $(G, \circ)$ is a set $G$ with binary operatoin $\circ$ such that for all $a,b,c\in G$:</p>
+
+  <ul>
+    <li>Closure: $a\circ b \in G$</li>
+    <li>Associativity: $(a\circ b) \circ c = a \circ (b \circ c)$</li>
+    <li>Identity: $\exists e \in G$ such that $e \circ a = a \circ e = a$</li>
+    <li>Inverse: $\forall a \in G$, $\exists a^{-1} \in G$ such that $a \circ a^{-1} = a^{-1} \circ a = e$</li>
+  </ul>
+</blockquote>
+
+<p>For example, $(\Z, +)$ is a group, where of course adding two integers still gives an integer, etc.
+Alternatively, the group $(\R - {0}, \times )$ also works. Note that zero is taken out since it does not have multiplicative inverse.</p>
+
+<blockquote>
+  <p><strong>General Linear Group</strong>: the set of all non-singular (non-zero determinant) $n\times n$ real matrices with the operation of matrix multiplication.</p>
+</blockquote>
+
+<p>We are interested in this group because some subgroups of this are useful to robotics. For example:</p>
+
+<ul>
+  <li>Orthogonal group $O(n)$, a set of $n\times n$ <strong>orthogonal</strong> matrices with $\det = \pm 1$</li>
+  <li><strong>Special Orthogonal Group</strong> $SO(n)$, subgroup of $O(n)$ with $\det = +1$. Any matrix in $SO(n)$ will corresponds to a $n\times n$​ <strong>rotation</strong> matrices we saw before.</li>
+  <li><strong>Special Euclidean Group</strong> $SE(n)$, a set of $(n+1)\times (n+1)$ homogeneous transformation matrices in $\mathbb{R}^n$​. The rigid-body transformations are a <em>subset</em> of this, since we also require no-stretching.</li>
+</ul>
+
+<h2 id="c-space-of-mobile-robots">C-Space of Mobile Robots</h2>
+
+<blockquote>
+  <p>Positions of robot = uniquely defined by a transformation matrix (plus a given original position)
+<strong>Configuration</strong> of a robot: a complete specification of the position of every point of the system. We will use $q$ to denote a configuration.</p>
+</blockquote>
+
+<blockquote>
+  <p><strong>Configuration Space</strong> (C-Space): space of all possible configurations of the robot. We will use $\mathcal{Q}$ to denote the C-space.</p>
+</blockquote>
+
+<blockquote>
+  <p><strong>Degree of Freedom</strong> of a robot system is number of parameters needed to specify a configuration, or the dimension of the C-space.</p>
+</blockquote>
+
+<p><em>For example</em>, a circular, 2D robot with a known radius $r$ can be fully described using the location of its center. Therefore, a <strong>configuration</strong> looks like $q=(x,y)$, which has <strong>two degrees of freedom</strong>. The C-space has <strong>dimension 2</strong>, and is just $\R^2$ in this case.</p>
+
+<p>We can also tie this back to the groups we discussed before. We can say <mark>single body robots can be described by $SE(2)$ or $SE(3)$</mark>. This is because any configuration of a single body robot can be described by a transformation matrix in $SE(2)$ or $SE(3)$​, and these group of matrices contain all possible translations and rotations in 2D or 3D space.</p>
+
+<p>For example:</p>
+<ul>
+  <li>if the robot only translates, then often its C-space is just $\R^{2}$ or $\R^{3}$</li>
+  <li>if the robot only rotates, then we can say its C-space is $SO(2)$ or $SO(3)$</li>
+  <li>if we have multiple robots, then the full C-space is the <strong>Cartesian product</strong> of each body’s individual C-space</li>
+</ul>
+
+<p>We can also describe the degrees of freedom of those matrix groups, interpreted as the <strong>number of parameters</strong> needed to construct them:</p>
+
+<ul>
+  <li>$SO(2)$ and $SO(3)$ have dimension 1 and 3, respectively (for 3D, worst case you can have one rotation from each three axis)</li>
+  <li>$SE(2)$ corresponds to $\R^2 \times SO(2)$, which has dimension $2+1=3$</li>
+  <li>$SE(3)$ corresponds to $\R^3 \times SO(3)$, which has dimension $3+3=6$</li>
+</ul>
+
+<h3 id="unit-circle">Unit Circle</h3>
+
+<p>Since $SO(2)$ has dimension 1, what’s the difference with $\R^1$? Realize that $SO(2)$ is uniquely parametrized by value $[0, 2\pi)$. To visualize this space, we can consider the <strong>points on a unit circle</strong>:</p>
+
+\[\mathbb{S}^{1} = \{ (x,y) \in \R^2 | x^2 + y^2 = 1 \}\]
+
+<p>and note that <mark>each point on the unit circle maps to a value in $[0, 2\pi)$</mark> (so its a good way to visualize it). More formally:</p>
+
+<blockquote>
+  <p><strong>Homeomorphism</strong>: $SO(2)$ and $\mathbb{S}^1$ are homeomorphic, since there exists a <strong>continuous bijection function $f:X\to Y$</strong></p>
+
+  <ul>
+    <li>i.e., so that you can visualize these two sets (of free variables) as the same thing</li>
+  </ul>
+</blockquote>
+
+<p>This “visualization” tool comes in handy later when things get complicated.</p>
+
+<h2 id="kinematic-chains">Kinematic Chains</h2>
+
+<p>Can we describe the C-space of a manipulator? For a manipulator, each rigid body has a link, and links are connected by joints:</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240126141028498.png" alt="image-20240126141028498" style="zoom: 25%;" /></p>
+
+<p>What’s interesting now is that since <strong>each joint only has one degree of freedom, it severly restricts</strong> the degree of freedom of links and end effector. This means that two <strong>fully describe the C-space</strong> of this robot, we <strong>only have two degrees of freedom</strong>: $(\theta_1, \theta_2)$.</p>
+
+<p>More formally, the C-space is (not $\R^2$):</p>
+
+\[\mathbb{S}^1 \times \mathbb{S}^1\]
+
+<p>How do you “visualize” this C-space? This is actually <mark>homeomorphic to the surface of a 2D torus $\mathbb{T}^2$</mark>.</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240126141906907.png" alt="image-20240126141906907" style="zoom: 50%;" /></p>
+
+<p>where <mark>every point on the surface of the 2D torus corresponds to a unique angle configuration we have</mark>.</p>
+
+<h2 id="manifolds">Manifolds</h2>
+
+<p>Even though $\mathbb{S}^1$ and $\R$​ are not homeomorphic and topologically different, they <strong>are locally similar</strong>.</p>
+
+<blockquote>
+  <p><strong>Manifold</strong>: A subset $M \subseteq \R^m$ is a $n$-dimension manifold if <strong>each point in $M$ lies in a neighborhood</strong> that is homeomorphic <strong>to an open subset of $\R^n$</strong></p>
+
+  <ul>
+    <li>i.e., we can locally flatten each point in $M$, so that it is homeomorphic (can map) to $\R^n$</li>
+    <li>e.g. a globe (Earth) is a manifold since the neighbor area we see are basically flat</li>
+  </ul>
+
+  <p>Practically, a valid manifold means you have a <strong>valid mapping</strong> $f:X\to Y$ with an <strong>inverse</strong> $f^{-1}:Y\to X$, where the space of $Y \in M$ and $X$ is in your original space.</p>
+</blockquote>
+
+<p>For example, $\mathbb{S}^1$ is a 1-dimensional manifold in $\R^2$​</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240126143121927.png" alt="image-20240126143121927" style="zoom: 33%;" /></p>
+
+<ul>
+  <li>
+    <p>this is because we can have a mapping where blue and green does $(x,y) \to y$, and yellow and red does $(x,y)\to x$.</p>
+  </li>
+  <li>notice that the mapping is <strong>unique within the neighborhood</strong></li>
+  <li>so “1-dimensional manifold in $\R^2$” <strong>means</strong> $\mathbb{S}^1$ lives in $\R^2$ as shown above, but we can flatten it in a way to describe it using only one continuous number (i.e., 1-dimensional manifold)</li>
+</ul>
+
+<p>For another example, the following are 2-dimensional manifolds in $\R^3$:</p>
+<ul>
+  <li>$\mathbb{S^2}$ the surface of a sphere</li>
+  <li>$\mathbb{T^2} = \mathbb{S^1} \times \mathbb{S^1}$ the surface of a torus</li>
+  <li>$\R \times \mathbb{S^1}$ infinite cylinder</li>
+</ul>
+
+<h2 id="matrix-lie-groups">Matrix Lie Groups</h2>
+
+<blockquote>
+  <p><strong>Lie Groups</strong>: groups that are also (differentiable) manifolds.</p>
+
+  <ul>
+    <li>this includes $SE(n)$​ and its subgroups, and most robot related C-spaces</li>
+    <li>basically now, we are visualizing “matrix groups” as “manifolds”</li>
+  </ul>
+</blockquote>
+
+<p>For example, a real $n\times n$ matrix is trivially homeomorphic to $\R^{n^2}$:</p>
+
+\[A = \begin{bmatrix}
+a &amp; b \\
+c &amp; d
+\end{bmatrix} \iff (a,b,c,d)\]
+
+<p>where in this example, $SE(2)$ is homeomorphic to $\R^4$.</p>
+
+<p>What about matrices in $SO(2)$​? Even though this is $\mathbb{S}^{1}$, we know we can flatten it to a 1-dimensional manifold in $\R^2$. So we can say $SO(2)$ is homeomorphic to $\R$. Another more direct way to think about this: <strong>$\mathbb{S}^{1}$ describes the points on a unit circle, which can be “flattened” into a manifold</strong>.</p>
+
+<h2 id="obstacles-as-polygons">Obstacles as Polygons</h2>
+
+<p>Real robot C-spaces are often not just an “open-world” $\mathcal{W}$, there may be obstacles $\mathcal{O}_i \in \mathcal{W}$.</p>
+
+<blockquote>
+  <p>A robot’s <strong>workspace</strong> is the subset two or three-dimensional Euclidean space $\mathcal{W}$ that it can reach.</p>
+</blockquote>
+
+<p>To efficiently represent this space, we will consider two tricks:</p>
+<ul>
+  <li>represent $\mathcal{O}$ using a combination of primitives (e.g., intersection of lines, planes)</li>
+  <li>then we can directly “transform” these primitives into the C-space of the robot = robot’s <strong>free C-space</strong></li>
+</ul>
+
+<p>As a starting point, consider a simple 2D obstacle that we can represent with a finite set of vertices:</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240126212827.png" style="zoom:100%;" /></p>
+
+<p>We can describe using <mark>line equations + inequalities</mark>:</p>
+
+\[O = H_{1} \cup H_{2} \cup ... \cup H_{m}\\
+H_i = \{ (x,y) \in \mathcal{W} | f_i(x,y) \le 0 \}\]
+
+<p>notice that a line equation is just $f_i(x,y) = ax + by + c = 0$, and we can use inequalities to describe the half-space of the line.</p>
+
+<p>We can then describe a <strong>non-convex polygon</strong> by decomposing it into unions of convex polygons, and use set differences for holes.</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240126145546543.png" alt="image-20240126145546543" style="zoom:50%;" /></p>
+
+<p>This idea is similar in 3D, where we just use polyhedra = using <mark>plane equations</mark> instead of line equations, and then consider the intersection of inequalities:</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240126145727342.png" alt="image-20240126145727342" style="zoom:50%;" /></p>
+
+<p>We can finally <mark>generalize this even further to non-linear primitives</mark>. For example, we can use polynomial equations to represent the following:</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240126145856275.png" alt="image-20240126145856275" style="zoom:50%;" /></p>
+
+<p>where the green area basically is the obstacle.</p>
+
+<h3 id="c-space-obstacles">C-Space Obstacles</h3>
+
+<p>Now we want to transform those obstacles <strong>into the C-space of the robot</strong>, i.e., we want to directly obtain a single, constrained C-space.</p>
+
+<p>Let $\mathcal{A}$ be our robot, and let $q \in \mathcal{Q}$ denote the configuration of $\mathcal{A}$</p>
+
+<blockquote>
+  <p><strong>C-space obstacle region</strong>: is the region <mark>when the robot takes this configuration (i.e. transformation)</mark>, it <mark>collides</mark> with some obstacle.</p>
+
+\[Q_{\mathrm{obs}} = \{ q \in \mathcal{Q}  | \mathcal{A}(q) \cap O \neq \empty \}\]
+
+  <p><strong>Free C-space</strong>: when the robot will <mark>not collide</mark>:</p>
+
+\[Q_{\mathrm{free}} = Q - Q_{\mathrm{obs}}\]
+
+</blockquote>
+
+<p>For example, for a 2D robot, you can imagine $q=(x_t,y_t, \theta)$, and $Q_{\mathrm{obs}}$ would be all the configurations (i.e., transformations) such that the robot will hit an obstacle after performing it.</p>
+
+<p>What if you have multiple bodies? Then you also need to exclude <strong>collisions between these bodies</strong>. So $Q_{\mathrm{obs}}$ is:</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240126151046216.png" alt="image-20240126151046216" style="zoom:50%;" /></p>
+
+<hr />
+
+<p><em>For example</em>, visualizing free C-space if your robot is just a point (has no rotation)</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240126151218525.png" alt="image-20240126151218525" style="zoom: 67%;" /></p>
+
+<p>Again no rotation, but if we give it some volumes:</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240126151351594.png" alt="image-20240126151351594" style="zoom:50%;" /></p>
+
+<p>where notice that:</p>
+
+<ul>
+  <li>
+    <p><strong>a coordinate $q$ in free C-space</strong> corresponds to a configuration (or transformation) such that <strong>$\mathcal{A}(q)$ does not hit an obstacle in the workspace</strong>.</p>
+  </li>
+  <li>
+    <p>in the special case here we have only two degrees of freedom (no rotation), we only needed to <strong>grow boundaries of $Q_{\mathrm{obs}}$​</strong> by the radius of the robot to obtain $Q_{\mathrm{free}}$​.</p>
+  </li>
+  <li>
+    <p>Things get more complicated when it goes to 3D.</p>
+  </li>
+</ul>
+
+<h2 id="minkowski-difference">Minkowski Difference</h2>
+
+<p>Since it gets complicated in 3D quickly, but is there a simple way to figure out the obstacle space? When the <strong>robot is a rigid body restricted to translation only</strong>, we can use</p>
+
+<blockquote>
+  <p><strong>Minkovski Differece</strong>: when $\mathcal{Q} = \R^{n}$, then $Q_{\mathrm{obs}}$ is the Minkowski difference:</p>
+
+\[\mathcal{O} \ominus \mathcal{A}(0) = \{ o - a \in \R^n | o \in \mathcal{O}, a \in \mathcal{A}(0) \}\]
+
+  <p>where $A(0)$ means the robot is at the origin, and $\ominus$ is the Minkowski difference operator. This is basically considering <mark>all points as vectors</mark>, and doing a <mark>vector minus</mark> for all possible points.</p>
+</blockquote>
+
+<p>Visually</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Example 1</th>
+      <th style="text-align: center">Example 2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240126152230104.png" alt="image-20240126152230104" style="zoom:33%;" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240126152406089.png" alt="image-20240126152406089" style="zoom:30%;" /></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>effectively we are obtaining the region by “sliding our robot” along the edge of the obstacles, therefore:</p>
+<ul>
+  <li>the vector minus is because we need to flip our robot to slide along the edge</li>
+  <li>the Minkowski difference considered all vectors of the robot = the shape of the robot</li>
+</ul>
+
+<p>However, computationally this would need <strong>adding infinite number of vectors</strong>, so there are a few work-arounds</p>
+
+<h3 id="convex-hulls">Convex Hulls</h3>
+
+<p><mark>If we are dealing with convex polygons,</mark> it turns out adding/subtracting the <strong>vertices</strong> are sufficient.</p>
+
+<p>The <strong>convex hull</strong> of the Minkowski differnce is the <strong>set of vertices</strong> of the C-shape obstacle region:</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240202132151981.png" alt="image-20240202132151981" style="zoom: 50%;" /></p>
+
+<p>note that we won’t need to know how to implement this in $\mathcal{O}(n \log n)$, as they are many existing algorithm implementations that does this efficiently.</p>
+
+<h3 id="star-algorithm">Star Algorithm</h3>
+
+<p><strong>Again, If both $\mathcal{A}$ and $\mathcal{O}$ are convex</strong>, we can compute $Q_{\mathrm{obs}}$​ by considering only <strong>vertex-edge contacts</strong>.</p>
+
+<p>The key observation is that <mark>every edge of $\mathcal{C}_{obs}$ is a translated edge</mark> either from $\mathcal{A}$ or $\mathcal{O}$, In fact, <mark>every edge from $\mathcal{O}$ and $\mathcal{A}$ is used exactly once</mark> in the construction of $\mathcal{C}_{obs}$:</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240126220451.png" style="zoom:20%;" /></p>
+
+<p>where in (a) we color-coded a couple of examples, and (b) shows the final $\mathcal{C}<em>{obs}$. There is a translation of the edges, but that doesnt matter as we can construct <strong>if we know the order of edges</strong> to construct $\mathcal{C}</em>{obs}$ (then we can just glue them in order).</p>
+
+<blockquote>
+  <p><strong>Star Algorithm</strong>: the order of edges can be obtained by sorting:</p>
+  <ol>
+    <li>find the inward edge normals of $\mathcal{A}$</li>
+    <li>find the outward edge normals of $\mathcal{O}$</li>
+    <li>sort the edges by angle around $\mathcal{S}^1$</li>
+    <li>Then, assemble by simply gluing edges in the order of the sorted list.</li>
+  </ol>
+</blockquote>
+
+<p>For example, to obtain the $\mathcal{C}_{obs}$ above:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Algorithm</th>
+      <th style="text-align: center">Glueing</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240126221207.png" style="zoom:100%;" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240126221214.png" style="zoom:100%;" /></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>note that</p>
+
+<ul>
+  <li>
+    <p>this assumes the “origin” of the robot is at the top left of the robot. If not, we can simply translate $\mathcal{C}_{obs}$ by the same amount</p>
+  </li>
+  <li>Star-algorithm is very fast: is linear in the number of edges of $\mathcal{A}$ and $\mathcal{O}$</li>
+  <li>similar ideas for $\R^{3}$ based on enumerating contacts between <strong>convex polyhedra vertices</strong> and <strong>faces</strong> to obtain $\mathcal{C}_{obs}$</li>
+</ul>
+
+<h2 id="c-spaces-with-orientation">C-Spaces with Orientation</h2>
+
+<p>If a robot can rotate, we can get a <strong>different C-space</strong> given an orientation. For example, given the same obstacle we can have different C-space:</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240126153942725.png" alt="image-20240126153942725" style="zoom:30%;" /></p>
+
+<p>Since now the <strong>different C-space is a function of angle</strong>, we can visualize it by treating $\theta$ as a vertical axis and <strong>stacking the C-spaces</strong>:</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240126154020722.png" alt="image-20240126154020722" style="zoom:50%;" /></p>
+
+<p>notice that already for a <strong>2D robot with rotation, the C-space is 3D and quite complex</strong>!</p>
+
+<h2 id="c-space-with-manipulators">C-Space with Manipulators</h2>
+
+<p>What about non-convex objects, such as using a manipulator? (obstacle is shown in blue)</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Manipulator</th>
+      <th style="text-align: center">C-space</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240202132917802.png" alt="image-20240202132917802" style="zoom:33%;" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240202132905642.png" alt="image-20240202132905642" style="zoom:33%;" /></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>It turns out this is <strong>extremly complicated</strong>, and currently we are still mainly using <strong>sampling based approaches</strong>. Note that:</p>
+
+<ul>
+  <li>the C-space is paramterized only by two variables $\alpha$ and $\beta$. So its dimension is a <strong>torus</strong> $=\mathbb{S}\times\mathbb{S}$</li>
+  <li>visually it makes sense: only if $\alpha$ is large (e.g., $\ge 135 \degree$) the angle $\beta$ can rotate freely</li>
+</ul>
+
+<h1 id="kinematics">Kinematics</h1>
+
+<p>Given a <mark>C-space</mark> and some points on it, how to do <strong>mathematically map it back to the real robot</strong> (i.e., <mark>workspace</mark>). For example, given the two angles, compute what the manipulator will actually look like.</p>
+
+<blockquote>
+  <p>A robot’s <strong>kinematics</strong> is a mapping from its C-space to its workspace.</p>
+</blockquote>
+
+<p>In this section, we will mostly focus on (fixed base) manipulators.</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240202133802240.png" alt="image-20240202133802240" style="zoom:33%;" /></p>
+
+<p>note that:</p>
+
+<ul>
+  <li>
+    <p>we will also assume a joint (the black dot) only has <strong>one degree of freedom</strong>. If we have $&gt;1$​, we can simply consider multiple joints and combine them.</p>
+  </li>
+  <li>
+    <p>often $\theta_i$ is defined <mark>relatitve to the previous link</mark></p>
+  </li>
+  <li>
+    <p>there are two types of joint: a rotational and a translational one</p>
+
+    <p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240202133957292.png" alt="image-20240202133957292" style="zoom:50%;" /></p>
+  </li>
+</ul>
+
+<blockquote>
+  <p>Since the useful part is the <strong>end effector</strong>, we consider the <mark>workspace of a manipulator = points reachable by the end effector</mark></p>
+</blockquote>
+
+<p>For example, a planer RR arm (revolute + revolute) covers a workspace of an annulus in $\R^2$:</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240202134435697.png" alt="image-20240202134435697" style="zoom:33%;" /></p>
+
+<h2 id="forward-kinematics">Forward Kinematics</h2>
+
+<blockquote>
+  <p><strong>Forward kinematics</strong>: maps from its joint variables (e.g., angles) to the world position and orientation (pose) of its links</p>
+</blockquote>
+
+<p>For example, given two angles, we can compute the position $(x,y)$ of the end effector:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Visually</th>
+      <th style="text-align: center">Mathematically</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240202134717936.png" alt="image-20240202134717936" style="zoom:50%;" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240202134733824.png" alt="image-20240202134733824" style="zoom:50%;" /></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>where here we are mainly relying on <strong>geometry</strong>, so that:</p>
+
+\[\begin{align*}
+  x &amp;= l_1 \cos\theta_2 + l_2 \cos(\theta_1 + \theta_2) \\
+  y &amp;= l_1 \sin\theta_2 + l_2 \sin(\theta_1 + \theta_2)
+\end{align*}\]
+
+<p>but this can quickly get <strong>very complicated</strong>. The trick is to use <mark>frame transformations matrices</mark>, where you will find that:</p>
+
+<ul>
+  <li>the <strong>position</strong> (i.e. $(x,y,z)$) of the end effector is exactly the <strong>last column vector of the matrix</strong></li>
+  <li>the <strong>orientation</strong> of the end effector (i.e., if it is tilted, rotated) is found in the <strong>rotation submatrix</strong></li>
+</ul>
+
+<h3 id="2d-coordinate-frames">2D Coordinate Frames</h3>
+
+<p>Consider the following idea:</p>
+<ol>
+  <li>label the <strong>body frames</strong> of each joints and end effector (red), and the <strong>fixed world frame</strong> as well (blue)</li>
+  <li>then, figure out the <strong>transformation</strong> from the fixed world frame to the end effector frame</li>
+  <li>since this transformation will tell you how to map anything from origin to the end effector, we automatically obtain the <strong>position</strong> and <strong>orientation</strong> of the end effector by <mark>reading off from the transformation matrix</mark></li>
+</ol>
+
+<p>Visually, we would first draw out the axes:</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240202135002314.png" alt="image-20240202135002314" style="zoom:50%;" /></p>
+
+<p>Then consider the transformations from one frame to another (which <em>conveniently will only be a single rotation and a translation</em>):</p>
+
+\[T_{i}^{i-1} = \begin{bmatrix}
+\cos\theta_i &amp; -\sin\theta_i &amp; l_{i-1} \\
+\sin\theta_i &amp; \cos\theta_i &amp; 0 \\
+0 &amp; 0 &amp; 1
+\end{bmatrix}\]
+
+<p>Since each frame is drawn <mark>relative to the previous frame</mark>, we can describe the final end effector’s body frame relative to the fixed frame using:</p>
+
+\[T_{m+1}^0 = T_1^0 T_{2}^1 ... T^{m}_{m+1}\]
+
+<p>and we would be able to read off the position and orientation of the end effector from $T_{m+1}^0$.</p>
+
+<hr />
+
+<p><em>For example</em>: consider a RRR arm, where we have three joint variables $\theta_1, \theta_2, \theta_3$ in C-space</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240202135803318.png" alt="image-20240202135803318" style="zoom:33%;" /></p>
+
+<p>So then:</p>
+
+<ul>
+  <li>
+    <p>frame 0 to 1 we only have rotation:</p>
+
+\[T_1^0 = \begin{bmatrix}
+\cos\theta_1 &amp; -\sin\theta_1 &amp; 0 \\
+\sin\theta_1 &amp; \cos\theta_1 &amp; 0 \\
+0 &amp; 0 &amp; 1
+\end{bmatrix}\]
+  </li>
+  <li>
+    <p>frame 1 to 2 and 2 to 3, we have rotation and translation:</p>
+
+\[T_2^1 = \begin{bmatrix}
+\cos\theta_2 &amp; -\sin\theta_2 &amp; l_1 \\
+\sin\theta_2 &amp; \cos\theta_2 &amp; 0 \\
+0 &amp; 0 &amp; 1
+\end{bmatrix}, \quad
+T_3^2 = \begin{bmatrix}
+\cos\theta_3 &amp; -\sin\theta_3 &amp; l_2 \\
+\sin\theta_3 &amp; \cos\theta_3 &amp; 0 \\
+0 &amp; 0 &amp; 1
+\end{bmatrix}\]
+  </li>
+  <li>
+    <p>frame 3 and frame 4 we just have a single translation</p>
+
+\[T_4^3 = \begin{bmatrix}
+1 &amp; 0 &amp; l_3 \\
+0 &amp; 1 &amp; 0 \\
+0 &amp; 0 &amp; 1
+\end{bmatrix}\]
+  </li>
+</ul>
+
+<p>This results in</p>
+
+\[T_4^0 = T_1^0 T_2^1 T_3^2 T_4^3 = \begin{bmatrix}
+\cos(\theta_{1} + \theta_{2} + \theta_3) &amp; -\sin(\theta_{1} + \theta_{2} + \theta_3) &amp; l_1\cos\theta_1 + l_2\cos(\theta_1 + \theta_2) + l_3\cos(\theta_{1} + \theta_{2} + \theta_3) \\
+\sin(\theta_{1} + \theta_{2} + \theta_3) &amp; \cos(\theta_{1} + \theta_{2} + \theta_3) &amp; l_1\sin\theta_1 + l_2\sin(\theta_1 + \theta_2) + l_3\sin(\theta_{1} + \theta_2 + \theta_3) \\
+0 &amp; 0 &amp; 1
+\end{bmatrix}\]
+
+<p>which we will use a shorthand notation:</p>
+
+\[T_4^0 = \begin{bmatrix}
+c_{123} &amp; -s_{123} &amp; l_{1} c_1 + l_{2} c_{12} + l_{3} c_{123} \\
+s_{123} &amp; c_{123} &amp; l_{1} s_1 + l_{2} s_{12} + l_{3} s_{123} \\
+0 &amp; 0 &amp; 1
+\end{bmatrix}\]
+
+<p>How can we interpret this? Realize that:</p>
+<ul>
+  <li>
+    <p>the last column describes the <strong>position</strong> of the end effector:</p>
+
+\[(x,y) = (l_{1} c_1 + l_{2} c_{12} + l_{3} c_{123}, l_{1} s_1 + l_{2} s_{12} + l_{3} s_{123})\]
+  </li>
+  <li>
+    <p>the upper left matrix describes the <strong>orientation</strong> of the end effector:</p>
+
+\[\hat{x} = \begin{bmatrix}
+c_{123} \\
+s_{123} \\
+\end{bmatrix}, \quad \hat{y} = \begin{bmatrix}
+-s_{123} \\
+c_{123} \\
+\end{bmatrix}\]
+  </li>
+</ul>
+
+<hr />
+
+<p><em>For example</em>: RPR arm with $(\theta_1, d_2, \theta_3)$, so we also have translations in the middle:</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240202141054119.png" alt="image-20240202141054119" style="zoom:33%;" /></p>
+
+<p>Again, after drawing the frames, we consider:</p>
+<ul>
+  <li>
+    <p>frame 0 to 1, we only have rotation</p>
+
+\[T_1^0 = \begin{bmatrix}
+\cos\theta_1 &amp; -\sin\theta_1 &amp; 0 \\
+\sin\theta_1 &amp; \cos\theta_1 &amp; 0 \\
+0 &amp; 0 &amp; 1
+\end{bmatrix}\]
+  </li>
+  <li>
+    <p>frame 1 to 2, we have only translation:</p>
+
+\[T_2^1 = \begin{bmatrix}
+1 &amp; 0 &amp; d_2 \\
+0 &amp; 1 &amp; 0 \\
+0 &amp; 0 &amp; 1
+\end{bmatrix}\]
+  </li>
+  <li>
+    <p>frame 2 to 3, we have rotation and translation:</p>
+
+\[T_3^2 = \begin{bmatrix}
+\cos\theta_3 &amp; -\sin\theta_3 &amp; l_2 \\
+\sin\theta_3 &amp; \cos\theta_3 &amp; 0 \\
+0 &amp; 0 &amp; 1
+\end{bmatrix}\]
+  </li>
+  <li>
+    <p>frame 3 to 4, we have only translation:</p>
+
+\[T_4^3 = \begin{bmatrix}
+1 &amp; 0 &amp; l_3 \\
+0 &amp; 1 &amp; 0 \\
+0 &amp; 0 &amp; 1
+\end{bmatrix}\]
+
+    <p>Hence altogether we have:</p>
+  </li>
+</ul>
+
+\[T_4^0 = T_1^0 T_2^1 T_3^2 T_4^3 = \begin{bmatrix}
+c_{13} &amp; -s_{13} &amp; (l_{2} + d_2)c_{1} + l_{3} c_{13} \\
+s_{13} &amp; c_{13} &amp; (l_{2} + d_2)s_1 + l_{3} s_{13} \\
+0 &amp; 0 &amp; 1
+\end{bmatrix}\]
+
+<p>where again, we can read of the actual position and orientation of the end effector from this matrix.</p>
+
+<h3 id="cylindrical-arm">Cylindrical Arm</h3>
+
+<p>Now here is a more complicated manipulator that can rotate along $z$-axis:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Cylindrical Manipulator</th>
+      <th style="text-align: center">Annotated Body Frames</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240202141335562.png" alt="image-20240202141335562" style="zoom:33%;" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240202141347720.png" alt="image-20240202141347720" style="zoom:33%;" /></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>So how do we obtain the position and orientation of the end effector?</p>
+
+<ol>
+  <li>frame 0 to 1 can rotate and move up and down. Specifically, we rotated $\theta_1$ by axis $z_0$, and translated along $z_0$ by $d_1$</li>
+  <li>frame 1 to 2 can also rotate and move. Specifically, we rotated $- \pi / 2$ about axis $x_1$, and translated along $z_1$ by $d_2$</li>
+  <li>frame 2 to 3 is the end effector, which translates along $z_2$ by $d_3$</li>
+</ol>
+
+<p>This results in:</p>
+
+\[T_3^0 = \begin{bmatrix}
+  c_1 &amp; 0 &amp; -s_1 &amp; -s_1 d_3 \\
+  s_1 &amp; 0 &amp; c_1 &amp; c_1 d_3 \\
+  0 &amp; -1 &amp; 0 &amp; d_1 + d_2 \\
+  0 &amp; 0 &amp; 0 &amp; 1
+\end{bmatrix}\]
+
+<p>where again, the last column gives you the position of the end-effector, and orientation is given by the upper left matrix.</p>
+
+<h2 id="inverse-kinematics">Inverse Kinematics</h2>
+
+<p>Sometimes, you also want to do the reverse: <strong>given a position/orientation of the end-effector</strong>, find the <strong>joint configurations</strong> $q$ to achieve this.</p>
+
+<blockquote>
+  <p>The <strong>inverse kinematics</strong> problem is much harder since the FK are nonlinear!</p>
+</blockquote>
+
+<p>Why? For example:</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240202142043654.png" alt="image-20240202142043654" style="zoom: 67%;" /></p>
+
+<p>which is intrinsically because the <strong>transformation matrix</strong> is large in dimension (last row is skipped).</p>
+
+<hr />
+
+<p>For some <strong>simple</strong> case, we can solve it algebraically. Given $(x,y)$ here, solve for $\theta_1, \theta_2$:</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240202142318774.png" alt="image-20240202142318774" style="zoom: 33%;" /></p>
+
+<p>before we even try to solve this, <mark>notice a natural constraint</mark>:</p>
+
+\[(l_1-l_2)^2 \le x^2 + y^2 \le (l_1+l_2)^2\]
+
+<p>which is this annulus region we talked about before: the end effector cannot possibly be outside that space!</p>
+
+<p>If this is an allowed position, we can solve it algebraically by:</p>
+
+<ol>
+  <li>first eliminating $\theta_1$:</li>
+</ol>
+
+\[x^2 + y^2 = l_1^2 + l_2^2 - 2l_1l_2\cos\theta_2\]
+
+<ol>
+  <li>then you will already find two solutions for $\theta_2$:</li>
+</ol>
+
+\[\theta_2 = \arccos \frac{x^2 + y^2 - l_1^2 -l_2^2}{2l_1l_2}\]
+
+<ol>
+  <li>and you can solve $\theta_1$ by plugging $\theta_2$​ in, and obtain:</li>
+</ol>
+
+\[\theta_1 = \arctan2(\sin \theta_1, \cos \theta_1)\]
+
+<p>this makes physical sense as it corresponds to:</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240202142648330.png" alt="image-20240202142648330" style="zoom: 33%;" /></p>
+
+<blockquote>
+  <p><strong>Note</strong>: $\arctan2$ function is different from the normal $\arctan$, where you can preserve sign information (because $\arctan(y/x)=\arctan(-y/-x)$). Visually, it looks like:</p>
+
+  <p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Arctangent2.svg/220px-Arctangent2.svg.png" alt="img" /></p>
+
+  <p>this is used mainly in <strong>programming</strong>, and many libraries provide this function.</p>
+</blockquote>
+
+<h2 id="robot-velocities">Robot Velocities</h2>
+
+<p>The forward kinematics tells us the <strong>pose</strong> of the end effector (i.e., position and orientation). But our robot moves around:</p>
+
+<blockquote>
+  <p>The <strong>time derivative</strong> of the Forward Kinematics gives the <strong>velocity</strong> of the end effector.</p>
+
+  <ul>
+    <li>effectively, it helps us to compute $(\dot{x}, \dot{y}, \dot{z})$ from joint velocities $\dot{\mathbf{q}}$.</li>
+    <li>this velocity information is also surprisingly helpful for us to solve some inverse kinematics problems (by gradient descent)</li>
+  </ul>
+</blockquote>
+
+<p>We start with the end effectors position as a function of its configuration:</p>
+
+\[x(\mathbf{q}), y(\mathbf{q}), z(\mathbf{q})\]
+
+<p>we are interested in:</p>
+
+\[\frac{d}{dt}(x(\mathbf{q}), y(\mathbf{q}), z(\mathbf{q}))\]
+
+<p>using chain rules, this gives (assuming $\mathbf{q}\in \R^m$)</p>
+
+\[\mathbf{v} = \frac{d}{dt} \begin{bmatrix} 
+    x(\mathbf{q}) \\
+    y(\mathbf{q}) \\
+    z(\mathbf{q}) 
+\end{bmatrix} = \begin{bmatrix} 
+    \frac{\partial x}{\partial q_1} \frac{d q_1}{dt} + ... + \frac{\partial x}{\partial q_m} \frac{d q_m}{dt} \\
+    \frac{\partial y}{\partial q_1} \frac{d q_1}{dt} + ... + \frac{\partial y}{\partial q_m} \frac{d q_m}{dt} \\
+    \frac{\partial z}{\partial q_1} \frac{d q_1}{dt} + ... + \frac{\partial z}{\partial q_m} \frac{d q_m}{dt}
+\end{bmatrix}
+= \begin{bmatrix} 
+    \frac{\partial x}{\partial q_1} &amp; ... &amp; \frac{\partial x}{\partial q_m} \\
+    \frac{\partial y}{\partial q_1} &amp; ... &amp; \frac{\partial y}{\partial q_m} \\
+    \frac{\partial z}{\partial q_1} &amp; ... &amp; \frac{\partial z}{\partial q_m} 
+\end{bmatrix} \begin{bmatrix} 
+    \frac{d q_1}{dt} \\
+    \vdots \\
+    \frac{d q_m}{dt} 
+\end{bmatrix}
+= J(\mathbf{q}) \dot{\mathbf{q}}\]
+
+<p>so ultimately, velocity is some matrix (a Jacobian) times the <strong>joint velocity $\dot{\mathbf{q}}$​​</strong>. Later on you will also see that:</p>
+<ul>
+  <li>the $i$-th  <strong>column</strong> in the Jacobian is $\in \R^{3}$, which tells you the <strong>velocity direction</strong> of the end effector if you only moved that joint $q_i$</li>
+  <li>so the velocity of the end effector is a <strong>linear function of the joint velocity</strong> $\dot{\mathbf{q}}$.</li>
+</ul>
+
+<hr />
+
+<p><em>For example:</em> in an planar RR arm we have:</p>
+
+\[\begin{bmatrix} 
+    \dot{x} \\
+    \dot{y}
+\end{bmatrix}  = J(\theta_1, \theta_2) \begin{bmatrix} 
+    \dot{\theta_1} \\
+    \dot{\theta_2}
+\end{bmatrix}\]
+
+<p>where the jacobian is:</p>
+
+\[J(\theta_1, \theta_2) = \begin{bmatrix} 
+    -l_1 \sin\theta_1 - l_2 \sin(\theta_1 + \theta_2) &amp; -l_2 \sin(\theta_1 + \theta_2) \\
+    l_1 \cos\theta_1 + l_2 \cos(\theta_1 + \theta_2) &amp; l_2 \cos(\theta_1 + \theta_2)
+\end{bmatrix}
+= \begin{bmatrix} 
+    \vec{v}_1 &amp; \vec{v}_2 
+\end{bmatrix}\]
+
+<p>where notice that column vector is <strong>perpendicular</strong> from the effector to the joint. This means the <strong>direction of the velocity if you only move that joint</strong>.</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240202145040190.png" alt="image-20240202145040190" style="zoom:33%;" /></p>
+
+<blockquote>
+  <p>In general, this also means the <mark>column space</mark> of $J$​ is the set of <mark>all possible end effector velocities</mark>.</p>
+</blockquote>
+
+<h3 id="singular-configurations">Singular Configurations</h3>
+
+<p>Typically, if your work space is $\R^n$, then your Jacobian could have $n$ independent columns (e.g., typically $n=3$).</p>
+
+<blockquote>
+  <p>Recall:</p>
+  <ul>
+    <li>the <strong>rank</strong> of a matrix is the number of linearly independent columns.</li>
+    <li>the <strong>null space</strong> of a matrix $A$ is the set of all vectors $x$ such that $Ax=0$.</li>
+    <li>if A has a non-trivial nullspace, it is <strong>not invertible and thus $\det A = 0$</strong>.</li>
+  </ul>
+</blockquote>
+
+<blockquote>
+  <p>It is possible for $J$ to have rank $&lt; n$ due to some special structure of the robot. If this happens, its called <strong>singular configurations</strong>.</p>
+  <ul>
+    <li>this means that there is some <strong>direction</strong> you cannot move the end effector, even if you moved all the joints.</li>
+    <li>if $J$ is square, this also means <mark>it is non-invertible</mark> (also called being “singular”)</li>
+    <li>finally, since its no longer full rank, there is a non-trivial <strong>null space</strong> of $J$​ = there will be certain <strong>non-zero joint velocities</strong> such that the <strong>end effector does not move</strong>.</li>
+  </ul>
+</blockquote>
+
+<p><em>For example</em>, if for some reason your $\theta_2=0$​ is “stuck” and cant move for a while:</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240202145552844.png" alt="image-20240202145552844" style="zoom: 40%;" /></p>
+
+<p>then our Jacobian is</p>
+
+\[J(\theta_1, 0) = \begin{bmatrix} 
+    -l_2 \sin\theta_1 - l_2 \sin\theta_1 &amp; -l_2 \sin\theta_1 \\
+    l_1 \cos\theta_1 + l_2 \cos\theta_1 &amp; l_2 \cos\theta_1
+\end{bmatrix}\]
+
+<p>Then notice that this has a null space:</p>
+
+\[\text{Null}(J(\theta_1, 0)) = \text{Span}(-l_2, l_1+l_2)\]
+
+<p>this means even if you moved the joints:</p>
+
+\[\begin{bmatrix} 
+    \dot{\theta_1} \\
+    \dot{\theta_2}
+\end{bmatrix} = \alpha  \begin{bmatrix}
+    -l_2 \\
+    l_1+l_2
+\end{bmatrix}\]
+
+<p>the end effector will <strong>not</strong> move.</p>
+
+<hr />
+
+<p><em>For example</em>: consider a cylindrical arm $\mathbf{q}=(\theta_1, d_2, d_3)$</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Visual</th>
+      <th style="text-align: center">Jacobian</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240202150427866.png" alt="image-20240202150427866" style="zoom:33%;" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240202150438972.png" alt="image-20240202150438972" style="zoom:30%;" /></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>first some sanity checks:</p>
+
+<ul>
+  <li>
+    <p>the only way to give $z_0$ movement is in the second column, which corresponds to moving $d_2$​ = makes sense!</p>
+  </li>
+  <li>
+    <p>to find singular configurations, we can solve for the nullspace or simply notice that $\det J = 0$. This gives us:</p>
+
+\[0 = \det J = -d_3 \cos^2 \theta_1 - d_3 \sin^2 \theta_1 = -d_3\]
+
+    <p>so if $d_3 = 0$, we will have a non-trival null space = singular configuration. In fact, if $d_3=0$, the end effector will lie on the $z_0$ axis, and actuating $\theta_1$ produces no <em>linear</em> velocity</p>
+  </li>
+</ul>
+
+<hr />
+
+<p><em>For example:</em> consider an anthropomorphic manipulator with $\theta_1, \theta_2, \theta_3$:</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240202151501723.png" alt="image-20240202151501723" style="zoom:40%;" /></p>
+
+<p>where if you look at the singular configurations, set $\det J = 0$ and you wil find:</p>
+
+\[0 = \det J = a_2a_3 \sin\theta_{3} \cdot (a_{2} \cos\theta_{2} + a_{3} \cos\theta_{2}\cos\theta_{3})\]
+
+<ul>
+  <li>
+    <p>so consider $\sin \theta_3 = 0$. This meaning multiples of $\pi$ gives you singular configurations = corresponding to your third joint being parallel to the second joint</p>
+  </li>
+  <li>
+    <p>or $a_2\cos\theta_2 + a_3 \cos\theta_2\cos\theta_3 = 0$​​. This corresponds to</p>
+
+    <p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240202151409202.png" alt="image-20240202151409202" style="zoom: 20%;" /></p>
+
+    <p>again, the end effector has <strong>no linear velocity</strong> (its rotating, but not moving) if we move $\theta_1$</p>
+  </li>
+</ul>
+
+<h2 id="numerical-inverse-kinematics">Numerical Inverse Kinematics</h2>
+
+<blockquote>
+  <p>Using a <strong>numerical</strong> approach to solve the Inverse Kinematics problem.</p>
+
+  <ul>
+    <li>a counterpart of our algebraic solutions in <a href="#Inverse_Kinematics">Inverse Kinematics</a></li>
+    <li>drawback: can suffere from numerical instabilities, and require more computation</li>
+  </ul>
+</blockquote>
+
+<p>Idea: suppose we want the end effector to be at position $(x^<em>, y^</em>, z^*)$, we can define an <strong>error function</strong> given its current position:</p>
+
+\[MSE = \frac{1}{2}((x^*-x)^2 +(y^*-y)^2 + (z^*-z)^2)\]
+
+<p>so our goal is simply to <strong>numerically find</strong> the $\mathbf{q}$ such that:</p>
+
+\[\min_{\mathbf{q}} \frac{1}{2}((x^*-x)^2 +(y^*-y)^2 + (z^*-z)^2) = \min_{\mathbf{q}} \mathcal{L}\]
+
+<p>so how do we find such $\mathbf{q}$ given this loss function? <strong>Gradient descent</strong>, which just takes a step using the partial derivatives</p>
+
+\[\frac{\partial \mathcal{L}}{\partial \mathbf{q}} = \left [\frac{\partial \mathcal{L}}{\partial q_1}, \frac{\partial \mathcal{L}}{\partial q_2}, ..., \frac{\partial \mathcal{L}}{\partial q_m} \right ]\]
+
+<p>and we update:</p>
+
+\[\mathbf{q} \gets \mathbf{q} -\frac{\partial \mathcal{L}}{\partial \mathbf{q}}\]
+
+<p>until convergence. But it turns out that we can write this gradient in <strong>another format</strong> that relates to what we discussed before:</p>
+
+\[\begin{align*}
+\frac{\partial \mathcal{L}}{\partial \mathbf{q}} 
+&amp;= (-x^* - x(\mathbf{q})) \frac{\partial x }{\partial \mathbf{q}} - (y^* - y(\mathbf{q})) \frac{\partial y }{\partial \mathbf{q}} - (z^* - z(\mathbf{q})) \frac{\partial z }{\partial \mathbf{q}} \\
+&amp;= - \begin{bmatrix} 
+    \frac{\partial x}{\partial \mathbf{q}} &amp; \frac{\partial y}{\partial \mathbf{q}} &amp; \frac{\partial z}{\partial \mathbf{q}} 
+\end{bmatrix} 
+\begin{bmatrix} 
+    x^* - x(\mathbf{q}) \\
+    y^* - y(\mathbf{q}) \\
+    z^* - z(\mathbf{q})
+\end{bmatrix} \\
+&amp;= -J(\mathbf{q})^T e(\mathbf{q})
+\end{align*}\]
+
+<p>so the <mark>gradient is just a negative Jacobian transpose times error vector</mark>! This again makes sense, since we just want to move in the direction to change $x,y,z$!</p>
+
+<hr />
+
+<p><em>For example</em>: given some initial configuration $\mathbf{q}$, desired position $\mathbf{p}$, step size $\alpha$, and an error threshold $\epsilon$:</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240202153044747.png" alt="image-20240202153044747" style="zoom:50%;" /></p>
+
+<p>Since this only uses first order gradient, we can get <strong>local minima</strong> when $J(\mathbf{q})^T e(\mathbf{q})=0$. This means that:</p>
+<ul>
+  <li>$e(\mathbf{q})$ is in the null space of $J(\mathbf{q})^T$.</li>
+  <li>
+    <p>Given a target position $(x^<em>, y^</em>, z^*)$, the entire thing is a function of $\mathbf{q}$. This means if you get into that $\mathbf{q}$ gradient descent will be <strong>stuck there</strong></p>
+  </li>
+  <li>This has a <mark>physical interpretation</mark>: these are the <mark>singular configurations</mark>!</li>
+</ul>
+
+<hr />
+
+<p><em>For example,</em> we knew that $\theta_2$ fixed at $\theta_2=0$ gives a singular configuration. Then if we consider doing gradient descent at this configuration:</p>
+
+\[J^{T}(\theta_1, 0) = \begin{bmatrix} 
+    -(l_{1} + l_2) \sin \theta_{1} &amp; (l_{1} + l_2) \cos\theta_{1} \\
+    -l_2 \sin\theta_{1} &amp; l_2 \cos\theta_{1} 
+\end{bmatrix}\]
+
+<p>Then if, given some target position $(x^<em>, y^</em>)$, we ended up with:</p>
+
+\[e(\mathbf{q}) = \beta \begin{bmatrix} 
+\cos\theta_1 \\
+\sin\theta_1
+\end{bmatrix}\]
+
+<p>gradient descent will stop, and we are stuck. This visually corresponds to the case when:</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240202213405.png" style="zoom:80%;" /></p>
+
+<p>then given the star is your target position, but moving the joints in any direction away from $\theta_1, 0$ will increase the error function. So you are now stuck in a local minima.</p>
+
+<h1 id="search-based-planning">Search-Based Planning</h1>
+
+<p>Given a robot and a world $\mathcal{W}$, we want to move the robot from one place to another without colliding.</p>
+
+<blockquote>
+  <p><strong>Motion Plannning</strong>: find a path in configuration space $c: [0,1] \to Q_{\mathrm{free}}$  such that:</p>
+
+\[c(0) = q_1, \quad c(1) = q_G\]
+
+  <p>or report if no such path exists.</p>
+  <ul>
+    <li>so we are given initial and goal configuration $q_1$, $q_G$, and we want to find a path</li>
+    <li>a path in the configuration space can then be easily translated to a path in the workspace -&gt; physically move!</li>
+  </ul>
+</blockquote>
+
+<p>Visually:</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240209131410953.png" alt="image-20240209131410953" style="zoom:33%;" /></p>
+
+<p>There are many algorithms that can do this, and a good algorithm should satisfy:</p>
+
+<ul>
+  <li><strong>Completeness</strong>: Guarantee of finding a solution or reporting failure</li>
+  <li><strong>Optimality</strong>: Path length, execution time, energy consumption of the robot, etc.</li>
+  <li><strong>Efficiency</strong>: Algorithm runtime and memory complexity. This would also relate to C-space size; worst vs average case</li>
+  <li><strong>Offline vs online</strong>: does planning occur in real-time, using sensor information?</li>
+</ul>
+
+<p>Types of algorithms</p>
+
+<ul>
+  <li><strong>Search-based</strong>: discrete C-space into graphs or grids, and then do planning</li>
+  <li><strong>Combinatorial:</strong> plan using the full C-space by exploiting some geometry properties of the environment</li>
+  <li><strong>Sampling -based</strong>: sample C-space to construct discrete representations</li>
+</ul>
+
+<p>both Search and Combinatorial methods yield completeness and optimality guarantees, but become expensive in high-dimensional space. Sampling-based methods are very efficient even in high-dimensional C-space, but weaker in completeness and optimality.</p>
+
+<h2 id="grids-and-obstacles">Grids and Obstacles</h2>
+
+<p><mark>Assuming</mark> we konw the full C-space already, and that its almost euclidean, we can <strong>discretize</strong> the C-space (given some resolution hyperparameter)</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Original</th>
+      <th style="text-align: center">Discretized</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240209132426077.png" alt="image-20240209132426077" style="zoom:50%;" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240209132437133.png" alt="image-20240209132437133" style="zoom:50%;" /></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Then we can consider <strong>any cell that (partially) contain the obstacle</strong> to be out of bounds.</p>
+
+<blockquote>
+  <p>For search-based algorithms in this section, we first discretize them into grid, then convert the grids into <mark>graphs</mark>, and finally <mark>do planning on the graph</mark>.</p>
+</blockquote>
+
+<p>So we will almost always be working on the graph below (for this section)</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240209132602181.png" alt="image-20240209132602181" style="zoom:50%;" /></p>
+
+<p>note that here we have a couple of “hyperparameters” to consider:</p>
+
+<ul>
+  <li>resolution of the grid (i.e., how many cells per unit)</li>
+  <li>grid connectivity
+    <ul>
+      <li>use 4-point connectivity: robot only goes up, down, left, right</li>
+      <li>use 8-point connectivity: The above, plus 4 diagonals</li>
+    </ul>
+  </li>
+</ul>
+
+<p>if we use high resolution + high connectivity, it could make the graph denser = more runtime to plan.</p>
+
+<h2 id="search-trees">Search Trees</h2>
+
+<p>Search algorithms in this section then typically follow the template:</p>
+
+<ol>
+  <li>traverses from the initial state and <strong>iteratively visit un-explored nodes</strong></li>
+  <li><strong>mark visited nodes as explored</strong></li>
+  <li>(different in different algorithms) consider <strong>which node to visit next</strong></li>
+</ol>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240209132956470.png" alt="image-20240209132956470" style="zoom: 33%;" /></p>
+
+<blockquote>
+  <p>For all algorithms in this section, <mark>assume we know the entire region of interest</mark>. So then planning is done entirely offline without any interaction with the environment.</p>
+</blockquote>
+
+<p>Therefore, <strong>most search-based algorithms look like</strong>:</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240209133455062.png" alt="image-20240209133455062" style="zoom:50%;" /></p>
+
+<p>where:</p>
+
+<ul>
+  <li>$U(x)$ means all the transitions you can have at node $x$, i.e., edge to children nodes​</li>
+  <li>$f(x,u)$​​ gives you the next state/node</li>
+  <li>the $\text{resolve duplicate }x’$ means we might <em>update some statistics</em> about the graph or $x’$.</li>
+  <li>difference between different search algorithms would come in $x \gets \text{Q.GetFirst()}$ and $\text{resolve duplicate }x’$​</li>
+</ul>
+
+<h3 id="dfs-and-bfs">DFS and BFS</h3>
+
+<p>Both are very similar, with the mainly differ in $x \gets \text{Q.GetFirst()}$:</p>
+
+<p><strong>Depth first search</strong>: expand the deepest state we have in $Q$ so far.</p>
+
+<ul>
+  <li><mark>not guaranteed</mark> to find a solution if state space is infinite</li>
+  <li><mark>not guaranteed</mark> to find shallowest or cheapest solution</li>
+  <li>but its space complexity is usually lower than other algorithms</li>
+</ul>
+
+<p><strong>Breadth first search</strong>: expand the shallowest state we have in $Q$​ so far (i.e., check each level of the tree before the next)</p>
+
+<ul>
+  <li><mark>guaranteed</mark> to return a shallowest solution, though it is <mark>not necessarily the lowest cost</mark> since each edge can have <strong>different costs</strong></li>
+  <li>typically much more memory-intensive than DFS</li>
+</ul>
+
+<h3 id="dijkstras-algorithm">Dijkstra’s Algorithm</h3>
+
+<p>We can generalize BFS with edge costs. This is basically Dijkstra’s algorithm.</p>
+
+<blockquote>
+  <p><strong>Dijkstra</strong>: nodes in $Q$​ are ordered by increasing values of cumulative cost from start node, i.e., check lowest cost node first! Essentially</p>
+
+  <ul>
+    <li>Priority function in 𝑄 is the <strong>cumulative</strong> cost of a state from initial</li>
+    <li>Expanding the frontier = visit a new node and adding transition cost to parent cost</li>
+  </ul>
+
+  <p>Guaranteed to be optimal if there exists a finite cost path to reach $G$.</p>
+</blockquote>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240209134553943.png" alt="image-20240209134553943" style="zoom: 50%;" /></p>
+
+<p>But note that:</p>
+
+<ul>
+  <li>To guarantee cost optimality, we must keep track of <strong>path costs</strong></li>
+  <li>It <em>may</em> not terminate (you can adversarially construct a graph to make this happen), but <strong>if cost is finite it will terminate</strong>.</li>
+</ul>
+
+<h3 id="navigation-functions">Navigation Functions</h3>
+
+<p>If your edges are bi-directional and cost is the same for either direction, you can <strong>use Dijkstra to obtain “value functions”</strong> that looks like this:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Optimal Value Function</th>
+      <th style="text-align: center">Optimal Policy</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240209190725.png" style="zoom:100%;" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240209140603002.png" alt="image-20240209140603002" style="zoom: 33%;" /></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>How? Simply:</p>
+<ol>
+  <li>run Dijkstra starting from goal ($u_T$), terminate until all states visited</li>
+  <li>now we have <strong>lowest costs from every state to a goal</strong>!</li>
+</ol>
+
+<p>This optimal value function is also called a <strong>navigation function $\phi$</strong> in robotics:</p>
+
+\[\phi: \mathcal{Q} \to \R\]
+
+<p>then given the <em>*optimal value function $V^</em>(s)$<em>*, we can easily extract the optimal policy $\pi^</em>$ for each node/state.</p>
+
+<h3 id="wavefront-algorithm">Wavefront Algorithm</h3>
+
+<p>If all edges have a cost of 1, we can modify BFS to obtain the same optimal value function by imaging waves:</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240209191339.png" style="zoom:100%;" /></p>
+
+<p>where we basically consider all elements expanded and labeled identically in each iteration.</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240209191426.png" style="zoom:100%;" /></p>
+
+<p>If we want, we could also modify this to work with non-uniform costs, but then it would be more like Dijkstra’s algorithm.</p>
+
+<h2 id="heuristics-functions">Heuristics Functions</h2>
+
+<p>Since robotics has a lot to do with real-world scenarios, we often have heuristics: what is <em>very likely</em> a bad next state to explore. Specifically, we will see that <strong>(good) heuristics function can speed up algorithms significantly</strong>.</p>
+
+<blockquote>
+  <p><strong>Heuristic function $h(x)$</strong>: <mark>Estimated</mark> cost of cheapest path from $x$ to a goal state. An example would be euclidean distance.</p>
+</blockquote>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240209141047483.png" alt="image-20240209141047483" style="zoom:50%;" /></p>
+
+<blockquote>
+  <p>A heuristic $h$ is <strong>admissable</strong> if $h(x) \le h^<em>(x)$ where $h^</em>(x)$ is the true cost from $x$ to goal.</p>
+
+  <ul>
+    <li>An example would again be using euclidean distance above</li>
+    <li>very useful property = can <mark>guarantee A* search to return optimal solutions</mark></li>
+  </ul>
+</blockquote>
+
+<p>Interestingly, if you consider grid navigation with all transitions have cost $1$:</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240209141453011.png" alt="image-20240209141453011" style="zoom:67%;" /></p>
+
+<ul>
+  <li>if we have 4 point connectivitiy in this graph, then using both $L^1$ distance of $L^2$ distance are <strong>admissible</strong> heursitics</li>
+  <li>if we have 8 point connectivity, then we need a $1/\sqrt{2}$ factor for $L^2$​ distance to be admissible.</li>
+</ul>
+
+<h3 id="a-search">A* Search</h3>
+
+<blockquote>
+  <p><em>*$A^{</em>}$ search<em>*: modify Dijkstra to evaluate each node based *on both cumulative cost and heuristic value</em>, so that Dijkstra’s cost function is now:</p>
+
+\[f(n) = \mathrm{cost}(n)+ h(n)\]
+
+  <p>such that nodes in the frontier $Q$ is sorted based on the modified cost $f$.</p>
+
+  <p>But why does it matter? This is often more efficient than Dijkstra, as <mark>heuristic can “steer” the search to investigate more promising areas of the search space</mark>.</p>
+</blockquote>
+
+<p>For example:</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240209142019186.png" alt="image-20240209142019186" style="zoom:50%;" /></p>
+
+<p>where you see that the heuristics are <strong>pushing us away from trying non-promising area early</strong>.</p>
+
+<h3 id="weighted-a-search">Weighted A* Search</h3>
+
+<p>With robotics and real-time planning, <strong>time efficiency is often more important</strong> than optimality.</p>
+
+<blockquote>
+  <p><strong>Weighted $A^{*}$ Search</strong>: put a weight on the heuristics cost:</p>
+
+\[f (n) = \mathrm{cost}(n) + \alpha h(n)\]
+
+  <p>where this gives us:</p>
+
+  <ul>
+    <li>greedy best-first if $\alpha \to \infty$​</li>
+    <li>if $\alpha = 1$ we get A* search, and if $\alpha = 0$ we get Dijkstra algorithm</li>
+  </ul>
+</blockquote>
+
+<p>You can tune this $\alpha$ to <strong>expand less nodes to pop the goal out of the stack</strong> = faster.</p>
+
+<p>However, the final solution <mark>may not be optimal</mark>: If optimal solution has cost $C^<em>$, weighted A</em> solution may cost up to $\alpha C^*$.</p>
+
+<h1 id="dynamic-replanning">Dynamic Replanning</h1>
+
+<p>What if our  <strong>C-space changes over time</strong>?</p>
+
+<ul>
+  <li>Costs or transitions may change after making a plan</li>
+  <li>Robot may discover new information while executing a plan</li>
+</ul>
+
+<p>Note that the algorithms introduced before in <a href="#Search-Based-Planning">Search-Based Planning</a> do offline planning. Obviously you could just re-run the whole thing, but ths is <strong>very inefficient</strong> (e.g., changes are small). <mark>Can we reuse prior computations</mark> to make this more efficient?</p>
+
+<h2 id="a-with-label-correction">A* with Label Correction</h2>
+
+<p>One approach is to modify A* to keep track of previous results, and only recompute/expand some nodes when there are some <strong>inconsistencies</strong> between what I had before and what I have now.</p>
+
+<blockquote>
+  <p><strong>$A^{*}$ with label correction:</strong> for each node $n$, we store:</p>
+  <ul>
+    <li>the actual lowest cost $g(n)=\mathrm{cost}(n)$ to traverse from start to node $n$</li>
+    <li><strong>another value $v(n)$</strong> to represent the <strong>previous value of $g(n)$</strong> = value of $g(n)$ when $n$​ was most recently expanded (use $\infty$ if no history)</li>
+  </ul>
+
+  <p>Then its basically the same as A* search, but we will <strong>only look into a node if $v(n) \neq g(n)$</strong>.</p>
+</blockquote>
+
+<p>This means that:</p>
+<ul>
+  <li>if you are running A* with label correction for the first time, everything is inconsistent, so it is equivalent to A* search</li>
+  <li>if something changed and you run A* with label correction again, you will <strong>only recompute the nodes that are inconsistent (and the nodes affected by it)</strong>.</li>
+</ul>
+
+<p>This is achieved by the invariant:</p>
+
+<blockquote>
+  <p>At any given time, <mark>our frontier $Q$ only contains inconsistent nodes</mark> to explore/expand next.</p>
+</blockquote>
+
+<p>And the algorithms looks like:</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240209194704.png" style="zoom:70%;" /></p>
+
+<p>And once done, we <mark>store the computed $g,v$ values</mark> so that next time we can directly re-use them.</p>
+
+<p>Note that the complicated “$g(n’)$ = min cost parent …” is to deal with the case that a node $n’$ might have multiple parent = to compute the actual shortest path to $n’$ we pick the cheapest parent.</p>
+
+<hr />
+
+<p>Let’s consider an example. Suppose we are in a fresh run and we have jsut expanded $S_2, S_1$. Since $S_2, S_1$ are just expanded, they are <strong>consistent</strong>, but not the other ones:</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240209144519293.png" alt="image-20240209144519293" style="zoom:50%;" /></p>
+
+<p>We then check $S_4$ and do:</p>
+<ol>
+  <li>mark it as consistent by setting $v(S_4) = g(S_4)$</li>
+  <li>for each of $S_4$’s next state $n’$ = only $[S_3]$ in this case
+    <ul>
+      <li>set $\mathrm{cost}(n’) =$ cheapest parent cost + transition cost</li>
+      <li>hence we set $g(S_3) = 2+3=5$</li>
+      <li>check consistency $g(S_3) \overset{?}{=} v(S_3)$, and insert into open list if inconsistent</li>
+    </ul>
+  </li>
+  <li>sort the open list $Q$ by $f(n) = \min{ g(n),v(n) } + h(n)$</li>
+</ol>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240209144702227.png" alt="image-20240209144702227" style="zoom:50%;" /></p>
+
+<p>Next, we repeat with the goal state being the first on the priority queue:</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240209145135613.png" alt="image-20240209145135613" style="zoom:50%;" /></p>
+
+<p>Then we are done because $f(\text{Q.peek()}) &gt; f(S_{\mathrm{goal}})$. But <mark>before we quit</mark>:</p>
+<ul>
+  <li>return the path found</li>
+  <li>but also <mark>store all the statistics $g,v$ in memory</mark></li>
+</ul>
+
+<blockquote>
+  <p>So when changes in the environment happens, we still re-compute from $S_{\mathrm{start}}$ but we only need to <strong>recompute nodes when we find inconsistencies</strong>.</p>
+</blockquote>
+
+<h2 id="lifelong-planning-a">Lifelong Planning A*</h2>
+
+<p>To make the A* with label correction fully correct, it turns out we need to be <strong>slightly more careful</strong>. When there are changes in the environment, and we are inspecting node $n$, we may find:</p>
+
+<ul>
+  <li>the actual cost $g(n)$ is lower than the previous value $v(n)$ = <strong>overconsistent</strong></li>
+  <li>or the actual cost $g(n)$ is higher than the previous value $v(n)$ = <strong>underconsistent</strong></li>
+</ul>
+
+<p>To be still optimal, we need to:</p>
+
+<ul>
+  <li>if we are overconsistent, we can repeat the same thing as A* with label correction by setting $v(n) = g(n)$ and <strong>recompute all children nodes</strong></li>
+  <li>if we are underconsistent, we need to <mark>recompute $v(n)$ *and* all children nodes</mark></li>
+  <li>and lastly, we need to consider a new end condition: we also <mark>require $v(goal) = g(goal)$ to terminate</mark></li>
+</ul>
+
+<p>Algorithm</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240209203936.png" style="zoom:70%;" /></p>
+
+<p>and</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240209203830.png" style="zoom:70%;" /></p>
+
+<hr />
+
+<p>As an example, lets start off from our last example</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240209145135613.png" alt="image-20240209145135613" style="zoom:50%;" /></p>
+
+<p>and suppose we changed an edge cost after our previous (stored) computation. If we run LSA* from $S_{\mathrm{start}}$, we will find our first inconsistency at $S_1$:</p>
+<ol>
+  <li>$v(S_1)=3$ was our previously computed cost</li>
+  <li>recomputing $g(n)$ the actual cost, we get $g(S_1)=5$</li>
+  <li>since the actual cost is higher, we are underconsistent and we need to recompute $v(S_1)$ and all children nodes</li>
+  <li>set $v(S_1)=\infty$ and placed back to the queue</li>
+  <li>(<code class="language-plaintext highlighter-rouge">updateNode</code>) check its children nodes, in this case $S_{\mathrm{goal}}$. It is again underconsistent, so $g \gets \infty$</li>
+</ol>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Step 1 to 2</th>
+      <th style="text-align: center">Step 3-5</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240209150352822.png" alt="image-20240209150352822" style="zoom:50%;" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240209150749077.png" alt="image-20240209150749077" style="zoom:50%;" /></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Now we expand $S_{\mathrm{goal}}$ and check if it is inconsistent. It is since $g$ was modified and became underconsistent, we need to <strong>compute $v(S_{\mathrm{goal}})$ and all children nodes again</strong>:</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240209151123626.png" alt="image-20240209151123626" style="zoom:50%;" /></p>
+
+<p>Next</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240209151143449.png" alt="image-20240209151143449" style="zoom:50%;" /></p>
+
+<p>since $S_3$ is now over-consistent, we simply make it consistent and proceed</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240209151255613.png" alt="image-20240209151255613" style="zoom:50%;" /></p>
+
+<p>Finally we have a consistent $S_{\mathrm{goal}}$ and we terminate</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240209151334533.png" alt="image-20240209151334533" style="zoom:50%;" /></p>
+
+<p>As you may have noticed in this example:</p>
+<ul>
+  <li>whenever a node has <strong>underconsistency</strong>, we propagate $g \gets \infty$ for its children in a “DFS” like manner</li>
+  <li>LPA* guarantees expanded nodes have non-decreasing $f$​ values over time to achieve optimality</li>
+  <li>under-consistent nodes are expanded <strong>at most twice</strong> in LPA*</li>
+  <li>we are only re-computing if needed</li>
+</ul>
+
+<h2 id="d-lite">D* Lite</h2>
+
+<p>LPA* is still offline = we <strong>compute everything</strong> in our head when given the environment.</p>
+
+<p>What if we want to <strong>execute while we are performing computation</strong>? (e.g., this may be useful when your robot does not have access to the full environment, but only what it sees right now)</p>
+
+<blockquote>
+  <p>Dynamic A* Lite (K&amp;L 2002): Similar to LPA* but</p>
+
+  <ul>
+    <li>we <strong>change start node to current node</strong> whenever we replan</li>
+    <li>we run “backwards”: instead of searching from start state, <strong>search from goal state</strong> (which doesn’t change given the above condition)</li>
+  </ul>
+</blockquote>
+
+<p>This is actually used in robotic systems, where we:</p>
+<ol>
+  <li>parse what our robot see</li>
+  <li>run D* Lite (continuously) to find some actions to do and execute</li>
+  <li>repeat</li>
+</ol>
+
+<h1 id="combinatorial-motion-planning">Combinatorial Motion Planning</h1>
+
+<p>Last section we considered path search with graph search algorithms: 1) converting the world into a grid 2) convert the grid to a graph, and 3) do graph search.</p>
+
+<p>Here we still use graph search algorithms, but we consider approaches to <strong>directly model the C-space as a graph</strong>. How do we do this?</p>
+
+<blockquote>
+  <p>In many motion planning problems, we can plan directly in the C-space by <strong>exploiting geometric properties and representation</strong>. Often by:</p>
+  <ul>
+    <li>limiting to special cases (e.g., 2D space), and assuming <strong>polygonal</strong> obstacles</li>
+    <li>if the above holds, solutions are <strong>exact</strong> (c.f. grid approach) and <strong>complete</strong></li>
+  </ul>
+</blockquote>
+
+<p>As we will focus on 2D euclidean space, polygonal obstacle regions, here is an example:</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240216132046836.png" alt="image-20240216132046836" style="zoom:50%;" /></p>
+
+<p>where we <strong>know the set of vertices of the obstacles</strong>. So we represent the C-space with:</p>
+
+<ul>
+  <li>a set of <strong>half-edges</strong>, i.e., defined by pairs of vertices</li>
+  <li>Half-edges are oriented to run <strong>counterclockwise around an obstacle</strong></li>
+  <li>holes in obstacles are ordered <strong>clockwise around holes</strong></li>
+  <li>the non-obstacle region is the empty space we want to plan on</li>
+</ul>
+
+<h2 id="roadmaps">Roadmaps</h2>
+
+<p>We can efficiently represent obstacle regions, but what about the free space (not using the grid approach)? What do we even want from such a representation?</p>
+
+<blockquote>
+  <p>We essentialy want a graph $\mathcal{G}$ that satisfies the following property:</p>
+  <ul>
+    <li>each vertex of $\mathcal{G}$ correspond to a point in $\mathcal{Q}_{\mathrm{free}}$</li>
+    <li>each edge of $\mathcal{G}$ correspond to a continous path in $\mathcal{Q}_{\mathrm{free}}$</li>
+  </ul>
+
+  <p>As long we have these properties, graph search algorithms can be used to find a path in $\mathcal{Q}_{\mathrm{free}}$</p>
+</blockquote>
+
+<p>Furthermore:</p>
+
+<blockquote>
+  <p><strong>Swath</strong>: the set of points $\mathcal{S} \subset Q_{\mathrm{free}}$  reachable by some $\mathcal{G}$ you constructed.</p>
+</blockquote>
+
+<p>which is essentially a subspace of $\mathcal{Q}_{\mathrm{free}}$ that is considered by the graph. In this formulation, your graph <em>doesn’t need to reach all points</em>, but:</p>
+
+<blockquote>
+  <p><strong>Roadmaps</strong>: a graph $\mathcal{G}$ that satisfies the above property but is also:</p>
+  <ul>
+    <li><strong>accessible</strong>: there exists a path from any point in $q \in \mathcal{Q}_{\mathrm{free}}$ to some $s \in \mathcal{S}$</li>
+    <li><strong>connected</strong>: if there exists a path $q_{1} \to q_{2} \in Q_{\mathrm{free}}$, a path $q_1\to s_{1} \in S$, and a path $q_{2} \to s_{2} \in S$, then your roadmap should have a path $s_1 \to s_2$</li>
+  </ul>
+</blockquote>
+
+<p>Although the above seem to be less powerful in that it does not cover all space in $\mathcal{Q}_{\mathrm{free}}$, but it can happen in practice, for example:</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240216182053.png" style="zoom:60%;" /></p>
+
+<p>where the red edges are the road map $\mathcal{G}$:</p>
+<ul>
+  <li>given any two points in the free space (except for the hole)</li>
+  <li>you can go from one point on to the “red highway”, and then to the other point</li>
+</ul>
+
+<p>And depending on if you just want “some path” or “the optimal path”, you can have different roadmaps.</p>
+
+<h2 id="cell-decomposition">Cell Decomposition</h2>
+
+<p>But how do we build such a roadmap?</p>
+
+<blockquote>
+  <p>One way here is to decompose free space into a union of cells, where cells are <strong>convex polygons</strong> instead of grids</p>
+  <ul>
+    <li>why convex polygons? If we have a convex polygon of free space, getting from any point to any other point is a simple <strong>straight</strong> line</li>
+    <li>then, path finding becomes: find the best sequence of polygons to go through $\to$ travel within the polygons are straight lines</li>
+  </ul>
+</blockquote>
+
+<p>Note that the grid approach can be also seen as a cell decomposition:</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240216132659756.png" alt="image-20240216132659756" style="zoom:33%;" /></p>
+
+<p>except that it does <strong>not exploit any information about the environment</strong>: in practice we need to <strong>remove those “off-limit” cells</strong> as long as there is partial collision.</p>
+
+<p>So the real limitation we are trying to resolve is that:</p>
+
+<blockquote>
+  <p>Any grid search algorithm is only <strong>resolution-complete</strong> (I can come up with a very bad resolution where grid search will fail). Here we want to return a path as long as its feasible (irrespective of resolution)</p>
+</blockquote>
+
+<h3 id="vertical-decomposition">Vertical Decomposition</h3>
+
+<p>Assuming the obstacles are <strong>polygonal</strong>, we can obtain convex polygon cells by <strong>drawing lines from each obstacle vertex</strong>:</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240216133046866.png" alt="image-20240216133046866" style="zoom:60%;" /></p>
+
+<blockquote>
+  <p>Vertical cell decomposition: partitions free space into <strong>trapezoids</strong> (2-cells) and <strong>segments/lines</strong> (1-cells)</p>
+
+  <ul>
+    <li>construct by extending a segment upward and downward from every vertex until hitting $\mathcal{Q}_{\mathrm{obs}}$​</li>
+    <li>we end up with 2-dimensional cell (trapezoid) and 1-dimensional cell (the segment/line we drew)</li>
+  </ul>
+</blockquote>
+
+<p>Then we can <strong>construct a roadmap</strong> by considering the</p>
+<ol>
+  <li>consider the centroid of each cell (both 2-cell and 1-cell) as a vertex</li>
+  <li>add an edge from each 2-cell vertex to its border 1-cell vertices</li>
+</ol>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240216183239.png" style="zoom:100%;" /></p>
+
+<p>How do we use this roadmap? Consider finding a feasible path from the red cross to the red square:</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240216183510.png" style="zoom:50%;" /></p>
+
+<ol>
+  <li>find one way to get onto the “highway” from the red cross</li>
+  <li>then find a way to get off the “highway” to the red square</li>
+</ol>
+
+<h3 id="line-sweep-algorithm">Line Sweep Algorithm</h3>
+
+<p>Here we describe how to obtain the vertical decomposition:</p>
+
+<blockquote>
+  <p><strong>Line Sweep Algorithm</strong> imagining sweeping an infinite vertical line from left to right, but only focusing our attention when we are <mark>at obstacle vertices</mark>:</p>
+
+  <ol>
+    <li>initialization: index all obstacle <em>edges</em> (e.g., 0,1,2,3, …)</li>
+    <li>sort all obstacle vertices with increasing $x$-coordinate</li>
+    <li>for each vertex: consider an infinite line and record where it hit the obstacle and record in $L$</li>
+    <li>make sure $L$ is sorted by index of intersected edges (to improve efficiency)</li>
+  </ol>
+</blockquote>
+
+<p>Visually:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Grpah</th>
+      <th style="text-align: center">Algorithm</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240216184137.png" style="zoom:60%;" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240216184147.png" style="zoom:60%;" /></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>To be more exact, an efficient implementation of the algorithm needs to <strong>return us the trapezoidal regions</strong> at the end of the sweep. As a result, we need to consider the following cases:</p>
+
+<ol>
+  <li>when at a vertex $v$​​ which has edge <strong>on both left and right of the line/segment $c$</strong> we are sweeping:
+<img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240216184532.png" style="zoom:80%;" />
+then the algorithm
+    <ul>
+      <li>has the left edge $e$ is already in $L$</li>
+      <li>remove $e$ and append $e’$</li>
+      <li>add $c,e’,e’’$ and the next 1-cell to the trapezoidal region list</li>
+    </ul>
+  </li>
+  <li>has <strong>both edges on the left of the line/segment</strong>:
+<img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240216211028.png" style="zoom:100%;" />
+then the algorithm:
+    <ul>
+      <li>remove $e,e’$ from the list (using $v$’s y-coordinate to locate them quickly in $L$, which is sorted)</li>
+      <li>if obstacle is left of $v$, add one new trapezoidal region bounded by both $c$ and $c’$</li>
+    </ul>
+  </li>
+  <li>when <strong>both obstacle edges are on the right of the line/segment</strong>
+<img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240216211407.png" style="zoom:100%;" />
+then  the algorithm:
+    <ul>
+      <li>add both edges to the list</li>
+      <li>if obstacle is right of $v$, add two new trapezoidal regions bounded by $c$ and $c’$</li>
+    </ul>
+  </li>
+</ol>
+
+<p>note that since the intersected edges is sorted, finding the edge takes only $O(\log n)$ time (e.g., binary search). Since we then sort and process each vertex once, the total time is $O(n \log n)$​.</p>
+
+<h3 id="adjacency-graph-and-path-finding">Adjacency Graph and Path Finding</h3>
+
+<p>In summary, to do path finding you can:</p>
+<ol>
+  <li>do vertical decomposition</li>
+  <li>construct a roadmap ($\mathcal{G}$) using centroids of the cells</li>
+  <li>connect your start and end point to the roadmap</li>
+  <li>run a graph search algorithm on $\mathcal{G}$</li>
+</ol>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240216135412116.png" alt="image-20240216135412116" style="zoom:30%;" /></p>
+
+<h3 id="morse-decomposition">Morse Decomposition</h3>
+
+<blockquote>
+  <p><strong>Morse Decomposition</strong>: but it turns out you can compute <strong>step 1 even more efficiently</strong> and a in more <strong>generic way</strong>: a cell decomposition consisting of vertices that changed <strong>connectivity</strong></p>
+  <ul>
+    <li>consider a line segment sweeping through</li>
+    <li>if it encountered a vertex and the line segment splits into “two segments” merged into one, then we have a critical vertex</li>
+  </ul>
+</blockquote>
+
+<p>Visually:</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240216140041469.png" alt="image-20240216140041469" style="zoom:30%;" /></p>
+
+<p>where the red line is not there because when sweeping from the critical point on its left, that segment still remains the same segment. Until we reach the region 5, where it merged with the upper segment = thats a critical vertex.</p>
+
+<p>The upshot is that this produces fewer cells <strong>but is still complete</strong>.</p>
+
+<blockquote>
+  <p>However, <strong>cells themselves may not be convex anymore</strong> (so we might need to another decomposition + planning within those cells)</p>
+</blockquote>
+
+<p>But this is more general: if you consider different slicing functions:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Circular</th>
+      <th style="text-align: center">Radial</th>
+      <th style="text-align: center">Square</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240216213306.png" style="zoom:100%;" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240216213314.png" style="zoom:100%;" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240216213321.png" style="zoom:100%;" /></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>This is useful for <strong>coverage tasks in reality</strong>, since some robots might prefer to move in a certain way (e.g., circular).</p>
+
+<h2 id="visibility-graphs">Visibility Graphs</h2>
+
+<p>The previous method aim to give you some path, but what if we want to get an <strong>optimal/shortest path</strong>?</p>
+
+<p>Consider finding optimal path using roadmaps in the following graph:</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240216142513052.png" alt="image-20240216142513052" style="zoom: 43%;" /></p>
+
+<blockquote>
+  <p>The observation is that shortest path will always include segments shown above: <strong>along the obstacle or straight lines connecting vertices.</strong></p>
+</blockquote>
+
+<blockquote>
+  <p>A <strong>(reduced) visibility graph</strong> $\mathcal{G}$ is a roadmap using vertices of the C-space obstacles. Specifically:</p>
+  <ul>
+    <li>we consider <mark>obstacle vertices that are locally convex</mark> (interior angle less than $\pi$) as <strong>nodes</strong></li>
+    <li>we consider obstacle edges + collision-free bi-tangent edges between these vertices as <strong>edges</strong></li>
+  </ul>
+</blockquote>
+
+<p>So this roadmap above basically consists of:</p>
+
+<ul>
+  <li>obstacle vertices</li>
+  <li>obstacle edges</li>
+  <li>collision-free bi-tangent edges</li>
+</ul>
+
+<blockquote>
+  <p><strong>Properties of Visibility Graph</strong>:</p>
+  <ul>
+    <li>$\mathcal{G}$ preserves accessibility if <strong>every point in $Q$ is within sight of a node</strong> $\mathcal{G}$</li>
+    <li>$\mathcal{G}$ preserves connectivity if the graph is connected</li>
+    <li>graph search on this will give you the <strong>shortest path</strong></li>
+  </ul>
+</blockquote>
+
+<p>Visually, the optimal path search looks like:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Given a start/end, connect to all possible vertices it can see</th>
+      <th>Then just do a graph search algorithm</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240216143143762.png" alt="image-20240216143143762" style="zoom: 33%;" /></td>
+      <td><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240216143154038.png" alt="image-20240216143154038" style="zoom: 33%;" /></td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="efficiently-constructing-visibility-graph">Efficiently Constructing Visibility Graph</h3>
+
+<p>How do we construct such visibility graph? The difficult part of this roadmap above is adding in the bi-tangent edges.</p>
+
+<blockquote>
+  <p>The idea is to do a <strong>rotational sweep</strong> from each given vertex.</p>
+
+  <ol>
+    <li>for each $v$, sort all vertices by increasing angle relative to $v$</li>
+    <li>store a list of obstacle edges that intersected by the sweep line (sorted by which edge collide first with the sweep line)</li>
+    <li>by <strong>how we are updating this list</strong>, we can efficiently find the bi-tangent edges</li>
+  </ol>
+</blockquote>
+
+<p>So this gives:</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240216143814290.png" alt="image-20240216143814290" /></p>
+
+<p>where in the above image, we will be checking vertices in the order of $v_3,v_7,v_4, …$.</p>
+
+<p><strong>On a high level</strong>, this algorithm does this:</p>
+
+<ol>
+  <li>
+    <p>initialize and check all the obstacle <em>edges</em> we are intersecting in $S$ (i.e., $E_4, E_2, E_8, E_6$)</p>
+  </li>
+  <li>
+    <p>at the next vertex (e.g., $v_3$​), we will</p>
+
+    <ol>
+      <li>check what edges its connected to, i.e., $E_2, E_3$</li>
+      <li>if these edges were already in the list, <strong>delete them</strong> = we seen them before, we are exiting now (i.e., $E_2$)</li>
+      <li>if these edges were not in the list, <strong>add them to the list</strong> (i.e., $E_3$​​)</li>
+    </ol>
+  </li>
+  <li>
+    <p>how do we know if the current vertex we are looking at is visible? You will need to do two checks</p>
+
+    <ol>
+      <li>make sure the segment between $v$ and $v_i$ <strong>does not intersect</strong> the first edge in list $S$
+        <ul>
+          <li>this can actually be done in $O(1)$ time:
+<img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240216214956.png" style="zoom:100%;" /></li>
+          <li>if there is an intersection, then two vertices of one segment lies on the opposite sides of the other segment</li>
+          <li>
+            <p>this translates to if $ccw(a,b,c)$ and $ccw(a,b,d)$ have different signs:</p>
+
+\[ccw(p,q,r)  = \begin{vmatrix} 
+      p_x - r_x &amp; p_y - r_y \\
+      q_x - r_x &amp; q_y - r_y
+ \end{vmatrix}\]
+          </li>
+        </ul>
+      </li>
+      <li>make sure the <strong>two edges at $v$</strong> are no the same side of the sweep line</li>
+    </ol>
+
+    <p>this can thus be done in $O(1)$ time.</p>
+  </li>
+</ol>
+
+<h2 id="maximizing-clearance">Maximizing Clearance</h2>
+
+<p>Visibility graph gives you shortest path, but they are close to the obstacle so they <strong>may not be safest route</strong>.</p>
+
+<blockquote>
+  <p>A <strong>maximum-clearance</strong> roadmap tries to <strong>stay as far as possible from $\mathcal{Q}_{obs}$</strong></p>
+</blockquote>
+
+<p>Starting from a simple case: How to maximize distances from a set of points? Consider drawing <strong>perpendicular bisectors between neighboring point pairs</strong>:</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240216150136775.png" alt="image-20240216150136775" style="zoom: 33%;" /></p>
+
+<p>from there:</p>
+
+<ul>
+  <li>green arrow = bisector <em>intersections</em> are equidistance from thre points</li>
+  <li>other bisectors segments are equidistant from the closest two points</li>
+</ul>
+
+<p>But how do we generalize this to obstacle <em>regions</em>?</p>
+
+<h3 id="generalized-voronoi-diagrams">Generalized Voronoi Diagrams</h3>
+
+<p>To construct something like this, we need to consider accessing a distance/cost function, and consider three things:</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240216150526663.png" alt="image-20240216150526663" style="zoom:50%;" /></p>
+
+<p>where we consider:</p>
+<ol>
+  <li><strong>Generalized Voronoi region</strong> $F_i$: the set of coordinates/points where they are <strong>closer to obstacle $i$​ than any other obstacles in the diagram</strong> (the boundary of the environment is also treated as an obstacle)</li>
+  <li><strong>GVD edges</strong>: set of the above points where they are equidistant from two obstacles</li>
+  <li><strong>GVD</strong>: set of the above edges</li>
+</ol>
+
+<h3 id="deformation-retracts">Deformation Retracts</h3>
+
+<blockquote>
+  <p>Here, we show that GVD are also valid <strong>roadmaps</strong> being accessible and connected. The trick is to show that $\exists$ some function that maps from any point in the free space to the GVD.</p>
+</blockquote>
+
+<p>Claim 1: Given any point in the free space, we can move to the GVD by <strong>increasing distance away from the <em>nearest</em> obstacle</strong></p>
+
+<p>Proof:</p>
+<ol>
+  <li>given a distance function $d(q)$ and an initial position $q$</li>
+  <li>
+    <p>a path $c$ to GVD from $q$ satisfies:</p>
+
+\[\frac{dc}{dt} = \nabla d(c(t)), \quad c(0) = q\]
+
+    <p>where we are imaging $c(t)$ being a path parameterized by $t$ that moves from $q$ to GVD.</p>
+  </li>
+</ol>
+
+<p>So we can numerically find GVD by doing gradient ascent, until being equidistance from at least one other obstacle.</p>
+
+<blockquote>
+  <p><strong>Deformation Retraction</strong>: a function such that give any position in free space at $t=0$, it needs to spit out a path that moves it to GVD at $t=1$:</p>
+
+\[h: \mathcal{Q}_{\mathrm{free}} \times [0,1] \to \mathcal{Q}_{\mathrm{free}}\]
+
+  <p>such that:</p>
+  <ul>
+    <li>$h(q,0) = q, \forall q \in \mathcal{Q}_{\mathrm{free}}$</li>
+    <li>$h(q,1) \in \mathrm{GVD}$</li>
+    <li>$h(q,t)$ is continuous in $t$</li>
+    <li>$h(g,t) = g, \forall g\in \mathrm{GVD}$, i.e., it stays on the GVD</li>
+  </ul>
+</blockquote>
+
+<p>Using the two above properties/definitions, this means GVDs is a <strong>deformation retract of $\mathcal{Q}_{\mathrm{free}}$</strong>. Visually, all free points (blue) goes to the GVD:</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240216220813.png" style="zoom:20%;" /></p>
+
+<blockquote>
+  <p>Therefore, a <strong>deformation retract</strong> is a roadmap, which satisfies <strong>accessibility and connectivity</strong>. In fact, the function $h$ above directly describes how to get to the GVD from any point in the free space.</p>
+</blockquote>
+
+<h3 id="constructing-gvds">Constructing GVDs</h3>
+
+<p>So how do you construct GVDs? This is actually a highly studied problem in computation geometry.</p>
+
+<p>A basic implementation considers the following three cases:</p>
+
+<ul>
+  <li>being equidistance for edge-edge pairs</li>
+  <li>being equidistance for edge-vertex pairs</li>
+  <li>being equidistance for vertex-vertex pairs</li>
+</ul>
+
+<p>and they you need to <strong>generate an equidistant curve (yellow) for each of the above cases and stitching them together</strong>:</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240216152526191.png" alt="image-20240216152526191" style="zoom:50%;" /></p>
+
+<p>basic implementation will take $O(n^{4})$ time.</p>
+
+<p>Some famous algorithms for constructing GVDs are:</p>
+
+<ul>
+  <li>Point approximations: Discretize obstacle boundaries into finite sets of points, then find all possible perpendicular bisectors and intersections</li>
+  <li>Fortune’s algorithm: Push a sweep line through the space and trace out equidistant edges from points already seen</li>
+  <li>Divide and conquer: Recursively divide points into sets of two, build separate GVDs and then merge them together</li>
+</ul>
+
+<h3 id="brushfire-algorithm">Brushfire Algorithm</h3>
+
+<p>But under some special cases, we can actually compute GVDs more efficiently:</p>
+
+<blockquote>
+  <p>If we have a <strong>grid</strong> environment, we can actually <strong>efficiently compute GVD</strong> using the wavefront algorithm.</p>
+</blockquote>
+
+<blockquote>
+  <p><strong>Brushfire Algorithm</strong>: if we are in a grid world, we can <strong>imagine the <em>cells on the obstacle’s boundary</em> expanding</strong> until wavefronts collided each other</p>
+
+  <ol>
+    <li>if a square was just now expanded but another wavefront want to expand it next, it is GVD cell (the 2-cells in the example below)</li>
+    <li>if both wave fronts want to expend it, it is GVD cell (the 3-cells in the example below)</li>
+  </ol>
+</blockquote>
+
+<p>So the algorithm is simply:</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240216153205015.png" alt="image-20240216153205015" style="zoom:50%;" /></p>
+
+<p>Visually, we basically get the yellow cells being the GVD:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Step 0</th>
+      <th style="text-align: center">Step 1</th>
+      <th style="text-align: center">Step 2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240216221231.png" style="zoom:100%;" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240216221241.png" style="zoom:100%;" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240216221249.png" style="zoom:100%;" /></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>note that visually you may feel like some cells are not really “GVD”, but this is basically because you are approximating the space via discretized cells. In practice, we just imagine we have a “<strong>thick GVD line</strong>”.</p>
+
+<p>In a more complicated case:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Step 1</th>
+      <th style="text-align: center">Step 2</th>
+      <th style="text-align: center">Step 3</th>
+      <th style="text-align: center">Step 4</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240216221708.png" style="zoom:100%;" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240216221715.png" style="zoom:100%;" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240216221723.png" style="zoom:100%;" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240216221730.png" style="zoom:100%;" /></td>
+    </tr>
+  </tbody>
+</table>
+
+<h1 id="probabilistic-roadmaps">Probabilistic Roadmaps</h1>
+
+<p>The previous section does planning in the workspace. This is often <strong>low dimensional, mostly polynomial space</strong>:</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240223211908.png" style="zoom:100%;" /></p>
+
+<p>In reality, we might need to <strong>directly plan in the configuration space of the robot</strong> (e.g. with many joints) = find a path in a high dimensional space, and the space might not even be Euclidean. In general:</p>
+
+<ul>
+  <li>
+    <p>Planning in high-dimensional and/or non-Euclidean spaces is hard</p>
+  </li>
+  <li>
+    <p>Constructing high-dimensional and/or non-Euclidean spaces is hard</p>
+  </li>
+</ul>
+
+<blockquote>
+  <p><strong>But the idea is appealing</strong>: Maybe we construct a <strong>roadmap</strong> in the <strong>configuration space</strong>, by sampling some conllision-free configurations and connecting them</p>
+
+  <ul>
+    <li>in high dimensional space, directly figuring out the free $C_{\mathrm{free}}$ is hard = cannot easily use methods in the previous section</li>
+    <li>since we will be using sampling methods, they have weaker optimality and completeness guarantees</li>
+    <li>but it turns that that they are very practical for real robotic problems (many robot joints, complicated obstacles)</li>
+  </ul>
+</blockquote>
+
+<h2 id="sampling-based-methods">Sampling Based Methods</h2>
+
+<p>While <mark>it is hard to compute obstacles' boundaries in high-dimensional space, it is easy to check if a sampled point is in collision or not</mark>. So the idea is to:</p>
+
+<blockquote>
+  <p><strong>Probabilistic roadmaps</strong> (PRM) attempt to build a roadmap in the C-space <strong>by sampling nodes coarsely and sampling edges finely</strong> in the configuration space, and add these nodes/edges to the roadmap if they are collision-free</p>
+</blockquote>
+
+<p>Since sampling methods can be stochastic, we consider propoerties such as</p>
+
+<ul>
+  <li><strong>Resolution completeness</strong>: If a solution exists, guaranteed to find it through <em>deterministic</em> (e.g., grid) sampling given some sampling resolution</li>
+  <li><strong>Probabilistic completeness</strong>: Guaranteed to find solution if you have enough samples (i.e., high resolution)</li>
+</ul>
+
+<p>So how do you construct such a PRM? On a high level:</p>
+
+<ol>
+  <li><strong>Randomly generate</strong> robot <strong>configurations</strong> (e.g., from a uniform distribution) and add as nodes to the roadmap if collision-free
+    <ul>
+      <li>can also be generated deterministically, or with some heuristics</li>
+    </ul>
+  </li>
+  <li>Attempt to <strong>connect nodes to nearby nodes</strong> with local paths (e.g., segments), which is controlled/generated by a <em>local planner</em>
+    <ul>
+      <li>the local planner is often also a sampling method, that randomly considers edges and see if it is collision free</li>
+    </ul>
+  </li>
+  <li>to do search, add initial and goal configurations to the roadmap and connect them using the local planner</li>
+  <li>perform graph search as usual = since now we have a roadmap graph</li>
+</ol>
+
+<p>So implementation wise</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240223132550316.png" alt="image-20240223132550316" style="zoom:50%;" /></p>
+
+<p>In this algorithm</p>
+
+<ul>
+  <li>We are given or can generate a sequence of sampled vertices $\alpha$​ (<mark>note that this sequence can be infinite</mark>)</li>
+  <li>We find existing <mark>vertices in the neighborhood of $\alpha(i)$</mark> and consider potential edges
+    <ul>
+      <li>simple version: add if collision-free, discard if not</li>
+      <li>more complicated version: we may <em>also</em> want to minimize the connectivity while keeping the same number of connected components = have a sparser graph so that planning is a bit easier</li>
+    </ul>
+  </li>
+</ul>
+
+<blockquote>
+  <p>Note that similar to the previous motion planning sections, we will <strong>not return optimal paths</strong>, but will try to <strong>return feasible path whenever the task is solvable</strong>.</p>
+</blockquote>
+
+<p>Visually, probabilistic roadmap looks like:</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240223132748829.png" alt="image-20240223132748829" style="zoom:40%;" /></p>
+
+<blockquote>
+  <p>Notice that, because we could have only little samples, there can be <strong>multiple disconnected components</strong>. Therefore we may say “no path exists” if your initial and goal state are in different (disconnected) components.</p>
+</blockquote>
+
+<p>There are many possible fixes, which we will discuss later. But at this point, you may question:</p>
+
+<ul>
+  <li>How do we sample configurations?</li>
+  <li>Do you really use uniform random sampling? If not, what kind of bias, if any, should we use?</li>
+  <li>How do define a “neighborhood” of a vertex?</li>
+  <li>How to efficiently perform collision checking given a configuration?</li>
+</ul>
+
+<h3 id="distance-metrics">Distance Metrics</h3>
+
+<p>Since we needed to search in a neighborhood, we first need a distance metric:</p>
+
+<blockquote>
+  <p>A <strong>metric space</strong> is a set $X$ with a metric $d: X \times X \to \R$ satisfying the following:</p>
+
+  <ul>
+    <li>non-negativity: $d(a,b) \ge 0$</li>
+    <li>reflexivity: $d(a,b) = 0 \iff a=b$</li>
+    <li>symmetry: $d(a,b) = d(b,a)$</li>
+    <li>triangle inequality: $d(x,z) \le d(x,y) + d(y,z)$</li>
+  </ul>
+</blockquote>
+
+<p>some useful <strong>properties</strong> of metric space include:</p>
+
+<ul>
+  <li>a subset of a metric space $X$ is also a metric (sub)space, if you use the same metric as $X$​</li>
+  <li>if you have a vector space, you can simply use norm $\vert \vert x\vert \vert$ as the metric to obtain a metric space: $d(x,y) = \vert \vert  x -y \vert \vert$</li>
+  <li>
+    <p>$L_p$ metrics is a valid metric if you <strong>consider euclidean spaces</strong></p>
+
+\[d(x,x') = ||x - x'||_p = \left(\sum_{i=1}^n |x_i - x_i'|^p \right)^{1/p}\]
+
+    <p>and a max norm.</p>
+
+\[d(x,x') = ||x - x'||_\infty = \max_i |x_i - x_i'|\]
+  </li>
+</ul>
+
+<p>But what about non-euclidiean space such as $\mathbf{S}^1$​​? For example:</p>
+
+\[d \left(\theta_{1} = 0 , \theta_{2} = \frac{\pi}{2} \right) = ?\]
+
+<p>one approach is to consider $\theta \in [0, 2\pi]$, using $L_2$ is probably still a valid metric. But the problem is that it would say $d(0, 2\pi) = 2\pi$, although intuitively it should be zero.</p>
+
+<p>Therefore, one approach we often do is to:</p>
+<ol>
+  <li><strong>first embed this to a euclidean metric</strong></li>
+  <li>then consider using $L_p$ distance</li>
+</ol>
+
+<p>For instance, a striaght-forward method is to consider the following embedding in $\R^{2}$ space:</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240223220003.png" style="zoom:100%;" /></p>
+
+<p>Then simply:</p>
+
+\[d \left(\theta_{1} = 0 , \theta_{2} = \frac{\pi}{2} \right) = \left\| (1,0) - (0,1) \right\|_p\]
+
+<p>would work. (however, this embedding method often distorts the actual distance between angles, which in this case is curved).</p>
+
+<blockquote>
+  <p>Finally, another useful property of metric space is that, if $(X,d_x)$ and $(Y,d_y)$ are metric spaces, then:</p>
+  <ul>
+    <li>consider $Z = X \times Y$</li>
+    <li>coefficient $c_1, c_{2} &gt; 0$</li>
+    <li>
+      <p>define distance:</p>
+
+\[d(z, z') = d((x_1,y_1), (x_2,y_2)) = c_1 d_x(x_1,x_2) + c_2 d_y(y_1,y_2)\]
+    </li>
+  </ul>
+
+  <p>then $(Z, d)$ is also a metric space</p>
+</blockquote>
+
+<p>This is very useful, because our robot has each joint in $SE(2)$. This means:</p>
+
+\[d(q, q') = c_{1} \left\| (x,y) - (x',y')  \right\| + c_{2} d_\theta(\theta, \theta')\]
+
+<p>given some valid $c_1, c_2$​, is also a metric space. In practice, <strong>weights</strong> $c_1, c_2$ need to be carefully chosen to ensure the relative importance of translation/rotation is balanced.</p>
+
+<h3 id="pseudometrics">Pseudometrics</h3>
+
+<blockquote>
+  <p>Sometimes (in practice) it is sufficient to define functions that <strong>behave almost like metrics</strong> but violate one (or more) of the metric properties</p>
+</blockquote>
+
+<p>For example, you can measure <strong>distance in robot’s configuration as the physical distance in their actual workspace</strong>:</p>
+
+\[d(q_1, q_2) = d(\mathrm{FK}(q_1), \mathrm{FK}({q_2}))\]
+
+<p>this is <em>not a metric</em>, because it violates reflexitivity: $d(q_1, q_2)=0$ could happen even for $q_1 \neq q_2$.</p>
+
+<p>But why would maintaining some of the metric properties be useful? For example:</p>
+
+<ul>
+  <li>consider <strong>computing the neighborhood during the PRM algorithm</strong></li>
+  <li>using this metric, you could end up with two <em>very different configurations $q_1,q_2$</em> that have <em>zero distance</em>. This is therefore considered “neighbors” by your metric, even though the two <em>configurations</em> is far from each other.</li>
+</ul>
+
+<h3 id="k-d-trees">$k$-D Trees</h3>
+
+<p>Before finally diving into the neighborhood computation algorithm, we need to learn about some <strong>efficient data structures</strong> to find nearest neighbor fast. An naive approach would require $O(n^{2})$ time to figure out the nearest neighbor for each vertex.</p>
+
+<blockquote>
+  <p>Idea: construct <strong>binary tree to partition space into “halves”</strong>, and then during search we can quickly cut down the search space by halves each time</p>
+</blockquote>
+
+<p>Practically, you would need to sort the points along each dimension, and then each split means: 1) traverse tio left child if the point is left/below the current node, 2) traverse to right child if the point is right/above the current node:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Input 2D space</th>
+      <th style="text-align: center">$k$-D tree</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240223141013213.png" alt="image-20240223141013213" style="zoom:50%;" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240223141021987.png" alt="image-20240223141021987" style="zoom:40%;" /></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>For example, if we have a target point $x$ that sits right next to node 14, then the search process would be:</p>
+<ol>
+  <li>start at root node 7. According to the left image, node 7 partitions the space into left and right</li>
+  <li>since $x$ is on the right side we, we go to the right child = node 8</li>
+  <li>node 8 splits the space into above and below</li>
+  <li>since $x$ is above, we go to the right child = node 11</li>
+  <li>…</li>
+  <li>finally, we reach node 14</li>
+</ol>
+
+<blockquote>
+  <p>In a nutshell: $k$-D tree sorts and stores $k$-dimensional points in a binary tree, where each node corresponds to the median point along a dimension. This will take $O(kn \log n)$ time to construct.</p>
+</blockquote>
+
+<ul>
+  <li>if we are dealing with $k=3$ dimensions, then this tree would split by “planes” instead of a “lines” as shown above</li>
+  <li>with the PRM algorithm, $k$ would represent the dimension of your C-space</li>
+</ul>
+
+<p>But what if we consider the following case:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Input 2D space</th>
+      <th style="text-align: center">$k$-D tree</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240223221609.png" style="zoom:100%;" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240223141021987.png" alt="image-20240223141021987" style="zoom:40%;" /></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Then naively our search sequence would be $7 \to 8 \to 11 \to 14$. But we can see that the nearest neighbor is actually 12!</p>
+
+<blockquote>
+  <p>If our target point $x$ is closer to a <em>boundary</em> than the current nearest neighbot, then it means there <em>could be nodes on the other side</em> of the boundary that is closer (e.g., imagine there was a node right on the boundary).</p>
+
+  <ul>
+    <li>basically, at every <strong>parent</strong> (that has both children) we need to ask this question</li>
+    <li>if the answer is yes, then during backtracking we need to <strong>consider searching the other side</strong></li>
+  </ul>
+</blockquote>
+
+<p>Therefore, we also need to consider <strong>unwinding recursion</strong> and move back up the parent while doing checks to be completely correct:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Step 1</th>
+      <th style="text-align: center">Step 2</th>
+      <th style="text-align: center">Step 3</th>
+      <th style="text-align: center">Step 4</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240223222200.png" style="zoom:100%;" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240223222226.png" style="zoom:100%;" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240223222310.png" style="zoom:100%;" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240223222330.png" style="zoom:100%;" /></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>where:</p>
+<ol>
+  <li>we start at node 7, and do a normal search to end at node 14. This is the current neighest neighbor.</li>
+  <li>we backtrack to the first parent node that has a child = node 8. Since the distance to the boundary of node 8 is closer than the distance to the current NN (node 14), we search the other side of node 8 = node 12. <strong>This is closer!</strong>
+<img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240223222814.png" style="zoom:60%;" /></li>
+  <li>we backtrack to node 10. This time, the distance to the boundary of node 10 is not closer than the current NN (node 12). This means we don’t need to search the other side of node 10</li>
+  <li>we backtrack to node 7. Similar to above, we don’t need to search the other side of node 7 since its distance to the boundary is further.</li>
+  <li>return node 12</li>
+</ol>
+
+<p>In total, the average runtime for search is $O(\log n)$!</p>
+
+<h3 id="vertex-neighborhood">Vertex Neighborhood</h3>
+
+<p>So how can we use the $k$-D tree to obtain <em>neighborhood</em> of a vertex? We can:</p>
+
+<ul>
+  <li><strong>find nearest $k$</strong> instead of the top-1 nearest (by additionally keeping a priority queue during the search)</li>
+  <li>find nearest $k$ component: first find $k$​-nearest nearest components, and then for each component find the nearest node</li>
+  <li><strong>radius</strong>: take all points within a ball of a set radius centered at $x$</li>
+  <li><strong>Visibility</strong>: Take all points that are visible from $x$ (analogous to the <a href="#Visibility Graphs">Visibility Graphs</a>)</li>
+</ul>
+
+<p>Here we expand on the visibility idea: <strong>can construct small roadmaps (little number of vertices) that still sufficiently cover the C-space</strong>:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Need Neighborhood graph of $q$</th>
+      <th style="text-align: center">Example Output</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240223145519189.png" alt="image-20240223145519189" style="zoom:50%;" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240223145536821.png" alt="image-20240223145536821" style="zoom:50%;" /></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>why is this useful: reduce connectivity again to cover large C-space with low number of nodes/edges. How does this work?</p>
+
+<blockquote>
+  <p>Idea: Given a vertex, its nerighbor vertex set is divided into <strong>guards and connectors</strong>:</p>
+  <ul>
+    <li>a guard veretx is not allowed to see any other vertex in the neighborhood</li>
+    <li>a connector vertex must connect at least two guards</li>
+  </ul>
+
+  <p>after this definition of vertices, we can have a very space graph by:</p>
+  <ul>
+    <li>a new vertex is considered if it’s a guard or</li>
+    <li>a new vertex is considered if it’s a connector and it connects guards in different components</li>
+    <li>otherwise, discard this vertex</li>
+  </ul>
+</blockquote>
+
+<p>This can clean up the neighbor set to make our edge connections/final graph a lot sparser, while still covering the C-space.</p>
+
+<h2 id="collision-detection-with-sampling-methods">Collision Detection with Sampling Methods</h2>
+
+<p>Now we have methods to sample and find candidate vertices for connections. How do we check if a node/edge is collision free?</p>
+
+<p>If we are considering collision detection in workspace (with arbitrary complex obstacles):</p>
+
+<ul>
+  <li>
+    <p>map the obstacles (with complicated shape) to workspace, and consider <strong>simple bounding regions</strong></p>
+
+    <p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240223145825169.png" alt="image-20240223145825169" style="zoom:50%;" /></p>
+
+    <p>but of course, these are over-conservative.</p>
+  </li>
+  <li>
+    <p>then, the idea is then to consider:</p>
+    <ul>
+      <li>if no collision in bounding regions = no collision</li>
+      <li>if there is, draw more fine-grained regions and repeat upto some iterations</li>
+    </ul>
+
+    <p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240223150006061.png" alt="image-20240223150006061" style="zoom:50%;" /></p>
+
+    <p>some version of this is probably used in <code class="language-plaintext highlighter-rouge">pybullet</code></p>
+  </li>
+</ul>
+
+<blockquote>
+  <p>But the problem is we are planning in the high dimensional <strong>configuration</strong> space + the robot/obstacles are of <strong>complex</strong> shapes (e.g., highly non-convex)</p>
+</blockquote>
+
+<p>Is there a simple approach to do collision detection? Some intuitive approach include:</p>
+
+<h3 id="local-planner-and-path-collision-detection">Local Planner and Path Collision Detection</h3>
+
+<blockquote>
+  <p>But in most C-space environments, we do <strong>NOT have a closed expression for the position of the obstacles</strong>. However, we can efficiently compute <strong>if a point is inside an obstacle</strong>.</p>
+</blockquote>
+
+<p>So how does a local planner decide if an <strong>edge</strong> would collide with obstacles?</p>
+
+<blockquote>
+  <p>Again, very <strong>simple</strong> ideas include:</p>
+
+  <ul>
+    <li>draw only straight lines and check for collisions by sampling.
+      <ul>
+        <li>this very faster but succeed less.</li>
+        <li>to be more successful you may require denser sampling nodes.</li>
+      </ul>
+    </li>
+    <li>Slower, better planners might consider things like “curved paths”, etc.</li>
+  </ul>
+</blockquote>
+
+<p>Visually: you basically do this given that you want to (try to) connect $q$ and $q’$:</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240223151016093.png" alt="image-20240223151016093" style="zoom:50%;" /></p>
+
+<p>so obviously some design choice is:</p>
+
+<ul>
+  <li>step size: too small and each check will be slow, too large and we may miss collisions</li>
+  <li>can change step size to be adaptive, etc.</li>
+</ul>
+
+<h2 id="sampling-strategies">Sampling Strategies</h2>
+
+<p>Finally, how do we sample configurations (not too many and not too few) to construct roadmaps? Before, we kind of assumes we will be doing <strong>uniform sampling</strong>. For example, after collision detection of the nodes we could get to:</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240223132748829.png" alt="image-20240223132748829" style="zoom:40%;" /></p>
+
+<blockquote>
+  <p>but the <strong>runtime and success rate of entire PRM procedure will have high variance</strong>.</p>
+</blockquote>
+
+<p>More specialized sampling methods (e.g., using some heuristics) may be better in certain adversarial environments</p>
+
+<h3 id="dispersion-sampling">Dispersion Sampling</h3>
+
+<p>This is actually a <em>deterministic sampling algorithm</em></p>
+
+<blockquote>
+  <p>Idea: place more samples to <strong>shrink the size of the largest uncovered area</strong></p>
+</blockquote>
+
+<p>To do this, we first need to measure “the size of uncovered area”</p>
+
+<blockquote>
+  <p>The <strong>dispersion</strong> of set of samples $P$ is:</p>
+
+\[\delta(P) = \sup_{x \in X} \min_{p \in P} d(x,p)\]
+
+  <p>so what is this? This basically gives me <strong>the maximum distance to its nearest neighbor</strong></p>
+  <ul>
+    <li>imagine computing the distance of some coordinate $x$ to its nearest neighbor</li>
+    <li>then re-position your $x$ to maximize the above</li>
+  </ul>
+</blockquote>
+
+<p>Visually you would need to place your $x$ to be the center of the following yellow regions:</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240223151817865.png" alt="image-20240223151817865" style="zoom:33%;" /></p>
+
+<p>In fact, by this definition, <strong>distributing samples in a uniform grid minimizes dispersion</strong>. But that requires pre-defining how many grids to use.</p>
+
+<p>So the proposed method is really aiming to achieve this while <strong>allowing you to continuously generate more samples</strong></p>
+
+<ul>
+  <li>because each new sample is added to minimize dispersion, this is <mark>resolution complete</mark></li>
+  <li>again, this can be done <mark>deterministically</mark></li>
+</ul>
+
+<p>Examples of algorithms that does this include</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Halton Sequence</th>
+      <th style="text-align: center">Hammersley Sequence</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240223152225042.png" alt="image-20240223152225042" style="zoom:50%;" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240223152232235.png" alt="image-20240223152232235" style="zoom:50%;" /></td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="connection-sampling">Connection Sampling</h3>
+
+<p>Previous methods are all “unbiased”: they do not really care about (e.g., the obstacles in) the environment. This can be a problem if we have <strong>narrow regions that is crowded with obstacles = likely to get disconnected components</strong>.</p>
+
+<blockquote>
+  <p>Idea: increase/generate more vertex samples <strong>near vertices that have weak roadmap connectivity</strong></p>
+</blockquote>
+
+<p>So we can selectively <strong>sample near such vertices</strong> to increase the density of the roadmap and try to increase roadmap connectivity:</p>
+
+<ul>
+  <li>assign probabilities to each vertex based on heuristics like <strong>vertex degree</strong> (relative to rest of graph) or rate of failed edge connections</li>
+  <li>when sampling, pick an existing vertex according to these probabilities and then sample in a neighborhood around it</li>
+</ul>
+
+<h3 id="obprm">OBPRM</h3>
+
+<p>A prime example that modifies the sampling procedure above and have a good practical performance is OBPRM</p>
+
+<blockquote>
+  <p>Idea: when you sampled $\alpha(i)$ that has a collision, instead of discarding it, <strong>sample some nodes in random directions from $\alpha(i)$</strong>. So its <mark>biased to sample near boundary of the obstacles</mark>.</p>
+</blockquote>
+
+<p>Visually</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240223152809472.png" alt="image-20240223152809472" style="zoom:50%;" /></p>
+
+<p>So that the roadmap at the end will look like this:</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240223152920858.png" alt="image-20240223152920858" style="zoom:50%;" /></p>
+
+<p>where for the PRM roadmap we were using the algorithm described in <a href="#Sampling-Based-Methods">Sampling Based Methods</a> and used uniform sampling.</p>
+
+<h3 id="other-sampling-strategies">Other Sampling Strategies</h3>
+
+<p>Some other algorithms that was useful from research:</p>
+
+<ul>
+  <li>
+    <p><strong>GVD Sampling:</strong> We could could have a bias to get samples <strong>away</strong> from obstacles.</p>
+
+    <ul>
+      <li>We can approximate <a href="#Generalized-Voronoi-Diagrams">GVD</a> by sampling uniformly, but perturb them to increase their distance away from obstacles</li>
+      <li>to do the above we need to map back to constructing GVD in the workspace</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>Gaussian sampler</strong>: Generate $q_1$ via uniform sampling, $q_2$ from a Gaussian distribution centered at $q_2$</p>
+
+    <ul>
+      <li>Discard both if both are free or in collision; otherwise, keep the free one</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>Bridge test sampling</strong>: Generate $q_1$ and $q_2$​ via uniform sampling, and if both in collision, consider their midpoint; keep if free</p>
+
+    <p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240223153239740.png" alt="image-20240223153239740" style="zoom:50%;" /></p>
+  </li>
+</ul>
+
+<h2 id="postprocessing-queries">Postprocessing Queries</h2>
+
+<p>Given a query/solution that is already found, we can <strong>postprocess it</strong> to find some shortcuts so that the <strong>resultant path is further optimized</strong></p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240223153638914.png" alt="image-20240223153638914" style="zoom: 50%;" /></p>
+
+<p>On a high level, you can</p>
+
+<ol>
+  <li>Find a node $q_0$ closest to start that can connect directly to the goal</li>
+  <li>Then find a node $q_1$ closest to start that can connect directly to $q_0$</li>
+  <li>… repeat until start is directly connected to the shorter path</li>
+</ol>
+
+<h1 id="single-query-planners">Single-Query Planners</h1>
+
+<p>For PRMs, our goal was to construct a <strong>representation of the free C-space</strong> that can be used for planning. Specifically, they are <strong>usable</strong>: once constructed, you can use them for multiple queries of different start/goal pairs.</p>
+
+<blockquote>
+  <p>Here, we diiscuss <strong>single-query planners</strong> that are designed to solve a <strong>single query</strong> (start/goal pair) as efficiently as possibl, i.e., in the C-space, find me a path from $q_{\mathrm{start}}$ to $q_{\mathrm{goal}}$.</p>
+</blockquote>
+
+<p>As you will see, these algorithms will be:</p>
+<ul>
+  <li>again sampling based, but will have bias (towards reaching the goal state) and <strong>exploration</strong> (to avoid local minima) stages</li>
+  <li>is in practice more <strong>efficient</strong> to run than PRMs</li>
+</ul>
+
+<h2 id="grid-based-roadmap">Grid-Based Roadmap</h2>
+
+<p>The first (not-very single-query-related) idea is to use a <strong>grid-based roadmap</strong>. The implementation, however, can be done in a single-query manner.</p>
+
+<blockquote>
+  <p><strong>Simple Grid-based Roadmap</strong>: given a start $q_I$ and end $q_G$ configuration, overlay a grid (ignoring the obstacles for now). Then, you can either remove obstacles after that, or you can <strong>check on-the-fly of planning if the vertices are in collision</strong>.</p>
+</blockquote>
+
+<p>for collision-check, alike <a href="#Probabilistic-Roadmaps">PRMs</a> we will a run local planner (e.g., sample along the line and check for collision) at the neighbor vertices that you would traverse next.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Lay a grid</th>
+      <th style="text-align: center">Remove Collisions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240301131934975.png" alt="image-20240301131934975" style="zoom:50%;" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240301131954796.png" alt="image-20240301131954796" style="zoom:50%;" /></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Problem with this approach:</p>
+
+<ul>
+  <li><strong>curse of dimensionality</strong>: this doesn’t scale well when you increase dimension. To keep dispersion, increasing one dimension = square the number of samples (we will cover much more efficient single-query approaches soon)</li>
+  <li>is <strong>resolution-complete</strong>: depends on resolutions to be able to find the solutions</li>
+</ul>
+
+<p>Practial stitches to the resoluion problem?</p>
+
+<ul>
+  <li>just increase resolution and do again: expensive</li>
+  <li>itereatively increase resolution between search processes
+    <ol>
+      <li>Add new samples to the grid one (or a few) at a time</li>
+      <li>check if the initial and goal state are in the same component (if so, done). This can be done efficiently using union-find.</li>
+    </ol>
+  </li>
+</ul>
+
+<h2 id="potential-functions">Potential Functions</h2>
+
+<p>Besides thinking about how to construct vertices and edges efficiently in high-dimension, another concern is the <strong>cost of the search</strong> after you laid out the plan.</p>
+
+<blockquote>
+  <p>Searching for the path itself can be very expensive in high-dimensional spaces. <strong>Potential functions</strong> generalize heuristics (see <a href="#A*-Search">A* Search</a>), can be used to guide the search</p>
+</blockquote>
+
+<p>for example, yuo can imaging having:</p>
+<ul>
+  <li>e.g., an attractive force = distance towards the goal</li>
+  <li>e.g., a repulsive force = distance away obstacles</li>
+</ul>
+
+<p>but note that in C-space we often don’t know the layout, <strong>this heuristics is often just your guess.</strong> But how will this relate to the roadmap?</p>
+
+<blockquote>
+  <p>A peak at single-query algorithms we will see: they will consider efficient sampling based approach to explore/map out the C-space, but also <strong>guided by some cost/distance function</strong> to eventually find the path connecting the start and goal state.</p>
+</blockquote>
+
+<p>From the above, you might wonder: why do we need to have exploration if I have a potential function? Suppose your guessed a potential/cost functino being the straight line distance between start and goal state:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Unforseen Boundary</th>
+      <th style="text-align: center">Narrow Passages</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240301133533895.png" alt="image-20240301133533895" style="zoom:50%;" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240301133543226.png" alt="image-20240301133543226" style="zoom:50%;" /></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>where:</p>
+
+<ul>
+  <li>for the first case, really <strong>“random” exploration</strong> may be required for the search algorithm</li>
+  <li>for the second case, you might need to <em>also search from the goal state</em> to be lucky</li>
+</ul>
+
+<p>In general: finding a good potential function would require a lot of trial and errors.</p>
+
+<h3 id="randomized-potential-fields">Randomized Potential Fields</h3>
+
+<p>If we really want to use potential fields methods, there are some ways to get out of local minima. Normally, your algorithm would simply try to explore by steping in the direction to <strong>decrease potential</strong> (and eventually get stuck at a local minima).</p>
+
+<blockquote>
+  <p>One simple idea to add some exploration and get out of the local minima: execute a random walk</p>
+</blockquote>
+
+<p>implementation-wise: perturb each coordinate by some random direction, check if potential is decreased (if not, repeat this random process for a couple of iterations)</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240301222654.png" style="zoom:50%;" /></p>
+
+<p>note that a backtracking step may also be used to limit the number of unsuccessful random walks.</p>
+
+<h2 id="tree-based-planners">Tree-Based Planners</h2>
+
+<p>Finally, we discuss the most practical single-query planners: tree-based planners.</p>
+
+<blockquote>
+  <p>Idea: we grow a tree by sampling (sampling vertices and connecting them), such that:</p>
+  <ul>
+    <li>we bias the sampling process of roadmap construction = prioritize exploring only the C-space regions that <strong>relevant to the query</strong></li>
+    <li>eventually it will reach the goal state = done!</li>
+  </ul>
+</blockquote>
+
+<p>On a high level, these algorithms</p>
+<ul>
+  <li>are very similar steps to <a href="#Dijkstra's-Algorithm">Dijkstra’s Algorithm</a> and <a href="#A*-Search">A* Search</a>, with the main difference is they know the full graph in advance, but here we sample new vertices on-the-fly</li>
+  <li>each step  here consists of sampling a new vertex (expansion), running a local planner and inserting an edge if valid, and checking for a solution (goal test)</li>
+</ul>
+
+<h3 id="expansive-space-trees">Expansive-Space Trees</h3>
+
+<blockquote>
+  <p><strong>EST algorithm</strong>: initial trees $T_{init}$ and $T_{goal}$ at the start/goal and alternatively grow trees from both sides.</p>
+
+  <ol>
+    <li>initialize two trees</li>
+    <li>pick an existing node $q$ according to some distribution $\pi_T$</li>
+    <li>sample a new node $q_{rand}$ near $q$ (expansion)</li>
+    <li>if local planner say we can connect them, add $q_{rand}$ to the tree</li>
+    <li>since we have two trees, we need to interleave some merge attemtps</li>
+    <li>repeat from step 2 alternatively from both trees</li>
+  </ol>
+</blockquote>
+
+<p>Notice that this is <strong>much more biased than general PRM</strong>: we only sample near the current vertex and biased towards the goal/start state (by the distribution and by the merging process)</p>
+
+<p>Visually, after selecting $q$ we basically do:</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240301135228646.png" alt="image-20240301135228646" style="zoom: 33%;" /></p>
+
+<p>in more details:</p>
+
+<ul>
+  <li>
+    <p>how do we merge? simply treat one node in a tree (e.g., $T_{init}$) as the sampled $q_{rand}$ for the other tree (e.g., $T_{goal}$)</p>
+
+    <ul>
+      <li>so we interleave some merge attemptes with the tree growth</li>
+      <li>eventually merge will success when the trees are close enough</li>
+      <li>once succeeded, we are done</li>
+    </ul>
+  </li>
+  <li>
+    <p>what should $\pi_T$ be = used to choose <strong>which node to expand next</strong>?</p>
+
+    <ul>
+      <li>if we want to have some exploration, this should be higher in sparser regions = reflect neighborhood density</li>
+      <li>so this can be done in many ways, such as:
+        <ul>
+          <li>inversely proportional to the number of nodes near $q$</li>
+          <li>can also use other heuristics such as distance, out degree, etc.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<blockquote>
+  <p>Drawback of EST:</p>
+  <ul>
+    <li>we need continuously update $\pi_T$ as we expand new nodes = can be expensive.</li>
+    <li>It is also very sensitive to how you defined $\pi_T$ and other parameters such as how often do you merge</li>
+  </ul>
+</blockquote>
+
+<h3 id="rapidly-exploring-random-trees">Rapidly-Exploring Random Trees</h3>
+
+<p>Much more practical to uset than EST is the RRT algorithm.</p>
+
+<blockquote>
+  <p><strong>Rapidly exploring random tree (RRT)</strong>: instead of growing the tree blindly, we can <strong>sample $q_{rand}$ anywhere</strong> in the C-space, and <strong>“connect” them to an existing tree node $q_{near}$</strong> that’s closest to $q_{rand}$.</p>
+
+  <ul>
+    <li>don’t need this sampling distribution $\pi_T$ to choose which node to expand</li>
+    <li>eventually, the “connect” part will lead the trees to merge</li>
+  </ul>
+</blockquote>
+
+<p>This algoritm also</p>
+
+<ul>
+  <li>guarantees a dense covering</li>
+  <li>Samples may be randomly or deterministically generated</li>
+  <li>can work by either grow one tree from $q_I$, or two trees from both $q_I$ and $q_G$ (bi-directional trees)</li>
+</ul>
+
+<p>A bit more details of how the algorithm work</p>
+
+<ol>
+  <li>sample a random node $q_{rand}$ (randomly or deterministically)</li>
+  <li>figure out the closest tree node $q_{near}$</li>
+  <li>add a new node $q_{new}$ (i.e., expansion) by taking <strong>a step size distance away</strong> from $q_{near}$ in the direction of $q_{rand}$​
+    <ul>
+      <li>if there is a collision, do not add and repeat from step 1</li>
+      <li>if no collision from $q_{near}$ to $q_{new}$, add</li>
+    </ul>
+  </li>
+  <li>discard $q_{rand}$, and repeat from step 1</li>
+</ol>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240301140810987.png" alt="image-20240301140810987" /></p>
+
+<h4 id="greedy-extend-rrt">Greedy Extend RRT</h4>
+
+<p>While you can simply pick a small constant step size, another small change is to do this <strong>automatically and greedily</strong>.</p>
+
+<blockquote>
+  <p>Idea: start with one small step. If it worked, increase one step and check again. Return when we have a collision.</p>
+</blockquote>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240301140958347.png" alt="image-20240301140958347" style="zoom:40%;" /></p>
+
+<p>This can be used to <strong>reduce number of vertices</strong> = discard all intermediate nodes generated during this greedy extend.</p>
+
+<h4 id="other-extend-variations">Other Extend Variations</h4>
+
+<p>However having fewer nodes might not be always the best <em>in this case</em> = may make it <mark>more difficult to connect new nodes to the (sparse) tree</mark></p>
+
+<blockquote>
+  <p>Idea: If we have long edges, $q_{rand}$ may be closer to an edge than a node. Then we can still connect the node, but also add a new node to the edge.</p>
+</blockquote>
+
+<ul>
+  <li>this requires more computation = need to compute distance from a point to an edge in a high-dimensional space</li>
+  <li>we add one new node to the existing edge and split the edge into two</li>
+</ul>
+
+<p>So visually, you would have computed and created a new red vertex:</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240301141559865.png" alt="image-20240301141559865" style="zoom:40%;" /></p>
+
+<h4 id="adding-sampling-bias">Adding Sampling Bias</h4>
+
+<p>Another modification that we can do to improve the algorithm is to add some <strong>sampling bias</strong>. Rather than sampling uniformly, to stick to our single-query idea, we can <strong>bias the sampling of $q_{ran}$</strong></p>
+
+<blockquote>
+  <p>Idea: with a small probability $\epsilon$, set $q_{rand}:=q_{goal}$ as if its our new sample. Otherwise, $q_{rand}$ is uniformly sampled.</p>
+</blockquote>
+
+<p>note that</p>
+
+<ul>
+  <li>if we started with a single tree,  this also <strong>ensures that we will connect $q_{goal}$ to our current ree</strong></li>
+  <li>why can’t we just do $q_{rand}:=q_{goal}$​ all the time? then there is no exploration = get stuck in local minima</li>
+  <li>so basically <strong>$\epsilon$​​ controls exploration</strong></li>
+</ul>
+
+<h4 id="merging-rrt-trees">Merging RRT Trees</h4>
+
+<p>Finally, if we chose to grow two trees, how do we merge? Merging RRTs proceeds <strong>similarly</strong> to merging <a href="#Expansive-Space-Trees">ESTs</a>.</p>
+
+<p>After growing trees for a set time, we run the merge algorithm with an upper bound on number of tries:</p>
+<ol>
+  <li>suppose we expanded $T_1$ randomly and added a node $q_{new}$.</li>
+  <li>attempt to expand $T_2$ by adding treating $q_{new}$ as its $q_{rand}$</li>
+  <li>if fails, repat from step 1 but swap the roles of $T_1$ and $T_2$</li>
+  <li>if step 3 failed too many times, go back to growing trees</li>
+</ol>
+
+<p>So you basically will run this once in a while when growing your tree.</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240301144108105.png" alt="image-20240301144108105" style="zoom:38%;" /></p>
+
+<p>Visually you will get this green path when the two tress are close enough</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240301144243278.png" alt="image-20240301144243278" style="zoom:50%;" /></p>
+
+<h4 id="rrt-visualizations">RRT Visualizations</h4>
+
+<p>Now we have a complete description of the algorithm, some visualizations:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">RRT Example in 2D (bi-directional trees)</th>
+      <th style="text-align: center">RRT Example in C-space</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><img src="https://lavalle.pl/rrt/point1.jpg" alt="img" style="zoom:50%;" /></td>
+      <td style="text-align: center"><img src="https://lavalle.pl/rrt/chain_movie.gif" alt="img" style="zoom:100%;" /></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>(credit: <a href="https://lavalle.pl/rrt/gallery.html">RRT Page: Photo and Animation Gallery (lavalle.pl)</a>)</p>
+
+<h4 id="rrt-limiting-behavior">RRT Limiting Behavior</h4>
+
+<p>In the limit of running for infinite number of iterations, it can be proven that <strong>we can cover all places in the C-space</strong>. Visually:</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240301144355284.png" alt="image-20240301144355284" style="zoom:50%;" /></p>
+
+<p>Specifically, the original paper proved that, <strong>if a path from $q_{init}$ to $q_{goal}$ exists</strong> in the free C-space:</p>
+
+<ul>
+  <li>the <strong>expected</strong> number of iteration needs to find a path can be <strong>upperbounded</strong></li>
+  <li>the probability that RRT fails to find the path <strong>decreases exponentially with the number of iterations</strong></li>
+  <li>therefore, RRT is <mark>probabilisitically complete</mark>: in the limit that there are infinitely many nodes, the probability that a tree rooted at $q_I$ contains $q_{G}$ approaches to 1.</li>
+</ul>
+
+<h2 id="growing-more-than-two-trees">Growing More than Two Trees</h2>
+
+<p>We can also have <strong>(more) new trees grown</strong> in arbitrary or difficult parts of the C-space! This may be appealing for some reasons:</p>
+<ul>
+  <li>each tree can be computed in parallel = <strong>faster</strong> computation</li>
+  <li>instead of connecting to some start/goal state, we can just connect the trees = a <strong>more general roadmap</strong></li>
+</ul>
+
+<blockquote>
+  <p>Some key steps you will need to do:</p>
+  <ul>
+    <li>uniformly sample the C-space and <strong>grow trees</strong> with EST, RRT, or any variation of the two strategies</li>
+    <li>merge neartest tree <strong>neighrbos</strong> = can define distance as distance between representative nodes (e.g., centrooid)</li>
+  </ul>
+</blockquote>
+
+<h3 id="sampling-based-roadmap-of-trees">Sampling-Based Roadmap of Trees</h3>
+
+<p>One example algorithm that does this is the Sampling-Based Roadmap of Trees (SRT). This can also be seen as an integration of both RRT and PRM, since you end up having many clusters of trees:</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240301145542354.png" alt="image-20240301145542354" style="zoom:50%;" /></p>
+
+<p>implementation-wise:</p>
+<ul>
+  <li>to <strong>connect to neighbor trees</strong> together
+    <ul>
+      <li>try one pair of nodes fro meach tree, and use a local planner to connect them</li>
+      <li>if tailed, use RRT/EST merge algorithms (which can also grow the tree a bit)</li>
+    </ul>
+  </li>
+  <li><strong>given some initial/end state</strong>, we can
+    <ul>
+      <li>directly connect them to the roadmap, if they are close enough to some tree</li>
+      <li>if not, can also grow trees from them</li>
+    </ul>
+  </li>
+</ul>
+
+<blockquote>
+  <p>Note: this is more like a PRM - a multiple-query graph. In practice, if your goal is to get a <a href="#Probabilistic-Roadmaps">PRM</a>, then you should use traditional PRM algorithms, and use this unless you failed.</p>
+</blockquote>
+
+<h2 id="optimality-for-rrt">Optimality for RRT</h2>
+
+<p>The <a href="#Rapidly-Exploring-Random-Trees">RRT</a> algorithms does not have optimality, as we only aimed to find some feasible path. However, it turns out that we can modify them to <strong>achieve asymptotic optimality.</strong></p>
+
+<blockquote>
+  <p>But of course, optimality = <mark>assumes there is a distance/cost metric already given</mark>.</p>
+</blockquote>
+
+<h3 id="rapidly-exploring-random-graph">Rapidly-Exploring Random Graph</h3>
+
+<p>One modification is to:</p>
+
+<ul>
+  <li>connetc all nearest neighbors in the tree to $q_{new}$​</li>
+  <li>since this produces cycles = no longer trees but graphs</li>
+  <li>but is proved <strong>asymptotically</strong> optimal = RRG will contain optimal path for sufficiently large node neighborhoods</li>
+</ul>
+
+<h3 id="rrt">RRT*</h3>
+
+<p>As seen in many examples, RRTs can grow many good nodes, but the edges are “not optimal”.</p>
+
+<blockquote>
+  <p>RRT* Idea: we grow $q_{rand}$ nodes the same way as RRT, but carefuly <strong>consider which node $q_{rand}$ should connect to</strong>.</p>
+</blockquote>
+
+<p>More specifically:</p>
+<ol>
+  <li>for a $q_{new}$ we just added, first connect it with <strong>all neighbors</strong> (no longer a tree as we can have cycles)</li>
+  <li><strong>prune</strong> the edges so that
+    <ul>
+      <li>ensure every node in the neighborhood of $q_{new}$ has its previous parent having the cheapet cost to start</li>
+      <li>only keep the edge to the cheaper parent</li>
+      <li>stop until you get a tree structure</li>
+    </ul>
+  </li>
+</ol>
+
+<p>As a result, existing nodes may change parents as tree grows outward. To compare</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240301150440308.png" alt="image-20240301150440308" style="zoom: 33%;" /></p>
+
+<p>where:</p>
+
+<ul>
+  <li>first row RRT considers random nodes and connects them = edges are in random directions</li>
+  <li>second row RRT*: nodes are also random, <strong>but edges are pruned to be optimal</strong> w.r.t. the cost function (same function used for optimality)</li>
+</ul>
+
+<h2 id="differential-constraints">Differential Constraints</h2>
+
+<p>So far we have really only considered path or kinematic planning: just give me a path.</p>
+
+<blockquote>
+  <p>The full motion planning problem also considers <strong>how</strong> the paths are followed = practical robot systems have <strong>physical constraints</strong></p>
+</blockquote>
+
+<p>Often theses are written down as <strong>differential constraints</strong>:</p>
+<ul>
+  <li>constraints on velocities, directions of motion, etc.</li>
+  <li>so written as differential equations, e.g., $\dot{x}=f(x,u)$ where $x$ is the state (e.g., current position), and $u$ is an action (e.g., control the velocity forward)</li>
+</ul>
+
+<blockquote>
+  <p>So “solving the motion planning problem” becomes: return an <strong>action trajectory $\tilde{u}$</strong> such that the correspdoning state $\tilde{x}$ trajectory satisifes the constraints.</p>
+</blockquote>
+
+<p>Can we not directly plan in the action space and do some fixes to satisfy the constraint? Not with the algorithsm discussed so far, as they consider each state being <strong>independent</strong> of each other!</p>
+<ul>
+  <li>the short answer is: we can plan in the $x$-state space, but each vertex is a $u$ that satisfies the constraints. Then, given a path from start to end, we can <mark>extract the sequence of $u$ from the $x$-path</mark>.</li>
+  <li>but before we discuss how this works, first let’s understand what kind of constraints we will have</li>
+</ul>
+
+<hr />
+
+<p><strong>For example: consider a simple car</strong> that has two actions: forward velocity $u_s$ and steering angle $u_\phi$. Since cars cannot do sharp turns, we constraint the velocity to be:</p>
+
+\[\dot{x} = u_s \cos\theta\\
+\dot{y} = u_s \sin \theta\\
+\dot{\theta} = \frac{u_s}{L} \tan u_\phi\]
+
+<p>state space is $(x,y,\theta)$, and action space is $u_s, u_\phi$.</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240301152023936.png" alt="image-20240301152023936" style="zoom:33%;" /></p>
+
+<p><strong>Another common example: differential drive</strong> is</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240301233734.png" style="zoom:100%;" /></p>
+
+<p>which has constraint of:</p>
+
+\[\dot{x} = \frac{r}{2}(u_l + u_r) \cos\theta \\
+\dot{y} = \frac{r}{2}(u_l + u_r) \sin\theta \\
+\dot{\theta} = \frac{r}{L}(u_r - u_l)\]
+
+<hr />
+
+<p>So how do you do planning with this constraints?</p>
+
+<ul>
+  <li>this becomes a nightmare for combinatorial approaches</li>
+  <li>but turns out that <strong>sampling based approaches is more or less okay</strong> (as briefly hinted above)</li>
+</ul>
+
+<h3 id="kinodynamic-planning">Kinodynamic Planning</h3>
+
+<blockquote>
+  <p>Idea: we plan in the $x$-state space, but <strong>each pair of vertex is connected by an action $u$ that satisfies the constraints</strong>. Then, we can extract the sequence of $u$ from the $x$-path.</p>
+</blockquote>
+
+<p>So basically we consider</p>
+
+<ol>
+  <li>
+    <p>Kinodynamic RRT first samples $x_{rand}$ and finds $x_{new}$ as before</p>
+  </li>
+  <li>
+    <p>instead of directly do a strght line connect, the local planner will need to draw a path that solves the differential constraint between the two samples</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th style="text-align: center">Before</th>
+          <th style="text-align: center">Here</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="text-align: center"><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240301234251.png" style="zoom:11%;" /></td>
+          <td style="text-align: center"><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240301234304.png" style="zoom:11%;" /></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>where $u$ is in the action space.</p>
+  </li>
+  <li>
+    <p>one we found a $x$-path, we can then extract $\tilde{u}$ as a sequence of $u$-edges.</p>
+  </li>
+</ol>
+
+<p>Visually, if we only want to <strong>plot the full $x$-path</strong>, you will need to integrate over $u$ for each edge to obtain figures like below:</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics/image-20240301152620765.png" alt="image-20240301152620765" style="zoom: 50%;" /></p>
+
+  </div><a class="u-url" href="/lectures/2024@columbia/COMS4733_Computational_Aspects_of_Robotics.html/" hidden></a>
+  <script src="/lectures/assets/js/my_navigation.js"></script>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/lectures/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Lecture Notes</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Lecture Notes</li><li><a class="u-email" href="mailto:jasonyux17@gmail.com">jasonyux17@gmail.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/jasonyux"><svg class="svg-icon"><use xlink:href="/lectures/assets/minima-social-icons.svg#github"></use></svg> <span class="username">jasonyux</span></a></li><li><a href="https://www.linkedin.com/in/xiao-yu2437"><svg class="svg-icon"><use xlink:href="/lectures/assets/minima-social-icons.svg#linkedin"></use></svg> <span class="username">xiao-yu2437</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>An inexhaustive collection of markdown/latex(PDF) notes that I took since college. </p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

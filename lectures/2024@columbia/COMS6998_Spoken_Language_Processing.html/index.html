@@ -1,0 +1,2427 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>COMS6998 Spoken Language Processing | Lecture Notes</title>
+<meta name="generator" content="Jekyll v4.3.1" />
+<meta property="og:title" content="COMS6998 Spoken Language Processing" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Logistics and Introduction" />
+<meta property="og:description" content="Logistics and Introduction" />
+<link rel="canonical" href="/lectures/2024@columbia/COMS6998_Spoken_Language_Processing.html/" />
+<meta property="og:url" content="/lectures/2024@columbia/COMS6998_Spoken_Language_Processing.html/" />
+<meta property="og:site_name" content="Lecture Notes" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2024-06-02T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="COMS6998 Spoken Language Processing" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-06-02T00:00:00+00:00","datePublished":"2024-06-02T00:00:00+00:00","description":"Logistics and Introduction","headline":"COMS6998 Spoken Language Processing","mainEntityOfPage":{"@type":"WebPage","@id":"/lectures/2024@columbia/COMS6998_Spoken_Language_Processing.html/"},"url":"/lectures/2024@columbia/COMS6998_Spoken_Language_Processing.html/"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/lectures/assets/main.css"><link type="application/atom+xml" rel="alternate" href="/lectures/feed.xml" title="Lecture Notes" /></head>
+<body><header class="site-header">
+
+	<div class="wrapper"><a class="site-title" rel="author" href="/lectures/">Lecture Notes</a>
+
+		<nav class="site-nav">
+			<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+			<label for="nav-trigger">
+			<span class="menu-icon">
+				<svg viewBox="0 0 18 15" width="18px" height="15px">
+				<path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+				</svg>
+			</span>
+			</label>
+
+			<div class="trigger">
+				<a class="page-link" href="/">Home</a>
+				<a class="page-link" href="/projects">Projects</a>
+				<a class="page-link" href="/research">Research</a>
+				<span class="page-link" href="#">[Education]</span>
+				<a class="page-link" href="/learning">Blog</a>
+			</div>
+		</nav>
+	</div>
+  </header><main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <head>
+  <script>
+    MathJax = {
+      // 
+      loader: {
+        load: ['[tex]/ams', '[tex]/textmacros', '[tex]/boldsymbol']
+      },
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        packages: {'[+]': ['ams', 'textmacros', 'boldsymbol']}
+      }
+    };
+  </script>
+  <script id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+  </script>
+  </head>
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">COMS6998 Spoken Language Processing</h1>
+    <p class="post-meta"><time class="dt-published" datetime="2024-06-02T00:00:00+00:00" itemprop="datePublished">
+        Jun 2, 2024
+      </time></p>
+  </header>
+
+  <div class="section-nav" id="toc-all">
+    <button type="button" id="toc-close" class="toc_collapsible hidden" title="collapse">
+      <span><strong>Table of Contents</strong></span>
+    </button>
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" mirror-in-rtl="true" fill="#000000" style="width: 18px;" id="toc-reopen" class="toc_collapsible">
+      <g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <circle fill="#494c4e" cx="2" cy="2" r="2"></circle> <circle fill="#494c4e" cx="2" cy="8" r="2"></circle> <circle fill="#494c4e" cx="2" cy="20" r="2"></circle> <circle fill="#494c4e" cx="2" cy="14" r="2"></circle> <path fill="#494c4e" d="M23.002 3H7.998C7.448 3 7 2.55 7 2.002v-.004c0-.55.45-.998.998-.998H23c.55 0 1 .45 1 .998V2c0 .55-.45 1-.998 1zM23.002 9H7.998C7.448 9 7 8.55 7 8.002v-.004c0-.55.45-.998.998-.998H23c.55 0 1 .45 1 .998V8c0 .55-.45 1-.998 1zM23.002 15H7.998c-.55 0-.998-.45-.998-.998V14c0-.55.45-1 .998-1H23c.55 0 1 .45 1 .998V14c0 .55-.45 1-.998 1zM23.002 21H7.998c-.55 0-.998-.45-.998-.998V20c0-.55.45-1 .998-1H23c.55 0 1 .45 1 .998V20c0 .55-.45 1-.998 1z"></path> </g>
+    </svg>
+    <ul id="toc" class="section-nav">
+<li class="toc-entry toc-h1"><a href="#logistics-and-introduction">Logistics and Introduction</a></li>
+<li class="toc-entry toc-h1"><a href="#from-sounds-to-language">From Sounds to Language</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#articulatory-phonetics">Articulatory Phonetics</a></li>
+<li class="toc-entry toc-h2"><a href="#representations-of-sounds">Representations of Sounds</a></li>
+<li class="toc-entry toc-h2"><a href="#reading-notes-for-lecture-1">Reading notes for Lecture 1</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#acoustics-of-speech">Acoustics of Speech</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#reading-notes-for-lecture-2">Reading Notes for Lecture 2</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#tools-for-speech-analysis">Tools for Speech Analysis</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#scripting-in-praat">Scripting in Praat</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#analyzing-speech-prosody">Analyzing Speech Prosody</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#tone-sequence-models">Tone Sequence Models</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#tobi-pitch-accent-types">TOBI Pitch Accent Types</a></li>
+<li class="toc-entry toc-h3"><a href="#prosodic-phrase-and-phrase-ending-in-tobi">Prosodic Phrase and Phrase Ending in TOBI</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#autobi">AuTOBI</a></li>
+<li class="toc-entry toc-h2"><a href="#other-prosodic-models">Other Prosodic Models</a></li>
+<li class="toc-entry toc-h2"><a href="#reading-notes-for-lecture-4">Reading Notes for Lecture 4</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#analyzing-speech-prosody-1">Analyzing Speech Prosody</a></li>
+<li class="toc-entry toc-h3"><a href="#pragmatics-and-prosody">Pragmatics and Prosody</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#text-to-speech-analysis">Text-To-Speech Analysis</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#more-on-waveform-generation">More on Waveform Generation</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#concatenative-sythesis">Concatenative Sythesis</a></li>
+<li class="toc-entry toc-h3"><a href="#parametric-synthesis">Parametric Synthesis</a></li>
+<li class="toc-entry toc-h3"><a href="#end-to-end-models">End-to-End Models</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#producing-trustworthy-voices">Producing Trustworthy Voices</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#speech-recognition">Speech Recognition</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#reading-notes-for-lecture-6">Reading Notes for Lecture 6</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#spoken-dialogue-systems">Spoken Dialogue Systems</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#empathetic-conversations-in-dialogue-systems">Empathetic Conversations in Dialogue Systems</a></li>
+<li class="toc-entry toc-h2"><a href="#reading-notes-for-lecture-7">Reading Notes for Lecture 7</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#speech-analysis-emotion-detection-and-solicitation">Speech Analysis: Emotion Detection and Solicitation</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#emotion-and-sentiment-detection">Emotion and Sentiment Detection</a></li>
+<li class="toc-entry toc-h2"><a href="#emotion-elicitation">Emotion Elicitation</a></li>
+<li class="toc-entry toc-h2"><a href="#reading-notes-for-lecture-8">Reading Notes for Lecture 8</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#speech-analysis-entrainment-and-code-switching">Speech Analysis: Entrainment and Code Switching</a></li>
+<li class="toc-entry toc-h1"><a href="#speech-analysis-personality-and-mental-state">Speech Analysis: Personality and Mental State</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#reading-notes-for-lecture-10">Reading Notes for Lecture 10</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#speech-analysis-sarcasm-simile-and-metaphor-wordseye">Speech Analysis: Sarcasm, Simile and Metaphor; WordsEye</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#reading-notes-for-lecture-13">Reading Notes for Lecture 13</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#speech-analysis-charismatic-speech">Speech Analysis: Charismatic speech</a></li>
+</ul>
+  </div>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <h1 id="logistics-and-introduction">Logistics and Introduction</h1>
+
+<p><strong>Syllabus</strong>:</p>
+
+<ul>
+  <li>Mainly its weekly reading + posts</li>
+  <li>5% class participation (attendance at EoClass), 20% weekly post, and 75% from three HWs</li>
+  <li>See for details <a href="https://www.cs.columbia.edu/~julia/courses/CS6998-24/syllabus24.html">cs.columbia.edu/~julia/courses/CS6998-24/syllabus24.html</a></li>
+  <li>TA office hours:
+    <ul>
+      <li>Ziwei (Sara): CESPR714 M3-4pm</li>
+      <li>Debasmirta: CESPR 714  TH2-4pm</li>
+      <li>Yu-Wen Chen: Zoom FR 2-4pm</li>
+    </ul>
+  </li>
+  <li>a very useful reference I found: <a href="https://speechprocessingbook.aalto.fi/index.html">Introduction to Speech Processing — Introduction to Speech Processing (aalto.fi)</a></li>
+  <li>a very useful Praat scripting reference: <a href="https://www.fon.hum.uva.nl/praat/manual/Sound.html">Sound (uva.nl)</a></li>
+  <li></li>
+</ul>
+
+<p><strong>Introduction</strong></p>
+
+<ul>
+  <li>
+    <p>Spoken language processing = not only <strong>what</strong> you say, but also <strong>how</strong> you say it.</p>
+  </li>
+  <li>
+    <p><strong>intonation contour</strong>: notice the difference between</p>
+
+    <ul>
+      <li>You’re going. (statement)</li>
+      <li>You’re going? (question)</li>
+    </ul>
+
+    <p>and the fact that you can convey the two meaning <em>without explicitly saying it ends with <code class="language-plaintext highlighter-rouge">.</code> or <code class="language-plaintext highlighter-rouge">?</code></em></p>
+  </li>
+  <li>
+    <p>by just listening to <em>how</em> a person is saying things, you can learn about his/hers personality, mental health, etc.</p>
+  </li>
+  <li>
+    <p>current and past challenges in spoken language processing:</p>
+
+    <ul>
+      <li>e.g., “Do you live at <u>288 110th</u> street?” is different from just pronouncing the numbers as-is</li>
+      <li>e.g., “They <u>city hall</u> <u>parking lot</u> was <u>chock full of cars</u>.” notice where <em>pause</em> are inserted between phrases.</li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="from-sounds-to-language">From Sounds to Language</h1>
+
+<blockquote>
+  <p><strong>Linguistic sounds</strong>: how are sounds produced, and what sounds are <em>shared by languages X and Y</em>?</p>
+</blockquote>
+
+<p>Motivation:</p>
+
+<ul>
+  <li>sometimes <em>sounds</em> you produce can affect your <em>thinking</em>. e.g. <code class="language-plaintext highlighter-rouge">ou</code> sounds “bigger and more expensive “ than <code class="language-plaintext highlighter-rouge">ee</code>. As a result, you <em>may</em> think “$2.33” sounds like a better deal than “$2.22”.</li>
+  <li>sometimes how your lips <em>visually</em> move can affect what you think he/she is <em>saying</em>. e.g., the The McGurk Effect.</li>
+</ul>
+
+<p>Specifically, we will study in this section</p>
+
+<ul>
+  <li><strong>Auditory phonetics</strong>: the <strong>perception</strong> of speech sounds</li>
+  <li><strong>Articulatory phonetics</strong>: the <strong>articulation</strong> of speech sounds</li>
+  <li><strong>Acoustic phonetics</strong>: the <strong>acoustic</strong> features of speech sounds</li>
+</ul>
+
+<blockquote>
+  <p>Some definitions</p>
+
+  <ul>
+    <li><strong>Phonemes</strong>: perceptually distinct units of sound</li>
+    <li><strong>Phones</strong>: the phonetic representation of the phoneme we produce when we speak</li>
+    <li><strong>Allophones</strong>: different ways of saying things but has the same meaning</li>
+    <li><strong>Orthographic Representation</strong>: how to “spell” a sound. For example “sea, see, scene, receive, thief” all had [i] in it.
+      <ul>
+        <li>so a single sound may be represented differently in orthography = is orthography a good choice for English?</li>
+      </ul>
+    </li>
+    <li><strong>Phonetic Symbol Sets</strong>: use things like International Phonetic Alphabet (IPA) to represent sounds = has a single character for each unique sound.
+      <ul>
+        <li>IPA as you have guessed, is quite large</li>
+        <li>for example, “Xiao” would be “[ɕi̯ɑʊ̯]”</li>
+      </ul>
+    </li>
+  </ul>
+</blockquote>
+
+<h2 id="articulatory-phonetics">Articulatory Phonetics</h2>
+
+<p>How do you produce sounds? Each language is different, but typically multiple parts of your body:</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS6998_Spoken_Language_Processing/image-20240123165438730.png" alt="image-20240123165438730" style="zoom:33%;" /></p>
+
+<p>In English, we further have:</p>
+
+<ul>
+  <li>Consonants: voiced or voiceless, but often with restriction/blockage of air flow</li>
+  <li>Vowels: generally voiced with little restrictions. Variations in different vowels caused by factors such as ‘height of tongue’, ‘roundness of lips’</li>
+</ul>
+
+<p>More specifcally, <strong>vowels</strong> can be categorized into</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS6998_Spoken_Language_Processing/image-20240123165816669.png" alt="image-20240123165816669" style="zoom:33%;" /></p>
+
+<p>For example:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">High Front or Back for [iy] and [uw]</th>
+      <th>Low Front or Back [ae] and [aa]</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><img src="/lectures/images/2024-06-02-COMS6998_Spoken_Language_Processing/image-20240123165851618.png" alt="image-20240123165851618" style="zoom:33%;" /></td>
+      <td><img src="/lectures/images/2024-06-02-COMS6998_Spoken_Language_Processing/image-20240123165910451.png" alt="image-20240123165910451" style="zoom:33%;" /></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>For <strong>consonants</strong>, two things define its type: <strong>place of articulation</strong> and <strong>manner of articulation</strong></p>
+
+<p><img src="/lectures/images/2024-06-02-COMS6998_Spoken_Language_Processing/image-20240123170944935.png" alt="image-20240123170944935" style="zoom:33%;" /></p>
+
+<blockquote>
+  <p><strong>Coarticulation</strong>: one challenge is that things can be different depending on its phonetic context - a major issue in ASR</p>
+
+  <ul>
+    <li>e.g. place of articulation moves forward in “eight” v.s. “eighth”, due to different <em>adjacent</em> sounds</li>
+  </ul>
+</blockquote>
+
+<h2 id="representations-of-sounds">Representations of Sounds</h2>
+
+<p>We have ways to <strong>represent</strong> sounds (e.g., IPA) and to classify similar sounds. This is important, because it relates to how systems such as ASR, TTS (speech synthesis), Speech Pathology, Language/Speaker ID.</p>
+
+<p>So how do we recognize sounds automatically?</p>
+
+<ul>
+  <li>
+    <p>e.g., <em>use the relationship between representation and acoustics to identify speech automatically?</em></p>
+
+    <p><img src="/lectures/images/2024-06-02-COMS6998_Spoken_Language_Processing/image-20240123172729045.png" alt="image-20240123172729045" style="zoom:33%;" /></p>
+
+    <p>notice that vowels (purple) have higher amplitudes, and also note that these “shape” will <strong>change</strong> depending on what is pronounced before them.</p>
+  </li>
+  <li>
+    <p>and interestingly, people (Nima Mesgarani) show that you could directly produce speech using brain signals</p>
+
+    <p><img src="/lectures/images/2024-06-02-COMS6998_Spoken_Language_Processing/image-20240123173147396.png" alt="image-20240123173147396" style="zoom: 50%;" /></p>
+
+    <p>i.e., think it in your brain and we can identify what you were thinking! (combining speech synthesis and brain interface!)</p>
+  </li>
+</ul>
+
+<h2 id="reading-notes-for-lecture-1">Reading notes for Lecture 1</h2>
+
+<p><strong>Key notes</strong> from <a href="http://www.cs.columbia.edu/~julia/courses/CS6998-23/28-Sounds2Language.pdf">Jurafsky &amp; Martin Chapter 28 (Chapters 1-3)</a></p>
+
+<ul>
+  <li>
+    <p>earliest writing systems we know of (Sumerian, Chinese, Mayan) were mainly <strong>logographic</strong>: one symbol representing a whole word. But</p>
+
+    <ul>
+      <li>some symbols were also used to represent the <em>sounds</em> that made up words</li>
+    </ul>
+  </li>
+  <li>
+    <p>the idea that the spoken word is composed of <strong>smaller units of speech</strong> underlies algorithms for both <strong>speech recognition</strong> (transcribing waveforms into text) and <strong>text-to-speech</strong> (converting text into waveforms)</p>
+
+    <ul>
+      <li>but the difficulty is that a single letter (e.g., <code class="language-plaintext highlighter-rouge">p</code>) can represent very different sounds in different contexts</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>Phonetics</strong>: the study of the speech sounds</p>
+  </li>
+  <li>
+    <p>We will represent the pronunciation of a word as a string of <strong>phones</strong> (see the transcription part). Examples look like</p>
+
+    <p><img src=".//lectures/images/2024-06-02-COMS6998_Spoken_Language_Processing/image-20240120140432680.png" alt="image-20240120140432680" style="zoom:50%;" /></p>
+
+    <p>where the standard representation is using the  International Phonetic Alphabet (IPA) symbols, but here we use the ARPAbet as it uses ACSII.</p>
+  </li>
+  <li>
+    <p><strong>Articulatory phonetics</strong>: how these “phones” are pronounced by various organs in the mouth, throat, and nose</p>
+
+    <p><img src=".//lectures/images/2024-06-02-COMS6998_Spoken_Language_Processing/image-20240120144029140.png" alt="image-20240120144029140" style="zoom:50%;" /></p>
+
+    <ul>
+      <li><strong>Consonants</strong> are made by restriction or blocking of the airflow in some way, and can be voiced or unvoiced</li>
+      <li><strong>Vowels</strong> have less obstruction, are usually voiced, and are generally louder and longer-lasting than consonants.</li>
+    </ul>
+  </li>
+  <li>
+    <p>More specifics about consonants:</p>
+
+    <ul>
+      <li>
+        <p>can group consonants into their <strong>point of maximum restriction</strong>, their place of articulation</p>
+      </li>
+      <li>
+        <p>Consonants are also distinguished by <strong>how the restriction</strong> in airflow is made, for example, by a complete stoppage of air or by a partial blockage</p>
+
+        <p><img src=".//lectures/images/2024-06-02-COMS6998_Spoken_Language_Processing/image-20240120145253251.png" alt="image-20240120145253251" style="zoom:50%;" /></p>
+
+        <p>and the combination of how and where is usually sufficient to uniquely identify a consonant.</p>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>More specifics about vowels:</p>
+
+    <ul>
+      <li>
+        <p>The three most relevant parameters for vowels are what is called vowel <strong>height</strong>, which correlates roughly with the height of the highest part of the tongue</p>
+
+        <ul>
+          <li>vowel frontness or backness, indicating whether this high point is toward the <strong>front</strong> or back <strong>of</strong> the oral tract and</li>
+          <li>whether the shape of the lips is <strong>rounded</strong> or not</li>
+        </ul>
+
+        <p><img src=".//lectures/images/2024-06-02-COMS6998_Spoken_Language_Processing/image-20240120145634803.png" alt="image-20240120145634803" style="zoom:50%;" /></p>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>Consonants and vowels combine to make a <strong>syllable</strong></p>
+
+    <ul>
+      <li>
+        <p>yes, there are rules of what constitutes a syllable, although practically everybody knows by trying to pronounce them</p>
+
+        <p><img src=".//lectures/images/2024-06-02-COMS6998_Spoken_Language_Processing/image-20240120145952247.png" alt="image-20240120145952247" style="zoom:50%;" /></p>
+
+        <p>where:</p>
+
+        <ul>
+          <li>initial consonants, if any, are called the <strong>onset</strong></li>
+          <li>The rime, or rhyme, is the <strong>nucleus</strong> (vowel at the core of a syllable) plus <strong>coda</strong> (optional consonant following the nucleus)</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>Prosody</strong> is the study of the <strong>intonational and rhythmic aspects</strong> of language, and in particular the use of F0, energy, and duration to convey pragmatic, affective, or conversation-interactional meanings. On a high level:</p>
+
+    <ul>
+      <li>energy as the acoustic quality that we perceive as <strong>loudness</strong></li>
+      <li>F0 as the <strong>frequency</strong> of the sound that is produced</li>
+      <li>acoustic quality is what we hear as the <strong>pitch</strong> of an utterance.</li>
+    </ul>
+
+    <p>this is heavily used to <mark>convey affective meanings like happiness, surprise, or anger</mark>. For example, speakers make a word or syllable more <strong>salient</strong> in English by <em>saying it louder, saying it slower</em> (so it has a longer duration), or by <em>varying F0 during the word</em>, making it higher or more variable</p>
+  </li>
+  <li>
+    <p>Prosodic Prominence: Accent, Stress and Schwa</p>
+
+    <ul>
+      <li>
+        <p>Words or syllables that are prominent are said to bear (be associated with) a <strong>pitch accent</strong> (e.g., the underlined words below):</p>
+
+        <p>“I’m a little <u>surprised</u> to hear it <u>characterized</u> as <u>happy</u>.”</p>
+      </li>
+      <li>
+        <p>syllable that has <strong>lexical stress</strong> is the one that will be louder or longer if the word is accented. For example, the word <em>surprised</em> is stressed on its second syllable, not its first</p>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>Prosodic Structure</strong>: some words seem to group naturally together, while some words seem to have a noticeable break or disjuncture between them.</p>
+
+    <ul>
+      <li>an example we have seen earlier “They <u>city hall</u> <u>parking lot</u> was <u>chock full of cars</u>.”</li>
+      <li>Automatically predicting prosodic boundaries can be important for tasks like TTS</li>
+    </ul>
+  </li>
+  <li>
+    <p>The <strong>tune</strong> of an utterance is the <strong>rise and fall of its F0</strong> over time.</p>
+  </li>
+  <li>
+    <p>A very obvious example of tune is the difference between statements and yes-no questions in English</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th style="text-align: center">a final F0 rise</th>
+          <th style="text-align: center">a final drop in F0 (also called a final fall)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="text-align: center"><img src=".//lectures/images/2024-06-02-COMS6998_Spoken_Language_Processing/image-20240120152033782.png" alt="image-20240120152033782" /></td>
+          <td style="text-align: center"><img src=".//lectures/images/2024-06-02-COMS6998_Spoken_Language_Processing/image-20240120152134689.png" alt="image-20240120152134689" /></td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+</ul>
+
+<h1 id="acoustics-of-speech">Acoustics of Speech</h1>
+
+<p>How do we automatically distinguish one pheome from speech, even if they sound similar. For example, how do we distinguish between “kill him” v.s. “bill him” <strong>only using sound</strong> (e.g., using spectrograms, see <a href="#Reading Notes for Lecture 2">Reading notes</a>)</p>
+
+<p><img src=".//lectures/images/2024-06-02-COMS6998_Spoken_Language_Processing/image-20240127142226286.png" alt="image-20240127142226286" style="zoom:67%;" /></p>
+
+<p><strong>Sound production</strong>:</p>
+
+<ul>
+  <li><strong>signal to noise ration (SNR)</strong>: sound produced might not always be people’s speech</li>
+  <li><strong>harmonic to noise ratio (HNR)</strong>: ratio between periodic and a-periodic speech components. In particular, speech waveform that show <em>repeating patterns over time in distorted or unnatural speech</em></li>
+</ul>
+
+<p>What do we need to capture good speech data?</p>
+
+<ul>
+  <li>good recording conditions (quite space)</li>
+  <li>close-talking microphone (right next to the bottom left of your lips)</li>
+  <li>a good microphone that can capture at least 2 samples per cycle (to figure out the frequency)
+    <ul>
+      <li><strong>human</strong> hearing can <strong>discern up to 20k</strong>, but for studying speech, <strong>typically 16k-22k sampling rate</strong> is enough</li>
+      <li>this probably also relates to how humans acuity is lower at higher frequency</li>
+    </ul>
+  </li>
+</ul>
+
+<p>Sampling errors:</p>
+
+<ul>
+  <li><strong>aliasing</strong>: different signals can become <em>indistinguishable</em> from one another <em>when they are sampled</em>
+    <ul>
+      <li>e.g., often happens when sound $&gt;$ nyquitst frequency, or when you <strong>quantized</strong> too much</li>
+      <li>e.g., solutions include simply increase your sampling rate (or called <strong>resolution</strong>), or buy larger storage to store more bits per sample</li>
+    </ul>
+  </li>
+  <li>speech file formats: mostly <code class="language-plaintext highlighter-rouge">wav</code>, and a useful tool is <code class="language-plaintext highlighter-rouge">SoX</code> (sound eXchange) that can convert between many formats</li>
+</ul>
+
+<p>Frequency:</p>
+
+<ul>
+  <li>
+    <p><strong>pitch track</strong>: plotting F0 over time</p>
+
+    <p><img src=".//lectures/images/2024-06-02-COMS6998_Spoken_Language_Processing/image-20240127134621161.png" alt="image-20240127134621161" style="zoom: 67%;" /></p>
+  </li>
+  <li>
+    <p>how exactly is F0 determined? by definition: <mark>F0 approximate frequency of the (quasi-)periodic structure of voiced speech signals</mark>. This means if you <strong>zoom into any segment of speech wave</strong>, you will see some periodic pattern (originates from our vocal cord):</p>
+
+    <p><img src="/lectures/images/2024-06-02-COMS6998_Spoken_Language_Processing/image-20240130175949133.png" alt="image-20240130175949133" style="zoom:77%;" /></p>
+
+    <p>for exmaple, the F0 above is $F_0 = 1/0.01 \approx 100 \mathrm{Hz}$, where $T\approx 10\mathrm{ms}$ above. Of course, since these are produced by an organ, it’s not exactly periodic and have fluctuations. Specifically, the amount of variation in period length and amplitude are known respectively as <strong>jitter</strong> and <strong>shimmer</strong>.</p>
+  </li>
+  <li>
+    <p>there are <strong>softwares that can automatically plot these</strong>, e.g. <code class="language-plaintext highlighter-rouge">Praat</code></p>
+
+    <ul>
+      <li>but note that it can contain errors, such as <strong>pitch doubling or halving</strong> (i.e., looks very high or low in the diagram, but we don’t perceive it as high)</li>
+    </ul>
+
+    <p><img src="/lectures/images/2024-06-02-COMS6998_Spoken_Language_Processing/image-20240213162658508.png" alt="image-20240213162658508" style="zoom:50%;" /></p>
+  </li>
+  <li>
+    <p>difference between pitch and F0? Pitch is how human <em>perceives</em> the F0, and humans has lower acuity at higher frequency</p>
+
+    <ul>
+      <li>hence there is stuff like the <strong>mel scale</strong> to measure <strong>frequency</strong> (see <a href="#Reading Notes for Lecture 2">Reading notes</a>)</li>
+      <li>the <strong>dB</strong> scale mostly measure **amplitude **(e.g., whisper is about 10dB, normal conversation is about 50-70dB)</li>
+    </ul>
+  </li>
+</ul>
+
+<p>How is HNR useful?</p>
+
+<ul>
+  <li>lower HNR indicates more noise in signal, often <strong>perceived as hoarseness and roughness</strong> (emotionally-wise)</li>
+  <li>can also be used to discern pathological voice disorders</li>
+</ul>
+
+<p>More on <strong>visualizing waveform</strong>:</p>
+
+<ul>
+  <li>
+    <p>fricative v.s. vowel, the latter more clearly articulated</p>
+
+    <p><img src=".//lectures/images/2024-06-02-COMS6998_Spoken_Language_Processing/image-20240203222406009.png" alt="image-20240203222406009" style="zoom:50%;" /></p>
+  </li>
+  <li>
+    <p>and we can also use libraries to get the <strong>spectrogram</strong> of a waveform (by doing Fourier transforms) and analyze from there, i.e. <mark>using the formants</mark> (see <a href="#Reading Notes for Lecture 2">Reading notes</a>)</p>
+
+    <p><img src=".//lectures/images/2024-06-02-COMS6998_Spoken_Language_Processing/image-20240127142226286.png" alt="image-20240127142226286" style="zoom: 67%;" /></p>
+
+    <p>but again, these formants will <strong>change</strong> <em>depending on the consonant contexts</em>.</p>
+  </li>
+  <li>
+    <p>What’s the connection between the fundamental frequency $F_0$, and the formants $F_1, F_2, …$? if we consider a <strong>spectrum of a speech segment</strong> (i.e., the frequency-amplitude space after Fourier transform):</p>
+
+    <p><img src="/lectures/images/2024-06-02-COMS6998_Spoken_Language_Processing/image-20240130181052358.png" alt="image-20240130181052358" style="zoom:77%;" /></p>
+
+    <p>notice that <mark>F1, F2, ... are the frequencies of the amplitude peaks</mark> (i.e., the dark spots in the <strong>spectrogram</strong>), and they are all <strong>integer multiples of F0</strong>, which can be found by counting how frequent things peak here.</p>
+  </li>
+  <li>
+    <p>useful library here include <code class="language-plaintext highlighter-rouge">MFCC</code> and <code class="language-plaintext highlighter-rouge">Praat</code>, which can basically give you every quantity mentioned above automatically</p>
+  </li>
+</ul>
+
+<h2 id="reading-notes-for-lecture-2">Reading Notes for Lecture 2</h2>
+
+<ul>
+  <li>
+    <p>acoustic analysis is going again back to sine and cosine functions:</p>
+
+\[y = A * \sin(2\pi ft) = A * \sin(2\pi t / T)\]
+
+    <p>and <strong>sound waves</strong> are basically the above due to the change in air pressure = compression and rarefaction of air molecules in a plane wave. For example:</p>
+
+    <p><img src=".//lectures/images/2024-06-02-COMS6998_Spoken_Language_Processing/image-20240127133206320.png" alt="image-20240127133206320" style="zoom: 67%;" /></p>
+
+    <p>how is this produced in reality? It’s an <strong>analog-to-digital conversion</strong> where:</p>
+
+    <ol>
+      <li>we <strong>sample</strong> `$\to$ sampling frequency. To accurately measure a wave, we must have at least two samples <em>in each cycle</em>.
+        <ul>
+          <li>this means the <strong>maximum measurable frequency</strong> is <strong>half</strong> of the sampling rate. For human speech, we would need 20,000 Hz sampling rate = measure <em>20,000 amplitudes per second</em></li>
+        </ul>
+      </li>
+      <li>we <strong>quantize</strong> real value measurements into integers
+        <ul>
+          <li>for easier storage, we sometimes also compress them, e.g., using $\mu$​-law which is a log compression algorithm.</li>
+        </ul>
+      </li>
+    </ol>
+  </li>
+  <li>
+    <p>tie this back to articulatory phonetics:</p>
+
+    <ul>
+      <li>the frequency we record <strong>come from vibration of our vocal folds</strong></li>
+      <li>so e<strong>ach major peak</strong> in Figure 28.9 corresponds to <strong>an opening of the vocal folds</strong></li>
+    </ul>
+
+    <p>then basically we are recording frequency of vocal folds vibration , which is called <mark>fundamental frequency</mark> of a wave form, often abbreviated as <mark>F0</mark>:</p>
+
+    <p><img src=".//lectures/images/2024-06-02-COMS6998_Spoken_Language_Processing/image-20240127134621161.png" alt="image-20240127134621161" style="zoom: 67%;" /></p>
+
+    <p>for example, in the middle plot above we show the <strong>F0 over time in a pitch track</strong> = plotting the frequency as a function of time.</p>
+  </li>
+  <li>
+    <p>Similarly we can also plot (average) amplitude variation over time. But since directly averaging them you would get near zero everywhere, people typically use 1) <strong>root mean square amplitude</strong> 2) normalize it to <strong>human auditory threshold</strong>, measured in dB.</p>
+
+\[\mathrm{Intensity} = 10 \log_{10} \frac{1}{NP_0} \sum_{i=1}^N x_i^2\]
+
+    <p>visually:</p>
+
+    <p><img src=".//lectures/images/2024-06-02-COMS6998_Spoken_Language_Processing/image-20240127135541495.png" alt="image-20240127135541495" style="zoom: 67%;" /></p>
+  </li>
+  <li>
+    <p>human perceived <strong>pitch</strong> relates to <strong>frequency</strong>, but the difference is that:</p>
+
+    <ul>
+      <li>human hearings has different acuities for different frequencies</li>
+      <li>mostly linear for low frequency below 1000Hz (can accurately distinguish), but logarithmically for high frequency.</li>
+    </ul>
+
+    <p>as a result, there is also a <mark>mel scale</mark>, where a unit of pitch is defined such that pair of sounds which are <mark>perceptually equidistant</mark> in pitch are separated by an equal number of mels.</p>
+  </li>
+  <li>
+    <p>human perceived <strong>loudness</strong> corelates to <strong>power</strong>, but again</p>
+
+    <ul>
+      <li>humans have a greater resolution in the lower-power range</li>
+    </ul>
+  </li>
+  <li>
+    <p>phones can often be <strong>visually found by inspecting its waveform</strong>:</p>
+
+    <p><img src=".//lectures/images/2024-06-02-COMS6998_Spoken_Language_Processing/image-20240127140724880.png" alt="image-20240127140724880" style="zoom:67%;" /></p>
+
+    <p>notice that <mark>vowels are often voiced = have regular peaks in amplitudes</mark>.</p>
+  </li>
+  <li>
+    <p>an alternative representation of the above is to use <mark>Fourier analysis</mark> to decompose a wave at any time using <strong>frequencies and amplitudes</strong> of the composite waves:</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th style="text-align: center">Original Wave</th>
+          <th style="text-align: center">Fourier Decomposition</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="text-align: center"><img src=".//lectures/images/2024-06-02-COMS6998_Spoken_Language_Processing/image-20240127141129784.png" alt="image-20240127141129784" /></td>
+          <td style="text-align: center"><img src=".//lectures/images/2024-06-02-COMS6998_Spoken_Language_Processing/image-20240127141135949.png" alt="image-20240127141135949" /></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>recall that since Fourier analysis can break <em>any smooth function $f(t)$</em> into a sum of sine/cosine waves:</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th style="text-align: center">Original Wave</th>
+          <th style="text-align: center">Fourier Decomposition</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="text-align: center"><img src=".//lectures/images/2024-06-02-COMS6998_Spoken_Language_Processing/image-20240127141424118.png" alt="image-20240127141424118" /></td>
+          <td style="text-align: center"><img src=".//lectures/images/2024-06-02-COMS6998_Spoken_Language_Processing/image-20240127141430862.png" alt="image-20240127141430862" />1</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>but why is this decomposition useful? It turns out <strong>peaks</strong> (e.g. around 930, 1860, and 3020Hz) are <mark>=characteristics of different phones</mark>.</p>
+  </li>
+  <li>
+    <p>a yet another way of representing sound is using <strong>spectrograms</strong> (inspired by the finding above). In a spectrogram, we can plot all time, frequency, and amplitude by using a <strong>dark points to signify high amplitude</strong>:</p>
+
+    <p><img src=".//lectures/images/2024-06-02-COMS6998_Spoken_Language_Processing/image-20240127142226286.png" alt="image-20240127142226286" style="zoom:67%;" /></p>
+
+    <p>this is useful because:</p>
+
+    <ul>
+      <li>let each horizontal dark bar (or spectral peak) be called a <strong>formant</strong></li>
+      <li>then F1 (first formant) of the first vowel (left) is at about 470Hz, much lower than the other two (at about 800 Hz)</li>
+      <li>so again, since <strong>different vowel have different formants at characteristics places</strong> = spectrum can distinguish vowels from each other (typically just using F1 and F2 suffices)</li>
+    </ul>
+  </li>
+  <li>
+    <p>there are many online phonetic resources where we can use for computation work, here a few is highlighted</p>
+
+    <ul>
+      <li>online <strong>pronunciation dictionaries</strong> such as LDC</li>
+      <li><strong>phonetically annotated corpus</strong>, a collection of waveforms hand-labeled with the corresponding string of phones</li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="tools-for-speech-analysis">Tools for Speech Analysis</h1>
+
+<p><strong>Praat</strong>: a general purpose speech tool for</p>
+
+<ul>
+  <li>editing, segmentation and labeling sounds</li>
+  <li>can also create plots!</li>
+</ul>
+
+<p>Assuming you have already gone through the tutorials (record, analysis, and save). By default, viewing a sound file should also give you a spectrogram</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS6998_Spoken_Language_Processing/image-20240206162945328.png" alt="image-20240206162945328" style="zoom:33%;" /></p>
+
+<p>and basically from the top menu bar, you can analyze information such as “maximum pitch”.</p>
+
+<p><strong>By comparing the analysis between different files</strong>, you could find:</p>
+
+<ul>
+  <li>maximum pitch of male voice is much lower than that of females</li>
+  <li>intensity for whispering is lower than not whispering</li>
+  <li>F0 contour rises at the end for yes or no question</li>
+  <li>etc.</li>
+</ul>
+
+<p><strong>You can also manipulate your sound</strong> using the <code class="language-plaintext highlighter-rouge">manipulation</code> option from the objects window. <em>For example</em>, changing the pitch and duration (speed) of the last part of the “My mama lives in Memphis”:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Getting the manipulation object</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><img src="/lectures/images/2024-06-02-COMS6998_Spoken_Language_Processing/image-20240218140822702.png" alt="image-20240218140822702" style="zoom: 50%;" /></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Then simply drag and move manipulatable dots using or you can add them (using the menu bar on top)</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Normal Sound</th>
+      <th>Manipulating to get a Y and N question</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><img src="/lectures/images/2024-06-02-COMS6998_Spoken_Language_Processing/image-20240206174144135.png" alt="image-20240206174144135" /></td>
+      <td><img src="/lectures/images/2024-06-02-COMS6998_Spoken_Language_Processing/image-20240206174048019.png" alt="image-20240206174048019" /></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>For more details, refer to Week 4 on this syllabus: <a href="https://www.cs.columbia.edu/~julia/courses/CS6998-24/syllabus24.html">cs.columbia.edu/~julia/courses/CS6998-24/syllabus24.html</a></p>
+
+<h2 id="scripting-in-praat">Scripting in Praat</h2>
+
+<p>The main reference is <a href="https://www.fon.hum.uva.nl/praat/manual/Sound.html">Sound (uva.nl)</a>, but some generic note is you can “translate” clicking in Praat to scripting by, for example:</p>
+
+<p>Obtain mean intensity:</p>
+
+<ol>
+  <li>
+    <p>Get an intensity object:</p>
+
+    <p><img src=".//lectures/images/2024-06-02-COMS6998_Spoken_Language_Processing/image-20240217172854231.png" alt="image-20240217172854231" style="zoom:50%;" /></p>
+  </li>
+  <li>
+    <p>query for intensity min:</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th style="text-align: center">Query Command</th>
+          <th style="text-align: center">Setting/Arguments</th>
+          <th style="text-align: center">Results</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="text-align: center"><img src=".//lectures/images/2024-06-02-COMS6998_Spoken_Language_Processing/image-20240217173020439.png" alt="image-20240217173020439" style="zoom: 80%;" /></td>
+          <td style="text-align: center"><img src=".//lectures/images/2024-06-02-COMS6998_Spoken_Language_Processing/image-20240217173033062.png" alt="image-20240217173033062" /></td>
+          <td style="text-align: center"><img src=".//lectures/images/2024-06-02-COMS6998_Spoken_Language_Processing/image-20240217173038158.png" alt="image-20240217173038158" /></td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+</ol>
+
+<p>The above would translate to the following commands in <code class="language-plaintext highlighter-rouge">python</code>. Note that the arguments to the <code class="language-plaintext highlighter-rouge">call</code> function are basically the <strong>same ones you see in the <code class="language-plaintext highlighter-rouge">Settings</code> pop up window above.</strong></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">parselmouth</span>
+<span class="kn">from</span> <span class="nn">parselmouth.praat</span> <span class="kn">import</span> <span class="n">call</span>
+
+<span class="k">def</span> <span class="nf">extract_features_from_file</span><span class="p">(</span><span class="n">wav_file_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">transcriptions</span><span class="p">:</span> <span class="n">Dict</span><span class="p">):</span>
+    <span class="n">sound_obj</span> <span class="o">=</span> <span class="n">parselmouth</span><span class="p">.</span><span class="n">Sound</span><span class="p">(</span><span class="n">wav_file_path</span><span class="p">)</span>
+    <span class="n">data_dict</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="c1">### intensity analysis
+</span>    <span class="n">intensity_obj</span> <span class="o">=</span> <span class="n">call</span><span class="p">(</span><span class="n">sound_obj</span><span class="p">,</span> <span class="s">"To Intensity"</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s">"yes"</span><span class="p">)</span>
+    <span class="n">mean_intensity</span> <span class="o">=</span> <span class="n">call</span><span class="p">(</span><span class="n">intensity_obj</span><span class="p">,</span> <span class="s">"Get mean"</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s">"energy"</span><span class="p">)</span>
+    <span class="n">max_intensity</span> <span class="o">=</span> <span class="n">call</span><span class="p">(</span><span class="n">intensity_obj</span><span class="p">,</span> <span class="s">"Get maximum"</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s">"Parabolic"</span><span class="p">)</span>
+    <span class="n">min_intensity</span> <span class="o">=</span> <span class="n">call</span><span class="p">(</span><span class="n">intensity_obj</span><span class="p">,</span> <span class="s">"Get minimum"</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s">"Parabolic"</span><span class="p">)</span>
+    <span class="n">stdev_intensity</span> <span class="o">=</span> <span class="n">call</span><span class="p">(</span><span class="n">intensity_obj</span><span class="p">,</span> <span class="s">"Get standard deviation"</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">data_dict</span><span class="p">[</span><span class="s">"Mean Intensity"</span><span class="p">]</span> <span class="o">=</span> <span class="n">mean_intensity</span>
+    <span class="n">data_dict</span><span class="p">[</span><span class="s">"Max Intensity"</span><span class="p">]</span> <span class="o">=</span> <span class="n">max_intensity</span>
+    <span class="n">data_dict</span><span class="p">[</span><span class="s">"Min Intensity"</span><span class="p">]</span> <span class="o">=</span> <span class="n">min_intensity</span>
+    <span class="n">data_dict</span><span class="p">[</span><span class="s">"Sd Intensity"</span><span class="p">]</span> <span class="o">=</span> <span class="n">stdev_intensity</span>
+    
+    <span class="c1"># other code omitted
+</span></code></pre></div></div>
+
+<h1 id="analyzing-speech-prosody">Analyzing Speech Prosody</h1>
+
+<blockquote>
+  <p>Prosody is the study of the elements of speech that aren’t phonetic segments (e.g. vowels and consonants) and is concerned with <strong>the way speech sounds</strong>.</p>
+</blockquote>
+
+<p>Differences in <strong>how people produce a speech</strong> influence how we <strong>interpret it</strong> (i.e., semantic meanings). Therefore, building a good <strong>prosodic model</strong> can be very useful for:</p>
+
+<ul>
+  <li>improving text-to-speech synthesis</li>
+  <li>improve speech recognition and understanding</li>
+  <li>etc.</li>
+</ul>
+
+<p>Some <strong>challenges</strong> in building a good prosodic model:</p>
+
+<ul>
+  <li>
+    <p>naively <strong>using a pitch contour directly</strong> = people could have spoke in different pitches = <strong>difficult to represent similarities between contours</strong></p>
+
+    <p><img src="/lectures/images/2024-06-02-COMS6998_Spoken_Language_Processing/image-20240213161904138.png" alt="image-20240213161904138" style="zoom:33%;" /></p>
+  </li>
+  <li>
+    <p>how about just annotating them with <strong>arrows and capital letters</strong>?</p>
+
+    <p><img src="/lectures/images/2024-06-02-COMS6998_Spoken_Language_Processing/image-20240213161949795.png" alt="image-20240213161949795" style="zoom:33%;" /></p>
+
+    <p>but this is too generic: it doesn’t capture full contours or type of pitch accents</p>
+  </li>
+</ul>
+
+<p>before we go to modern systems such as TOBI, we need to discusst some definitions</p>
+
+<blockquote>
+  <p>Recall that:</p>
+
+  <ul>
+    <li><strong>Prominence/Pitch Accent</strong>: making a word or syllable “stand out”</li>
+    <li><strong>Perceived Disjuncture</strong>: pauses during the speech, for instance used to <strong>structure information</strong> (e.g., group words into regions)</li>
+  </ul>
+</blockquote>
+
+<h2 id="tone-sequence-models">Tone Sequence Models</h2>
+
+<p>How we annotate prosody today:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>British School</th>
+      <th>American School (we will focus on this)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><img src="/lectures/images/2024-06-02-COMS6998_Spoken_Language_Processing/image-20240213163203512.png" alt="image-20240213163203512" style="zoom:50%;" /></td>
+      <td><img src="/lectures/images/2024-06-02-COMS6998_Spoken_Language_Processing/image-20240213163314057.png" alt="image-20240213163314057" style="zoom:50%;" /></td>
+    </tr>
+  </tbody>
+</table>
+
+<blockquote>
+  <p>On a high level, the American school consider:</p>
+
+  <ul>
+    <li><mark>accents</mark> (if a particular word is prominent)</li>
+    <li><mark>boundary tones</mark> (if the entire phrase is prominent)</li>
+    <li><mark>phrase accents</mark> (if part of a phrase is prominent)</li>
+    <li>and different ways to pause (<mark>break index</mark>), etc.</li>
+  </ul>
+</blockquote>
+
+<p>The American school became popular since the 1980 thesis from Pierrehumbert, where <strong>how human produces speech = transitions in the state diagram below</strong>:</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS6998_Spoken_Language_Processing/image-20240213163716721.png" alt="image-20240213163716721" style="zoom:50%;" /></p>
+
+<p>In the 1991-94, <mark>there comes the TOBI system</mark> that combined the above and other prior work with the goal of</p>
+
+<ul>
+  <li>Devise common labeling scheme for Standard American English that is robust and reliable</li>
+  <li>Promote collection of large, prosodically labeled, <strong>shareable</strong> corpora</li>
+</ul>
+
+<blockquote>
+  <p>In TOBI, prosody is</p>
+
+  <ul>
+    <li>inherently <mark>categorical</mark> in labeling prosody</li>
+    <li>basically describes <strong>high (H)</strong> and <strong>low (L)</strong> toes associated with events such as pitch accents, phrase accents, and boundary tones</li>
+    <li><strong>break indices</strong> to describe when you pause, and the degree/length of the pause</li>
+  </ul>
+</blockquote>
+
+<p>On a high level, TOBI annotates the F0 contour with four tiers:</p>
+
+<ol>
+  <li><strong>orthographic</strong>: annotate the actual words that are said</li>
+  <li><strong>break-index:</strong> pauses and how long is the pause</li>
+  <li><strong>Tonal Tier</strong>: all accents (prominence)  including pitch accents, phrase accents, boundary tones</li>
+  <li><strong>Miscellaneous Tie</strong>r:  disfluencies, laughter, etc.</li>
+</ol>
+
+<h3 id="tobi-pitch-accent-types">TOBI Pitch Accent Types</h3>
+
+<p>Words can be accented/deaccented in different ways</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Accent Contour</th>
+      <th style="text-align: center">Meaning</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><img src="/lectures/images/2024-06-02-COMS6998_Spoken_Language_Processing/image-20240213164608183.png" alt="image-20240213164608183" style="zoom: 33%;" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2024-06-02-COMS6998_Spoken_Language_Processing/image-20240213164643303.png" alt="image-20240213164643303" style="zoom: 33%;" /></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>An example</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS6998_Spoken_Language_Processing/image-20240213164957991.png" alt="image-20240213164957991" style="zoom:50%;" /></p>
+
+<h3 id="prosodic-phrase-and-phrase-ending-in-tobi">Prosodic Phrase and Phrase Ending in TOBI</h3>
+
+<p>Combined we can describe an entire phrase -&gt; combined we can describe accents in an entire sentence.</p>
+
+<p>For instance, the rows indicates the <strong>accent to start something</strong>, and columns indicate <strong>accent in the middle/ending</strong>.</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS6998_Spoken_Language_Processing/image-20240213170115673.png" alt="image-20240213170115673" style="zoom: 33%;" /></p>
+
+<p><img src="/lectures/images/2024-06-02-COMS6998_Spoken_Language_Processing/image-20240213170125037.png" alt="image-20240213170125037" style="zoom: 33%;" /></p>
+
+<p>Examples include</p>
+
+<ul>
+  <li>(H*; L-L%) “I (up) like you (down)”</li>
+  <li>(L*; L-L%) “Amelia.”</li>
+  <li>(L* + H;  L - H%) “A (low) me (high) li (low) a (up)”</li>
+</ul>
+
+<p>A full example with a sentence (note that <mark>no label for a word = deaccented/no accent</mark>)</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS6998_Spoken_Language_Processing/image-20240213170426348.png" alt="image-20240213170426348" style="zoom:50%;" /></p>
+
+<blockquote>
+  <p>Although it might seem “subjective” to decide when there is an accent and how its accented, but it turns out:</p>
+
+  <ul>
+    <li>88% agreement on presence/absence of tonal category</li>
+    <li>81% agreement on category label</li>
+    <li>91% agreement on break indices to within 1 level</li>
+  </ul>
+
+  <p>so <strong>after some training this should be pretty robust/intuitive!</strong></p>
+</blockquote>
+
+<h2 id="autobi">AuTOBI</h2>
+
+<p>Somebody also built a way to <strong>automatically</strong> annotate a voice track with TOBI. Basically it identifies pitch accents and boundaries with high accuracy using many acoustic-prosodic features.</p>
+
+<p><strong>Input you will give:</strong></p>
+
+<ul>
+  <li>Time-aligned word boundaries (human or automatically done)</li>
+  <li>a <code class="language-plaintext highlighter-rouge">.wav</code> file of the speech</li>
+  <li>some previously trained AuToBI models (e.g. for different language, trained on different corpus)</li>
+</ul>
+
+<p><strong>Output</strong></p>
+
+<ul>
+  <li>TOBI tones and break indicies</li>
+  <li>confidence scores as well</li>
+</ul>
+
+<p>An example</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS6998_Spoken_Language_Processing/image-20240213171728296.png" alt="image-20240213171728296" style="zoom: 33%;" /></p>
+
+<h2 id="other-prosodic-models">Other Prosodic Models</h2>
+
+<p>There are <strong>many other ways to model prosody and analyze them</strong>.</p>
+
+<ul>
+  <li>many models are developed for database retrieval, phonological analysis and text-to-speech synthesis</li>
+  <li>How can we extract information from large speech corpora that go beyond pitch, intensity, speaking rate?</li>
+  <li>How can we analyze the way subjects convey different kinds of information?</li>
+  <li>etc.</li>
+</ul>
+
+<h2 id="reading-notes-for-lecture-4">Reading Notes for Lecture 4</h2>
+
+<h3 id="analyzing-speech-prosody-1">Analyzing Speech Prosody</h3>
+
+<p>See PDF at <a href="https://www.cs.columbia.edu/~julia/papers/conv.pdf">conv.dvi (columbia.edu)</a></p>
+
+<blockquote>
+  <p>The <strong>TOBI (Tones and Break Indices) annotation system</strong> is a tool used for marking intonation and prosodic structure in spoken language. TOBI provides a <mark>standardized</mark> way to annotate speech, facilitating the study of how intonation patterns affect meaning, signal sentence structure, and express speaker attitudes.</p>
+</blockquote>
+
+<p>It consists of four tiers for <mark>labeling the F0 contour</mark> of a speech:</p>
+
+<ol>
+  <li>
+    <p>an orthographic tier</p>
+
+    <ul>
+      <li>an orthographic word = one standalone English word</li>
+      <li>transcription of orthographic words done at the <strong>final segment of the word</strong> = the right edge</li>
+      <li>some considerations here include: whether or not to annotate pauses such as “er”,  “mm”, “uh”, etc.</li>
+    </ul>
+  </li>
+  <li>
+    <p>a tone tier: we mark two type of events</p>
+
+    <ul>
+      <li>pitch events associated with <strong>intonational boundaries</strong> (phrasal tones)
+        <ul>
+          <li>assigned at every intermediate phrase</li>
+          <li>L- or H- <strong>phrase accent</strong>, which occurs at an intermediate phrase boundary</li>
+          <li>L% or H% <strong>boundary tone</strong></li>
+          <li>%H high <strong>initial boundary tone</strong> = phrase that begins relative high in the speaker’s pitch range</li>
+          <li>example include “H-H%” in a yes-no question, and “L-L%” for a full intonation phrase with a L accent ending its final phrase and a L% boundary tone falling to a point low in pitch</li>
+        </ul>
+      </li>
+      <li>pitch events associated with <strong>accented syllabus</strong> (pitch accent)
+        <ul>
+          <li>marked at every <strong>accented syllable</strong></li>
+          <li>H* peak accent = high pitch range for the speaker</li>
+          <li>L* low accent</li>
+          <li>L*+H scooped accent = low taget on the accented syllable immediately followed by a sharp rise</li>
+          <li>L+H* rising peak  accent = a high peak target on the accented syllable preceded by a sharp rise from a valley</li>
+          <li>H+!H* a clear step down onto the accented syllable…</li>
+        </ul>
+      </li>
+      <li>examples include:</li>
+    </ul>
+
+    <table>
+      <thead>
+        <tr>
+          <th style="text-align: center">low boundary tone</th>
+          <th style="text-align: center">yes-no question</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="text-align: center"><img src="/lectures/images/2024-06-02-COMS6998_Spoken_Language_Processing/image-20240211203311541.png" alt="image-20240211203311541" style="zoom: 67%;" /></td>
+          <td style="text-align: center"><img src="/lectures/images/2024-06-02-COMS6998_Spoken_Language_Processing/image-20240211203518456.png" alt="image-20240211203518456" style="zoom: 67%;" /></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>other variants of <strong>phrasal</strong> accents are shown in</p>
+
+    <p><img src="/lectures/images/2024-06-02-COMS6998_Spoken_Language_Processing/image-20240211203838494.png" alt="image-20240211203838494" /></p>
+
+    <p>examples of <strong>syllable</strong> accents:</p>
+
+    <p><img src="/lectures/images/2024-06-02-COMS6998_Spoken_Language_Processing/image-20240211203906834.png" alt="image-20240211203906834" /></p>
+  </li>
+  <li>
+    <p>a break-index tier</p>
+
+    <ul>
+      <li>break indices are to be marked at the right edges of words transcribed in the Orthographic tier. All junctures have an explicity break index value.</li>
+      <li><strong>break-index values</strong> include:
+        <ul>
+          <li>“0” for clear phonetic marks of clitic groups (e.g., “0” between “Did” and “you” indicating palatalization)</li>
+          <li>“1” for most phrase-medial word boundaries (e.g., a mere word boundary between “you” and “want”)</li>
+          <li>“2” strong disjuncture due to a pause</li>
+          <li>“3” intermediate intonation phrase boundary: “a single phrase tone affecting the region from the last pitch accent to the boundary”</li>
+          <li>“4” full intonation phrase boundary (e.g., “4” at the end of a sentence.)</li>
+        </ul>
+      </li>
+      <li>(in practice, its frequently “0” = no juncture, “1” normal pauses between words. See section <a href="#Tone-Sequence-Models">Tone Sequence Models</a> for more example)</li>
+      <li>if you are uncertain, use “-“ (e.g., “2-“ means uncertainty between “2” and “1”)</li>
+      <li><strong>disfluencies</strong> are indicated by “p”, meaning an audible hesitation. (e.g., “3p”)</li>
+    </ul>
+  </li>
+  <li>
+    <p>a miscellaneous tier, used for <strong>comments or markings of laughter, disfluencies, etc.</strong></p>
+
+    <ul>
+      <li>
+        <p>labels should be applied at the <em>temporal beginnings and endings by</em>:</p>
+
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>event&lt; ... event&gt;
+</code></pre></div>        </div>
+
+        <p>for example, a period of laughter plus speech (<code class="language-plaintext highlighter-rouge">...</code>) looks like:</p>
+
+        <pre><code class="language-wave">laughter&lt; ... laughter&gt;
+</code></pre>
+      </li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="pragmatics-and-prosody">Pragmatics and Prosody</h3>
+
+<p><strong>Variation in prosody (i.e., intonation)</strong> can influence the interpretation of languages. This section discusses aspects of prosodic variation (e.g., when and where intonation changes) and pragmatic meaning that have been explored by researchers.</p>
+
+<p>To achieve this, <strong>many conventions for describing prosodic variation</strong> has been developed = can easily compare across researchers</p>
+
+<ul>
+  <li><strong>continuous descriptions</strong> focus on describing the F0 contour</li>
+  <li><strong>categorical systems</strong> describes prosodic events as tokens from a given inventory of prosodic phenomena. Example include <strong>TOBI</strong>.</li>
+</ul>
+
+<p>TOBI annotations often have some interpretations:</p>
+
+<ul>
+  <li>H* accents of an <strong>accented (prominent) word</strong> in a declarative sentence = the accented item is <mark>new information</mark></li>
+  <li>L+H* accents can be used to produce a sense of <mark>contrast</mark></li>
+  <li>and more</li>
+</ul>
+
+<p>research on the <strong>prosody-syntax interface</strong> = can these two affect each other?</p>
+
+<ul>
+  <li>
+    <p>how prosodic phrases divide an utterance into meaningful chunks? Can this aid syntactic parsing?</p>
+  </li>
+  <li>
+    <p>useful in resolving syntactic disambiguation, such as:</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>VP-attachment: Anna frightened the woman | with the gun (Anna held the gun)
+NP-attachment: Anna frightened | the woman with the gun (the woman held the gun)
+</code></pre></div>    </div>
+
+    <p>While prosodic variation can disambiguate syntactically ambiguous utterances,  <strong>evidence that it does so reliably is mixed</strong>.  Speakers often  manage to convey the distinctions illustrated above without employing particular prosodic means.</p>
+  </li>
+  <li>
+    <p>this relationship exists in many languages</p>
+  </li>
+</ul>
+
+<p><strong>Prosodic</strong> prominence and phrasing can also influence the <strong>semantic interpretation</strong> of  utterances.</p>
+
+<ul>
+  <li>
+    <p>signal <mark>focus</mark>, define the scope of <mark>negation</mark>, quantification, and  modals, and influence the interpretation of presupposition</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>DOGS must be carried
+dogs must be CARRIED
+</code></pre></div>    </div>
+
+    <p>being a sign on a British train in 1967 confused people that every trainer should have a dog and carry them.</p>
+  </li>
+  <li>
+    <p><strong>reference resolution</strong> = pronouns may be interpreted differently depending upon whether they are prominent  or not, in varying contexts. For instance:</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>John called Bill a Republican and then he insulted him
+John called Bill a Republican and then HE insulted HIM
+</code></pre></div>    </div>
+
+    <p>With both deaccented, the likely referent of he is John and him is Bill, but if both are accented, the preferred referents of each are switched.</p>
+  </li>
+</ul>
+
+<p><strong>Prosodic</strong> can indicate some <strong>discourse phenomena</strong> (i.e., extract meta information from a conversation)</p>
+
+<ul>
+  <li>
+    <p><strong>information</strong> - such as focus of attention, <mark>topic/comment</mark>, theme/rheme, given/new - is  often correlated with <strong>variation in accent or phrasing</strong></p>
+  </li>
+  <li>
+    <p>signaling <strong>focus of attention and contrast</strong>: not only that prosodic prominence can signal focus but that inappropriate deaccenting of items in focal contexts or accenting of items in non-focal contexts show differences  in brain activity in ERP experiments with Dutch speakers.</p>
+  </li>
+  <li>
+    <p>conveying information about <strong>discourse topic</strong>: in task-oriented monologues, speakers referred to local topics with deaccented pronominal expressions, and accented, full NPs otherwise</p>
+  </li>
+  <li>
+    <p>distinguishing <strong>new/old</strong> information: an expression may be prosodically marked as given (i.e., old information) by deaccenting</p>
+  </li>
+  <li>
+    <p>convery <strong>discourse structure</strong> by varying pitch range, pausal duration between phrases, and speaking rate. For instance,  it has been found that phrases beginning <em>new topics are begun in a wider pitch range</em>, are preceded by a longer  pause, and are louder and slower than other phrases;</p>
+  </li>
+  <li>
+    <p>there is considerable evidence that <strong>full intonational</strong> contours can, in the appropriate context, <strong>signal syntactic mood, speech act, belief, or emotion</strong></p>
+
+    <ul>
+      <li>For example, the L*H L-H% contour may convey uncertainty</li>
+    </ul>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>A: Did you feed the animals?
+B: I fed the L<span class="k">*</span>+H GOLDFISH L-H% <span class="o">(</span>is that what you meant?<span class="o">)</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<p>See PDF as <a href="https://www.cs.columbia.edu/~julia/papers/Chapter_28.pdf">cs.columbia.edu/~julia/papers/Chapter_28.pdf</a></p>
+
+<h1 id="text-to-speech-analysis">Text-To-Speech Analysis</h1>
+
+<blockquote>
+  <p><strong>Requirements</strong> for a TTS system:</p>
+
+  <ul>
+    <li>
+      <p>Front End: pronounciation modeling; text normalization; intonation</p>
+    </li>
+    <li>
+      <p>Backend: waveform production</p>
+    </li>
+  </ul>
+</blockquote>
+
+<p>For example:</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS6998_Spoken_Language_Processing/image-20240220163039713.png" alt="image-20240220163039713" style="zoom:50%;" /></p>
+
+<p>And there are many <strong>issues</strong> and <strong>challenges</strong>:</p>
+
+<ul>
+  <li><strong>disambiguation</strong> in context: “bass”, “reading” (e.g., “Reading is the place he hated most” is pronounced as “reding”)
+    <ul>
+      <li>this can be done with Letter-to-Sound Rules or even Pronunciation Dictionary</li>
+      <li>or learn from data</li>
+    </ul>
+  </li>
+  <li><strong>text normalization</strong> issues: “The <u>NAACP</u> just elected a new president.” is pronounced as “N double A CP”</li>
+  <li>sentence and phrase <strong>break</strong>. You think you can just use punctuations, but what about “234-5682”?
+    <ul>
+      <li>traditional: hand-built rules</li>
+      <li>current approach: machine learning on large labeled corpus</li>
+    </ul>
+  </li>
+  <li>assigning pitch contours: in reality no one knows how to assign complex varieties of how human talks
+    <ul>
+      <li>e.g., with just “.”’ = declarative contour, wh-question v.s. “?” = yes-no-question contour is doable now</li>
+      <li>but in reality people can put accent everywhere</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="more-on-waveform-generation">More on Waveform Generation</h2>
+
+<p>They are many types of approaches today:</p>
+
+<ul>
+  <li>(early days) Articulatory Synthesis: Model the actual movements of articulators and acoustics of vocal tract</li>
+  <li>(early days) Formant Synthesis: Start with acoustics, create rules/filters to create each formant (i.e., produce formants for each group)
+    <ul>
+      <li>the DECtalk system that Stephen Hawking use</li>
+    </ul>
+  </li>
+  <li><strong>Concatenative Synthesis</strong>: Diphone or Unit Selection using databases to store speech segments (i.e., select from database + glue the waveforms)
+    <ul>
+      <li>this is actually used a lot in commercial products until late 1990s</li>
+      <li>directly using this produces a speech that is <em>not very smooth</em>. How do we do post-processing on the output?</li>
+    </ul>
+  </li>
+  <li><strong>Parametric Synthesis:</strong> ML-based learning methods
+    <ul>
+      <li>used by SIRI in early days</li>
+    </ul>
+  </li>
+  <li><strong>End2End Models</strong></li>
+</ul>
+
+<h3 id="concatenative-sythesis">Concatenative Sythesis</h3>
+
+<p>There are two ways to do this:</p>
+
+<ul>
+  <li><strong>diphone synthesis</strong>: every sound/unit is a diphone (two phones)
+    <ul>
+      <li>all you need is a collection of recording for all possible diphones</li>
+      <li>then you just fetch the diphones and concatenate them to produce speech</li>
+      <li>intelligible, but not very natural/continuous</li>
+    </ul>
+  </li>
+  <li><strong>unit selection synthesis</strong>: use larger units than diphone
+    <ul>
+      <li>not only diphone, but also record common ones and common phrases</li>
+      <li>use dynamic programming to search to find best <em>sequence</em> of units, and then concatenate them</li>
+      <li>better than diphone synthesis since you are <em>joining less disjunct chunks</em></li>
+    </ul>
+  </li>
+</ul>
+
+<p>Visually, diphone synthesis could cut at <code class="language-plaintext highlighter-rouge">eh</code> and join things:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Example Diphone 1</th>
+      <th style="text-align: center">Example Diphone 1</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><img src="/lectures/images/2024-06-02-COMS6998_Spoken_Language_Processing/image-20240220165911759.png" alt="image-20240220165911759" style="zoom: 67%;" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2024-06-02-COMS6998_Spoken_Language_Processing/image-20240220165917452.png" alt="image-20240220165917452" style="zoom: 67%;" /></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>For unit synthesis, the challenge is how to find the unit that <strong>best</strong> matches the desired synthesis specification. What does best mean here?</p>
+
+<ul>
+  <li><strong>Target cost:</strong> Find closest match in terms of
+    <ul>
+      <li>Phonetic context</li>
+      <li>F0, stress, phrase position</li>
+    </ul>
+  </li>
+  <li><strong>Join cost:</strong> Find best join with neighboring units
+    <ul>
+      <li>Matching formants + other spectral characteristics</li>
+      <li>Matching energy</li>
+      <li>Matching F0</li>
+    </ul>
+  </li>
+</ul>
+
+<p>and more. The end goal is to get a better <strong>prosody selection</strong>. However, this is good only when the database is large and diverse enough:</p>
+
+<ul>
+  <li>This has bad performance <strong>when no good match in database</strong></li>
+  <li>Hard to control the overall prosody/vary speaker identity</li>
+</ul>
+
+<h3 id="parametric-synthesis">Parametric Synthesis</h3>
+
+<p>The idea is to use ML to generate acoustic features:</p>
+
+<ul>
+  <li><strong>Hidden Markov Model Synthesis</strong> (good in the early days)
+    <ul>
+      <li>predict the acoustic property of each phone in each context</li>
+      <li>a best non-neural parametric system</li>
+    </ul>
+  </li>
+  <li><strong>Neural Net Synthesis</strong> (many modern TTS systems)
+    <ul>
+      <li>can capture more complex relationships</li>
+      <li>began to overcome naturalness issues</li>
+    </ul>
+  </li>
+</ul>
+
+<p>An example of NN systhesis approach:<strong>Merlin and Neural Net Synthesis</strong>: use NN to predict acoustic <strong>features</strong>, and use a backend to generate waveforms</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS6998_Spoken_Language_Processing/image-20240220171014666.png" alt="image-20240220171014666" /></p>
+
+<ul>
+  <li>features for each phone include: “Current phone; Surrounding phones;  Position in syllable/word/sentence; Stress; …”</li>
+  <li>so this NN is only doing the frontend. It is not an end-to-end model.</li>
+</ul>
+
+<p>Problem: not end-to-end means error can accumulate!</p>
+
+<h3 id="end-to-end-models">End-to-End Models</h3>
+
+<p>Directly generate waveforms from text:</p>
+
+<ul>
+  <li>
+    <p>even more natural, and used in <strong>many TTS systems today</strong></p>
+  </li>
+  <li>
+    <p>but also require a lot of training data</p>
+  </li>
+  <li>
+    <p>examples include WaveNet (based on CNN), Tacrotron (based on Transformer)</p>
+
+    <p><img src="/lectures/images/2024-06-02-COMS6998_Spoken_Language_Processing/image-20240220171506518.png" alt="image-20240220171506518" style="zoom:77%;" /></p>
+  </li>
+</ul>
+
+<p>But why was Tacrotron so good?</p>
+
+<ul>
+  <li>Autoregression is very useful: each new waveform is <strong>conditioned on previous context</strong></li>
+  <li>Neural nets are mostly better at learning <strong>contextual</strong> features</li>
+  <li>Attention mechanism: Only minor improvements</li>
+</ul>
+
+<p><strong>Problems</strong> with this approach:</p>
+
+<ul>
+  <li>losing low-level control as we let the model do everything</li>
+  <li>need large data and large model</li>
+</ul>
+
+<h2 id="producing-trustworthy-voices">Producing Trustworthy Voices</h2>
+
+<p>The second part of the lecture was about <strong>how to produce</strong> trustworthy speech, and <strong>how human perceive</strong> trustworthiness in speech.</p>
+
+<p>Some studies that does this include <strong>synthesizing speech + putting online survey to have people rate them</strong></p>
+
+<ul>
+  <li>use STRAIGHT toolkit in Matlab, which allows you to manipulate sound</li>
+  <li>specifically considered speech stimulus in 5 parameters:
+    <ul>
+      <li>F0, frequency, spectro-temporal density, aperiodicity</li>
+    </ul>
+  </li>
+  <li>manipulate and combine parameters</li>
+  <li><em>only focus on the producing the word: “hello”</em></li>
+</ul>
+
+<p>Some interesting results found were:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Overall Features</th>
+      <th style="text-align: center">Red is rated as more trustworthy</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><img src="/lectures/images/2024-06-02-COMS6998_Spoken_Language_Processing/image-20240220172408514.png" alt="image-20240220172408514" style="zoom: 23%;" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2024-06-02-COMS6998_Spoken_Language_Processing/image-20240220172905460.png" alt="image-20240220172905460" style="zoom: 33%;" /></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>The more latest approach is that you can SOTA TTS model (<a href="https://docs.aws.amazon.com/polly/latest/dg/what-is.html">Amazon Polly</a>) + voice manipulation (<a href="https://docs.aws.amazon.com/polly/latest/dg/ssml.html">Generating Speech from SSML Documents</a>) and meausure <strong>longer speeches</strong>:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">High level features</th>
+      <th style="text-align: center">Lower level features</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><img src="/lectures/images/2024-06-02-COMS6998_Spoken_Language_Processing/image-20240220174128354.png" alt="image-20240220174128354" style="zoom:40%;" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2024-06-02-COMS6998_Spoken_Language_Processing/image-20240220174317228.png" alt="image-20240220174317228" style="zoom:23%;" /></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>where here, they found that trustworthiness (first column) <strong>correlates with mostly positive traits</strong> such as “engaging and lively”, and that <strong>speaking at a lower rate</strong> can make you sound more trustworthy.</p>
+
+<h1 id="speech-recognition">Speech Recognition</h1>
+
+<p>The task of automatic speech recognition is to map waveform to texts</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Wave form Input</th>
+      <th>Text Output</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><img src="/lectures/images/2024-06-02-COMS6998_Spoken_Language_Processing/image-20240224140654.png" style="zoom:70%;" /></td>
+      <td><img src="/lectures/images/2024-06-02-COMS6998_Spoken_Language_Processing/image-20240224140700.png" style="zoom:70%;" /></td>
+    </tr>
+  </tbody>
+</table>
+
+<blockquote>
+  <p>Multilingual modeling for SR today = how can you take a model that is strong in one language/resource, and <strong>share/transfer these representations</strong> to other tasks and languages?</p>
+</blockquote>
+
+<p>Some challenges in this area:</p>
+
+<ul>
+  <li><strong>code switching</strong>: speaker switches between languages within a single utterance (phrase)
+    <ul>
+      <li>relates to language identification task (LID) mentioned below (<a href="#Reading_Notes_for_Lecture 6">Reading Notes for Lecture 6</a>)</li>
+      <li>need to cater to different dialects as well</li>
+    </ul>
+  </li>
+  <li><strong>ambiguity in transcription</strong>: there may be more than one way to write the same said phrase in some languages = can artificially inflate WER.
+    <ul>
+      <li>need to differentiate modeling error (actual errors) and render error (wrong language due to code switching)</li>
+      <li>some attempts: map all the transcribed words and reference into a single language space</li>
+    </ul>
+  </li>
+</ul>
+
+<p>Code-switching has been a “pain” and yet so practical that there are many attempts includeing</p>
+
+<ul>
+  <li>
+    <p><strong>data</strong> augmentation: synthesize code-switching utterances</p>
+
+    <ul>
+      <li>
+        <p>some great datasets to begin with <a href="https://arxiv.org/abs/2205.12446">FLEURS: Few-shot Learning Evaluation of Universal Representations of Speech (arxiv.org)</a></p>
+      </li>
+      <li>
+        <p>pretraining with <strong>unlabled speech</strong>, as well as incorporating multimodal data (primarily <strong>unspoken speech</strong> = text) <a href="https://arxiv.org/abs/2303.01037">Google USM: Scaling Automatic Speech Recognition Beyond 100 Languages (arxiv.org)</a></p>
+
+        <p><img src="/lectures/images/2024-06-02-COMS6998_Spoken_Language_Processing/image-20240227170409941.png" alt="image-20240227170409941" style="zoom: 33%;" /></p>
+
+        <p>where <mark>BEST-RQ</mark> means BERT-based Speech pre-Training with Random Projection Quantizer. The idea is to predict random numbers that correspond to the masked waveform section, as long as the masked-to-random-number-mapping is consistent across different speech segments</p>
+
+        <p><img src="/lectures/images/2024-06-02-COMS6998_Spoken_Language_Processing/image-20240227170831831.png" alt="image-20240227170831831" style="zoom: 33%;" /></p>
+      </li>
+      <li>
+        <p>in fact, the idea of modality matching (from non-speech domains) to improve speech models has been quite popular <a href="https://arxiv.org/abs/2204.03409">MAESTRO: Matched Speech Text Representations through Modality Matching (arxiv.org)</a></p>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>other <strong>training</strong> techniques: constraint the representations of same word different language to be close together</p>
+  </li>
+  <li>
+    <p>other <strong>modeling</strong> techniques:</p>
+
+    <ul>
+      <li>mixture of expert. For each language cluster (e.g., english, spanish, german, etc as one cluster, and Japanese, Chinese, Korean, … in the second cluster, etc.) train a model.</li>
+      <li>language-agnostic approach: transliterate all languages into the same script (e.g. Latin), do inference, and translate back</li>
+      <li>language-dependent approach: just model everything end-to-end</li>
+    </ul>
+  </li>
+</ul>
+
+<p>Some key findings:</p>
+
+<ul>
+  <li>shared model representation useful for different languages</li>
+  <li>shared data modalities useful for improving ASR and TTS tasks (since these two tasks are like “inverse” of each other!)</li>
+</ul>
+
+<p>How does different kind of data affect the different abilities.</p>
+
+<h2 id="reading-notes-for-lecture-6">Reading Notes for Lecture 6</h2>
+
+<ul>
+  <li>modern ASR tasks vary in different dimensions in practice
+    <ul>
+      <li>vocabulary size: standard system involve vocabularies up to 60,000 words</li>
+      <li>recognizing <strong>read speech</strong> (e.g., audio books) is different from <strong>conversational speech</strong></li>
+      <li>whether its recorded in a quiet room or in a noisy environment</li>
+      <li>speaker identity: dialects, languages, etc.
+to illustrate the difficulties, modern ASR systems already have a very low word error rate for read speech, but can still have high errors for conversational speech:</li>
+    </ul>
+
+    <p><img src="/lectures/images/2024-06-02-COMS6998_Spoken_Language_Processing/image-20240224142650.png" style="zoom:60%;" /></p>
+  </li>
+  <li>examples of modern large scale speech datasets include
+    <ul>
+      <li><strong>LibriSpeech</strong>: 1000 hours of read English speech</li>
+      <li><strong>Switchboard</strong>: 2430 conversations averaging 6 minutes each</li>
+      <li>etc.</li>
+    </ul>
+  </li>
+  <li>so how do we do ASR?
+    <ol>
+      <li><strong>feature extraction: log mel spectrum</strong>. First we want to transform the waveform into a <strong>sequence of acoustic feature vectors</strong>.
+        <ul>
+          <li>first we slice the waveform into <strong>frames</strong> (e.g., periods of 25ms)</li>
+          <li>you may naively use a rectangular window, but in practice people use <strong>Hamming window</strong> since the former will create problems with Fourier transform</li>
+        </ul>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Framing</th>
+              <th>Hemming Window vs Rec Window</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><img src="/lectures/images/2024-06-02-COMS6998_Spoken_Language_Processing/image-20240224143212.png" style="zoom:60%;" /></td>
+              <td><img src="/lectures/images/2024-06-02-COMS6998_Spoken_Language_Processing/image-20240224143404.png" style="zoom:60%;" /></td>
+            </tr>
+          </tbody>
+        </table>
+      </li>
+      <li>extract <strong>spectral information using Discrete Fourier Transform</strong> (DFT)
+        <ul>
+          <li>take each of the windowed signal, and transform it to obtain a spectrum of frequencies:
+<img src="/lectures/images/2024-06-02-COMS6998_Spoken_Language_Processing/image-20240224143639.png" style="zoom:60%;" /></li>
+          <li>this is useful because it tells us approximately the <strong>anergy at each frequency band</strong></li>
+        </ul>
+      </li>
+      <li>since human hearing is less sensitive at high frequencies, we can use <strong>mel scale</strong> to transform the spectrum into a mel spectrum
+        <ul>
+          <li>this is done by using a <strong>mel filter bank</strong> to transform the spectrum into a mel spectrum</li>
+          <li>then you take the log</li>
+        </ul>
+      </li>
+      <li>finally, this sequence of <strong>log mel spectral features</strong> are used as input to the ASR system</li>
+    </ol>
+  </li>
+  <li>what <strong>model architectures for ASR?</strong>
+    <ul>
+      <li>typical encoder-decoder models (e.g. with transformers)</li>
+      <li>for example, the system below takes in a sequence of $t$ acoustic feature vectors $f_1, …, f_t$, each being a 10ms frame. Then, the output will be a sequence of letters/word pieces (done by a decoder)
+<img src="/lectures/images/2024-06-02-COMS6998_Spoken_Language_Processing/image-20240224144222.png" style="zoom:60%;" /></li>
+      <li>however, as shown above a single, 5 characters long word might have 200 acoustic frames, often there is a <strong>special compression stage to shorten the feature sequence</strong>, denoted as <strong>subsampling</strong> above.</li>
+      <li>another common practice is to augment the system with an LLM. Since large scale pretraining ASR data is much smaller than pure text, people do 1) use ASR to produce many candidate sequences, and 2) use LLM to rescore them.</li>
+    </ul>
+  </li>
+  <li>besides encoder-decoder, another very important algorithm and loss function is called <strong>Connectionist Temporal Classification (CTC)</strong>
+    <ul>
+      <li>
+        <p>idea: output a <strong>single character for every frame of the input</strong>, but <strong>post-process them afterwards</strong> by collapsing identical letters. An naive example:
+<img src="/lectures/images/2024-06-02-COMS6998_Spoken_Language_Processing/image-20240224144839.png" style="zoom:70%;" /></p>
+
+        <p>where the intent was to say “dinner”, but a naive de-dup algorithm would produce “diner”.</p>
+      </li>
+      <li>
+        <p>the smart part of CTC is to <strong>add a special blank token</strong>:
+<img src="/lectures/images/2024-06-02-COMS6998_Spoken_Language_Processing/image-20240224145024.png" style="zoom:70%;" /></p>
+      </li>
+      <li>
+        <p>but note that this algorithm means there can be many different alignments that produce the same output. This will also be used to formalize how we algorithmically compute the <strong>loss function/inference</strong> for CTC.
+<img src="/lectures/images/2024-06-02-COMS6998_Spoken_Language_Processing/image-20240224145240.png" style="zoom:100%;" /></p>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>CTC inference</strong>: first we find the best alignment by assuming that each frame is independent to each other (notice that this is different from LM):</p>
+
+\[P_{\mathrm{CTC}}(A|X) = \prod_{t=1}^{T} P(a_t|X)\]
+
+    <p>where $A = { a_1, …, a_n}$  is an alignment for the input $X$ and output $Y$. Based on this formulation, the best alignment will be:</p>
+
+\[a_{t} = \arg \max_{a_t} P(a_t|X)\]
+
+    <p>at the end of the day this can be implementing with a traditional encoder LM:
+<img src="/lectures/images/2024-06-02-COMS6998_Spoken_Language_Processing/image-20240224145631.png" style="zoom:70%;" /></p>
+    <ul>
+      <li>but this has a problem: the most likely alignment is not necessarily the most likely output sequence.</li>
+      <li>
+        <p>in fact, the most probable output sequence is the <strong>highest sum</strong> over probability of all possible alignments:</p>
+
+\[P_{\mathrm{CTC}}(Y|X) = \sum_{A \in \mathcal{A}(X, Y)} P(A|X) = \sum_{A \in \mathcal{A}(X, Y)} \prod_{t=1}^{T} P(a_t|X)\]
+
+        <p>so it is actually:</p>
+
+\[\hat{Y} = \arg \max_{Y} P_{\mathrm{CTC}}(Y|X)\]
+
+        <p>which is very expensive to do, and in practice this is approximated using <strong>Viterbi beam search</strong>.</p>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>CTC loss function</strong> using the above, we can formalize a loss function as:</p>
+
+\[\mathcal{L}_{\mathrm{CTC}}(X, Y) = - \log P_{\mathrm{CTC}}(Y|X)\]
+
+    <p>but since  $P_{\mathrm{CTC}}(Y\vert X)$ is expensive as it needs all alignments, we can approximate it with the <strong>forward-backward algorithm</strong>.</p>
+
+    <p>In reality, people often combine this with the traditional LM loss, and you end up with a <strong>CTC+LM loss</strong> and an model training that looks like:
+<img src="/lectures/images/2024-06-02-COMS6998_Spoken_Language_Processing/image-20240224150317.png" style="zoom:70%;" /></p>
+  </li>
+  <li><strong>ASR Evaluation: word error rate</strong>:  how much the word string returned by the recognizer (the hypothesized word string) differs from a reference transcription
+    <ol>
+      <li>first, compute the minimum edit distance between the two strings</li>
+      <li>
+        <p>compute word error rate as:</p>
+
+\[\text{Word Error Rate} = 100 \times \frac{\text{Insertions} + \text{Substitutions} + \text{Deletions}}{\text{Total Words in Ground Truth}}\]
+
+        <p>for example, the following made 6, 3, 1 errors in insertion, substitution, and deletion, and the total number of words in the ground truth is 13, so the WER is 76.9%:
+ <img src="/lectures/images/2024-06-02-COMS6998_Spoken_Language_Processing/image-20240224150724.png" style="zoom:70%;" /></p>
+      </li>
+    </ol>
+  </li>
+  <li><strong>other speech tasks</strong> beyond ASR and TTS include:
+    <ul>
+      <li>wake word detection: e.g., “Hey Siri”, but you want to maintain privacy</li>
+      <li>speech translation (ST): conversational spoken phrases are <em>instantly translated and spoken aloud in a second language</em></li>
+      <li>speaker identification: e.g., “who is speaking?”</li>
+      <li>speaker diarization: e.g., “who is speaking when?”</li>
+    </ul>
+  </li>
+</ul>
+
+<p>Twenty-Five Years of Evolution in Speech and Language Processing</p>
+<ul>
+  <li>overview of the Speech Language Processing field
+    <ul>
+      <li>speech coding task: compress speech signals for efficient transmission</li>
+      <li>ASR and TTS: mostly <strong>data-driven</strong> today</li>
+      <li>speech enhancement and separation: remove noise from speech</li>
+    </ul>
+  </li>
+  <li>main driving forces in SLP over the last decade
+    <ul>
+      <li>big data: it was estimated that 2.5 quintillion bytes of data would be created every day in 2022</li>
+      <li>big, pretrained models: transformer-based models gathered a lot of attention, and self- or semi-self supervised methods used to pretrain many speech models.</li>
+    </ul>
+  </li>
+  <li>major technical breakthroughs
+    <ul>
+      <li>ASR: encoder-decoder models, CTC, and attempts at self-supervised learning methods for speech models</li>
+      <li>TTS: a combination of WaveNet-based vocoder and encoder-decoder models achieved near-human-level synthetic speech, and recently some non-autoregressive models have been proposed to show better performance</li>
+    </ul>
+  </li>
+  <li>current and future trend:
+<img src="/lectures/images/2024-06-02-COMS6998_Spoken_Language_Processing/image-20240224154155.png" style="zoom:100%;" /></li>
+</ul>
+
+<h1 id="spoken-dialogue-systems">Spoken Dialogue Systems</h1>
+
+<p>some downstream research and applications in spoken dialogue systems</p>
+
+<h2 id="empathetic-conversations-in-dialogue-systems">Empathetic Conversations in Dialogue Systems</h2>
+
+<p>What is emphay</p>
+
+<ul>
+  <li><strong>cognitive emphasis:</strong> “perspective-taking” or being to put yourself into someone else’s place (useful skill for managers)</li>
+  <li><strong>emotional empathy:</strong> being able to feel other peoples emotions (e.g., you get sad if your friend is sad)</li>
+  <li><strong>compassionate empathy:</strong> feeling someone’s pain and taking action to help mitigate their problems</li>
+</ul>
+
+<p>Why is this useful?</p>
+
+<ul>
+  <li>empathetic robots = encourage users to <em>like</em> the agents more</li>
+  <li>think the agents are <em>more intelligent</em> = more willing to take their advice</li>
+  <li>help establish social bonds, promote or diffuse conflict, persuade, succeed in negotiations, etc.</li>
+  <li>etc.</li>
+</ul>
+
+<p>some models used:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">speechT5</code>, <code class="language-plaintext highlighter-rouge">OpenAI TTS</code>, <code class="language-plaintext highlighter-rouge">ElevenLabs</code>, <code class="language-plaintext highlighter-rouge">Suno/Bark</code>, meta’s <code class="language-plaintext highlighter-rouge">AudioBox</code> for text to speech</li>
+  <li><code class="language-plaintext highlighter-rouge">MetaVoice</code>: voice cloning (speak things in some speaker’s style)</li>
+  <li><code class="language-plaintext highlighter-rouge">wave2vec</code> for intermediate representation used for classification task (e.g., emotion classification)</li>
+  <li><code class="language-plaintext highlighter-rouge">whisper</code> for speech to text</li>
+</ul>
+
+<h2 id="reading-notes-for-lecture-7">Reading Notes for Lecture 7</h2>
+
+<p><strong>Chatbots &amp; Dialogue Systems</strong> from the textbook</p>
+
+<ul>
+  <li>
+    <p>Properties of Human Conversation</p>
+
+    <ul>
+      <li>each utterance in a dialogue is a kind of action being performed by the speaker = <strong>dialogue acts</strong></li>
+      <li>Speakers do this by <strong>grounding</strong> each other’s utterances.</li>
+      <li>have structures such as Q and A, sub-dialogues, and clarification questions</li>
+      <li>speakers take turn to have conversational <strong>initiative</strong></li>
+      <li><strong>conversational implicature</strong>: speaker seems to expect the hearer to draw certain inferences; in other words, the speaker is communicating more information than seems to be present in the uttered words</li>
+    </ul>
+  </li>
+  <li>
+    <p>chatbots</p>
+
+    <ul>
+      <li>
+        <p>ELIZA and PARRY: rule based systems</p>
+      </li>
+      <li>
+        <p>GUS: Simple Frame-based Dialogue Systems serving as a prototype for task-based dialogue.</p>
+
+        <ul>
+          <li>
+            <p><strong>frames</strong>. A frame is a kind of knowledge structure representing the kinds of intentions the system can extract. Basically a collection of key, value pairs, constituting a <strong>domain ontology</strong>.</p>
+
+            <p><img src=".//lectures/images/2024-06-02-COMS6998_Spoken_Language_Processing/image-20240302134352784.png" alt="image-20240302134352784" style="zoom:50%;" /></p>
+          </li>
+          <li>
+            <p>so the goal was to get these <strong>slots filled</strong> by asking the relevant questions. Some challenges: an utterance may touch multiple slots.</p>
+          </li>
+          <li>
+            <p><strong>domain/intent classification</strong>, and <strong>extractive</strong> slot filling</p>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>RASwDA: Re-Aligned Switchboard Dialog Act Corpus for Dialog Act Prediction in Conversations</strong></p>
+
+<ul>
+  <li>
+    <p>The Switchboard Dialog Act (SwDA) corpus has been widely used for dialog act prediction and generation tasks. However, due to misalignment between the text and speech data in this corpus, models incorporating prosodic information have shown poor performance.</p>
+
+    <ul>
+      <li>this transcripts and speech was originally aligned using a GMM-HMM speech recognition system.</li>
+      <li>However, these alignment results are <strong>unreliable</strong>, making it extremely difficult to use both speech and text data to accurately predict or generate DAs.</li>
+      <li>for example, they have found 27 conversations in which speakers were recorded on the wrong channel, resulting in incorrect speaker identifications</li>
+    </ul>
+  </li>
+  <li>
+    <p>In this paper, they report the <strong>misalignment issues present in the SwDA corpu</strong>s caused by previous automatic alignment methods and introduce a re-aligned, improved version called RASwDA</p>
+
+    <ul>
+      <li>there are large scale text data annotated with DA, but only a few have been transcribed in speech.</li>
+    </ul>
+  </li>
+  <li>
+    <p>To <strong>produce high-quality alignments</strong> between the audio and transcripts of SwDA, we employ a two-step process.</p>
+
+    <ol>
+      <li>obtain the text grid of each speech file. Since both transcripts and speech spectrogram is there, they then used <code class="language-plaintext highlighter-rouge">aeneas</code> library to do <strong>automatic alignment</strong></li>
+      <li>we <strong>manually correct</strong> the TextGrids produced both from the NXT-format Switchboard Corpus alignments and the aeneas forced alignments</li>
+    </ol>
+
+    <p>with this re-aligned corpus, they show that you can have a higher DA classification performance after training.</p>
+  </li>
+</ul>
+
+<p><strong>Nora the Empathetic Psychologist</strong></p>
+
+<ul>
+  <li>
+    <p>Nora is a new dialog system that mimics a conversation with a psychologist by screening for stress, anxiety, and depression as she <strong>understands, emphasizes, and adapts to the user</strong>.</p>
+
+    <ul>
+      <li>capable of recognizing stress, emotions, personality, and sentiment from speech</li>
+      <li>included an <strong>emotional intelligence (EI)</strong> module is incorporated to enable emotion understanding, empathy, and adaptation to users</li>
+    </ul>
+  </li>
+  <li>
+    <p>system design</p>
+
+    <p><img src=".//lectures/images/2024-06-02-COMS6998_Spoken_Language_Processing/image-20240302142555591.png" alt="image-20240302142555591" style="zoom:50%;" /></p>
+
+    <ul>
+      <li>empathetic dialog system that <strong>takes audio and facial image</strong> of the user as input, and basically consists of a) <strong>ASR and TTS</strong> modules from prior work, 2) <strong>empathic module</strong>, and 3) a <strong>mixed-initiative (text) dialogue system</strong></li>
+      <li>the key new component is this emphathic module, which consists of four submodules
+        <ul>
+          <li><strong>stress detection from audio</strong>: detect stress from spoken utterances by training on Natural Stress Emotion corpus</li>
+          <li><strong>Automatic emotion detection from audio</strong>: another CNN trained with emotion detection dset (6 labels)</li>
+          <li>sentiment analysis</li>
+          <li>personality analysis</li>
+        </ul>
+      </li>
+      <li>most models are trained by processing wave spectrograms using CNNs.</li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="speech-analysis-emotion-detection-and-solicitation">Speech Analysis: Emotion Detection and Solicitation</h1>
+
+<p>Downstream application of speech analysis.</p>
+
+<h2 id="emotion-and-sentiment-detection">Emotion and Sentiment Detection</h2>
+
+<ul>
+  <li>
+    <p>has many downstream tasks,</p>
+  </li>
+  <li>
+    <p>some <strong>findings and prior work</strong> in emotional recognition</p>
+
+    <p><img src="/lectures/images/2024-06-02-COMS6998_Spoken_Language_Processing/image-20240319164728759.png" alt="image-20240319164728759" style="zoom: 15%;" /></p>
+
+    <p>lexical feature is important:</p>
+
+    <p><img src="/lectures/images/2024-06-02-COMS6998_Spoken_Language_Processing/image-20240319164800173.png" alt="image-20240319164800173" style="zoom: 15%;" /></p>
+
+    <p>CNN is strong enough to learn from raw spectrogram and understand emotions</p>
+
+    <p><img src="/lectures/images/2024-06-02-COMS6998_Spoken_Language_Processing/image-20240319164838619.png" alt="image-20240319164838619" style="zoom:15%;" /></p>
+
+    <p>transformers + multimodal data are great as well</p>
+
+    <p><img src="/lectures/images/2024-06-02-COMS6998_Spoken_Language_Processing/image-20240319164921928.png" alt="image-20240319164921928" style="zoom:15%;" /></p>
+  </li>
+</ul>
+
+<h2 id="emotion-elicitation">Emotion Elicitation</h2>
+
+<h2 id="reading-notes-for-lecture-8">Reading Notes for Lecture 8</h2>
+
+<p><strong>Predicting Arousal and Valence from Waveforms and Spectrograms using Deep Neural Networks</strong></p>
+
+<ul>
+  <li>
+    <p>task: Automatic recognition of <strong>spontaneous emotion in conversational speech</strong></p>
+
+    <ul>
+      <li>
+        <p>idea: by exploiting waveforms and spectrograms as input, and use CNN to capture spectral information with Bi-LSTM to capture temporal information</p>
+      </li>
+      <li>
+        <p>instead of classifying into a few emotion cases, map it into a <strong>continuous multi-dimensional space</strong> (valence-arousal)</p>
+
+        <p><img src="/lectures/images/2024-06-02-COMS6998_Spoken_Language_Processing/image-20240319162037906.png" alt="image-20240319162037906" style="zoom:43%;" /></p>
+      </li>
+      <li>
+        <p>significantly outperforms model using hand-engineered features</p>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>datasets include</p>
+
+    <ul>
+      <li><strong>SEMAINE</strong> database: The user’s emotion is annotated by 6-8 annotators for <strong>arousal and valence at 20ms intervals</strong></li>
+      <li>RECOLA database: Conversations were annotated for <strong>arousal and valence at 40ms intervals</strong> by 6 annotators; scores range from -1 to 1 with 2 decimal places</li>
+    </ul>
+  </li>
+  <li>
+    <p>proposed model architecture: output of CNN layers are then <strong>concatenated together for BiLSTM.</strong></p>
+
+    <p><img src=".//lectures/images/2024-06-02-COMS6998_Spoken_Language_Processing/image-20240308171402780.png" alt="image-20240308171402780" style="zoom:67%;" /></p>
+
+    <p>but since things are continuous, what does the input really look like?</p>
+
+    <ul>
+      <li>waveform: we <strong>normalize</strong> waveform signals on the conversation level with zero mean and unit variance to reduce the inter-speaker difference. Then we <strong>re-sample</strong> the speech to 16kHz sampling rate, and <strong>segment the conversation into 6s segments</strong></li>
+      <li>spectrogram: a <strong>40-dimensional mel-scale log filter bank</strong> as the spectrogram features. Similar with our preprocessing of waveforms, we first perform normalization and segmentation.</li>
+    </ul>
+  </li>
+  <li>
+    <p>how do you then measure performance? MSE from the ground truth:</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th style="text-align: center">Arousal</th>
+          <th style="text-align: center">Valence</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="text-align: center"><img src=".//lectures/images/2024-06-02-COMS6998_Spoken_Language_Processing/image-20240308172409502.png" alt="image-20240308172409502" style="zoom:50%;" /></td>
+          <td style="text-align: center"><img src=".//lectures/images/2024-06-02-COMS6998_Spoken_Language_Processing/image-20240308172431642.png" alt="image-20240308172431642" style="zoom:50%;" /></td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+</ul>
+
+<p><strong>Emotions and Types of Emotional Responses</strong></p>
+
+<ul>
+  <li>Understanding emotions can help us navigate life with greater ease and stability.</li>
+  <li>what are emotions?
+    <ul>
+      <li>emotions are <strong>complex psychological states</strong> that involve three distinct components: a <strong>subjective</strong> experience, a <strong>physiological</strong> response, and a <strong>behavioral or expressive</strong> response.</li>
+      <li>Subjective Experience: experiencing emotion can be highly <strong>subjective</strong> = what you feel internally differs</li>
+      <li>Physiological response: e.g., your stomach lurch from anxiety or your heart palpate with fear, you’ve already experienced the strong physiological reactions that can occur with emotions
+        <ul>
+          <li>early research believes these are mostly due to the sympathetic nervous system, a branch of the <a href="https://www.verywellmind.com/what-is-the-autonomic-nervous-system-2794823">autonomic nervous system</a>.</li>
+          <li>but recent research has targeted the <strong>brain’s</strong> role in emotions. Brain scans have shown that the amygdala, part of the limbic system, plays an important role in emotion and fear in particular.</li>
+        </ul>
+      </li>
+      <li>Behavioral response: the actual expression of emotion.
+        <ul>
+          <li>ability to accurately <strong>understand</strong> these expressions is tied to what psychologists call <a href="https://www.verywellmind.com/what-is-emotional-intelligence-2795423">emotional intelligence</a></li>
+          <li><strong>sociocultral</strong> norms also play a role: Western cultures tend to value and promote high-arousal emotions (fear, excitement, distress) whereas Eastern cultures typically value and prefer low-arousal emotions (calmness, serenity, peace).</li>
+        </ul>
+      </li>
+      <li>“evolutionary theory of emotion”: emotions are <strong>adaptive to our environment and improve our chances of survival</strong></li>
+    </ul>
+  </li>
+  <li>what kind of emotions do we have?
+    <ul>
+      <li>Paul Ekman defined six basic emotions universal throughout human cultures: <strong>fear, disgust, anger, surprise, joy, and sadness.</strong></li>
+      <li>Robert Plutchik defined <strong>wheel of emotions</strong>: how different emotions can be combined or mixed together</li>
+    </ul>
+  </li>
+  <li>primary vs secondary emotion
+    <ul>
+      <li><strong>Primary emotions</strong> are the emotions that humans experience universally (e.g., happiness, sadness, fear, disgust, anger, and surprise)</li>
+      <li>Sometimes, we have <strong>secondary</strong> emotions <strong>in response to our primary emotions</strong> (i.e., “I’m frustrated that I’m so sad”).</li>
+    </ul>
+  </li>
+  <li>emotions, feelings, and moods
+    <ul>
+      <li>Emotions are reactions to stimuli, but <strong>feelings</strong> are what we experience as <strong>a result of emotions.</strong> Emotions are also likely to have a definite and identifiable cause. Feelings are influenced by our perception of the situation</li>
+      <li>A <strong>mood</strong> can be described as a temporary emotional state. For example, you might find yourself feeling gloomy for several days without any clear, identifiable reason.</li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>Eliciting Rich Positive Emotions in Dialogue Generation</strong></p>
+
+<ul>
+  <li>task: <strong>evoking positive emotion</strong> state in human users in open-domain dialogue
+    <ul>
+      <li>prior work simply aim to “elicit positive emotions”. here they consider <strong>more fine-grained emotions</strong> such as “Hopeful”, “Joy” and “Surprise”.</li>
+      <li>idea: represent the elicited emotions <strong>using latent variables</strong> in order to take full advantage of the <strong>large-scale unannotated datasets</strong></li>
+    </ul>
+  </li>
+  <li>
+    <p>prior work: EmpDG</p>
+
+    <ul>
+      <li>EmpDG extracts <strong>implicit information from the next utterance</strong> as feedback for semantic and emotional guidance of targeted response. These are then used to enhance the base generator model</li>
+      <li>problem? the extracted feedback can be <strong>sparse and noisy</strong>, which introduces uncertainty in empathetic generation</li>
+    </ul>
+
+    <p><img src=".//lectures/images/2024-06-02-COMS6998_Spoken_Language_Processing/image-20240308215626148.png" alt="image-20240308215626148" style="zoom:67%;" /></p>
+  </li>
+  <li>this work then trains a CVAE network using some pretrained emotion classifier in a GAN-like setting.</li>
+</ul>
+
+<h1 id="speech-analysis-entrainment-and-code-switching">Speech Analysis: Entrainment and Code Switching</h1>
+
+<p><strong>Entrainment</strong>: speakers start to mimic each other’s speaking style as conversation continues.</p>
+
+<p><strong>Code-switching</strong>: a person changing languages or dialects throughout a single conversation and sometimes even over the course of a single sentence.</p>
+
+<p>Some findings on <strong>conversation with code-switching</strong>:</p>
+
+<ul>
+  <li>lexical entrainment exists: similar vocabularies</li>
+  <li>acoustic-prosodic entrainment: correlations on stuff like intensity, HNR, etc.</li>
+  <li>code-switching behavior entrainment:
+    <ul>
+      <li>turn-level synchrony: if I switch language after one turn, the other is likely to switch as well</li>
+      <li>amount of code-switching: if I switch language very often, the other will switch often as well</li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="speech-analysis-personality-and-mental-state">Speech Analysis: Personality and Mental State</h1>
+
+<p>aaa</p>
+
+<h2 id="reading-notes-for-lecture-10">Reading Notes for Lecture 10</h2>
+
+<p><strong>Predicting the Big 5 personality traits from digital footprints on social media: A meta-analysis</strong></p>
+
+<ul>
+  <li>You can use <strong>social medai content to predict user personailtiy</strong>, and these predictions can then be used for a variety of purposes, including tailoring online services to improve user experience. Specifically, this paper considers
+    <ul>
+      <li>meta-analyses to determine the <strong>predictive power of digital footprints</strong> collected from social media over Big 5 personality traits.</li>
+      <li>impact of <strong>different types of digital footprints</strong> on prediction accuracy</li>
+    </ul>
+  </li>
+  <li>digital footprints: <strong>information shared by users</strong> on their social media profiles - e.g., personal information about age, gender orientation, place of residence, as well shared texts, pictures, and videos</li>
+  <li><strong>Big 5 traits</strong> have been shown to be significantly associated with users’ behaviors on social media. For example, individuals with high extraversion have been characterized by higher levels of activity on social media</li>
+  <li>Some interesting results
+    <ul>
+      <li>Results of univariate regressions showed <strong>significant effects for use of multiple types of digital footprints</strong>, demographics, and activity statistics. For each trait except agreeableness, results showed an increase in strength of association</li>
+      <li>The use of <strong>demographic statistics</strong> was associated with a significant increase in correlation strength between digital footprints and both agreeableness (β = 0.25, R2 = 0.19), and neuroticism (β = 0.25, p &lt; 0.05, R2 = 0.19)</li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>Multimodal Deep Learning for Mental Disorders Prediction from Audio Speech Samples</strong></p>
+
+<ul>
+  <li>
+    <p>Key features of <strong>mental illnesses are reflected in speech.</strong> This paper then aims to design DNN to <mark>extract salient features from speech</mark> that can be used for mental disorder prediction.</p>
+  </li>
+  <li>
+    <p>HIgh level approach: combine audio+text embeddings and do prediction</p>
+
+    <p><img src="/lectures/images/2024-06-02-COMS6998_Spoken_Language_Processing/image-20240330151424401.png" alt="image-20240330151424401" style="zoom:50%;" /></p>
+
+    <p>the key insight to our model is that depending on the encoded information in textual and acoustic modalities, the <strong>relative importance of their associated learned embeddings may differ</strong> in the bimodal feature fusion layer.</p>
+
+    <ul>
+      <li>textual feature representation layer uses <strong>1) segment-level features extraction</strong> to learn fine-grained textual embeddings for every segment, and <strong>2) emotion-specific representation of text segment</strong> which extracts emotion information contained in every segment. These two are then concatenated as a single text feature</li>
+      <li>audio feature extraction module also uses: <strong>1) segment-level acoustic features</strong> extraction to learn audio embeddings for every segment, and <strong>2) emotion-specific representation</strong> of audio segment</li>
+    </ul>
+  </li>
+</ul>
+
+<p>**Speech Processing Approach for Diagnosing Dementia in an Early Stage **</p>
+
+<ul>
+  <li>
+    <p>Our hypothesis is that any disease that <strong>affects particular brain  regions involved in speech production</strong> and processing will also  leave <strong>detectable finger prints in the speech</strong>. This paper, in particular, aims to detect <strong>Alzheimer’s disease</strong></p>
+  </li>
+  <li>
+    <p>dataset</p>
+
+    <ul>
+      <li>standard protocol for collecting speech samples for aphasia  work is to ask volunteers to <strong>describe what they see in a picture</strong></li>
+      <li>features: from speech to
+        <ul>
+          <li>acoustic feature extraction using pitch, energy, and voice activity detector</li>
+          <li>linguistic feature extraction using POS tags, syntactic complexity, LIWC, and syntactic density.</li>
+        </ul>
+      </li>
+      <li>the pen-and-paper test for this before was the MMSE  score.
+        <ul>
+          <li>MMSE scores greater than or equal to 24 points  (out of 30) indicates a normal cognition.</li>
+          <li>Below this, scores can  indicate severe (≤9 points), moderate (10–18 points) or mild  (19–23 points) cognitive impairment</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>goal, develop a system that is <strong>fully automatic</strong> (without assessing the MMSE test)</p>
+
+    <ul>
+      <li>
+        <p>with MMSE, the accuracy achieved was  94.4% using only five features, one of which was the MMSE  score. The five features selected (in order of importance) were  MMSE score, race, fraction of pauses greater than 10sec,  fraction of speech length that was pause and LIWC.</p>
+      </li>
+      <li>
+        <p>without MMSE, In order to achieve the 91.7% accuracy, 12 features  were needed:</p>
+
+        <p><img src="/lectures/images/2024-06-02-COMS6998_Spoken_Language_Processing/image-20240330155905878.png" alt="image-20240330155905878" style="zoom:67%;" /></p>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="speech-analysis-sarcasm-simile-and-metaphor-wordseye">Speech Analysis: Sarcasm, Simile and Metaphor; WordsEye</h1>
+
+<p><u>$R^3$: Reverse, Retrieve, and Rank for Sarcasm Generation with Commonsense Knowledge</u></p>
+
+<ul>
+  <li>
+    <p>generating sarcasm is challenge: there is <strong>no parallel corpus of non-sarcastic to sarcastic text</strong></p>
+  </li>
+  <li>
+    <p>even if we have this data, <strong>generating novel sarcasm would be issue</strong></p>
+  </li>
+  <li>
+    <p>approach: $R^3$ reversal, retrieve, and re-rank</p>
+
+    <ul>
+      <li>
+        <p>motivating example:</p>
+
+        <ul>
+          <li><strong>reverse</strong> valence “Zero visibility in fog makes driving difficult” $\to$​ “Zero visibility in fog makes driving easy”</li>
+          <li><strong>retrieve</strong> common sense and append: “Zero visibility in fog makes driving easy” $\to$ “Zero visibility in fog makes driving easy. It is advisable to insure your …”</li>
+          <li><strong>re-rank</strong> to get more semantic incongruity: “Zero visibility in fog makes driving easy” $\to$​ “Zero visibility in fog makes driving easy. Suffered three three bones in the accident.”</li>
+        </ul>
+      </li>
+      <li>
+        <p><strong>approach</strong>:</p>
+
+        <ul>
+          <li>
+            <p>reversal can be simply done with wordnet</p>
+          </li>
+          <li>
+            <p>retrieve common sense?</p>
+
+            <ol>
+              <li>use COMET which is GPT-2 tuned on ConceptNet (a knowledge graph)</li>
+              <li>input words without stopwords: “zero, visibility, fogs, drive, easy”</li>
+              <li><strong>COMET output</strong>: “accident”</li>
+              <li>retrieve sentences that contains accident from a database: got many</li>
+              <li>re-rank by Roberta tuned on MNLI, i.e., <strong>the less it entails, the more incongruity it has</strong> = the better.</li>
+            </ol>
+
+            <p>note that this entire process is purely unsupervised = generating sarcasm without any training/parallel corpus.</p>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <p><strong>testing</strong>: against SOTA and against human annotators</p>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<p>Metaphor generation: again hard since there is no parallel corpus.</p>
+
+<ul>
+  <li>
+    <p>here, the proposed method is an unsupervised way to <strong>create parallel corpus</strong></p>
+  </li>
+  <li>
+    <p>approach</p>
+    <ol>
+      <li>first taking sentences from a poetry dataset, and then find ones that has <strong>metaphoric verbs</strong>, $v$ (have existing models to do it)</li>
+      <li>pick words replacing $v$ that are consistent according to COMET’s “relates to” and is <strong>literal</strong></li>
+      <li>training: train the model to input sentence from step 2, and output step 1</li>
+    </ol>
+  </li>
+</ul>
+
+<p>Simile generation:</p>
+
+<ul>
+  <li>before it was like changing a word to do metaphor generation. But</li>
+  <li>approach:
+    <ul>
+      <li>similar to above, to use COMET to a literal version of a similie but swapping multiple words = obtain parallel corpus = train BART</li>
+    </ul>
+  </li>
+</ul>
+
+<p>Visual metaphors:</p>
+
+<ul>
+  <li>given a text “he is like a lion on the battlefield”, how do you create an image to represent the man is fierce while being faithful in meaning</li>
+  <li>approach: human-AI collaboration to get a dataset
+    <ul>
+      <li>convert the linguistic metaphor prompt to a <strong>more detailed linguistic metaphor</strong></li>
+      <li>ask some <strong>human expert to make minor edits</strong> to the above</li>
+      <li>prompt DALLE/Stable-Diffusion</li>
+    </ul>
+  </li>
+  <li>evaluation:
+    <ul>
+      <li>human evaluation</li>
+      <li>(image, claim) entailment? visual metaphors is a bit complex for since before it was trained with literal pairs/reasoning</li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<p><strong>WordsEye: An Automatic Text-to-Scene Conversion System</strong></p>
+
+<h2 id="reading-notes-for-lecture-13">Reading Notes for Lecture 13</h2>
+
+<p><strong><a href="https://aclanthology.org/2021.eacl-main.171.pdf">“Laughing at you or with you”: The Role of Sarcasm in Shaping the Disagreement Space</a></strong></p>
+
+<ul>
+  <li>
+    <p>Users often use figurative language, such as sarcasm, either as persuasive devices or to attack the opponent by an ad hominem argument. This paper then demonstrate that <strong>modeling sarcasm improves the argumentative relation classification task</strong> (agree/disagree/none) in all setups</p>
+
+    <p><img src="/lectures/images/2024-06-02-COMS6998_Spoken_Language_Processing/image-20240406165700676.png" alt="image-20240406165700676" style="zoom: 67%;" /></p>
+  </li>
+  <li>
+    <p>so what did they do?</p>
+
+    <ul>
+      <li>feature based approach: extract <strong>Argument-relevant features</strong> (ArgF) such as N-gram, and <strong>Sarcasm-relevant features</strong> (SarcF) such as sarcasm markers (e.g., capitialization, quotation marks, etc.) and do logistics regression on each set.</li>
+      <li>NN based:
+        <ul>
+          <li><strong>multitask of LSTM</strong> with sarcasm prediction + argument relation prediction</li>
+          <li><strong>multitask of BERT</strong> doing the same as above</li>
+        </ul>
+      </li>
+      <li>results, in all cases additionally including sarcasm features/modeling sarcasm gives performance improvement.</li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>“YEAH RIGHT”: SARCASM RECOGNITION FOR SPOKEN DIALOGUE SYSTEMS</strong></p>
+
+<ul>
+  <li>This paper presents some experiments toward sarcasm recognition using prosodic, spectral, and contextual cues. This paper shows that <strong>spectral and contextual features</strong> can be used to detect sarcasm as well as a human annotator would, and that <strong>prosody alone is not sufficient</strong> to discern whether a speaker is being sarcastic.</li>
+  <li>task: <strong>classify if “year right” is sarcastic or not.</strong></li>
+  <li>approach:
+    <ul>
+      <li><strong>non-prosodic features</strong> include “whether or not tehre is laughter”, “whether the ‘year right’  is an answer or a question”, etc.</li>
+      <li><strong>prosodic features</strong>: average pitch, energy, intensity, etc.</li>
+    </ul>
+  </li>
+  <li>results:
+    <ul>
+      <li>with human annotators trying to label them, they found it only works when context is provided:  Insofar as a sarcastic tone of voice exists, <strong>a listener also relies heavily on contextual and, when available, visual information</strong> to identify sarcasm</li>
+      <li>experiments using decision tree classifier found that using prosody feature at all will hurt performance</li>
+      <li><img src="/lectures/images/2024-06-02-COMS6998_Spoken_Language_Processing/image-20240406175520707.png" alt="image-20240406175520707" /></li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>“Sure, I Did The Right Thing”: A System for Sarcasm Detection in Speech</strong></p>
+
+<ul>
+  <li>
+    <p>In this  paper, we present a system for <strong>automatic sarcasm detection in speech.</strong> The authors found that you can 1) use pitch and intensity contours, and 2) using a SimpleLogistic (LogitBoost) classifier to <strong>predict sarcasm with 81.57% accuracy</strong>. This result suggests  that certain pitch and intensity contours are predictive of  sarcastic speech.</p>
+
+    <ul>
+      <li>so this is a <mark>counter argument of the previous paper</mark>.</li>
+    </ul>
+  </li>
+  <li>
+    <p>first they found that prior sarcasm related corpus is problematic, and therefore constructed their <strong>own sarcasm corpus</strong> based on “Daria”. We collected what we  determined to be 75 sarcastic sentences and 75 sincere  sentences – these judgments took context into consideration.</p>
+
+    <ul>
+      <li>
+        <p>first they went on to let human participants rate them as the definition of “sarcasm” varies. They found that instead of a bimodal distribution, there was a <strong>trimodal distribution</strong> ni annotation:</p>
+
+        <p><img src="/lectures/images/2024-06-02-COMS6998_Spoken_Language_Processing/image-20240406172612258.png" alt="image-20240406172612258" style="zoom:50%;" /></p>
+
+        <p>indicating that  there are also a <strong>substantial number of sentences for which participants were inconsistent.</strong></p>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>so how to do you model this?</p>
+
+    <ul>
+      <li>
+        <p><strong>use sentence level acoustic features</strong> such as  mean pitch, pitch range, mean intensity, speaking rate, and etc</p>
+      </li>
+      <li>
+        <p><strong>use word level acoustic features</strong>: prosodic contours within each word modeled by a 3  coefficient Legendre polynomial expansions, and then do some clustering + distance over all words to provide a contour over the entire sentence:</p>
+
+        <p><img src="/lectures/images/2024-06-02-COMS6998_Spoken_Language_Processing/image-20240406173203109.png" alt="image-20240406173203109" style="zoom:50%;" /></p>
+      </li>
+      <li>
+        <p>simply use Logistics regression based on the above features, and find that a (baseline is the sentence-level acoustic feature)</p>
+
+        <p><img src="/lectures/images/2024-06-02-COMS6998_Spoken_Language_Processing/image-20240406173312193.png" alt="image-20240406173312193" style="zoom:50%;" /></p>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="speech-analysis-charismatic-speech">Speech Analysis: Charismatic speech</h1>
+
+<p>How to make charismatic speech?</p>
+
+<ul>
+  <li>is it what you say?</li>
+  <li>
+    <p>or how you say it?</p>
+  </li>
+  <li>are there differences across culture?</li>
+</ul>
+
+<p>Some experiments done and results:</p>
+
+<ul>
+  <li>
+    <p><strong>First American English Experiments</strong>: speech from democratic nomination for US president in 2004</p>
+
+    <ul>
+      <li>found that raters have good agreement on if a speaker is “accusatory, angry, passionate, intense”, but not very good agreement on “desperate, friendly, trustworthy”</li>
+      <li>also tested this on <strong>arabic speakers/raters</strong>, and find strong correlation in “passionate and charismatic”</li>
+    </ul>
+  </li>
+  <li>
+    <p>is there any correlation between charismatic <em>and other characteristics?</em> Found positive correlation on:</p>
+
+    <ul>
+      <li>enthusiastic, persuasive, not boring, and more</li>
+      <li>for Arabic, also found correlation on enthusiastic, persuasive, not boring</li>
+    </ul>
+  </li>
+  <li>
+    <p>does content matter? Measured how certain topics could correlate to charismatics</p>
+
+    <ul>
+      <li>english: speech about healthcare, postwar Irqa, reasons for running, greating, taxes, etc.</li>
+      <li>arabic: skipped.</li>
+    </ul>
+
+    <p>so it definitely <strong>does matter!</strong> Additionally</p>
+
+    <ul>
+      <li>using “our” is better than using “you”</li>
+      <li>lower complexity (grade-level content) is helpful (for winning elections)</li>
+      <li><mark>positive emotions words</mark>: love, nice, etc.</li>
+    </ul>
+  </li>
+  <li>
+    <p>does <strong>speech matter</strong>? Found positive correlation on:</p>
+
+    <ul>
+      <li><strong>duration</strong>: longer better</li>
+      <li><strong>speaking rate</strong>:
+        <ul>
+          <li>faster is better for english, but faster is worse for arabic</li>
+          <li><strong>higher pause to word ratio</strong> is better</li>
+          <li><strong>high F0 is better</strong> for both cultures</li>
+        </ul>
+      </li>
+      <li>TOBI labels:
+        <ul>
+          <li>!H* and L+H* positively correlated with charisma rating for both languages <strong>(ends with a high/emphasis note = engaging)</strong></li>
+          <li>L* has a negative correlation</li>
+        </ul>
+      </li>
+      <li>ratio of <strong>repeated words</strong> is surprisingly helpful with charismatic</li>
+    </ul>
+  </li>
+  <li>
+    <p>interesting, when speakers rate speech which they don’t understand</p>
+
+    <ul>
+      <li><strong>charisma ratings</strong> is positively correlated across language even without understanding it</li>
+    </ul>
+  </li>
+</ul>
+
+  </div><a class="u-url" href="/lectures/2024@columbia/COMS6998_Spoken_Language_Processing.html/" hidden></a>
+  <script src="/lectures/assets/js/my_navigation.js"></script>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/lectures/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Lecture Notes</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Lecture Notes</li><li><a class="u-email" href="mailto:jasonyux17@gmail.com">jasonyux17@gmail.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/jasonyux"><svg class="svg-icon"><use xlink:href="/lectures/assets/minima-social-icons.svg#github"></use></svg> <span class="username">jasonyux</span></a></li><li><a href="https://www.linkedin.com/in/xiao-yu2437"><svg class="svg-icon"><use xlink:href="/lectures/assets/minima-social-icons.svg#linkedin"></use></svg> <span class="username">xiao-yu2437</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>An inexhaustive collection of markdown/latex(PDF) notes that I took since college. </p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

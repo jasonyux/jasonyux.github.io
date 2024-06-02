@@ -1,0 +1,3122 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>COMS4733 Computational Aspects of Robotics part2 | Lecture Notes</title>
+<meta name="generator" content="Jekyll v4.3.1" />
+<meta property="og:title" content="COMS4733 Computational Aspects of Robotics part2" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="[toc]" />
+<meta property="og:description" content="[toc]" />
+<link rel="canonical" href="/lectures/2024@columbia/COMS4733_Computational_Aspects_of_Robotics_part2.html/" />
+<meta property="og:url" content="/lectures/2024@columbia/COMS4733_Computational_Aspects_of_Robotics_part2.html/" />
+<meta property="og:site_name" content="Lecture Notes" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2024-06-02T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="COMS4733 Computational Aspects of Robotics part2" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-06-02T00:00:00+00:00","datePublished":"2024-06-02T00:00:00+00:00","description":"[toc]","headline":"COMS4733 Computational Aspects of Robotics part2","mainEntityOfPage":{"@type":"WebPage","@id":"/lectures/2024@columbia/COMS4733_Computational_Aspects_of_Robotics_part2.html/"},"url":"/lectures/2024@columbia/COMS4733_Computational_Aspects_of_Robotics_part2.html/"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/lectures/assets/main.css"><link type="application/atom+xml" rel="alternate" href="/lectures/feed.xml" title="Lecture Notes" /></head>
+<body><header class="site-header">
+
+	<div class="wrapper"><a class="site-title" rel="author" href="/lectures/">Lecture Notes</a>
+
+		<nav class="site-nav">
+			<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+			<label for="nav-trigger">
+			<span class="menu-icon">
+				<svg viewBox="0 0 18 15" width="18px" height="15px">
+				<path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+				</svg>
+			</span>
+			</label>
+
+			<div class="trigger">
+				<a class="page-link" href="/">Home</a>
+				<a class="page-link" href="/projects">Projects</a>
+				<a class="page-link" href="/research">Research</a>
+				<span class="page-link" href="#">[Education]</span>
+				<a class="page-link" href="/learning">Blog</a>
+			</div>
+		</nav>
+	</div>
+  </header><main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <head>
+  <script>
+    MathJax = {
+      // 
+      loader: {
+        load: ['[tex]/ams', '[tex]/textmacros', '[tex]/boldsymbol']
+      },
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+        packages: {'[+]': ['ams', 'textmacros', 'boldsymbol']}
+      }
+    };
+  </script>
+  <script id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+  </script>
+  </head>
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">COMS4733 Computational Aspects of Robotics part2</h1>
+    <p class="post-meta"><time class="dt-published" datetime="2024-06-02T00:00:00+00:00" itemprop="datePublished">
+        Jun 2, 2024
+      </time></p>
+  </header>
+
+  <div class="section-nav" id="toc-all">
+    <button type="button" id="toc-close" class="toc_collapsible hidden" title="collapse">
+      <span><strong>Table of Contents</strong></span>
+    </button>
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" mirror-in-rtl="true" fill="#000000" style="width: 18px;" id="toc-reopen" class="toc_collapsible">
+      <g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <circle fill="#494c4e" cx="2" cy="2" r="2"></circle> <circle fill="#494c4e" cx="2" cy="8" r="2"></circle> <circle fill="#494c4e" cx="2" cy="20" r="2"></circle> <circle fill="#494c4e" cx="2" cy="14" r="2"></circle> <path fill="#494c4e" d="M23.002 3H7.998C7.448 3 7 2.55 7 2.002v-.004c0-.55.45-.998.998-.998H23c.55 0 1 .45 1 .998V2c0 .55-.45 1-.998 1zM23.002 9H7.998C7.448 9 7 8.55 7 8.002v-.004c0-.55.45-.998.998-.998H23c.55 0 1 .45 1 .998V8c0 .55-.45 1-.998 1zM23.002 15H7.998c-.55 0-.998-.45-.998-.998V14c0-.55.45-1 .998-1H23c.55 0 1 .45 1 .998V14c0 .55-.45 1-.998 1zM23.002 21H7.998c-.55 0-.998-.45-.998-.998V20c0-.55.45-1 .998-1H23c.55 0 1 .45 1 .998V20c0 .55-.45 1-.998 1z"></path> </g>
+    </svg>
+    <ul id="toc" class="section-nav">
+<li class="toc-entry toc-h1"><a href="#probabilistic-models-and-localization">Probabilistic Models and Localization</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#probability-and-statistics-refreshers">Probability and Statistics Refreshers</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#conditional-distributions-and-independence">Conditional Distributions and Independence</a></li>
+<li class="toc-entry toc-h3"><a href="#expectation-and-variance">Expectation and Variance</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#state-and-belief-distributions">State and Belief Distributions</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#probabilistic-models">Probabilistic Models</a></li>
+<li class="toc-entry toc-h3"><a href="#motion-models">Motion Models</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#velocity-motion-model">Velocity Motion Model</a></li>
+<li class="toc-entry toc-h4"><a href="#odometry-motion-model">Odometry Motion Model</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#measurement-models">Measurement Models</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#maps-and-range-finders">Maps and Range Finders</a></li>
+<li class="toc-entry toc-h3"><a href="#landmark-measurement-model">Landmark Measurement Model</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#localization">Localization</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#bayes-filters-and-grid-localization">Bayes Filters and Grid Localization</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#bayesian-inference">Bayesian Inference</a></li>
+<li class="toc-entry toc-h2"><a href="#bayes-filter">Bayes Filter</a></li>
+<li class="toc-entry toc-h2"><a href="#histogram-filters">Histogram Filters</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#grid-localization">Grid Localization</a></li>
+<li class="toc-entry toc-h3"><a href="#grid-resolution">Grid Resolution</a></li>
+<li class="toc-entry toc-h3"><a href="#dynamic-decomposition">Dynamic Decomposition</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#particle-filters-and-mc-localization">Particle Filters and MC Localization</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#particle-filters">Particle Filters</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#monte-carlo-localization">Monte Carlo Localization</a></li>
+<li class="toc-entry toc-h3"><a href="#motion-model-sampling">Motion Model Sampling</a></li>
+<li class="toc-entry toc-h3"><a href="#measurement-model-likelihood">Measurement Model LIkelihood</a></li>
+<li class="toc-entry toc-h3"><a href="#importance-sampling-and-resampling-new-particles">Importance Sampling and Resampling New Particles</a></li>
+<li class="toc-entry toc-h3"><a href="#example-particle-filter-updates">Example: Particle Filter Updates</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#sampling-variance">Sampling Variance</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#reducing-variance">Reducing Variance</a></li>
+<li class="toc-entry toc-h3"><a href="#particle-deprivation">Particle Deprivation</a></li>
+<li class="toc-entry toc-h3"><a href="#distribution-mismatch">Distribution Mismatch</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#kalman-filters">Kalman Filters</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#gaussian-filters">Gaussian Filters</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#discrete-time-linear-systems">Discrete-Time Linear Systems</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#kalman-filter-derivation">Kalman Filter Derivation</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#prediction-step">Prediction Step</a></li>
+<li class="toc-entry toc-h3"><a href="#update-step">Update Step</a></li>
+<li class="toc-entry toc-h3"><a href="#summary-kalman-filter">Summary: Kalman Filter</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#extended-kalman-filter-and-localization">Extended Kalman Filter and Localization</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#linearization">Linearization</a></li>
+<li class="toc-entry toc-h2"><a href="#extended-kalman-filter-derivations">Extended Kalman Filter Derivations</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#extended-prediction-step">Extended Prediction Step</a></li>
+<li class="toc-entry toc-h3"><a href="#extended-update-step">Extended Update Step</a></li>
+<li class="toc-entry toc-h3"><a href="#summary-of-extended-kalman-filter">Summary of Extended Kalman Filter</a></li>
+<li class="toc-entry toc-h3"><a href="#ekf-problem-cases">EKF Problem Cases</a></li>
+<li class="toc-entry toc-h3"><a href="#ekf-localization">EKF Localization</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#motion-model-linearization-example">Motion Model Linearization Example</a></li>
+<li class="toc-entry toc-h2"><a href="#measurement-model-linearization-example">Measurement Model Linearization Example</a></li>
+<li class="toc-entry toc-h2"><a href="#data-association">Data Association</a></li>
+<li class="toc-entry toc-h2"><a href="#multi-hypothesis-tracking">Multi-Hypothesis Tracking</a></li>
+<li class="toc-entry toc-h2"><a href="#other-considerations-for-kalman-filters">Other Considerations for Kalman Filters</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#simultaneous-localization-and-mapping">Simultaneous Localization and Mapping</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#occupancy-grid-mapping">Occupancy Grid Mapping</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#bayes-filter-for-mapping">Bayes Filter for Mapping</a></li>
+<li class="toc-entry toc-h3"><a href="#log-odds">Log Odds</a></li>
+<li class="toc-entry toc-h3"><a href="#inverse-sensor-model">Inverse Sensor Model</a></li>
+<li class="toc-entry toc-h3"><a href="#learning-inverse-sensor-models">Learning Inverse Sensor Models</a></li>
+<li class="toc-entry toc-h3"><a href="#independence-assumption">Independence Assumption</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#slam">SLAM</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#ekf-slam">EKF-SLAM</a></li>
+<li class="toc-entry toc-h3"><a href="#ekf-slam-example">EKF-SLAM Example</a></li>
+<li class="toc-entry toc-h3"><a href="#particle-filters-for-slam">Particle Filters for SLAM</a>
+<ul>
+<li class="toc-entry toc-h4"><a href="#rao-blackwellization">Rao-Blackwellization</a></li>
+<li class="toc-entry toc-h4"><a href="#fastslam">FastSLAM</a></li>
+<li class="toc-entry toc-h4"><a href="#fastslam-updating-landmarks">FastSLAM: updating landmarks</a></li>
+<li class="toc-entry toc-h4"><a href="#fastslam-weighing">FastSLAM: Weighing</a></li>
+<li class="toc-entry toc-h4"><a href="#fastslam-example">FastSLAM: Example</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#comparing-slam-algorithms">Comparing SLAM Algorithms</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#robot-perception-and-vision">Robot Perception and Vision</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#image-representation-and-filtering">Image Representation and Filtering</a></li>
+<li class="toc-entry toc-h2"><a href="#point-cloud-registration">Point-Cloud Registration</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#icp">ICP</a></li>
+<li class="toc-entry toc-h3"><a href="#icp-improvements">ICP Improvements</a></li>
+<li class="toc-entry toc-h3"><a href="#random-sample-consensus">Random Sample Consensus</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#convolutional-neural-networks">Convolutional Neural Networks</a></li>
+<li class="toc-entry toc-h1"><a href="#reinforcement-learning">Reinforcement Learning</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#rl-basics">RL Basics</a></li>
+<li class="toc-entry toc-h2"><a href="#example-grid-world">Example: Grid World</a></li>
+<li class="toc-entry toc-h2"><a href="#deep-q-network">Deep Q-Network</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#imitation-learning">Imitation Learning</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#challenges-of-real-world-rl">Challenges of Real World RL</a></li>
+</ul>
+</li>
+</ul>
+  </div>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>[toc]</p>
+
+<h1 id="probabilistic-models-and-localization">Probabilistic Models and Localization</h1>
+
+<p>The problem is that in reality, we can have inaccuraries of</p>
+
+<ul>
+  <li>dynamic and unstructured environments</li>
+  <li>noisy sensors and actuators</li>
+  <li>inaccurate models</li>
+</ul>
+
+<p>etc. So the goal of this section is to <strong>bring probability (e.g., confidence) into robotic modeling and algorithms</strong></p>
+
+<h2 id="probability-and-statistics-refreshers">Probability and Statistics Refreshers</h2>
+
+<p>We denote a random variable as $X: \Omega \to \R$  map sample space outcome (e.g., dice number) to real values (e.g., 4). We then have</p>
+
+<ul>
+  <li>in a discrete case, we have <strong>PMF</strong> $f_X(a) = \Pr(X=a)$ is the actually probability</li>
+  <li>in a continous case, we have <strong>PDF</strong>, $\Pr(a \le X \le b) = \int_b^a f_X(x)dx$​ is probability</li>
+</ul>
+
+<p>For multiple random variables, we have a random <strong>vector</strong> $\mathbf{X} = [X_1, …, X_n]$. This then have:</p>
+
+<ul>
+  <li>
+    <p>a joint PMF being simply:</p>
+
+\[f_X(x_1, ..., x_n) = \Pr(X_1 = x_1, ..., X_n = x_n)\]
+
+    <p>which again describes an actual probability,</p>
+  </li>
+  <li>
+    <p>a joint PDF being:</p>
+
+\[\Pr(a_1 \le x_1 \le b_1, ..., a_n \le x_n \le b_n) = \int_{a_1}^{b_1}\dots\int_{a_n}^{b_n}f_X(x_1, ..., x_n) dx_n...dx_1\]
+  </li>
+  <li>
+    <p>a marginal distribution then considers either:</p>
+
+\[f_X(x) = \sum_y f_{X,Y}(x,y)\]
+
+    <p>for a continuous case</p>
+
+\[f_X(x) = \int f_{X,Y}(x,y)dy\]
+  </li>
+</ul>
+
+<hr />
+
+<p>Important examples: <strong>Multivariate Gaussian</strong>. A n-vector $X$</p>
+
+\[X \sim N( \mathbf{\mu}, \Sigma), \quad \text{where } X,\mu \in \R^n, \Sigma \in \R^{n \times n}\]
+
+<p>this is defined by</p>
+
+\[f_X(x) = \frac{1}{\sqrt{(2\pi)^n |\Sigma|}} \exp\left( -\frac{1}{2}(\mathbf{x} - \mathbf{\mu})^T  \Sigma^{-1} (\mathbf{x} - \mathbf{\mu}) \right)\]
+
+<p>visually for a 2D multivariate Gaussian:</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics_part2/image-20240322133258919.png" alt="image-20240322133258919" style="zoom:33%;" /></p>
+
+<p>some key properties:</p>
+
+<ul>
+  <li><strong>linear combinations of elements of $X$​ is also a Gaussian</strong>.</li>
+  <li>$\sqrt{(\mathbf{x} - \mu)^T \Sigma^{-1} (\mathbf{x} - \mu)}$ is the <strong>Mahalanobis distance between $\mathbf{x}$ and mean $\mathbf{\mu}$</strong></li>
+</ul>
+
+<h3 id="conditional-distributions-and-independence">Conditional Distributions and Independence</h3>
+
+<p>For <strong>conditional</strong> distribution</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Discrete</th>
+      <th style="text-align: center">Continous</th>
+      <th> </th>
+      <th> </th>
+      <th> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">$$\Pr(x</td>
+      <td style="text-align: center">y) = \frac{\Pr(x,y)}{\Pr(y)}$$</td>
+      <td>$$f_{X</td>
+      <td>Y}(x</td>
+      <td>y) = \frac{f_{X,Y}(x,y)}{f_{Y}(y)}$$</td>
+    </tr>
+  </tbody>
+</table>
+
+<blockquote>
+  <p>For two RV to be <strong>independent</strong>, then:</p>
+
+\[f_{X,Y}(x,y) = f_X(x)f_Y(y),\quad \forall x,y\]
+
+  <p>which is equivalent of saying $f_{X\vert Y}(x\vert y) = f_X(x)$: knowing $y$ tells us <mark>nothing extra about what $x$ could be.</mark></p>
+</blockquote>
+
+<p>As an example, consider a bivariate uniform distribution: one everywhere inside a box:</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics_part2/image-20240322134701370.png" alt="image-20240322134701370" style="zoom:33%;" /></p>
+
+<p>where you can check that $f_{X_1, X_2}(x_1, x_2) = f_{X_1}(x_1)f_{X_2}(x_2)$ everywhere, and that knowing $y=0.3$ or $y=0.5$ tells you nothing about $f_X(x)$.</p>
+
+<hr />
+
+<p>In reality, independence is hard to observe. A looser version of independence is <strong>conditional independence</strong></p>
+
+<blockquote>
+  <p><strong>Conditional Independence</strong>: given <em>a RV’s value</em> $Z=z$, then:</p>
+
+\[f_{X,Y|z}(x,y|z) = f_{X|z}(x|z)f_{Y|z}(y|z)\]
+
+  <p>we say $X,Y$ is conditional independent given $Z=z$.</p>
+</blockquote>
+
+<p>Note that <strong>absolute independence may not infer conditional independence:</strong></p>
+
+<ul>
+  <li>$f_{X,Y\vert z}(x,y) = f_{X\vert z}(x)f_{Y\vert z}(y) \centernot\implies f_{X,Y}(x,y) = f_X(x)f_Y(y)$​ because $z$ may contain important information</li>
+  <li>$f_{X,Y}(x,y) = f_X(x)f_Y(y)\centernot\implies f_{X,Y\vert z}(x,y) = f_{X\vert z}(x)f_{Y\vert z}(y)$ because knowing something about $z$ might break independence</li>
+</ul>
+
+<h3 id="expectation-and-variance">Expectation and Variance</h3>
+
+<p>Obviously:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Discrete</th>
+      <th style="text-align: center">Continous</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">$\mathbb{E}[X] = \sum_i x_i f_X[x_i]$</td>
+      <td style="text-align: center">$\mathbb{E}[X] = \int x f_X(x)dx$</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>A function $g(X)$ of a random variable is also a random variable. So then you could also consider the expectation of $g(X)$ as:</p>
+
+\[\mathbb{E}[g(X)] = \int g(x)f_X(x)dx\]
+
+<p>an exercise: the <strong>linearity property</strong> of expectation</p>
+
+\[\begin{align*}
+\mathbb{E}[aX + bY] 
+&amp;= \iint (ax+by)f_{X,Y}(x,y) dxdy \\
+&amp;= \iint ax f_{x,y}(x,y)dxdy + \iint by f_{x,y}(x,y)dxdy\\
+&amp;= a\int xf_X(x)dx + b\int y f_Y(y) dy \\
+&amp;= a \mathbb{E}[X] + b \mathbb{E}[Y]
+\end{align*}\]
+
+<blockquote>
+  <p>Then the <strong>variance</strong> is like a “second moment” but:</p>
+
+\[\text{Var}[X] = \mathbb{E}[ (X - \mu)^2]\]
+
+</blockquote>
+
+<p>is like measuring the <strong>dispersion</strong> of an RV’s value from the mean. We can then also show using linearity of expectation:</p>
+
+\[\begin{align*}
+\mathbb{E}[(X-\mu)^2]
+&amp;= \mathbb{E}[X^2 - 2 \mu X + \mu^2]\\
+&amp;= \mathbb{E}[X^2] - 2\mu \mathbb{E}[X] + \mu^2 \\
+&amp;= \mathbb{E}[X^2] - \mu^2
+\end{align*}\]
+
+<p>some important <strong>properties of variance</strong>. (prove them as an exercise)</p>
+
+<ul>
+  <li>
+    <p>$\text{Var}[X+Y] = \text{Var[X]} + \text{Var}[Y] + 2\text{Cov}[X,Y]$, i.e., there is a “cross-term”:</p>
+
+\[\text{Cov}[X_i,X_j] \equiv \mathbb{E}[ (X_i - \bar{X}_i) (X_j - \bar{X}_j) ] = \mathbb{E}[ X_iX_j] - \bar{X}_i\bar{X}_j\]
+
+    <p>is like how the two RV interacts with each other. So if two variables are <em>independent of each other</em>, then:</p>
+
+\[\text{Cov}[X_i, X_j] = \mathbb{E}[X_iX_j] - \bar{X_i}\bar{X_j} = \bar{X_i}\bar{X_j}-\bar{X_i}\bar{X_j}=0\]
+  </li>
+  <li>
+    <p>$\text{Var}[aX] = a^2\text{Var[X]}$ has the scalar squared.</p>
+  </li>
+</ul>
+
+<p>Finally, what if $X$ is a vector? Then</p>
+
+<blockquote>
+  <p><strong>Covariance for a $n$-vector $\mathbf{X}$</strong> is then:</p>
+
+\[P_X \equiv \mathbb{E}[(\mathbf{X}- \bar{\mathbf{X}})(\mathbf{X}- \bar{\mathbf{X}})^T] = \mathbb{E}[\mathbf{X}\mathbf{X}^T] - \bar{\mathbf{X}}\bar{\mathbf{X}}^T\]
+
+  <p>visually,</p>
+
+\[P_x = \begin{bmatrix}
+\text{Var}[X_1] &amp; \text{Cov}[X_1, X_2] &amp; \dots &amp; \text{Cov}[X_1, X_n]\\
+\vdots &amp; \text{Var}[X_2] &amp; \dots &amp; \vdots\\
+\vdots &amp; \dots &amp; \ddots &amp; \vdots\\
+\text{Cov}[X_n, X_1] &amp; \text{Cov}[X_n, X_2] &amp; \dots &amp; \text{Var}[X_n]\\
+\end{bmatrix}\]
+
+  <p>which is also <strong>symmetric, positive semi-definite matrix</strong> (i.e., $x^TP_xx \ge 0, \forall x$.)</p>
+</blockquote>
+
+<p>As an example, consider. a bivariate distribution</p>
+
+\[f_{X_1, X_2}(x_1, x_2) = \begin{cases}
+x_1 + x_2, &amp; 0 \le x_1 \le 1, 0 \le x_2 \le 1\\
+0, &amp; \text{otherwise}
+\end{cases}\]
+
+<p>visually</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics_part2/image-20240322142409514.png" alt="image-20240322142409514" style="zoom: 25%;" /></p>
+
+<p>We can then compute:</p>
+
+<ul>
+  <li>
+    <p>marginal of $f_{X_1}$:</p>
+
+\[f_{X_1}(x_1) = \begin{cases}
+\int_{0}^1 x_1 + x_2 dx_2 = x_1 + \frac{1}{2}, &amp; 0 \le x_1 \le 1\\
+0, &amp; \text{otherwise}
+\end{cases}\]
+  </li>
+  <li>
+    <p>conditional given $x_1=1$:</p>
+
+\[f_{X_2 | X_1}(x_2 | X_1=1) = \begin{cases}
+\frac{f_{X_1,X_2}(1,x_2)}{f_{X_1}(1)} = \frac{1+x_2}{3/2} = \frac{2}{3}(1+x_2), &amp; 0 \le x \le 1\\
+\text{undefined}, &amp; \text{otherwise}
+\end{cases}\]
+  </li>
+  <li>
+    <p>expectations, which is symmetrical in this case</p>
+
+\[\mathbb{E}[X_1] = \mathbb{E}[X_2] = \int_{0}^1\int_0^1 x_1 (x_1+x_2)dx_1dx_2 = \frac{7}{12}\]
+  </li>
+  <li>
+    <p>variance, again symmetrical:</p>
+
+\[\text{Var}[X_1] = \text{Var}[X_2] = \int_{0}^1\int_0^1 x_1^2 (x_1+x_2)dx_1dx_2 - \bar{X}_1^2 = \frac{11}{144}\]
+  </li>
+  <li>
+    <p>covariance matrix: we know that the diagonal are the variances of individual element, we only need to find the covariances:</p>
+
+\[\text{Cov}[X_1, X_2] = \int_0^1\int_0^1 x_1x_2(x_1+x_2)dx_1dx_2 - \bar{X}_1\bar{X}_2 = -\frac{1}{144}\]
+
+    <p>its negative but its slightly harder to see why (a negative covariance means if $X_1$ goes up, $X_2$ has to go down). To see it mathematically you will need to compare $f_{X_2 \vert  X_1}(x_2 \vert  X_1=1)$ and $f_{X_2 \vert  X_1}(x_2 \vert  X_1=0)$. But the goal is to find covariance matrix:</p>
+
+\[P = \frac{1}{144}\begin{bmatrix}
+11 &amp; -1 \\
+-1 &amp; 11
+\end{bmatrix}\]
+  </li>
+</ul>
+
+<h2 id="state-and-belief-distributions">State and Belief Distributions</h2>
+
+<p>Since we might have uncertainty about <strong>both robot and environment</strong>, we can consider</p>
+
+<blockquote>
+  <p>A <strong>state</strong> including all aspects of the robot and the environment at a point in time.</p>
+</blockquote>
+
+<p>Since we have uncertainty in states, we consider</p>
+
+<blockquote>
+  <p>A <strong>belief (posterior) distribution</strong> over all possible state hypothesis:</p>
+
+\[B(\mathbf{x}_{k}) = \Pr[ \mathbf{x}_{k} | \mathbf{z}_{1:k}, \mathbf{u}_{1:k}]\]
+
+  <p>where:</p>
+
+  <ul>
+    <li>$\mathbf{x}_k$: state vector at step $k$​, models what the “actual world state” is</li>
+    <li>$\mathbf{z}<em>{1:k}$, $\mathbf{u}</em>{1:k}$: set of <strong>measurement (what you saw via sensors)</strong> and <strong>control vectors (what you did)</strong> from step 1 to step $k$​</li>
+  </ul>
+</blockquote>
+
+<blockquote>
+  <p>For this section, you can just <mark>imagine $B(\mathbf{x}_{k})$ as a distribution that can be computed exactly by</mark>:</p>
+
+  <ol>
+    <li>
+      <p>given the previous belief state $\mathbf{x}_{k-1}$​</p>
+    </li>
+    <li>
+      <p>give some action $\mathbf{u}_k$, then you can either or do both:</p>
+
+      <ul>
+        <li>directly figure out where your next state by <em>computing</em> from a <strong>transition model</strong> (called motion model) $\Pr[\mathbf{x}<em>k\vert \mathbf{x}</em>{k-1},\mathbf{u}_k]$</li>
+        <li><em>fix</em> your next state belief with a measurement from your <strong>measurement model</strong> $\Pr[\mathbf{z}_k \vert  \mathbf{x}_k , \mathbf{u}_k]$​</li>
+      </ul>
+
+      <p>the former is like blind-folded predicting where the car is at after you hit the brake, and the later is that you fix your estimate of your car’s state after opening your eyes for 1s.</p>
+    </li>
+  </ol>
+</blockquote>
+
+<p>In practice, we might also consider modeling the next state before making a measurement $z$:</p>
+
+\[B'(\mathbf{x}_{k}) = \Pr[ \mathbf{x}_{k} | \mathbf{z}_{1:k-1}, \mathbf{u}_{1:k}]\]
+
+<p>either way, problem now is <mark>how do we update belief</mark> using transition model or measurement model?</p>
+
+<h3 id="probabilistic-models">Probabilistic Models</h3>
+
+<p>To be exact, you would have:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">(Transition) Motion Model</th>
+      <th style="text-align: center">Measurement Model</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">$\Pr[ \mathbf{x}<em>{k} \vert  \mathbf{x}</em>{1:k-1}, \mathbf{z}<em>{1:k-1}, \mathbf{u}</em>{1:k}]$</td>
+      <td style="text-align: center">$\Pr[ \mathbf{z}<em>{k} \vert  \mathbf{x}</em>{1:k-1}, \mathbf{z}<em>{1:k-1}, \mathbf{u}</em>{1:k}]$</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>But this is very computationally heavy because these sequences can be long/high-dimension. Therefore, we often consider using <strong>Markov assumption and conditional independence</strong> to instead use</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics_part2/image-20240322145458273.png" alt="image-20240322145458273" style="zoom: 50%;" /></p>
+
+<p>where:</p>
+
+<ul>
+  <li>
+    <p>the latter is much simpler, but of course has a <strong>computation and accuracy trade-off</strong>.</p>
+  </li>
+  <li>
+    <p>and again, knowing either of the two (especially the first one) will be <strong>very useful to update your belief estimates</strong></p>
+  </li>
+</ul>
+
+<h3 id="motion-models">Motion Models</h3>
+
+<p>A motion model basically is a transition model that can be applied to update your belief distribution:</p>
+
+<blockquote>
+  <p>If we have a belief distribution over $\mathbf{x}<em>{k-1}$, the motion model $\Pr[ \mathbf{x}</em>{k} \vert  \mathbf{x}<em>{k-1}, \mathbf{u}</em>{k}]$ describes <strong>how you should then update your belief distribution</strong> given an action $\mathbf{u}_k$.</p>
+</blockquote>
+
+<p>For example, even given a simple motion, you might have a <strong>distribution</strong> of where your robot is actually at.</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics_part2/image-20240322150012147.png" alt="image-20240322150012147" style="zoom:50%;" /></p>
+
+<h4 id="velocity-motion-model">Velocity Motion Model</h4>
+
+<p>One way to describe how this transition works is by <strong>velocity vectors</strong>. Given <strong>velocity controls</strong>, e.g., $\mathbf{u} = (w, \vec{v})$ in the following example</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics_part2/image-20240322184944696.png" alt="image-20240322184944696" style="zoom:50%;" /></p>
+
+<p>you can then model the transition function as:</p>
+
+\[\begin{bmatrix}
+x_k \\
+y_k \\
+\theta_k
+\end{bmatrix} = 
+\begin{bmatrix}
+x_{k-1} \\
+y_{k-1} \\
+\theta_{k-1}
+\end{bmatrix} + \underbrace{\Delta t
+\begin{bmatrix}
+v_k \cos \theta_{k-1} \\
+v_k \sin \theta_{k-1} \\
+\omega_k \\
+\end{bmatrix} + \mathbf{w}_k}_{\text{your model's design}}\]
+
+<p>where the probabilistic part comes in by how we model the <strong>error vector $\mathbf{w}_k$</strong>. If we have no prior about it:</p>
+
+<ul>
+  <li>
+    <p>a multivariate Gaussian with zero mean vector, but <strong>some non-zero covariance</strong> (which you need to define)</p>
+  </li>
+  <li>
+    <p>then how you design this covariance matrix changes what the state distribution looks like:</p>
+
+    <p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics_part2/image-20240322150827838.png" alt="image-20240322150827838" style="zoom:33%;" /></p>
+  </li>
+  <li>
+    <p>or if you really have no idea, <strong>this can also be estimated by some machine learning model + some data</strong></p>
+  </li>
+</ul>
+
+<h4 id="odometry-motion-model">Odometry Motion Model</h4>
+
+<p>Another common motion model is based on <strong>odometry measurment</strong>, typically when you have wheel encoder.</p>
+
+<p>Given three “controls” $\delta_{rot1}$,  $\delta_{trans}$,  $\delta_{rot2}$ being initial rotation, translation, and final rotation:</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics_part2/image-20240322185721093.png" alt="image-20240322185721093" style="zoom:33%;" /></p>
+
+<p>You can then model transition being</p>
+
+\[\begin{bmatrix}
+x_k \\
+y_k \\
+\theta_k
+\end{bmatrix} = 
+\begin{bmatrix}
+x_{k-1} \\
+y_{k-1} \\
+\theta_{k-1}
+\end{bmatrix} + 
+\begin{bmatrix}
+\hat{\delta}_{trans} \cos(\theta_{k-1} + \hat{\delta}_{rot1}) \\
+\hat{\delta}_{trans} \sin(\theta_{k-1} + \hat{\delta}_{rot1}) \\
+\hat{\delta}_{rot1} + \hat{\delta}_{rot2}
+\end{bmatrix}\]
+
+<p>where $\hat{\delta}$ are the true rotation/translation <strong>+ some noise vector</strong>.</p>
+
+<h2 id="measurement-models">Measurement Models</h2>
+
+<p>Measurement models describe how sensor measurements are generated. These can <strong>also have noises</strong> due to stuff like misreadings, unexpected objects, etc. Therefore, the goal is how to represent the “real measurement” (i.e. what you really saw) probabilistically!</p>
+
+<h3 id="maps-and-range-finders">Maps and Range Finders</h3>
+
+<p>In this section, we have measurements are often described relative to some <strong>map</strong></p>
+
+<blockquote>
+  <p>A <strong>map</strong> is an environment where you basically <mark>know a priori</mark> where is the obstacles/the free space of the robot.</p>
+</blockquote>
+
+<p>One simple way to obtain measurement in this case is using <strong>range finders</strong></p>
+
+<blockquote>
+  <p>A <strong>range finder</strong> measure range and/or bearing to fixed landmarks (or obstacles) in the environment.</p>
+</blockquote>
+
+<p>For example, the map and beams shot out by some range finder is shown below:</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics_part2/image-20240322190614043.png" alt="image-20240322190614043" style="zoom:50%;" /></p>
+
+<p>so how would you model measurements in this case?</p>
+
+<h3 id="landmark-measurement-model">Landmark Measurement Model</h3>
+
+<blockquote>
+  <p>Then, we can model “measurements” as the <strong>position of the obstacles given the location of the current robot</strong>. This is also called a <strong>landmark measurement model</strong>.</p>
+</blockquote>
+
+<p>note that here we ignored measurements that we could “collect from the range finder” here. In practice, you could <strong>combine</strong> the results from this measurement model with actual measurements.</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics_part2/image-20240322153237887.png" alt="image-20240322153237887" style="zoom:50%;" /></p>
+
+<p>Then the <strong>measurement model for each landmark $j$</strong>​ at step $k$ of the robot is given by</p>
+
+\[\mathbf{z}_{j,k} = \begin{bmatrix}
+r_{j,k}\\
+\phi_{j,k}
+\end{bmatrix}
+= \begin{bmatrix}
+\sqrt{(m_{j,x} - x_k)^2 + (m_{j,x} - y_k)^2}\\
+\text{atan2}(m_{j,y} - y_k, m_{j,x} - x_k) - \theta_k
+\end{bmatrix}
++ \mathbf{v}_k\]
+
+<p>so your full measurement would just be:</p>
+
+\[\mathbf{z}_k = \{ \mathbf{z}_{1, k}, \mathbf{z}_{2, k}, ...,\mathbf{z}_{n, k} \}\]
+
+<p>where:</p>
+
+<ul>
+  <li>
+    <p>the $-\theta_k$​ appears is because the robot has its own orientation</p>
+  </li>
+  <li>
+    <p>$\mathbf{v}_k$ will be <strong>measuring the error</strong></p>
+  </li>
+</ul>
+
+<h2 id="localization">Localization</h2>
+
+<p>Finally, to figure out measurement above, you <strong>first need to figure out where the robot is relative to the map</strong>.</p>
+
+<blockquote>
+  <p><strong>Localization</strong> is the problem of determining a mobile robot’s pose (position and orientation) or its coordinate transformation relative to a known map</p>
+</blockquote>
+
+<p>An example of a hard global localization problem: <strong>kidnapped robot problem</strong> (your robot suddenly transported to a new location). This task can be used as a measure of how good your localization algorithm is.</p>
+
+<p>In general, an example of localization would look like:</p>
+
+<ol>
+  <li>
+    <p>consider a 1-D robot, where you <strong>don’t really know where your robot</strong> is, <mark>except that its near a door</mark>.</p>
+  </li>
+  <li>
+    <p>At the beginning, since you have no idea where you are, <strong>your initial belief state estimate would be uniform</strong>:</p>
+
+    <p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics_part2/image-20240323171447699.png" alt="image-20240323171447699" style="zoom: 50%;" /></p>
+  </li>
+  <li>
+    <p>But you can <strong>measure the location of the door as a function of $x$​</strong> (i.e., with a <em>measurement mode</em>l). Since you see three doors, you can then update your estimate being your robot near any of one of the three door:</p>
+
+    <p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics_part2/image-20240323171640912.png" alt="image-20240323171640912" style="zoom:50%;" /></p>
+  </li>
+  <li>
+    <p>Then, let’s say you moved your robot a bit. You can then <strong>update your belief again using a motion/transition model</strong>:</p>
+
+    <p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics_part2/image-20240323171814155.png" alt="image-20240323171814155" style="zoom: 60%;" /></p>
+  </li>
+  <li>
+    <p>After that, say you make another measurement and found that you are <em>still at a door</em>. Then you have quite some good estimate of where your robot is:</p>
+
+    <p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics_part2/image-20240323171945857.png" alt="image-20240323171945857" style="zoom: 60%;" /></p>
+  </li>
+  <li>
+    <p>Lastly, if you move your robot again, your belief state estimate would be more confident:</p>
+
+    <p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics_part2/image-20240323172027860.png" alt="image-20240323172027860" style="zoom:60%;" /></p>
+  </li>
+</ol>
+
+<h1 id="bayes-filters-and-grid-localization">Bayes Filters and Grid Localization</h1>
+
+<p>Now, we can <strong>formally define how to get from</strong>:</p>
+
+\[B(\mathbf{x}_k) = p( \mathbf{x}_k|\mathbf{z}_{1:k},\mathbf{u}_{1:k} ) \to B(\mathbf{x}_{k+1})= p( \mathbf{x}_{k+1}|\mathbf{z}_{1:k+1},\mathbf{u}_{1:k+1} )\]
+
+<p>with a bit more detail, we will see this being:</p>
+<ul>
+  <li>given some movement $\mathbf{u}<em>{k+1}$, use motion model to predict the next state $B(\mathbf{x}</em>{k}) \to B’(\mathbf{x}_{k+1})$</li>
+  <li>given some measurement $\mathbf{z}<em>{k+1}$, use measurement model to predict the next state $B’(\mathbf{x}</em>{k+1}) \to B(\mathbf{x}_{k+1})$</li>
+</ul>
+
+<h2 id="bayesian-inference">Bayesian Inference</h2>
+
+<p>Recall that bayes theorem shows:</p>
+
+\[p(x_i | x_j) = \frac{p(x_j | x_i)p(x_i)}{p(x_j)}\]
+
+<p>the practical usage of this is basically in inferences:</p>
+
+\[\text{posterior} = \frac{\text{likelihood} \times \text{prior}}{\text{normalization constant}}\]
+
+<p>and that this <strong>holds with multiple terms</strong></p>
+
+\[p(x_i | x_j, y_1, ..., y_m) = \frac{p(x_j|x_i, y_1,..,y_m)p(x_i| y_1,..,y_m)}{p(x_j|y_1,..,y_m)}\]
+
+<p>where basically the original equation holds if we condition every term additionally on $y_1,..,y_m$.</p>
+
+<p>So how can we use it?</p>
+
+<h2 id="bayes-filter">Bayes Filter</h2>
+
+<p>Consider a simplified case we we have a prior belief $B=p(\mathbf{x}<em>{k-1})$ and a transition model $p(\mathbf{x}</em>{k}\vert \mathbf{x}_{k-1})$, <mark>assuming no control</mark>:</p>
+
+\[p(\mathbf{x}_{k}) = \int p(\mathbf{x}_{k}|\mathbf{x}_{k-1}) p(\mathbf{x}_{k-1}) d\mathbf{x}_{k-1}\]
+
+<p>but now suppose we <strong>observed something</strong>, i.e. have a measurement model $p(\mathbf{z}<em>{k}\vert \mathbf{x}</em>{k})$</p>
+
+\[p(\mathbf{x}_{k}|\mathbf{z}_{k}) = \frac{p(\mathbf{z}_{k}|\mathbf{x}_{k})p(\mathbf{x}_{k})}{p(\mathbf{z}_{k})} = \eta^{-1}p(\mathbf{z}_{k}|\mathbf{x}_{k})p(\mathbf{x}_{k})\]
+
+<p>where here is where the bayes theorem come in:</p>
+
+<ul>
+  <li>$\eta$​​ can be computed <em>afterwards to normalize everything to 1.0</em></li>
+  <li>$p(\mathbf{x}_{k})$​ is computed from the previous step.</li>
+</ul>
+
+<p>This means to get <mark>actually get from $B(\mathbf{x}_k) \to B(\mathbf{x}_{k+1})$</mark> we will take two steps:</p>
+
+<ul>
+  <li><strong>motion prediction</strong>: given that we took an action:
+    <ol>
+      <li>previous belief $B(\mathbf{x}<em>{k-1} ) = p(\mathbf{x}</em>{k-1}\vert \mathbf{z}<em>{1:k-1},\mathbf{u}</em>{1:k-1})$</li>
+      <li>given an action the robot took $\mathbf{u}_k$</li>
+      <li>we want to compute a motion model update for the belief states $B’(\mathbf{x}<em>{k} ) = p(\mathbf{x}</em>{k-1}\vert \mathbf{z}<em>{1:k-1},\mathbf{u}</em>{1:k})$ ​</li>
+    </ol>
+
+    <p>to be more specific, we show that:</p>
+
+    <p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics_part2/image-20240329132838175.png" alt="image-20240329132838175" style="zoom:50%;" /></p>
+
+    <p>where this basically says:</p>
+
+\[B'(\mathbf{x}_{k}) = \int \underbrace{p(\mathbf{x}_{k}|\mathbf{x}_{k-1}, \mathbf{u}_{k})}_{\text{motion model}} B(\mathbf{x}_{k-1}) d\mathbf{x}_{k-1}\]
+  </li>
+  <li><strong>obversation update</strong>: we then make a measurement and further refine our belief state estimate:
+    <ol>
+      <li>given $B’(\mathbf{x}<em>{k} ) = p(\mathbf{x}</em>{k-1}\vert \mathbf{z}<em>{1:k-1},\mathbf{u}</em>{1:k})$</li>
+      <li>given an observation $\mathbf{z}_k$</li>
+      <li>we want to compute a measurement model update/final update for the belief states $B(\mathbf{x}<em>{k} ) = p(\mathbf{x}</em>{k}\vert \mathbf{z}<em>{1:k},\mathbf{u}</em>{1:k})$ ​</li>
+    </ol>
+
+    <p>to be more specific, we show that:</p>
+
+    <p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics_part2/image-20240329133639556.png" alt="image-20240329133639556" style="zoom:50%;" /></p>
+
+    <p>where in the first equality, we split $\mathbf{z}<em>{1:k} = \mathbf{z}</em>{k}, \mathbf{z}_{1:k-1}$ and this bayes theorem is apparent. This therefore says</p>
+
+\[B(\mathbf{x}_{k}) = \eta^{-1} \underbrace{p(\mathbf{z}_{k}|\mathbf{x}_{k}, \mathbf{u}_{k})}_{\text{measurement model}} B'(\mathbf{x}_{k})\]
+
+    <p>and depending on how your insert your assumption, you measurement model could even be:</p>
+
+\[p(\mathbf{z}_{k}|\mathbf{x}_{k}, \mathbf{u}_{k}) \iff p(\mathbf{z}_{k}|\mathbf{x}_{k})\]
+  </li>
+</ul>
+
+<p>Visually, its like we are doing an HMM update</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics_part2/image-20240329133018891.png" alt="image-20240329133018891" style="zoom:40%;" /></p>
+
+<p>This means, in summary:</p>
+
+<blockquote>
+  <p><strong>Bayes Filter</strong>: the exact computation of $B(\mathbf{x}_{k})$ where:</p>
+  <ol>
+    <li>given a prior belief $B(\mathbf{x}<em>{k-1})$= $p(\mathbf{x}</em>{k-1}\vert \mathbf{z}<em>{1:k-1},\mathbf{u}</em>{1:k-1})$</li>
+    <li>given a robot motion $\mathbf{u}_k$, update the belief:</li>
+  </ol>
+
+\[B'(\mathbf{x}_{k}) = \int p(\mathbf{x}_{k}|\mathbf{x}_{k-1}, \mathbf{u}_{k}) B(\mathbf{x}_{k-1}) d\mathbf{x}_{k-1}\]
+
+  <ol>
+    <li>given a measurement $\mathbf{z}_k$, update the belief:</li>
+  </ol>
+
+\[B(\mathbf{x}_{k}) = \eta^{-1} p(\mathbf{z}_{k}|\mathbf{x}_{k}, \mathbf{u}_{k}) B'(\mathbf{x}_{k})\]
+
+  <p>where sometimes you could also see $p(\mathbf{z}<em>{k}\vert \mathbf{x}</em>{k}, \mathbf{u}<em>{k}) \iff p(\mathbf{z}</em>{k}\vert \mathbf{x}_{k})$ being interchangeable.</p>
+</blockquote>
+
+<p>For example, suppose we have a 1D robot that moves between $[0,1]$ and we have a prior belief:</p>
+
+\[B(x_{k-1}) = 2x_{k-1}, \quad 0 \le x_{k-1} \le 1\]
+
+<p>Visually, this means the we think the robot is</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics_part2/image-20240330123630.png" style="zoom:12%;" />
+Then:</p>
+
+<ul>
+  <li>
+    <p><strong>motion model update</strong>: let a motion model be given, being:</p>
+
+\[p(x_{k} | x_{k-1}) = \frac{x_{k-1} + x_k}{x_{k-1} + 0.5},\quad 0 \le x_k \le 1\]
+
+    <p>plugging in the equation, we get:</p>
+
+\[B'(x_k) = \int_0^{1} \frac{x_{k-1} + x_k}{x_{k-1} + 0.5} 2x_{k-1} dx_{k-1} = x_{k} (2 - \ln 3) + 0.5 \ln 3,\quad 0 \le x_k \le 1\]
+
+    <p>where:</p>
+    <ul>
+      <li>the information of how the robot moved is <strong>embedded in the motion model/transition model</strong></li>
+      <li>this motion model says: given the robot moved a bit, I can estimate the chances that now I am in a position $x_k$ given I was previously at $x_{k-1}$.</li>
+      <li>therefore, to visualize the motion model, it will be a 2D surface.</li>
+    </ul>
+
+    <p>but this $B’$ can be visualized as:</p>
+
+    <p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics_part2/image-20240330123605.png" style="zoom:12%;" /></p>
+
+    <p>which indicates the movement is probably to the left.</p>
+  </li>
+  <li>
+    <p><strong>measurement model update</strong>: let a measurement model be given, being:</p>
+
+\[p(z_k | x_k) = 1, \quad 0.5 \le x_k \le 1\]
+
+    <p>plugging in the equation, we get:</p>
+
+\[B(x_k) = \eta^{-1} p(z_k | x_k) B'(x_k) = \eta^{-1} (x_k (2 - \ln 3) + 0.5 \ln 3), \quad 0.5 \le x_k \le 1\]
+
+    <p>where:</p>
+    <ul>
+      <li>again, the information of what you measured is <strong>embedded in the measurement model</strong></li>
+      <li>this essentially measures the <strong>likelihood</strong> of the robot being at $x_k$ given what you just observed.</li>
+    </ul>
+
+    <p>this final $B$ can be visualized as:</p>
+
+    <p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics_part2/image-20240330124033.png" style="zoom:12%;" /></p>
+  </li>
+</ul>
+
+<p>This gives me a full updated $B(x_k)$​​ after a movement and a measurement.</p>
+
+<h2 id="histogram-filters">Histogram Filters</h2>
+
+<blockquote>
+  <p>Idea: this integration over motion model would be computationally expensive and near intractable at high dimensional space. But we can <strong>discretize over the state space</strong> (e.g., grid state space) and do sum instead.</p>
+</blockquote>
+
+<p>so we can have:</p>
+
+<ul>
+  <li>chunk a continuous space into grid regions $x_i$</li>
+  <li>every position in a grid region $x_i$ will have the same probability $p_i$ (e.g. probability of the mean coordinate $\hat{x}_i$)</li>
+</ul>
+
+<p>Visually, the red dots are the representative state $\hat{x}_i$ we use for $p_i$</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics_part2/image-20240330124350.png" style="zoom:15%;" /></p>
+
+<p>Then we have
+<img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics_part2/image-20240329135913594.png" alt="image-20240329135913594" style="zoom:50%;" /></p>
+
+<p>where the $\vert x_{i,k}\vert$ describes the <strong>volume of that grid region $x_i$​</strong>. The transition/motion model is then:</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics_part2/image-20240330124546.png" style="zoom:15%;" /></p>
+
+<p>For example:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Continuous Transformations</th>
+      <th style="text-align: center">Discrete Transformations</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics_part2/image-20240329140305980.png" alt="image-20240329140305980" style="zoom:50%;" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics_part2/image-20240329140327366.png" alt="image-20240329140327366" style="zoom:50%;" /></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>More concretely, consider discretizing our example in the previous section. Let’s still have $B(x_{k-1}) = 2x_{k-1}$ into two bins:</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics_part2/image-20240329140524718.png" alt="image-20240329140524718" style="zoom:50%;" /></p>
+
+<p>so basically we have two representative points: $x_1=0.25,x_2=0.75$. Then our <strong>discretized motion model</strong> looks like</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Full Motion Model</th>
+      <th style="text-align: center">Discretized (NxN matrix)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics_part2/image-20240329141017820.png" alt="image-20240329141017820" style="zoom:50%;" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics_part2/image-20240329140701469.png" alt="image-20240329140701469" style="zoom: 67%;" /></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Hence our belief update $B’(x_k)$ becomes <strong>a discrete sum</strong>:</p>
+
+\[B'(\mathbf{x}_{k}) = \sum_{\mathbf{x}_{k-1}} p(\mathbf{x}_{k}|\mathbf{x}_{k-1}) B(\mathbf{x}_{k-1})\]
+
+<p>So we get:</p>
+
+\[B'(x_k) = \begin{bmatrix} 
+  B'(x_k=0.25) \\
+  B'(x_k=0.75) 
+\end{bmatrix} = 
+\begin{bmatrix} 
+    0.34 (0.5) + 0.4 (1.5) \\
+    0.66 (0.5) + 0.6(1.5)
+\end{bmatrix} =
+\begin{bmatrix} 
+    0.77 \\
+    1.23
+\end{bmatrix}\]
+
+<p>and finally applying the measurement model $p(z_k\vert x_k)=1$ for $0.5\le x_k\le1$:</p>
+
+\[B(x_k) = \eta^{-1} p(z_k|x_k)B'(x_k) = \eta^{-1} \begin{bmatrix} 
+    0.0 \\
+    1.23 
+\end{bmatrix} = 
+\begin{bmatrix} 
+    0.0 \\
+    2.0 
+\end{bmatrix}\]
+
+<p>which zeroed out the first cell entirely.</p>
+
+<blockquote>
+  <p><strong>Histogram Filter</strong>: the approximate computation of $B(\mathbf{x}_{k})$ where after we discretized all states:</p>
+  <ol>
+    <li>given a discretized belief $B(\hat{\mathbf{x}}<em>{k-1})$= $p(\hat{\mathbf{x}}</em>{k-1}\vert \mathbf{z}<em>{1:k-1},\mathbf{u}</em>{1:k-1})$</li>
+    <li>given a robot motion $\mathbf{u}_k$, update the belief:</li>
+  </ol>
+
+\[B'(\hat{\mathbf{x}}_{k}) = \sum_{\hat{\mathbf{x}}_{k-1}} p(\hat{\mathbf{x}}_{k}|\hat{\mathbf{x}}_{k-1}, \mathbf{u}_{k}) B(\hat{\mathbf{x}}_{k-1})\]
+
+  <ol>
+    <li>given a measurement $\mathbf{z}_k$, update the belief:</li>
+  </ol>
+
+\[B(\hat{\mathbf{x}}_{k}) = \eta^{-1} p(\mathbf{z}_{k}|\hat{\mathbf{x}}_{k}, \mathbf{u}_{k}) B'(\hat{\mathbf{x}}_{k})\]
+
+  <p>where $p(\hat{\mathbf{x}}<em>{k}\vert \hat{\mathbf{x}}</em>{k-1}, \mathbf{u}<em>{k})$ and $p(\mathbf{z}</em>{k}\vert \hat{\mathbf{x}}<em>{k}, \mathbf{u}</em>{k})$ are the <strong>discretized motion and measurement models</strong> (i.e., they becomes a $N \times N$ matrix instead of a continuous function, if you have $N$ discretized states)</p>
+</blockquote>
+
+<h3 id="grid-localization">Grid Localization</h3>
+
+<p>As a visual example, we can apply this discretization method to the <a href="#Localization">Localization</a> problem. The difference is that <mark>here we discretized the states</mark> but assume that the measurement/motion model given was still at full resolution (i.e., continuous).</p>
+
+<p>Given the first measurement:</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics_part2/image-20240329141940504.png" alt="image-20240329141940504" style="zoom:50%;" /></p>
+
+<p>after taking an action (to the right) and another measurement</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics_part2/image-20240329142009602.png" alt="image-20240329142009602" style="zoom:50%;" /></p>
+
+<h3 id="grid-resolution">Grid Resolution</h3>
+
+<blockquote>
+  <p>One problem of discretizatoin is that you lose information <strong>within a cell</strong>. So there is now a trade-off.</p>
+</blockquote>
+
+<p>A few practical solutions to mitigate this:</p>
+
+<ul>
+  <li><strong>Topological grid:</strong> Regions are defined based on features and “significant” locations in the environment</li>
+  <li><strong>Metric grid</strong>: Regions are fine-grained cells of uniform size</li>
+</ul>
+
+<p>Of course, we can plot the errors as a function of grid size (higher size = coarser)</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics_part2/image-20240329142616638.png" alt="image-20240329142616638" style="zoom: 33%;" /></p>
+
+<p>But other interesting methods include:</p>
+
+<ul>
+  <li>Increase the amount of <strong>noise that is assumed by the model</strong>. This is a bit counter-intuitive:
+    <ul>
+      <li>With coarse resolutions, the motion and measurement models may <strong>vary</strong> a lot within grid cells</li>
+      <li>so we now model that variation by making the models <strong>less accurate</strong></li>
+    </ul>
+  </li>
+  <li>tricks to <strong>make computation faster</strong>:
+    <ul>
+      <li>ensor subsampling (e.g., using a subset of measurements)</li>
+      <li>delayed motion updates</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="dynamic-decomposition">Dynamic Decomposition</h3>
+
+<p>In practice, robot will not move very far within a short number of steps. So we will uslaly see zero probability (white) in most parts.</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics_part2/image-20240329142944496.png" alt="image-20240329142944496" style="zoom: 33%;" /></p>
+
+<blockquote>
+  <p>Idea: a dynamic decomposition then <strong>varies resolution</strong> in different regions</p>
+
+  <ul>
+    <li>merge regions with similar or low probabilities</li>
+    <li>split regions where probability is higher for better representation</li>
+  </ul>
+</blockquote>
+
+<p>Visually:</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics_part2/image-20240329143115940.png" alt="image-20240329143115940" style="zoom: 33%;" /></p>
+
+<h1 id="particle-filters-and-mc-localization">Particle Filters and MC Localization</h1>
+
+<p>Instead of grids to do discretization, we can <strong>use random samples</strong> (I.e., particles)</p>
+
+<h2 id="particle-filters">Particle Filters</h2>
+
+<p>Alike using grid to represent distributions, you can just use particles to also do <strong>discretization</strong></p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics_part2/image-20240329144423516.png" alt="image-20240329144423516" style="zoom:40%;" /></p>
+
+<p>BUt why would this be useful? Consider you have:</p>
+
+<ul>
+  <li>a prior belief $B(\mathbf{x}_0)$</li>
+  <li>consider $M$ state particles (i.e., “clones” of your robot) being $(\mathbf{x}^1_0, \mathbf{x}^2_0, …, \mathbf{x}^M_0)$</li>
+</ul>
+
+<p>Then, finding $B(\mathbf{x}_1)$ means:</p>
+
+<blockquote>
+  <p><strong>Particle Filter</strong>: estimate $B(\mathbf{x}_{k+1})$ by imaging clones/hypothesis of your robot sampled from $B(\mathbf{x}_k)$, then do the motion/measurement model update <strong>to each of these particles</strong>.</p>
+
+  <p>For each timestep $k$:</p>
+  <ol>
+    <li>for each particle $j$:
+      <ul>
+        <li><strong>motion update</strong>: sample new particle $\mathbf{x}^j_{k+1}$ from $p(\mathbf{x}_{k+1}\vert \mathbf{x}^j_k, \mathbf{u}_k)$</li>
+        <li><strong>measurement update</strong>: adjust the weight of the particle $w^j_{k+1} = p(\mathbf{z}<em>{k+1}\vert \mathbf{x}^j</em>{k+1})$</li>
+      </ul>
+    </li>
+    <li><strong>resample</strong> particles from the distribution of the weights $(w_{k+1}^{1}, w_{k+1}^{2}, …, w_{k+1}^{M})$</li>
+  </ol>
+
+\[B(\mathbf{x}_{k+1}) = \text{density of the resampled particles}\]
+
+  <p>implementation-wise this is basically <strong>sampling particles with repetition at $\mathbf{x}^j_{k+1}$ again, but with new weights</strong></p>
+</blockquote>
+
+<h3 id="monte-carlo-localization">Monte Carlo Localization</h3>
+
+<p>An example of usage of particle filters is do localization. Since essentially this distribution is like <strong>the evolution of each particle</strong>, this is also called <strong>Monte Carlo Localization</strong>.</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics_part2/image-20240329145308301.png" alt="image-20240329145308301" style="zoom:50%;" /></p>
+
+<p>now, each particle has a <strong>weight defined by the measurement model</strong> (the second row).</p>
+
+<h3 id="motion-model-sampling">Motion Model Sampling</h3>
+
+<blockquote>
+  <p>Recall that the motion model defines a <strong>probability distribution</strong> to transform from one state to another. So how do we model <strong>each particle’s next state</strong>?</p>
+</blockquote>
+
+<p>In the view that each particle is a “clone” of the robot, <strong>motion model update</strong> is like <mark>applying the motion model on that particle plus some noise</mark>. For example:</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics_part2/image-20240329145602442.png" alt="image-20240329145602442" style="zoom: 50%;" /></p>
+
+<p>but in general, if your motion model is some crazy weird distribution, you can do <strong>rejection sampling</strong> to have <strong>new samples at a likely part of this distribution</strong></p>
+
+<blockquote>
+  <p><strong>Rejection Sampling</strong> as a way to apply motion model to particles. Given a particle $\mathbf{x}_{k-1}^{j}$ and a motion $\mathbf{u}_k$:</p>
+
+  <ol>
+    <li>Sample one new particle $\mathbf{x}<em>{k}$ on the support (non-zero region) of the motion model $p(\mathbf{x}</em>{k}\vert \mathbf{x}_{k-1}^{j}, \mathbf{u}_k)$</li>
+    <li>Uniformly sampling $c$ between $0$ and $\max p(\mathbf{x}<em>{k}\vert \mathbf{x}</em>{k-1}^{j}, \mathbf{u}_k)$</li>
+    <li>if this particle has probability $p(\mathbf{x}<em>{k}\vert \mathbf{x}</em>{k-1}^{j}, \mathbf{u}_k) &gt; c$, then accept this particle as the new state. Otherwise, reject it and repeat the process.</li>
+  </ol>
+
+  <p>the idea is that you are <strong>sampling from the motion model</strong> but <strong>rejecting samples that are unlikely</strong>.</p>
+</blockquote>
+
+<p>Visually, suppose $f(x)$ is your motion model given your previous particle, and you sampled $x$ for the first time, and $x’$ the next:</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics_part2/image-20240330131713.png" style="zoom:100%;" /></p>
+
+<p>So you basically got $x’$ as your particle’s next state.</p>
+
+<h3 id="measurement-model-likelihood">Measurement Model LIkelihood</h3>
+
+<blockquote>
+  <p>Recall that measurement model defines a <strong>probability distribution</strong> to get a measurement given the state. So how do we model <strong>each particle’s new probability/likelihood/weight</strong> given some measurement?</p>
+</blockquote>
+
+<p>Consider an example where measurements are from range finders:</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics_part2/image-20240322153237887.png" alt="image-20240322153237887" style="zoom:50%;" /></p>
+
+<p>where the <strong>measurement model for each landmark</strong> $l$​ at step $k$ of the robot is given by</p>
+
+\[\mathbf{z}_{l,k} = \begin{bmatrix}
+r_{l,k}\\
+\phi_{l,k}
+\end{bmatrix}
+= \begin{bmatrix}
+\sqrt{(m_{l,x} - x_k)^2 + (m_{l,x} - y_k)^2}\\
+\text{atan2}(m_{l,y} - y_k, m_{l,x} - x_k) - \theta_k
+\end{bmatrix}
++ \mathbf{v}_k\]
+
+<p>Then, we can use this to specify <strong>the probability of a particle seeing the measurements</strong> as a normal distribution:</p>
+
+\[\mathcal{N}(\mathbf{z}_k, R)\]
+
+<p>given some specified covariance matrix $R$. Visually, say for particle $j$, it should see obstacle $l$ at $r=\hat{r}<em>l^{j}$ (computed using the $r</em>{l,k}$ equation):</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics_part2/image-20240330133105.png" style="zoom:20%;" /></p>
+
+<p>This means you can then compute the <strong>likelihood of seeing the measurement</strong> by indexing the actual measurement $\mathbf{z}_k$ from the above probability distribution. This is <mark>used as the likelihood/weight of this particle</mark>.</p>
+
+<h3 id="importance-sampling-and-resampling-new-particles">Importance Sampling and Resampling New Particles</h3>
+
+<blockquote>
+  <p>Recall that the final step of the particle filter is to <strong>resample new particles</strong> from the existing particles but with these weights from the measurement model. Why and how do we do this?</p>
+</blockquote>
+
+<p>First, we discuss why.</p>
+
+<p>Recall the goal of particle filters is to <strong>approximate the true distribution</strong> $B(\mathbf{x}_k)$ with particles. But our initial particles are <strong>sampled from a distribution $B’(\mathbf{x}_k)$</strong> that is <strong>different</strong> from the true distribution. As you may have guessed, this means to <strong>mimic</strong> these particles to be sampled from the true distribution, we need to do importance sampling:</p>
+
+<ol>
+  <li>
+    <p>suppose we sampled particles from $g$, but we wanted to sample from $f$:</p>
+
+    <p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics_part2/image-20240330134248.png" style="zoom:60%;" /></p>
+  </li>
+  <li>
+    <p>(see the RL notes for proof) you can show that for any function $h(x)$:</p>
+
+\[\mathbb{E}_{x \sim f}[h(x)] = \mathbb{E}_{x \sim g}\left[\frac{f(x)}{g(x)}h(x)\right]\]
+
+    <p>so that you can <strong>adjust the weights of the particles</strong> to be from the true distribution.</p>
+
+    <p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics_part2/image-20240330134415.png" style="zoom:60%;" /></p>
+
+    <p>and these importance weights corresponds to the <strong>weight computed from the measurement model</strong>.</p>
+  </li>
+  <li>
+    <p>Therefore, to mimic the true distribution, we finally <strong>resample</strong> particles from the distribution of the weights $(w_{k+1}^{1}, w_{k+1}^{2}, …, w_{k+1}^{M})$ for each particle. (This means that we <mark>won't have new states, but just redistribute them with repetition</mark> to better represent the true distribution)</p>
+  </li>
+</ol>
+
+<p>Implementation-wise, to resample new particles:</p>
+
+<ul>
+  <li>
+    <p>the resampling weights are the $p(z_k \vert  x_k^j)$ being the likelihood of seeing $z_k$ if the robot is at this particle</p>
+  </li>
+  <li>
+    <p>the resampling step <strong>aims to change the distribution from $B’(x_k)$ to $B(x_k)$ by</strong>:</p>
+
+    <ul>
+      <li>
+        <p>changes the weight of the particles</p>
+
+        <p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics_part2/image-20240329152105788.png" alt="image-20240329152105788" style="zoom:50%;" /></p>
+      </li>
+      <li>
+        <p>resample (with repetition) from the distribution above</p>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="example-particle-filter-updates">Example: Particle Filter Updates</h3>
+
+<p>Consider a uniform unitialization of particle filters:</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics_part2/image-20240329152237912.png" alt="image-20240329152237912" style="zoom:50%;" /></p>
+
+<p>Given some oberservation, many of these particles (hypothesis) disappear:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Less lucky</th>
+      <th>If you are lucky</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics_part2/image-20240329152337479.png" alt="image-20240329152337479" style="zoom:50%;" /></td>
+      <td><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics_part2/image-20240329152318904.png" alt="image-20240329152318904" style="zoom:50%;" /></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>More visually (see <a href="https://amrl.cs.utexas.edu/interactive-particle-filters/">Interactive Robotics Algorithms (utexas.edu)</a> for more examples)</p>
+
+<ul>
+  <li>without measurement and only uses motion model = over time error accumulates and particles spread out</li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Step 0</th>
+      <th style="text-align: center">Step 100</th>
+      <th style="text-align: center">Step 200</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics_part2/image-20240330134929.png" style="zoom:100%;" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics_part2/image-20240330134939.png" style="zoom:100%;" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics_part2/image-20240330134949.png" style="zoom:100%;" /></td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li>with measurement weights = density will be more certain as the robot moves around</li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Step 0</th>
+      <th style="text-align: center">Step 100</th>
+      <th style="text-align: center">Step 200</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics_part2/image-20240330134959.png" style="zoom:100%;" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics_part2/image-20240330135007.png" style="zoom:100%;" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics_part2/image-20240330135014.png" style="zoom:100%;" /></td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="sampling-variance">Sampling Variance</h2>
+
+<p>Pros for particle filters</p>
+
+<ul>
+  <li>Easy to implement, accuracy increase with number of particles</li>
+  <li>Nonparametric: can easily represent complex distributions</li>
+</ul>
+
+<p>Cons:</p>
+
+<ul>
+  <li>need enough particles: too few samples gives strong biases</li>
+  <li>you may have a <strong>high sampling variance</strong> (estimated distribution may be very difference across runs)</li>
+</ul>
+
+<h3 id="reducing-variance">Reducing Variance</h3>
+
+<p>You can deal with bias by adding particles, but what about variance?</p>
+
+<ul>
+  <li>
+    <p><strong>reduce the frequency of resampling</strong> (more deterministic)</p>
+
+    <ul>
+      <li>For example, we should not resample if we know that state is static</li>
+      <li>or determine when to resample can be based on variance of likelihood weights
+        <ul>
+          <li>When weight variance is low and weights have similar values, not needed</li>
+          <li>When weight variance is high and weights have very different values, resampling can shift particles away from low weight regions</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>Low-Variance Sampling</strong>: Common random number or correlated sampling are sampling methods that are <mark>near deterministic</mark>.</p>
+
+    <ul>
+      <li>
+        <p>e.g.,: sample the first particle with $\text{rand}(0, M^{-1})$, and the rest $M-1$ samples <strong>deterministically</strong> at intervals of $M^{-1}$</p>
+      </li>
+      <li>
+        <p>visually, the particle picked is actually <strong>still obeying the probability distribution</strong> (small bins have no arrows!)</p>
+
+        <p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics_part2/image-20240329153432345.png" alt="image-20240329153432345" style="zoom:50%;" /></p>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="particle-deprivation">Particle Deprivation</h3>
+
+<p>Since your particles are eventually converging (not sampling at new locations), this may be problematic. In fact, <strong>because re-sampling is a random process</strong>. Suppose you have a robot where it didn’t move and <strong>all measurements are identical</strong>. Then you would see:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Initial</th>
+      <th style="text-align: center">Over time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics_part2/image-20240329153718304.png" alt="image-20240329153718304" style="zoom:50%;" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics_part2/image-20240329153725341.png" alt="image-20240329153725341" style="zoom:60%;" /></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>so due to randomness:</p>
+
+<ul>
+  <li>resampling will eventually cause all particles to converge toward one of the states. But this is wrong—we should still have a uniform belief!</li>
+  <li>in fact, it will <strong>also happen to the kidnapped robot problem</strong>. (particle filter is unable to correct itself when the robot’s state has changed drastically, see next section for an example)</li>
+</ul>
+
+<h3 id="distribution-mismatch">Distribution Mismatch</h3>
+
+<p>Your samples might not <strong>really match the real distribution</strong> if your target distribution is <strong>very different</strong>. For example, the actual distribution may look like the dark line</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics_part2/image-20240329154222419.png" alt="image-20240329154222419" style="zoom: 33%;" /></p>
+
+<p>then no matter how you do importance sampling adjustment, there is no hope. To address this issue we can consider <strong>Random Particle Injection</strong>.</p>
+
+<blockquote>
+  <p><strong>Random Particle Injection</strong>: to address distribution mismatch, we can <strong>randomly inject new particles</strong> at each iteration.</p>
+
+  <p>At each iteration of the particle filter:</p>
+
+  <ol>
+    <li>additionally compute two <strong>moving averages</strong> of the particles: one with a short window $w_s$ and one with a long window $w_l$</li>
+    <li>modify the resampling prodcedure to:
+      <ul>
+        <li>only with probability $\min(1, \frac{w_s}{w_l})$ resample the particles</li>
+        <li>otherwise replace the particle with a completely random one</li>
+      </ul>
+    </li>
+  </ol>
+</blockquote>
+
+<p>The intuition is that when $w_{s} \ll w_l$, it means that the particles are <strong>converging</strong> and we should <strong>inject new randomness</strong> (alike exploration v.s. exploitation in RL).</p>
+
+<h1 id="kalman-filters">Kalman Filters</h1>
+
+<p>State estimation of continuous distributions and in continuous spaces is generally non-trivial.</p>
+
+<p>Previous section introduced non-parametric methods to estimate $B(\mathbf{x})$ as a distribution. In this section, we show that if you go for <strong>parametric methods</strong> (e.g. assume its Gaussian or mixture of Gaussian), then in practice the computation for state estimation becomes much easier (<strong>only need to consider how the parameters of your distribution change</strong>).</p>
+
+<h2 id="gaussian-filters">Gaussian Filters</h2>
+
+<p>Since we only need the mean and variance for Gaussian, this can be very parameter-efficient.</p>
+
+\[\text{provide mean and covariance matrix}: \mathbf{x}_k, P_k\]
+
+<p>then you get an entire distribution:</p>
+
+\[B(\mathbf{x}_k) \gets \mathcal{N}(\mathbf{x}_k, P_k) = \frac{1}{(2\pi)^{n/2} \text{det}(P_k)^{1/2}} \exp\left(-\frac{1}{2}(\mathbf{x}_k - \hat{\mathbf{x}}_k)^T P_k^{-1} (\mathbf{x}_k - \hat{\mathbf{x}}_k)\right)\]
+
+<p>in the case of a single Gaussian, its not so suitable for problems that have multiple hypotheses (e.g., you have two strong prior guesses of where the robot is). However, we will later show that it can be easily extended to <strong>mixture of Gaussian</strong>.</p>
+
+<h3 id="discrete-time-linear-systems">Discrete-Time Linear Systems</h3>
+
+<p>We then <mark>further assume</mark> that state transformations are <mark>linear transformations</mark>:</p>
+
+\[\begin{cases}
+  \mathbf{x}_k = F_k \mathbf{x}_{k-1} + G_k \mathbf{u}_k + \mathbf{w}_k, &amp; \text{motion model}\\
+  \mathbf{z}_k = H_k \mathbf{x}_k + \mathbf{v}_k, &amp; \text{measurement model}
+\end{cases}\]
+
+<p>where you have:</p>
+<ul>
+  <li>$\mathbf{x} \in \mathbb{R}^n$ is the state, $\mathbf{u} \in \mathbb{R}^m$ is the control input, and $\mathbf{z} \in \mathbb{R}^p$ is the measurement</li>
+  <li>$F_k$ can be interpreted as a state transition matrix, $G_k$ is the control-input matrix, $H_k$ is the measurement matrix</li>
+  <li>$\mathbf{w}_k$ and $\mathbf{v}_k$ are the process and measurement <strong>noise</strong>, respectively</li>
+</ul>
+
+<p>But why would we be considering linear systems?</p>
+
+<blockquote>
+  <p>In this section, we will (first) focus on linear systems + Gaussian distributions. This is because <strong>affine transformations of Gaussian distributions are also Gaussian</strong>.</p>
+</blockquote>
+
+<p>This means that if your prior belief is Gaussian, then the update after applying the motion model and measurement model will also be Gaussian.</p>
+
+<blockquote>
+  <p>At this point you might already be suspicious: Gaussian + affine transformations. Is it practical? The quick peek is that later we will:</p>
+  <ul>
+    <li>for non-linear transformations, approximate with taylor expansions = linearization</li>
+    <li>for non-Gaussian distributions, approximate with mixtures of Gaussian</li>
+  </ul>
+</blockquote>
+
+<h2 id="kalman-filter-derivation">Kalman Filter Derivation</h2>
+
+<blockquote>
+  <p>For discrete-time linear dynamical systems with independent, additive Gaussian noise, the <mark>Kalman filter</mark> is an optimal, recursive, and closed-form estimator.</p>
+  <ul>
+    <li>i.e., you can update your belief distribution exactly (as they are parametric)</li>
+    <li>i.e., the update can be summarized in closed-form equations with matrix operations</li>
+  </ul>
+</blockquote>
+
+<p>On a high level, the sequence of updates we will do is the same as before:</p>
+
+<ol>
+  <li>
+    <p><strong>Prediction step</strong>: given a prior, make update from motion model</p>
+
+    <p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics_part2/image-20240405132908573.png" alt="image-20240405132908573" style="zoom:50%;" /></p>
+  </li>
+  <li>
+    <p><strong>Update step</strong>: then given measurement model/measurements, refine the belief</p>
+
+    <p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics_part2/image-20240405133026287.png" alt="image-20240405133026287" style="zoom:50%;" /></p>
+  </li>
+  <li>
+    <p><strong>Repeat</strong>: then repeat the process</p>
+
+    <p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics_part2/image-20240405132929413.png" alt="image-20240405132929413" style="zoom:50%;" /></p>
+  </li>
+</ol>
+
+<p>The only difference from previous methods is that <mark>here everything is Gaussian</mark>. What does this mean? For example, if your robot moves to the right:</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics_part2/image-20240405133206197.png" alt="image-20240405133206197" style="zoom:50%;" /></p>
+
+<p>Practically you are just shifting your mean and variance:</p>
+<ul>
+  <li>your mean will shift to the right according to the motion model</li>
+  <li>your variance <mark>variance/uncertainty</mark> will increase (i.e., particles spread out as in <a href="#Particle-Filters">Particle Filters</a>) if you haven’t seen any measurements</li>
+</ul>
+
+<h3 id="prediction-step">Prediction Step</h3>
+
+<p>So how do we update according to the motion model? Suppose we are given a prior Gaussian with known $\hat{\mathbf{x}}<em>{k-1\vert k-1}$ and $P</em>{k-1\vert k-1}$  (e.g., computed from previous iteration):</p>
+
+\[\mathbf{x}_{k-1} \sim \mathcal{N}( \hat{\mathbf{x}}_{k-1|k-1}, P_{k-1|k-1})\]
+
+<p>You now want to do a motion update to figure out your new belief state:</p>
+
+\[\mathbf{x}_{k}' \sim \mathcal{N}( \hat{\mathbf{x}}_{k|k-1}, P_{k|k-1})\]
+
+<p>This turns out to be easy because:</p>
+<ol>
+  <li>
+    <p>if we consider the motion model to be <strong>linear</strong>:</p>
+
+\[\mathbf{x}_{k}' = F_{k} \mathbf{x}_{k-1} + G_{k} \mathbf{u}_{k} + \mathbf{w}_{k}, \text{ where } \mathbf{w}_{k} \sim N(0, Q_k)\]
+  </li>
+  <li>
+    <p>then you can derive the new mean and covariance from applying this affine transformation:</p>
+
+\[\begin{cases}
+ \hat{\mathbf{x}}_{k|k-1} = F_k \hat{\mathbf{x}}_{k-1|k-1} + G_k \mathbf{u}_{k}, &amp; \text{new mean}\\
+ P_{k|k-1}=F_kP_{k-1|k-1}F_k^T + Q_k, &amp; \text{new variance}
+ \end{cases}\]
+
+    <p>essentially</p>
+
+    <ul>
+      <li>the variance is now “squared”, which intutively corresponds to squring a random variable by $x \to ax$ will square its variance $\sigma^2 \to a^2\sigma^2$​.</li>
+      <li>the mean is just the linear transformation of the previous mean</li>
+    </ul>
+  </li>
+</ol>
+
+<hr />
+
+<p><em>Proof of the covariance update:</em> starting from the definition of covariance matrix:</p>
+
+\[\begin{align*}
+  P_{k|k-1} 
+  &amp;= \mathbb{E}[(F_{k} \mathbf{x}_{k-1} + G_{k} \mathbf{u}_{k} + \mathbf{w}_{k})(F_{k} \mathbf{x}_{k-1} + G_{k} \mathbf{u}_{k} + \mathbf{w}_{k})^{T}] - \hat{\mathbf{x}}_{k|k-1} \hat{\mathbf{x}}_{k|k-1}^{T}\\
+  &amp;= F_{k}( \mathbb{E}( \mathbf{x}_{k-1} \mathbf{x}_{k-1}^{T}) - \hat{\mathbf{x}}_{k-1|k-1} \hat{\mathbf{x}}_{k-1|k-1}^{T}) F_{k}^{T} + \mathbb{E}(\mathbf{w}_{k} \mathbf{w}_{k}^{T}) \\
+  &amp;= F_{k} P_{k-1|k-1} F_{k}^{T} + Q_{k}
+\end{align*}\]
+
+<p>where many cross terms disappear in line 2 because $\mathbf{x}<em>{k-1}$ and noise $\mathbf{w}_k$ are independent, hence $\text{Cov}(x</em>{k-1},w_k)=0$.</p>
+
+<hr />
+
+<p>Visually, the mean basically moves exactly like the motion model $F_k$, and then shift the covariance:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Mean Transformation</th>
+      <th style="text-align: center">Covariance Transformation</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics_part2/image-20240405134437106.png" alt="image-20240405134437106" style="zoom: 50%;" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics_part2/image-20240405134445744.png" alt="image-20240405134445744" style="zoom: 50%;" /></td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="update-step">Update Step</h3>
+
+<p>Now we have a measurement, and we want to further refine our belief state estimate:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Belief (Orange) and Measurement (Gray)</th>
+      <th style="text-align: center">Belief after Update (Green)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics_part2/image-20240405134643724.png" alt="image-20240405134643724" style="zoom:50%;" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics_part2/image-20240405134716912.png" alt="image-20240405134716912" style="zoom: 50%;" /></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>so how does it work? This is slightly more complicated.</p>
+
+<ol>
+  <li>
+    <p>Recall that given a measurement model, the <strong>belief state update is given by Bayes’ Theorem</strong>:</p>
+
+\[B(\mathbf{x}_k) = \eta^{-1} p(\mathbf{z}_k|\mathbf{x}_k) B'(\mathbf{x}_k)\]
+  </li>
+  <li>
+    <p>We already have the prior belief after motion model:</p>
+
+\[\mathbf{x}_{k}' \sim \mathcal{N}(\hat{\mathbf{x}}_{k|k-1}, P_{k|k-1})\]
+
+    <p>and we assumed that transformation is linear:</p>
+
+\[\mathbf{z}_k = H_k \mathbf{x}_k + \mathbf{v}_k, \text{ where } \mathbf{v}_k \sim \mathcal{N}(0, R_k)\]
+  </li>
+  <li>
+    <p>Then we can first show that given:</p>
+
+\[\mathbf{z}_k|\mathbf{x}_k' \sim \mathcal{N}(H_k \mathbf{x}_{k}', R_k) = p(\mathbf{z}_k|\mathbf{x}_k')\]
+
+    <p>and finally, because the product of Gaussian is also Gaussian, we can show that the after applying the bayes theorem, the new belief state is also Gaussian:</p>
+
+\[\begin{cases}
+ \hat{\mathbf{x}}_{k|k} = \hat{\mathbf{x}}_{k|k-1} + K_{k} \tilde{\mathbf{y}}_k, &amp; \text{new mean}\\
+ P_{k|k} = (I - K_k H_k) P_{k|k-1}, &amp; \text{new variance} 
+\end{cases}\]
+
+    <p>where the additional variables are:</p>
+    <ul>
+      <li>$\tilde{\mathbf{y}}<em>k = \mathbf{z}_k - H_k \hat{\mathbf{x}}</em>{k\vert k-1}$ is the <strong>error vector</strong> or the <strong>innovation</strong></li>
+      <li>$K_k = P_{k\vert k-1} H_k^{T}S_k^{-1}$ is the <strong>Kalman gain</strong></li>
+      <li>$S_k = H_k P_{k\vert k-1} H_k^{T} + R_k$ is the <strong>innovation covariance</strong></li>
+    </ul>
+
+    <p>and notice that the only things we need are $P_{k\vert k-1}, P_{k\vert k-1}$ which we know from the previous step, and the constants $H_k, R_k$ from the measurement model.</p>
+  </li>
+</ol>
+
+<hr />
+
+<p><em>Proof of the mean and variance update</em>: the trick is that because we know the result is a Gaussian, we just have to match the terms:</p>
+
+\[B(\mathbf{x}_k) \propto p(\mathbf{z}_k|\mathbf{x}_k) B'(\mathbf{x}_k) = \exp(- \frac{1}{2} f(\mathbf{x}_k)) \propto \mathcal{N}(\hat{\mathbf{x}}_{k|k}, P_{k|k})\]
+
+<p>Therefore, moving from the LHS we have:</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics_part2/image-20240406151356.png" style="zoom:80%;" /></p>
+
+<p>the RHS then is:</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics_part2/image-20240406151459.png" style="zoom:80%;" /></p>
+
+<p>Therefore the green and blue terms have to match, ending up:</p>
+
+\[\begin{cases}
+P_{k|k}^{-1} = H_k^TR_{k}^{-1}H_k + P_{k|k-1}^{-1}, &amp; \text{new variance}\\
+\hat{\mathbf{x}}_{k|k} = P_{k|k} H_k^T R_k^{-1}(z_k - H_k \hat{\mathbf{x}}_{k|k-1}) + \hat{\mathbf{x}}_{k|k-1}, &amp; \text{new mean}
+\end{cases}\]
+
+<p>To simply them, we can show that:</p>
+<ul>
+  <li>
+    <p>using the matrix inversion lemma:</p>
+
+\[P_{k|k} = (I - K_k H_k) P_{k|k-1}\]
+
+    <p>where $K_k = P_{k\vert k-1} H_k^{T}(H_k P_{k\vert k-1} H_k^{T} + R_k)^{-1}$ is the <strong>Kalman gain</strong>.</p>
+  </li>
+  <li>
+    <p>and the new mean is just a scaled version of the error vector:</p>
+
+\[\hat{\mathbf{x}}_{k|k} = \hat{\mathbf{x}}_{k|k-1} + K_{k} \tilde{\mathbf{y}}_k\]
+
+    <p>where $\tilde{\mathbf{y}}<em>k = \mathbf{z}_k - H_k \hat{\mathbf{x}}</em>{k\vert k-1}$ is the <strong>error vector</strong>, or also called the <strong>innovation</strong>.</p>
+  </li>
+</ul>
+
+<blockquote>
+  <p><strong>Kalman Gain</strong>: is a matrix $K_k \in \R^{n \times p}$ governs the amount of correction applied to the belief state</p>
+</blockquote>
+
+<p>To visualize this, consider we are in the 1D case, such that $K = PH / (H^2P+R)$​. Then given that:</p>
+
+\[P_{k|k} = (I - K_kH_k) P_{k|k-1}\]
+
+<ul>
+  <li>if $P_{k\vert k-1}$ is small, then $K$ is mostly determined by $R$ (the uncertainty from measurement). So the new uncertainty $P_{k\vert k}$ is mostly determined by your measurement.</li>
+  <li>if $P_{k\vert k-1}$ is large (previous belief state has large uncertainty), then $K \approx 1/H$​. So new uncertainty is near zero, meaning you just trust the measurement model instead of the previous belief.</li>
+</ul>
+
+<p>Visually:</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics_part2/image-20240405141241443.png" alt="image-20240405141241443" style="zoom:50%;" /></p>
+
+<h3 id="summary-kalman-filter">Summary: Kalman Filter</h3>
+
+<p>So in summary, given the previous estimate $\hat{\mathbf{x}}<em>{k-1\vert k-1}$ and $P</em>{k-1\vert k-1}$, the update steps for the mean and covariances look like:</p>
+
+<ol>
+  <li>
+    <p>Apply motion model:</p>
+
+\[\begin{cases}
+ \hat{\mathbf{x}}_{k|k-1} = F_k \hat{\mathbf{x}}_{k-1|k-1} + G_k \mathbf{u}_{k}, &amp; \text{new mean}\\
+ P_{k|k-1}=F_kP_{k-1|k-1}F_k^T + Q_k, &amp; \text{new variance}
+ \end{cases}\]
+  </li>
+  <li>
+    <p>Apply measurement model:</p>
+
+\[\begin{cases}
+   \hat{\mathbf{x}}_{k|k} = \hat{\mathbf{x}}_{k|k-1} + K_{k} \tilde{\mathbf{y}}_k, &amp; \text{new mean}\\
+   P_{k|k} = (I - K_k H_k) P_{k|k-1}, &amp; \text{new variance}
+ \end{cases}\]
+
+    <p>where you have:</p>
+    <ul>
+      <li>$\tilde{\mathbf{y}}<em>k = \mathbf{z}_k - H_k \hat{\mathbf{x}}</em>{k\vert k-1}$</li>
+      <li>$K_k = P_{k\vert k-1} H_k^{T}S_k^{-1}$</li>
+      <li>$S_k = H_k P_{k\vert k-1} H_k^{T} + R_k$</li>
+    </ul>
+  </li>
+</ol>
+
+<hr />
+
+<p><em>For example,</em> consider a 1D robot with mass $m$ moving in a straight line. Let it have state $\mathbf{x}_k = (x_k, v_k)$ for $x_k$ is the 1D coordinate of the robot. Let the control be the <em>force</em> you applied $u_k$.</p>
+
+<p>Then the motion model is <em>physically</em> modeled by:</p>
+
+\[\mathbf{x}_k = \begin{bmatrix} 
+  x_k\\
+  v_k 
+\end{bmatrix} = \begin{bmatrix} 
+  x_{k-1} + v_{k-1} \Delta t \\
+  v_{k-1} + \frac{u_k}{m} \Delta t
+\end{bmatrix} = \begin{bmatrix} 
+  1 &amp; \Delta t\\
+  0 &amp; 1 
+\end{bmatrix} \mathbf{x}_{k-1} + \begin{bmatrix} 
+  0\\
+  \frac{\Delta t}{m} 
+\end{bmatrix} \mathbf{u}_k + \mathbf{w}_k
+\iff F_k \mathbf{x}_{k-1} + G_k \mathbf{u}_k + \mathbf{w}_k\]
+
+<p>which is actually a <strong>linear model</strong> and $\mathbf{w}_k$ be a noise vector. Furthermore, let’s suppose we have a sensor being velocity measurement:</p>
+
+\[\mathbf{z}_k = [0,1]\mathbf{x}_k + \mathbf{v}_k \iff H_k \mathbf{x}_k + \mathbf{v}_k\]
+
+<p>which is also a linear model on $\mathbf{x}_k$. Then you can apply the Kalman filter to update the belief state.</p>
+
+<ol>
+  <li>
+    <p>Let’s first provide some parameters:</p>
+
+\[m = 1, \Delta t = 0.5, R_{k} = 0.5, Q_{k} = \begin{bmatrix} 
+    0.2 &amp; 0.05 \\
+     0.05 &amp; 0.1 
+\end{bmatrix}\]
+
+    <p>and that the initial belief state is:</p>
+
+\[B(\mathbf{x}_0) \sim \mathcal{N}(\begin{bmatrix} 2 \\ 4 \end{bmatrix}, \begin{bmatrix} 1.0 &amp; 0 \\ 0 &amp; 2.0 \end{bmatrix})\]
+
+    <p>meaning that we have a strong hypothesis the initial state is at $(x_0=2, v_0=4)$.</p>
+  </li>
+  <li>
+    <p>suppose we provided a control of $u_1 = 0$. <strong>Then the prediction step would be</strong>:</p>
+
+\[\hat{x}_{k|k-1} = F_k \hat{x}_{k-1|k-1} + G_k u_k = \begin{bmatrix} 
+   4 \\
+   4 
+\end{bmatrix}\]
+
+    <p>and the new variance would be:</p>
+
+\[P_{k|k-1} = F_k P_{k-1|k-1} F_k^T + Q_k = \begin{bmatrix} 
+     1.7 &amp; 1.05 \\
+     1.05 &amp; 2.1
+ \end{bmatrix}\]
+
+    <p>this means that the position uncertainty has now increased (the diagonal), and position/velocity is correlated.</p>
+  </li>
+  <li>
+    <p>Suppose we measured $z_k=0.9$ being our actual velocity. <strong>Then we update:</strong></p>
+
+\[\tilde{y}_k = z_k - H_k \hat{x}_{k|k-1} = 0.9 - 4 = -3.1\]
+
+    <p>and the Kalman gain would be:</p>
+
+\[K_k = P_{k|k-1} H_k^{T}S_k^{-1} = \begin{bmatrix} 
+     0.404 \\
+     0.808
+ \end{bmatrix}\]
+
+    <p>this means that we will scale our update on velocity more than position. The new mean would be:</p>
+
+\[\hat{\mathbf{x}}_{k|k} = \hat{\mathbf{x}}_{k|k-1} + K_{k} \tilde{\mathbf{y}}_k = \begin{bmatrix} 
+    2.748 \\
+    1.495
+ \end{bmatrix}\]
+
+    <p>and the new variance would be:</p>
+
+\[P_{k|k} = (I - K_k H_k) P_{k|k-1} = \begin{bmatrix} 
+     1.276 &amp; 0.202 \\
+     0.202 &amp; 0.403
+ \end{bmatrix}\]
+
+    <p>notice that the uncertainty in position and velocity has decreased (diagonal) compared to our covariance in the prediction step.</p>
+  </li>
+</ol>
+
+<p>Visually, each update is doing:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Prediction Step</th>
+      <th style="text-align: center">Update Step</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics_part2/image-20240406154412.png" style="zoom:50%;" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics_part2/image-20240406154431.png" style="zoom:70%;" /></td>
+    </tr>
+  </tbody>
+</table>
+
+<h1 id="extended-kalman-filter-and-localization">Extended Kalman Filter and Localization</h1>
+
+<p>The above were always taking about linear transformations. But in practice the relationships/transformations may be non-linear</p>
+
+\[\mathbf{x}_k = f(\mathbf{x}_{k-1}, \mathbf{u}_{k}) + \mathbf{w}_k, \quad \mathbf{z}_k = h(\mathbf{x}_k) + \mathbf{v}_k\]
+
+<blockquote>
+  <p>Idea: <strong>approximate it with linearization</strong>. For each update step, we can compute the Taylor expansion of the function, take the linear term, and then apply the Kalman filter.</p>
+</blockquote>
+
+<h2 id="linearization">Linearization</h2>
+
+<p>The most straightforward method is to consider <strong>Taylor expansion</strong>:</p>
+
+\[\mathbf{g}(\mathbf{x}) = \mathbf{g}(\mathbf{\mu}) + \frac{\partial \mathbf{g}}{\partial \mathbf{x}}(\mathbf{\mu})(\mathbf{x} - \mathbf{\mu}) + \mathbf{O}(\|\mathbf{x} - \mathbf{\mu}\|^2)\]
+
+<p>where $\frac{\partial \mathbf{g}}{\partial \mathbf{x}}(\mathbf{\mu})$ is the <strong>Jacobian</strong> of the function at $\mathbf{\mu}$.</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics_part2/image-20240405144517784.png" alt="image-20240405144517784" style="zoom:50%;" /></p>
+
+<p>Therefore, given any non-linear function $\mathbf{x}<em>k = f(\mathbf{x}</em>{k-1}, \mathbf{u}_{k}) + \mathbf{w}_k$, we can:</p>
+
+<ol>
+  <li>
+    <p>compute the Jacobian to be the linear transformation matrix evaluated at the <strong>mean of the distribution</strong>:</p>
+
+\[F_k = \frac{\partial f}{\partial x}(\hat{\mathbf{x}}_{k-1|k-1}, \mathbf{u}_k)\]
+
+    <p>so that the linearized model is, using Taylor expansion:</p>
+
+\[\mathbf{x}_k = f(\hat{\mathbf{x}}_{k-1|k-1}, \mathbf{u}_k) + F_{k} \cdot (\mathbf{x}_{k-1} - \hat{\mathbf{x}}_{k-1|k-1}) + \mathbf{w}_k\]
+
+    <p>note that $f(\hat{\mathbf{x}}_{k-1\vert k-1})$ is a constant you can compute at each update step.</p>
+  </li>
+  <li>
+    <p>we can similarly apply linearization to the measurement model, with mean computed from the previous step $\hat{\mathbf{x}}_{k\vert k-1}$:</p>
+
+\[H_k = \frac{\partial h}{\partial x}(\hat{\mathbf{x}}_{k|k-1})\]
+
+    <p>so that the linearized model is:</p>
+
+\[\mathbf{z}_k = h(\hat{\mathbf{x}}_{k|k-1}) + H_k \cdot (\mathbf{x}_k - \hat{\mathbf{x}}_{k|k-1}) + \mathbf{v}_k\]
+  </li>
+  <li>
+    <p>now all transformations are linear, we can <strong>reapply the Kalman filter</strong> to update the belief state, but the equations become a little different than before.</p>
+  </li>
+</ol>
+
+<h2 id="extended-kalman-filter-derivations">Extended Kalman Filter Derivations</h2>
+
+<p>Now, we derive the case of Kalman filters under which we use a linearized version of non-linear functions.</p>
+
+<h3 id="extended-prediction-step">Extended Prediction Step</h3>
+
+<p>Now our motion model becomes:</p>
+
+\[\mathbf{x}_k = f(\hat{\mathbf{x}}_{k-1|k-1}, \mathbf{u}_k) + F_k \cdot (\mathbf{x}_{k-1} - \hat{\mathbf{x}}_{k-1|k-1}) + \mathbf{w}_k\]
+
+<p>and given the previous belief parameters $\hat{\mathbf{x}}<em>{k-1\vert k-1}, P</em>{k-1\vert k-1}$, we want to find out what’s the new mean and variance:</p>
+
+\[\mathbf{x}_k' \sim \mathcal{N}(\hat{\mathbf{x}}_{k|k-1}, P_{k|k-1})\]
+
+<p>It turns out that in this case, you will get:</p>
+
+\[\begin{cases}
+\hat{\mathbf{x}}_{k|k-1} = f(\hat{\mathbf{x}}_{k-1|k-1}, \mathbf{u}_k), &amp; \text{new mean}\\
+P_{k|k-1} = F_k P_{k-1|k-1} F_k^T + Q_k, &amp; \text{new variance}
+\end{cases}\]
+
+<blockquote>
+  <p>Therefore the new mean is just the <strong>non-linear function evaluated at the previous mean</strong>, and the new variance is the same equation but with <strong>the linearized approximation matrix $F_k$</strong>.</p>
+</blockquote>
+
+<h3 id="extended-update-step">Extended Update Step</h3>
+
+<p>Now our measurement model becomes:</p>
+
+\[\mathbf{z}_k = h(\hat{\mathbf{x}}_{k|k-1}) + H_k \cdot (\mathbf{x}_k - \hat{\mathbf{x}}_{k|k-1}) + \mathbf{v}_k\]
+
+<p>then you can do the same thing to find what’s the new mean and covariance if you do the same procedure as before:</p>
+
+\[B(x_k) \propto p(\mathbf{z}_k|\mathbf{x}_k) B'(\mathbf{x}_k) = \exp(- \frac{1}{2} f(\mathbf{x}_k)) \propto \mathcal{N}(\hat{\mathbf{x}}_{k|k}, P_{k|k})\]
+
+<p>matching the terms that the final distribution is Gaussian, you will get:
+and you will find that:</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics_part2/image-20240406160244.png" style="zoom:80%;" /></p>
+
+<p>Hence we get exactly the same as before</p>
+
+\[\begin{cases}
+\hat{\mathbf{x}}_{k|k} = \hat{\mathbf{x}}_{k|k-1} + K_{k} \tilde{\mathbf{y}}_k, &amp; \text{new mean}\\
+P_{k|k} = (I - K_k H_k) P_{k|k-1}, &amp; \text{new variance}
+\end{cases}\]
+
+<p>except that:</p>
+<ul>
+  <li>$\tilde{\mathbf{y}}<em>k = \mathbf{z}_k - h(\hat{\mathbf{x}}</em>{k\vert k-1})$ is the <strong>innovation</strong> using the <mark>non-linear function</mark></li>
+  <li>$K_k = P_{k\vert k-1} H_k^{T}S_k^{-1}$ is the <strong>Kalman gain</strong> using the <mark>linearized approximation</mark></li>
+  <li>$S_k = H_k P_{k\vert k-1} H_k^{T} + R_k$ is the <strong>innovation covariance</strong> using the <mark>linearized approximation</mark></li>
+</ul>
+
+<h3 id="summary-of-extended-kalman-filter">Summary of Extended Kalman Filter</h3>
+
+<p>In summary, given a prior belief state $\hat{\mathbf{x}}<em>{k-1\vert k-1}, P</em>{k-1\vert k-1}$, the update steps for the mean and covariances look like:</p>
+
+<ol>
+  <li>
+    <p>Prediction step with motion model:</p>
+
+\[\begin{cases}
+   \hat{\mathbf{x}}_{k|k-1} = f(\hat{\mathbf{x}}_{k-1|k-1}, \mathbf{u}_k), &amp; \text{nonlinear}\\
+   P_{k|k-1} = F_k P_{k-1|k-1} F_k^T + Q_k, &amp; \text{linear with Jacobian}
+   \end{cases}\]
+  </li>
+  <li>
+    <p>Update step with measurement model:</p>
+
+\[\begin{cases}
+   \hat{\mathbf{x}}_{k|k} = \hat{\mathbf{x}}_{k|k-1} + K_{k} \tilde{\mathbf{y}}_k, &amp; \text{nonlinear}\\
+   P_{k|k} = (I - K_k H_k) P_{k|k-1}, &amp; \text{linear with Jacobian}
+   \end{cases}\]
+
+    <p>where you have:</p>
+    <ul>
+      <li>$\tilde{\mathbf{y}}<em>k = \mathbf{z}_k - h(\hat{\mathbf{x}}</em>{k\vert k-1})$</li>
+      <li>$K_k = P_{k\vert k-1} H_k^{T}S_k^{-1}$</li>
+      <li>$S_k = H_k P_{k\vert k-1} H_k^{T} + R_k$</li>
+    </ul>
+  </li>
+</ol>
+
+<p>In practice:</p>
+
+<ul>
+  <li>Just as efficient as regular KF, relatively robust in many real problems</li>
+  <li>Less robust when uncertainty is high or models are locally very nonlinear</li>
+</ul>
+
+<h3 id="ekf-problem-cases">EKF Problem Cases</h3>
+
+<blockquote>
+  <p>Key problem: linearization is evaluated at the mean of the distribution.</p>
+</blockquote>
+
+<p>Intuitively, if your belief distribution is very narrow, then linearization near the mean would probably be fine:</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics_part2/image-20240406161236.png" style="zoom:80%;" /></p>
+
+<p>But if your belief distribution is spread out, then the linearization gives a lot of errors at the tails</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics_part2/image-20240406161425.png" style="zoom:80%;" /></p>
+
+<p>Alternatively, if your function is not very linear away from the point of linearization</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics_part2/image-20240406161536.png" style="zoom:80%;" /></p>
+
+<h3 id="ekf-localization">EKF Localization</h3>
+
+<p>For example, consider a 1D robot where we had a good initial belief</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics_part2/image-20240405150549520.png" alt="image-20240405150549520" style="zoom:50%;" /></p>
+
+<p>Then let’s apply a motion model moving to the right, but with increased uncertainty</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics_part2/image-20240405150621971.png" alt="image-20240405150621971" style="zoom:50%;" /></p>
+
+<p>But then if you apply the measurement now:</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics_part2/image-20240405150652159.png" alt="image-20240405150652159" style="zoom:50%;" /></p>
+
+<p>and finally, if you moved again:</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics_part2/image-20240405150708793.png" alt="image-20240405150708793" style="zoom:50%;" /></p>
+
+<h2 id="motion-model-linearization-example">Motion Model Linearization Example</h2>
+
+<p>Now, let’s consider a planar mobile robot in SE(2):</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Robot</th>
+      <th style="text-align: center">Motion Model</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics_part2/image-20240405150825700.png" alt="image-20240405150825700" style="zoom:50%;" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics_part2/image-20240406161838.png" style="zoom:60%;" /></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>where obviously the motion model is non-linear as it involves sin and cosine of the angle. So you can linearize it by taking the Jacobian:</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics_part2/image-20240405151109417.png" alt="image-20240405151109417" style="zoom:50%;" /></p>
+
+<p>and then you can apply the EKF update steps as before.</p>
+
+<h2 id="measurement-model-linearization-example">Measurement Model Linearization Example</h2>
+
+<p>Now, le’s consider a measurement model being the range finder given a map:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Visual</th>
+      <th style="text-align: center">Measurement Model</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics_part2/image-20240406162211.png" style="zoom:100%;" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics_part2/image-20240406162216.png" style="zoom:60%;" /></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Again, it’s a non-linear function, so we need to linearize it by taking the Jacobian:</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics_part2/image-20240405151502288.png" alt="image-20240405151502288" style="zoom: 50%;" /></p>
+
+<p>where we are looking at the $j$-th landmark at the $k$-th time step.</p>
+
+<blockquote>
+  <p>Problem: if there are $l$ land marks, the Jacobian will be very large and expensive to compute. Also the covariance matrix will $2l \times 2l$, and computing its inverse is expensive in EKF.</p>
+</blockquote>
+
+<p>one common trick is to assume that the landmarks are independent, so that the updates for each landmark can be computed independently. With $l$ landmarks, we will get:</p>
+
+<ol>
+  <li>
+    <p>first initialize:</p>
+
+\[\hat{\mathbf{x}}_{k|k} \gets \hat{\mathbf{x}}_{k|k-1}, \quad P_{k|k} \gets P_{k|k-1}\]
+  </li>
+  <li>
+    <p>then for each landmark, compute independently:</p>
+
+\[\begin{cases}
+ \hat{\mathbf{x}}_{k|k} = \hat{\mathbf{x}}_{k|k} + K_{j,k} \tilde{\mathbf{y}}_{j,k}, &amp; \text{new mean}\\
+ P_{k|k} = (I - K_{j,k} H_{j,k}) P_{k|k}, &amp; \text{new variance}
+ \end{cases}\]
+
+    <p>where:</p>
+    <ul>
+      <li>$\tilde{\mathbf{y}}<em>{j,k} = \mathbf{z}</em>{j,k} - h_{j,k}(\hat{\mathbf{x}}_{k\vert k})$</li>
+      <li>$K_{j,k} = P_{k\vert k} H_{j,k}^{T}S_{j,k}^{-1}$</li>
+      <li>$S_{j,k} = H_{j,k} P_{k\vert k} H_{j,k}^{T} + R_{j,k}$</li>
+    </ul>
+
+    <p>and now $S^{-1}_{j,k}$ shown above is much easier to compute.</p>
+  </li>
+</ol>
+
+<hr />
+
+<p><em>As an example</em>, consider white circles as the landmarks, and the solid line being the actual movement. The dashed line is what the robot thinks it’s moving. The light gray is belief after motion model updates</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics_part2/image-20240405152129176.png" alt="image-20240405152129176" style="zoom:50%;" /></p>
+
+<p>And if you increase uncertainty in real measurement (e.g., sensor errors)</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics_part2/image-20240405152222862.png" alt="image-20240405152222862" style="zoom:50%;" /></p>
+
+<h2 id="data-association">Data Association</h2>
+
+<p>Another practical problem is that, given $l$ measurements, we need to know which landmark it corresponds to in order to do the above computation. In practice, we need to estimate it since we don’t know the true correspondence.</p>
+
+<blockquote>
+  <p>Idea: use maximum likelihood. For each landmark given the current (mean) position, we can estimate the likelihood of an measurement being the landmark $l$ and then <strong>choose the one with the highest likelihood</strong>.</p>
+</blockquote>
+
+<p>So then this will need to be implemented as a separate sub-rountine in the EKF algorithm:</p>
+<ol>
+  <li>
+    <p>given a measurement $\mathbf{z}_k$, compute the likelihood of each landmark $l$’s expected measurement:</p>
+
+\[\mathcal{N}(h_j(\hat{\mathbf{x}}_{k|k}), S_{j,k})\]
+  </li>
+  <li>
+    <p>associate $z_{i,k}$ with the landmark $j$ that maximizes the likelihood</p>
+  </li>
+</ol>
+
+<p>and more tricks to clean this up include</p>
+
+<ul>
+  <li>may first <em>filter out landmarks that are very unlikely</em> or similar to each other</li>
+  <li>may add a <em>mutual exclusion constraint</em> to prevent a landmark from being associated with multiple measurements</li>
+</ul>
+
+<h2 id="multi-hypothesis-tracking">Multi-Hypothesis Tracking</h2>
+
+<p>Previously we assumed that Kalman filters work with belief = unimodal Gaussian. This is quite restrictive, but</p>
+
+<blockquote>
+  <p><strong>Idea</strong>: Instead of one Gaussian, our belief can be written as a <strong>mixture of Gaussians</strong></p>
+</blockquote>
+
+<p>Then what happens in KF? It can be still extended, with:</p>
+
+<ul>
+  <li>apply KF to each of the Gaussian</li>
+  <li>add a few correction terms (details omitted)</li>
+</ul>
+
+<p>This could be useful for:</p>
+
+<ul>
+  <li>initial robot belief is uncertain: it might be at 2 different places with high prob.</li>
+  <li>In the extreme case, this can solve the data association problem by creating a mixture component for every possible feature-measurement correspondence!</li>
+</ul>
+
+<p>in practice maintaining all the Gaussians is expensive, so  a simple fix would be that we simply prune the components down to a fixed number after each filter update</p>
+
+<h2 id="other-considerations-for-kalman-filters">Other Considerations for Kalman Filters</h2>
+
+<p>A few differenes:</p>
+
+<ul>
+  <li>in <a href="#Particle-Filters">Particle Filters</a> <strong>obstacle regions</strong> are automatically avoided. EKFs cannot represent spatial constraints</li>
+  <li><strong>too many measurement features</strong> increase computation and possibility of mixing up features (e.g., the data association problem); too few may be insufficient for good estimation</li>
+  <li>EKFs cannot incorporate <strong>negative information</strong>, e.g. absence of a feature: I don’t see a door X, therefore I cannot be at location Y.</li>
+</ul>
+
+<h1 id="simultaneous-localization-and-mapping">Simultaneous Localization and Mapping</h1>
+
+<p>Previsouly we discussed localization methods <strong>assuming we know the map/obstacles in advance</strong>. In this section, we will:</p>
+<ul>
+  <li>discuss how to perform mapping (by itself) assuming we know the robot’s state/measurements (localization)</li>
+  <li>discuss how to perform localization and mapping simultaneously</li>
+</ul>
+
+<table>
+  <tbody>
+    <tr>
+      <td>So we can consider The posterior over all maps given data is Pr(𝒎</td>
+      <td>𝒙1:𝑘 , 𝒛1:𝑘 ) and independence</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="occupancy-grid-mapping">Occupancy Grid Mapping</h2>
+
+<p>A popular method to represent the map is to use an <strong>occupancy grid</strong>: the map becomes a grid world, and you want to know whether <strong>each cell is occupied by an obstacle or not</strong>.</p>
+
+<blockquote>
+  <p>Mathematically, we want to model:</p>
+
+\[\Pr(\mathbf{m} | \mathbf{x}_{1:k}, \mathbf{z}_{1:k})\]
+
+  <p>where here we <strong>can assume that the history of robot states and measurements are given</strong>. $m$ would be like a vector of the size of the number of grids, modeling the probability of each cell being occupied.</p>
+</blockquote>
+
+<h3 id="bayes-filter-for-mapping">Bayes Filter for Mapping</h3>
+
+<p>The above is difficult to even represent if you have a large map. Therefore, one assumption we can make is to <strong>assume each grid/cell’s occupancy is independent of others</strong>:</p>
+
+\[\Pr(\mathbf{m} | \mathbf{x}_{1:k}, \mathbf{z}_{1:k}) = \prod_{i} \Pr(m_i | \mathbf{x}_{1:k}, \mathbf{z}_{1:k})\]
+
+<p>so we can model <mark>the belief distribution of each grid cell independently</mark>. So how do we do not?</p>
+
+<blockquote>
+  <p>Recall that <a href="#Bayes-Filter">Bayes filter</a> is a recursive way to update the belief state given the previous estimates:</p>
+
+\[\Pr( m_i | \mathbf{x}_{1:k}, \mathbf{z}_{1:k}) \gets \text{previous estimate } \Pr(m_i | \mathbf{x}_{1:k-1}, \mathbf{z}_{1:k-1})\]
+
+</blockquote>
+
+<p>Foolowing conditional independence between the latest observation $\mathbf{z}<em>k$ and the history $\mathbf{x}</em>{1:k-1},\mathbf{z}_{1:k-1}$ given the robot’s current state $\mathbf{x}_k$, we can write the above as:</p>
+
+\[\begin{align*}
+  \Pr(m_i | \mathbf{x}_{1:k}, \mathbf{z}_{1:k}) 
+  &amp;= \eta \Pr(\mathbf{z}_k | m_i, \mathbf{x}_{1:k}, \mathbf{z}_{1:k-1}) \Pr(m_i | \mathbf{x}_{1:k}, \mathbf{z}_{1:k-1}) \\
+  &amp;= \eta \Pr(\mathbf{z}_k | m_i, \mathbf{x}_k) \Pr(m_i | \mathbf{x}_{1:k}, \mathbf{z}_{1:k-1})\\
+  &amp;= \eta \frac{\Pr( m_{i} |  \mathbf{x}_{k}, \mathbf{z}_{k}) \Pr(\mathbf{z}_k | \mathbf{x}_k )}{\Pr( m_i | \mathbf{x}_k)} \Pr(m_i | \mathbf{x}_{1:k}, \mathbf{z}_{1:k-1})\\
+  &amp;= \eta \frac{\Pr( m_{i} |  \mathbf{x}_{k}, \mathbf{z}_{k}) \Pr(\mathbf{z}_k | \mathbf{x}_k )}{\Pr( m_i )} \Pr(m_i | \mathbf{x}_{1:k}, \mathbf{z}_{1:k-1})
+\end{align*}\]
+
+<p>where the second equality used conditional independence mentioned above, and the last equality used the independence of $m_i$ and $\mathbf{x}_k$ (dependent only if we have an observation $\mathbf{z}_k$).</p>
+
+<h3 id="log-odds">Log Odds</h3>
+
+<p>However, the above is computationally not efficient because:</p>
+
+<ul>
+  <li>computing the joint $\Pr(\mathbf{m} \vert  \mathbf{x}<em>{1:k}, \mathbf{z}</em>{1:k})$ would end up multiplying a lot of probabilities</li>
+  <li>there are three probabilities to compute for each cell $\Pr(m_i \vert  \mathbf{x}<em>{1:k}, \mathbf{z}</em>{1:k})$</li>
+</ul>
+
+<p>One trick to solve both issue would be using the <strong>log odds</strong> instead.</p>
+
+<p>Consider the probability of observing an event $x$ as $\Pr(X)$, then define:</p>
+
+\[l(x) = \text{log odds} = \log \frac{\Pr(X)}{1 - \Pr(X)} = \log \frac{\Pr(X)}{\Pr(\bar{X})}\]
+
+<p>Visually, it would look like</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics_part2/image-20240412211921.png" style="zoom:50%;" /></p>
+
+<p>This is useful because the log odd of $\Pr(m_i \vert  \mathbf{x}<em>{1:k}, \mathbf{z}</em>{1:k})$ then becomes:</p>
+
+\[\begin{align*}
+  l_{i,1:k}
+  &amp;= \log \frac{\Pr(m_i | \mathbf{x}_{1:k}, \mathbf{z}_{1:k})}{1 - \Pr(m_i | \mathbf{x}_{1:k}, \mathbf{z}_{1:k})}\\
+  &amp;= \log \frac{\Pr(m_i | \mathbf{x}_{1:k-1}, \mathbf{z}_{1:k-1})}{1 - \Pr(m_i | \mathbf{x}_{1:k-1}, \mathbf{z}_{1:k-1})} \frac{\Pr( m_{i} |  \mathbf{x}_{k}, \mathbf{z}_{k})}{ 1- \Pr( m_{i} |  \mathbf{x}_{k}, \mathbf{z}_{k}) } \frac{ 1 - \Pr( m_i )}{\Pr( m_i )}\\
+  &amp;\equiv l_{i,1:k-1} + l_{i,k} - l_{i}
+\end{align*}\]
+
+<p>so that:</p>
+<ul>
+  <li>the term $\Pr(\mathbf{z}_k \vert  \mathbf{x}_k )$ is cancelled as we compute the ratio</li>
+  <li>adding log odds is numerically stable</li>
+  <li>you have basically the “next log odd = previous log odd + log odd of $m_i$ given current measurement/states - log odd of prior”</li>
+</ul>
+
+<p>The only challenge left is <strong>how do we model $l_{i,k}$?</strong></p>
+
+<h3 id="inverse-sensor-model">Inverse Sensor Model</h3>
+
+<blockquote>
+  <p>It turns out that $l_{i,k} = \log \frac{\Pr( m_{i} \vert   \mathbf{x}<em>{k}, \mathbf{z}</em>{k})}{ 1- \Pr( m_{i} \vert   \mathbf{x}<em>{k}, \mathbf{z}</em>{k}) }$ is also called a n <mark>inverse sensor model</mark> and there is no single best way to do this yet. The popular approach (next section) is do learn this from a machine learning model.</p>
+</blockquote>
+
+<p>In some special case, however, there are methods that can estimate this. Consider we are using a beam sensor like this:</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics_part2/image-20240412133900842.png" alt="image-20240412133900842" style="zoom:50%;" /></p>
+
+<p>where $r_k$ is the distance from robot to the dark square. Then we can model this log odds by:</p>
+<ol>
+  <li>decrease log odds of cell closer than $r_k$ as they are likely free</li>
+  <li>increase log odds of cell physically around $r_k$ as they are likely occupied</li>
+  <li>no change for other cells</li>
+</ol>
+
+<p>again, this is empirical, but works quite well. Implementation-wise, one can first consider a mixture of zero-mean gaussian over $\theta$ and a decreasing linear function of $r_k$ to capture uncertainty in both range and bearing</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics_part2/image-20240412134519021.png" alt="image-20240412134519021" style="zoom:30%;" /></p>
+
+<p>Then, given a measurement $z$ being the distance to the obstacle, we can update the distribution with a piecewise function on the left:</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics_part2/image-20240412134342538.png" alt="image-20240412134342538" style="zoom: 67%;" /></p>
+
+<p>where $d_1, d_3$ are hyperparameters. A full mapping run using the above technique would look like:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Process</th>
+      <th style="text-align: center">Mapped</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics_part2/image-20240412134717105.png" alt="image-20240412134717105" style="zoom: 50%;" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics_part2/image-20240412134736661.png" alt="image-20240412134736661" style="zoom:67%;" /></td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="learning-inverse-sensor-models">Learning Inverse Sensor Models</h3>
+
+<p>But again, there is no closed-form solution to derive $\Pr( m_{i} \vert   \mathbf{x}<em>{k}, \mathbf{z}</em>{k})$, an inverse model, given the forward model $\Pr( \mathbf{z}<em>{k} \vert   \mathbf{x}</em>{k}, m_{i} )$ using Bayes.</p>
+
+<p>So other pratical yet pretty good trick is to <strong>learn a model using supervised learning</strong>:</p>
+<ol>
+  <li>generate training data ${(\mathbf{x}_k, \mathbf{z}_k, m_i)}$ by sampling from known maps, robot states, and measurements</li>
+  <li>train a model to predict $m_i$ given $\mathbf{x}_k, \mathbf{z}_k$ using a neural network or other machine learning models</li>
+</ol>
+
+<h3 id="independence-assumption">Independence Assumption</h3>
+
+<p>Finally, another problem of our current method is that we are assuming the occupancy of each cell is independent of each other. This is may not be true in practice:</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics_part2/image-20240412135440538.png" alt="image-20240412135440538" style="zoom:50%;" /></p>
+
+<p>where in the above example, certain cells (e.g., the conflict shown above) depends on knowing its immediate neighbor being an obstacle.</p>
+
+<p>In practice, this can be somewhat alleviated by:</p>
+
+<ul>
+  <li>narrower beam sensors like lidar can help alleviate this issue</li>
+  <li>or somehow learn this as well from machine learning models (above)</li>
+</ul>
+
+<h2 id="slam">SLAM</h2>
+
+<p>Finally, here we discuss how to do <strong>localization and mapping simultaneously</strong>. The idea is to include the map as part of the state vector, and make corresponding modifications to the <a href="#Extended-Kalman-Filter-and-Localization">EKF</a> or <a href="#Particle-Filters">Particle Filter</a> algorithm.</p>
+
+<h3 id="ekf-slam">EKF-SLAM</h3>
+
+<p>Suppose we know that our map consists of $N$ landmarks, but we are not sure where they are ($N$ can increase as the algorithm goes).</p>
+
+<blockquote>
+  <p>Then we can <strong>model state $\mathbf{x}$ = robot state + landmark location</strong>. This means that we consider:</p>
+
+\[\mathbf{x} = (x,y,\theta, m_{1x},m_{1y}, ...,m_{Nx},m_{Ny}) \in \R^{3+2N}\]
+
+  <p>for a robot in 2D space, and then apply the EKF algorithm as before (with some modifications below)</p>
+</blockquote>
+
+<p>First, we note that <strong>our covariance matrix</strong> becomes $P \in \R^{(3+2N)\times (3+2N)}$</p>
+
+\[P = \begin{bmatrix}
+P_{xx} &amp; P_{xm}\\
+P_{mx} &amp; P_{mm}
+\end{bmatrix}\]
+
+<p>where $P_{xx} \in \R^{3\times 3}$ is the covariance of the robot state, $P_{mm} \in \R^{2N\times 2N}$ is the covariance of the landmarks, and $P_{xm} \in \R^{3\times 2N}$ is the cross-covariance between the robot state and the landmarks.</p>
+
+<p><strong>Algorithmically:</strong></p>
+
+<ol>
+  <li>
+    <p>we can <mark>initialize</mark> with 1) robot initial position and landmark being uncorrelated, and 2) infinite variance for the landmarks since we have no idea where they are:</p>
+
+\[P_{xx,0} = \mathbf{0}^{3\times 3}, \quad P_{mm,0} = \infty \times \mathbf{I}^{2N\times 2N}, \quad P_{xm,0} = \mathbf{0}^{3\times 2N}\]
+
+    <p>and some robot state guess $\mathbf{x}<em>0$ and landmark guess $\mathbf{m}</em>{0}$.</p>
+
+    <p>Note that we can <strong>also add landmarks as we go</strong> (e.g., if our data association model found some landmark estimate to be extremely low = likely a new landmark, or there is a signature we can use to check if its a existing landmark). In this case, we can <strong>add terms to the covariance/mean</strong> with a non-zero initialization:</p>
+
+\[\begin{bmatrix} 
+    \hat{m}_{jx} \\
+   \hat{m}_{jy} 
+\end{bmatrix} = \begin{bmatrix} 
+    \hat{x} \\
+   \hat{y}
+ \end{bmatrix} + \begin{bmatrix} 
+     r_j \cos(\hat{\theta} + \phi_j) \\
+     r_j \sin(\hat{\theta} + \phi_j)
+ \end{bmatrix}\]
+  </li>
+  <li>
+    <p><mark>predict step</mark> given some movement/motion model (e.g., a vecolity model)</p>
+
+    <p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics_part2/image-20240412140854365.png" alt="image-20240412140854365" style="zoom: 67%;" /></p>
+
+    <p>where we <strong>do not update the landmarks position</strong> since they don’t move. We can then linearize this and show that</p>
+
+    <p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics_part2/image-20240412140915812.png" alt="image-20240412140915812" style="zoom: 50%;" /></p>
+
+    <p>then we <strong>apply the same prediction step to both the covariance and the mean</strong>. Note that given the nature of obstacles not moving, $P_{mm}$ will remain unchanged while $P_{xx}$ and $P_{xm}$ will change in this step.</p>
+  </li>
+  <li>
+    <p><mark>update step</mark> then you can compute your observation $z$​ but with <strong>landmark location (you estimated) from previous step</strong></p>
+
+    <p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics_part2/image-20240412141702727.png" alt="image-20240412141702727" style="zoom:60%;" /></p>
+
+    <p>and again, we need to linearize the above ($h(\cdot)$) using the Jacobian <strong>$H_{i,j}$</strong> evaluted at the <strong>estimated state/landmark location</strong>:</p>
+
+    <p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics_part2/image-20240412142035377.png" alt="image-20240412142035377" style="zoom:50%;" /></p>
+
+    <p>This would give a $2 \times (3+2N)$ matrix $H_k$. Since landmarks do not affect each other, we will only have two additional non-zero columns for each landmark $j$. With this, we can apply the same measurement step from EKF to both covariance and mean updates.</p>
+  </li>
+</ol>
+
+<blockquote>
+  <p>In summary, <strong>EKF-SLAM equations are near identical to the regular EKF algorithm</strong>:</p>
+  <ol>
+    <li>
+      <p>predict step considers:</p>
+
+\[\begin{cases}
+\hat{\mathbf{x}}_{k|k-1} = f(\hat{\mathbf{x}}_{k-1|k-1}, \mathbf{u}_k), &amp; \text{nonlinear}\\
+P_{k|k-1} = F_k P_{k-1|k-1} F_k^T + Q_k, &amp; \text{linear with Jacobian}
+\end{cases}\]
+
+      <p>Note that given the nature of obstacles not moving, $P_{mm}$ will remain unchanged while $P_{xx}$ and $P_{xm}$ will change in this step.</p>
+    </li>
+    <li>
+      <p>update step considers:</p>
+
+\[\begin{cases}
+\hat{\mathbf{x}}_{k|k} = \hat{\mathbf{x}}_{k|k-1} + K_{k} \tilde{\mathbf{y}}_k, &amp; \text{nonlinear}\\
+P_{k|k} = (I - K_k H_k) P_{k|k-1}, &amp; \text{linear with Jacobian}
+\end{cases}\]
+
+      <p>where you have:</p>
+      <ul>
+        <li>$\tilde{\mathbf{y}}<em>k = \mathbf{z}_k - h(\hat{\mathbf{x}}</em>{k\vert k-1}, \hat{m}_{k-1})$ depends on your estimate of the landmark</li>
+        <li>$K_k = P_{k\vert k-1} H_k^{T}S_k^{-1}$</li>
+        <li>$S_k = H_k P_{k\vert k-1} H_k^{T} + R_k$</li>
+      </ul>
+    </li>
+  </ol>
+
+  <p>note that although $H_k$ is sparse, the Kalman gain $K_k \in \R^{3 \times (3+2N)}$ is generally <strong>dense</strong>. This is because it incorporates correlations/updates between landmarks that were previously seen.</p>
+</blockquote>
+
+<p><em>For example</em>, if we have two landmarks, then $F_k \in \R^{(3 + 2\times 2)\times (3 + 2\times 2)}$ matrix</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics_part2/image-20240412142353734.png" alt="image-20240412142353734" style="zoom:67%;" /></p>
+
+<p>where we dropped the $k$ subscript in $H=[H_1, H_2]^{T}$ for each landmark to save space. Notice that the <strong>last four columns in $H$</strong> is <strong>block diagonal</strong>: this is because the $x,y$​​ for a landmark is independent of the other landmarks.</p>
+
+<blockquote>
+  <p><strong>Note</strong> in this section it seems that mapping is not very hard: this is because we have simplified the map to simply be the location of obstacles. In practice, if you need Occupany Grid, then you really need <a href="#Occupancy-Grid-Mapping">Occupancy Grid Mapping</a>.</p>
+</blockquote>
+
+<h3 id="ekf-slam-example">EKF-SLAM Example</h3>
+
+<p>Visually, let the red small dots be the actual landmarks, and gray dots be the actual robot’s path. Then our estimate of mean and variance may look like:</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics_part2/image-20240412144643066.png" alt="image-20240412144643066" style="zoom:50%;" /></p>
+
+<p>note that:</p>
+
+<ul>
+  <li>in the beginning, as the robot moves and sees new landmarks, its own uncertainty grows. Landmark uncertainties also grow since they depend on robot uncertainty</li>
+  <li>but uncerintaty of landmarks are correlated: once we have a low uncertainty for a landmark (<mark>in (d) as we saw the top left landmark again</mark>), the uncertainty of the other ones decrease as it indicates our estimate of landmarks were likely all correct.</li>
+  <li>With sufficient observations, the individual variances (uncertainties) of both robot state and landmarks converge toward a lower bound = becomes certain of its position and the landmarks</li>
+</ul>
+
+<p>Problems with EKF-SLAM:</p>
+
+<ul>
+  <li>Complexity of each EKF iteration is quadratic in the number of landmarks = cannot handle very large maps</li>
+  <li>Cannot take advantage of sparsity, as all landmarks eventually become fully correlated</li>
+  <li>Still subject to the usual limitations of EKFs (nonlinearity, high uncertainty)</li>
+  <li><strong>data association</strong> problem becomes more critical in this case</li>
+</ul>
+
+<h3 id="particle-filters-for-slam">Particle Filters for SLAM</h3>
+
+<p>Recall that in <a href="#Particle-Filters">Particle Filters</a>, we had each particle representing a clone of the robot. Consider a simple idea similar to EKF SLAM, where now <strong>each particle represent the robot + a map configuration</strong>.</p>
+
+<p>The problem with naively doing the above is its cloning the map too much.</p>
+
+<ul>
+  <li>in EKF, we have one distribution over the robot state</li>
+  <li>in particle filter, each particle itself is certain of its robot state, but the distribution is recovered by the distribution of the particles.</li>
+</ul>
+
+<blockquote>
+  <p>Therefore, the key idea is to assume each particle has no uncertainties about its state, and hence the partcle can <strong>itself solve its own mapping problem</strong>.</p>
+</blockquote>
+
+<h4 id="rao-blackwellization">Rao-Blackwellization</h4>
+
+<p>The key idea is implemented with factoring the state distribution $\mathbf{x}=[\mathbf{x}_{1:k}, \mathbf{m}]$ into two parts:</p>
+
+\[\begin{align*}
+  \Pr(\mathbf{x}_{1:k}, \mathbf{m} | \mathbf{z}_{1:k}, \mathbf{u}_{1:k}) 
+  &amp;= \Pr(\mathbf{x}_{1:k} | \mathbf{z}_{1:k}, \mathbf{u}_{1:k}) \Pr(\mathbf{m} | \mathbf{x}_{1:k}, \mathbf{z}_{1:k}, \mathbf{u}_{1:k})\\
+  &amp;= \Pr(\mathbf{x}_{1:k} | \mathbf{z}_{1:k}, \mathbf{u}_{1:k}) \Pr(\mathbf{m} | \mathbf{x}_{1:k}, \mathbf{z}_{1:k})\\
+  &amp;= \Pr(\mathbf{x}_{1:k} | \mathbf{z}_{1:k}, \mathbf{u}_{1:k}) \prod_{i} \Pr(m_i | \mathbf{x}_{1:k}, \mathbf{z}_{1:k})
+\end{align*}\]
+
+<p>where the last equality is because the map is independent of the control sequence $\mathbf{u}_{1:k}$​​. Then</p>
+<ul>
+  <li>the term $\Pr(\mathbf{x}<em>{1:k} \vert  \mathbf{z}</em>{1:k}, \mathbf{u}_{1:k})$ can be represented <strong>purely by the density distribution of our partciles</strong></li>
+  <li>the term $\Pr(m_i \vert  \mathbf{x}<em>{1:k}, \mathbf{z}</em>{1:k})$ is simply the <strong>individual landmark estimate given a robot state/measurement</strong>.</li>
+</ul>
+
+<h4 id="fastslam">FastSLAM</h4>
+
+<p>Using the above factorization, we can do</p>
+
+<blockquote>
+  <p>FastSLAM: Use normal <strong>particle filter for the robot state</strong>, and then for each particle, <strong>use EKF to model each of the landmarks</strong>.</p>
+</blockquote>
+
+<p>This means that given $M$ particles, we will consider tracking:</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics_part2/image-20240412150656337.png" alt="image-20240412150656337" style="zoom:50%;" /></p>
+
+<p>where:</p>
+<ul>
+  <li>for each particle, we track its trajectory and <strong>its own estimate of landmark’s mean and variance</strong>:</li>
+  <li>each <strong>landmark’s mean and covariance is also modelled independently</strong> in this algorithm: much easier to compute as its simply $\R^{2 \times 2}$ for each landmark!</li>
+  <li>this results in 1 filter (normal particle filter) of the robot’s state (the above), and $MN$ filters for landmarks (one EKF filter for each particle and each landmark).</li>
+</ul>
+
+<p>Overall, the algorithm is similar to the normal particle filter:&gt;</p>
+
+<blockquote>
+  <p>In summary, <strong>FastSLAM equations are near identical to the regular particle filter algorithm</strong>:</p>
+
+  <p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics_part2/image-20240412151059796.png" alt="image-20240412151059796" style="zoom:50%;" /></p>
+
+  <p>The only difference is that we will be using EKF to model the landmarks, and the re-weighing operation will depend on our estimate of the landmarks.</p>
+</blockquote>
+
+<h4 id="fastslam-updating-landmarks">FastSLAM: updating landmarks</h4>
+
+<p>For each landmark, consider a Gaussian distribution for each landmarks’ position. Then we can model this using <strong>mean and covariance matrices</strong>. Specifically, we can show that for landmark $j$ with a measurement $z_{j,k}$, we can update our estimate with:</p>
+
+\[\Pr(m_{j,k} | \mathbf{x}_{1:k}, \mathbf{z}_{1:k}) \propto \Pr(\mathbf{z}_{j,k} | m_{j,k}, \mathbf{x}_{k}) \Pr(m_{j,k} | \mathbf{x}_{1:k-1}, \mathbf{z}_{1:k-1})\]
+
+<p>which can then be derived using EKK update steps! THis means we can do linearized models and update the <strong>mean and covariance with for each landmark $j$</strong> with:</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics_part2/image-20240412151305172.png" alt="image-20240412151305172" style="zoom:50%;" /></p>
+
+<h4 id="fastslam-weighing">FastSLAM: Weighing</h4>
+
+<p>Finally, we want to re-weight each particle with the likelihood of seeing the measurement $z_k$ given the particle’s estimate of the map and its current position:</p>
+
+\[w = \Pr(\mathbf{z}_k | \mathbf{x}_k, \mathbf{m}_k) = \prod_{j} \Pr(\mathbf{z}_{j,k} | m_{j,k}, \mathbf{x}_k)\]
+
+<p>Then each of the weight can be obtained by modeling a Gaussian</p>
+
+\[w_{j} = \frac{1}{\sqrt{(2\pi)^2 |S_{j,k}|}} \exp\left(-\frac{1}{2} (\mathbf{z}_{j,k} - h_{j,k}(\mathbf{x}_k, m_{j,k}))^T S_{j,k}^{-1} (\mathbf{z}_{j,k} - h_{j,k}(\mathbf{x}_k, m_{j,k}))\right)\]
+
+<p>where $S_{j,k} = H_{j,k} P_{j\vert k-1} H_{j,k}^{T} + R_{j,k}$.</p>
+
+<h4 id="fastslam-example">FastSLAM: Example</h4>
+
+<p>Consider the case of using $N=3$ particles, and there are 2 landmarks. Initially:</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics_part2/image-20240412151706187.png" alt="image-20240412151706187" style="zoom:50%;" /></p>
+
+<p>Let the green dots be the actual measurement made, and each particle can compute independently covariance updates of landmarks</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics_part2/image-20240412151810218.png" alt="image-20240412151810218" style="zoom:50%;" /></p>
+
+<p>finally, reweight and resample</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics_part2/image-20240412152013476.png" alt="image-20240412152013476" style="zoom:50%;" /></p>
+
+<p>An example in real life:</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics_part2/image-20240412152036133.png" alt="image-20240412152036133" style="zoom:67%;" /></p>
+
+<p>With an animated example:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Beginning</th>
+      <th style="text-align: center">More Obstacles Seen</th>
+      <th style="text-align: center">Loop Closure</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics_part2/image-20240412152546622.png" alt="image-20240412152546622" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics_part2/image-20240412152558255.png" alt="image-20240412152558255" /></td>
+      <td style="text-align: center"><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics_part2/image-20240412152602430.png" alt="image-20240412152602430" /></td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="comparing-slam-algorithms">Comparing SLAM Algorithms</h2>
+
+<p>In practice you need to do <strong>data associations</strong> yourselves.</p>
+
+<ul>
+  <li>With EKF-SLAM, we can only compute a single association per measurement</li>
+  <li>With FastSLAM, <em>each particle can compute its “best” correspondence for the same measurement</em>, e.g. using maximum likelihood (actually an advantage)</li>
+</ul>
+
+<p>With map updates:</p>
+
+<ul>
+  <li>With EKF-SLAM, you update a single map update</li>
+  <li>With FastSLAM, <em>each particles can maintain their own maps</em> by adding or removing landmarks when necessary</li>
+</ul>
+
+<p>For both SLAM, <strong>convergence occur when loop is closed</strong></p>
+
+<ul>
+  <li>
+    <p>particle filters face the problem of <em>particle deprivation</em>: before loop is closed, you <em>need to maintain particle diversity</em> otherwise estimate could converge to a wrong estimate = bias</p>
+
+    <p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics_part2/image-20240412153317139.png" alt="image-20240412153317139" style="zoom:50%;" /></p>
+  </li>
+  <li>
+    <p>resampling particles = as particles are resampled, we lose most of the estimated histories</p>
+
+    <ul>
+      <li>in an extreme case, particle filters <em>might not even be able to close the loop</em>: suppose you just observed obstacle $m_j$ but also lost all particles that saw it before</li>
+      <li>this is less of a problem for EKF-SLAM, since all historical correlations are tracked</li>
+    </ul>
+  </li>
+</ul>
+
+<p>Some fixes for FastSLAM:</p>
+
+<ul>
+  <li>simply have more or insert random particles to alleviate deprivation</li>
+  <li>In FastSLAM 2.0, they use a proposal distribution that takes into account both motion and measurements</li>
+</ul>
+
+<h1 id="robot-perception-and-vision">Robot Perception and Vision</h1>
+
+<p>Implementation-wise, previous sections were considering algorithms that runs on “already processed data”, i.e., observations as simple numbers/vectors. However, in practice, robots need to <strong>perceive the world</strong> using sensors, and <strong>interpret the data</strong> to make decisions.</p>
+
+<p>Modern robots have access to a wide variety of different sensors:</p>
+
+<ul>
+  <li><strong>Proprioceptive</strong> sensors measure <em>internal</em> state, e.g. motor speed, joint angles</li>
+  <li><strong>Exteroceptive</strong> sensors acquire <em>external</em> environment information, e.g. distance  measurements, light intensity</li>
+</ul>
+
+<p>Examples include</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics_part2/image-20240419131825512.png" alt="image-20240419131825512" style="zoom:50%;" /></p>
+
+<p>In later subsections, we will instead focus on <strong>vision sensors/models</strong> that takes in camera input and returns measurements. This means:</p>
+
+<blockquote>
+  <p>Vision-type sensors have two key ingredients:</p>
+
+  <ul>
+    <li><strong>Digital cameras</strong> (e.g., color, depth, stereo) are sensors that capture light and transform them to <em>digital images</em></li>
+    <li><strong>Computer vision</strong> is concerned with acquiring, processing, and understanding those <em>digital images</em> in order to extract symbolic <strong>information</strong></li>
+  </ul>
+</blockquote>
+
+<p>This means that we will be tranforming our “mapping” or “pose estimation” tasks to become:</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics_part2/image-20240419132055981.png" alt="image-20240419132055981" style="zoom:50%;" /></p>
+
+<h2 id="image-representation-and-filtering">Image Representation and Filtering</h2>
+
+<p>This section assumes you are familiar with basic CV approaches.</p>
+
+<ul>
+  <li>
+    <p>images are most often represented as a grid of pixel values $I(x,y)$</p>
+
+    <ul>
+      <li>brightness adjustment $I(x,y)+\beta$</li>
+      <li>contrast adjustment: $\alpha I(x,y)$</li>
+    </ul>
+  </li>
+  <li>
+    <p>another way to processes those images is <strong>filtering</strong></p>
+
+    <ul>
+      <li>
+        <p><strong>Spatial filters</strong> transform images using functions on <strong>pixel neighborhoods</strong> (i.e. <mark>convolution</mark>)</p>
+
+\[I'(x,y) = F*I = \sum_{i=-M}^{M}\sum_{j=-N}^N F(i,j)I(x+i, y+j)\]
+
+        <p>where $F$ is a <mark>kernel</mark> with shape $(2M+1)\times (2N+1)$. Usually this kernel is a square:</p>
+
+        <p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics_part2/image-20240419132712033.png" alt="image-20240419132712033" style="zoom:50%;" /></p>
+      </li>
+      <li>
+        <p>examples of simple filters include:</p>
+
+        <ul>
+          <li>
+            <p>moving average filter:</p>
+
+\[B = \frac{1}{9}\begin{bmatrix}
+1 &amp; 1 &amp; 1\\
+1 &amp; 1 &amp; 1\\
+1 &amp; 1 &amp; 1
+\end{bmatrix}\]
+
+            <p>this will basically blur an image</p>
+
+            <p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics_part2/image-20240419133001062.png" alt="image-20240419133001062" style="zoom:50%;" /></p>
+          </li>
+          <li>
+            <p>sharpening filter:</p>
+
+\[S = \begin{bmatrix}
+0 &amp; 0 &amp; 0\\
+0 &amp; 2 &amp; 0\\
+0 &amp; 0 &amp; 0
+\end{bmatrix}\]
+
+            <p>this will sharpen the image</p>
+
+            <p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics_part2/image-20240419133220965.png" alt="image-20240419133220965" style="zoom:50%;" /></p>
+          </li>
+          <li>
+            <p>Gaussian filters; also achieves blurring, but weights are defined proportional to a Gaussian centered at each pixel</p>
+
+            <p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics_part2/image-20240419133308087.png" alt="image-20240419133308087" style="zoom:50%;" /></p>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<p>But recall that the goal is to <strong>understand what is in the image</strong>. This then includes:</p>
+
+<ul>
+  <li>
+    <p><strong>edge detection</strong>: when intensities are changing in a certain direction, it is “and edge”.</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th style="text-align: center">Sobel detector</th>
+          <th style="text-align: center">Result</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="text-align: center"><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics_part2/image-20240419133919913.png" alt="image-20240419133919913" style="zoom:50%;" /></td>
+          <td style="text-align: center"><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics_part2/image-20240419133905024.png" alt="image-20240419133905024" style="zoom:50%;" /></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>There is also <strong>Canny detector</strong> is a multi-stage algorithm involving Gaussian smoothing and thresholding</p>
+
+    <p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics_part2/image-20240419134049478.png" alt="image-20240419134049478" /></p>
+  </li>
+  <li>
+    <p><strong>corner detection</strong>: a point with large changes in intensity in <em>all</em> directions. In general, corners can be more directly used for <em>3D reconstruction</em> and panorama stitching</p>
+
+    <p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics_part2/image-20240419134253442.png" alt="image-20240419134253442" style="zoom:50%;" /></p>
+
+    <p>More generally, <mark>image descriptors</mark> are features that can be compared <strong>across images</strong>, useful for object detection and matching</p>
+
+    <p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics_part2/image-20240419134430408.png" alt="image-20240419134430408" style="zoom:50%;" /></p>
+
+    <p>there are many existing detection algorithms to do the above, e.g., SIFT (scale-invariant feature transform)</p>
+  </li>
+</ul>
+
+<h2 id="point-cloud-registration">Point-Cloud Registration</h2>
+
+<p>Suppose we have two point clouds, and we want to want to <strong>find a spatial transformation that aligns them</strong>. This task can be useful for:</p>
+<ul>
+  <li>finding globally consistent model</li>
+  <li>3D reconstruction and pose estimation</li>
+  <li>data association in SLAM (see <a href="#ICP">ICP</a> later)</li>
+</ul>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics_part2/image-20240419134734358.png" alt="image-20240419134734358" style="zoom:67%;" /></p>
+
+<blockquote>
+  <p>Since it is to figure out a transformation, this can be formulated mathematically as <strong>minimizing an error between one set of points and a transformation of the other set</strong></p>
+</blockquote>
+
+<p>And it turns out that if this transformation is a <em>rotation followed by a translation,</em> then there is a closed-form solution.</p>
+
+<ol>
+  <li>
+    <p>given two set of points $X= {x_1, …, x_n}$ and $P={p_1, …, p_n}$ and suppose they are <strong>associated already $(x_i, p_i)$</strong></p>
+  </li>
+  <li>
+    <p>we can consider a transformation such that the following is minimized:</p>
+
+\[E(R, \mathbf{t}) = \sum_{i=1}^{n} || \mathbf{x}_i - (R\mathbf{p}_i + \mathbf{t}) ||^2\]
+  </li>
+  <li>
+    <p>then there is a closed formed solution:</p>
+    <ol>
+      <li>
+        <p>first re-center the data by:</p>
+
+\[X' = X - \mu_x, \quad P' = P - \mu_p\]
+      </li>
+      <li>
+        <p>then compute a outer product matrix:</p>
+
+\[W = \sum_{i=1}^{n} \mathbf{x}_i \mathbf{p}_i^T\]
+
+        <p>and perform SVD on $W = U \Sigma V^T$.</p>
+      </li>
+      <li>
+        <p>then the optimal solution is given by:</p>
+
+\[R^* = UV^T, \quad \mathbf{t}^* = \mu_x - R^* \mu_p\]
+
+        <p>which would minimize the error $E(R, \mathbf{t})$.</p>
+      </li>
+    </ol>
+  </li>
+</ol>
+
+<p>But then how do we find the data association with this?</p>
+
+<h3 id="icp">ICP</h3>
+
+<blockquote>
+  <p>One simple algorithm is just iteratively: estimate an association, compute the best solution and its error, provide a better estimate, and repeat.</p>
+</blockquote>
+
+<p>And this leads us to ICP:</p>
+
+<blockquote>
+  <p>Iterative closest point (ICP): Iterate between estimating the correspondences by finding closest points and solving the least squares problem</p>
+</blockquote>
+
+<p>but of course, this method:</p>
+<ul>
+  <li>can be computationally intensive, especially with correspondence estimation</li>
+  <li>Convergence depends on the initial guess and <em>presence of noise and outliers</em></li>
+  <li>Will generally converge to a local optimum, no guarantee of global optimal</li>
+</ul>
+
+<h3 id="icp-improvements">ICP Improvements</h3>
+
+<p>Several lines of improvements on its efficiency and robustness:</p>
+
+<ul>
+  <li><strong>use $k$-d tree</strong> to increase the efficiency of finding closes points</li>
+  <li>apply <strong>variable weighting</strong> to different pairs of points, e.g. lower weights to pairs that are very far apart or deemed less informative</li>
+  <li><strong>detecting outliers</strong> and ignore them in computations (see next section)</li>
+</ul>
+
+<h3 id="random-sample-consensus">Random Sample Consensus</h3>
+
+<p>In general, detecting outlier data and removing them from your method is useful both in ICP and other CV problems. One common method is RANSAC:</p>
+
+<blockquote>
+  <p>RANSAC: Iterative algorithm for parameter estimation and outlier detection</p>
+</blockquote>
+
+<p>The general approach is to:</p>
+
+<ol>
+  <li>randomly subsample from the full dataset</li>
+  <li>fit a model (e.g., a line shown in green below)</li>
+  <li>test <em>all</em> the data using the model to determine a consensus set (data that is consistent with this line) under some threshold</li>
+  <li>repeat, and <strong>keep the model that has the largest consensus set.</strong></li>
+</ol>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics_part2/image-20240419140558202.png" alt="image-20240419140558202" style="zoom:50%;" /></p>
+
+<p>Since each of this loop is independent, one can compute this in parallel.</p>
+
+<h1 id="convolutional-neural-networks">Convolutional Neural Networks</h1>
+
+<p>This section assumes you are familiar with basic CV approaches. So we will skip through the basics, and only keep some relevant information here.</p>
+
+<p>Since images are large in dimension, CNN based approaches are very parameter efficient:</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics_part2/image-20240419150554080.png" alt="image-20240419150554080" style="zoom:67%;" /></p>
+
+<p>The set of outputs from all filters make up a new image called an <strong>activation map</strong>. This means you can:</p>
+
+<ol>
+  <li>
+    <p>each CNN can apply more than 1 kernel. Since the above applied one kernel and obtained an output of $(1, W,H)$ matrix, using $N$ kernels in a layer gives you back matrices of $(N, W, H)$.</p>
+  </li>
+  <li>
+    <p>then you can just stack those CNN layers, and learned features typically progress from more primitive (edges/corners) to more high-level</p>
+
+    <p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics_part2/image-20240419151232308.png" alt="image-20240419151232308" style="zoom:50%;" /></p>
+
+    <p>to achieve this, typically the the receptive field (i.e., size of kernel) of a filter also increases with each layer</p>
+  </li>
+</ol>
+
+<p>And other common layers used in CNN today include:</p>
+
+<ul>
+  <li>
+    <p><strong>Pooling layers</strong>: downsample and shrink the image. This can also be useful to prevent overfitting. This can implemented similarly to filters</p>
+
+    <p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics_part2/image-20240419151647556.png" alt="image-20240419151647556" style="zoom: 33%;" /></p>
+  </li>
+  <li>
+    <p><strong>Nonlinear activations</strong>: since convolution is still a linear operation, we still need nonlinear activation functions (e.g., RELU, GeLU, etc) to achieve better performance</p>
+  </li>
+</ul>
+
+<p>Finally, the actual “classification task” is done by a few layers of FFNN:</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics_part2/image-20240419152215639.png" alt="image-20240419152215639" style="zoom:50%;" /></p>
+
+<p>So in this view, CNN are mostly used to perform feature extraction efficiently, and the last regular FFNN layers + softmax performs the actual classification.</p>
+
+<h1 id="reinforcement-learning">Reinforcement Learning</h1>
+
+<p>With both increasing computational power and complexity of robots, it is often desirable to learn models <strong>from data</strong> rather than derive them <strong>analytically</strong>. The idea is therefore to do RL from data.</p>
+
+<p>But of course, <strong>data</strong> cannot solve everything:</p>
+
+<ul>
+  <li>Curse of dimensionality—robots can be <em>very high-dimensional systems</em></li>
+  <li>We often only see data from a <em>small part of the C- or state space</em>
+    <ul>
+      <li>Probabilistic learning methods can help robot to infer missing information</li>
+    </ul>
+  </li>
+  <li>Real robots may also need to also consider effects such as <em>friction</em></li>
+  <li>To ensure sufficient richness in your data, may need <em>lots of exploration, artificial noise</em> while collecting data</li>
+</ul>
+
+<p>Additionally, <strong>learning algorithms</strong> may also need to consider, given the data:</p>
+
+<ul>
+  <li>there is often massive amounts of data coming through sensors -&gt; need to discern what is useful</li>
+  <li>need fast, real-time planning/execution algorithms</li>
+  <li>May want to incorporate prior knowledge, active learning by interacting with humans for data labeling</li>
+  <li>real life are non-stationary systems: Time-dependent dynamics, changing environments</li>
+</ul>
+
+<h2 id="rl-basics">RL Basics</h2>
+
+<p>We will go through RL quickly, assuming you are already familiar with most RL concepts. The key difference between SFT and RL is that the latter is learning through interaction/experience, whereas the former is fully offline.</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics_part2/image-20240426132750707.png" alt="image-20240426132750707" style="zoom: 33%;" /></p>
+
+<p>Example RL tasks in robotics look like:</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics_part2/image-20240426133124913.png" alt="image-20240426133124913" style="zoom: 50%;" /></p>
+
+<h2 id="example-grid-world">Example: Grid World</h2>
+
+<p>Consider the following setup</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics_part2/image-20240426134228685.png" alt="image-20240426134228685" style="zoom: 50%;" /></p>
+
+<p>where:</p>
+
+<ul>
+  <li>
+    <p><strong>States and actions:</strong> Agent can choose to move in one of four cardinal directions from a given state, except at terminal states</p>
+  </li>
+  <li>
+    <p><strong>Transition function</strong> (motion model) $\Pr[s’\vert s,a]$: Probability distribution of successor states, given starting state and action. For example, it may be non-deterministic:</p>
+
+    <p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics_part2/image-20240426134422646.png" alt="image-20240426134422646" style="zoom: 25%;" /></p>
+  </li>
+  <li>
+    <p><strong>Reward function</strong>: $\pm1$ for terminal states; constant living reward (e.g., $0$) for all other transitions</p>
+  </li>
+</ul>
+
+<p>And then you can define <strong>value functions and action value functions</strong> as:</p>
+
+\[V^\pi(s) = \mathbb{E}_{\pi}\left[\sum_{t=0} \gamma^t r_t | s_0=s \right], \quad Q^\pi(s,a) = \mathbb{E}_{\pi}\left[\sum_{t=0} \gamma^t r_t | s_0=s, a_0=a \right]\]
+
+<p>where $\gamma\in(0,1]$ can be used to: 1) avoid infinite value functions if all rewards are positive, and 2) models how human may not lookahead to much.</p>
+
+<p>In the case of a grid world, we can directly <strong>find the optimal value function $V^<em>,Q^</em>$</strong>, and hence <strong>extract the optimal policy $\pi^*$​</strong>. The idea is to use Bellman’s optimality equation and iteratively run:</p>
+
+\[Q(s,a) \gets \mathbb{E}_{s'}[R(s,a) + \gamma \max_{a'}Q(s',a')]\]
+
+<p>visually, applying the equation above will <strong>change the values near the terminal states with non-zero reward first</strong>, and then slowly propagate to all the remaining states. Finally, after this converged to $Q^<em>$, we can extract $\pi^</em> = \arg\max_a Q^*(s,a)$​.</p>
+
+<p>For DL methods, this will become:</p>
+
+<ol>
+  <li>sampling $(s,a,r)$​ observations</li>
+  <li>update the $Q$ network using the equation above</li>
+  <li>balance exploration-exploitation to select next action to do (typically $\epsilon$-greedy)
+    <ul>
+      <li>want to balance exploration with exploitation to avoid pure random walks</li>
+    </ul>
+  </li>
+</ol>
+
+<h2 id="deep-q-network">Deep Q-Network</h2>
+
+<p>The idea is to use ConvNet + RL to play games like Atari. This can be done by modeling the ConvNet as $Q_\theta$ and:</p>
+
+<ol>
+  <li>
+    <p>consider a loss function as:</p>
+
+\[L_i(\theta_i) = \mathbb{E}[ (y_i - Q_{\theta_i}(s_t, a_t))^2]\]
+
+    <p>for your network at the $i$-th iteration. Since there is no label/ground truth $Q^*$, you can use</p>
+
+\[y_i = \mathbb{E}_{s'}[r + \gamma \max_a Q_{\theta_{i-1}}(s_{t+1},a)]\]
+
+    <p>note that this is also an <strong>unbiased estimator</strong> of the optimal $Q^*$, if the above $Q_\theta$ has loss converges to zero.</p>
+  </li>
+  <li>
+    <p>play the game while training your model with the loss above.</p>
+  </li>
+</ol>
+
+<p>The general policy-iteration paradigm for DL therefore looks like:</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics_part2/image-20240426142646063.png" alt="image-20240426142646063" style="zoom:67%;" /></p>
+
+<h1 id="imitation-learning">Imitation Learning</h1>
+
+<p>Many specialized tasks (especially those pertaining to humans) are difficult to define, program, and generalize from scratch. The idea is then to start with imitation learning, before considering RL.</p>
+
+<p>On this approach. there can be <strong>many different ways of obtaining demonstration data</strong></p>
+
+<ul>
+  <li>
+    <p><strong>Kinesthetic teaching</strong>: Physical guidance of the robot.</p>
+
+    <ul>
+      <li>
+        <p>i.e., actually forcing the robot (e.g., arms) to do stuff</p>
+
+        <p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics_part2/image-20240426150527819.png" alt="image-20240426150527819" style="zoom:33%;" /></p>
+      </li>
+      <li>
+        <p>No explicit physical correspondence is needed</p>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>Teleoperation</strong>: User has same perception as the robot.</p>
+
+    <p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics_part2/image-20240426150555146.png" alt="image-20240426150555146" style="zoom:33%;" /></p>
+
+    <ul>
+      <li>Can train robots from a distance or remotely</li>
+      <li>Difficult to perform low-level motion demonstrations</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>Imitation</strong>: Directly recording human motions</p>
+    <ul>
+      <li>Use of motion tracking systems, e.g. vision or wearable motion sensors</li>
+      <li>Need to solve human-robot correspondences</li>
+    </ul>
+  </li>
+</ul>
+
+<p>With these data (typically ~hundreds of demonstrations)</p>
+
+<blockquote>
+  <p>Typically we learn <em>either policies, rewards/costs, or plans</em> from these demonstrations.</p>
+
+  <ul>
+    <li>note that if we try to learn underlying models or reward functions instead, this goes into the framework of <em>inverse reinforcement learning</em>. One motivation for this is that for some tasks,  the reward ($R^<em>$) is often more succinct and robust than optimal policy ($\pi^</em>$)</li>
+    <li>if learning complex tasks, we try to break down them down into a sequence of sub-tasks or primitive actions—a plan</li>
+    <li>Training a mapping going directly from raw pixels or <strong>observations to commands</strong> or actions is also known as <strong>end-to-end learning</strong></li>
+  </ul>
+</blockquote>
+
+<p>For example</p>
+
+<p><img src="/lectures/images/2024-06-02-COMS4733_Computational_Aspects_of_Robotics_part2/image-20240426151230376.png" alt="image-20240426151230376" style="zoom: 37%;" /></p>
+
+<h2 id="challenges-of-real-world-rl">Challenges of Real World RL</h2>
+
+<p>Practical challenges:</p>
+
+<ul>
+  <li>Discretization of continuous state and action spaces dramatically increases their dimensionality</li>
+  <li>Real-world samples can be unreliable, <strong>expensive</strong>, and slow</li>
+  <li>Robots must explore <strong>safely</strong>.</li>
+  <li>Small modeling errors can lead to <strong>large error accumulation</strong>s in unstable tasks</li>
+  <li><strong>Simulation bias</strong>—well-trained sim models may translate poorly to real systems</li>
+</ul>
+
+  </div><a class="u-url" href="/lectures/2024@columbia/COMS4733_Computational_Aspects_of_Robotics_part2.html/" hidden></a>
+  <script src="/lectures/assets/js/my_navigation.js"></script>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/lectures/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Lecture Notes</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Lecture Notes</li><li><a class="u-email" href="mailto:jasonyux17@gmail.com">jasonyux17@gmail.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/jasonyux"><svg class="svg-icon"><use xlink:href="/lectures/assets/minima-social-icons.svg#github"></use></svg> <span class="username">jasonyux</span></a></li><li><a href="https://www.linkedin.com/in/xiao-yu2437"><svg class="svg-icon"><use xlink:href="/lectures/assets/minima-social-icons.svg#linkedin"></use></svg> <span class="username">xiao-yu2437</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>An inexhaustive collection of markdown/latex(PDF) notes that I took since college. </p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
